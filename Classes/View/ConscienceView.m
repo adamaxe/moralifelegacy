@@ -710,14 +710,11 @@ Animation determined by Conscience Mood/Enthusiasm
 	
 	NSArray *expressions;
     	
-//    expressions = [NSArray arrayWithObjects: @"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormal", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock", nil];
-
     expressions = [NSArray arrayWithObjects: @"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock", nil];
     
     CGFloat conscienceMood = currentConscienceMind.mood;
     CGFloat conscienceEnthusiasm = currentConscienceMind.enthusiasm;
 
-//    int randomIndex = 14 * (conscienceMood/100);
     int randomIndex = 16 * (conscienceMood/100);
     
     
@@ -745,32 +742,13 @@ Animation determined by Conscience Mood/Enthusiasm
 	int tongueIndex = 3;	
 	
 	if ((randomSwitch < 1) || isExpressionForced) {
-        NSLog(@"forcedExpression %d", isExpressionForced);
+
 		[self changeLipsExpressions:[expressions objectAtIndex:randomIndex]];
 	}
 
 	isExpressionForced = FALSE;
 	
 	if(randomSwitch < 1){
-//		switch(randomIndex){
-//			case 0:dimpleIndex = 0;teethIndex = 2;tongueIndex = 3;break;				
-//			case 1:dimpleIndex = 0;teethIndex = 0;tongueIndex = 3;break;
-//			case 2:dimpleIndex = 0;teethIndex = 1;tongueIndex = 3;break;                
-//			case 3:dimpleIndex = 0;teethIndex = 2;tongueIndex = 3;break;
-//			case 4:dimpleIndex = 0;teethIndex = 2;tongueIndex = randomTongueSad;break;
-//			case 5:dimpleIndex = 0;teethIndex = 2;tongueIndex = 3;break;
-//			case 6:dimpleIndex = 0;teethIndex = 2;tongueIndex = randomTongueSad;break;
-//			case 7:dimpleIndex = 1;teethIndex = 2;tongueIndex = 3;break;
-//			case 8:dimpleIndex = 2;teethIndex = 2;tongueIndex = 3;break;
-//			case 9:dimpleIndex = 2;teethIndex = 2;tongueIndex = randomTongueHappy;break;
-//			case 10:dimpleIndex = 2;teethIndex = 2;tongueIndex = randomTongueHappy;break;
-//            case 11:dimpleIndex = 2;teethIndex = 2;tongueIndex = 3;break;		  
-//			case 12:dimpleIndex = 2;teethIndex = 3;tongueIndex = 3;break;
-//			case 13:dimpleIndex = 2;teethIndex = 4;tongueIndex = 3;break;
-//            case 14:dimpleIndex = 2;teethIndex = 2;tongueIndex = 3;break;
-//			default:dimpleIndex = 1;teethIndex = 2;tongueIndex = 3;
-//
-//        }
         
         switch(randomIndex){
 			case 0:dimpleIndex = 0;teethIndex = 2;tongueIndex = 3;break;				
