@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-cross.svg"
+   style="display:inline"
+   inkscape:export-filename="E:\moralife\code\moralife\Resources\images\conscience\con-cross.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4875" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.1987743"
+     inkscape:cx="95.469732"
+     inkscape:cy="97.21613"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:label="Symbol"
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       style="display:inline">
+      <path
+         id="seg"
+         d="M 67.529501,64.558365 C 69.321176,58.699745 81.381645,54.329845 94.587237,53.380385 C 107.73304,52.436715 122.09069,52.117866 138.34369,61.722916 L 140.47985,58.491528 C 111.8808,38.817658 68.379013,47.463307 65.337526,61.307597 L 67.529501,64.558365 z"
+         sodipodi:nodetypes="cccccc"
+         style="fill:#000000;fill-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         id="seg-3"
+         d="M 93.254567,37.953628 C 102.2525,47.148745 106.88724,66.070211 105.84438,82.087988 C 104.80386,98.031477 105.67587,106.91219 98.149386,122.48922 L 98.523211,124.70079 C 121.4001,104.44269 117.48705,56.857261 95.993407,36.469805 z"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cccccc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position"
+       style="display:inline">
+      <path
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000;stroke-width:0.90835607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 80.493824,82.162634 L 133.33808,81.933964 L 99.76743,144.56208 z"
+         id="path2955-1"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+</svg>

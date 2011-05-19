@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg3604"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-gender-female-eye.svg"
+   inkscape:export-filename="C:\local\ml\Archive\img\sym-ball.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs3606" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4"
+     inkscape:cx="40.19084"
+     inkscape:cy="100"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerSymbol"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3609">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.88572931;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 82.500565,59.422088 C 65.312462,59.756405 60.247099,66.95673 56.602133,76.01593 C 51.065874,89.775754 56.827089,107.90767 72.759324,111.76156 C 88.353912,115.53378 102.27815,107.92312 106.48115,101.05309 C 110.65662,94.228035 110.89568,86.416419 110.32691,81.802613 C 109.75344,77.150551 99.688669,59.087772 82.500565,59.422088 z M 93.390258,64.090219 C 96.39632,65.468136 101.01743,68.644965 104.70707,75.54803 C 109.20998,83.972633 107.70796,90.766931 106.19806,94.812554 C 103.48086,102.09305 89.058249,114.25193 71.524228,106.547 C 59.088435,101.08238 58.180253,86.547867 63.041981,74.822587 C 71.093748,59.599467 87.788356,60.573151 93.390258,64.090219 z"
+         id="path4329-2-7"
+         sodipodi:nodetypes="zsszszcssscc"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         id="seg-1-1-5"
+         d="M 95.498682,114.1987 C 99.826463,114.69124 101.54897,115.07512 105.70194,114.44982 C 108.72242,113.57063 109.25514,113.81244 114.512,110.85263 L 115.76807,113.75178 C 109.59065,116.62236 104.44578,118.78756 96.145676,118.39063 L 95.498682,114.1987 z"
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="csscscccsscc"
+         d="M 96.840211,104.42509 C 96.994354,104.55268 97.073155,104.81368 97.608848,105.08457 C 98.2388,105.40314 100.07465,105.61509 100.26323,105.84672 C 101.7959,107.72929 103.36529,110.87465 104.14673,113.5818 C 105.05756,116.73842 105.42572,118.81081 104.71286,120.86413 C 104.67666,120.96831 103.97901,122.86195 103.88853,122.95922 L 106.92285,122.65594 L 107.20926,122.46193 C 109.41841,118.37422 107.42563,109.35388 103.71476,105.27032 C 103.52114,105.05725 104.57349,104.45433 104.85248,104.04992 C 105.16413,103.59816 105.52164,103.15495 105.32861,103.00588 L 96.840211,104.42509 z"
+         id="seg-3-8"
+         style="fill:#000000;fill-opacity:1;display:inline"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.09746563px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 81.775649,86.573467 L 131.11344,86.679041 L 104.16656,149.42653 L 81.775649,86.573467 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

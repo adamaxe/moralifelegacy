@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg3604"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-gender-male-nose.svg"
+   inkscape:export-filename="C:\local\ml\Archive\img\sym-ball.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs3606">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 45 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="90 : 45 : 1"
+       inkscape:persp3d-origin="45 : 30 : 1"
+       id="perspective7871" />
+    <inkscape:perspective
+       id="perspective6455"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="55.184812"
+     inkscape:cy="73.115512"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerSymbol"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3609">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.34116077;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 118.71534,92.634321 C 117.3973,92.618331 115.96815,92.8522 114.93368,93.63992 L 116.0003,95.03229 C 116.94934,94.2554 117.71582,94.20506 118.47293,94.25875 C 116.84441,95.03577 115.15854,96.07146 112.80043,98.39717 C 111.12993,97.44714 109.06023,96.75455 106.54616,96.77274 L 104.80077,96.8501 C 100.3025,97.21128 96.53064,99.53504 94.958764,102.65163 C 92.571269,107.38535 95.069559,113.62505 101.94029,114.95089 C 108.6654,116.24862 114.6726,113.64004 116.48513,111.27657 C 118.28578,108.92859 118.37881,106.25009 118.13355,104.66283 C 117.98762,103.71845 116.65827,101.11943 114.01251,99.17071 L 114.35188,99.36409 C 116.8428,97.40963 117.95909,96.86561 120.41224,95.65112 C 120.31844,96.35562 120.37254,96.99824 118.76382,97.62364 L 121.38189,98.39717 C 122.62398,96.61374 122.17656,95.17408 122.01217,94.3361 L 121.96367,94.3361 L 121.86667,93.05977 C 121.24914,92.901608 120.03332,92.650295 118.71529,92.634321 z M 106.54616,97.81702 C 108.34867,97.77697 109.90671,98.09815 110.81264,98.55189 C 112.109,99.02592 114.11825,100.12211 115.7094,102.49693 C 117.65128,105.39519 116.99083,107.71887 116.33968,109.11067 C 115.16789,111.61535 108.96848,115.82244 101.40698,113.17174 C 96.04408,111.29178 95.62568,106.29866 97.72229,102.26486 C 99.89248,98.99166 103.54194,97.88379 106.54616,97.81702 z"
+         id="path4329-2-0"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.22719514px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 82.11162,76.112908 L 128.38838,76.571459 L 110.5868,138.88709 L 82.11162,76.112908 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

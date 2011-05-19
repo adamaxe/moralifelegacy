@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="con-animal-pig.svg"
+   inkscape:export-filename="E:\moralife\code\moralife\Resources\images\conscience\con-animal-pig.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs4875">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 45 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="90 : 45 : 1"
+       inkscape:persp3d-origin="45 : 30 : 1"
+       id="perspective3965" />
+    <inkscape:perspective
+       id="perspective3976"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="66.809522"
+     inkscape:cy="75.311882"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Moralife</rdf:li>
+            <rdf:li>St. Louis</rdf:li>
+            <rdf:li>Arch</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A surrounding for the software, Moralife.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         d="M 100.02275,121.66732 C 93.17565,122.95331 91.3778,121.98324 88.6151,118.99964 C 81.80908,118.70297 72.04949,116.27152 67.869745,112.73507 C 66.121659,111.25603 64.980136,111.22077 65.844721,109.93155 C 66.6505,108.73002 68.53647,109.22531 68.53647,109.22531 C 73.89264,111.63357 81.86248,117.42491 91.32113,116.07559 C 92.43929,117.95651 93.63793,119.90589 98.69946,119.26739 C 103.76099,118.62889 111.92806,115.66854 111.556,108.7742 C 110.62708,106.40932 109.29713,107.99492 107.89811,105.72494 C 107.54464,105.15143 108.77842,103.8919 106.34328,103.45816 C 107.23812,101.13376 106.15204,100.05089 104.23628,100.14059 C 106.44965,96.385107 103.85927,95.97891 103.06747,94.38069 C 105.25901,85.952681 95.02412,81.865667 97.19365,77.682411 C 99.1462,73.917539 99.10658,72.370245 98.3331,68.430671 C 97.98723,66.66907 97.49473,64.704 95.88282,63.092697 C 90.64606,70.718963 84.62722,72.221045 82.56102,71.230588 C 76.39362,68.274167 72.493023,69.608554 66.358254,67.535937 L 67.213682,64.703025 L 68.429358,64.011275 C 75.1886,64.84128 78.83428,68.143303 84.86126,67.684469 C 88.6845,67.356767 92.73497,56.629536 102.03718,57.016961 C 100.1566,60.30279 103.04999,62.907657 104.36945,65.588962 C 106.75849,70.443756 105.98431,74.300419 101.07093,77.735901 C 99.6185,78.751451 103.3593,80.737465 105.22095,85.003284 C 106.60506,88.174876 110.41065,92.032217 105.99402,95.313551 C 106.58292,95.752987 108.44239,96.641042 107.58642,98.514573 C 109.61229,98.18816 109.89382,99.83852 109.08386,101.29764 C 111.9299,101.17138 110.8307,104.1962 110.8307,104.1962 C 110.8307,104.1962 113.08971,104.39429 114.52119,105.71786 C 115.77757,106.87952 115.56984,108.8995 114.53731,111.73452 C 112.90808,116.20786 106.3387,120.8751 100.02275,121.66732 z"
+         id="seg-3-9"
+         sodipodi:nodetypes="ccsscczcscccsscscccccsssccccssc"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none"
+         d="M 108.45426,110.33366 C 108.71952,110.74406 108.57336,111.26951 108.35698,111.6676 C 107.90293,112.4789 107.14147,113.08342 106.31457,113.48513 C 105.71923,113.759 105.0418,113.9581 104.38598,113.80881 C 104.01087,113.72966 103.68288,113.41436 103.65994,113.02028 C 103.62291,112.44209 103.95158,111.91824 104.3095,111.49232 C 104.95406,110.76078 105.81806,110.21069 106.76659,109.97405 C 107.26062,109.86251 107.83476,109.82128 108.26644,110.13305 C 108.33752,110.18769 108.40019,110.25342 108.45034,110.32779"
+         id="path2919"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;display:inline"
+         d="M 101.07714,113.45789 C 101.3424,113.8683 101.19624,114.39374 100.97986,114.79184 C 100.52581,115.60313 99.76435,116.20766 98.93745,116.60937 C 98.34211,116.88323 97.66468,117.08234 97.00886,116.93304 C 96.63375,116.8539 96.30576,116.53859 96.28282,116.14452 C 96.24579,115.56632 96.57446,115.04248 96.93238,114.61656 C 97.57694,113.88502 98.44094,113.33493 99.38947,113.09829 C 99.8835,112.98675 100.45764,112.94552 100.88932,113.25728 C 100.9604,113.31193 101.02307,113.37765 101.07322,113.45203"
+         id="path2919-1"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position"
+       style="display:inline">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.90835607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 75.610863,90.325232 131.38914,90.096561 104.75635,141.40344 75.610863,90.325232 z"
+         id="path2955-7"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

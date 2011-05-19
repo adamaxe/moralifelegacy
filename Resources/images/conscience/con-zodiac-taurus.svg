@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg3604"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="con-zodiac-taurus.svg"
+   inkscape:export-filename="c:\local\ml\pt\images\conscience\con-yinyang2.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs3606">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 100 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="200 : 100 : 1"
+       inkscape:persp3d-origin="100 : 66.666667 : 1"
+       id="perspective11" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.0860875"
+     inkscape:cx="79.147525"
+     inkscape:cy="105.96979"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerSymbol"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3609">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <cc:license
+           rdf:resource="" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         class="fil0"
+         d="M 97.707576,68.91173 C 96.500085,68.79991 95.546085,68.04131 94.919635,67.45378 94.301895,66.86622 93.547525,65.91963 92.653965,64.60311 L 91.588255,63.03632 C 90.283785,61.12139 89.081955,60.16393 88.000215,60.16393 L 87.686155,60.16393 86.674185,59.42602 87.874055,57.99388 88.737725,57.99388 C 90.273125,57.99388 91.985645,59.34307 93.864035,62.0305 L 95.305345,64.11953 C 96.272725,65.49047 97.160496,66.44793 97.986106,66.99196 98.814286,67.54687 99.785406,67.81886 100.91079,67.81886 102.03615,67.81886 102.87958,67.54687 103.44722,66.99196 104.01742,66.44793 104.45566,65.49047 104.77067,64.11953 L 105.24861,62.0305 C 105.85652,59.34307 106.9356,57.99388 108.46227,57.99388 L 109.32592,57.99388 110.47187,58.46227 109.70905,59.62596 109.40372,59.62596 C 108.31325,59.62596 107.56095,60.58341 107.15554,62.49835 L 106.82545,64.06514 C 106.55,65.38166 106.24007,66.32825 105.89819,66.9158 105.54758,67.50334 105.0344,67.99294 104.35611,68.37375 105.91667,69.29859 107.22705,70.49543 108.29955,71.94252 109.37206,73.3896 110.10519,74.98903 110.50873,76.70811 111.09621,79.2106 110.86552,81.38667 109.80797,83.23633 108.74169,85.086 107.20468,85.94069 105.18138,86.01082 102.59451,86.10051 100.61259,85.8033 98.236906,83.50533 96.315505,81.6468 95.041115,79.47958 94.453635,76.97712 94.050095,75.258 94.041015,73.6586 94.434115,72.21151 94.827205,70.76443 96.138605,69.47791 97.707576,68.91173 z M 104.668,83.82388 C 106.25574,83.82388 107.44701,83.1384 108.25418,81.74574 109.05771,80.37481 109.23396,78.71012 108.77677,76.76253 108.31191,74.78229 107.34896,73.09585 105.90794,71.71402 104.46435,70.32136 102.94253,69.6359 101.33734,69.6359 99.740886,69.6359 98.540886,70.32136 97.733716,71.71402 96.941446,73.09585 96.770306,74.78229 97.235156,76.76253 97.692366,78.71012 98.650206,80.37481 100.0974,81.74574 101.54971,83.1384 103.07154,83.82388 104.668,83.82388 z"
+         id="path618"
+         sodipodi:nodetypes="ccccccccccccsccccccccccccsscsssscccscscscc"
+         style="fill:#000000;fill-opacity:1"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.78050739px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 74.7814,83.166047 131.06108,83.169762 106.85585,130.47517 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

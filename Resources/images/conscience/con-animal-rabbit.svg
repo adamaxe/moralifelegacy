@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-animal-rabbit.svg"
+   inkscape:export-filename="/Users/aaxe/Documents/moralife/img/pos-menorah.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs4875" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="-44.893867"
+     inkscape:cy="123.99243"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerTotal"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Moralife</rdf:li>
+            <rdf:li>St. Louis</rdf:li>
+            <rdf:li>Arch</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A surrounding for the software, Moralife.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         d="M 100.99409,106.91546 C 100.27327,109.06895 98.90692,111.84932 95.75609,114.87694 C 91.89719,118.58494 86.3386,121.40219 80.28338,119.06027 C 71.38907,122.72562 68.400168,119.46451 64.933375,118.9472 C 62.673528,118.60998 61.612755,117.53535 61.85989,115.72883 C 62.090216,114.04517 64.04627,113.86854 64.04627,113.86854 C 68.905047,113.75524 72.767533,117.27235 79.32624,114.01282 C 88.32124,117.55997 99.88495,109.4345 96.53124,98.36253 C 94.76041,92.66105 93.29885,84.688871 87.57598,77.768958 C 90.50529,69.148724 89.74403,41.818329 89.74403,41.818329 C 89.74403,41.818329 82.09958,59.761872 81.72725,76.95007 C 76.44668,77.735147 73.86273,74.82003 67.302271,77.543427 L 66.879618,73.983749 C 69.086595,70.787582 74.753693,73.36732 77.99598,73.433451 C 76.07583,67.983984 80.29901,34.240163 92.81989,30.536879 C 92.98723,36.37293 95.54116,39.604361 95.77809,43.63524 C 96.23753,51.451654 94.94364,68.245939 91.8017,74.96369 C 98.12294,83.976165 94.70835,87.07732 99.55206,95.42284 C 102.68691,100.82404 102.09904,104.6544 100.99409,106.91546 z"
+         id="seg-3-9"
+         sodipodi:nodetypes="cscssccccccccccscsc"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.90835607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 74.61086,95.82523 L 118.38914,95.59656 L 106.25635,135.90344 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

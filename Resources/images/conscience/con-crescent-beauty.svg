@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4313"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-crescent-beauty.svg"
+   style="display:inline"
+   inkscape:export-filename="C:\local\ml\pt\ava-crescent2.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4315" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.6942376"
+     inkscape:cx="70.341323"
+     inkscape:cy="101.19148"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4318">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:label="Symbol"
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.26200259;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 79.684307,127.59874 C 60.699454,121.45081 51.913153,106.64677 51.474439,91.477303 C 51.073792,77.624097 55.613655,64.825815 69.748141,55.317784 C 83.882627,45.809754 95.149147,45.388664 107.71292,48.901027 C 119.87811,52.301962 128.86714,62.391363 130.15272,77.272968 C 110.94607,60.915618 92.114951,61.862565 80.355518,72.724344 C 68.596086,83.586124 64.91157,105.55575 79.684307,127.59874 z"
+         id="path4329"
+         sodipodi:nodetypes="cszsczc"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.16971685;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 84.72045,118.70459 C 85.602982,118.5656 86.485514,118.42662 87.368046,118.28763 C 87.982862,118.93584 88.597679,119.58406 89.212495,120.23227 C 89.353026,119.34998 89.493558,118.4677 89.634089,117.58541 C 90.440566,117.20099 91.247043,116.81658 92.05352,116.43216 C 91.257841,116.02587 90.462163,115.61957 89.666484,115.21327 C 89.550099,114.32748 89.433712,113.44168 89.317326,112.55589 C 88.685038,113.18707 88.05275,113.81825 87.420462,114.44944 C 86.542055,114.2864 85.663646,114.12336 84.785239,113.96033 C 85.190142,114.75672 85.595046,115.5531 85.999949,116.34949 C 85.573449,117.13453 85.14695,117.91956 84.72045,118.70459 z"
+         id="path4323-6-2"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.90835607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 97.597612,95.654735 L 134.75013,95.967665 L 120.45843,138.49386 L 97.597612,95.654735 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

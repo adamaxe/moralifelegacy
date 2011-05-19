@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="con-music-treble-clef-nose.svg"
+   style="display:inline">
+  <defs
+     id="defs4875">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 45 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="90 : 45 : 1"
+       inkscape:persp3d-origin="45 : 30 : 1"
+       id="perspective2902" />
+    <inkscape:perspective
+       id="perspective2864"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="51.838356"
+     inkscape:cy="59.011025"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <cc:license
+           rdf:resource="" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Ankh</rdf:li>
+            <rdf:li>Moralife</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A symbol of an Ankh for the Moralife software</dc:description>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         d="M 112.31748,84.398012 C 109.3362,84.358612 107.13151,85.457179 106.62574,88.266481 106.38641,89.595861 107.13961,92.011081 107.7513,93.446221 105.21969,94.383571 104.39105,94.750651 103.32929,95.771361 101.26925,97.886971 101.1713,100.32769 102.84802,102.5145 104.66068,104.56993 107.57863,104.61662 110.12015,104.61234 112.47081,104.60837 113.40326,104.31151 115.02708,103.97072 115.1243,104.65247 115.13537,105.32272 115.12744,105.92322 115.10617,107.53231 114.51905,108.97769 112.56837,109.78062 110.61087,110.392 106.79097,110.27763 107.65094,107.45342 108.4054,108.53833 110.26956,108.06376 110.66161,107.59629 111.05366,107.12881 111.271,106.28906 110.61144,105.59616 109.95186,104.90325 108.15609,105.09673 107.09899,105.73902 105.8445,106.50124 105.74395,106.97041 105.61516,108.11384 105.41334,109.90554 107.01033,111.27334 110.51108,111.59026 112.05613,111.73013 114.05951,111.47648 115.35372,110.46892 116.39025,109.66196 117.2011,108.55442 117.28116,107.04889 117.34587,105.83191 116.85729,104.67001 116.38188,103.49449 118.06712,102.48896 118.52913,101.10321 117.89631,99.493921 116.68882,97.720581 114.61478,97.227431 112.60779,97.444781 111.19332,96.495341 110.11013,95.325471 109.45735,94.065311 112.063,93.184321 114.75871,91.972771 115.73415,91.044701 116.7096,90.116641 117.07231,89.368951 116.91002,87.661341 116.73947,85.866718 114.67946,84.429233 112.31748,84.398012 z M 112.021,85.492356 C 113.20293,85.458606 114.1885,85.789319 115.00327,86.728601 115.43797,87.229741 115.84501,88.517981 114.77774,89.721301 113.80903,90.813501 112.14331,91.824061 109.05592,93.017621 108.68956,92.024841 108.37069,90.951541 108.35344,89.779311 108.31475,87.151451 109.56515,85.803124 112.021,85.492356 z M 108.25307,94.446291 C 108.7003,95.211701 109.26025,95.907581 109.95912,96.494041 110.58459,97.018901 111.12883,97.534031 111.71535,98.017951 111.46674,98.231121 110.98628,98.462631 110.76197,99.052031 110.06848,100.87422 112.67865,101.50294 112.86944,100.62356 111.61763,100.27977 112.25314,99.194231 112.61854,98.779901 113.78358,99.841561 114.47385,101.42317 114.82637,103.01827 112.51485,103.83719 110.07858,103.60223 107.73343,103.06267 102.31458,101.51437 104.48775,96.374401 108.25307,94.446291 z M 113.67228,98.398921 C 114.62907,98.361651 115.27338,98.797361 115.98046,99.398991 117.01813,100.5996 117.1016,101.39194 116.03064,102.44681 115.4945,100.97382 114.7077,99.511301 113.67228,98.398921 z"
+         id="seg-4-4"
+         sodipodi:nodetypes="cscccscsccssssssscccczsscsscsccscsccccccccc"
+         style="fill:#000000;fill-opacity:1;display:inline" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.97184521px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 90.034156,77.046785 127.10871,77.405595 110.86198,126.1675 90.034156,77.046785 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+</svg>

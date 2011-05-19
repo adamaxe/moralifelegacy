@@ -1,0 +1,16 @@
+/**
+Implementation:  Override draw layer of UINavigation bar to prevent drawing of black/gray graphic
+
+@class UINavigationBar-Transparent UINavigationBar-Transparent.h
+ */
+
+#import "UINavigationBar-Transparent.h"
+
+@implementation UINavigationBar (CustomTexture)
+
+- (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx {
+
+	//Prevent drawing of channel
+}
+
+@end

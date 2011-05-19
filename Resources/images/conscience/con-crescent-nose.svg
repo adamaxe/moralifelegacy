@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4313"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-crescent-nose.svg"
+   style="display:inline"
+   inkscape:export-filename="C:\local\ml\pt\ava-crescent2.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <defs
+     id="defs4315" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.6942376"
+     inkscape:cx="24.740998"
+     inkscape:cy="93.822145"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerSymbol"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4318">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position"
+       style="display:inline">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="M 86.109694,94.304237 L 132.87619,94.304237 L 110.97546,145.09485 L 86.109694,94.304237 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:label="Symbol"
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.26200259;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 72.125969,124.44933 C 53.141116,118.30139 44.354815,103.49735 43.9161,88.327884 C 43.515453,74.474678 48.055317,61.676396 62.189803,52.168365 C 76.324294,42.660335 87.590812,42.239245 100.15458,45.751608 C 112.31977,49.152543 121.3088,59.241944 122.59437,74.123549 C 106.01224,54.879232 81.003974,56.481104 69.38531,67.212861 C 57.766646,77.944618 57.534285,101.36074 71.09653,122.86639 C 71.429192,123.39389 71.772291,123.92159 72.125969,124.44933 z"
+         id="path4329"
+         sodipodi:nodetypes="cszsczsc"
+         inkscape:connector-curvature="0" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.29373881;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         d="M 105.64753,118.90348 C 107.17498,118.66292 108.70243,118.42237 110.22987,118.18181 C 111.29397,119.30372 112.35807,120.42562 113.42217,121.54752 C 113.66539,120.02049 113.90862,118.49347 114.15185,116.96644 C 115.54766,116.30111 116.94348,115.63578 118.3393,114.97045 C 116.96217,114.26725 115.58504,113.56405 114.20791,112.86085 C 114.00648,111.32775 113.80504,109.79465 113.60361,108.26156 C 112.50927,109.35398 111.41493,110.44641 110.32059,111.53883 C 108.80028,111.25666 107.27997,110.97448 105.75966,110.6923 C 106.51626,112.08899 107.35722,113.43673 108.12448,114.82737 C 107.38631,116.18607 106.38569,117.54477 105.64753,118.90348 z"
+         id="path4323-6"
+         sodipodi:nodetypes="ccccccccccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

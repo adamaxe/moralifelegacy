@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-music-bassclef-nose.svg"
+   style="display:inline">
+  <defs
+     id="defs4875">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 45 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="90 : 45 : 1"
+       inkscape:persp3d-origin="45 : 30 : 1"
+       id="perspective2846" />
+    <inkscape:perspective
+       id="perspective2864"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4"
+     inkscape:cx="28.080856"
+     inkscape:cy="81.0647"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <cc:license
+           rdf:resource="" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Ankh</rdf:li>
+            <rdf:li>Moralife</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A symbol of an Ankh for the Moralife software</dc:description>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         d="M 98.882203,84.308026 C 93.633995,84.286409 89.320607,87.479816 88.941718,91.680556 88.5812,95.677616 90.04871,98.288066 91.880108,100.39071 93.711513,102.49335 97.611024,101.76677 99.076272,100.14487 100.54152,98.522966 99.51166,96.113866 98.640709,95.019626 97.769759,93.925396 94.18277,93.275096 92.506732,95.814606 91.960083,92.620456 92.686299,91.376346 93.245591,90.488956 94.053848,89.206556 94.519161,88.615446 97.152308,87.572286 99.347366,86.702676 102.03637,87.140236 103.39851,87.732616 105.64883,88.711246 107.52516,92.683406 107.66864,96.942256 107.80944,101.12103 106.09924,109.16768 100.40567,113.48569 L 100.57135,114.23123 C 107.41737,110.21614 111.2295,102.03022 110.57006,95.426816 110.03542,90.072996 106.83299,85.56384 102.34534,84.6808 101.37248,84.397521 99.882475,84.384315 98.882203,84.308026 z"
+         id="seg-4"
+         sodipodi:nodetypes="cszzzcssszccscc"
+         style="fill:#000000;fill-opacity:1;display:inline" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+         d="M 114.72235,90.734406 C 114.7261,91.459246 114.40271,92.387586 113.76526,92.771626 113.28812,93.070306 112.64151,93.035686 112.19171,92.701176 111.55773,92.245676 111.28065,91.416576 111.35413,90.658356 111.41428,89.973136 111.77875,89.274506 112.41319,88.961846 112.9152,88.704466 113.55317,88.804686 113.97489,89.170666 114.47387,89.586366 114.72137,90.095546 114.72235,90.734406 z"
+         id="path30288"
+         sodipodi:nodetypes="csssssc" />
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+         d="M 114.74039,97.855156 C 114.74312,98.384396 114.50699,99.073246 114.04156,99.353656 113.69318,99.571746 113.22105,99.546466 112.89263,99.302216 112.42972,98.969636 112.22741,98.364266 112.28107,97.810656 112.32498,97.310336 112.59111,96.800226 113.05434,96.571936 113.42089,96.384016 113.8867,96.457186 114.19462,96.724406 114.55896,97.027926 114.73967,97.388686 114.74039,97.855156 z"
+         id="path30288-3"
+         sodipodi:nodetypes="csssssc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.15498424px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 74.030038,72.989436 L 127.04139,73.419131 L 102.88003,131.81449 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

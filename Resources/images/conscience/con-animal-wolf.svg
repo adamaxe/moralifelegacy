@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="con-animal-wolf.svg"
+   inkscape:export-filename="/Users/aaxe/Documents/moralife/img/pos-menorah.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs4875">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 45 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="90 : 45 : 1"
+       inkscape:persp3d-origin="45 : 30 : 1"
+       id="perspective4867" />
+    <inkscape:perspective
+       id="perspective4877"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="4"
+     inkscape:cx="97.542772"
+     inkscape:cy="105.46053"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Moralife</rdf:li>
+            <rdf:li>St. Louis</rdf:li>
+            <rdf:li>Arch</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A surrounding for the software, Moralife.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         d="M 94.472665,115.99405 C 86.959667,117.40469 84.420527,111.66486 77.000137,109.489 69.532208,109.16358 69.719693,107.59003 58.150586,104.68035 55.713978,104.06754 54.979956,103.01929 55.928624,101.60511 56.812767,100.2871 58.882152,100.8304 58.882152,100.8304 67.862721,103.85992 67.135769,105.56778 78.678111,105.25114 85.137822,107.91078 87.528132,113.87833 94.823621,111.49959 98.430136,111.49959 107.37066,110.70141 104.77996,105.33913 102.16125,99.918898 95.752401,94.029046 95.948447,88.934647 102.19349,82.980515 95.389759,74.285758 89.503373,70.617848 83.290642,66.746577 92.143252,61.019783 96.568768,57.767657 82.593327,56.535003 70.228564,64.352894 67.961425,63.266435 61.194232,60.023457 61.028984,61.487181 54.297594,59.213671 L 55.236214,56.106172 56.570118,55.347373 C 61.960022,56.181501 61.336961,56.205058 67.827515,58.153934 71.740653,59.328906 77.862337,55.058152 88.565804,54.140997 92.760863,53.781532 97.659755,53.937223 103.40535,55.137845 98.567764,63.255742 97.400375,64.571939 96.459503,69.432735 96.090059,71.341361 101.68599,72.531321 103.72868,77.210615 105.2474,80.689621 103.99198,87.053866 101.18248,89.489784 103.39583,91.14089 109.84291,102.60878 110.6731,108.55157 111.39563,113.72363 101.40285,115.12503 94.472665,115.99405 z"
+         id="seg-3-9"
+         sodipodi:nodetypes="ccssccczcscscccsscsscsc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.90835607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 76.61104,83.992988 124.11342,83.867871 100.13896,142.00701 76.61104,83.992988 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-animal-rat.svg"
+   inkscape:export-filename="/Users/aaxe/Documents/moralife/img/pos-menorah.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs4875" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2"
+     inkscape:cx="20.474396"
+     inkscape:cy="108.07463"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerSymbol"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Moralife</rdf:li>
+            <rdf:li>St. Louis</rdf:li>
+            <rdf:li>Arch</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A surrounding for the software, Moralife.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         d="M 79.875309,113.96828 C 75.032999,113.72366 74.153511,112.04898 66.651938,109.86171 C 65.072006,109.40104 64.596056,108.61303 65.211185,107.54995 C 65.784476,106.55917 67.126296,106.96759 67.126296,106.96759 C 80.189111,112.12496 90.30592,116.02526 103.05057,110.72416 C 103.58054,112.63112 106.77331,112.57108 107.73589,110.40519 C 108.69847,108.23931 106.9226,106.17024 104.75313,106.65074 C 103.80007,103.42972 98.01531,94.59959 98.10405,91.926011 C 102.15343,87.450124 97.74179,80.91403 93.92498,78.156759 C 104.84328,76.07699 107.53874,69.834459 95.73837,65.728998 C 82.801413,62.588047 81.426917,73.447217 79.956872,72.630496 C 75.568927,70.192658 75.461778,71.292981 71.097049,69.583919 L 71.705664,67.247926 L 72.570586,66.677515 C 76.065476,67.304553 74.000727,66.768675 78.209295,68.233703 C 80.746629,69.116963 80.287351,62.30823 87.22763,61.618779 C 89.94777,61.348559 96.27863,61.356764 101.83205,64.582468 C 107.26919,67.740635 115.0994,79.97808 99.81939,80.31058 C 104.19291,82.685981 104.60552,87.799598 101.49788,92.343323 C 102.74155,93.92683 107.81696,102.09684 108.59498,105.59517 C 110.5122,105.31615 115.16371,106.88603 113.12306,112.1804 C 111.08241,117.47478 106.06034,116.60325 105.17959,114.7439 C 96.37215,115.82036 87.51115,117.91193 79.875309,113.96828 z"
+         id="seg-3-9"
+         sodipodi:nodetypes="csscczccccscccsszccczcc"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.90835607px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 77.46696,92.060123 L 127.53304,91.831453 L 106.60274,137.66855 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

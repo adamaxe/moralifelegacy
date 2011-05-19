@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg3604"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="con-zodiac-pisces.svg"
+   inkscape:export-filename="c:\local\ml\pt\images\conscience\con-yinyang2.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs3606">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 100 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="200 : 100 : 1"
+       inkscape:persp3d-origin="100 : 66.666667 : 1"
+       id="perspective13" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.0860875"
+     inkscape:cx="69.560199"
+     inkscape:cy="105.96979"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3609">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <cc:license
+           rdf:resource="" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         sodipodi:nodetypes="ccccc"
+         d="M 93.49815,83.817461 C 97.964286,85.998735 102.86261,86.117844 108.15239,83.972331 L 108.70748,85.534368 C 102.97292,87.878335 96.45548,88.069638 93.377858,86.148376 L 93.49815,83.817461 z"
+         id="seg-1-1-7"
+         style="fill:#000000;fill-opacity:1;display:inline"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         style="fill:#000000;fill-opacity:1;display:inline"
+         id="path3097"
+         d="M 107.01746,75.579981 C 105.04334,77.932005 103.2642,82.678234 103.45763,86.662583 103.6507,90.62842 104.71791,94.676733 108.71721,96.174525 L 108.06107,97.425485 C 99.723042,94.195453 99.865272,81.094467 104.57764,75.86913 L 107.01746,75.579981 z"
+         inkscape:connector-curvature="0" />
+      <path
+         sodipodi:nodetypes="ccccscc"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;display:inline"
+         id="path3099"
+         d="M 93.717454,75.19269 C 96.044165,76.584149 97.468958,80.789707 97.471878,84.830112 97.474176,88.852005 96.507784,93.371558 92.137257,96.758773 L 93.44934,97.906109 C 98.594994,94.229523 99.492187,89.213406 99.76457,84.767422 100.04423,80.202649 99.169395,76.007778 96.366569,74.520471 L 93.717454,75.19269 z"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position"
+       style="display:inline">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.87195593px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 67.620853,83.675362 131.51048,83.680005 101.56485,133.94719 67.620853,83.675362 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

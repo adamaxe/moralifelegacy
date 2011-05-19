@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-animal-dog.svg"
+   inkscape:export-filename="C:\temp\test\code\moralife\Resources\images\conscience\icons\con-animal-dog-sm.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs4875">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 45 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="90 : 45 : 1"
+       inkscape:persp3d-origin="45 : 30 : 1"
+       id="perspective3461" />
+    <inkscape:perspective
+       id="perspective3471"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="44.071529"
+     inkscape:cy="97.147082"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerSymbol"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Moralife</rdf:li>
+            <rdf:li>St. Louis</rdf:li>
+            <rdf:li>Arch</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A surrounding for the software, Moralife.</dc:description>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         d="M 97.437492,119.53917 C 90.59039,120.82516 90.276298,119.59252 83.513598,117.60892 C 79.137372,117.41816 77.645672,116.75698 74.335418,115.60405 C 72.497475,114.96391 70.098913,114.17217 66.334735,113.22518 C 64.11409,112.66652 63.445126,111.71088 64.309711,110.42167 C 65.11549,109.22013 67.00146,109.71542 67.00146,109.71542 C 75.186057,112.47724 74.523537,114.03419 85.04285,113.74553 C 90.930024,116.17016 90.608474,117.1104 97.257338,114.94185 C 102.5442,116.56685 109.1923,108.71419 106.83122,103.82575 C 104.44462,98.884461 100.6038,97.515051 100.78246,92.870801 C 106.474,87.442796 99.331597,80.688948 94.908645,76.172526 C 89.418405,73.042559 82.003795,70.614501 75.276013,69.470703 C 69.108614,66.514283 68.958013,67.848669 62.823244,65.776052 C 59.729652,64.096673 62.894348,61.751391 62.894348,61.751391 C 66.204177,62.263764 69.059055,62.667653 71.644981,63.42013 C 78.765364,65.695228 86.83251,67.944739 91.940259,69.734661 C 97.048008,71.524583 97.116075,73.475163 100.12323,74.717133 C 101.90785,75.83839 106.01148,77.91692 107.87312,82.182739 C 109.25723,85.354331 108.11308,91.156211 105.5526,93.376891 C 107.56977,94.882101 109.69544,97.336661 112.70205,102.50433 C 115.0962,106.61933 103.75343,118.74694 97.437492,119.53917 z"
+         id="seg-3-9"
+         sodipodi:nodetypes="ccsssccczcccccczcscsc"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.94824028px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 82.647109,93.543071 131.22675,92.907981 105.79686,135.97218 82.647109,93.543071 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-pentagram.svg"
+   style="display:inline">
+  <defs
+     id="defs4875" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.979899"
+     inkscape:cx="73.286433"
+     inkscape:cy="94.75999"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;stroke:none;display:inline"
+         d="M 97.221704,87.59419 C 96.815394,91.813092 96.406464,95.450972 96.000144,99.669872 90.711653,99.502092 88.679703,99.527532 83.391213,99.359752 88.107393,102.01879 89.722103,103.06425 94.748333,105.9819 93.726463,110.09978 92.706833,114.21578 91.684973,118.33366 L 101.93398,109.88863 C 106.59092,112.60139 109.7782,114.47263 114.51266,116.92678 112.17951,112.91573 110.38901,110.0043 107.62956,105.99324 111.52957,103.55195 113.56633,102.08091 117.46634,99.639612 111.87896,99.652662 109.08341,99.664392 103.96109,99.677432 101.71449,95.455862 99.468314,91.815762 97.221704,87.59419 z M 98.023474,91.188162 C 100.2058,94.617862 101.22259,96.453252 103.05071,99.836012 100.87722,99.832712 99.410734,99.837182 97.245214,99.827222 97.563934,96.558622 97.704764,94.497432 98.023474,91.188162 z M 87.467788,100.52853 C 91.547978,100.65797 92.025042,100.61634 95.696774,100.74705 95.371482,102.33256 95.416789,103.02823 95.090999,104.61416 91.555849,102.55057 91.148598,102.60381 87.467788,100.52853 z M 114.81259,100.39533 C 111.66609,102.36495 110.09277,103.3182 107.02889,105.25034 106.01157,103.44043 105.57322,102.47507 104.55649,100.66468 108.65337,100.64979 110.24529,100.40599 114.81259,100.39533 z M 103.31815,100.83338 C 104.29477,102.67353 105.29128,103.83081 106.2679,105.67096 104.65209,106.81035 103.43943,107.42608 101.82362,108.56546 99.848374,107.42949 98.374674,106.34741 96.399424,105.21144 96.794464,103.36998 96.862744,102.66375 97.257794,100.82229 99.477184,100.82019 101.09875,100.8355 103.31815,100.83338 z M 106.79211,106.51975 C 109.02802,109.75197 110.77172,112.06278 112.97718,115.25865 109.06293,112.87252 106.85887,111.31992 103.04307,109.08669 L 106.79211,106.51975 z M 96.196974,106.40169 C 97.924004,107.40557 98.922654,108.13087 100.65012,109.13437 98.024374,111.32243 96.288974,113.09021 93.664702,115.25243 94.471922,111.99949 95.371182,109.6779 96.196974,106.40169 z"
+         id="path3951-94-1"
+         sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccc" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.02639365px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 73.593847,78.537769 L 124.39604,78.877079 L 102.20181,139.12968 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>

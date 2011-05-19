@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg4873"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="con-math-infinity.svg"
+   style="display:inline">
+  <defs
+     id="defs4875" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.9899495"
+     inkscape:cx="-111.59746"
+     inkscape:cy="-5.0732392"
+     inkscape:document-units="px"
+     inkscape:current-layer="svg4873"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata4878">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+        <cc:license
+           rdf:resource="" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam Axe</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Ankh</rdf:li>
+            <rdf:li>Moralife</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:description>A symbol of an Ankh for the Moralife software</dc:description>
+        <dc:publisher>
+          <cc:Agent>
+            <dc:title>TeamAxe.Org</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         style="fill:#000000;fill-opacity:1;display:inline"
+         d="M 108.21276,108.66021 C 107.60811,109.61621 109.56207,111.90261 110.6319,110.33373 111.70173,108.76485 118.0952,103.59611 118.84627,103.32139 121.67588,102.28639 123.60926,103.1599 124.66929,104.13351 126.65609,105.95829 127.31259,108.11602 127.16661,110.67714 126.57521,116.20122 124.36885,118.32956 118.78416,118.62873 111.88465,118.68642 105.93826,113.72981 99.457163,107.87912 92.976055,102.02843 70.151361,87.222627 70.476386,112.34441 70.846451,117.45357 72.251949,123.20691 77.714008,123.17604 83.176068,123.14518 88.975788,121.85415 93.748671,118.3054 95.53104,116.67624 97.175657,113.58375 95.791583,112.43589 94.415823,111.29492 93.506921,114.24556 91.088963,115.73836 88.668431,117.23276 87.272037,117.85012 83.980287,118.80872 78.606584,120.23802 76.236498,119.11518 75.235634,114.16014 74.786076,111.90504 75.343905,109.39586 75.929248,108.08111 77.790652,103.90022 79.562317,102.54292 83.050502,102.68213 96.03849,103.2005 108.4797,122.85819 119.4518,121.82357 130.4239,120.78896 131.62866,114.84236 131.43541,108.66277 131.24215,102.48317 126.64533,100.42137 122.76393,99.940975 119.07072,99.483871 116.6574,100.98854 115.35417,102.28266 114.05095,103.57678 108.81741,107.7042 108.21276,108.66021 z"
+         id="seg-4-4-2"
+         sodipodi:nodetypes="ccsscczczcssccsszzszs" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position"
+       style="display:inline">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1.14952767px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 79.529112,75.568886 116.44048,76.073316 102.24155,144.62396 79.529112,75.568886 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="200"
+   height="200"
+   id="svg3604"
+   version="1.1"
+   inkscape:version="0.48.0 r9654"
+   sodipodi:docname="con-zodiac-aquarius.svg"
+   inkscape:export-filename="c:\local\ml\pt\images\conscience\con-yinyang2.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90"
+   style="display:inline">
+  <defs
+     id="defs3606">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 100 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="200 : 100 : 1"
+       inkscape:persp3d-origin="100 : 66.666667 : 1"
+       id="perspective11" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="2.0860875"
+     inkscape:cx="26.571991"
+     inkscape:cy="105.96979"
+     inkscape:document-units="px"
+     inkscape:current-layer="layerPosition"
+     showgrid="false"
+     inkscape:window-width="1024"
+     inkscape:window-height="708"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata3609">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+        <cc:license
+           rdf:resource="" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:groupmode="layer"
+     id="layerTotal"
+     inkscape:label="Total"
+     style="display:inline">
+    <g
+       inkscape:groupmode="layer"
+       id="layerSymbol"
+       inkscape:label="Symbol"
+       style="display:inline">
+      <path
+         class="fil0"
+         d="M 88.930599,107.29744 C 88.930599,107.29744 94.265309,100.61291 97.568639,101.60341 C 99.101169,102.06293 99.461439,106.01428 99.461439,106.01428 C 99.461439,106.01428 103.59293,100.83108 106.1493,101.60341 C 107.67801,102.06525 108.01916,106.01428 108.01916,106.01428 C 108.01916,106.01428 114.10039,99.231261 115.33387,101.60341 C 115.74072,102.38584 117.48314,108.09942 117.48314,108.09942 L 115.69359,108.88994 C 115.69359,108.88994 115.37097,104.94522 113.84668,104.47906 C 111.28377,103.69529 107.12438,108.88994 107.12438,108.88994 C 107.12438,108.88994 106.7836,104.9397 105.25453,104.47906 C 102.70367,103.71061 98.589599,108.88994 98.589599,108.88994 C 98.589599,108.88994 98.238369,104.94146 96.708269,104.47906 C 94.142789,103.70378 89.985979,108.88994 89.985979,108.88994 L 88.930599,107.29744 z M 91.198389,99.519121 C 91.198389,99.519121 97.417149,93.089428 99.836419,93.813628 C 102.2557,94.537828 101.72922,98.224499 101.72922,98.224499 C 101.72922,98.224499 105.86945,93.039378 108.42856,93.813628 C 109.95708,94.276078 110.29842,98.224499 110.29842,98.224499 C 110.29842,98.224499 116.52988,92.473509 117.70421,93.813628 C 118.87855,95.153739 119.85349,100.30964 119.85349,100.30964 L 117.96138,101.10016 C 117.96138,101.10016 117.63857,97.156039 116.11447,96.689289 C 113.54881,95.903579 109.3807,101.10016 109.3807,101.10016 C 109.3807,101.10016 109.03991,97.149929 107.51085,96.689289 C 104.95997,95.920829 100.84592,101.10016 100.84592,101.10016 C 100.84592,101.10016 101.03253,97.312209 98.987529,96.689289 C 96.942539,96.066369 92.265239,101.10016 92.265239,101.10016 L 91.198389,99.519121 z"
+         id="path672"
+         style="fill:#000000;fill-opacity:1;display:inline"
+         sodipodi:nodetypes="cacacsccacacaccczcaczccacaczcc"
+         inkscape:connector-curvature="0" />
+    </g>
+    <g
+       inkscape:groupmode="layer"
+       id="layerPosition"
+       inkscape:label="Position"
+       style="display:inline">
+      <path
+         style="fill:none;stroke:#000000;stroke-width:0.98113137px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;display:inline"
+         d="M 80.086638,74.13142 L 129.03727,74.137317 L 106.38958,128.15566 L 80.086638,74.13142 z"
+         id="path2955"
+         sodipodi:nodetypes="cccc"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>
