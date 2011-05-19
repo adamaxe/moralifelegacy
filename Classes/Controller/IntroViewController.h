@@ -9,16 +9,15 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 @file
  */
 
-
 @class MoraLifeAppDelegate, ConscienceView, ConscienceBody, ConscienceAccessories;
 
 @interface IntroViewController : UIViewController {
 
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
     
 	IBOutlet UILabel *conscienceStatus;			/**< Conscience's thought presented in bubble */
-	IBOutlet UIImageView *thoughtBubbleView1;		/**< bubble surrounding Conscience's thought */
+	IBOutlet UIImageView *thoughtBubbleView1;	/**< bubble surrounding Conscience's thought */
 	IBOutlet UIImageView *backgroundImage;		/**< background image manipulation */
 	IBOutlet UIImageView *navBarImage;			/**< image that will appear once interaction is done */
 	IBOutlet UIImageView *tabBarImage;			/**< image that will appear once interaction is done */
@@ -30,38 +29,77 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 	IBOutlet UIView *thoughtArea;				/**< area in which thought bubble appears */
 	
 	IBOutlet UIButton *thoughtButton;			/**< area in which thought bubble appears */
-	IBOutlet UIButton *nextButton;			/**< area in which thought bubble appears */	
+	IBOutlet UIButton *nextButton;              /**< area in which thought bubble appears */	
     
-	NSTimer *moveTimer;				/**< controls Conscience movement */
+	NSTimer *moveTimer;                 /**< controls Conscience movement */
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
 	NSTimer *holdTapTimer;				/**< determines if long press was initiated */
-	NSTimer *thoughtChangeTimer;			/**< determines when Conscience thought disappears */
+	NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
 	
-	CGFloat initialTapDistance;				/**< assists in gesture recognition */
-    CGFloat animationDuration;
+	CGFloat initialTapDistance;			/**< assists in gesture recognition */
+    CGFloat animationDuration;          /**< duration variable for determining movement */
     
-    int messageState;
-    BOOL isImpatient;
+    int messageState;                   /**< which stage of intro is current */
+    BOOL isImpatient;                   /**< has User decided to skip intro */
 	BOOL isBackgroundOK;				/**< determine if iOS3 is present */
 	    
 }
 
 /**
-Accepts User input to change the presently displayed UIView and possibly commit Choice
+Accepts User input to select the last choice in the Introduction
 @param id Object which requested method
 @return IBAction method available from Interface Builder
  */
 -(IBAction)switchLast:(id)sender;
+/**
+Accepts User input to advance the Intro one screen
+@param id Object which requested method
+@return IBAction method available from Interface Builder
+ */
 -(IBAction)switchNow:(id)sender;
+/**
+In case of interruption, return Intro to saved state
+ */
 -(void)resumeIntro;
--(void)dismissThoughtModal;
+/**
+Gracefully dismiss Intro by fading out view
+ */
+-(void)dismissIntroModal;
+/**
+Fade ConscienceView back from being faded out and changed
+ */
 -(void)revealConscience;
+/**
+Start timers for Conscience movement
+ */
 -(void)setTimers;
+/**
+Stop timers for Conscience movement
+ */
 -(void)stopTimers;
+/**
+In case of interruption, stop Intro and movement timers
+ */
 -(void)stopIntro;
+/**
+Animate UI arrow to draw User attention
+ */
 -(void)animateDownButton;
+/**
+Animate UI arrow to draw User attention to interaction button
+ */
 -(void)animateNextButton;
+/**
+Change the Conscience to an angel
+ */
 -(void)makeAngel;
+/**
+Change the Conscience to a devil
+ */
 -(void)makeDevil;
+/**
+Return Conscience to normal state
+ */
 -(void)makeNormal;
+
 @end

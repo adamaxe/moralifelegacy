@@ -171,7 +171,7 @@ static float vigourOfShake = 0.05f;
 }
 
 #pragma mark -
-#pragma mark UI Interaction
+#pragma mark Conscience Movement
 
 -(void) timedMovement {
 	BOOL switchOrientationBool = FALSE;
@@ -249,6 +249,9 @@ static float vigourOfShake = 0.05f;
     }
     
 }
+
+#pragma mark -
+#pragma mark Intro States
 
 -(void) startIntro{
     
@@ -623,114 +626,8 @@ static float vigourOfShake = 0.05f;
     
 }
 
--(IBAction)switchNow:(id)sender {
-        
-    id placeholderID = nil;
-    isImpatient = TRUE;
-    
-    if(thoughtChangeTimer != nil){
-        
-        [thoughtChangeTimer invalidate];
-        thoughtChangeTimer = nil;
-    }
-
-    if (messageState >= 0) {
-        switch (messageState) {
-            case 0:[self switchText1];break;            
-            case 1:[self switchText2];break;
-            case 2:[self switchText3];break;
-            case 3:[self switchText4];break;
-            case 4:[self switchText5];break;
-            case 5:[self switchText6];break;            
-            case 6:[self switchText7];break;            
-            case 7:[self switchText8];break;            
-            case 8:[self switchText9];break;            
-            case 9:[self switchText10];break;            
-            case 10:[self switchText11];break;            
-            case 11:[self switchText12];break;            
-            case 12:[self switchText13];break;            
-            case 13:[self switchText14];break;            
-            case 14:[self switchText15];break;            
-            case 15:[self switchText16];break;            
-            case 16:[self switchLast:placeholderID];break;           
-            default:
-                break;
-        }
-	}
-        
-}
-
--(IBAction)switchLast:(id)sender {
-
-    [UIView beginAnimations:@"conscienceFlip" context:nil];
-    [UIView setAnimationDuration:0.25];
-    
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    appDelegate.userConscienceView.alpha = 0;
-    
-    [UIView setAnimationDelegate:self]; // self is a view controller
-    [UIView setAnimationDidStopSelector:@selector(makeNormal)];
-    
-    [UIView commitAnimations];
-    
-	[UIView beginAnimations:@"labelFadeLast" context:nil];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationBeginsFromCurrentState:NO];
-    
-    nextButton.alpha = 0;
-    nextButtonImage.alpha = 0;
-    
-    if (isImpatient) {
-        [conscienceStatus setText:@"Okay, so I can tell that you're ready to go.  Let's skip the intro and get to the good stuff."];
-    } else {
-        [conscienceStatus setText:@"Awesome.  You're like the best User ever for not skipping this.  Let's rock this."];
-
-    }
-    
-	[UIView commitAnimations];
-    
-    [prefs setBool:FALSE forKey:@"firstLaunch"];
-    messageState = -1;
-
-	[self stopTimers];
-
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissThoughtModal) userInfo:nil repeats:NO];
-    
-}
-
-/**
- Implementation:  Animate the fading button to get User to see that they should either dismiss the view or continue to more help pages.
- */
--(void)animateDownButton{
-    
-    downButtonImage.alpha = 0;
-    
-    [UIView beginAnimations:@"AnimateDown" context:nil];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationRepeatCount:15];
-    [UIView setAnimationRepeatAutoreverses:TRUE];        
-    
-    downButtonImage.alpha = 0.5;
-    
-    [UIView commitAnimations];
-}
-
-/**
- Implementation:  Animate the fading button to get User to see that they should either dismiss the view or continue to more help pages.
- */
--(void)animateNextButton{
-    
-    [UIView beginAnimations:@"AnimateNext" context:nil];
-    [UIView setAnimationDuration:0.5];
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationRepeatCount:5];
-    [UIView setAnimationRepeatAutoreverses:TRUE];        
-    
-    nextButtonImage.alpha = 0.5;
-    
-    [UIView commitAnimations];
-}
+#pragma mark -
+#pragma mark Conscience Manipulation
 
 -(void) zoomConscienceIn{
         
@@ -762,6 +659,10 @@ static float vigourOfShake = 0.05f;
     
 }
 
+
+/**
+Implementation:  Accessorize Conscience with Angel accessories
+ */
 -(void) makeAngel{
     
     appDelegate.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-crook";
@@ -773,6 +674,9 @@ static float vigourOfShake = 0.05f;
 
 }
 
+/**
+Implementation:  Accessorize Conscience with Devil accessories
+ */
 -(void) makeDevil{
     
     appDelegate.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-trident";
@@ -785,6 +689,9 @@ static float vigourOfShake = 0.05f;
     
 }
 
+/**
+Implementation:  Remove Conscience accessories
+ */
 -(void) makeNormal{
     
     appDelegate.userConscienceAccessories.primaryAccessory = @"acc-nothing";
@@ -797,6 +704,9 @@ static float vigourOfShake = 0.05f;
     
 }
 
+/**
+Implementation:  Return conscience to view
+ */
 -(void) revealConscience{
 
     
@@ -811,8 +721,137 @@ static float vigourOfShake = 0.05f;
     
 }
 
+#pragma mark -
+#pragma mark UI configuration/interaction
 
--(void)dismissThoughtModal{
+/**
+ Implementation:  User can advance Intro state by selecting Conscience Thougth bubbble.  Determine current Intro state by inspecting ivar, switch to appropriate state
+ */
+-(IBAction)switchNow:(id)sender {
+    
+    //setup id for passing to IB capable method
+    id placeholderID = nil;
+    isImpatient = TRUE;
+    
+    //stop thought change
+    if(thoughtChangeTimer != nil){
+        
+        [thoughtChangeTimer invalidate];
+        thoughtChangeTimer = nil;
+    }
+    
+    //Determine current state of Intro, then advance to next state
+    if (messageState >= 0) {
+        switch (messageState) {
+            case 0:[self switchText1];break;            
+            case 1:[self switchText2];break;
+            case 2:[self switchText3];break;
+            case 3:[self switchText4];break;
+            case 4:[self switchText5];break;
+            case 5:[self switchText6];break;            
+            case 6:[self switchText7];break;            
+            case 7:[self switchText8];break;            
+            case 8:[self switchText9];break;            
+            case 9:[self switchText10];break;            
+            case 10:[self switchText11];break;            
+            case 11:[self switchText12];break;            
+            case 12:[self switchText13];break;            
+            case 13:[self switchText14];break;            
+            case 14:[self switchText15];break;            
+            case 15:[self switchText16];break;            
+            case 16:[self switchLast:placeholderID];break;           
+            default:
+                break;
+        }
+	}
+    
+}
+
+/**
+ Implementation:  Determine if User has skipped any of the intro, return the Conscience to the normal state, delay dismissal of 
+ ViewController
+ */
+-(IBAction)switchLast:(id)sender {
+    
+    //Conscience could be Angel or Devil if User skipped
+    //Ensure that normal conscience is reset
+    [UIView beginAnimations:@"conscienceFlip" context:nil];
+    [UIView setAnimationDuration:0.25];
+    
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    appDelegate.userConscienceView.alpha = 0;
+    
+    [UIView setAnimationDelegate:self]; // self is a view controller
+    [UIView setAnimationDidStopSelector:@selector(makeNormal)];
+    
+    [UIView commitAnimations];
+    
+	[UIView beginAnimations:@"labelFadeLast" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+    
+    nextButton.alpha = 0;
+    nextButtonImage.alpha = 0;
+    
+    //Display appropriate text if User has watched entire Intro
+    if (isImpatient) {
+        [conscienceStatus setText:@"Okay, so I can tell that you're ready to go.  Let's skip the intro and get to the good stuff."];
+    } else {
+        [conscienceStatus setText:@"Awesome.  You're like the best User ever for not skipping this.  Let's rock this."];
+        
+    }
+    
+	[UIView commitAnimations];
+    
+    //Set NSUserDefaults indicating intro has been completed.
+    [prefs setBool:FALSE forKey:@"firstLaunch"];
+    messageState = -1;
+    
+    //Stop Conscience Movement
+	[self stopTimers];
+    
+    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
+    
+}
+
+/**
+Implementation:  Animate the fading button to get User to see that they should either dismiss the view or continue to more help pages.
+ */
+-(void)animateDownButton{
+    
+    downButtonImage.alpha = 0;
+    
+    [UIView beginAnimations:@"AnimateDown" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationRepeatCount:15];
+    [UIView setAnimationRepeatAutoreverses:TRUE];        
+    
+    downButtonImage.alpha = 0.5;
+    
+    [UIView commitAnimations];
+}
+
+/**
+Implementation:  Animate the fading button to get User to see that they should either dismiss the view or continue to more help pages.
+ */
+-(void)animateNextButton{
+    
+    [UIView beginAnimations:@"AnimateNext" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationRepeatCount:5];
+    [UIView setAnimationRepeatAutoreverses:TRUE];        
+    
+    nextButtonImage.alpha = 0.5;
+    
+    [UIView commitAnimations];
+}
+
+/**
+Implementation:  Stop any timers, animate Conscience and Thought fades, delay dismissal of View Controller until animation has finished.
+ */
+-(void)dismissIntroModal{
 
 	[self stopTimers];
 
