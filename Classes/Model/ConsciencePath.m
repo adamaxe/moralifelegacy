@@ -17,7 +17,7 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 {
     self = [super init];
 	if (self) {
-
+        //In case of first time run, or User does not supply configuration, default gradient
         [self setPathFillColor:@"000000"];
         [self setPathStrokeColor:@"000000"];
         [self setPathID:@"none"];
@@ -28,6 +28,10 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
     return self;
 }
 
+/**
+Implementation: Using the SVG spec, separate draw instructions from draw points and correlate for future 
+ CoreGraphics interpretation.
+ */
 - (void) convertToConsciencePath:(NSString *) pathData WithStyle:(NSString *) styleData{
 	
     //SVG possesses path irritating "simplification" such that repeated instructions are omitted

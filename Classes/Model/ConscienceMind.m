@@ -17,6 +17,7 @@ Data derived from User's actions
 {
     self = [super init];
     if (self) {
+        //In case of first time run, or User does not supply configuration, default gradient        
         [self setEnthusiasm:kConscienceEnthusiasm];
         [self setMood:kConscienceMood];
 		enthusiasmMemories = [[NSMutableDictionary alloc] init];

@@ -3,7 +3,7 @@ Implementation:  ConcienceView can display the User's Conscience or a Antagonist
 User's Conscience is customizable by the User and populated by userConscienceBody and userConscienceMind.  
 Antagonist Conscience is determined by System and assigned to currentConscienceBody and currentConscienceMind.  
 Actual facial changes are requested by ViewController.  
-
+@todo finish documentation
 @class ConscienceView ConscienceView.h
  */
 
@@ -131,7 +131,7 @@ Animation is dictated by Conscience Mood/Enthusiasm
 }
 
 /**
-Must override setNeedsDisplay because Conscience can be altered by User at any time.
+Implementation: Must override setNeedsDisplay because Conscience can be altered by User at any time.
 Views are called by tags which are set in initWithFrame by constants
 Symbol/Eye/Mouth/Accessories choices/color determined by User's symbol/eye/mouth/accessories color/choice.
 currentConscienceBody is either userConscienceBody, or antagonistConscienceBody set by ViewController
@@ -257,12 +257,10 @@ currentConscienceBody is either userConscienceBody, or antagonistConscienceBody 
 #pragma mark Eye expression control
 
 /** 
-Change Eye state for winking/blinking, function is recursive to account for left,right,both or random eye changes
+Implementation: Change Eye state for winking/blinking, function is recursive to account for left,right,both or random eye changes
 Eye choices/color determined by User's eye/color choice
 eyeState determined by ViewController
- 
-@see ConscienceBody
-*/
+ */
 - (void) changeEyeState:(int) eyeState forEye:(int) eyeNumber{
 
 	//determine a random eye if random eye is requested
@@ -330,7 +328,7 @@ eyeState determined by ViewController
 }
 
 /**
-Change Conscience look direction, function is recursive to account for left,right,both or random eye changes
+Implementation: Change Conscience look direction, function is recursive to account for left,right,both or random eye changes
 Eye choices/color determined by User's eye/color choice
 expressionIndex determined by ViewController
 @see ConscienceBody
@@ -411,7 +409,7 @@ expressionIndex determined by ViewController
 }
 
 /**
-Display brows, function is recursive to account for left,right,both or random eye changes
+Implementation: Display brows, function is recursive to account for left,right,both or random eye changes
 Brow choices/color determined by User's eye/color choice
 expression determined by Conscience Mood/Enthusiasm
 @see ConscienceBody
@@ -463,7 +461,7 @@ expression determined by Conscience Mood/Enthusiasm
 }
 
 /**
-Display eyelids, function is recursive to account for left,right,both or random eye changes
+Implementation: Display eyelids, function is recursive to account for left,right,both or random eye changes
 Lid choices determined by User's eye choice
 expression determined by Conscience Mood/Enthusiasm
 @see ConscienceBody
@@ -516,13 +514,9 @@ expression determined by Conscience Mood/Enthusiasm
 
 
 /**
-Display dimples
-Dimple choices determined by User's mouth choice
+Implementation: Display dimples.  Dimple choices determined by User's mouth choice
 expression determined by Conscience Mood/Enthusiasm
-@see ConscienceBody
-@see ConscienceMind
 */
-
 - (void) changeDimplesExpressions:(NSString *) expression{
 
 	/** @todo determine proper memory management */	
@@ -538,13 +532,9 @@ expression determined by Conscience Mood/Enthusiasm
 }
 
 /**
-Display lips
-Teeth choices determined by User's mouth choice
+Implementation: Display lips.  Lip choices determined by User's mouth choice
 expression determined by Conscience Mood/Enthusiasm
-@see ConscienceBody
-@see ConscienceMind
 */
-
 - (void) changeLipsExpressions:(NSString *) expression{
 		
 	/** @todo determine proper memory management */	
@@ -560,11 +550,8 @@ expression determined by Conscience Mood/Enthusiasm
 }
 
 /**
-Display teeth
-Teeth choices determined by User's mouth choice
+Implementation: Display teeth. Teeth choices determined by User's mouth choice
 expression determined by Conscience Mood/Enthusiasm
-@see ConscienceBody
-@see ConscienceMind
 */
 
 - (void) changeTeethExpressions:(NSString *) expression{
@@ -582,11 +569,8 @@ expression determined by Conscience Mood/Enthusiasm
 }
 
 /**
-Display tongue
-Tongue choices determined by User's mouth choice
+Implementation: Display tongue.  Tongue choices determined by User's mouth choice
 expression determined by Conscience Mood/Enthusiasm
-@see ConscienceBody
-@see ConscienceMind
 */
 
 - (void) changeTongueExpressions:(NSString *) expression{
@@ -605,11 +589,8 @@ expression determined by Conscience Mood/Enthusiasm
 
 
 /**
-Actual values to set for the bubble are populated in currentConscienceBody, currentConscienceMind
-Color determined by User
-Animation determined by Conscience Mood/Enthusiasm
-@see ConscienceBody
-@see ConscienceMind
+Implementation: Actual values to set for the bubble are populated in currentConscienceBody, currentConscienceMind
+Color determined by User.  Animation determined by Conscience Mood/Enthusiasm
 */
 - (void) changeBubble{
 
@@ -630,6 +611,9 @@ Animation determined by Conscience Mood/Enthusiasm
 #pragma mark -
 #pragma mark Conscience Changes
 
+/**
+Implementation: Determine Conscience direction facing.  Reverse Conscience if necessary.  Call function to make Conscience visisble.
+ */
 - (void)removeConscienceInvisibility{
 	
 	//Determine which way Conscience is facing
@@ -646,6 +630,9 @@ Animation determined by Conscience Mood/Enthusiasm
 	[self makeConscienceVisible];
 }
 
+/**
+Implementation: Reset Conscience alpha.
+ */
 - (void)makeConscienceVisible{
 	
 	[UIView beginAnimations:@"visible" context:nil];
@@ -661,6 +648,9 @@ Animation determined by Conscience Mood/Enthusiasm
 #pragma mark -
 #pragma mark Timed Changes
 
+/**
+Implementation: Determine if Conscience is awake.  Set timers to change eye and lip expresssions.
+ */
 - (void) setTimers{
 	
     //Put Conscience to sleep if enthusiasm is 0
@@ -683,6 +673,9 @@ Animation determined by Conscience Mood/Enthusiasm
 	
 }
 
+/**
+Implementation: Cancel timers handling mouth/eye expressions and any transient blinks.
+ */
 - (void) stopTimers {
 
     if(mouthTimer != nil){
@@ -705,6 +698,9 @@ Animation determined by Conscience Mood/Enthusiasm
     
 }
 
+/**
+Implementation: Cancel timers handling mouth/eye expressions and any transient blinks.
+ */
 - (void) timedMouthExpressionChanges{
 	
 	

@@ -1,7 +1,10 @@
 /**
 Conscience Accessories Collection.  Object that designates currently adorned Accessories.
+ Member of ConscienceView.
  
 @class ConscienceAccessories
+@see ConscienceView
+
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 07/20/2010
 @file

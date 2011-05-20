@@ -1,8 +1,10 @@
 /**
 Facial Features Path Data.  Object to be populated with the path data from XML.  
-Path from XML represents an image portion of a feature (iris, teeth, etc.)  Possesses points, drawing instructions, style and possible gradientID
+Path from XML represents an image portion of a feature (iris, teeth, etc.)  Possesses points, drawing instructions, style and possible gradientID.  Member of ConscienceLayer as a NSMutableArray.
  
 @class ConsciencePath
+@see ConscienceLayer
+ 
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 07/20/2010
 @file

@@ -16,28 +16,28 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 
 @interface ConscienceView : UIView {
 
-	MoraLifeAppDelegate *appDelegate;			/**< delegate for application level callbacks */
+	MoraLifeAppDelegate *appDelegate;               /**< delegate for application level callbacks */
 
-    	//Conscience visual display
+    //Conscience visual display
 	ConscienceBubbleView *animatedBubbleView;		/**< External animated bubble */
 	ConscienceObjectView *conscienceEyeLeftView;	/**< Conscience left eye (right-most eye on screen) */
 	ConscienceObjectView *conscienceEyeRightView;   /**< Conscience right eye (left-most eye on screen) */
-	ConscienceObjectView *conscienceSymbolView;	/**< Conscience symbol */
-	ConscienceObjectView *conscienceMouthView;	/**< Conscience mouth */
+	ConscienceObjectView *conscienceSymbolView;     /**< Conscience symbol */
+	ConscienceObjectView *conscienceMouthView;      /**< Conscience mouth */
 
 	//Conscience possession visual display
-	AccessoryObjectView *accessoryPrimaryView;	/**< Conscience left hand (right-most on screen) */
+	AccessoryObjectView *accessoryPrimaryView;      /**< Conscience left hand (right-most on screen) */
 	AccessoryObjectView *accessorySecondaryView;	/**< Conscience right hand/back (left-most on screen) */
-	AccessoryObjectView *accessoryTopView;		/**< Conscience head */
+	AccessoryObjectView *accessoryTopView;          /**< Conscience head */
 	AccessoryObjectView *accessoryBottomView;		/**< Conscience neck/chest */
 	
 	NSTimer *mouthTimer;		/**< controls expression interval */
-	NSTimer *eyeTimer;		/**< controls eye state interval */
+	NSTimer *eyeTimer;          /**< controls eye state interval */
 	NSTimer *blinkTimer;		/**< controls blink/wink interval */
 	
 }
 
-@property (nonatomic, assign) int directionFacing;				/**< Which way the Conscience is currently facing */
+@property (nonatomic, assign) int directionFacing;                  /**< Which way the Conscience is currently facing */
 @property (nonatomic, assign) BOOL isExpressionForced;				/**< allow for forcing of an expression */
 @property (nonatomic, retain) UIView *conscienceBubbleView;			/**< UIView that contains all other Views */
 @property (nonatomic, retain) ConscienceBody *currentConscienceBody;			/**< Current Conscience visual configuration */
@@ -144,7 +144,10 @@ Begin timers for eyes/mouth changes
 Stop timers for eyes/mouth changes
  */
 - (void) stopTimers;
-		
+	
+/**
+Make Conscience reappear
+ */
 - (void)makeConscienceVisible;
 
 @end

@@ -1,5 +1,5 @@
 /**
-Implementation:  NSArray of ConsciencePaths.
+Implementation:  NSMutableArray of ConsciencePaths.
 
 @class ConscienceLayer ConscienceLayer.h
  */
@@ -12,15 +12,16 @@ Implementation:  NSArray of ConsciencePaths.
 @synthesize currentFillColor, currentStrokeColor;
 @synthesize offsetX, offsetY;
 
-//- (ConscienceLayer *) init {
 - (id)init{
-	[super init];
+    self = [super init];
+    if (self) {    
+        //In case of first time run, or User does not supply configuration, default gradient
+        consciencePaths = [[NSMutableArray alloc] init];
 
-	consciencePaths = [[NSMutableArray alloc] init];
-
-    [self setCurrentFillColor:@""];
-    [self setCurrentStrokeColor:@""];
-    [self setLayerID:@""];   
+        [self setCurrentFillColor:@""];
+        [self setCurrentStrokeColor:@""];
+        [self setLayerID:@""];   
+    }
     
 	return self;
 }

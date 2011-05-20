@@ -10,7 +10,7 @@ Implementation:  Override draw layer of UINavigation bar to prevent drawing of b
 
 - (void)drawLayer:(CALayer *)layer inContext:(CGContextRef)ctx {
 
-	//Prevent drawing of channel
+	//Prevent drawing of channel by overriding the drawLayer method and eliminating any instructions
 }
 
 @end

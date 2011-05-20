@@ -1,8 +1,10 @@
 /**
 Conscience's frame of mind Collection.  Object to be populated state of emotion for Conscience.
-Data derived from User's actions
+Data derived from User's actions.  Member of ConscienceView.
  
 @class ConscienceMind
+@see ConscienceView
+ 
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 07/20/2010
 @file

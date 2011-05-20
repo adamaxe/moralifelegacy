@@ -1,8 +1,9 @@
 /**
 Conscience's Body Collection.  Object to be populated with the ConscienceLayers.
-Each Dictionary contains every expression frame for currently selected feature type
+Each Dictionary contains every expression frame for currently selected feature type.  Member of ConscienceView.
  
 @class ConscienceBody
+@see ConscienceView
 
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 07/20/2010

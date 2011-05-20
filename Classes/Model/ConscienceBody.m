@@ -1,11 +1,8 @@
 /**
-Conscience Body Collection.  Object to be populated with the ConscienceLayers.
+Implementation:  Each NSMutableDictionary holds the CoreGraphics drawing instructions to draw each state of each
+ dynamic feature of the Conscience.
  
-Copyright 2010 Team Axe, LLC. All rights reserved.
- 
-@class ConscienceBody.m
-@author Team Axe, LLC. http://www.teamaxe.org
-@date 07/20/2010
+@class ConscienceBody ConscienceBody.m
 */
 
 #import "ConscienceBody.h"
@@ -23,6 +20,7 @@ Copyright 2010 Team Axe, LLC. All rights reserved.
 {
     self = [super init];
     if (self) {
+        //In case of first time run, or User does not supply configuration, default gradient
 		browLayers = [[NSMutableDictionary alloc] init];
 		bagsLayers = [[NSMutableDictionary alloc] init];
 		eyeLayers = [[NSMutableDictionary alloc] init];		
