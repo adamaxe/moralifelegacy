@@ -70,7 +70,12 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
 
 	NSMutableString *reward1;		/**< reward for choosing ChoiceA */
 	NSMutableString *reward2;		/**< reward for choosing ChoiceB */
-    
+    NSMutableString *dilemmaName;          /**< name of dilemma used for record retention */
+    NSMutableString *moralAName;    /**< name of Moral A */
+    NSMutableString *moralBName;    /**< name of Moral B */    
+    NSMutableString *moralADescription;    /**< description of Moral A */    
+    NSMutableString *moralBDescription;    /**< description of Moral B */    
+
 	BOOL isChoiceA;				/**< is ChoiceA selected */
 }
 

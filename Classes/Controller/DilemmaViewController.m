@@ -43,6 +43,11 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 		//Setup default values
         reward1 = [[NSMutableString alloc] init];
         reward2 = [[NSMutableString alloc] init];
+        dilemmaName = [[NSMutableString alloc] init];
+        moralAName = [[NSMutableString alloc] init];
+        moralBName = [[NSMutableString alloc] init];
+        moralADescription = [[NSMutableString alloc] init];
+        moralBDescription = [[NSMutableString alloc] init];
         
     }
     return self;
@@ -287,7 +292,11 @@ Construct antagonist Conscience
     
 		//Populate relevante dilemma information
 		currentDilemma = [objects objectAtIndex:0];
-		[currentDilemma retain];
+        [dilemmaName setString:[currentDilemma nameDilemma]];
+        [moralAName setString:[[currentDilemma moralChoiceA] nameMoral]];
+        [moralBName setString:[[currentDilemma moralChoiceB] nameMoral]];
+        [moralADescription setString:[[currentDilemma moralChoiceA] shortDescriptionMoral]];
+        [moralBDescription setString:[[currentDilemma moralChoiceB] shortDescriptionMoral]];
 		surroundingsBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [currentDilemma surrounding]]];
 		[dilemmaTitle setText:[currentDilemma displayNameDilemma]];
 		[dilemmaTitleText setText:[dilemmaTitle text]];
@@ -388,18 +397,18 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     [dateFormatter release];
         
-    NSString *dilemmaKey = [NSString stringWithFormat:@"%@%@", currentDTS, [currentDilemma nameDilemma]];
+    NSString *dilemmaKey = [NSString stringWithFormat:@"%@%@", currentDTS, dilemmaName];
     UserDilemma *dilemmaChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserDilemma" inManagedObjectContext:context];
     
-    [dilemmaChoice setEntryShortDescription:[currentDilemma nameDilemma]];
+    [dilemmaChoice setEntryShortDescription:dilemmaName];
     [dilemmaChoice setEntryCreationDate:[NSDate date]];
     [dilemmaChoice setEntryKey:dilemmaKey];
     NSString *moralKey;
     
     if (isChoiceA) {
-        moralKey = [[currentDilemma moralChoiceA] nameMoral];
+        moralKey = moralAName;
     } else {
-        moralKey = [[currentDilemma moralChoiceB] nameMoral];       
+        moralKey = moralBName;       
     }
     
     [dilemmaChoice setEntryLongDescription:moralKey];
@@ -571,9 +580,9 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	//Determine Moral to go along with UserChoice
 	if (isChoiceA) {
-		[moralType appendString:[[currentDilemma moralChoiceA] shortDescriptionMoral]];
+		[moralType appendString:moralADescription];
 	} else {
-		[moralType appendString:[[currentDilemma moralChoiceB] shortDescriptionMoral]];
+		[moralType appendString:moralBDescription];
 	}
 
 	//Account for weight calculation, virtue = +, vice = -    
@@ -585,7 +594,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	[moralType release];
     
 	//Commit UserChoice
-	[currentUserChoice setEntryShortDescription:[currentDilemma nameDilemma]];
+	[currentUserChoice setEntryShortDescription:dilemmaName];
 	[currentUserChoice setEntryLongDescription:@""];
 	[currentUserChoice setEntrySeverity:[NSNumber numberWithFloat:1]];
 	[currentUserChoice setEntryModificationDate:[NSDate date]];
@@ -657,7 +666,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 - (void)viewDidUnload {
     [super viewDidUnload];
     
-    [currentDilemma release];
 	[antagonistConscienceBody release];
 	[antagonistConscienceAccessories release];
 	[antagonistConscienceMind release];
@@ -668,8 +676,13 @@ Calculate changes to User's ethicals.  Limit to 999.
 
 
 - (void)dealloc {
-	[reward1 release];
-	[reward2 release];
+    [reward1 release];
+    [reward2 release];
+    [dilemmaName release];
+    [moralAName release];
+    [moralBName release];
+    [moralADescription release];
+    [moralBDescription release];
     
     [super dealloc];
 
