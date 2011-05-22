@@ -275,7 +275,7 @@ Implementation: Signals User desire to return to ConscienceModalViewController
     NSArray *allUserChoices = [[NSArray alloc] initWithArray:[userChoices allKeys]];
     
     int previousRow = indexPath.row;
-    
+        
     BOOL isSelectable = FALSE;
     
     if (previousRow > 0) {
@@ -517,6 +517,7 @@ Implementation: Load User data to determine which Dilemmas have already been com
 	}
 	
 	[request release];
+    
 }
 
 /**
@@ -567,10 +568,9 @@ Implementation: Determine what effects to rollback from an already completed dil
             
             //Increase the moral's value
             float moralDecrease = [[currentUserCollectable collectableValue] floatValue];
-            NSLog(@"moral value:%f", moralDecrease);
+
             if (moralDecrease <= 1.0) {
                 [context deleteObject:currentUserCollectable];
-                NSLog(@"should be deleted");
                 
             } else {
                 moralDecrease -= 1.0;

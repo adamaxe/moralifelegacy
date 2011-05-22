@@ -63,11 +63,6 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
 	
 	Dilemma *currentDilemma;			/**< information about the dilemma */
 
-	IBOutlet ConscienceView *antagonistConscienceView;		/**< onscreen Conscience character */
-	ConscienceBody *antagonistConscienceBody;				/**< onscreen Conscience body parts */
-	ConscienceAccessories *antagonistConscienceAccessories;	/**< onscreen Conscience accessories */
-	ConscienceMind *antagonistConscienceMind;				/**< onscreen Conscience mental state */
-
 	NSMutableString *reward1;		/**< reward for choosing ChoiceA */
 	NSMutableString *reward2;		/**< reward for choosing ChoiceB */
     NSMutableString *dilemmaName;          /**< name of dilemma used for record retention */

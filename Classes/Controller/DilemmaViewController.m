@@ -56,12 +56,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    //Instantiate Conscience facets for use throughout class
-    antagonistConscienceBody = [[ConscienceBody alloc] init];
-    antagonistConscienceAccessories = [[ConscienceAccessories alloc] init];
-    antagonistConscienceMind = [[ConscienceMind alloc] init];
-	
+    	
     [self loadDilemma];
     
     isChoiceA = FALSE;
@@ -331,6 +326,10 @@ Construct antagonist Conscience
 		[reward1 appendString:[currentDilemma rewardADilemma]];
 		[reward2 appendString:[currentDilemma rewardBDilemma]];
         
+        ConscienceBody *antagonistConscienceBody = [[ConscienceBody alloc] init];
+        ConscienceAccessories *antagonistConscienceAccessories = [[ConscienceAccessories alloc] init];
+        ConscienceMind *antagonistConscienceMind = [[ConscienceMind alloc] init];        
+        
 		//Create antagonist Conscience
 		antagonistConscienceBody.eyeColor = [[currentDilemma antagonist] eyeColor];
 		antagonistConscienceBody.browColor = [[currentDilemma antagonist] browColor];
@@ -352,7 +351,7 @@ Construct antagonist Conscience
 		[ConscienceBuilder buildConscience:antagonistConscienceBody];
         
 		//Add Conscience to view
-		antagonistConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(kConscienceAntagonistX, kConscienceAntagonistY, kConscienceAntagonistWidth, kConscienceAntagonistHeight) withBody:antagonistConscienceBody withAccessories:antagonistConscienceAccessories withMind:antagonistConscienceMind];
+		ConscienceView *antagonistConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(kConscienceAntagonistX, kConscienceAntagonistY, kConscienceAntagonistWidth, kConscienceAntagonistHeight) withBody:antagonistConscienceBody withAccessories:antagonistConscienceAccessories withMind:antagonistConscienceMind];
         
 		antagonistConscienceView.tag = kConscienceAntagonistViewTag;
 		antagonistConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
@@ -362,8 +361,11 @@ Construct antagonist Conscience
         
 		[thoughtModalArea addSubview:antagonistConscienceView];
         
-		[antagonistConscienceView setNeedsDisplay];
+        [antagonistConscienceView setNeedsDisplay];
 		[antagonistConscienceView release];
+        [antagonistConscienceBody release];
+        [antagonistConscienceAccessories release];
+        [antagonistConscienceMind release];
 	}
     
 	[request release];
@@ -406,9 +408,9 @@ Calculate changes to User's ethicals.  Limit to 999.
     NSString *moralKey;
     
     if (isChoiceA) {
-        moralKey = moralAName;
+        moralKey = [[NSString alloc] initWithString:moralAName];
     } else {
-        moralKey = moralBName;       
+        moralKey = [[NSString alloc] initWithString:moralBName];       
     }
     
     [dilemmaChoice setEntryLongDescription:moralKey];
@@ -604,6 +606,8 @@ Calculate changes to User's ethicals.  Limit to 999.
 	[currentUserChoice setChoiceInfluence:[NSNumber numberWithInt:1]];
 	[currentUserChoice setEntryIsGood:[NSNumber numberWithBool:isGood]];
 	[currentUserChoice setChoiceConsequences:@""];
+    
+    [moralKey release];
 
 	if (isGood) {
 		[currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:0.2]];  
@@ -666,10 +670,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 - (void)viewDidUnload {
     [super viewDidUnload];
     
-	[antagonistConscienceBody release];
-	[antagonistConscienceAccessories release];
-	[antagonistConscienceMind release];
-
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
