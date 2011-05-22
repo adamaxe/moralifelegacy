@@ -39,6 +39,33 @@ withMind: (ConscienceMind *) argMind{
 	[self setCurrentConscienceAccessories:argAccessories];
 	[self setCurrentConscienceMind:argMind];
 
+    //Conscience Look direction determined by layeroffset
+	//Array of pixel offsets by X/Y coordinates utilized for every eyetype
+	//Values are look: center, up, down, left, right, cross, crazy
+	eyeLeftPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
+                                 [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
+                                 [NSValue valueWithCGPoint:CGPointMake(0, 3)],
+                                 [NSValue valueWithCGPoint:CGPointMake(-2, 1)],	
+                                 [NSValue valueWithCGPoint:CGPointMake(3, 0)],
+                                 [NSValue valueWithCGPoint:CGPointMake(4, 1)],
+                                 [NSValue valueWithCGPoint:CGPointMake(4, -2)], nil];
+    
+	eyeRightPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
+                                  [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
+                                  [NSValue valueWithCGPoint:CGPointMake(0, 3)],
+                                  [NSValue valueWithCGPoint:CGPointMake(3, 1)],
+                                  [NSValue valueWithCGPoint:CGPointMake(-3, -1)],
+                                  [NSValue valueWithCGPoint:CGPointMake(4, 1)],
+								  [NSValue valueWithCGPoint:CGPointMake(-1, 4)], nil];
+
+    lipsExpressions = [[NSArray alloc] initWithObjects:@"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock", nil];
+    dimplesExpressions = [[NSArray alloc] initWithObjects:@"layerDimplesSad", @"layerDimplesNormal", @"layerDimplesHappy", nil];        
+    teethExpressions = [[NSArray alloc] initWithObjects:@"layerTeethSadOpenAlt1", @"layerTeethSadOpen", @"layerTeethNormal", @"layerTeethHappyOpen", @"layerTeethHappyOpenAlt1", nil];
+    tongueExpressions = [[NSArray alloc] initWithObjects:@"layerTongueSadCenter", @"layerTongueSadLeft", @"layerTongueSadRight", @"layerTongueNormal", @"layerTongueHappyCenter", @"layerTongueHappyLeft", @"layerTongueHappyRight", nil];
+    browExpressions = [[NSArray alloc] initWithObjects:@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited", nil];
+    lidExpressions = [[NSArray alloc] initWithObjects:@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder", nil];
+
+    
 	[self initWithFrame:frame];
 	
 	return self;
@@ -135,7 +162,7 @@ Implementation: Must override setNeedsDisplay because Conscience can be altered 
 Views are called by tags which are set in initWithFrame by constants
 Symbol/Eye/Mouth/Accessories choices/color determined by User's symbol/eye/mouth/accessories color/choice.
 currentConscienceBody is either userConscienceBody, or antagonistConscienceBody set by ViewController
-@see ConscienceView#initWithFrame
+@see ConscienceView::initWithFrame
 */
 -(void) setNeedsDisplay{
 
@@ -331,7 +358,6 @@ eyeState determined by ViewController
 Implementation: Change Conscience look direction, function is recursive to account for left,right,both or random eye changes
 Eye choices/color determined by User's eye/color choice
 expressionIndex determined by ViewController
-@see ConscienceBody
 */
 
 - (void) changeEyeDirection:(int)expressionIndex forEye:(int) eyeNumber{
@@ -350,25 +376,6 @@ expressionIndex determined by ViewController
 	bool isRecursive = NO;
 
 	ConscienceObjectView *conscienceEyeView;
-
-	//Conscience Look direction determined by layeroffset
-	//Array of pixel offsets by X/Y coordinates utilized for every eyetype
-	//Values are look: center, up, down, left, right, cross, crazy
-	NSArray *eyeLeftPositions = [NSArray arrayWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
-									 [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
-									 [NSValue valueWithCGPoint:CGPointMake(0, 3)],
-									 [NSValue valueWithCGPoint:CGPointMake(-2, 1)],	
-									 [NSValue valueWithCGPoint:CGPointMake(3, 0)],
-									 [NSValue valueWithCGPoint:CGPointMake(4, 1)],
-									 [NSValue valueWithCGPoint:CGPointMake(4, -2)], nil];
-
-	NSArray *eyeRightPositions = [NSArray arrayWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
-									  [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
-									  [NSValue valueWithCGPoint:CGPointMake(0, 3)],
-									  [NSValue valueWithCGPoint:CGPointMake(3, 1)],
-									  [NSValue valueWithCGPoint:CGPointMake(-3, -1)],
-									  [NSValue valueWithCGPoint:CGPointMake(4, 1)],
-								  [NSValue valueWithCGPoint:CGPointMake(-1, 4)], nil];
 	
 	//Select the Eye to respond
 	if (eyeNumber == kEyeLeftIndex) {
@@ -412,8 +419,6 @@ expressionIndex determined by ViewController
 Implementation: Display brows, function is recursive to account for left,right,both or random eye changes
 Brow choices/color determined by User's eye/color choice
 expression determined by Conscience Mood/Enthusiasm
-@see ConscienceBody
-@see ConscienceMind
 */
 - (void) changeBrowExpressions:(NSString *) expression forEye:(int) eyeNumber{
 
@@ -464,8 +469,6 @@ expression determined by Conscience Mood/Enthusiasm
 Implementation: Display eyelids, function is recursive to account for left,right,both or random eye changes
 Lid choices determined by User's eye choice
 expression determined by Conscience Mood/Enthusiasm
-@see ConscienceBody
-@see ConscienceMind
 */
 - (void) changeLidExpressions:(NSString *) expression forEye:(int) eyeNumber{
 	//determine a random eye if random eye is requested
@@ -699,15 +702,10 @@ Implementation: Cancel timers handling mouth/eye expressions and any transient b
 }
 
 /**
-Implementation: Cancel timers handling mouth/eye expressions and any transient blinks.
+Implementation: Determine which mouth expression to enable along with teeth, dimple and tongue selection
  */
 - (void) timedMouthExpressionChanges{
 	
-	
-	NSArray *expressions;
-    	
-    expressions = [NSArray arrayWithObjects: @"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock", nil];
-    
     CGFloat conscienceMood = currentConscienceMind.mood;
     CGFloat conscienceEnthusiasm = currentConscienceMind.enthusiasm;
 
@@ -739,7 +737,7 @@ Implementation: Cancel timers handling mouth/eye expressions and any transient b
 	
 	if ((randomSwitch < 1) || isExpressionForced) {
 
-		[self changeLipsExpressions:[expressions objectAtIndex:randomIndex]];
+		[self changeLipsExpressions:[lipsExpressions objectAtIndex:randomIndex]];
 	}
 
 	isExpressionForced = FALSE;
@@ -775,18 +773,15 @@ Implementation: Cancel timers handling mouth/eye expressions and any transient b
 		
 	}
 	
-	expressions = [NSArray arrayWithObjects:@"layerDimplesSad", @"layerDimplesNormal", @"layerDimplesHappy", nil];
-	[self changeDimplesExpressions:[expressions objectAtIndex:dimpleIndex]];
+	[self changeDimplesExpressions:[dimplesExpressions objectAtIndex:dimpleIndex]];
 	
     if (conscienceEnthusiasm > 40) {
-        
-        expressions = [NSArray arrayWithObjects:@"layerTeethSadOpenAlt1", @"layerTeethSadOpen", @"layerTeethNormal", @"layerTeethHappyOpen", @"layerTeethHappyOpenAlt1", nil];
-        [self changeTeethExpressions:[expressions objectAtIndex:teethIndex]];
-        
-        expressions = [NSArray arrayWithObjects:@"layerTongueSadCenter", @"layerTongueSadLeft", @"layerTongueSadRight", @"layerTongueNormal", @"layerTongueHappyCenter", @"layerTongueHappyLeft", @"layerTongueHappyRight", nil];
-        [self changeTongueExpressions:[expressions objectAtIndex:tongueIndex]];
+
+        [self changeTeethExpressions:[teethExpressions objectAtIndex:teethIndex]];        
+        [self changeTongueExpressions:[tongueExpressions objectAtIndex:tongueIndex]];
     
     }
+    
 }
 
 - (void) timedEyeChanges{
@@ -801,9 +796,7 @@ Implementation: Cancel timers handling mouth/eye expressions and any transient b
 	int randomInterval = arc4random() %100;
 	//Generate random float range between 0.1 and 
 	float blinkDuration = 0.1 + (float)randomInterval/100;
-	
-	NSArray * expressions;
-	    
+		    
     CGFloat conscienceEnthusiasm = currentConscienceMind.enthusiasm;
     CGFloat conscienceMood = currentConscienceMind.mood;
 
@@ -851,7 +844,6 @@ Implementation: Cancel timers handling mouth/eye expressions and any transient b
     
     /** @todo lessen confused frequency */
     eyeNumber = kEyeBothIndex;
-    expressions = [NSArray arrayWithObjects:@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited", nil];
 	
     if ((randomSwitch < 1) || isExpressionForced){	
         int randomBrow = 0; 
@@ -868,16 +860,15 @@ Implementation: Cancel timers handling mouth/eye expressions and any transient b
             eyeNumber = kEyeRandomIndex;
         }
 		
-		[self changeBrowExpressions:[expressions objectAtIndex:randomBrow] forEye:eyeNumber]; 
+		[self changeBrowExpressions:[browExpressions objectAtIndex:randomBrow] forEye:eyeNumber]; 
 		
 	} else {
-        [self changeBrowExpressions:[expressions objectAtIndex:0] forEye:eyeNumber]; 
+        [self changeBrowExpressions:[browExpressions objectAtIndex:0] forEye:eyeNumber]; 
 
     }
     
     eyeNumber = kEyeBothIndex;
-    expressions = [NSArray arrayWithObjects:@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder", nil];
-    
+        
 	if ((randomSwitch == 2) || isExpressionForced) {
             
         int randomLid = 0;
@@ -914,10 +905,10 @@ Implementation: Cancel timers handling mouth/eye expressions and any transient b
 			
 		}
 
-		[self changeLidExpressions:[expressions objectAtIndex:randomLid] forEye:eyeNumber];
+		[self changeLidExpressions:[lidExpressions objectAtIndex:randomLid] forEye:eyeNumber];
 		
 	} else {
-        [self changeLidExpressions:[expressions objectAtIndex:0] forEye:eyeNumber];
+        [self changeLidExpressions:[lidExpressions objectAtIndex:0] forEye:eyeNumber];
 
     }
         	
@@ -950,6 +941,15 @@ Release init'ed objects, deallocate super.
 - (void)dealloc {
     
 	[self stopTimers];
+    
+    [browExpressions release];
+    [lidExpressions release];
+    [lipsExpressions release];
+    [tongueExpressions release];
+    [teethExpressions release];
+    [dimplesExpressions release];
+    [eyeLeftPositions release];
+    [eyeRightPositions release]; 
 	
 	[conscienceBubbleView release];
 	[currentConscienceBody release];

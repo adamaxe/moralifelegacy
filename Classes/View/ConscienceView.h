@@ -31,6 +31,15 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 	AccessoryObjectView *accessoryTopView;          /**< Conscience head */
 	AccessoryObjectView *accessoryBottomView;		/**< Conscience neck/chest */
 	
+    NSArray *browExpressions;
+    NSArray *lidExpressions;    
+    NSArray *lipsExpressions;
+    NSArray *tongueExpressions;
+    NSArray *teethExpressions;
+    NSArray *dimplesExpressions;
+    NSArray *eyeLeftPositions;
+    NSArray *eyeRightPositions;    
+    
 	NSTimer *mouthTimer;		/**< controls expression interval */
 	NSTimer *eyeTimer;          /**< controls eye state interval */
 	NSTimer *blinkTimer;		/**< controls blink/wink interval */
