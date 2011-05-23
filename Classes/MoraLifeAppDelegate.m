@@ -198,6 +198,7 @@ All setup for data, navigation, UI, is done in App delegate.
 	
 	NSString *pathReadWrite = [[NSBundle mainBundle] pathForResource:@"UserData" ofType:@"momd"];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
+    
 	NSManagedObjectModel *modelReadWrite = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
 	
 	NSString *pathReadOnly = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"momd"];
@@ -232,7 +233,7 @@ All setup for data, navigation, UI, is done in App delegate.
     if (persistentStoreCoordinator != nil) {
         return persistentStoreCoordinator;
     }
-
+    
 	//Retrieve readwrite Documents directory
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -251,7 +252,8 @@ All setup for data, navigation, UI, is done in App delegate.
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
 	if (!isSQLiteFilePresent) {
 		NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"sqlite"];
-		
+        NSString *defaultStorePathWrite = [[NSBundle mainBundle] pathForResource:@"UserData" ofType:@"sqlite"];
+
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePath) {
 			NSError *error = nil;
@@ -260,6 +262,15 @@ All setup for data, navigation, UI, is done in App delegate.
 
 			NSLog(@"Unresolved error %@", error);
 		}
+        
+		//Ensure that pre-loaded SQLite db exists in bundle before copy
+		if (defaultStorePathWrite) {
+			NSError *error = nil;
+            
+			[fileManager copyItemAtPath:defaultStorePathWrite toPath:preloadDataReadWrite error:&error];
+            
+			NSLog(@"Unresolved error %@", error);
+		}        
 	}
 
 	//handle db upgrade for auto migration for minor schema changes
