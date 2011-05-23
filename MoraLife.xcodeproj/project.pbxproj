@@ -12,7 +12,6 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
-		5E02EC6911FE664800F159B4 /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC6611FE664800F159B4 /* Utility.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
 		5E0592A4134D2AEE0099174E /* ref-stfrancisofassisi-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0592A0134D2AEE0099174E /* ref-stfrancisofassisi-sm.png */; };
@@ -1321,7 +1320,6 @@
 		5EC990AB12D4190200F5F245 /* card-sensitivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9909E12D4190200F5F245 /* card-sensitivity.png */; };
 		5EC990AC12D4190200F5F245 /* card-stubbornness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9909F12D4190200F5F245 /* card-stubbornness.png */; };
 		5EC990AD12D4190200F5F245 /* card-flattery.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC990A012D4190200F5F245 /* card-flattery.png */; };
-		5EC9917412D43AA600F5F245 /* NSString+ParsingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9917112D43AA600F5F245 /* NSString+ParsingExtensions.m */; };
 		5EC9E58D130F87B200C4AEE1 /* ChoiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */; };
 		5EC9E58F130F883D00C4AEE1 /* ReferenceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */; };
 		5EC9E591130F88B200C4AEE1 /* LuckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E590130F88B100C4AEE1 /* LuckViewController.m */; };
@@ -1599,8 +1597,6 @@
 		32CA4F630368D1EE00C91783 /* MoraLife_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoraLife_Prefix.pch; sourceTree = "<group>"; };
 		5E02EC5911FE65B100F159B4 /* ConscienceMind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceMind.h; path = Model/ConscienceMind.h; sourceTree = "<group>"; };
 		5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceMind.m; path = Model/ConscienceMind.m; sourceTree = "<group>"; };
-		5E02EC6511FE664800F159B4 /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utility.h; path = Common/Utility.h; sourceTree = "<group>"; };
-		5E02EC6611FE664800F159B4 /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utility.m; path = Common/Utility.m; sourceTree = "<group>"; };
 		5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-marktwain-sm.png"; path = "Resources/images/reference/ref-marktwain-sm.png"; sourceTree = "<group>"; };
 		5E05929F134D2AEE0099174E /* ref-marktwain.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-marktwain.jpg"; path = "Resources/images/reference/ref-marktwain.jpg"; sourceTree = "<group>"; };
 		5E0592A0134D2AEE0099174E /* ref-stfrancisofassisi-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-stfrancisofassisi-sm.png"; path = "Resources/images/reference/ref-stfrancisofassisi-sm.png"; sourceTree = "<group>"; };
@@ -2942,8 +2938,6 @@
 		5EC9909E12D4190200F5F245 /* card-sensitivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-sensitivity.png"; path = "Resources/images/interface/cards/card-sensitivity.png"; sourceTree = "<group>"; };
 		5EC9909F12D4190200F5F245 /* card-stubbornness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-stubbornness.png"; path = "Resources/images/interface/cards/card-stubbornness.png"; sourceTree = "<group>"; };
 		5EC990A012D4190200F5F245 /* card-flattery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-flattery.png"; path = "Resources/images/interface/cards/card-flattery.png"; sourceTree = "<group>"; };
-		5EC9917012D43AA600F5F245 /* NSString+ParsingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ParsingExtensions.h"; path = "Common/NSString+ParsingExtensions.h"; sourceTree = "<group>"; };
-		5EC9917112D43AA600F5F245 /* NSString+ParsingExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ParsingExtensions.m"; path = "Common/NSString+ParsingExtensions.m"; sourceTree = "<group>"; };
 		5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceListViewController.m; sourceTree = "<group>"; };
 		5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceListViewController.m; sourceTree = "<group>"; };
 		5EC9E590130F88B100C4AEE1 /* LuckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckViewController.m; sourceTree = "<group>"; };
@@ -3370,10 +3364,6 @@
 				5E3E8803122609B600F2708A /* Constants.m */,
 				5E3E8804122609B600F2708A /* XMLParser.h */,
 				5E3E8805122609B600F2708A /* XMLParser.m */,
-				5E02EC6511FE664800F159B4 /* Utility.h */,
-				5E02EC6611FE664800F159B4 /* Utility.m */,
-				5EC9917012D43AA600F5F245 /* NSString+ParsingExtensions.h */,
-				5EC9917112D43AA600F5F245 /* NSString+ParsingExtensions.m */,
 				5EE7FD0B12E8B22200ABDBEC /* ConscienceBuilder.h */,
 				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
 				5E5B2E46131AFB8B0080E1E8 /* UIViewController+HelpScreen.h */,
@@ -6718,7 +6708,6 @@
 				5E303CC611FCE32700BB4E10 /* ConscienceLayer.m in Sources */,
 				5E303D1311FD12DD00BB4E10 /* ConscienceBody.m in Sources */,
 				5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */,
-				5E02EC6911FE664800F159B4 /* Utility.m in Sources */,
 				5E0DFA5B120BA66B00F77D70 /* ConscienceGradient.m in Sources */,
 				5EF57BF21218DE770053B97B /* ConscienceAccessories.m in Sources */,
 				5E9104E3121A18E200423DE8 /* AccessoryObjectView.m in Sources */,
@@ -6729,7 +6718,6 @@
 				5ED61EBD122CAD3A00542453 /* ConscienceBubbleView.m in Sources */,
 				5E8CA931123469AE00461363 /* GraphView.m in Sources */,
 				5E5811DC12C2EBE2008605C9 /* SystemData.xcdatamodeld in Sources */,
-				5EC9917412D43AA600F5F245 /* NSString+ParsingExtensions.m in Sources */,
 				5EE7FD0E12E8B22200ABDBEC /* ConscienceBuilder.m in Sources */,
 				5EE2E3FE12EC86B9009C94E9 /* MoraLifeAppDelegate.m in Sources */,
 				5E340D5512F1E9FF004CDEE9 /* UserData.xcdatamodeld in Sources */,

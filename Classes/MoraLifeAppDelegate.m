@@ -16,7 +16,6 @@ All setup for data, navigation, UI, is done in App delegate.
 #import "ConscienceAccessories.h"
 #import "ConscienceView.h"
 #import "ConscienceAsset.h"
-#import "Utility.h"
 #import "ConscienceBuilder.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
