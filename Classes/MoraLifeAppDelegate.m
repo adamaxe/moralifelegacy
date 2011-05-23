@@ -369,10 +369,7 @@ All setup for data, navigation, UI, is done in App delegate.
         userCollection = [[NSMutableArray alloc] init];
         
     }
-	
-//    Utility *moralifeUtility = [[Utility alloc] init];
-//    [moralifeUtility release];
-    
+	    
     [self configureConscience];
     [self configureCollection];    
 	
