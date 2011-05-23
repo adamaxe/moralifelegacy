@@ -35,8 +35,6 @@
 		5E07EA02130B589000007A36 /* sur-housetv-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9FE130B589000007A36 /* sur-housetv-sm.png */; };
 		5E07EA03130B589000007A36 /* sur-makebelievetree-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9FF130B589000007A36 /* sur-makebelievetree-sm.png */; };
 		5E07EA05130B7AD200007A36 /* icon-resetapp.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07EA04130B7AD200007A36 /* icon-resetapp.png */; };
-		5E09E9FC1303B20100482146 /* tbl-characters.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5E09E9FA1303B20100482146 /* tbl-characters.csv */; };
-		5E09E9FD1303B20100482146 /* tbl-dilemmas.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5E09E9FB1303B20100482146 /* tbl-dilemmas.csv */; };
 		5E0DFA5B120BA66B00F77D70 /* ConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */; };
 		5E0EFCAB130F7DFB00009BB6 /* con-zodiac-scorpio-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */; };
 		5E15BE1112A5ED3100B99258 /* card-obscenity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E15BE0512A5ED3100B99258 /* card-obscenity.png */; };
@@ -59,7 +57,6 @@
 		5E23DE9313307D7F00B66412 /* ref-davidhume.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8D13307D7F00B66412 /* ref-davidhume.jpg */; };
 		5E23DE9413307D7F00B66412 /* ref-sttheresevonlisieux-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8E13307D7F00B66412 /* ref-sttheresevonlisieux-sm.png */; };
 		5E23DE9513307D7F00B66412 /* ref-sttheresevonlisieux.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8F13307D7F00B66412 /* ref-sttheresevonlisieux.jpg */; };
-		5E266FC912D97E2A00308FA6 /* tbl-figures.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5E266FC512D97E2A00308FA6 /* tbl-figures.csv */; };
 		5E29039E131DE1000048DFC8 /* con-sports-soccerball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E29039D131DE1000048DFC8 /* con-sports-soccerball.svg */; };
 		5E2903A1131DE1250048DFC8 /* con-eighthnote-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */; };
 		5E2903A2131DE1250048DFC8 /* con-sports-soccerball-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */; };
@@ -948,8 +945,6 @@
 		5E73B28712596BA90039A577 /* card-patience.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73B26B12596BA90039A577 /* card-patience.png */; };
 		5E751DC512E6899000D573C1 /* con-zodiac-scorpio.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E751DC112E6899000D573C1 /* con-zodiac-scorpio.svg */; };
 		5E777E9413161B8C00E35222 /* ReferencePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E777E9313161B8C00E35222 /* ReferencePerson.m */; };
-		5E77A17412E11B0A00E4D2D9 /* tbl-beliefs.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5E77A16812E11B0A00E4D2D9 /* tbl-beliefs.csv */; };
-		5E77A17512E11B0A00E4D2D9 /* tbl-texts-ref.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5E77A16912E11B0A00E4D2D9 /* tbl-texts-ref.csv */; };
 		5E7A0F08124C4DE000E061C2 /* body-eye1-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A0EA9124C4DDF00E061C2 /* body-eye1-sm.png */; };
 		5E7A0F09124C4DE000E061C2 /* body-eye2-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A0EAA124C4DDF00E061C2 /* body-eye2-sm.png */; };
 		5E7A0F0A124C4DE000E061C2 /* body-eye3-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A0EAB124C4DDF00E061C2 /* body-eye3-sm.png */; };
@@ -1165,7 +1160,6 @@
 		5E8CF29312E7AC2C004FBBBB /* ref-georgewashingtoncarver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF28112E7AC2C004FBBBB /* ref-georgewashingtoncarver.jpg */; };
 		5E8CF29412E7AC2C004FBBBB /* ref-thichquangduc-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF28212E7AC2C004FBBBB /* ref-thichquangduc-sm.png */; };
 		5E8CF29512E7AC2C004FBBBB /* ref-thichquangduc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF28312E7AC2C004FBBBB /* ref-thichquangduc.jpg */; };
-		5E8D344F12D6E0AA00167E6E /* tbl-morals.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D344E12D6E0AA00167E6E /* tbl-morals.csv */; };
 		5E8D88D512516C3C00E03014 /* ChoiceModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D88D212516C3C00E03014 /* ChoiceModalView.xib */; };
 		5E8D898212516CEB00E03014 /* sur-mecca.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D897012516CEB00E03014 /* sur-mecca.png */; };
 		5E8D898312516CEB00E03014 /* sur-miyajima.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D897112516CEB00E03014 /* sur-miyajima.png */; };
@@ -1176,6 +1170,8 @@
 		5E8D8A7A125191E400E03014 /* thoughtbubble-black@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D8A71125191E400E03014 /* thoughtbubble-black@2x.png */; };
 		5E8D8A7B125191E400E03014 /* int-worldeast.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D8A72125191E400E03014 /* int-worldeast.png */; };
 		5E8D8A7C125191E400E03014 /* int-worldwest.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D8A73125191E400E03014 /* int-worldwest.png */; };
+		5E8FBE0B138A136200173584 /* SystemData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5E8FBE09138A136200173584 /* SystemData.sqlite */; };
+		5E8FBE0C138A136200173584 /* UserData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5E8FBE0A138A136200173584 /* UserData.sqlite */; };
 		5E9104E3121A18E200423DE8 /* AccessoryObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9104DF121A18E200423DE8 /* AccessoryObjectView.m */; };
 		5E91184C1319984200EB5617 /* card-doubt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E91184B1319984200EB5617 /* card-doubt.png */; };
 		5E99BE66132872F9000D6F60 /* thoughtbubble-smallest.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99BE60132872F9000D6F60 /* thoughtbubble-smallest.png */; };
@@ -1326,7 +1322,6 @@
 		5EC990AC12D4190200F5F245 /* card-stubbornness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9909F12D4190200F5F245 /* card-stubbornness.png */; };
 		5EC990AD12D4190200F5F245 /* card-flattery.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC990A012D4190200F5F245 /* card-flattery.png */; };
 		5EC9917412D43AA600F5F245 /* NSString+ParsingExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9917112D43AA600F5F245 /* NSString+ParsingExtensions.m */; };
-		5EC991A012D43BE900F5F245 /* tbl-assets.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9919D12D43BE900F5F245 /* tbl-assets.csv */; };
 		5EC9E58D130F87B200C4AEE1 /* ChoiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */; };
 		5EC9E58F130F883D00C4AEE1 /* ReferenceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */; };
 		5EC9E591130F88B200C4AEE1 /* LuckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E590130F88B100C4AEE1 /* LuckViewController.m */; };
@@ -1551,7 +1546,6 @@
 		5EF1040011FA9E07000DD4E5 /* body-eye1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF103FD11FA9E07000DD4E5 /* body-eye1.svg */; };
 		5EF10DB712DD44E4000D5F72 /* con-bindi.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF10DB312DD44E4000D5F72 /* con-bindi.svg */; };
 		5EF10DBE12DD457E000D5F72 /* con-bindi-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF10DBA12DD457E000D5F72 /* con-bindi-sm.png */; };
-		5EF10DEB12DD632F000D5F72 /* tbl-texts.csv in Resources */ = {isa = PBXBuildFile; fileRef = 5EF10DE712DD632F000D5F72 /* tbl-texts.csv */; };
 		5EF1D64F1238963D00BF8988 /* con-science-approximate.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF1D63F1238963D00BF8988 /* con-science-approximate.svg */; };
 		5EF1D6501238963D00BF8988 /* con-science-comparison-eye.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF1D6401238963D00BF8988 /* con-science-comparison-eye.svg */; };
 		5EF1D6511238963D00BF8988 /* con-science-comparison-nose.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF1D6411238963D00BF8988 /* con-science-comparison-nose.svg */; };
@@ -1629,8 +1623,6 @@
 		5E07E9FE130B589000007A36 /* sur-housetv-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-housetv-sm.png"; sourceTree = "<group>"; };
 		5E07E9FF130B589000007A36 /* sur-makebelievetree-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-makebelievetree-sm.png"; sourceTree = "<group>"; };
 		5E07EA04130B7AD200007A36 /* icon-resetapp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-resetapp.png"; path = "Resources/images/interface/icons/icon-resetapp.png"; sourceTree = "<group>"; };
-		5E09E9FA1303B20100482146 /* tbl-characters.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-characters.csv"; path = "Resources/tbl-characters.csv"; sourceTree = "<group>"; };
-		5E09E9FB1303B20100482146 /* tbl-dilemmas.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-dilemmas.csv"; path = "Resources/tbl-dilemmas.csv"; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
 		5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-zodiac-scorpio-sm.png"; path = "Resources/images/conscience/icons/con-zodiac-scorpio-sm.png"; sourceTree = "<group>"; };
@@ -1655,7 +1647,6 @@
 		5E23DE8D13307D7F00B66412 /* ref-davidhume.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-davidhume.jpg"; path = "Resources/images/reference/ref-davidhume.jpg"; sourceTree = "<group>"; };
 		5E23DE8E13307D7F00B66412 /* ref-sttheresevonlisieux-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-sttheresevonlisieux-sm.png"; path = "Resources/images/reference/ref-sttheresevonlisieux-sm.png"; sourceTree = "<group>"; };
 		5E23DE8F13307D7F00B66412 /* ref-sttheresevonlisieux.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-sttheresevonlisieux.jpg"; path = "Resources/images/reference/ref-sttheresevonlisieux.jpg"; sourceTree = "<group>"; };
-		5E266FC512D97E2A00308FA6 /* tbl-figures.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-figures.csv"; path = "Resources/tbl-figures.csv"; sourceTree = "<group>"; };
 		5E29039D131DE1000048DFC8 /* con-sports-soccerball.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-sports-soccerball.svg"; path = "Resources/images/conscience/con-sports-soccerball.svg"; sourceTree = "<group>"; };
 		5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-eighthnote-sm.png"; path = "Resources/images/conscience/icons/con-eighthnote-sm.png"; sourceTree = "<group>"; };
 		5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-sports-soccerball-sm.png"; path = "Resources/images/conscience/icons/con-sports-soccerball-sm.png"; sourceTree = "<group>"; };
@@ -2561,8 +2552,6 @@
 		5E751DC112E6899000D573C1 /* con-zodiac-scorpio.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-zodiac-scorpio.svg"; path = "Resources/images/conscience/con-zodiac-scorpio.svg"; sourceTree = "<group>"; };
 		5E777E9213161B8C00E35222 /* ReferencePerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferencePerson.h; sourceTree = "<group>"; };
 		5E777E9313161B8C00E35222 /* ReferencePerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferencePerson.m; sourceTree = "<group>"; };
-		5E77A16812E11B0A00E4D2D9 /* tbl-beliefs.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-beliefs.csv"; path = "Resources/tbl-beliefs.csv"; sourceTree = "<group>"; };
-		5E77A16912E11B0A00E4D2D9 /* tbl-texts-ref.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-texts-ref.csv"; path = "Resources/tbl-texts-ref.csv"; sourceTree = "<group>"; };
 		5E7A0EA9124C4DDF00E061C2 /* body-eye1-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "body-eye1-sm.png"; path = "Resources/images/conscience/icons/body-eye1-sm.png"; sourceTree = "<group>"; };
 		5E7A0EAA124C4DDF00E061C2 /* body-eye2-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "body-eye2-sm.png"; path = "Resources/images/conscience/icons/body-eye2-sm.png"; sourceTree = "<group>"; };
 		5E7A0EAB124C4DDF00E061C2 /* body-eye3-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "body-eye3-sm.png"; path = "Resources/images/conscience/icons/body-eye3-sm.png"; sourceTree = "<group>"; };
@@ -2780,7 +2769,6 @@
 		5E8CF28112E7AC2C004FBBBB /* ref-georgewashingtoncarver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-georgewashingtoncarver.jpg"; path = "Resources/images/reference/ref-georgewashingtoncarver.jpg"; sourceTree = "<group>"; };
 		5E8CF28212E7AC2C004FBBBB /* ref-thichquangduc-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-thichquangduc-sm.png"; path = "Resources/images/reference/ref-thichquangduc-sm.png"; sourceTree = "<group>"; };
 		5E8CF28312E7AC2C004FBBBB /* ref-thichquangduc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-thichquangduc.jpg"; path = "Resources/images/reference/ref-thichquangduc.jpg"; sourceTree = "<group>"; };
-		5E8D344E12D6E0AA00167E6E /* tbl-morals.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-morals.csv"; path = "Resources/tbl-morals.csv"; sourceTree = "<group>"; };
 		5E8D88D212516C3C00E03014 /* ChoiceModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChoiceModalView.xib; path = Resources/ChoiceModalView.xib; sourceTree = "<group>"; };
 		5E8D897012516CEB00E03014 /* sur-mecca.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-mecca.png"; sourceTree = "<group>"; };
 		5E8D897112516CEB00E03014 /* sur-miyajima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-miyajima.png"; sourceTree = "<group>"; };
@@ -2791,6 +2779,8 @@
 		5E8D8A71125191E400E03014 /* thoughtbubble-black@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-black@2x.png"; path = "Resources/images/interface/thoughtbubble-black@2x.png"; sourceTree = "<group>"; };
 		5E8D8A72125191E400E03014 /* int-worldeast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "int-worldeast.png"; path = "Resources/images/interface/int-worldeast.png"; sourceTree = "<group>"; };
 		5E8D8A73125191E400E03014 /* int-worldwest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "int-worldwest.png"; path = "Resources/images/interface/int-worldwest.png"; sourceTree = "<group>"; };
+		5E8FBE09138A136200173584 /* SystemData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = SystemData.sqlite; path = Model/SystemData.sqlite; sourceTree = "<group>"; };
+		5E8FBE0A138A136200173584 /* UserData.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = UserData.sqlite; path = Model/UserData.sqlite; sourceTree = "<group>"; };
 		5E9104DE121A18E200423DE8 /* AccessoryObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoryObjectView.h; path = View/AccessoryObjectView.h; sourceTree = "<group>"; };
 		5E9104DF121A18E200423DE8 /* AccessoryObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoryObjectView.m; path = View/AccessoryObjectView.m; sourceTree = "<group>"; };
 		5E91184B1319984200EB5617 /* card-doubt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-doubt.png"; path = "Resources/images/interface/cards/card-doubt.png"; sourceTree = "<group>"; };
@@ -2954,7 +2944,6 @@
 		5EC990A012D4190200F5F245 /* card-flattery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-flattery.png"; path = "Resources/images/interface/cards/card-flattery.png"; sourceTree = "<group>"; };
 		5EC9917012D43AA600F5F245 /* NSString+ParsingExtensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ParsingExtensions.h"; path = "Common/NSString+ParsingExtensions.h"; sourceTree = "<group>"; };
 		5EC9917112D43AA600F5F245 /* NSString+ParsingExtensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+ParsingExtensions.m"; path = "Common/NSString+ParsingExtensions.m"; sourceTree = "<group>"; };
-		5EC9919D12D43BE900F5F245 /* tbl-assets.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-assets.csv"; path = "Resources/tbl-assets.csv"; sourceTree = "<group>"; };
 		5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceListViewController.m; sourceTree = "<group>"; };
 		5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceListViewController.m; sourceTree = "<group>"; };
 		5EC9E590130F88B100C4AEE1 /* LuckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckViewController.m; sourceTree = "<group>"; };
@@ -3191,7 +3180,6 @@
 		5EF103FD11FA9E07000DD4E5 /* body-eye1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-eye1.svg"; path = "Resources/images/conscience/body-eye1.svg"; sourceTree = "<group>"; };
 		5EF10DB312DD44E4000D5F72 /* con-bindi.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-bindi.svg"; path = "Resources/images/conscience/con-bindi.svg"; sourceTree = "<group>"; };
 		5EF10DBA12DD457E000D5F72 /* con-bindi-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-bindi-sm.png"; path = "Resources/images/conscience/icons/con-bindi-sm.png"; sourceTree = "<group>"; };
-		5EF10DE712DD632F000D5F72 /* tbl-texts.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "tbl-texts.csv"; path = "Resources/tbl-texts.csv"; sourceTree = "<group>"; };
 		5EF1D63F1238963D00BF8988 /* con-science-approximate.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-approximate.svg"; path = "Resources/images/conscience/con-science-approximate.svg"; sourceTree = "<group>"; };
 		5EF1D6401238963D00BF8988 /* con-science-comparison-eye.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-comparison-eye.svg"; path = "Resources/images/conscience/con-science-comparison-eye.svg"; sourceTree = "<group>"; };
 		5EF1D6411238963D00BF8988 /* con-science-comparison-nose.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-comparison-nose.svg"; path = "Resources/images/conscience/con-science-comparison-nose.svg"; sourceTree = "<group>"; };
@@ -3320,14 +3308,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5E09E9FA1303B20100482146 /* tbl-characters.csv */,
-				5E09E9FB1303B20100482146 /* tbl-dilemmas.csv */,
-				5E77A16812E11B0A00E4D2D9 /* tbl-beliefs.csv */,
-				5E77A16912E11B0A00E4D2D9 /* tbl-texts-ref.csv */,
-				5EF10DE712DD632F000D5F72 /* tbl-texts.csv */,
-				5E266FC512D97E2A00308FA6 /* tbl-figures.csv */,
-				5E8D344E12D6E0AA00167E6E /* tbl-morals.csv */,
-				5EC9919D12D43BE900F5F245 /* tbl-assets.csv */,
 				5E76782511A2451200DD195A /* images */,
 				5EFFE09511E8F158004813F3 /* Localizable.strings */,
 				8D1107310486CEB800E47090 /* moralife-Info.plist */,
@@ -4325,6 +4305,8 @@
 		5E7677E011A2423800DD195A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5E8FBE09138A136200173584 /* SystemData.sqlite */,
+				5E8FBE0A138A136200173584 /* UserData.sqlite */,
 				5EFED8DF1310E22D00F8EB0B /* Generated */,
 				5EF57BEE1218DE770053B97B /* ConscienceAccessories.h */,
 				5EF57BEF1218DE770053B97B /* ConscienceAccessories.m */,
@@ -5693,9 +5675,6 @@
 				5EC990AB12D4190200F5F245 /* card-sensitivity.png in Resources */,
 				5EC990AC12D4190200F5F245 /* card-stubbornness.png in Resources */,
 				5EC990AD12D4190200F5F245 /* card-flattery.png in Resources */,
-				5EC991A012D43BE900F5F245 /* tbl-assets.csv in Resources */,
-				5E8D344F12D6E0AA00167E6E /* tbl-morals.csv in Resources */,
-				5E266FC912D97E2A00308FA6 /* tbl-figures.csv in Resources */,
 				5E866B4812DC1B03007BAEFD /* ref-dalailama1-sm.png in Resources */,
 				5E866B4912DC1B03007BAEFD /* ref-dalailama1.jpg in Resources */,
 				5E866B5012DC1B03007BAEFD /* ref-vishnu-sm.png in Resources */,
@@ -5716,7 +5695,6 @@
 				5E866B6012DC1B03007BAEFD /* ref-zenoofcitium.jpg in Resources */,
 				5EF10DB712DD44E4000D5F72 /* con-bindi.svg in Resources */,
 				5EF10DBE12DD457E000D5F72 /* con-bindi-sm.png in Resources */,
-				5EF10DEB12DD632F000D5F72 /* tbl-texts.csv in Resources */,
 				5E7F112F12DE7A9E00B64DC1 /* ref-parsvanatha-sm.png in Resources */,
 				5E7F113012DE7A9E00B64DC1 /* ref-parsvanatha.jpg in Resources */,
 				5E7F113112DE7A9E00B64DC1 /* ref-parvati-sm.png in Resources */,
@@ -5851,8 +5829,6 @@
 				5EE1118712DFCBDF00C8853D /* ref-muhammad.jpg in Resources */,
 				5EE1118812DFCBDF00C8853D /* ref-onoyasumaro-sm.png in Resources */,
 				5EE1118912DFCBDF00C8853D /* ref-onoyasumaro.jpg in Resources */,
-				5E77A17412E11B0A00E4D2D9 /* tbl-beliefs.csv in Resources */,
-				5E77A17512E11B0A00E4D2D9 /* tbl-texts-ref.csv in Resources */,
 				5E751DC512E6899000D573C1 /* con-zodiac-scorpio.svg in Resources */,
 				5E8CF29012E7AC2C004FBBBB /* ref-annefrank-sm.png in Resources */,
 				5E8CF29112E7AC2C004FBBBB /* ref-annefrank.jpg in Resources */,
@@ -5881,8 +5857,6 @@
 				5E16502C130105EA0024C4D1 /* card-humor.png in Resources */,
 				5E16502D130105EA0024C4D1 /* card-judgement.png in Resources */,
 				5E4694F6130337C7004E695F /* ConscienceListView.xib in Resources */,
-				5E09E9FC1303B20100482146 /* tbl-characters.csv in Resources */,
-				5E09E9FD1303B20100482146 /* tbl-dilemmas.csv in Resources */,
 				5E45465E1304E86300A53B8C /* sur-arena-sm.png in Resources */,
 				5E45465F1304E86300A53B8C /* sur-battlefield-sm.png in Resources */,
 				5E4546601304E86300A53B8C /* sur-city-sm.png in Resources */,
@@ -6699,6 +6673,8 @@
 				5E54DBB51384C5E4005D1754 /* icon-piechart.png in Resources */,
 				5EB7D36513861EAA0050DD1A /* sur-sheetmusicbass-sm.png in Resources */,
 				5EB7D36713861EB60050DD1A /* sur-sheetmusicbass.png in Resources */,
+				5E8FBE0B138A136200173584 /* SystemData.sqlite in Resources */,
+				5E8FBE0C138A136200173584 /* UserData.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
