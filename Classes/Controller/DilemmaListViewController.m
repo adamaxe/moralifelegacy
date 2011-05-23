@@ -105,7 +105,10 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     
     int nextRow = [userChoices count] - 1;
     
-    [dilemmaListTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:nextRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
+    if (nextRow > 0) {
+
+        [dilemmaListTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:nextRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
+    }
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
