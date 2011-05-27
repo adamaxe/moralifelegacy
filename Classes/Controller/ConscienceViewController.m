@@ -77,9 +77,6 @@ static float vigourOfShake = 0.05f;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    isBackgroundOK = (&UIApplicationDidEnterBackgroundNotification != NULL); 
-
 
 	[self setTitle:NSLocalizedString(@"ConscienceScreenTitle",@"Title for Conscience Screen")];
 	self.accessibilityLabel = NSLocalizedString(@"ConscienceScreenLabel",@"Label for Conscience Screen");
@@ -125,7 +122,8 @@ static float vigourOfShake = 0.05f;
 
 -(void) viewWillAppear:(BOOL)animated{
 
-    if (isBackgroundOK) { 
+    //Setup notifications for rest of application to catch backgrounding
+    if ([appDelegate isCurrentIOS]) { 
 		[[NSNotificationCenter defaultCenter] addObserver: self
                                                  selector: @selector(stopTimers) 
                                                      name: UIApplicationDidEnterBackgroundNotification
@@ -228,7 +226,8 @@ static float vigourOfShake = 0.05f;
 
 - (void)viewWillDisappear:(BOOL)animated {
     
-	if (isBackgroundOK) { 
+    //Remove observers in case of backgrounding
+	if ([appDelegate isCurrentIOS]) { 
 		[[NSNotificationCenter defaultCenter] removeObserver:self
                                                         name:UIApplicationDidEnterBackgroundNotification
                                                       object:nil];
@@ -910,7 +909,8 @@ Implementation:  Determine time of day, and which thought should be displayed.  
             int moodIndex = [[NSNumber numberWithFloat:appDelegate.userConscienceMind.mood] intValue];
             int enthusiasmIndex = [[NSNumber numberWithFloat:appDelegate.userConscienceMind.enthusiasm] intValue];
 
-            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", [conscienceMood objectAtIndex:moodIndex/10], [conscienceEnthusiasm objectAtIndex:enthusiasmIndex/10]];
+            /** @todo remove Beta Tester acknowledgement before release */
+            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.  Thanks for Beta testing!", [conscienceMood objectAtIndex:moodIndex/10], [conscienceEnthusiasm objectAtIndex:enthusiasmIndex/10]];
             
             break;
         }               
