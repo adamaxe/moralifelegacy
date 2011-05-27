@@ -38,8 +38,9 @@ static float vigourOfShake = 0.05f;
     
 	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
 	
+    /** @todo remove Beta tester messaging */
 	appDelegate.userConscienceView.center = centerPoint;
-	[conscienceStatus setText:@"Hello!  Welcome to..."];
+	[conscienceStatus setText:@"Hi Beta Testers!  Welcome to..."];
     
 	backgroundImage.alpha = 0;
 	moraLifeLogoImage.alpha = 0;
@@ -795,7 +796,7 @@ Implementation:  Return conscience to view
     if (isImpatient) {
         [conscienceStatus setText:@"Okay, so I can tell that you're ready to go.  Let's skip the intro and get to the good stuff."];
     } else {
-        [conscienceStatus setText:@"Awesome.  You're like the best User ever for not skipping this.  Let's rock this."];
+        [conscienceStatus setText:@"Awesome.  You're like the best User ever for not skipping the intro.  Let's rock this."];
         
     }
     
