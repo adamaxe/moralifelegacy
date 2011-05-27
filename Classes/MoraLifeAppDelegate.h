@@ -48,6 +48,7 @@ The User can also view reports on their moral progress and read about historical
 @property (nonatomic, retain) ConscienceView *userConscienceView;
 @property (nonatomic, retain) ConscienceMind *userConscienceMind;
 @property (nonatomic, retain) NSMutableArray *userCollection;
+@property (nonatomic, assign) BOOL isCurrentIOS;
 
 @property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;

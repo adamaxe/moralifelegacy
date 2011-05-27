@@ -31,6 +31,8 @@ All setup for data, navigation, UI, is done in App delegate.
 @synthesize userConscienceView;
 @synthesize userConscienceMind;
 @synthesize userCollection;
+@synthesize isCurrentIOS;
+
 
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
@@ -105,6 +107,8 @@ All setup for data, navigation, UI, is done in App delegate.
  */
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
 	
+    isCurrentIOS = (&UIApplicationDidEnterBackgroundNotification != NULL);
+    
 	mainMenuTabBarCont = [[UITabBarController alloc] init];
 	navController1 = [[UINavigationController alloc] init];
 	navController2 = [[UINavigationController alloc] init];
