@@ -30,6 +30,7 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 	IBOutlet UIView *consciencePlayground;			/**< area in which custom ConscienceView can float */
 	IBOutlet UILabel *currentFundsLabel;			/**< display of User's current ethicals */
 	IBOutlet UILabel *accessoryNameLabel;			/**< name of ConscienceAsset */
+	IBOutlet UILabel *accessoryDescriptionLabel;	/**< description of ConscienceAsset */
 	IBOutlet UILabel *accessoryCostLabel;			/**< cost of ConscienceAsset */
 	IBOutlet UILabel *insufficientEthicalsLabel;	/**< insufficient ethicals notification */
     

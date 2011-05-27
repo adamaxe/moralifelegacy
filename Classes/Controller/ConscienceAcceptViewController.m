@@ -96,6 +96,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
                 
 		//Set UI labels
 		[accessoryNameLabel setText:[assetReview displayNameReference]];
+		[accessoryDescriptionLabel setText:[assetReview shortDescriptionReference]];        
 		assetCost = [[assetReview costAsset] intValue];
         
 		//If ConscienceAsset is already owned, change verbiage of UI
