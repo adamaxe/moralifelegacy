@@ -6,7 +6,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 #import "ReferenceViewController.h"
 #import "ReferenceListViewController.h"
-#import "ReportPieViewController.h"
+#import "ConscienceHelpViewController.h"
 
 @implementation ReferenceViewController
 
@@ -72,8 +72,51 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    
+	//Present help screen after a split second
+    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    
+}
+
 #pragma mark -
 #pragma mark UI Interaction
+
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the intro
+    NSObject *firstReferenceCheck = [prefs objectForKey:@"firstReference"];
+    
+    if (firstReferenceCheck == nil) {
+        
+		NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        
+		[helpTitleName release];
+		[helpTextName release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstReference"];
+        
+    }
+}
 
 /**
 Implementation: A single view controller is utilized for both Good and Bad choices.  A boolean controls which version of the view controller is presented to User.
@@ -82,9 +125,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	
 	//Create view controller to be pushed upon navigation stack
 	ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithNibName:@"ReferenceListView" bundle:[NSBundle mainBundle]];
-	ReportPieViewController *referenceReportViewCont = [[ReportPieViewController alloc] initWithNibName:@"ReportPieView" bundle:[NSBundle mainBundle]];
 
-	BOOL isReportViewNeeded = FALSE;
 	int referenceType = 0;
 		
 	//Determine which choice was selected
@@ -100,27 +141,15 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 			case 2:referenceType = kReferenceTypeBooks;break;
 			case 3:referenceType = kReferenceTypePeople;break;
 			case 4:referenceType = kReferenceTypePlaces;break;
-			case 5:referenceType = kReferenceTypeReports; isReportViewNeeded = TRUE;break;
 			default:break;
 		}
 		
 	}
 	
-	if(!isReportViewNeeded){
-		referenceListViewCont.referenceType = referenceType;		
-		[self.navigationController pushViewController:referenceListViewCont animated:YES];
+    referenceListViewCont.referenceType = referenceType;		
+    [self.navigationController pushViewController:referenceListViewCont animated:YES];
 
-	}else {
-
-        [prefs setBool:TRUE forKey:@"reportIsGood"];
-
-		[self.navigationController pushViewController:referenceReportViewCont animated:YES];
-
-		
-	}
-	
 	[referenceListViewCont release];
-	[referenceReportViewCont release];
 }
 
 #pragma mark -

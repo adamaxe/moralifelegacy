@@ -10,6 +10,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "LuckViewController.h"
 #import "LuckListViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ConscienceHelpViewController.h"
 
 @implementation ChoiceInitViewController
 
@@ -84,8 +85,50 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 }
 
+-(void)viewDidAppear:(BOOL)animated {
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    
+}
+
 #pragma mark -
 #pragma mark UI Interaction
+
+/**
+Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the intro
+    NSObject *firstChoiceCheck = [prefs objectForKey:@"firstChoice"];
+    
+    if (firstChoiceCheck == nil) {
+        
+		NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        
+		[helpTitleName release];
+		[helpTextName release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstChoice"];
+        
+    }
+}
 
 /**
 Implementation: A single view controller is utilized for both Good and Bad choices.  A boolean controls which version of the view controller is presented to User.
