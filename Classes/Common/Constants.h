@@ -7,7 +7,7 @@ Global Constants.  Centralized location of constants used in code.
  */
 
 /**
- Ensure backwards compatibility with iOS devices without multitasking
+ Ensure backwards compatibility with iOS devices without multitasking, etc.
  */
 UIKIT_EXTERN NSString* const UIApplicationDidEnterBackgroundNotification __attribute__((weak_import));
 UIKIT_EXTERN NSString* const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));

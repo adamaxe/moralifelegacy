@@ -2,8 +2,6 @@
 Implementation: Various filenames, strings, values and enums for use throughout app
 
 @class Constants Constants.h
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
-@date 06/27/2010
  */
 
 NSString* const kEyeColor = @"1C943D";
