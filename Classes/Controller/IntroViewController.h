@@ -41,7 +41,6 @@ Application Introduction.  View controller for first time into app.  Only utiliz
     
     int messageState;                   /**< which stage of intro is current */
     BOOL isImpatient;                   /**< has User decided to skip intro */
-	BOOL isBackgroundOK;				/**< determine if iOS3 is present */
 	    
 }
 

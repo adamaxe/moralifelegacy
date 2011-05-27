@@ -24,8 +24,6 @@ static float vigourOfShake = 0.05f;
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-	isBackgroundOK = (&UIApplicationDidEnterBackgroundNotification != NULL); 
 	
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
@@ -57,7 +55,7 @@ static float vigourOfShake = 0.05f;
 
 	teamAxeLogoImage.alpha = 0;
 
-	if (isBackgroundOK) { 
+	if ([appDelegate isCurrentIOS]) { 
 		[[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(stopIntro) 
                                                  name: UIApplicationDidEnterBackgroundNotification
@@ -75,7 +73,7 @@ static float vigourOfShake = 0.05f;
 
 -(void)viewWillDisappear:(BOOL)animated {
 
-	if (isBackgroundOK) { 
+	if ([appDelegate isCurrentIOS]) { 
 		[[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationDidEnterBackgroundNotification
                                                   object:nil];
