@@ -42,7 +42,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	choiceNames = [[NSMutableArray alloc] init];			
 	choiceImages = [[NSMutableArray alloc] init];			
 	choiceDetails = [[NSMutableArray alloc] init];
-    choiceTypes = [[NSMutableArray alloc] init];
+	choiceTypes = [[NSMutableArray alloc] init];
 	choiceDisplayNames = [[NSMutableArray alloc] init];
 	userChoices = [[NSMutableDictionary alloc] init];
 	moralNames = [[NSMutableDictionary alloc] init];
@@ -61,7 +61,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	tableDataImages = [[NSMutableArray alloc] init];
 	tableDataDetails = [[NSMutableArray alloc] init];
 	tableDataKeys = [[NSMutableArray alloc] init];
-    tableDataTypes = [[NSMutableArray alloc] init];
+	tableDataTypes = [[NSMutableArray alloc] init];
 
 }
 
@@ -104,7 +104,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 -(void)viewDidAppear:(BOOL)animated{
     
     int nextRow = [userChoices count] - 1;
-    
+        
     if (nextRow > 0) {
 
         [dilemmaListTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:nextRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
@@ -390,7 +390,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[choiceImages removeAllObjects];	
 	[choiceDetails removeAllObjects];	
 	[choiceDisplayNames removeAllObjects];	
-    [choiceTypes removeAllObjects];	
+	[choiceTypes removeAllObjects];	
 	[userChoices removeAllObjects];	
     
 	[dataSource removeAllObjects];	
@@ -399,11 +399,11 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[tableDataImages removeAllObjects];	
 	[tableDataDetails removeAllObjects];	
 	[tableDataKeys removeAllObjects];
-    [tableDataTypes removeAllObjects];
+	[tableDataTypes removeAllObjects];
 
-    BOOL isDilemma = TRUE;
+	BOOL isDilemma = TRUE;
 	NSObject *boolCheck = [prefs objectForKey:@"dilemmaCampaign"];
-	NSInteger dilemmaCampaign;
+//	NSInteger dilemmaCampaign;
     
 	if (boolCheck != nil) {
 		dilemmaCampaign = [prefs integerForKey:@"dilemmaCampaign"];
@@ -414,12 +414,15 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	//Begin CoreData Retrieval			
 	NSError *outError;
 	
-	//Retrieve all available Dilemmas, sort by name
+	//Retrieve all available Dilemmas, sort by name, limit to currently requested Campaign
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Dilemma" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"campaign == %d", dilemmaCampaign];
+	//NSPredicate *pred = [NSPredicate predicateWithFormat:@"campaign == %d", dilemmaCampaign];
+	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
+	[dilemmaPredicate release];
 
 	if (dilemmaCampaign > 0) {
 		[request setPredicate:pred];
@@ -438,6 +441,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 		
         //Add dilemmas to list, concatenate two morals together for detail text
 		for (Dilemma *matches in objects){
+            
 			[choiceNames addObject:[matches nameDilemma]];
 			[choiceImages addObject:[matches surrounding]];
 			[choiceDisplayNames addObject:[matches displayNameDilemma]];
@@ -471,7 +475,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[tableDataImages addObjectsFromArray:choiceImages];
 	[tableDataKeys addObjectsFromArray:choiceNames];
 	[tableDataDetails addObjectsFromArray:choiceDetails];
-    [tableDataTypes addObjectsFromArray:choiceTypes];
+	[tableDataTypes addObjectsFromArray:choiceTypes];
 
 	[dilemmaListTableView reloadData];
     
@@ -487,6 +491,12 @@ Implementation: Load User data to determine which Dilemmas have already been com
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserDilemma" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
+    
+    NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey contains[cd] %@", dilemmaPredicate];
+	[dilemmaPredicate release];
+    
+    [request setPredicate:pred];
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];

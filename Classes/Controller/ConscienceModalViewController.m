@@ -53,8 +53,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	[tempButtonImages release];
 	
-//    tempButtonLabels = [[NSArray alloc] initWithObjects:@"Western", @"Atlantic", @"Eastern", @"Pacific", nil];
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Western", @"Coming Soonest!", @"Coming Sooner!", @"Coming Soon!", nil];
+	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Western", @"Atlantic", @"Coming Sooner!", @"Coming Soon!", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	[tempButtonLabels release];
 	
@@ -221,7 +220,7 @@ Determines if current screen should change or if another UIViewController needs 
 //			case 10:currentState = 11;[self changeSelectionScreen];break;			
 //			case 11:currentState = 12;[self changeSelectionScreen];break;			
 			case 8:[self selectController:choiceIndex];break;
-//			case 9:[self selectController:choiceIndex];break;
+			case 9:[self selectController:choiceIndex];break;
 //			case 10:[self selectController:choiceIndex];break;			
 //			case 11:[self selectController:choiceIndex];break;
 			case 12:/*[self selectController:choiceIndex];*/break;
@@ -285,25 +284,14 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 - (void) selectController:(int) controllerID{
 	
 	BOOL isListViewControllerNeeded = FALSE;
+	BOOL isDilemmaViewControllerNeeded = FALSE;
 	int requestedAccessorySlot = 0;
+	int requestedCampaign = 0;
 	
 	//Determine if a new view controller has been requested
 	if (controllerID > 0) {
 
 		switch (controllerID) {
-//			case 1:{
-//				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-//				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-//				[dilemmaListViewCont release];
-//			}
-//				break;				
-//			case 4:{
-//				ConscienceActionViewController *conscienceActionViewCont = [[ConscienceActionViewController alloc] initWithNibName:@"ConscienceActionView" bundle:[NSBundle mainBundle]];
-//				
-//				[self.navigationController pushViewController:conscienceActionViewCont animated:NO];
-//				[conscienceActionViewCont release];
-//			}
-//				break;                
 			case 2:{
 				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithNibName:@"ReportPieView" bundle:[NSBundle mainBundle]];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
@@ -322,47 +310,11 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
                 
-			case 8:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:1 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-				break;
-			case 9:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:2 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-	                break;
-			case 10:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:3 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-      	          break;
-			case 11:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:4 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-            	    break;                
-			case 12:{
-				[self removeUserData];
-			}
-				break;                
-                
+			case 8:requestedCampaign=1;isDilemmaViewControllerNeeded = TRUE;break;
+			case 9:requestedCampaign=2;isDilemmaViewControllerNeeded = TRUE;break;
+			case 10:requestedCampaign=3;isDilemmaViewControllerNeeded = TRUE;break;
+			case 11:requestedCampaign=4;isDilemmaViewControllerNeeded = TRUE;break;                
+			case 12:[self removeUserData];break;                
 			case 20:requestedAccessorySlot = 4;isListViewControllerNeeded = TRUE;break;
 			case 21:requestedAccessorySlot = 5;isListViewControllerNeeded = TRUE;break;
 			case 22:requestedAccessorySlot = 6;isListViewControllerNeeded = TRUE;break;
@@ -374,13 +326,52 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 				break;
 		}
 	}	
-	
+
+	//Present a list of choices for accessories	
 	if (isListViewControllerNeeded) {
 
 		ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] initWithNibName:@"ConscienceListView" bundle:[NSBundle mainBundle]];
 		[conscienceListCont setAccessorySlot:requestedAccessorySlot];
 		[self.navigationController pushViewController:conscienceListCont animated:NO];
 		[conscienceListCont release];
+	}
+
+	//Present a DilemmaListViewController
+	if (isDilemmaViewControllerNeeded) {
+
+		//Determine if User has completed the first Campaign
+		//If not, present help view.
+		if((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) {
+
+        NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title2",NSStringFromClass([self class])];
+        NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text2",NSStringFromClass([self class])];
+        
+        NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
+        NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+        
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        conscienceHelpViewCont.helpTitles = titles;
+        conscienceHelpViewCont.helpTexts = texts;
+        conscienceHelpViewCont.isConscienceOnScreen = TRUE;
+        
+        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [helpTitleName release];
+        [helpTextName release];
+        [titles release];
+        [texts release];
+        [conscienceHelpViewCont release];
+
+			
+		} else {
+
+		DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
+
+		[prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
+
+		[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
+		[dilemmaListViewCont release];
+		}
 	}
 }
 
