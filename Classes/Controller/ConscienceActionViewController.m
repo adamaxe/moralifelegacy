@@ -350,6 +350,8 @@ Construct antagonist Conscience
 				isRequirementOwned = FALSE;
 			}
 		}
+        
+        [actionKey release];
                 
 		moral1Image.image = moral1ImageFull;
 		[dilemmaMoralLabel1 setText:moral1Text];
