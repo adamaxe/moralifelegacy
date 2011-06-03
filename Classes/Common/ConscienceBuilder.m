@@ -19,20 +19,23 @@ Implementation: Call various utilities to construct User's Conscience.  Call XML
 + (void)buildConscience:(ConscienceBody *) requestedConscienceBody{
 		
     [requestedConscienceBody retain];
+    NSString *featurePath = [[NSBundle mainBundle] bundlePath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];     
     
-    /** @todo check for filename 
-     
-     NSFileManager *fileManager = [NSFileManager defaultManager];
-     
-     NSString *pathForFile;
-     
-     if ([fileManager fileExistsAtPath:pathForFile]){ 
-     
-     }
-     
-     */
 	[self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.eyeName];
-	[self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.symbolName];
+    
+    /** @todo apply svg checking to other features */
+    NSString *featureFileName = [NSString stringWithFormat:@"%@.svg", requestedConscienceBody.symbolName];
+	NSString *dataPath = [featurePath stringByAppendingPathComponent:featureFileName];	
+    
+    if ([fileManager fileExistsAtPath:dataPath]){ 
+        [self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.symbolName];
+    } else {
+        [self populateConscience:requestedConscienceBody WithFeature:@"con-nothing"];
+
+    }
+    
+//	[self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.symbolName];
 	[self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.mouthName];
     [requestedConscienceBody release];
     
