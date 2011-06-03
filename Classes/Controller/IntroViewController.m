@@ -392,15 +392,15 @@ static float vigourOfShake = 0.05f;
     
     [UIView setAnimationBeginsFromCurrentState:YES];
 
-    appDelegate.userConscienceMind.mood = 40;
-    appDelegate.userConscienceMind.enthusiasm = 80;
-
     appDelegate.userConscienceView.alpha = 0;
     
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(makeDevil)];
     
     [UIView commitAnimations];
+    
+    appDelegate.userConscienceMind.mood = 35;
+    appDelegate.userConscienceMind.enthusiasm = 80;
 
 	[appDelegate.userConscienceView setIsExpressionForced:TRUE];
 	[appDelegate.userConscienceView setNeedsDisplay];
