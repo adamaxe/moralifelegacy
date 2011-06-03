@@ -13,7 +13,6 @@ Last screen in Conscience Interaction Workflow.  Allows the User to take a reque
 
 #import <CoreData/CoreData.h>
 
-//@class MoraLifeAppDelegate, ConscienceView, ConscienceBody, ConscienceAccessories, ConscienceMind, Dilemma;
 @class MoraLifeAppDelegate, Dilemma;
 
 @interface ConscienceActionViewController : UIViewController {
@@ -54,14 +53,15 @@ Last screen in Conscience Interaction Workflow.  Allows the User to take a reque
 	IBOutlet UIButton *nextButton;				/**< proceed to next view in dilemma */
 	
 	Dilemma *currentDilemma;					/**< information about the dilemma */
-    NSMutableString *dilemmaName;           /**< name of dilemma used for record retention */
-    NSMutableString *moralAName;            /**< name of Moral A */
-    NSMutableString *moralADescription;     /**< description of Moral A */
+	NSMutableString *dilemmaName;           /**< name of dilemma used for record retention */
+	NSMutableString *moralAName;            /**< name of Moral A */
+	NSMutableString *moralADescription;     /**< description of Moral A */
     
 	/** @todo rename into logical names */
 	NSMutableString *reward1;						/**< request for current dilemma */
 	NSMutableString *reward2;    					/**< reward for answering choice */
 	NSString *actionKey;							/**< pkey for choice entry into Core Data */
+	BOOL isRequirementOwned;					/**< does User have key necessary to pass */
 }
 
 /**

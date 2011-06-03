@@ -9,7 +9,6 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 @file
  */
 
-#import "DilemmaViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
@@ -41,15 +40,16 @@ Implementation:  UIViewController changes state of UI depending upon which stage
         
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        prefs = [NSUserDefaults standardUserDefaults];
+		prefs = [NSUserDefaults standardUserDefaults];
 		context = [appDelegate managedObjectContext];
                 
 		//Setup default values
-        reward1 = [[NSMutableString alloc] init];
-        reward2 = [[NSMutableString alloc] init];
-        dilemmaName = [[NSMutableString alloc] init];
-        moralAName = [[NSMutableString alloc] init];
-        moralADescription = [[NSMutableString alloc] init];
+		reward1 = [[NSMutableString alloc] init];
+		reward2 = [[NSMutableString alloc] init];
+		dilemmaName = [[NSMutableString alloc] init];
+		moralAName = [[NSMutableString alloc] init];
+		moralADescription = [[NSMutableString alloc] init];
+		isRequirementOwned = FALSE;
         
         
     }
@@ -61,10 +61,6 @@ Implementation:  UIViewController changes state of UI depending upon which stage
     [super viewDidLoad];
 	
 	/** @bug determined abandoned memory */
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate managedObjectContext];	
-        
 	//Get relevant dilemma information
 	[self loadDilemma];
         
@@ -195,13 +191,29 @@ Show reward views once User has completed dilemma and refuse access to previous 
 		//Change Button tag in order to determine which "screen" is active
 		nextButton.tag = 2 + buttonFactor;
 		previousButton.tag = buttonFactor;
-        
-		if (screenVersion == 3) {
-            
-            if (![[appDelegate userCollection] containsObject:actionKey]) {
+
+		/** @todo determine new collection checking for non-dilemma entries */
+		//Determine if User is in possession of requirement for success
+		if (screenVersion == 3){
+
+//			//Ensure that User must enter in a new choice after reading Dilemma
+//			BOOL isRewardAllowed = FALSE;
+//
+//			NSString *restoreRequirement = [prefs objectForKey:@"firstTimeRequirement"];
+//			if (restoreRequirement != nil) {
+//				[prefs removeObjectForKey:@"firstTimeRequirement"];
+//				isRewardAllowed = TRUE;
+//			} else {
+//				[prefs setBool:FALSE forKey:@"firstTimeRequirement"];
+//			}
+//
+//			if(!isRequirementOwned && !isRewardAllowed){
+            if(!isRequirementOwned){
+
+				//Skip the reward screen as requirement has not been met
 				nextButton.tag = 5;
 				previousButton.tag = 2;
-			} 
+			}
 		}
         
 		//Delay appearance of score to draw attention
@@ -239,7 +251,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
  */
 -(IBAction)returnToHome:(id)sender{
 	
-    [prefs setBool:TRUE forKey:@"conscienceModalReset"];
+	[prefs setBool:TRUE forKey:@"conscienceModalReset"];
 	[self.navigationController popToRootViewControllerAnimated:NO];
     
 }
@@ -296,11 +308,47 @@ Construct antagonist Conscience
 		//Add moral image with .png to support iOS 3
 		UIImage *moral1ImageFull = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[currentDilemma moralChoiceA] imageNameMoral]]];
 	
-		//Determine if criteria for success is going to be 
+		BOOL keyIsMoral = FALSE;
+		//Determine if criteria for success is going to be
 		if ([[currentDilemma rewardADilemma] isEqualToString:[currentDilemma rewardBDilemma]]) {
 			actionKey = [[NSString alloc] initWithString:[[currentDilemma moralChoiceA] nameMoral]];
+			keyIsMoral = TRUE;
 		} else {
 			actionKey = [[NSString alloc] initWithString:[currentDilemma rewardADilemma]];
+		}
+
+		//Determine if User is in possession of item/moral needed to pass Action
+		if(keyIsMoral) {
+
+			//Determine if User has requirement to pass
+			NSEntityDescription *entityUserChoiceDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
+			NSFetchRequest *userChoiceRequest = [[NSFetchRequest alloc] init];
+			[userChoiceRequest setEntity:entityUserChoiceDesc];
+			[userChoiceRequest setIncludesSubentities:NO];
+
+			NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
+			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, predicateParam];
+			[predicateParam release];
+    
+			[userChoiceRequest setPredicate:userChoicePred];
+    
+			NSUInteger count = [context countForFetchRequest:userChoiceRequest error: &outError];
+   
+			if (count == 0) {
+				isRequirementOwned = FALSE;
+			} else {
+				isRequirementOwned = TRUE;
+			}
+
+			[userChoiceRequest release];
+
+		} else {
+		
+			if ([[appDelegate userCollection] containsObject:actionKey]) {
+				isRequirementOwned = TRUE;
+			} else {
+				isRequirementOwned = FALSE;
+			}
 		}
                 
 		moral1Image.image = moral1ImageFull;
@@ -450,7 +498,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//@todo localize reward
 	if ([selectedReward rangeOfString:kCollectableEthicals].location != NSNotFound) {
 		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:kCollectableEthicals]];
-		[moralSelectedRewardLabel setText:[NSString stringWithString:@"Ethicals!"]];
+		[moralSelectedRewardLabel setText:[NSString stringWithString:@"Have some Ethicals!"]];
         
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
 
@@ -534,6 +582,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[selectedReward setString:@"5"];
 	}
 
+    //Append epsilon character
 	[ethicalRewardLabel setText:[NSString stringWithFormat:@"+%dε", [selectedReward intValue]]];
     
 	//Set limit to amount of Ethicals User can earn
