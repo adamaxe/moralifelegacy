@@ -262,7 +262,7 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	if (!isConscienceOnScreen) {
 		appDelegate.userConscienceView.center = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
 	} else {
-		appDelegate.userConscienceView.center = CGPointMake(kConscienceHomeX, kConscienceHomeY);
+        appDelegate.userConscienceView.center = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
 	}
 	
 	nextButton.hidden = TRUE;
