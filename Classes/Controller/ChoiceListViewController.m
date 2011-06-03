@@ -180,7 +180,15 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
-	
+
+	//Ensure that Choices created during Morathology sessions are not displayed here
+	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
+	//@see DilemmaViewController
+	NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"NOT entryKey contains[cd] %@", predicateParam];
+	[request setPredicate:pred];
+	[predicateParam release];
+
 	NSSortDescriptor* sortDescriptor;
 
 	//choiceSortDescriptor and isAscending are set throughout class    
@@ -199,11 +207,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 		
 		//Build raw data list to be filtered by second data container set
 		for (UserChoice *matches in objects){
-            
-		//Ensure that Choices created during Morathology sessions are not displayed here
-		//@see DilemmaViewController
-            if ([[matches entryKey] rangeOfString:@"dile-"].location == NSNotFound){
-            
+                        
 			[choices addObject:[matches entryShortDescription]];
 		 	[choiceKeys addObject:[matches entryKey]];
 			[choicesAreGood addObject:[NSNumber numberWithBool:[[matches entryIsGood] boolValue]]];
@@ -252,9 +256,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 			//Populate details array with constructed detail
       	      [details addObject:detailText];
 			[detailText release];
-                
-	            }
-            
+                            
 		}
 	}
 	
