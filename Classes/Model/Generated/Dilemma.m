@@ -1,8 +1,8 @@
 //
 //  Dilemma.m
-//  Moralife
+//  mlcoredata
 //
-//  Created by aaxe on 4/5/11.
+//  Created by aaxe on 6/2/11.
 //  Copyright (c) 2011 Team Axe, LLC. All rights reserved.
 //
 
@@ -15,14 +15,13 @@
 @dynamic rewardADilemma;
 @dynamic choiceB;
 @dynamic moodDilemma;
+@dynamic displayNameDilemma;
 @dynamic surrounding;
 @dynamic nameDilemma;
-@dynamic displayNameDilemma;
-@dynamic campaign;
+@dynamic rewardBDilemma;
 @dynamic choiceA;
 @dynamic enthusiasmDilemma;
 @dynamic dilemmaText;
-@dynamic rewardBDilemma;
 @dynamic moralChoiceA;
 @dynamic antagonist;
 @dynamic moralChoiceB;
