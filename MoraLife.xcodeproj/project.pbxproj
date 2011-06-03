@@ -1189,8 +1189,8 @@
 		5E9DCD3812824239001D926E /* card-immorality.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD2012824239001D926E /* card-immorality.png */; };
 		5E9DCD3B12824239001D926E /* card-pacifism.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD2312824239001D926E /* card-pacifism.png */; };
 		5E9DCD3C12824239001D926E /* card-selfdestruction.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD2412824239001D926E /* card-selfdestruction.png */; };
-		5E9DCD3D12824239001D926E /* card-spite.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD2512824239001D926E /* card-spite.png */; };
 		5E9DCD3E12824239001D926E /* cardtop-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD2612824239001D926E /* cardtop-selected.png */; };
+		5E9FEA82138E0A5000AB6645 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E9FEA81138E0A5000AB6645 /* Entitlements.plist */; };
 		5EA01A271346C872001E8581 /* ref-giovannipicodellamirandola-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A211346C872001E8581 /* ref-giovannipicodellamirandola-sm.png */; };
 		5EA01A281346C872001E8581 /* ref-giovannipicodellamirandola.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A221346C872001E8581 /* ref-giovannipicodellamirandola.jpg */; };
 		5EA01A291346C872001E8581 /* ref-meerabai-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A231346C872001E8581 /* ref-meerabai-sm.png */; };
@@ -1552,6 +1552,7 @@
 		5EF1D6541238963D00BF8988 /* con-science-infinity.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF1D6441238963D00BF8988 /* con-science-infinity.svg */; };
 		5EF1D6551238963D00BF8988 /* con-science-integral.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF1D6451238963D00BF8988 /* con-science-integral.svg */; };
 		5EF1D6561238963D00BF8988 /* con-science-pi.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EF1D6461238963D00BF8988 /* con-science-pi.svg */; };
+		5EF29E76138F69B50093DDA9 /* card-hate.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF29E75138F69B50093DDA9 /* card-hate.png */; };
 		5EF5566E135D41810062C408 /* thoughtbubble-medium1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF5566C135D41810062C408 /* thoughtbubble-medium1.png */; };
 		5EF5566F135D41810062C408 /* thoughtbubble-medium1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF5566D135D41810062C408 /* thoughtbubble-medium1@2x.png */; };
 		5EF57BF21218DE770053B97B /* ConscienceAccessories.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF57BEF1218DE770053B97B /* ConscienceAccessories.m */; };
@@ -2796,8 +2797,8 @@
 		5E9DCD2012824239001D926E /* card-immorality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-immorality.png"; path = "Resources/images/interface/cards/card-immorality.png"; sourceTree = "<group>"; };
 		5E9DCD2312824239001D926E /* card-pacifism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-pacifism.png"; path = "Resources/images/interface/cards/card-pacifism.png"; sourceTree = "<group>"; };
 		5E9DCD2412824239001D926E /* card-selfdestruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-selfdestruction.png"; path = "Resources/images/interface/cards/card-selfdestruction.png"; sourceTree = "<group>"; };
-		5E9DCD2512824239001D926E /* card-spite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-spite.png"; path = "Resources/images/interface/cards/card-spite.png"; sourceTree = "<group>"; };
 		5E9DCD2612824239001D926E /* cardtop-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardtop-selected.png"; path = "Resources/images/interface/cards/cardtop-selected.png"; sourceTree = "<group>"; };
+		5E9FEA81138E0A5000AB6645 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		5EA01A211346C872001E8581 /* ref-giovannipicodellamirandola-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-giovannipicodellamirandola-sm.png"; path = "Resources/images/reference/ref-giovannipicodellamirandola-sm.png"; sourceTree = "<group>"; };
 		5EA01A221346C872001E8581 /* ref-giovannipicodellamirandola.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-giovannipicodellamirandola.jpg"; path = "Resources/images/reference/ref-giovannipicodellamirandola.jpg"; sourceTree = "<group>"; };
 		5EA01A231346C872001E8581 /* ref-meerabai-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-meerabai-sm.png"; path = "Resources/images/reference/ref-meerabai-sm.png"; sourceTree = "<group>"; };
@@ -3182,6 +3183,7 @@
 		5EF1D6441238963D00BF8988 /* con-science-infinity.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-infinity.svg"; path = "Resources/images/conscience/con-science-infinity.svg"; sourceTree = "<group>"; };
 		5EF1D6451238963D00BF8988 /* con-science-integral.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-integral.svg"; path = "Resources/images/conscience/con-science-integral.svg"; sourceTree = "<group>"; };
 		5EF1D6461238963D00BF8988 /* con-science-pi.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-pi.svg"; path = "Resources/images/conscience/con-science-pi.svg"; sourceTree = "<group>"; };
+		5EF29E75138F69B50093DDA9 /* card-hate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-hate.png"; path = "Resources/images/interface/cards/card-hate.png"; sourceTree = "<group>"; };
 		5EF5566C135D41810062C408 /* thoughtbubble-medium1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-medium1.png"; path = "Resources/images/interface/thoughtbubble-medium1.png"; sourceTree = "<group>"; };
 		5EF5566D135D41810062C408 /* thoughtbubble-medium1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-medium1@2x.png"; path = "Resources/images/interface/thoughtbubble-medium1@2x.png"; sourceTree = "<group>"; };
 		5EF57BEE1218DE770053B97B /* ConscienceAccessories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceAccessories.h; path = Model/ConscienceAccessories.h; sourceTree = "<group>"; };
@@ -3341,6 +3343,7 @@
 				5E3E87BB1226090B00F2708A /* ReferenceListView.xib */,
 				5E3E87BC1226090B00F2708A /* ReferenceModalView.xib */,
 				5EB76148123EE9860063C15A /* ReportPieView.xib */,
+				5E9FEA81138E0A5000AB6645 /* Entitlements.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -4148,6 +4151,7 @@
 		5E73B191125968DE0039A577 /* cards */ = {
 			isa = PBXGroup;
 			children = (
+				5EF29E75138F69B50093DDA9 /* card-hate.png */,
 				5EF58A521381F8110034BF2B /* card-infidelity.png */,
 				5EB58EB613415D8900B67E0D /* card-obsession.png */,
 				5EB58EB713415D8900B67E0D /* card-pettiness.png */,
@@ -4225,7 +4229,6 @@
 				5E9DCD2012824239001D926E /* card-immorality.png */,
 				5E9DCD2312824239001D926E /* card-pacifism.png */,
 				5E9DCD2412824239001D926E /* card-selfdestruction.png */,
-				5E9DCD2512824239001D926E /* card-spite.png */,
 				5E9DCD2612824239001D926E /* cardtop-selected.png */,
 				5EC246BF12711DF100421807 /* card-addiction.png */,
 				5EC246C012711DF100421807 /* card-caprice.png */,
@@ -5578,7 +5581,6 @@
 				5E9DCD3812824239001D926E /* card-immorality.png in Resources */,
 				5E9DCD3B12824239001D926E /* card-pacifism.png in Resources */,
 				5E9DCD3C12824239001D926E /* card-selfdestruction.png in Resources */,
-				5E9DCD3D12824239001D926E /* card-spite.png in Resources */,
 				5E9DCD3E12824239001D926E /* cardtop-selected.png in Resources */,
 				5E454D741288DFE400C12FF7 /* ConscienceAcceptView.xib in Resources */,
 				5E45595A1288E09E00C12FF7 /* card-denial.png in Resources */,
@@ -6665,6 +6667,8 @@
 				5EB7D36713861EB60050DD1A /* sur-sheetmusicbass.png in Resources */,
 				5E8FBE0B138A136200173584 /* SystemData.sqlite in Resources */,
 				5E8FBE0C138A136200173584 /* UserData.sqlite in Resources */,
+				5E9FEA82138E0A5000AB6645 /* Entitlements.plist in Resources */,
+				5EF29E76138F69B50093DDA9 /* card-hate.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6802,7 +6806,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MoraLife_Prefix.pch;
 				INFOPLIST_FILE = "moralife-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = MoraLife;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -6814,9 +6820,73 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MoraLife_Prefix.pch;
 				INFOPLIST_FILE = "moralife-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				PRODUCT_NAME = MoraLife;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
+		};
+		5E9FEA7E138E09AC00AB6645 /* Ad Hoc Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 1;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				OTHER_CFLAGS = "";
+				PREBINDING = NO;
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "Ad Hoc Distribution";
+		};
+		5E9FEA7F138E09AC00AB6645 /* Ad Hoc Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.plist;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MoraLife_Prefix.pch;
+				INFOPLIST_FILE = "moralife-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				PRODUCT_NAME = MoraLife;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "Ad Hoc Distribution";
+		};
+		5E9FEA80138E09AC00AB6645 /* Ad Hoc Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad Hoc Distribution";
 		};
 		5EA1D233130E38A200BA81D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -6914,6 +6984,7 @@
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
 				1D6058950D05DD3E006BFB54 /* Release */,
+				5E9FEA7F138E09AC00AB6645 /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6923,6 +6994,7 @@
 			buildConfigurations = (
 				5EA1D233130E38A200BA81D6 /* Debug */,
 				5EA1D234130E38A200BA81D6 /* Release */,
+				5E9FEA80138E09AC00AB6645 /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -6932,6 +7004,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				5E9FEA7E138E09AC00AB6645 /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
