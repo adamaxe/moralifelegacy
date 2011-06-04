@@ -1,9 +1,11 @@
 /**
- Implementation:  Present User with list of User-entered Choices.  Dilemma-entered choices are filtered from view.
+ Implementation:  Present User with list of previously entered Choices.  Dilemma-entered choices are filtered from view.
  UITableView is populated by a second set of container arrays, so that we can search on that data set without having to refetch.
  Refetches of table data are necessary when sorting and ordering are requested.
  
- @class ChoiceListViewController ChoiceListViewController.h
+ This class allows the User to quickly re-enter entries that they do on a consistent basis such as repeated good/bad behavior (weekly donations, smoking, etc.).  An entry from this list will populate all of the fields on ChoiceViewController except for entryKey.  This is to ensure that a new entry is added to the UserChoice tables instead of overriding a previous choice.
+ 
+ @class ChoiceHistoryViewController ChoiceViewController.h
  */
 
 #import "ChoiceHistoryViewController.h"
@@ -100,6 +102,23 @@
 	if (selection){
 		[choicesTableView deselectRowAtIndexPath:selection animated:YES];
 	}
+    
+    thoughtArea.alpha = 0;
+    
+	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	
+	[UIView beginAnimations:@"BottomUpConscience" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+	thoughtArea.alpha = 1;
+	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
+	
+	appDelegate.userConscienceView.center = centerPoint;
+	
+	[UIView commitAnimations];
+	
+	[appDelegate.userConscienceView setNeedsDisplay];
+
 	
 }
 
