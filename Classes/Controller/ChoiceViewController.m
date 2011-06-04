@@ -18,6 +18,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "ReferenceDetailViewController.h"
 #import "UserCollectable.h"
 #import "UserCharacter.h"
+#import "ChoiceHistoryViewController.h"
 
 @implementation ChoiceViewController
 
@@ -324,6 +325,30 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// and the root view controller is owned by the navigation controller,
 	// so both objects should be released to prevent over-retention.
 	[virtueViceViewController release];
+	
+}
+
+/**
+ Implementation: Present ChoiceHistoryViewController to all User to enter in previous choice
+ */
+-(IBAction)showHistoryModal:(id)sender {
+    
+	// Create the root view controller for the navigation controller
+	// The new view controller configures a Cancel and Done button for the
+	// navigation bar.
+	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithNibName:@"ChoiceHistoryView" bundle:nil];
+    
+	[moralReferenceButton setAlpha:0];
+	[moralImageView setAlpha:0];
+    
+	[prefs setBool:isVirtue forKey:@"entryIsGood"];
+    
+	[self presentModalViewController:historyViewController animated:NO];
+	
+	// The navigation controller is now owned by the current view controller
+	// and the root view controller is owned by the navigation controller,
+	// so both objects should be released to prevent over-retention.
+	[historyViewController release];
 	
 }
 

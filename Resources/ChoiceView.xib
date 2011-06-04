@@ -2,7 +2,7 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">1056</int>
-		<string key="IBDocument.SystemVersion">10J3250</string>
+		<string key="IBDocument.SystemVersion">10J4138</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1306</string>
 		<string key="IBDocument.AppKitVersion">1038.35</string>
 		<string key="IBDocument.HIToolboxVersion">461.00</string>
@@ -212,10 +212,10 @@
 							<object class="IBUITextField" id="433250200">
 								<reference key="NSNextResponder" ref="200928777"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 18}, {280, 31}}</string>
+								<string key="NSFrame">{{20, 18}, {221, 31}}</string>
 								<reference key="NSSuperview" ref="200928777"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="247635937"/>
+								<reference key="NSNextKeyView" ref="648670369"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
@@ -327,7 +327,7 @@
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor">
+								<object class="NSColor" key="IBUINormalTitleShadowColor" id="502055911">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MC41AA</bytes>
 								</object>
@@ -348,6 +348,31 @@
 								<object class="NSCustomResource" key="IBUIImage">
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">card-doubt.png</string>
+								</object>
+							</object>
+							<object class="IBUIButton" id="648670369">
+								<reference key="NSNextResponder" ref="200928777"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{251, 10}, {49, 45}}</string>
+								<reference key="NSSuperview" ref="200928777"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="247635937"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<reference key="IBUIFont" ref="612934227"/>
+								<double key="IBUIContentEdgeInsets.top">-11</double>
+								<double key="IBUIContentEdgeInsets.bottom">0.0</double>
+								<double key="IBUIContentEdgeInsets.left">0.0</double>
+								<double key="IBUIContentEdgeInsets.right">-3</double>
+								<string key="IBUINormalTitle">...</string>
+								<reference key="IBUIHighlightedTitleColor" ref="778690124"/>
+								<reference key="IBUINormalTitleColor" ref="302506591"/>
+								<reference key="IBUINormalTitleShadowColor" ref="502055911"/>
+								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">button-circle-down.png</string>
 								</object>
 							</object>
 						</object>
@@ -525,6 +550,15 @@
 					</object>
 					<int key="connectionID">140</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">showHistoryModal:</string>
+						<reference key="source" ref="648670369"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">142</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -609,6 +643,7 @@
 							<reference ref="267048202"/>
 							<reference ref="740925984"/>
 							<reference ref="247635937"/>
+							<reference ref="648670369"/>
 						</object>
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">ChoiceInformation</string>
@@ -651,6 +686,11 @@
 						<reference key="object" ref="247635937"/>
 						<reference key="parent" ref="200928777"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">141</int>
+						<reference key="object" ref="648670369"/>
+						<reference key="parent" ref="200928777"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -671,6 +711,7 @@
 					<string>133.IBPluginDependency</string>
 					<string>133.IBViewBoundsToFrameTransform</string>
 					<string>138.IBPluginDependency</string>
+					<string>141.IBPluginDependency</string>
 					<string>20.CustomClassName</string>
 					<string>20.IBPluginDependency</string>
 					<string>20.IBViewBoundsToFrameTransform</string>
@@ -710,6 +751,7 @@
 						<bytes key="NSTransformStruct">P4AAAL+AAABCzgAAw9AAAA</bytes>
 					</object>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>StructuredTextField</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
@@ -746,7 +788,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">140</int>
+			<int key="maxID">142</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -758,11 +800,21 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelChoice:</string>
+							<string>commitChoice:</string>
 							<string>selectMoralReference:</string>
+							<string>severityChange:</string>
+							<string>showChoiceDetailEntry</string>
 							<string>showChoiceModal:</string>
+							<string>showHistoryModal:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
+							<string>id</string>
 							<string>id</string>
 							<string>id</string>
 						</object>
@@ -771,17 +823,42 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelChoice:</string>
+							<string>commitChoice:</string>
 							<string>selectMoralReference:</string>
+							<string>severityChange:</string>
+							<string>showChoiceDetailEntry</string>
 							<string>showChoiceModal:</string>
+							<string>showHistoryModal:</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBActionInfo">
+								<string key="name">cancelChoice:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">commitChoice:</string>
+								<string key="candidateClassName">id</string>
+							</object>
 							<object class="IBActionInfo">
 								<string key="name">selectMoralReference:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 							<object class="IBActionInfo">
+								<string key="name">severityChange:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showChoiceDetailEntry</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
 								<string key="name">showChoiceModal:</string>
+								<string key="candidateClassName">id</string>
+							</object>
+							<object class="IBActionInfo">
+								<string key="name">showHistoryModal:</string>
 								<string key="candidateClassName">id</string>
 							</object>
 						</object>
@@ -934,6 +1011,7 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>background-wall.jpg</string>
+				<string>button-circle-down.png</string>
 				<string>button-large-down.png</string>
 				<string>button-normal-down.png</string>
 				<string>card-doubt.png</string>
@@ -944,6 +1022,7 @@
 			<object class="NSMutableArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{320, 480}</string>
+				<string>{49, 45}</string>
 				<string>{560, 121}</string>
 				<string>{120, 60}</string>
 				<string>{64, 64}</string>

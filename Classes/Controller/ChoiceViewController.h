@@ -74,6 +74,13 @@ Accepts User input to present ChoiceModalViewController for User to enter in Mor
 -(IBAction)showChoiceModal:(id)sender;
 
 /**
+ Accepts User input to present ChoiceHistoryViewController for User to enter in previous choice
+ @param id Object which requested method
+ @return IBAction method available from Interface Builder
+ */
+-(IBAction)showHistoryModal:(id)sender;
+
+/**
 Accepts User input to present ConscienceHelpViewController help screen for User to identify selected Moral
 @param id Object which requested method
 @return IBAction method available from Interface Builder
