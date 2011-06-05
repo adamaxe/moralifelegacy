@@ -41,7 +41,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	thoughtModalArea.alpha = 0;
 
 	/** @todo determine better screen loading method */
-	NSArray *tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-customization.png", @"icon-beliefs.png", @"icon-piechart.png", @" ",nil];
+	NSArray *tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-customization.png", @"icon-rank.png", @"icon-piechart.png", @" ",nil];
 	[buttonImages setObject:tempButtonImages forKey:@"0"];
 	[tempButtonImages release];
 
