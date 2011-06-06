@@ -3,7 +3,7 @@
  
  Second screen in Choice/Luck entry Workflow.  User can select a Choice for review/edit.
  
- @class ChoiceHisotyrViewController
+ @class ChoiceHistoryViewController
  @see ChoiceViewController
  
  @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org

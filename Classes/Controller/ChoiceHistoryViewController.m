@@ -5,7 +5,7 @@
  
  This class allows the User to quickly re-enter entries that they do on a consistent basis such as repeated good/bad behavior (weekly donations, smoking, etc.).  An entry from this list will populate all of the fields on ChoiceViewController except for entryKey.  This is to ensure that a new entry is added to the UserChoice tables instead of overriding a previous choice.
  
- @class ChoiceHistoryViewController ChoiceViewController.h
+ @class ChoiceHistoryViewController ChoiceHistoryViewController.h
  */
 
 #import "ChoiceHistoryViewController.h"

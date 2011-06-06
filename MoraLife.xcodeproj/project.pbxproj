@@ -34,6 +34,11 @@
 		5E07EA02130B589000007A36 /* sur-housetv-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9FE130B589000007A36 /* sur-housetv-sm.png */; };
 		5E07EA03130B589000007A36 /* sur-makebelievetree-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9FF130B589000007A36 /* sur-makebelievetree-sm.png */; };
 		5E07EA05130B7AD200007A36 /* icon-resetapp.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07EA04130B7AD200007A36 /* icon-resetapp.png */; };
+		5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */; };
+		5E0B22341399C5E7002A8664 /* ChoiceHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */; };
+		5E0B2237139AB241002A8664 /* navbar-thoughtbubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2235139AB23E002A8664 /* navbar-thoughtbubble@2x.png */; };
+		5E0B2238139AB241002A8664 /* navbar-thoughtbubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2236139AB240002A8664 /* navbar-thoughtbubble.png */; };
+		5E0B223A139AC27A002A8664 /* icon-rank.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2239139AC27A002A8664 /* icon-rank.png */; };
 		5E0DFA5B120BA66B00F77D70 /* ConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */; };
 		5E0EFCAB130F7DFB00009BB6 /* con-zodiac-scorpio-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */; };
 		5E15BE1112A5ED3100B99258 /* card-obscenity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E15BE0512A5ED3100B99258 /* card-obscenity.png */; };
@@ -1620,6 +1625,12 @@
 		5E07E9FE130B589000007A36 /* sur-housetv-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-housetv-sm.png"; sourceTree = "<group>"; };
 		5E07E9FF130B589000007A36 /* sur-makebelievetree-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-makebelievetree-sm.png"; sourceTree = "<group>"; };
 		5E07EA04130B7AD200007A36 /* icon-resetapp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-resetapp.png"; path = "Resources/images/interface/icons/icon-resetapp.png"; sourceTree = "<group>"; };
+		5E0B222E1399C58C002A8664 /* ChoiceHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHistoryViewController.h; sourceTree = "<group>"; };
+		5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryViewController.m; sourceTree = "<group>"; };
+		5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChoiceHistoryView.xib; path = Resources/ChoiceHistoryView.xib; sourceTree = "<group>"; };
+		5E0B2235139AB23E002A8664 /* navbar-thoughtbubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar-thoughtbubble@2x.png"; path = "Resources/images/interface/navbar-thoughtbubble@2x.png"; sourceTree = "<group>"; };
+		5E0B2236139AB240002A8664 /* navbar-thoughtbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar-thoughtbubble.png"; path = "Resources/images/interface/navbar-thoughtbubble.png"; sourceTree = "<group>"; };
+		5E0B2239139AC27A002A8664 /* icon-rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rank.png"; path = "Resources/images/interface/icons/icon-rank.png"; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
 		5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-zodiac-scorpio-sm.png"; path = "Resources/images/conscience/icons/con-zodiac-scorpio-sm.png"; sourceTree = "<group>"; };
@@ -3327,6 +3338,7 @@
 				5E3E87B61226090B00F2708A /* ChoiceView.xib */,
 				5E3E87B81226090B00F2708A /* ConscienceView.xib */,
 				5E454D711288DFE400C12FF7 /* ConscienceAcceptView.xib */,
+				5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */,
 				5EB5A317122624E800879E11 /* ConscienceAccessoryView.xib */,
 				5E5694C41239EC3B00D03030 /* ConscienceActionView.xib */,
 				5ECC8CEA1255140E00B660C5 /* ConscienceDeckView.xib */,
@@ -4357,6 +4369,8 @@
 		5E76782611A2451C00DD195A /* interface */ = {
 			isa = PBXGroup;
 			children = (
+				5E0B2235139AB23E002A8664 /* navbar-thoughtbubble@2x.png */,
+				5E0B2236139AB240002A8664 /* navbar-thoughtbubble.png */,
 				5E857133137CC58900FF91B1 /* interface-tabbaricons2.jpg */,
 				5E857134137CC58900FF91B1 /* interface-tabbaricons3.jpg */,
 				5E857135137CC58900FF91B1 /* interface-tabbaricons3@2x.jpg */,
@@ -4675,6 +4689,7 @@
 		5E7A0D3A124C4B6400E061C2 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5E0B2239139AC27A002A8664 /* icon-rank.png */,
 				5E54DBB41384C5E4005D1754 /* icon-piechart.png */,
 				5E07EA04130B7AD200007A36 /* icon-resetapp.png */,
 				5EA90DD612B31275005F82A4 /* icon-accessoriesani1.png */,
@@ -5007,6 +5022,8 @@
 				5E3F48E812FD103C00B4B4EC /* ChoiceInitViewController.m */,
 				5EEBBC7612FD23CD002E2C1E /* ChoiceDetailViewController.h */,
 				5EEBBC7712FD23CF002E2C1E /* ChoiceDetailViewController.m */,
+				5E0B222E1399C58C002A8664 /* ChoiceHistoryViewController.h */,
+				5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */,
 				5E3F48EB12FD14FC00B4B4EC /* ChoiceListViewController.h */,
 				5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */,
 				5E1B3C3F12FDA196006E4582 /* ChoiceModalViewController.h */,
@@ -6669,6 +6686,10 @@
 				5E8FBE0C138A136200173584 /* UserData.sqlite in Resources */,
 				5E9FEA82138E0A5000AB6645 /* Entitlements.plist in Resources */,
 				5EF29E76138F69B50093DDA9 /* card-hate.png in Resources */,
+				5E0B22341399C5E7002A8664 /* ChoiceHistoryView.xib in Resources */,
+				5E0B2237139AB241002A8664 /* navbar-thoughtbubble@2x.png in Resources */,
+				5E0B2238139AB241002A8664 /* navbar-thoughtbubble.png in Resources */,
+				5E0B223A139AC27A002A8664 /* icon-rank.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6762,6 +6783,7 @@
 				5E480861137E4E2500C1E0CF /* Moral.m in Sources */,
 				5EA542281380B9BB009077B7 /* UserCharacter.m in Sources */,
 				5EA5422B1380BB13009077B7 /* Character.m in Sources */,
+				5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

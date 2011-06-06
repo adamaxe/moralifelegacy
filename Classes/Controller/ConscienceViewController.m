@@ -135,6 +135,10 @@ static float vigourOfShake = 0.05f;
                                                    object: nil];
 	}
     
+    UIBarButtonItem *navigationThoughtButton = [[[UIBarButtonItem alloc] initWithTitle:@"Thought" style:UIBarButtonItemStyleBordered target:self action:@selector(showConscienceModal)] autorelease];
+
+    self.navigationItem.rightBarButtonItem = navigationThoughtButton;
+    
     [self retrieveBiggestChoice:TRUE];
     [self retrieveBiggestChoice:FALSE];
         

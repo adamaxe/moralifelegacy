@@ -75,8 +75,10 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
     
 	//Create input for requesting ChoiceDetailViewController
-	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showChoiceDetailEntry)];
+//	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showChoiceDetailEntry)];
 	
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Details" style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
+    
 	self.navigationItem.rightBarButtonItem = barButtonItem;
 	[barButtonItem release];
     
@@ -247,12 +249,17 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     if (firstChoiceEntryCheck == nil) {
         
-		NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
-		NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
+		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
+
         
 		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), 
+                           NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), 
+                                                            NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
         
 		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
         
@@ -260,8 +267,10 @@ Implementation: Show an initial help screen if this is the User's first use of t
 		[conscienceHelpViewCont setHelpTexts:texts];
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         
-		[helpTitleName release];
-		[helpTextName release];
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[helpTitleName2 release];
+		[helpTextName2 release];
 		[titles release];
 		[texts release];
 		
