@@ -7,6 +7,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 #import "ChoiceDetailViewController.h"
 #import "StructuredTextField.h"
+#import "ConscienceHelpViewController.h"
 
 @implementation ChoiceDetailViewController
 
@@ -47,6 +48,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];	
 
 	//Make slider decoration invisible so that fade-in is possible
+	[influenceButton setAlpha:0];
 	[influenceImageView setAlpha:0];
 	[cloudImageView setAlpha:0];
 	
@@ -104,9 +106,13 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 -(void)viewDidAppear:(BOOL)animated {
     [UIView beginAnimations:@"showInfluenceImage" context:nil];
     [UIView setAnimationDuration:0.5];
+    [influenceButton setAlpha:1];
     [influenceImageView setAlpha:1];
     [cloudImageView setAlpha:1];
     [UIView commitAnimations];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
@@ -137,6 +143,70 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 #pragma mark -
 #pragma mark UI Interaction
+
+/**
+ Implementation: Present ConscienceHelpViewController that shows User purpose of the Influence button.
+ */
+-(IBAction)selectInfluence:(id) sender{
+
+    NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
+    NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text1",NSStringFromClass([self class])];
+
+    NSArray *titles = [[NSArray alloc] initWithObjects:
+                       NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
+    NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+
+    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+
+    [conscienceHelpViewCont setHelpTitles:titles];
+    [conscienceHelpViewCont setHelpTexts:texts];
+    [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+
+    [helpTitleName release];
+    [helpTextName release];
+    [titles release];
+    [texts release];
+
+    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+    [conscienceHelpViewCont release];
+}
+
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the initial help
+    NSObject *firstChoiceEntryCheck = [prefs objectForKey:@"firstChoiceDetailEntry"];
+    
+    if (firstChoiceEntryCheck == nil) {
+        
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];        
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
+        
+    }
+}
+
 /**
 Implementation: change the influence value and update the influence Label
  */
