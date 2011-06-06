@@ -1,8 +1,8 @@
 //
 //  ConscienceAsset.h
-//  Moralife
+//  MoraLife
 //
-//  Created by aaxe on 2/11/11.
+//  Created by aaxe on 6/5/11.
 //  Copyright (c) 2011 Team Axe, LLC. All rights reserved.
 //
 
@@ -16,5 +16,6 @@
 }
 @property (nonatomic, retain) NSNumber * costAsset;
 @property (nonatomic, retain) NSString * orientationAsset;
+@property (nonatomic, retain) NSNumber * moralValueAsset;
 
 @end

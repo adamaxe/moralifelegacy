@@ -184,7 +184,6 @@ Implementation: Determine which type of image to show to User in reference card.
 	[referenceNameLabel setText:referenceName];
 	[referenceOriginLabel setText:referenceOrigin];
 	[referenceShortDescriptionLabel setText:referenceShortDescription];
-	[referenceOriginLabel setText:referenceOrigin];
 	[referenceLongDescriptionTextView setText:referenceLongDescription];
 	
 	if (referenceType > 0) {
@@ -411,6 +410,12 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
 			Moral *relatedMoral = [[referenceObjects objectAtIndex:0] relatedMoral];
 			if (relatedMoral != nil) {
 				referenceMoral = [[NSString alloc] initWithString:[relatedMoral imageNameMoral]];
+                            
+                if ([referenceOrigin isEqualToString:@""]) {
+                    [referenceOrigin release];
+                    referenceOrigin = [[NSString alloc] initWithFormat:@"+%d %@", [[[referenceObjects objectAtIndex:0] moralValueAsset] intValue], [relatedMoral displayNameMoral]];
+                }
+                    
 			} else {
 				referenceMoral = [[NSString alloc] initWithString:@""];
 			}
