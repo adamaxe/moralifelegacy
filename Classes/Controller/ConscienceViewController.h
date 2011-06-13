@@ -28,12 +28,14 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 	
 	IBOutlet UIImageView *virtueImage;				/**< most prominent virtue image */
 	IBOutlet UIImageView *viceImage;				/**< most troublesome vice image */
+	IBOutlet UIImageView *rankImage;				/**< current rank image */
 	IBOutlet UILabel *virtueLabel;				/**< most prominent virtue label */
 	IBOutlet UILabel *viceLabel;					/**< most prominent vice label */
+	IBOutlet UILabel *rankLabel;					/**< rank frame label */    
     
 	IBOutlet UIButton *virtueButton;				/**< button surrounding picture frame to cue virtue thought */
-	IBOutlet UIButton *viceButton;				/**< button surrounding picture frame to cue virtue thought */
-	IBOutlet UIButton *thoughtButton;
+	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue virtue thought */
+	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceModalViewController */
 
 	NSTimer *moveTimer;				/**< controls Conscience movement */
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
@@ -45,6 +47,8 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 	    
 	NSMutableString *homeVirtueDisplayName;	/**< most prominent virtue text */
 	NSMutableString *homeViceDisplayName;	/**< most prominent vice text */
+    NSMutableString *highestRankName;       /**< highest achieved rank */
+
     
 	BOOL isBeingMoved;
 
@@ -100,6 +104,10 @@ Calculate through all UserChoices which most prominent/troublesome virtue/vice i
 @param isVirtue bool representing whether virtue or vice was requested
  */
 -(void) retrieveBiggestChoice:(BOOL) isVirtue;
+/**
+Find highest rank
+ */
+-(void) retrieveHighestRank;
 /**
 User choices affect UserConscience immediately, must return Conscience to regular state
 @param originalMood float representing overall Conscience mood

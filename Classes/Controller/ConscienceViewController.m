@@ -18,6 +18,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "Moral.h"
 #import "IntroViewController.h"
 #import "UserCharacter.h"
+#import "ConscienceAsset.h"
 
 @implementation ConscienceViewController
 
@@ -65,6 +66,8 @@ static float vigourOfShake = 0.05f;
 
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];
+        highestRankName = [[NSMutableString alloc] init];
+
         
         isBeingMoved = FALSE;
         
@@ -90,17 +93,19 @@ static float vigourOfShake = 0.05f;
     
     virtueImage.alpha = 0;
     viceImage.alpha = 0;
-    thoughtButton.alpha = 0;
+    rankImage.alpha = 0;
     
     [virtueButton setTag:kHomeVirtueButtonTag];    
     [viceButton setTag:kHomeViceButtonTag];
-    [thoughtButton setTag:kHomeRankButtonTag];
+    [rankButton setTag:kHomeRankButtonTag];
     
 	animationDuration = 1.0;
     
 	thoughtBubbleView1.alpha = 0;
     virtueImage.alpha = 1;
     viceImage.alpha = 1;
+    rankImage.alpha = 1;
+
 	
 	[thoughtArea addSubview:thoughtBubbleView1];
 	[thoughtArea insertSubview:conscienceStatus aboveSubview:thoughtBubbleView1];
@@ -134,14 +139,7 @@ static float vigourOfShake = 0.05f;
                                                      name: UIApplicationWillEnterForegroundNotification
                                                    object: nil];
 	}
-    
-    UIBarButtonItem *navigationThoughtButton = [[[UIBarButtonItem alloc] initWithTitle:@"Thought" style:UIBarButtonItemStyleBordered target:self action:@selector(showConscienceModal)] autorelease];
-
-    self.navigationItem.rightBarButtonItem = navigationThoughtButton;
-    
-    [self retrieveBiggestChoice:TRUE];
-    [self retrieveBiggestChoice:FALSE];
-        
+                
 	initialConscienceView.alpha = 0;
 	
 	initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
@@ -190,7 +188,7 @@ static float vigourOfShake = 0.05f;
         //set new mood
         appDelegate.userConscienceMind.mood = transientMood;
         appDelegate.userConscienceMind.enthusiasm = 100.0;
-	[appDelegate.userConscienceView setIsExpressionForced:TRUE];
+        [appDelegate.userConscienceView setIsExpressionForced:TRUE];
 
         
         //Setup invocation for delayed mood reset
@@ -216,7 +214,7 @@ static float vigourOfShake = 0.05f;
 //    appDelegate.userConscienceMind.mood = 10;
 //    appDelegate.userConscienceMind.enthusiasm = 90;
     
-    [initialConscienceView setNeedsDisplay];
+//    [initialConscienceView setNeedsDisplay];
 	[consciencePlayground setNeedsDisplay];
     [self createWelcomeMessage];
 	
@@ -259,7 +257,6 @@ static float vigourOfShake = 0.05f;
  */
 -(void)showThought{
     
-    [thoughtButton setEnabled:TRUE];
     
     //Only show status when User interacts with Conscience
     [UIView beginAnimations:@"showThought" context:nil];
@@ -268,7 +265,6 @@ static float vigourOfShake = 0.05f;
     [UIView setAnimationBeginsFromCurrentState:YES];
     thoughtBubbleView1.alpha = 1;
     conscienceStatus.alpha = 1;
-    thoughtButton.alpha = 1;
     
     [UIView commitAnimations];
     
@@ -288,13 +284,9 @@ static float vigourOfShake = 0.05f;
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	thoughtBubbleView1.alpha = 0;
 	conscienceStatus.alpha = 0;
-    thoughtButton.alpha = 0;
 	[UIView setAnimationDelegate:self]; // self is a view controller
 	
 	[UIView commitAnimations];
-    
-    [thoughtButton setEnabled:FALSE];
-
     
 }
 
@@ -365,6 +357,8 @@ static float vigourOfShake = 0.05f;
     CGPathCloseSubpath(shakePath);
     shakeAnimation.path = shakePath;
     shakeAnimation.duration = durationOfShake;
+    
+    CGPathRelease(shakePath);
     return shakeAnimation;
 }
 
@@ -444,7 +438,6 @@ static float vigourOfShake = 0.05f;
 				[UIView setAnimationDuration:0.2];
 				[UIView setAnimationBeginsFromCurrentState:YES];
 				initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-				[initialConscienceView.conscienceBubbleView setNeedsDisplay];	
 				[UIView commitAnimations];
 				
 				[UIView beginAnimations:@"MoveConscience" context:nil];
@@ -511,7 +504,7 @@ static float vigourOfShake = 0.05f;
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	
 	initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-//	[initialConscienceView.conscienceBubbleView setNeedsDisplay];
+
 	[UIView commitAnimations];
         
     if (isBeingMoved) {
@@ -630,7 +623,7 @@ static float vigourOfShake = 0.05f;
             appDelegate.userConscienceMind.enthusiasm = 15;            
         }
 
-	[appDelegate.userConscienceView setIsExpressionForced:TRUE];        
+        [appDelegate.userConscienceView setIsExpressionForced:TRUE];        
         [initialConscienceView setNeedsDisplay];
         
         isBeingMoved = TRUE;
@@ -837,6 +830,11 @@ Implementation:  Determine time of day, and which thought should be displayed.  
  */
 -(void) createWelcomeMessage{
     
+    [self retrieveBiggestChoice:TRUE];
+    [self retrieveBiggestChoice:FALSE];
+    [self retrieveHighestRank];
+
+    
     /** @todo localize everything */
     NSString *timeOfDay = @"Morning";
     
@@ -896,15 +894,15 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     
     switch (thoughtVersion) {
         case 0:{
-            [thoughtSpecialized appendString:@"Have you read your Moral Report lately?\n\nTap here to review it!"];
+            [thoughtSpecialized appendString:@"Have you read your Moral Report lately? Tap the Rank Button to review it!"];
             break;
         }
         case 1:{
             
             if (ethicals == 0) {
-                [thoughtSpecialized appendFormat:@"You have no ethicals left.\n\nTap here earn some in Morathology!", ethicals];
+                [thoughtSpecialized appendFormat:@"You have no ethicals left.\n\nEarn some in Morathology by tapping the Rank Button!", ethicals];
             } else {
-                [thoughtSpecialized appendFormat:@"You have %dε in the bank.\n\nTap here to spend them in the Greenroom!", ethicals];
+                [thoughtSpecialized appendFormat:@"You have %dε in the bank.\n\nTap the Rank Button to spend them in the Greenroom!", ethicals];
             }
             break;
         }
@@ -918,7 +916,10 @@ Implementation:  Determine time of day, and which thought should be displayed.  
             
             break;
         }               
-            
+        case 3:{
+            [thoughtSpecialized appendFormat:@"Your current rank is %@.", highestRankName];
+            break;
+        }
         default:
             break;
             
@@ -1008,7 +1009,6 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         NSFetchRequest *request2 = [[NSFetchRequest alloc] init];
         [request2 setEntity:entityAssetDesc2];
         
-        //        NSString *value = [match choiceMoral];
         NSString *value = [reversedPercentages objectAtIndex:0];
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameMoral == %@", value];
         [request2 setPredicate:pred];
@@ -1043,6 +1043,68 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
 	
 	[request release];
     [reportValues release];
+	
+}
+
+/**
+ Implementation:  Must iterate through every UserCollectable to find all ranks given.  Sort by collectableName as ranks increase alphabetically.  
+Change the Rank picture and description.
+ */
+- (void) retrieveHighestRank {
+    
+	//Begin CoreData Retrieval to find all Ranks in possession.
+	NSError *outError;
+	
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
+	NSFetchRequest *request = [[NSFetchRequest alloc] init];
+	[request setEntity:entityAssetDesc];
+    
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName contains[cd] %@", @"asse-rank"];
+	[request setPredicate:pred];
+    
+	NSSortDescriptor* sortDescriptor;
+    
+	//sort by collectablename as all ranks are alphabetically/numerically sorted by collectableName
+//	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"collectableCreationDate" ascending:TRUE];
+	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"collectableName" ascending:FALSE];
+    
+    
+	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+	[request setSortDescriptors:sortDescriptors];
+	[sortDescriptor release];
+	[sortDescriptors release];    
+    
+	NSArray *objects = [context executeFetchRequest:request error:&outError];
+
+	//In case of no granted Ranks, setup the default User
+	[rankImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
+	[highestRankName setString:@"FNG"];       
+    
+	//Ensure that at least one rank is present
+	if ([objects count] > 0) {
+        
+		//Retrieve additional information from ConscienceAsset found
+		NSEntityDescription *entityAssetDesc2 = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:context];
+		NSFetchRequest *request2 = [[NSFetchRequest alloc] init];
+		[request2 setEntity:entityAssetDesc2];
+        
+		NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameReference == %@", [[objects objectAtIndex:0] collectableName]];
+		[request2 setPredicate:pred];
+        
+		NSArray *objects2 = [context executeFetchRequest:request2 error:&outError];
+        
+		if ([objects2 count] > 0) {
+
+			[rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [[objects2 objectAtIndex:0] imageNameReference]]]];
+			[highestRankName setString:[[objects2 objectAtIndex:0] displayNameReference]];        
+
+		}
+        
+		[request2 release];
+                
+	}
+	
+	[request release];
 	
 }
 
@@ -1095,10 +1157,11 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
 
 - (void)dealloc {
 	[moveTimer invalidate];
-    NSLog(@"dealloc?");
  
     [homeVirtueDisplayName release];
     [homeViceDisplayName release];
+    [highestRankName release];
+
     [super dealloc];
 	
 }
