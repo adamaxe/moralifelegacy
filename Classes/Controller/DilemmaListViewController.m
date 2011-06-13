@@ -14,6 +14,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "Moral.h"
 #import "UserCollectable.h"
 #import "ConscienceActionViewController.h"
+#import "ConscienceHelpViewController.h"
 
 @implementation DilemmaListViewController
 
@@ -98,6 +99,45 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 		[dilemmaListTableView deselectRowAtIndexPath:selection animated:YES];
 	
 	[dilemmaListTableView reloadData];
+
+	//If this is the first time in Morathology, then show the intro
+	NSObject *firstLaunchCheck = [prefs objectForKey:@"firstMorathology"];
+    
+	if (firstLaunchCheck == nil) {
+
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
+		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
+		NSString *helpTitleName3 =[[NSString alloc] initWithFormat:@"Help%@0Title3",NSStringFromClass([self class])];
+		NSString *helpTextName3 =[[NSString alloc] initWithFormat:@"Help%@0Text3",NSStringFromClass([self class])];
+
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), NSLocalizedString(helpTitleName3,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), NSLocalizedString(helpTextName3,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		conscienceHelpViewCont.helpTitles = titles;
+		conscienceHelpViewCont.helpTexts = texts;
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[helpTitleName2 release];
+		[helpTextName2 release];
+		[helpTitleName3 release];
+		[helpTextName3 release];
+		[titles release];
+		[texts release];
+		conscienceHelpViewCont.isConscienceOnScreen = TRUE;
+        
+        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [conscienceHelpViewCont release];
+
+		[prefs setBool:FALSE forKey:@"firstMorathology"];
+
+	}
+
+
 
 }
 
@@ -195,27 +235,12 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 	[[cell detailTextLabel] setAdjustsFontSizeToFitWidth:TRUE];   
 
 
+    /** @todo check for empty arrays */
 	//Generate array of all keys in User Dictionary
 	NSArray *allUserChoices = [[NSArray alloc] initWithArray:[userChoices allKeys]];
     
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
-//    if ([allUserChoices containsObject:[tableDataKeys objectAtIndex:indexPath.row]]) {
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
-//        
-//        NSString *moralName = [moralNames valueForKey:[userChoices valueForKey:[tableDataKeys objectAtIndex:indexPath.row]]];
-//        [[cell detailTextLabel] setText:moralName];
-//        
-//    }else {
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-//		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-//        [[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
-//
-//    }
-    
 	int previousRow = indexPath.row;
     
 	BOOL isSelectable = FALSE;
@@ -304,7 +329,6 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             
             [selectedRowKey release];
 
-            //if ([[tableDataDetails objectAtIndex:indexPath.row] rangeOfString:@"vs. "].location != NSNotFound){
             if ([[tableDataTypes objectAtIndex:indexPath.row] boolValue]){
                 DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:[NSBundle mainBundle]];
                 [self.navigationController pushViewController:dilemmaViewCont animated:NO];
