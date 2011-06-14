@@ -155,25 +155,21 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 
 	/** @todo convert to function */
 	//Create bubble glow animation
-	CALayer *bubbleAnimationLayer;
-	bubbleAnimationLayer = [CALayer layer];    
+	CALayer *bubbleAnimationLayer = [CALayer layer];
 	/** @todo convert hard coded values to constants */
 	bubbleAnimationLayer.frame = CGRectMake(5, 5, 178, 178);
+    
+    CGFloat radius = 83.0;
+    [bubbleAnimationLayer setMasksToBounds:YES];
+    [bubbleAnimationLayer setBackgroundColor:[[UIColor whiteColor] CGColor]];
+    [bubbleAnimationLayer setCornerRadius:radius];
+    [bubbleAnimationLayer setBounds:CGRectMake(0.0f, 0.0f, radius *2, radius *2)];    
+    [bubbleAnimationLayer setOpacity:0.6];
 		
-	/** @todo remove raster and generate via Quartz */
-	UIImage *bubbleAnimationPicture = [UIImage imageNamed:@"whitecircle.png"];
-
-	//	CGContextSetRGBFillColor (context, 1, 1, 0, 1);
-	
-	//Draw 165px circle 15px off center
-	//CGContextFillEllipseInRect(context, CGRectMake(10, 10, 25, 25));
-	
-	//UIImage *leftPic = UIGraphicsGetImageFromCurrentImageContext();
-
-	bubbleAnimationLayer.contents = (id)[bubbleAnimationPicture CGImage];
+	/** @todo provide opaque border to white circle */
 	CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
 	opacityAnimation.duration = bubbleGlowDuration;
-	opacityAnimation.fromValue = [NSNumber numberWithFloat:1];
+	opacityAnimation.fromValue = [NSNumber numberWithFloat:0.8];
 	opacityAnimation.toValue = [NSNumber numberWithFloat:0.2];
 	opacityAnimation.autoreverses = YES;
 	opacityAnimation.delegate = self;
