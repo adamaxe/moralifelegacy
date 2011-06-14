@@ -2,7 +2,7 @@
 Moralife AppDelegate.  Implementation.
  
 All setup for data, navigation, UI, is done in App delegate.
- 
+@todo project->buildsettings->architectures->debug->remove any IOS SDK
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @class MoralifeAppDelegate MoralifeAppDelegate.h
 @date 03/28/2010
