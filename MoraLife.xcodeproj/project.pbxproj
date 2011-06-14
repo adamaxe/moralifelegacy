@@ -36,8 +36,6 @@
 		5E07EA05130B7AD200007A36 /* icon-resetapp.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07EA04130B7AD200007A36 /* icon-resetapp.png */; };
 		5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */; };
 		5E0B22341399C5E7002A8664 /* ChoiceHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */; };
-		5E0B2237139AB241002A8664 /* navbar-thoughtbubble@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2235139AB23E002A8664 /* navbar-thoughtbubble@2x.png */; };
-		5E0B2238139AB241002A8664 /* navbar-thoughtbubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2236139AB240002A8664 /* navbar-thoughtbubble.png */; };
 		5E0B223A139AC27A002A8664 /* icon-rank.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2239139AC27A002A8664 /* icon-rank.png */; };
 		5E0DFA5B120BA66B00F77D70 /* ConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */; };
 		5E0EFCAB130F7DFB00009BB6 /* con-zodiac-scorpio-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */; };
@@ -130,6 +128,7 @@
 		5E32FF4A1263DE15005A95D7 /* card-sloth.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E32FF2A1263DE15005A95D7 /* card-sloth.png */; };
 		5E32FF4B1263DE15005A95D7 /* card-wrath.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E32FF2B1263DE15005A95D7 /* card-wrath.png */; };
 		5E32FF4C1263DE15005A95D7 /* card-zealotry.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E32FF2C1263DE15005A95D7 /* card-zealotry.png */; };
+		5E336EF9139C6CD6006BF34F /* ConscienceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E336EF8139C6CD6006BF34F /* ConscienceAsset.m */; };
 		5E340D1112F1CC08004CDEE9 /* pictureframe-home.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E340D0D12F1CC08004CDEE9 /* pictureframe-home.png */; };
 		5E340D5512F1E9FF004CDEE9 /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E340D5412F1E9FF004CDEE9 /* UserData.xcdatamodeld */; };
 		5E39DD301276920C001FF60A /* ref-fredrogers.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E39DD2A1276920C001FF60A /* ref-fredrogers.jpg */; };
@@ -1261,6 +1260,10 @@
 		5EAA21221307451000C1DB02 /* DilemmaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA21211307451000C1DB02 /* DilemmaViewController.m */; };
 		5EAA21261307498200C1DB02 /* DilemmaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA21241307498200C1DB02 /* DilemmaListViewController.m */; };
 		5EAA2129130749D700C1DB02 /* DilemmaListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EAA2128130749D700C1DB02 /* DilemmaListView.xib */; };
+		5EAC469A13A3354700074374 /* sur-class-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469813A3354700074374 /* sur-class-sm.png */; };
+		5EAC469B13A3354700074374 /* sur-classchalk-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469913A3354700074374 /* sur-classchalk-sm.png */; };
+		5EAC469E13A3355900074374 /* sur-class.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469C13A3355900074374 /* sur-class.png */; };
+		5EAC469F13A3355900074374 /* sur-classchalk.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469D13A3355900074374 /* sur-classchalk.png */; };
 		5EAD18ED12ADDE180079F882 /* card-health.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAD18D812ADDE180079F882 /* card-health.png */; };
 		5EAD18EE12ADDE180079F882 /* card-grace.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAD18D912ADDE180079F882 /* card-grace.png */; };
 		5EAD18EF12ADDE180079F882 /* card-humility.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAD18DA12ADDE180079F882 /* card-humility.png */; };
@@ -1583,7 +1586,6 @@
 		5EFCB98D1378D6320063402D /* interface-choicesnext.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB9891378D6320063402D /* interface-choicesnext.png */; };
 		5EFCB98E1378D6320063402D /* interface-choicesprevious.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB98A1378D6320063402D /* interface-choicesprevious.png */; };
 		5EFCB98F1378D6320063402D /* interface-choicesup.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB98B1378D6320063402D /* interface-choicesup.png */; };
-		5EFED8FD1310E22D00F8EB0B /* ConscienceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8E31310E22D00F8EB0B /* ConscienceAsset.m */; };
 		5EFED9011310E22D00F8EB0B /* ReferenceBelief.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8EB1310E22D00F8EB0B /* ReferenceBelief.m */; };
 		5EFED9031310E22D00F8EB0B /* ReferenceReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8EF1310E22D00F8EB0B /* ReferenceReport.m */; };
 		5EFED9041310E22D00F8EB0B /* ReferenceText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8F11310E22D00F8EB0B /* ReferenceText.m */; };
@@ -1628,8 +1630,6 @@
 		5E0B222E1399C58C002A8664 /* ChoiceHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHistoryViewController.h; sourceTree = "<group>"; };
 		5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryViewController.m; sourceTree = "<group>"; };
 		5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChoiceHistoryView.xib; path = Resources/ChoiceHistoryView.xib; sourceTree = "<group>"; };
-		5E0B2235139AB23E002A8664 /* navbar-thoughtbubble@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar-thoughtbubble@2x.png"; path = "Resources/images/interface/navbar-thoughtbubble@2x.png"; sourceTree = "<group>"; };
-		5E0B2236139AB240002A8664 /* navbar-thoughtbubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "navbar-thoughtbubble.png"; path = "Resources/images/interface/navbar-thoughtbubble.png"; sourceTree = "<group>"; };
 		5E0B2239139AC27A002A8664 /* icon-rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rank.png"; path = "Resources/images/interface/icons/icon-rank.png"; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
@@ -1728,6 +1728,8 @@
 		5E32FF2A1263DE15005A95D7 /* card-sloth.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-sloth.png"; path = "Resources/images/interface/cards/card-sloth.png"; sourceTree = "<group>"; };
 		5E32FF2B1263DE15005A95D7 /* card-wrath.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-wrath.png"; path = "Resources/images/interface/cards/card-wrath.png"; sourceTree = "<group>"; };
 		5E32FF2C1263DE15005A95D7 /* card-zealotry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-zealotry.png"; path = "Resources/images/interface/cards/card-zealotry.png"; sourceTree = "<group>"; };
+		5E336EF7139C6CD6006BF34F /* ConscienceAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAsset.h; sourceTree = "<group>"; };
+		5E336EF8139C6CD6006BF34F /* ConscienceAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAsset.m; sourceTree = "<group>"; };
 		5E340D0D12F1CC08004CDEE9 /* pictureframe-home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pictureframe-home.png"; path = "Resources/images/interface/pictureframe-home.png"; sourceTree = "<group>"; };
 		5E340D3612F1E540004CDEE9 /* UserData.xcdatamodel */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = wrapper.xcdatamodel; path = UserData.xcdatamodel; sourceTree = "<group>"; };
 		5E39DD2A1276920C001FF60A /* ref-fredrogers.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-fredrogers.jpg"; path = "Resources/images/reference/ref-fredrogers.jpg"; sourceTree = "<group>"; };
@@ -2879,6 +2881,10 @@
 		5EAA21231307498200C1DB02 /* DilemmaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DilemmaListViewController.h; sourceTree = "<group>"; };
 		5EAA21241307498200C1DB02 /* DilemmaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DilemmaListViewController.m; sourceTree = "<group>"; };
 		5EAA2128130749D700C1DB02 /* DilemmaListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DilemmaListView.xib; path = Resources/DilemmaListView.xib; sourceTree = "<group>"; };
+		5EAC469813A3354700074374 /* sur-class-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class-sm.png"; sourceTree = "<group>"; };
+		5EAC469913A3354700074374 /* sur-classchalk-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-classchalk-sm.png"; sourceTree = "<group>"; };
+		5EAC469C13A3355900074374 /* sur-class.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class.png"; sourceTree = "<group>"; };
+		5EAC469D13A3355900074374 /* sur-classchalk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-classchalk.png"; sourceTree = "<group>"; };
 		5EAD18D812ADDE180079F882 /* card-health.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-health.png"; path = "Resources/images/interface/cards/card-health.png"; sourceTree = "<group>"; };
 		5EAD18D912ADDE180079F882 /* card-grace.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-grace.png"; path = "Resources/images/interface/cards/card-grace.png"; sourceTree = "<group>"; };
 		5EAD18DA12ADDE180079F882 /* card-humility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-humility.png"; path = "Resources/images/interface/cards/card-humility.png"; sourceTree = "<group>"; };
@@ -3221,8 +3227,6 @@
 		5EFCB9891378D6320063402D /* interface-choicesnext.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-choicesnext.png"; path = "Resources/images/interface/interface-choicesnext.png"; sourceTree = "<group>"; };
 		5EFCB98A1378D6320063402D /* interface-choicesprevious.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-choicesprevious.png"; path = "Resources/images/interface/interface-choicesprevious.png"; sourceTree = "<group>"; };
 		5EFCB98B1378D6320063402D /* interface-choicesup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-choicesup.png"; path = "Resources/images/interface/interface-choicesup.png"; sourceTree = "<group>"; };
-		5EFED8E21310E22D00F8EB0B /* ConscienceAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAsset.h; sourceTree = "<group>"; };
-		5EFED8E31310E22D00F8EB0B /* ConscienceAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAsset.m; sourceTree = "<group>"; };
 		5EFED8EA1310E22D00F8EB0B /* ReferenceBelief.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceBelief.h; sourceTree = "<group>"; };
 		5EFED8EB1310E22D00F8EB0B /* ReferenceBelief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceBelief.m; sourceTree = "<group>"; };
 		5EFED8EE1310E22D00F8EB0B /* ReferenceReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceReport.h; sourceTree = "<group>"; };
@@ -3727,6 +3731,8 @@
 		5E45464B1304E86300A53B8C /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5EAC469813A3354700074374 /* sur-class-sm.png */,
+				5EAC469913A3354700074374 /* sur-classchalk-sm.png */,
 				5EB7D36413861EAA0050DD1A /* sur-sheetmusicbass-sm.png */,
 				5E07E9FC130B589000007A36 /* sur-chichenitza-sm.png */,
 				5E07E9FD130B589000007A36 /* sur-easterisland-sm.png */,
@@ -4128,6 +4134,8 @@
 			children = (
 				5E45464B1304E86300A53B8C /* icons */,
 				5E07E9F4130B587C00007A36 /* sur-chichenitza.png */,
+				5EAC469C13A3355900074374 /* sur-class.png */,
+				5EAC469D13A3355900074374 /* sur-classchalk.png */,
 				5EB7D36613861EB60050DD1A /* sur-sheetmusicbass.png */,
 				5E07E9F5130B587C00007A36 /* sur-easterisland.png */,
 				5E07E9F6130B587C00007A36 /* sur-housetv.png */,
@@ -4369,8 +4377,6 @@
 		5E76782611A2451C00DD195A /* interface */ = {
 			isa = PBXGroup;
 			children = (
-				5E0B2235139AB23E002A8664 /* navbar-thoughtbubble@2x.png */,
-				5E0B2236139AB240002A8664 /* navbar-thoughtbubble.png */,
 				5E857133137CC58900FF91B1 /* interface-tabbaricons2.jpg */,
 				5E857134137CC58900FF91B1 /* interface-tabbaricons3.jpg */,
 				5E857135137CC58900FF91B1 /* interface-tabbaricons3@2x.jpg */,
@@ -5071,8 +5077,6 @@
 		5EFED8DF1310E22D00F8EB0B /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				5EFED8E21310E22D00F8EB0B /* ConscienceAsset.h */,
-				5EFED8E31310E22D00F8EB0B /* ConscienceAsset.m */,
 				5EFED8EA1310E22D00F8EB0B /* ReferenceBelief.h */,
 				5EFED8EB1310E22D00F8EB0B /* ReferenceBelief.m */,
 				5EFED8EE1310E22D00F8EB0B /* ReferenceReport.h */,
@@ -5101,6 +5105,8 @@
 				5EA542271380B9BB009077B7 /* UserCharacter.m */,
 				5EA542291380BB13009077B7 /* Character.h */,
 				5EA5422A1380BB13009077B7 /* Character.m */,
+				5E336EF7139C6CD6006BF34F /* ConscienceAsset.h */,
+				5E336EF8139C6CD6006BF34F /* ConscienceAsset.m */,
 			);
 			name = Generated;
 			path = Model/Generated;
@@ -5149,6 +5155,9 @@
 /* Begin PBXProject section */
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MoraLife" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
@@ -6687,9 +6696,11 @@
 				5E9FEA82138E0A5000AB6645 /* Entitlements.plist in Resources */,
 				5EF29E76138F69B50093DDA9 /* card-hate.png in Resources */,
 				5E0B22341399C5E7002A8664 /* ChoiceHistoryView.xib in Resources */,
-				5E0B2237139AB241002A8664 /* navbar-thoughtbubble@2x.png in Resources */,
-				5E0B2238139AB241002A8664 /* navbar-thoughtbubble.png in Resources */,
 				5E0B223A139AC27A002A8664 /* icon-rank.png in Resources */,
+				5EAC469A13A3354700074374 /* sur-class-sm.png in Resources */,
+				5EAC469B13A3354700074374 /* sur-classchalk-sm.png in Resources */,
+				5EAC469E13A3355900074374 /* sur-class.png in Resources */,
+				5EAC469F13A3355900074374 /* sur-classchalk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6766,7 +6777,6 @@
 				5EC9E591130F88B200C4AEE1 /* LuckViewController.m in Sources */,
 				5EC9E593130F88FB00C4AEE1 /* ChoiceModalViewController.m in Sources */,
 				5EC9E595130F893E00C4AEE1 /* ChoiceViewController.m in Sources */,
-				5EFED8FD1310E22D00F8EB0B /* ConscienceAsset.m in Sources */,
 				5EFED9011310E22D00F8EB0B /* ReferenceBelief.m in Sources */,
 				5EFED9031310E22D00F8EB0B /* ReferenceReport.m in Sources */,
 				5EFED9041310E22D00F8EB0B /* ReferenceText.m in Sources */,
@@ -6784,6 +6794,7 @@
 				5EA542281380B9BB009077B7 /* UserCharacter.m in Sources */,
 				5EA5422B1380BB13009077B7 /* Character.m in Sources */,
 				5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */,
+				5E336EF9139C6CD6006BF34F /* ConscienceAsset.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6851,17 +6862,20 @@
 		5E9FEA7E138E09AC00AB6645 /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "";
-				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
+				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -6961,17 +6975,24 @@
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"ARCHS[sdk=iphoneos*]" = (
+					armv6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "";
-				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
+				PROVISIONING_PROFILE = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -6981,17 +7002,21 @@
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "";
-				PREBINDING = NO;
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

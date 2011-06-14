@@ -22,10 +22,11 @@ XML Parser to gather Path Data.  Implementation
 
 - (XMLParser *) initXMLParser {
 
-	[super init];
-    
-    pool = [[NSAutoreleasePool alloc] init];
+    if ((self = [super init])) {
 
+        pool = [[NSAutoreleasePool alloc] init];
+    }
+    
 	return self;
 }
 

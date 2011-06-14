@@ -7,6 +7,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
  */
 
 #import "ChoiceListViewController.h"
+#import "MoraLifeAppDelegate.h"
 #import "ChoiceViewController.h"
 #import "UserChoice.h"
 #import "Moral.h"
@@ -406,6 +407,7 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
       	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
 	}
     
+    /** @todo check NSArrays for length*/
 	//Setup cell contents
 	[[cell textLabel] setText:[tableData objectAtIndex:indexPath.row]];
 	[[cell textLabel] setMinimumFontSize:12.0];    

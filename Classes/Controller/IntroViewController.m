@@ -38,9 +38,8 @@ static float vigourOfShake = 0.05f;
     
 	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
 	
-    /** @todo remove Beta tester messaging */
 	appDelegate.userConscienceView.center = centerPoint;
-	[conscienceStatus setText:@"Hi Beta Testers!  Welcome to..."];
+	[conscienceStatus setText:@"Hello there!  Welcome to..."];
     
 	backgroundImage.alpha = 0;
 	moraLifeLogoImage.alpha = 0;
@@ -107,8 +106,6 @@ static float vigourOfShake = 0.05f;
     
     if (messageStateRestore > 0) {
     
-        NSLog(@"resume intro res:%d, message:%d", messageStateRestore, messageState);
-
         [prefs removeObjectForKey:@"introStateRestore"];
         messageState = messageStateRestore;
         
@@ -547,7 +544,7 @@ static float vigourOfShake = 0.05f;
     downButtonImage.center = CGPointMake(263, downButtonImage.center.y);
 
     [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons3.jpg"]];
-    [conscienceStatus setText:@"Tap that Collection Tab Bar icon to review the loot that you've bought or won in Morathology."];
+    [conscienceStatus setText:@"Tap that Collection Tab Bar icon to review the things that you've bought or received in Morathology."];
     
 	[UIView commitAnimations];
     
@@ -569,7 +566,7 @@ static float vigourOfShake = 0.05f;
     downButtonImage.center = CGPointMake(243, downButtonImage.center.y-125);
 
     [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons.jpg"]];
-    [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to access the Greenroom, Morathology and Reports."];
+    [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to access the Commissary, Morathology and Reports."];
     
 	[UIView commitAnimations];
     
@@ -925,6 +922,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
     CGPathCloseSubpath(shakePath);
     shakeAnimation.path = shakePath;
     shakeAnimation.duration = durationOfShake;
+    CGPathRelease(shakePath);
     return shakeAnimation;
 }
 

@@ -7,6 +7,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
  */
 
 #import "LuckListViewController.h"
+#import "MoraLifeAppDelegate.h"
 #import "LuckViewController.h"
 #import "UserLuck.h"
 

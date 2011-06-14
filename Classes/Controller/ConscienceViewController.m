@@ -902,7 +902,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
             if (ethicals == 0) {
                 [thoughtSpecialized appendFormat:@"You have no ethicals left.\n\nEarn some in Morathology by tapping the Rank Button!", ethicals];
             } else {
-                [thoughtSpecialized appendFormat:@"You have %dε in the bank.\n\nTap the Rank Button to spend them in the Greenroom!", ethicals];
+                [thoughtSpecialized appendFormat:@"You have %dε in the bank.\n\nTap the Rank Button to spend them in the Commissary!", ethicals];
             }
             break;
         }
@@ -1105,6 +1105,8 @@ Change the Rank picture and description.
 	}
 	
 	[request release];
+    
+    
 	
 }
 

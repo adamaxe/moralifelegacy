@@ -193,16 +193,6 @@ Show reward views once User has completed dilemma and refuse access to previous 
 		default:break;
 			
 	}
-	
-	int screenMaximum = [helpTitles count];
-	
-	//Animate button that User should use
-	if (screenVersion >= screenMaximum){
-		nextButton.hidden = TRUE;
-		[self animateCorrectButton:TRUE];
-	} else {
-		[self animateCorrectButton:FALSE];
-	}
 
 	//Change the active view except in the case of dismissing the entire ViewController
 	if (screenVersion > 0 && screenVersion < 7) {
@@ -222,6 +212,17 @@ Show reward views once User has completed dilemma and refuse access to previous 
 		//Change Button tag in order to determine which "screen" is active
 		nextButton.tag = 2 + buttonFactor;
 		previousButton.tag = buttonFactor;
+	}
+    
+    int screenMaximum = [helpTitles count];
+	
+	//Animate button that User should use
+	if (screenVersion >= screenMaximum){
+		nextButton.hidden = TRUE;
+		[self animateCorrectButton:TRUE];
+        previousButton.tag = 0;
+	} else {
+		[self animateCorrectButton:FALSE];
 	}
 }
 
