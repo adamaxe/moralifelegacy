@@ -33,7 +33,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	/** @todo change hardcoded selection descriptions into localized strings */
 	buttonImages = [[NSMutableDictionary alloc] init];
 	buttonLabels = [[NSMutableDictionary alloc] init];
-	screenTitles = [[NSArray alloc] initWithObjects:@"What do you need?", @"What would you like to change?", @"Morathology Campaigns", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?", nil];
+	screenTitles = [[NSArray alloc] initWithObjects:@"What do you need?", @"What would you like to change?", @"Morathology Assignments", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?", nil];
 	
 	currentState = 0;
 
@@ -45,7 +45,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[buttonImages setObject:tempButtonImages forKey:@"0"];
 	[tempButtonImages release];
 
-	NSArray *tempButtonLabels = [[NSArray alloc] initWithObjects:@"Greenroom", @"Morathology", @"Moral Report", @" ", nil];
+	NSArray *tempButtonLabels = [[NSArray alloc] initWithObjects:@"Commissary", @"Morathology", @"Moral Report", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"0"];
 	[tempButtonLabels release];
 	
@@ -53,7 +53,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	[tempButtonImages release];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Western", @"Atlantic", @"Coming Sooner!", @"Coming Soon!", nil];
+	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"First Assignment", @"Coming Sooner!", @"Coming Soon!", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	[tempButtonLabels release];
 	
@@ -88,7 +88,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Eye", @"Brow", @"Bubble", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"6"];
 	[tempButtonLabels release];	
-    	
+ 
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -361,7 +361,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
         [titles release];
         [texts release];
         [conscienceHelpViewCont release];
-
+            
 			
 		} else {
 
