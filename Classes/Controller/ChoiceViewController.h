@@ -49,7 +49,7 @@ Second screen in Moral Entry Workflow.  User can either Virtue or Vice depending
 	BOOL isChoiceFinished;						/** determine if choice is complete */
 	
 	UserChoice *currentUserChoice;				/** nsmanagedobject of current choice */
-	NSString *choiceKey;						/** string to hold primary key of current choice */
+	NSMutableString *choiceKey;						/** string to hold primary key of current choice */
 	NSString *moralKey;						/** string to hold primary key of current moral */
 
 }

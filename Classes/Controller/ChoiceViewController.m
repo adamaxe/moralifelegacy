@@ -37,6 +37,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	prefs = [NSUserDefaults standardUserDefaults];
 	context = [appDelegate managedObjectContext];
     
+    choiceKey = [[NSMutableString alloc] init];
+    
 	if (!isChoiceFinished) {
 		isChoiceFinished = FALSE;
 	}
@@ -77,7 +79,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	//Create input for requesting ChoiceDetailViewController
 //	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showChoiceDetailEntry)];
 	
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Details" style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",@"Hint for Details Label") style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
     
 	self.navigationItem.rightBarButtonItem = barButtonItem;
 	[barButtonItem release];
@@ -96,6 +98,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	NSMutableString *localString = [NSString stringWithFormat:@"ChoiceScreen%dTitle", isVirtue];
 	//Change Title of screen to reflect good or bad choice
 	[self setTitle:NSLocalizedString(localString, @"Title for Choice screen")];
+	[severityLabel setText:NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Hint for Details Label")];
 
 	severityLabel.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dHint", isVirtue]), @"Hint for Severity Label");
 	severitySlider.accessibilityHint =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dHint", isVirtue]), @"Hint for Severity Slider");
@@ -142,15 +145,11 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	}
 	
 	if (restoreChoiceKey != nil) {
-		choiceKey = restoreChoiceKey;
+		[choiceKey setString:restoreChoiceKey];
 		[prefs removeObjectForKey:@"entryKey"];
-		
 	}else {
-		choiceKey = @"";
+		[choiceKey setString:@""];
 	}
-    
-	/** @todo determine why the choiceKey retain necessary */
-	[choiceKey retain];
     
 	if (restoreSeverity > 0) {
 		severitySlider.value = restoreSeverity;
@@ -215,7 +214,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         
 		//Save off entries to NSUserDefaults
 		[prefs setObject:choiceKey forKey:@"entryKey"];
-		[choiceKey release];
 		[prefs setFloat:severitySlider.value forKey:@"entrySeverity"];
 		[prefs setBool:isVirtue forKey:@"entryIsGood"];
 	}
@@ -231,7 +229,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	[moralImageView setAlpha:1];
 	[UIView commitAnimations];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
 
 }
@@ -732,16 +730,14 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
     [dateFormatter release];
-	
-    //choiceKey = [prefs objectForKey:@"choiceKey"];
-	
+		
     BOOL isNewChoice = TRUE;
 
-    if (choiceKey != @"") {
+    if (![choiceKey isEqualToString:@""]) {
         
         isNewChoice = FALSE;
     }else {
-        choiceKey = [NSString stringWithFormat:@"%@%@", currentDTS, [moralKey lowercaseString]];
+        [choiceKey setString:[NSString stringWithFormat:@"%@%@", currentDTS, [moralKey lowercaseString]]];
     }
     
     float severityConversion = severitySlider.value;
@@ -940,6 +936,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 }
 
 - (void)dealloc {
+    [choiceKey release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
 	[severityLabelDescriptions release];
 	[super dealloc];
