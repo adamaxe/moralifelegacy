@@ -42,6 +42,9 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 	int currentState;					/**< current state of the screen (which button names, etc.) */
 }
 
+/**
+Implementation:  Ensure Conscience is placed correctly.
+*/
 -(void) moveConscienceToBottom;
 
 /**

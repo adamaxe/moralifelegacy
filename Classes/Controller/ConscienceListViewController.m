@@ -13,6 +13,7 @@ User can filter list by only things that are affordable to currentFunds.
 #import "ConscienceAcceptViewController.h"
 #import "ConscienceAsset.h"
 #import "UserCollectable.h"
+#import "ConscienceHelpViewController.h"
 
 @implementation ConscienceListViewController
 @synthesize accessorySlot;
@@ -72,8 +73,52 @@ User can filter list by only things that are affordable to currentFunds.
 	
 }
 
+
+-(void)viewDidAppear:(BOOL)animated {
+    
+	//Present help screen after a split second
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+}
+
 #pragma mark - 
 #pragma mark UI Interaction
+
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the intro
+    NSObject *firstConscienceListCheck = [prefs objectForKey:@"firstConscienceList"];
+    
+    if (firstConscienceListCheck == nil) {
+        
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+        
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstConscienceList"];
+        
+    }
+}
+
 
 /**
 Implementation: Cycle between affordable and all Conscience Asset listings.  Change set filter for table data refresh.

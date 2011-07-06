@@ -33,7 +33,6 @@ Application Introduction.  View controller for first time into app.  Only utiliz
     
 	NSTimer *moveTimer;                 /**< controls Conscience movement */
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
-	NSTimer *holdTapTimer;				/**< determines if long press was initiated */
 	NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
 	
 	CGFloat initialTapDistance;			/**< assists in gesture recognition */
@@ -84,6 +83,10 @@ In case of interruption, stop Intro and movement timers
 Animate UI arrow to draw User attention
  */
 -(void)animateDownButton;
+/**
+ Animate fading text
+ */
+-(void)animateStatusText;
 /**
 Animate UI arrow to draw User attention to interaction button
  */

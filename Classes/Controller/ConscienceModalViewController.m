@@ -33,7 +33,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	/** @todo change hardcoded selection descriptions into localized strings */
 	buttonImages = [[NSMutableDictionary alloc] init];
 	buttonLabels = [[NSMutableDictionary alloc] init];
-	screenTitles = [[NSArray alloc] initWithObjects:@"What do you need?", @"What would you like to change?", @"Morathology Assignments", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?", nil];
+	screenTitles = [[NSArray alloc] initWithObjects:@"What do you need?", @"What would you like to change?", @"Morathology Adventures", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?", nil];
 	
 	currentState = 0;
 
@@ -53,7 +53,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	[tempButtonImages release];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"First Assignment", @"Coming Sooner!", @"Coming Soon!", nil];
+	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"First Adventure", @"Coming Sooner!", @"Coming Soon!", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	[tempButtonLabels release];
 	
@@ -171,10 +171,56 @@ User selection causes selectChoice to be called which sets the currentState vari
     
     [UIView commitAnimations];
     
+	//Present help screen after a split second
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 }
 
 #pragma mark - UI Interaction
 
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the intro
+    NSObject *firstConscienceModalCheck = [prefs objectForKey:@"firstConscienceModal"];
+    
+    if (firstConscienceModalCheck == nil) {
+        
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
+		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+        
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[helpTitleName2 release];
+		[helpTextName2 release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstConscienceModal"];
+        
+    }
+}
+
+/**
+Implementation:  Sometimes the Conscience can be put in the wrong section of the screen depending upon screen prior to this one. 
+  We must ensure that the Conscience doesn't take up the whole screen.
+*/
 -(void) moveConscienceToBottom{
     
     //Move Conscience to center of boxes

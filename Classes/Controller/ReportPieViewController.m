@@ -10,7 +10,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "Moral.h"
 #import "ConscienceView.h"
 #import "MoraLifeAppDelegate.h"
-
+#import "ConscienceHelpViewController.h"
 
 @implementation ReportPieViewController
 
@@ -51,12 +51,59 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     [self generateGraph];
 
-    
-
 }
+
+-(void)viewDidAppear:(BOOL)animated {
+    
+	//Present help screen after a split second
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    
+}
+
 
 #pragma mark -
 #pragma mark UI Interaction
+
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the intro
+    NSObject *firstPieCheck = [prefs objectForKey:@"firstPie"];
+    
+    if (firstPieCheck == nil) {
+        
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
+		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+        
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[helpTitleName2 release];
+		[helpTextName2 release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstPie"];
+        
+    }
+}
+
 
 /**
 Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), Sort Type (Name/Percentage) and Order Type (Asc/Des)
@@ -238,7 +285,7 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
 Implementation:  Transform UserData entries of all Virtues/Vices into summation of weights for each Moral.
 Sum each summation of Moral into total of Virtue/Vice, then calculate percentage of each entry as percentage of whole
 Convert percentage to degrees out of 360.  Send values and colors to GraphView
-@todo split off color generation
+@todo needs to be optimized.  Don't generate sorted and reversed keys without need.  Check for empty first.
  */
 - (void) generateGraph {
 	//Reset running total before getting Choices

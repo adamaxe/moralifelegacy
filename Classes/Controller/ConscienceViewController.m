@@ -23,10 +23,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 @implementation ConscienceViewController
 
 /** @todo externalize angle and shake functions if possible */
-static int numberOfShakes = 8;
 static int thoughtVersion = 0;
-static float durationOfShake = 0.5f;
-static float vigourOfShake = 0.05f;
 
 - (CGFloat) angleBetweenLinesInRadians: (CGPoint)line1Start toPoint:(CGPoint)line1End fromPoint:(CGPoint)line2Start toPoint:(CGPoint)line2End{
 	
@@ -121,7 +118,6 @@ static float vigourOfShake = 0.05f;
     }
     
     [self createWelcomeMessage];
-    [self showThought];
     
 }
 
@@ -211,12 +207,10 @@ static float vigourOfShake = 0.05f;
         
     }
     
-//    appDelegate.userConscienceMind.mood = 10;
-//    appDelegate.userConscienceMind.enthusiasm = 90;
-    
-//    [initialConscienceView setNeedsDisplay];
 	[consciencePlayground setNeedsDisplay];
     [self createWelcomeMessage];
+    [self showThought];
+
 	
 }
 
@@ -256,7 +250,9 @@ static float vigourOfShake = 0.05f;
  Implementation:  Fade the thought bubble in and setup a timer to revoke it after a time
  */
 -(void)showThought{
+    NSLog(@"showThought");
     
+    thoughtBubbleView1.hidden = FALSE;
     
     //Only show status when User interacts with Conscience
     [UIView beginAnimations:@"showThought" context:nil];
@@ -268,9 +264,13 @@ static float vigourOfShake = 0.05f;
     
     [UIView commitAnimations];
     
-    if (thoughtFadeTimer == nil) {
-        thoughtFadeTimer = [NSTimer scheduledTimerWithTimeInterval:kThoughtInterval target:self selector:@selector(hideThought) userInfo:nil repeats:YES];
+    //Dismiss the thought bubble after a time
+    if (thoughtFadeTimer != nil) {
+        [thoughtFadeTimer invalidate];
     }
+    
+    thoughtFadeTimer = [NSTimer scheduledTimerWithTimeInterval:kThoughtInterval target:self selector:@selector(hideThought) userInfo:nil repeats:YES];
+
 }
 
 /**
@@ -340,29 +340,6 @@ static float vigourOfShake = 0.05f;
 	[[consciencePlayground viewWithTag:kConscienceViewTag] setNeedsDisplay];
 }
 
--(CAKeyframeAnimation *) shakeAnimation:(CGRect)frame{
-    CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
-	
-    CGMutablePathRef shakePath = CGPathCreateMutable();
-    CGPathMoveToPoint(shakePath, NULL, CGRectGetMinX(frame), CGRectGetMinY(frame));
-	int index;
-	for (index = 0; index < numberOfShakes; ++index)
-	{
-		
-		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX(frame) - frame.size.width * vigourOfShake, CGRectGetMidY(frame) - frame.size.height * vigourOfShake);
-		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX(frame) + frame.size.width * vigourOfShake, CGRectGetMidY(frame) + frame.size.height * vigourOfShake);
-		
-	}
-    
-    CGPathCloseSubpath(shakePath);
-    shakeAnimation.path = shakePath;
-    shakeAnimation.duration = durationOfShake;
-    
-    CGPathRelease(shakePath);
-    return shakeAnimation;
-}
-
-
 //Implement Shaking response
 -(BOOL)canBecomeFirstResponder {
     return YES;
@@ -400,8 +377,8 @@ static float vigourOfShake = 0.05f;
 			[NSTimer scheduledTimerWithTimeInterval:1.5 invocation:shakeEndInvocation repeats:NO];
             
 		}
-		
-		[initialConscienceView.layer addAnimation:(CAAnimation *)[self shakeAnimation:[initialConscienceView frame]] forKey:@"position"];
+
+        [initialConscienceView.layer addAnimation:(CAAnimation *)[initialConscienceView shakeAnimation] forKey:@"position"];
         
     }
 }
@@ -830,6 +807,14 @@ Implementation:  Determine time of day, and which thought should be displayed.  
  */
 -(void) createWelcomeMessage{
     
+    //Only show status when User interacts with Conscience
+    [UIView beginAnimations:@"hideThoughtLabel" context:nil];
+    [UIView setAnimationDuration:0.5];
+    
+    conscienceStatus.alpha = 0;
+    
+    [UIView commitAnimations];
+    
     [self retrieveBiggestChoice:TRUE];
     [self retrieveBiggestChoice:FALSE];
     [self retrieveHighestRank];
@@ -938,6 +923,15 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     [thoughtSpecialized release];
     [conscienceEnthusiasm release];
     [conscienceMood release];
+    
+    //Only show status when User interacts with Conscience
+    [UIView beginAnimations:@"hideThoughtLabel" context:nil];
+    [UIView setAnimationDuration:0.5];
+    
+    conscienceStatus.alpha = 1;
+    
+    [UIView commitAnimations];
+
 }
 
 /**

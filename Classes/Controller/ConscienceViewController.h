@@ -49,7 +49,6 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 	NSMutableString *homeViceDisplayName;	/**< most prominent vice text */
     NSMutableString *highestRankName;       /**< highest achieved rank */
 
-    
 	BOOL isBeingMoved;
 
 }
