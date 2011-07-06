@@ -22,6 +22,10 @@ Actual facial changes are requested by ViewController.
 
 @implementation ConscienceView
 
+static int numberOfShakes = 8;
+static float durationOfShake = 0.5f;
+static float vigourOfShake = 0.05f;
+
 @synthesize currentConscienceBody;
 @synthesize currentConscienceAccessories;
 @synthesize currentConscienceMind;
@@ -917,6 +921,28 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	[self changeEyeDirection:expressionIndex forEye:kEyeLeftIndex];
 	[self changeEyeDirection:expressionIndex forEye:kEyeRightIndex];
 	expressionIndex++;		
+}
+
+-(CAKeyframeAnimation *) shakeAnimation {
+    CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
+	
+    CGMutablePathRef shakePath = CGPathCreateMutable();
+    CGPathMoveToPoint(shakePath, NULL, CGRectGetMinX([self frame]), CGRectGetMinY([self frame]));
+	int index;
+	for (index = 0; index < numberOfShakes; ++index)
+	{
+		
+		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX([self frame]) - [self frame].size.width * vigourOfShake, CGRectGetMidY([self frame]) - [self frame].size.height * vigourOfShake);
+		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX([self frame]) + [self frame].size.width * vigourOfShake, CGRectGetMidY([self frame]) + [self frame].size.height * vigourOfShake);
+		
+	}
+    
+    CGPathCloseSubpath(shakePath);
+    shakeAnimation.path = shakePath;
+    shakeAnimation.duration = durationOfShake;
+    
+    CGPathRelease(shakePath);
+    return shakeAnimation;
 }
 
 #pragma mark -
