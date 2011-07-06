@@ -87,7 +87,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 -(void)viewDidAppear:(BOOL)animated {
     
-    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
     
 }
 

@@ -1,5 +1,5 @@
 /**
-XML Parser to gather Path Data.  Implementation
+Implementation:  We are parsing the svg's of the animatable facial features.  Each feature is put into an NSMutableDictionary for quick retrieval during emote animations.
 
 @class XMLParser XMLParser.h
 @author Copyright 2010 Team Axe, LLC. All Rights Reserved. http://www.teamaxe.org

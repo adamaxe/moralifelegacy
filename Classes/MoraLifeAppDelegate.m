@@ -1,12 +1,9 @@
 /**
-Moralife AppDelegate.  Implementation.
+Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data Stack and the Conscience.  User Conscience can appear on any screen, so it makes sense to create and maintain him in the delegate. He is not a singleton, however, due to the fact that there can be many different iterations of a Conscience type.
  
-All setup for data, navigation, UI, is done in App delegate.
+<br>All setup for Conscience data, navigation, UI, is done in App delegate.  All setup for data, navigation, UI, is done in App delegate.
 @todo project->buildsettings->architectures->debug->remove any IOS SDK
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @class MoralifeAppDelegate MoralifeAppDelegate.h
-@date 03/28/2010
-@file
 */
 
 #import "MoraLifeAppDelegate.h"
@@ -43,18 +40,10 @@ All setup for data, navigation, UI, is done in App delegate.
 
 - (void)awakeFromNib {
     
+	//Call method to create base Conscience.    
     [self createConscience];
-    
-    //RootViewController *rootViewController = (RootViewController *)[navigationController topViewController];
-    //rootViewController.managedObjectContext = self.managedObjectContext;
-}
 
-/*
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	
-    return YES;
 }
-*/
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -351,6 +340,9 @@ All setup for data, navigation, UI, is done in App delegate.
 #pragma mark -
 #pragma mark Conscience Setup
 
+/**
+ Implementation: Call all constructors for default Conscience features if they do not already exist.  These setups will be overridden by the configuration task.
+ */
 - (void) createConscience{
     
     if (!userConscienceBody) {
@@ -373,9 +365,11 @@ All setup for data, navigation, UI, is done in App delegate.
         
     }
 	    
+	//Apply User customizations to Conscience and User Data    
     [self configureConscience];
     [self configureCollection];    
 	
+	//Create physcial, viewable Conscience from constructs    
     if (!userConscienceView) {
         userConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(20, 130, 200, 200) withBody:userConscienceBody withAccessories:userConscienceAccessories withMind:userConscienceMind];
         
@@ -385,6 +379,9 @@ All setup for data, navigation, UI, is done in App delegate.
     
 }
 
+/**
+ Implementation: Tear down Conscience.  This is used in low-memory/background scenarios.  Monitor is re-creatable at any point from persistent data.
+ */
 - (void) destroyConscience{
     
 	[userConscienceBody release];
@@ -393,6 +390,9 @@ All setup for data, navigation, UI, is done in App delegate.
 	[userConscienceView release];
 }
 
+/**
+ Implementation: Retrieve User-customizations to Monitor from Core Data.  Then build physical traits (eyes/mouth/face/mind).
+ */
 - (void)configureConscience{
 
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -441,9 +441,13 @@ All setup for data, navigation, UI, is done in App delegate.
     
     [request release];
 
+	//Call utility class to parse svg data for feature building    
 	[ConscienceBuilder buildConscience:userConscienceBody];
 }
 
+/**
+ Implementation: Retrieve User-entries such as questions/responses.
+ */
 - (void)configureCollection{
     
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -493,6 +497,7 @@ All setup for data, navigation, UI, is done in App delegate.
  */
 - (void)dealloc {
 	
+	/** @todo revisit memory management for ARC migration */    
 	[managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];
