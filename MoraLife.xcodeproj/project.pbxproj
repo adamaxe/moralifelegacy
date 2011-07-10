@@ -947,6 +947,7 @@
 		5E73B28612596BA90039A577 /* card-justice.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73B26A12596BA90039A577 /* card-justice.png */; };
 		5E73B28712596BA90039A577 /* card-patience.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73B26B12596BA90039A577 /* card-patience.png */; };
 		5E751DC512E6899000D573C1 /* con-zodiac-scorpio.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E751DC112E6899000D573C1 /* con-zodiac-scorpio.svg */; };
+		5E7591A713C68E7700CE606D /* ConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */; };
 		5E777E9413161B8C00E35222 /* ReferencePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E777E9313161B8C00E35222 /* ReferencePerson.m */; };
 		5E7A0F08124C4DE000E061C2 /* body-eye1-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A0EA9124C4DDF00E061C2 /* body-eye1-sm.png */; };
 		5E7A0F09124C4DE000E061C2 /* body-eye2-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A0EAA124C4DDF00E061C2 /* body-eye2-sm.png */; };
@@ -1156,6 +1157,8 @@
 		5E866B5F12DC1B03007BAEFD /* ref-zenoofcitium-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AE712DC1B02007BAEFD /* ref-zenoofcitium-sm.png */; };
 		5E866B6012DC1B03007BAEFD /* ref-zenoofcitium.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AE812DC1B02007BAEFD /* ref-zenoofcitium.jpg */; };
 		5E87B29111D059FD006AC618 /* navbar-texture-bevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E87B28E11D059FD006AC618 /* navbar-texture-bevel.png */; };
+		5E8B8F7913C421DB004AE16A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3E8803122609B600F2708A /* Constants.m */; };
+		5E8B8F7A13C421DB004AE16A /* ConscienceHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */; };
 		5E8CA931123469AE00461363 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8CA930123469AE00461363 /* GraphView.m */; };
 		5E8CF29012E7AC2C004FBBBB /* ref-annefrank-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF27E12E7AC2C004FBBBB /* ref-annefrank-sm.png */; };
 		5E8CF29112E7AC2C004FBBBB /* ref-annefrank.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF27F12E7AC2C004FBBBB /* ref-annefrank.jpg */; };
@@ -1183,6 +1186,18 @@
 		5E99BE69132872F9000D6F60 /* thoughtbubble-thin1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99BE63132872F9000D6F60 /* thoughtbubble-thin1@2x.png */; };
 		5E99BE6A132872F9000D6F60 /* thoughtbubble-thin2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99BE64132872F9000D6F60 /* thoughtbubble-thin2.png */; };
 		5E99BE6B132872F9000D6F60 /* thoughtbubble-thin2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99BE65132872F9000D6F60 /* thoughtbubble-thin2@2x.png */; };
+		5E99C5A713C542DC001F5CB8 /* TestConscienceHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5A613C542DC001F5CB8 /* TestConscienceHelpViewController.m */; };
+		5E99C5AC13C542E7001F5CB8 /* TestConscienceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */; };
+		5E99C5AD13C542E7001F5CB8 /* TestConsciencePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */; };
+		5E99C5B413C542F5001F5CB8 /* TestAccessoryObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AF13C542F5001F5CB8 /* TestAccessoryObjectView.m */; };
+		5E99C5B513C542F5001F5CB8 /* TestConscienceBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5B113C542F5001F5CB8 /* TestConscienceBubbleView.m */; };
+		5E99C5B613C542F5001F5CB8 /* TestConscienceObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5B313C542F5001F5CB8 /* TestConscienceObjectView.m */; };
+		5E99C5B713C55090001F5CB8 /* ConscienceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E303CC211FCE32700BB4E10 /* ConscienceLayer.m */; };
+		5E99C5B813C55090001F5CB8 /* ConsciencePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF299C11FA697000DF7A4B /* ConsciencePath.m */; };
+		5E99C5B913C55090001F5CB8 /* AccessoryObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9104DF121A18E200423DE8 /* AccessoryObjectView.m */; };
+		5E99C5BA13C55090001F5CB8 /* ConscienceObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF299711FA696400DF7A4B /* ConscienceObjectView.m */; };
+		5E99C5BB13C55090001F5CB8 /* ConscienceBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED61EB9122CAD3A00542453 /* ConscienceBubbleView.m */; };
+		5E99C5C113C552A6001F5CB8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E99C5C013C552A6001F5CB8 /* QuartzCore.framework */; };
 		5E9A71D912124115004A9773 /* con-crescent-beauty.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9A71D312124115004A9773 /* con-crescent-beauty.svg */; };
 		5E9B1A2D13AAC1BB000DE701 /* acc-nothing-bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B1A2A13AAC1BB000DE701 /* acc-nothing-bottom.png */; };
 		5E9B1A2E13AAC1BB000DE701 /* acc-nothing-side.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9B1A2B13AAC1BB000DE701 /* acc-nothing-side.png */; };
@@ -2806,6 +2821,19 @@
 		5E99BE63132872F9000D6F60 /* thoughtbubble-thin1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-thin1@2x.png"; path = "Resources/images/interface/thoughtbubble-thin1@2x.png"; sourceTree = "<group>"; };
 		5E99BE64132872F9000D6F60 /* thoughtbubble-thin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-thin2.png"; path = "Resources/images/interface/thoughtbubble-thin2.png"; sourceTree = "<group>"; };
 		5E99BE65132872F9000D6F60 /* thoughtbubble-thin2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-thin2@2x.png"; path = "Resources/images/interface/thoughtbubble-thin2@2x.png"; sourceTree = "<group>"; };
+		5E99C5A513C542DC001F5CB8 /* TestConscienceHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestConscienceHelpViewController.h; path = Controller/TestConscienceHelpViewController.h; sourceTree = "<group>"; };
+		5E99C5A613C542DC001F5CB8 /* TestConscienceHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceHelpViewController.m; path = Controller/TestConscienceHelpViewController.m; sourceTree = "<group>"; };
+		5E99C5A813C542E7001F5CB8 /* TestConscienceLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestConscienceLayer.h; path = Model/TestConscienceLayer.h; sourceTree = "<group>"; };
+		5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceLayer.m; path = Model/TestConscienceLayer.m; sourceTree = "<group>"; };
+		5E99C5AA13C542E7001F5CB8 /* TestConsciencePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestConsciencePath.h; path = Model/TestConsciencePath.h; sourceTree = "<group>"; };
+		5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConsciencePath.m; path = Model/TestConsciencePath.m; sourceTree = "<group>"; };
+		5E99C5AE13C542F5001F5CB8 /* TestAccessoryObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestAccessoryObjectView.h; path = View/TestAccessoryObjectView.h; sourceTree = "<group>"; };
+		5E99C5AF13C542F5001F5CB8 /* TestAccessoryObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestAccessoryObjectView.m; path = View/TestAccessoryObjectView.m; sourceTree = "<group>"; };
+		5E99C5B013C542F5001F5CB8 /* TestConscienceBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestConscienceBubbleView.h; path = View/TestConscienceBubbleView.h; sourceTree = "<group>"; };
+		5E99C5B113C542F5001F5CB8 /* TestConscienceBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceBubbleView.m; path = View/TestConscienceBubbleView.m; sourceTree = "<group>"; };
+		5E99C5B213C542F5001F5CB8 /* TestConscienceObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestConscienceObjectView.h; path = View/TestConscienceObjectView.h; sourceTree = "<group>"; };
+		5E99C5B313C542F5001F5CB8 /* TestConscienceObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceObjectView.m; path = View/TestConscienceObjectView.m; sourceTree = "<group>"; };
+		5E99C5C013C552A6001F5CB8 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5E9A71D312124115004A9773 /* con-crescent-beauty.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-crescent-beauty.svg"; path = "Resources/images/conscience/con-crescent-beauty.svg"; sourceTree = "<group>"; };
 		5E9B1A2A13AAC1BB000DE701 /* acc-nothing-bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-nothing-bottom.png"; path = "Resources/images/accessories/acc-nothing-bottom.png"; sourceTree = "<group>"; };
 		5E9B1A2B13AAC1BB000DE701 /* acc-nothing-side.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-nothing-side.png"; path = "Resources/images/accessories/acc-nothing-side.png"; sourceTree = "<group>"; };
@@ -3275,6 +3303,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E99C5C113C552A6001F5CB8 /* QuartzCore.framework in Frameworks */,
 				5EA1D225130E38A200BA81D6 /* UIKit.framework in Frameworks */,
 				5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */,
 				5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */,
@@ -3379,6 +3408,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E99C5C013C552A6001F5CB8 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -4910,9 +4940,45 @@
 			name = icons;
 			sourceTree = "<group>";
 		};
+		5E99C59F13C5429E001F5CB8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5E99C5AE13C542F5001F5CB8 /* TestAccessoryObjectView.h */,
+				5E99C5AF13C542F5001F5CB8 /* TestAccessoryObjectView.m */,
+				5E99C5B013C542F5001F5CB8 /* TestConscienceBubbleView.h */,
+				5E99C5B113C542F5001F5CB8 /* TestConscienceBubbleView.m */,
+				5E99C5B213C542F5001F5CB8 /* TestConscienceObjectView.h */,
+				5E99C5B313C542F5001F5CB8 /* TestConscienceObjectView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		5E99C5A013C542AC001F5CB8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5E99C5A813C542E7001F5CB8 /* TestConscienceLayer.h */,
+				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
+				5E99C5AA13C542E7001F5CB8 /* TestConsciencePath.h */,
+				5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		5E99C5A113C542B0001F5CB8 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5E99C5A513C542DC001F5CB8 /* TestConscienceHelpViewController.h */,
+				5E99C5A613C542DC001F5CB8 /* TestConscienceHelpViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		5EA1D228130E38A200BA81D6 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				5E99C5A113C542B0001F5CB8 /* Controller */,
+				5E99C5A013C542AC001F5CB8 /* Model */,
+				5E99C59F13C5429E001F5CB8 /* View */,
 				5EA1D22F130E38A200BA81D6 /* UnitTests.h */,
 				5EA1D231130E38A200BA81D6 /* UnitTests.m */,
 				5EA1D229130E38A200BA81D6 /* Supporting Files */,
@@ -6826,7 +6892,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E7591A713C68E7700CE606D /* ConscienceGradient.m in Sources */,
+				5E99C5B713C55090001F5CB8 /* ConscienceLayer.m in Sources */,
+				5E99C5B813C55090001F5CB8 /* ConsciencePath.m in Sources */,
+				5E99C5B913C55090001F5CB8 /* AccessoryObjectView.m in Sources */,
+				5E99C5BA13C55090001F5CB8 /* ConscienceObjectView.m in Sources */,
+				5E99C5BB13C55090001F5CB8 /* ConscienceBubbleView.m in Sources */,
+				5E8B8F7913C421DB004AE16A /* Constants.m in Sources */,
+				5E8B8F7A13C421DB004AE16A /* ConscienceHelpViewController.m in Sources */,
 				5EA1D232130E38A200BA81D6 /* UnitTests.m in Sources */,
+				5E99C5A713C542DC001F5CB8 /* TestConscienceHelpViewController.m in Sources */,
+				5E99C5AC13C542E7001F5CB8 /* TestConscienceLayer.m in Sources */,
+				5E99C5AD13C542E7001F5CB8 /* TestConsciencePath.m in Sources */,
+				5E99C5B413C542F5001F5CB8 /* TestAccessoryObjectView.m in Sources */,
+				5E99C5B513C542F5001F5CB8 /* TestConscienceBubbleView.m in Sources */,
+				5E99C5B613C542F5001F5CB8 /* TestConscienceObjectView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6890,6 +6970,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -7003,6 +7084,7 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -7024,8 +7106,9 @@
 			buildSettings = {
 				ADDITIONAL_SDKS = "";
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Team Axe, LLC";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Team Axe, LLC";
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_OPTIMIZATION_LEVEL = 1;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -7035,8 +7118,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
 				OTHER_CFLAGS = "";
 				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = YES;
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "207C6888-D148-449A-A71B-C7011601E9B6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "207C6888-D148-449A-A71B-C7011601E9B6";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
