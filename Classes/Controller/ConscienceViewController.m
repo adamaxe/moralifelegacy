@@ -896,8 +896,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
             int moodIndex = [[NSNumber numberWithFloat:appDelegate.userConscienceMind.mood] intValue];
             int enthusiasmIndex = [[NSNumber numberWithFloat:appDelegate.userConscienceMind.enthusiasm] intValue];
 
-            /** @todo remove Beta Tester acknowledgement before release */
-            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.  Thanks for Beta testing!", [conscienceMood objectAtIndex:moodIndex/10], [conscienceEnthusiasm objectAtIndex:enthusiasmIndex/10]];
+            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", [conscienceMood objectAtIndex:moodIndex/10], [conscienceEnthusiasm objectAtIndex:enthusiasmIndex/10]];
             
             break;
         }               
