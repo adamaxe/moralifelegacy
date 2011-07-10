@@ -10,7 +10,7 @@ Path from XML represents an image portion of a feature (iris, teeth, etc.)  Poss
 @file
  */
 
-@interface ConsciencePath : NSObject {
+@interface ConsciencePath : NSObject <NSCoding> {
 
 }
 

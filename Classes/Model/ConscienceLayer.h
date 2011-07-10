@@ -11,7 +11,7 @@ Member of ConscienceObjectView.
 @file
  */
 
-@interface ConscienceLayer : NSObject {
+@interface ConscienceLayer : NSObject <NSCoding> {
 
 }
 
