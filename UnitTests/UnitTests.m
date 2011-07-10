@@ -17,13 +17,13 @@
     
     // Set-up code here.
     
-    SenTestSuite *suite = [SenTestSuite testSuiteWithName: @"ML Logic Tests"];
-    
-    [suite addTest:[UnitTests testCaseWithSelector:@selector(testExample)]];
-    
-    SenTestSuite *anotherSuite = [SenTestSuite testSuiteForTestCaseClass:[UnitTests class]];
-    
-    [suite addTest: anotherSuite];
+//    SenTestSuite *suite = [SenTestSuite testSuiteWithName: @"ML Logic Tests"];
+//    
+//    [suite addTest:[UnitTests testCaseWithSelector:@selector(testExample)]];
+//    
+//    SenTestSuite *anotherSuite = [SenTestSuite testSuiteForTestCaseClass:[UnitTests class]];
+//    
+//    [suite addTest: anotherSuite];
 }
 
 - (void)tearDown
@@ -35,12 +35,12 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in UnitTests");
-    //STFail(@"Unit tests are not implemented yet in LogicTests.  YAY!");
-    NSString *test1 = @"test";
-    NSString *test2 = @"test";
-    STAssertEquals(4, 4, @"This didn't pass!");
-    STAssertEqualObjects(test1, test2, @"Testing strings", test1);
+//    STFail(@"Unit tests are not implemented yet in UnitTests");
+//    //STFail(@"Unit tests are not implemented yet in LogicTests.  YAY!");
+//    NSString *test1 = @"test";
+//    NSString *test2 = @"test";
+//    STAssertEquals(4, 4, @"This didn't pass!");
+//    STAssertEqualObjects(test1, test2, @"Testing strings", test1);
 }
 
 #if USE_APPLICATION_UNIT_TEST     // all code under test is in the iPhone Application
@@ -64,10 +64,10 @@
 {
     
     //STFail(@"Unit tests are not implemented yet in LogicTests.  YAY!");
-    NSString *testSuite1 = @"test";
-    NSString *testSuite2 = @"test3";
-    STAssertEquals(4, 3, @"This didn't pass!");
-    STAssertEqualObjects(testSuite1, testSuite2, @"Testing strings in suite", testSuite1);
+//    NSString *testSuite1 = @"test";
+//    NSString *testSuite2 = @"test3";
+//    STAssertEquals(4, 3, @"This didn't pass!");
+//    STAssertEqualObjects(testSuite1, testSuite2, @"Testing strings in suite", testSuite1);
 }
 
 #endif
