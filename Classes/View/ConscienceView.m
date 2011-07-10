@@ -88,7 +88,7 @@ withMind: (ConscienceMind *) argMind{
 		conscienceBubbleView.tag = kBubbleViewTag;
 		conscienceBubbleView.multipleTouchEnabled = TRUE;
         
-		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
 		animatedBubbleView.tag = kAnimatedBubbleViewTag;
 		[conscienceBubbleView insertSubview:animatedBubbleView atIndex:0];
 		[animatedBubbleView release];		
