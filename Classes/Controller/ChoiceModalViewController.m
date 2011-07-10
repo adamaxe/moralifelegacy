@@ -202,10 +202,8 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
         [[cell textLabel] setText:[[tableData objectAtIndex:indexPath.row] capitalizedString]];
         
         NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
-    //	[rowImageName appendString:@".png"];
         
         UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
-    //	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
         [[cell imageView] setImage:rowImage];
         [rowImage release];
         [rowImageName release];
