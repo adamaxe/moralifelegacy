@@ -53,7 +53,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	[tempButtonImages release];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"First Adventure", @"Coming Sooner!", @"Coming Soon!", nil];
+	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"Coming Soon!", @"Coming Soon!", @"Coming Soon!", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	[tempButtonLabels release];
 	
@@ -409,7 +409,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
         [conscienceHelpViewCont release];
             
 			
-		} else {
+    } else {
 
 		DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
 
