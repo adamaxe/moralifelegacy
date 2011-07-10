@@ -339,10 +339,19 @@ Construct antagonist Conscience
 		antagonistConscienceBody.symbolName = [[currentDilemma antagonist] faceCharacter];
 		antagonistConscienceBody.eyeName = [[currentDilemma antagonist] eyeCharacter];
 		antagonistConscienceBody.mouthName = [[currentDilemma antagonist] mouthCharacter];
-		antagonistConscienceAccessories.primaryAccessory = [[currentDilemma antagonist] accessoryPrimaryCharacter];
-		antagonistConscienceAccessories.secondaryAccessory = [[currentDilemma antagonist] accessorySecondaryCharacter];
-		antagonistConscienceAccessories.topAccessory = [[currentDilemma antagonist] accessoryTopCharacter];
-		antagonistConscienceAccessories.bottomAccessory = [[currentDilemma antagonist] accessoryBottomCharacter];
+
+        if (![[[currentDilemma antagonist] accessoryPrimaryCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.primaryAccessory = [[currentDilemma antagonist] accessoryPrimaryCharacter];
+        }
+        if (![[[currentDilemma antagonist] accessorySecondaryCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.secondaryAccessory = [[currentDilemma antagonist] accessorySecondaryCharacter];
+        }
+        if (![[[currentDilemma antagonist] accessoryTopCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.topAccessory = [[currentDilemma antagonist] accessoryTopCharacter];
+        }
+        if (![[[currentDilemma antagonist] accessoryBottomCharacter] isEqualToString:@""]) {            
+            antagonistConscienceAccessories.bottomAccessory = [[currentDilemma antagonist] accessoryBottomCharacter];
+        }
         
 		[antagonistConscienceMind setMood:[[currentDilemma moodDilemma] floatValue]];
 		[antagonistConscienceMind setEnthusiasm:[[currentDilemma enthusiasmDilemma] floatValue]];
