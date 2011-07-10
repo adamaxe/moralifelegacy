@@ -27,10 +27,10 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 		self.multipleTouchEnabled = YES;
 
 		//Set default pulse, line width and black glow
-		[self setBubbleGlowDuration:0.75];
-		[self setBubbleGlowWidth:5];
-		[self setBubbleColor:@"000000"];
-        [self setBubbleType:0];
+		[self setBubbleGlowDuration:kBubbleDuration];
+		[self setBubbleGlowWidth:kBubbleWidth];
+		[self setBubbleColor:kBubbleColor];
+		[self setBubbleType:kBubbleType];
 	}
 
 	return self;
@@ -44,11 +44,8 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 	//Convert hex color to CG compatible values
 	//i.e. #RRGGBBAA = R, G, B, A
 	//e.g. #FFFFFFFF = 1,1,1,1
-	//strip off leading #character
-//	NSString *bubbleColorPost = (NSString *)[bubbleColor substringFromIndex:1];
 
 	//Convert String to Hex values
-//	NSScanner *fillColorScanner = [NSScanner scannerWithString:bubbleColorPost];
 	NSScanner *fillColorScanner = [NSScanner scannerWithString:bubbleColor];
 
 	unsigned fillColorInt;
