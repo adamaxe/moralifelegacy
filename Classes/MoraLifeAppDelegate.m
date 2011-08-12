@@ -240,35 +240,74 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 	//Determine if pre-loaded SQLite db exists
 	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadData];
-
+    NSError *error = nil;
+    
+    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"sqlite"];
+    
+    
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
 	if (!isSQLiteFilePresent) {
-		NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"sqlite"];
+        
         NSString *defaultStorePathWrite = [[NSBundle mainBundle] pathForResource:@"UserData" ofType:@"sqlite"];
-
+        
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePath) {
-			NSError *error = nil;
-
+            
 			[fileManager copyItemAtPath:defaultStorePath toPath:preloadData error:&error];
-
+            
 			NSLog(@"Unresolved error %@", error);
-		}
+        }
         
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePathWrite) {
-			NSError *error = nil;
+			error = nil;
             
 			[fileManager copyItemAtPath:defaultStorePathWrite toPath:preloadDataReadWrite error:&error];
             
 			NSLog(@"Unresolved error %@", error);
-		}        
-	}
+		}  
+        
+    } else {
+        
+        error = nil;
+        
+        NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:defaultStorePath error:&error];
+        NSDate *defaultFileDate =[dictionary objectForKey:NSFileModificationDate];
+        NSDate *today =[NSDate date];
+        dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:preloadData error:&error];
+        NSDate *preloadFileDate =[dictionary objectForKey:NSFileModificationDate];
+        
+        NSLog(@"today's date: %@, defaultDate: %@, preloadDate: %@", today, defaultFileDate, preloadFileDate);
+        
+        if ([defaultFileDate compare:preloadFileDate] == NSOrderedDescending) {
+            NSLog(@"file overridden");
+            [fileManager removeItemAtPath:preloadData error:&error];
+            [fileManager copyItemAtPath:defaultStorePath toPath:preloadData  error:&error];
+        }
+        
+        
+//        switch ([defaultFileDate compare:preloadFileDate]){
+//            case NSOrderedAscending:NSLog(@"default Newer");break;
+//            case NSOrderedSame:NSLog(@"Same");break;
+//            case NSOrderedDescending:NSLog(@"default Older:overridden");[fileManager removeItemAtPath:preloadData error:&error];
+//[fileManager copyItemAtPath:defaultStorePath toPath:preloadData  error:&error];break;
+//                
+//        }
+        
+        
+        //        if (![[[today dateByAddingTimeInterval:-(60*60*24)] earlierDate:fileDate] isEqualToDate:fileDate]) {
+        //            //file is less than 24 hours old, use this file.
+        //        }
+        //        else{
+        //            //file is older than 24 hours, replace it
+        //        }
+    }
+
 
 	//handle db upgrade for auto migration for minor schema changes
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
 	
-    NSError *error = nil;
+    error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 
 	if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
