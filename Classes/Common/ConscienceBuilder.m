@@ -24,7 +24,7 @@ Implementation: Call various utilities to construct User's Conscience.  Call XML
 
     NSMutableString *featureFileName = [NSMutableString stringWithFormat:@"%@.svg", requestedConscienceBody.eyeName];
 	NSMutableString *dataPath = [NSMutableString stringWithString:[featurePath stringByAppendingPathComponent:featureFileName]];
-        
+            
     if ([fileManager fileExistsAtPath:dataPath]){ 
         [self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.eyeName];
     } else {
@@ -85,11 +85,12 @@ Implementation: Parse the XML document and feed the ConscienceBody based upon re
 	
 	//Start parsing the XML file.
 	BOOL success = [xmlParser parse];
-	
+
 	if(success)
 		NSLog(@"No Errors");
 	else
 		NSLog(@"Error Error Error!!!");
+    
 	[xmlParser setDelegate:nil];
 	[featureData release];
 	[parser release];
