@@ -1294,6 +1294,8 @@
 		5EAD18F312ADDE180079F882 /* card-covetousness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAD18DE12ADDE180079F882 /* card-covetousness.png */; };
 		5EAF299A11FA696400DF7A4B /* ConscienceObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF299711FA696400DF7A4B /* ConscienceObjectView.m */; };
 		5EAF29A011FA697000DF7A4B /* ConsciencePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAF299C11FA697000DF7A4B /* ConsciencePath.m */; };
+		5EB0C33A13F2529F0093FCA6 /* TestGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0C33913F2529F0093FCA6 /* TestGraphView.m */; };
+		5EB0C33B13F2533B0093FCA6 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8CA930123469AE00461363 /* GraphView.m */; };
 		5EB1900D120E3BC0000A35CF /* body-mouth1.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EB1900A120E3BC0000A35CF /* body-mouth1.svg */; };
 		5EB190A0120E41ED000A35CF /* body-mouth4.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EB19094120E41ED000A35CF /* body-mouth4.svg */; };
 		5EB190A1120E41ED000A35CF /* body-mouth5.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EB19095120E41ED000A35CF /* body-mouth5.svg */; };
@@ -2936,6 +2938,8 @@
 		5EAF299711FA696400DF7A4B /* ConscienceObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceObjectView.m; path = View/ConscienceObjectView.m; sourceTree = "<group>"; };
 		5EAF299C11FA697000DF7A4B /* ConsciencePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConsciencePath.m; path = Model/ConsciencePath.m; sourceTree = "<group>"; };
 		5EAF299D11FA697000DF7A4B /* ConsciencePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConsciencePath.h; path = Model/ConsciencePath.h; sourceTree = "<group>"; };
+		5EB0C33813F2529F0093FCA6 /* TestGraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestGraphView.h; path = View/TestGraphView.h; sourceTree = "<group>"; };
+		5EB0C33913F2529F0093FCA6 /* TestGraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestGraphView.m; path = View/TestGraphView.m; sourceTree = "<group>"; };
 		5EB1900A120E3BC0000A35CF /* body-mouth1.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-mouth1.svg"; path = "Resources/images/conscience/body-mouth1.svg"; sourceTree = "<group>"; };
 		5EB19094120E41ED000A35CF /* body-mouth4.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-mouth4.svg"; path = "Resources/images/conscience/body-mouth4.svg"; sourceTree = "<group>"; };
 		5EB19095120E41ED000A35CF /* body-mouth5.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-mouth5.svg"; path = "Resources/images/conscience/body-mouth5.svg"; sourceTree = "<group>"; };
@@ -4943,6 +4947,8 @@
 		5E99C59F13C5429E001F5CB8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5EB0C33813F2529F0093FCA6 /* TestGraphView.h */,
+				5EB0C33913F2529F0093FCA6 /* TestGraphView.m */,
 				5E99C5AE13C542F5001F5CB8 /* TestAccessoryObjectView.h */,
 				5E99C5AF13C542F5001F5CB8 /* TestAccessoryObjectView.m */,
 				5E99C5B013C542F5001F5CB8 /* TestConscienceBubbleView.h */,
@@ -6907,6 +6913,8 @@
 				5E99C5B413C542F5001F5CB8 /* TestAccessoryObjectView.m in Sources */,
 				5E99C5B513C542F5001F5CB8 /* TestConscienceBubbleView.m in Sources */,
 				5E99C5B613C542F5001F5CB8 /* TestConscienceObjectView.m in Sources */,
+				5EB0C33A13F2529F0093FCA6 /* TestGraphView.m in Sources */,
+				5EB0C33B13F2533B0093FCA6 /* GraphView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
