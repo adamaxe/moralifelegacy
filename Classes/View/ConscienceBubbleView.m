@@ -180,9 +180,9 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
     
     //Determine which bubbleType to display
     switch (bubbleType) {
-        case 0: self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);break;
-        case 1: self.transform = CGAffineTransformMakeScale(0.9f, 1.05f);break;
-        case 2: self.transform = CGAffineTransformMakeScale(1.05f, 0.9f);break;
+        case kBubbleTypeRoundNormal: self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);break;
+        case kBubbleTypeRoundTall: self.transform = CGAffineTransformMakeScale(0.9f, 1.05f);break;
+        case kBubbleTypeRoundShort: self.transform = CGAffineTransformMakeScale(1.05f, 0.9f);break;
         default: break;
     }
 

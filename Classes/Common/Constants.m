@@ -35,7 +35,7 @@ NSString* const kDefaultFontName = @"Futura-Medium";
 NSString* const kFallbackFontName = @"Helvetica";
 
 float const kConscienceEnthusiasm = 50.0;
-float const kConscienceMood = 58.0;
+float const kConscienceMood = 55.0;
 float const kConscienceSize = 1.0;
 float const kConscienceLargeSizeX = 1.25;
 float const kConscienceLargeSizeY = 1.25;
