@@ -250,7 +250,6 @@ static int thoughtVersion = 0;
  Implementation:  Fade the thought bubble in and setup a timer to revoke it after a time
  */
 -(void)showThought{
-    NSLog(@"showThought");
     
     thoughtBubbleView1.hidden = FALSE;
     
@@ -291,13 +290,11 @@ static int thoughtVersion = 0;
 }
 
 /**
- Implementation:  Stop the background movements, create the ConscienceModalViewController, present it.
+ Implementation: Create the ConscienceModalViewController, present it.
  */
--(void)showConscienceModal{
-	
-	[self stopTimers];
-	
-	UINavigationController *modalNavController1 = [[UINavigationController alloc] init];
+-(void)setupModalWorkflow{
+    
+    UINavigationController *modalNavController1 = [[UINavigationController alloc] init];
 	
 	NSString *modalNavTitle1 = [NSString stringWithString:@"Customization"];
 	
@@ -307,6 +304,7 @@ static int thoughtVersion = 0;
 	// Create the root view controller for the navigation controller
 	// The new view controller configures a Cancel and Done button for the
 	// navigation bar.
+    
 	ConscienceModalViewController *conscienceModalViewController1 = [[ConscienceModalViewController alloc] initWithNibName:@"ConscienceModalView" bundle:nil];
 	
     [modalNavController1 pushViewController:conscienceModalViewController1 animated:NO];
@@ -318,7 +316,25 @@ static int thoughtVersion = 0;
 	// and the root view controller is owned by the navigation controller,
 	// so both objects should be released to prevent over-retention.
 	[modalNavController1 release];
+
+}
+
+/**
+ Implementation:  Stop the background movements, hide Conscience with animation, call function to setup new nav stack
+ */
+-(void)showConscienceModal{
 	
+	[self stopTimers];
+    
+    [UIView beginAnimations:@"HideConscience" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+    [UIView setAnimationDelegate:self]; // self is a view controller
+    [UIView setAnimationDidStopSelector:@selector(setupModalWorkflow)];
+
+	initialConscienceView.alpha = 0;
+    
+	[UIView commitAnimations];
 }
 
 /**
@@ -410,6 +426,7 @@ static int thoughtVersion = 0;
 			
 			if (touchedView.tag==kConscienceViewTag) {
 				                
+                /** @todo fix Conscience movement */
 				//Depress Conscience slightly to simulate actual contact
 				[UIView beginAnimations:@"ResizeConscienceSmall" context:nil];
 				[UIView setAnimationDuration:0.2];
@@ -420,6 +437,8 @@ static int thoughtVersion = 0;
 				[UIView beginAnimations:@"MoveConscience" context:nil];
 				[UIView setAnimationDuration:animationDuration];
 				[UIView setAnimationBeginsFromCurrentState:YES];
+				initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+
 				conscienceCenter.x = conscienceCenter.x-20;
 				conscienceCenter.y = conscienceCenter.y-100;
 				

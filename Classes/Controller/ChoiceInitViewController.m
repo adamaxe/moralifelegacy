@@ -19,7 +19,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-  
+    
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		//Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -39,9 +39,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 	//Retrieve localized view title string
 	/** 
-	@todo utilize consistent localization string references 
-	@todo convert localization of all UIViewControllers into protocol
-	*/
+    @todo utilize consistent localization string references
+    @todo convert localization of all UIViewControllers into protocol
+    */
 	[self setTitle:NSLocalizedString(@"ChoiceInitScreenTitle",@"Title for Choice Home Screen")];
 	self.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLabel",@"Label for Choice Home Screen");
 	self.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenHint",@"Hint for Choice Home Screen");
@@ -88,7 +88,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 -(void)viewDidAppear:(BOOL)animated {
     
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
-    
+
 }
 
 #pragma mark -
@@ -181,7 +181,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	
 	//Determine if List controller type or entry controller type is needed
 	if (!isList) {
-	
+
 		//Create subsequent view controller to be pushed onto stack, determine if choice or luck
 		if (isChoice) {
 			ChoiceViewController *choiceCont = [[ChoiceViewController alloc] initWithNibName:@"ChoiceView" bundle:[NSBundle mainBundle]];
@@ -195,7 +195,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 			[luckCont release];
 		}
 	} else {
-	
+
 		//Create subsequent view controller to be pushed onto stack, determine if choice or luck
 		if (isChoice) {
 			ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithNibName:@"ChoiceListView" bundle:[NSBundle mainBundle]];
@@ -213,7 +213,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 #pragma mark -
 #pragma mark Custom UI animations
 /**
-Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visually distracting
+ Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visually distracting
  */
 - (void) refreshButtons{
 
@@ -225,7 +225,7 @@ Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visual
 }
 
 /**
-Implementation: Build animated UIImage from sequential icon files
+ Implementation: Build animated UIImage from sequential icon files
  */
 - (void) buttonAnimate:(NSNumber *) buttonNumber{
 	
@@ -272,7 +272,7 @@ Implementation: Build animated UIImage from sequential icon files
 }
 
 /**
-Implementation: Return the button's icon to default after animation finishes
+ Implementation: Return the button's icon to default after animation finishes
  */
 - (void) buttonAnimationDone:(NSNumber *) buttonNumber{
 	
@@ -318,8 +318,6 @@ Implementation: Return the button's icon to default after animation finishes
 - (void)dealloc {
 	[buttonNames release];
 	[super dealloc];
-
 }
-
 
 @end

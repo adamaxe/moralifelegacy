@@ -116,5 +116,6 @@ User choices affect UserConscience immediately, must return Conscience to regula
 
 -(void) createMovementReaction;
 -(void) endMovementReaction;
+-(void) setupModalWorkflow;
 
 @end

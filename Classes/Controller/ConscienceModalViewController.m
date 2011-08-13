@@ -95,7 +95,8 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[super viewWillAppear:animated];
 	
 	//Add User Conscience to view
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
+    [self.view addSubview:appDelegate.userConscienceView];
+//	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	//Flip Conscience direction if facing left
 	if (appDelegate.userConscienceView.directionFacing == kDirectionFacingLeft) {
@@ -110,10 +111,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 	
 		[UIView commitAnimations];
 	}
-	
-	//Move Conscience to Lower left screen to emulate thought bubble
-//	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
-//	
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
@@ -123,22 +120,14 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	thoughtModalArea.alpha = 1;
-//    appDelegate.userConscienceView.alpha = 1;
-//	
-//	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
-//
-//	appDelegate.userConscienceView.center = centerPoint;
-//	
+
 	[UIView commitAnimations];
-//
-//	[appDelegate.userConscienceView setNeedsDisplay];
     
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationBeginsFromCurrentState:NO];
     appDelegate.userConscienceView.alpha = 0;
     
-    //    appDelegate.userConscienceView.center = centerPoint;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
     
@@ -154,7 +143,8 @@ User selection causes selectChoice to be called which sets the currentState vari
         currentState = 0;
     }
     
-    [self changeSelectionScreen];
+    //Call showSelectionChoices directly in order to avoid double fade-in
+    [self showSelectionChoices];
 	 
 }
 
@@ -165,7 +155,6 @@ User selection causes selectChoice to be called which sets the currentState vari
     [UIView setAnimationBeginsFromCurrentState:NO];
     appDelegate.userConscienceView.alpha = 0;
     
-    //    appDelegate.userConscienceView.center = centerPoint;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
     
@@ -284,14 +273,11 @@ Determines if current screen should change or if another UIViewController needs 
 	
 }
 
-/**
-Implementation:  Set the Status message at top of screen and the image and label of each button.  Button tags are updated to reflect new version of the screen.
- */
-- (void) changeSelectionScreen{
-
-	//Change buttons and status bar for appropriate requested screen
+- (void) showSelectionChoices{
+    
+    //Change buttons and status bar for appropriate requested screen
 	statusMessage1.text = (NSString *)[screenTitles objectAtIndex:currentState];
-
+    
 	//Set button image and names, set tags for screen derivation
 	NSString *buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:0];
 	NSString *buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:0];
@@ -299,27 +285,53 @@ Implementation:  Set the Status message at top of screen and the image and label
 	[labelButton1 setTitle:buttonLabel forState: UIControlStateNormal];
 	button1.tag = currentState*4;
 	labelButton1.tag = currentState*4;
-
+    
 	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:1];
 	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:1];
 	[button2 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton2 setTitle:buttonLabel forState: UIControlStateNormal];
 	button2.tag = currentState*4 + 1;
 	labelButton2.tag = currentState*4 + 1;
-
+    
 	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:2];
 	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:2];
 	[button3 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton3 setTitle:buttonLabel forState: UIControlStateNormal];
 	button3.tag = currentState*4 + 2;
 	labelButton3.tag = currentState*4 + 2;
-
+    
 	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:3];
 	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:3];
 	[button4 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton4 setTitle:buttonLabel forState: UIControlStateNormal];
 	button4.tag = currentState*4 + 3;
 	labelButton4.tag = currentState*4 + 3;
+    
+    
+    [UIView beginAnimations:@"ShowChoices" context:nil];
+    [UIView setAnimationDuration:0.1];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    thoughtModalArea.alpha = 1;
+        
+    [UIView commitAnimations];
+}
+
+
+/**
+Implementation:  Set the Status message at top of screen and the image and label of each button.  Button tags are updated to reflect new version of the screen.
+ */
+- (void) changeSelectionScreen{
+    
+    [UIView beginAnimations:@"HideChoices" context:nil];
+    [UIView setAnimationDuration:0.1];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDelegate:self]; // self is a view controller
+    [UIView setAnimationDidStopSelector:@selector(showSelectionChoices)];
+
+    thoughtModalArea.alpha = 0;    
+    
+    [UIView commitAnimations];
 
 }
 
@@ -433,7 +445,7 @@ Implementation: Revert Conscience to homescreen position, dismiss UIViewControll
 		[UIView setAnimationBeginsFromCurrentState:YES];
 		thoughtModalArea.alpha = 0;
 		appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-		
+        appDelegate.userConscienceView.alpha = 0;
 		
 		[UIView commitAnimations];
 		
