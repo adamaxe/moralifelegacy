@@ -1,10 +1,11 @@
-//
-//  UnitTests.h
-//  UnitTests
-//
-//  Created by aaxe on 2/17/11.
-//  Copyright 2011 Team Axe, LLC. All rights reserved.
-//
+/**
+Basic UnitTest OCUnit case.
+ 
+@author Copyright Team Axe, LLC. http://www.teamaxe.org, All rights reserved.
+@class UnitTests
+@date 03/30/2011
+@file
+ */
 
 #import <SenTestingKit/SenTestingKit.h>
 
