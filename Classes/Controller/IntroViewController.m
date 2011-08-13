@@ -51,6 +51,7 @@ the application.
 	animationDuration = 1.0;
 	messageState = 0;
 	isImpatient = TRUE;
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -165,14 +166,7 @@ the application.
  */
 -(void)stopIntro {
     [self stopTimers];
-    
-    //Stop the conscience from moving
-    if(thoughtChangeTimer != nil && thoughtChangeTimer != NULL){
-    		
-    		[thoughtChangeTimer invalidate];
-    		thoughtChangeTimer = nil;
-    }
-    
+        
     [prefs setInteger:messageState forKey:@"introStateRestore"];
     
 }
@@ -309,6 +303,8 @@ the application.
     [appDelegate.userConscienceView setNeedsDisplay];
     
     messageState = 1;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(switchText0) userInfo:nil repeats:NO];
     
 }
@@ -327,6 +323,8 @@ the application.
 	[UIView commitAnimations];
     
     messageState = 2;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText1) userInfo:nil repeats:NO];
     
 }
@@ -356,6 +354,8 @@ the application.
     [self animateNextButton];
     
     messageState = 2;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText2) userInfo:nil repeats:NO];
     
 }
@@ -380,6 +380,8 @@ the application.
     [self animateNextButton];
     
     messageState = 2;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText3) userInfo:nil repeats:NO];
     
 }
@@ -397,7 +399,9 @@ the application.
     
 	[UIView commitAnimations];
 
-    messageState = 3;    
+    messageState = 3;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText4) userInfo:nil repeats:NO];
     
 }
@@ -433,7 +437,9 @@ the application.
 	[appDelegate.userConscienceView setIsExpressionForced:TRUE];
 	[appDelegate.userConscienceView setNeedsDisplay];
     
-    messageState = 4;    
+    messageState = 4; 
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText5) userInfo:nil repeats:NO];
     
 }
@@ -451,7 +457,9 @@ the application.
     
 	[UIView commitAnimations];
    
-    messageState = 5;    
+    messageState = 5;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText6) userInfo:nil repeats:NO];
     
 }
@@ -488,6 +496,8 @@ the application.
 	[appDelegate.userConscienceView setNeedsDisplay];
     
     messageState = 6;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText7) userInfo:nil repeats:NO];
     
 }
@@ -516,6 +526,8 @@ the application.
     [appDelegate.userConscienceView setNeedsDisplay];
     
     messageState = 7;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText8) userInfo:nil repeats:NO];
     
 }
@@ -534,6 +546,8 @@ the application.
 	[UIView commitAnimations];
     
     messageState = 8;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText9) userInfo:nil repeats:NO];
     
 }
@@ -552,6 +566,8 @@ the application.
 	[UIView commitAnimations];
     
     messageState = 9;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText10) userInfo:nil repeats:NO];
     
 }
@@ -579,6 +595,8 @@ the application.
 	[UIView commitAnimations];
     
     messageState = 10;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText11) userInfo:nil repeats:NO];
     
 }
@@ -604,6 +622,8 @@ the application.
     [self animateDownButton];
     
     messageState = 11;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText12) userInfo:nil repeats:NO];
     
 }
@@ -628,6 +648,8 @@ the application.
 
     
     messageState = 12;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText13) userInfo:nil repeats:NO];
     
 }
@@ -652,6 +674,8 @@ the application.
     [self animateDownButton];
         
     messageState = 13;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText14) userInfo:nil repeats:NO];
     
 }
@@ -677,6 +701,8 @@ the application.
     [self animateDownButton];
     
     messageState = 14;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText15) userInfo:nil repeats:NO];
     
 }
@@ -698,6 +724,8 @@ the application.
 	downButtonImage.transform = CGAffineTransformMakeRotation (-3.14);
 
     messageState = 15;
+    
+    [thoughtChangeTimer invalidate];
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText16) userInfo:nil repeats:NO];
     
 }
@@ -730,6 +758,9 @@ the application.
     [self animateNextButton];
     
     messageState = 16;
+    
+    [thoughtChangeTimer invalidate];
+
     
 }
 
@@ -839,13 +870,6 @@ Implementation:  Return conscience to view
     //setup id for passing to IB capable method
     id placeholderID = nil;
     
-    //stop thought change
-    if(thoughtChangeTimer != nil){
-        
-        [thoughtChangeTimer invalidate];
-        thoughtChangeTimer = nil;
-    }
-    
     //Determine current state of Intro, then advance to next state
     if (messageState >= 0) {
         switch (messageState) {
@@ -878,13 +902,6 @@ Implementation:  Return conscience to view
  ViewController
  */
 -(IBAction)switchLast:(id)sender {
-    
-    //Stop the script from advancing
-	if(thoughtChangeTimer != nil){
-		
-		[thoughtChangeTimer invalidate];
-//		thoughtChangeTimer = nil;
-	}
     
     //Conscience could be Angel or Devil if User skipped
     //Ensure that normal conscience is reset
@@ -932,7 +949,7 @@ Implementation:  Return conscience to view
     //Stop Conscience Movement
 	[self stopTimers];
     
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
     
 }
 
@@ -1035,14 +1052,13 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 - (void) stopTimers{
 
 	//Stop the conscience from moving
-	if(moveTimer != nil && moveTimer != NULL){
-		
-        if ([moveTimer isValid]) {
-        
-            [moveTimer invalidate];
-            moveTimer = nil;
-        }
-	}
+    if ([moveTimer isValid]) {
+    
+        [moveTimer invalidate];
+        moveTimer = nil;
+    }
+    
+    thoughtChangeTimer = nil;
 	
 }
 
