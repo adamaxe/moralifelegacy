@@ -293,5 +293,11 @@ typedef enum bubbleTypeEnum{
 	kBubbleTypeDiamondShort,
 	kBubbleTypeStarNormal,
 	kBubbleTypeStarTall,
-	kBubbleTypeStarShort
+	kBubbleTypeStarShort,
+	kBubbleTypePuffyNormal,
+	kBubbleTypePuffyTall,
+	kBubbleTypePuffyShort,
+	kBubbleTypeGearNormal,
+	kBubbleTypeGearTall,
+	kBubbleTypeGearShort     
 }bubbleTypeEnum;
