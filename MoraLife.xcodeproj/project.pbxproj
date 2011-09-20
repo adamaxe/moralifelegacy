@@ -100,6 +100,18 @@
 		5E2A58971222450C00F6A24B /* thoughtbubble-large1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2A588F1222450C00F6A24B /* thoughtbubble-large1.png */; };
 		5E2A7F1712FD9540001ADB66 /* ConscienceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A7F1612FD9540001ADB66 /* ConscienceListViewController.m */; };
 		5E2C9811130728B9001BC6E4 /* card-modesty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2C9810130728B9001BC6E4 /* card-modesty.png */; };
+		5E2D0BFF1405284500CB3032 /* bubble-type3-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BF31405284500CB3032 /* bubble-type3-sm.png */; };
+		5E2D0C001405284500CB3032 /* bubble-type4-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BF41405284500CB3032 /* bubble-type4-sm.png */; };
+		5E2D0C011405284500CB3032 /* bubble-type5-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BF51405284500CB3032 /* bubble-type5-sm.png */; };
+		5E2D0C021405284500CB3032 /* bubble-type6-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BF61405284500CB3032 /* bubble-type6-sm.png */; };
+		5E2D0C031405284500CB3032 /* bubble-type7-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BF71405284500CB3032 /* bubble-type7-sm.png */; };
+		5E2D0C041405284500CB3032 /* bubble-type8-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BF81405284500CB3032 /* bubble-type8-sm.png */; };
+		5E2D0C051405284500CB3032 /* bubble-type9-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BF91405284500CB3032 /* bubble-type9-sm.png */; };
+		5E2D0C061405284500CB3032 /* bubble-type10-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BFA1405284500CB3032 /* bubble-type10-sm.png */; };
+		5E2D0C071405284500CB3032 /* bubble-type11-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BFB1405284500CB3032 /* bubble-type11-sm.png */; };
+		5E2D0C081405284500CB3032 /* bubble-type12-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BFC1405284500CB3032 /* bubble-type12-sm.png */; };
+		5E2D0C091405284500CB3032 /* bubble-type13-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BFD1405284500CB3032 /* bubble-type13-sm.png */; };
+		5E2D0C0A1405284500CB3032 /* bubble-type14-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2D0BFE1405284500CB3032 /* bubble-type14-sm.png */; };
 		5E2EBFB41306339900AFC1C5 /* card-hypocrisy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2EBFAF1306339900AFC1C5 /* card-hypocrisy.png */; };
 		5E2EBFB51306339900AFC1C5 /* card-morality.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2EBFB01306339900AFC1C5 /* card-morality.png */; };
 		5E2EBFB61306339900AFC1C5 /* card-respect.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2EBFB11306339900AFC1C5 /* card-respect.png */; };
@@ -1720,6 +1732,18 @@
 		5E2A7F1512FD9540001ADB66 /* ConscienceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceListViewController.h; sourceTree = "<group>"; };
 		5E2A7F1612FD9540001ADB66 /* ConscienceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceListViewController.m; sourceTree = "<group>"; };
 		5E2C9810130728B9001BC6E4 /* card-modesty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-modesty.png"; path = "Resources/images/interface/cards/card-modesty.png"; sourceTree = "<group>"; };
+		5E2D0BF31405284500CB3032 /* bubble-type3-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type3-sm.png"; sourceTree = "<group>"; };
+		5E2D0BF41405284500CB3032 /* bubble-type4-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type4-sm.png"; sourceTree = "<group>"; };
+		5E2D0BF51405284500CB3032 /* bubble-type5-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type5-sm.png"; sourceTree = "<group>"; };
+		5E2D0BF61405284500CB3032 /* bubble-type6-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type6-sm.png"; sourceTree = "<group>"; };
+		5E2D0BF71405284500CB3032 /* bubble-type7-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type7-sm.png"; sourceTree = "<group>"; };
+		5E2D0BF81405284500CB3032 /* bubble-type8-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type8-sm.png"; sourceTree = "<group>"; };
+		5E2D0BF91405284500CB3032 /* bubble-type9-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type9-sm.png"; sourceTree = "<group>"; };
+		5E2D0BFA1405284500CB3032 /* bubble-type10-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type10-sm.png"; sourceTree = "<group>"; };
+		5E2D0BFB1405284500CB3032 /* bubble-type11-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type11-sm.png"; sourceTree = "<group>"; };
+		5E2D0BFC1405284500CB3032 /* bubble-type12-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type12-sm.png"; sourceTree = "<group>"; };
+		5E2D0BFD1405284500CB3032 /* bubble-type13-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type13-sm.png"; sourceTree = "<group>"; };
+		5E2D0BFE1405284500CB3032 /* bubble-type14-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bubble-type14-sm.png"; sourceTree = "<group>"; };
 		5E2EBFAF1306339900AFC1C5 /* card-hypocrisy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-hypocrisy.png"; path = "Resources/images/interface/cards/card-hypocrisy.png"; sourceTree = "<group>"; };
 		5E2EBFB01306339900AFC1C5 /* card-morality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-morality.png"; path = "Resources/images/interface/cards/card-morality.png"; sourceTree = "<group>"; };
 		5E2EBFB11306339900AFC1C5 /* card-respect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-respect.png"; path = "Resources/images/interface/cards/card-respect.png"; sourceTree = "<group>"; };
@@ -2853,6 +2877,7 @@
 		5E9DCD2312824239001D926E /* card-pacifism.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-pacifism.png"; path = "Resources/images/interface/cards/card-pacifism.png"; sourceTree = "<group>"; };
 		5E9DCD2412824239001D926E /* card-selfdestruction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-selfdestruction.png"; path = "Resources/images/interface/cards/card-selfdestruction.png"; sourceTree = "<group>"; };
 		5E9DCD2612824239001D926E /* cardtop-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardtop-selected.png"; path = "Resources/images/interface/cards/cardtop-selected.png"; sourceTree = "<group>"; };
+		5E9FA08713F6354D001F01CC /* SystemData2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SystemData2.xcdatamodel; sourceTree = "<group>"; };
 		5E9FEA81138E0A5000AB6645 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		5EA01A211346C872001E8581 /* ref-giovannipicodellamirandola-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-giovannipicodellamirandola-sm.png"; path = "Resources/images/reference/ref-giovannipicodellamirandola-sm.png"; sourceTree = "<group>"; };
 		5EA01A221346C872001E8581 /* ref-giovannipicodellamirandola.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-giovannipicodellamirandola.jpg"; path = "Resources/images/reference/ref-giovannipicodellamirandola.jpg"; sourceTree = "<group>"; };
@@ -3817,6 +3842,18 @@
 		5E498981131C940F00A13D11 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5E2D0BF31405284500CB3032 /* bubble-type3-sm.png */,
+				5E2D0BF41405284500CB3032 /* bubble-type4-sm.png */,
+				5E2D0BF51405284500CB3032 /* bubble-type5-sm.png */,
+				5E2D0BF61405284500CB3032 /* bubble-type6-sm.png */,
+				5E2D0BF71405284500CB3032 /* bubble-type7-sm.png */,
+				5E2D0BF81405284500CB3032 /* bubble-type8-sm.png */,
+				5E2D0BF91405284500CB3032 /* bubble-type9-sm.png */,
+				5E2D0BFA1405284500CB3032 /* bubble-type10-sm.png */,
+				5E2D0BFB1405284500CB3032 /* bubble-type11-sm.png */,
+				5E2D0BFC1405284500CB3032 /* bubble-type12-sm.png */,
+				5E2D0BFD1405284500CB3032 /* bubble-type13-sm.png */,
+				5E2D0BFE1405284500CB3032 /* bubble-type14-sm.png */,
 				5E9B1A3013AAC1DE000DE701 /* acc-nothing-bottom-sm.png */,
 				5E9B1A3113AAC1DE000DE701 /* acc-nothing-side-sm.png */,
 				5E9B1A3213AAC1DE000DE701 /* acc-nothing-top-sm.png */,
@@ -6797,6 +6834,18 @@
 				5E9B1A3313AAC1DE000DE701 /* acc-nothing-bottom-sm.png in Resources */,
 				5E9B1A3413AAC1DE000DE701 /* acc-nothing-side-sm.png in Resources */,
 				5E9B1A3513AAC1DE000DE701 /* acc-nothing-top-sm.png in Resources */,
+				5E2D0BFF1405284500CB3032 /* bubble-type3-sm.png in Resources */,
+				5E2D0C001405284500CB3032 /* bubble-type4-sm.png in Resources */,
+				5E2D0C011405284500CB3032 /* bubble-type5-sm.png in Resources */,
+				5E2D0C021405284500CB3032 /* bubble-type6-sm.png in Resources */,
+				5E2D0C031405284500CB3032 /* bubble-type7-sm.png in Resources */,
+				5E2D0C041405284500CB3032 /* bubble-type8-sm.png in Resources */,
+				5E2D0C051405284500CB3032 /* bubble-type9-sm.png in Resources */,
+				5E2D0C061405284500CB3032 /* bubble-type10-sm.png in Resources */,
+				5E2D0C071405284500CB3032 /* bubble-type11-sm.png in Resources */,
+				5E2D0C081405284500CB3032 /* bubble-type12-sm.png in Resources */,
+				5E2D0C091405284500CB3032 /* bubble-type13-sm.png in Resources */,
+				5E2D0C0A1405284500CB3032 /* bubble-type14-sm.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7184,9 +7233,10 @@
 		5E5811DB12C2EBE2008605C9 /* SystemData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5E9FA08713F6354D001F01CC /* SystemData2.xcdatamodel */,
 				5E5811E012C2EBE2008605C9 /* SystemData.xcdatamodel */,
 			);
-			currentVersion = 5E5811E012C2EBE2008605C9 /* SystemData.xcdatamodel */;
+			currentVersion = 5E9FA08713F6354D001F01CC /* SystemData2.xcdatamodel */;
 			name = SystemData.xcdatamodeld;
 			path = Model/SystemData.xcdatamodeld;
 			sourceTree = "<group>";

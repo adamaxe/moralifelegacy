@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="SystemData.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="562" systemVersion="11A511" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Character" representedClassName="Character">
+        <attribute name="accessoryBottomCharacter" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="accessoryPrimaryCharacter" optional="YES" attributeType="String" defaultValueString=""/>
+        <attribute name="accessorySecondaryCharacter" optional="YES" attributeType="String"/>
+        <attribute name="accessoryTopCharacter" optional="YES" attributeType="String"/>
+        <attribute name="ageCharacter" optional="YES" attributeType="Integer 16" defaultValueString="Young"/>
+        <attribute name="browColor" attributeType="String" defaultValueString="con-mouth1"/>
+        <attribute name="bubbleColor" attributeType="String" defaultValueString="#000000"/>
+        <attribute name="bubbleType" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="eyeCharacter" attributeType="String" defaultValueString="con-eye1"/>
+        <attribute name="eyeColor" attributeType="String" defaultValueString="000000"/>
+        <attribute name="faceCharacter" attributeType="String" defaultValueString="con-nothing"/>
+        <attribute name="mouthCharacter" attributeType="String"/>
+        <attribute name="nameCharacter" attributeType="String" indexed="YES"/>
+        <attribute name="sizeCharacter" attributeType="Decimal" defaultValueString="1"/>
+        <relationship name="story" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Dilemma" inverseName="antagonist" inverseEntity="Dilemma" indexed="YES"/>
+    </entity>
+    <entity name="ConscienceAsset" representedClassName="ConscienceAsset" parentEntity="ReferenceAsset">
+        <attribute name="costAsset" attributeType="Float" defaultValueString="0"/>
+        <attribute name="moralValueAsset" optional="YES" attributeType="Integer 16" defaultValueString="0"/>
+        <attribute name="orientationAsset" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="Dilemma" representedClassName="Dilemma">
+        <attribute name="choiceA" attributeType="String"/>
+        <attribute name="choiceB" attributeType="String"/>
+        <attribute name="dilemmaText" attributeType="String" defaultValueString="What would you do?"/>
+        <attribute name="displayNameDilemma" attributeType="String"/>
+        <attribute name="enthusiasmDilemma" attributeType="Integer 16" defaultValueString="50"/>
+        <attribute name="moodDilemma" attributeType="Integer 16" defaultValueString="50"/>
+        <attribute name="nameDilemma" attributeType="String" indexed="YES"/>
+        <attribute name="rewardADilemma" optional="YES" attributeType="String"/>
+        <attribute name="rewardBDilemma" optional="YES" attributeType="String"/>
+        <attribute name="surrounding" optional="YES" attributeType="String"/>
+        <relationship name="antagonist" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Character" inverseName="story" inverseEntity="Character" indexed="YES"/>
+        <relationship name="moralChoiceA" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Moral" inverseName="dillemmaA" inverseEntity="Moral" indexed="YES"/>
+        <relationship name="moralChoiceB" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Moral" inverseName="dillemmaB" inverseEntity="Moral" indexed="YES"/>
+    </entity>
+    <entity name="Moral" representedClassName="Moral">
+        <attribute name="colorMoral" attributeType="String"/>
+        <attribute name="component" attributeType="String" defaultValueString="NA"/>
+        <attribute name="definitionMoral" optional="YES" attributeType="String"/>
+        <attribute name="displayNameMoral" optional="YES" attributeType="String"/>
+        <attribute name="imageNameMoral" attributeType="String" defaultValueString="card-nothing"/>
+        <attribute name="linkMoral" attributeType="String"/>
+        <attribute name="longDescriptionMoral" attributeType="String" defaultValueString="Moral"/>
+        <attribute name="nameMoral" attributeType="String" defaultValueString="Moral" indexed="YES"/>
+        <attribute name="shortDescriptionMoral" attributeType="String" defaultValueString="Virtue"/>
+        <relationship name="dillemmaA" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Dilemma" inverseName="moralChoiceA" inverseEntity="Dilemma" indexed="YES"/>
+        <relationship name="dillemmaB" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Dilemma" inverseName="moralChoiceB" inverseEntity="Dilemma" indexed="YES"/>
+        <relationship name="relatedReference" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReferenceAsset" inverseName="relatedMoral" inverseEntity="ReferenceAsset" indexed="YES"/>
+    </entity>
+    <entity name="ReferenceAsset" representedClassName="ReferenceAsset" isAbstract="YES">
+        <attribute name="displayNameReference" attributeType="String"/>
+        <attribute name="imageNameReference" attributeType="String" defaultValueString="ref-nothing"/>
+        <attribute name="linkReference" attributeType="String" defaultValueString="www.wikipedia.org"/>
+        <attribute name="longDescriptionReference" attributeType="String"/>
+        <attribute name="nameReference" attributeType="String" indexed="YES"/>
+        <attribute name="originLocation" optional="YES" attributeType="String"/>
+        <attribute name="originYear" attributeType="Integer 16" defaultValueString="1"/>
+        <attribute name="shortDescriptionReference" attributeType="String"/>
+        <relationship name="relatedMoral" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="Moral" inverseName="relatedReference" inverseEntity="Moral" indexed="YES"/>
+    </entity>
+    <entity name="ReferenceBelief" representedClassName="ReferenceBelief" parentEntity="ReferenceAsset">
+        <attribute name="typeBelief" attributeType="String" defaultValueString="Virtue"/>
+        <relationship name="figurehead" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ReferencePerson" inverseName="belief" inverseEntity="ReferencePerson" indexed="YES"/>
+        <relationship name="texts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReferenceText" inverseName="belief" inverseEntity="ReferenceText" indexed="YES"/>
+    </entity>
+    <entity name="ReferencePerson" representedClassName="ReferencePerson" parentEntity="ReferenceAsset">
+        <attribute name="deathYearPerson" optional="YES" attributeType="Integer 16" defaultValueString="1"/>
+        <attribute name="quotePerson" optional="YES" attributeType="String"/>
+        <relationship name="belief" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReferenceBelief" inverseName="figurehead" inverseEntity="ReferenceBelief" indexed="YES"/>
+        <relationship name="oeuvre" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReferenceText" inverseName="author" inverseEntity="ReferenceText" indexed="YES"/>
+    </entity>
+    <entity name="ReferenceReport" representedClassName="ReferenceReport" parentEntity="ReferenceAsset"/>
+    <entity name="ReferenceText" representedClassName="ReferenceText" parentEntity="ReferenceAsset">
+        <attribute name="quote" optional="YES" attributeType="String"/>
+        <relationship name="author" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ReferencePerson" inverseName="oeuvre" inverseEntity="ReferencePerson" indexed="YES"/>
+        <relationship name="belief" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ReferenceBelief" inverseName="texts" inverseEntity="ReferenceBelief" indexed="YES"/>
+        <relationship name="childrenReference" optional="YES" toMany="YES" minCount="1" deletionRule="Nullify" destinationEntity="ReferenceText" inverseName="parentReference" inverseEntity="ReferenceText" indexed="YES"/>
+        <relationship name="parentReference" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ReferenceText" inverseName="childrenReference" inverseEntity="ReferenceText" indexed="YES"/>
+    </entity>
+    <elements>
+        <element name="Moral" positionX="-180" positionY="120" width="128" height="225"/>
+        <element name="ReferenceAsset" positionX="16" positionY="333" width="128" height="180"/>
+        <element name="ReferenceReport" positionX="250" positionY="396" width="128" height="45"/>
+        <element name="Dilemma" positionX="18" positionY="60" width="128" height="240"/>
+        <element name="ConscienceAsset" positionX="-173" positionY="384" width="128" height="90"/>
+        <element name="ReferencePerson" positionX="252" positionY="660" width="162" height="105"/>
+        <element name="Character" positionX="252" positionY="78" width="128" height="270"/>
+        <element name="ReferenceBelief" positionX="-191" positionY="675" width="128" height="90"/>
+        <element name="ReferenceText" positionX="16" positionY="573" width="128" height="120"/>
+    </elements>
+</model>
