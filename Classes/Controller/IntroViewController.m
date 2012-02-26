@@ -129,7 +129,6 @@ the application.
         [UIView commitAnimations];
         [appDelegate.userConscienceView setNeedsDisplay];
         
-        [self setTimers];
         [self switchNow:placeholderID];
         
     } else {
@@ -165,93 +164,11 @@ the application.
  Implementation: In case introduction was interrupted, stop the script, so that User can continue where it left off.
  */
 -(void)stopIntro {
-    [self stopTimers];
+    
+    [thoughtChangeTimer invalidate];
+    thoughtChangeTimer = nil;
         
     [prefs setInteger:messageState forKey:@"introStateRestore"];
-    
-}
-
-#pragma mark -
-#pragma mark Conscience Movement
-
-/**
- Implementation: Randomly float Conscience around screen according to bounds.  Change Monitor facing direction in event of needing to move back to right side of screen.
-*/
--(void) timedMovement {
-	BOOL switchOrientationBool = FALSE;
-	
-	//Create illusion that the conscience is randomly floating around screen
-	CGPoint pos = CGPointMake(20,150);
-	
-	CGPoint posCenter = CGPointMake(consciencePlayground.center.x, consciencePlayground.center.y);
-	CGPoint conCenter = CGPointMake(appDelegate.userConscienceView.center.x, appDelegate.userConscienceView.center.y);
-	pos.x = (10 + arc4random() % 5);
-	pos.y = (20 + arc4random() % 7);
-    
-    //Simulate randomness of movement
-	if (arc4random() % 2 < 1) {
-		posCenter.x += pos.x;
-	}else {
-		posCenter.x -= pos.x;
-	}
-    
-	if (arc4random() % 2 < 1) {
-		posCenter.y += pos.y;
-	}else {
-		posCenter.y -= pos.y;
-	}
-
-	//Ensure that Conscience stays within bounds of area designated
-	if(posCenter.x > 110 || posCenter.x < 70)
-		posCenter.x = 90 + arc4random() % 20;
-	if(posCenter.y > 230 || posCenter.y < 160)
-		posCenter.y = 150 + arc4random() % 50;
-	
-	//Determine if Conscience change direction it is facing
-	if(conCenter.x > 110){
-		
-		if (appDelegate.userConscienceView.directionFacing == kDirectionFacingRight) {
-			switchOrientationBool = TRUE;
-		}
-		
-	}
-    
-    if (appDelegate.userConscienceView.directionFacing == kDirectionFacingLeft) {
-		switchOrientationBool = TRUE;
-	}
-    
-    //Animate the change of facing direction
-	if (switchOrientationBool) {
-        
-		[UIView beginAnimations:@"conscienceFlip" context:nil];
-		[UIView setAnimationDuration:0.25];
-		
-		[UIView setAnimationBeginsFromCurrentState:YES];
-		appDelegate.userConscienceView.alpha = 0;
-		[UIView setAnimationDelegate:appDelegate.userConscienceView]; // self is a view controller
-		[UIView setAnimationDidStopSelector:@selector(removeConscienceInvisibility)];
-        
-		[UIView commitAnimations];
-        
-	}
-    
-    //Conscience Float speed determined by enthusiasm
-    float movementRandom = (1.0/((arc4random() % 7) + 1));  
-    
-    if ((arc4random() % 3 > 0) || switchOrientationBool) {
-        
-        //Animate the change of Conscience location
-        [UIView beginAnimations:@"MoveConscience" context:nil];
-        [UIView setAnimationDuration:(2+movementRandom)];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        
-        
-        appDelegate.userConscienceView.center = posCenter;
-        
-        [UIView commitAnimations];
-        
-    }
     
 }
 
@@ -278,9 +195,6 @@ the application.
 	[UIView commitAnimations];
     [appDelegate.userConscienceView setNeedsDisplay];
     messageState = 0;
-
-	//Begin Monitor movement
-    [self setTimers];
     
     thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText) userInfo:nil repeats:NO];
     
@@ -764,40 +678,6 @@ the application.
     
 }
 
-#pragma mark -
-#pragma mark Conscience Manipulation
-
--(void) zoomConscienceIn{
-        
-	[UIView beginAnimations:@"ZoomIn" context:nil];
-	[UIView setAnimationDuration:1.5];
-	[UIView setAnimationBeginsFromCurrentState:NO];
-    
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargestSize, kConscienceLargestSize);
-	
-	[UIView commitAnimations];
-    [appDelegate.userConscienceView setNeedsDisplay];
-    
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(zoomConscienceOut) userInfo:nil repeats:NO];
-    
-}
-
--(void) zoomConscienceOut{
-    
-	[UIView beginAnimations:@"ZoomOut" context:nil];
-	[UIView setAnimationDuration:1.5];
-	[UIView setAnimationBeginsFromCurrentState:NO];
-    
-    thoughtArea.alpha = 1;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceSize, kConscienceSize);
-	
-	[UIView commitAnimations];
-    [appDelegate.userConscienceView setNeedsDisplay];
-    
-    
-}
-
-
 /**
 Implementation:  Accessorize Conscience with Angel accessories
  */
@@ -946,8 +826,6 @@ Implementation:  Return conscience to view
     [prefs setBool:FALSE forKey:@"firstLaunch"];
     messageState = -1;
     
-    //Stop Conscience Movement
-	[self stopTimers];
     
     [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
     
@@ -1006,8 +884,6 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
  */
 -(void)dismissIntroModal{
 
-	[self stopTimers];
-
 	//Fade view controller from view
 	[UIView beginAnimations:@"HideBubble" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -1031,34 +907,6 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	[invocation setArgument:&timerBool atIndex:2];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
-	
-}
-
-/**
- Implementation:  Set the movement timer.  If UserConscience is asleep, it shouldn't move
- */
-- (void) setTimers{
-	        
-    //Restart Conscience movement after User has moved it
-    if(![moveTimer isValid]){
-        moveTimer = [NSTimer scheduledTimerWithTimeInterval:kMovementInterval target:self selector:@selector(timedMovement) userInfo:nil repeats:YES];
-    }
-    
-}
-
-/**
- Implementation:  Stop the movement timer whenever UserConscience moves out of Home screen (since movement is not allowed)
- */
-- (void) stopTimers{
-
-	//Stop the conscience from moving
-    if ([moveTimer isValid]) {
-    
-        [moveTimer invalidate];
-        moveTimer = nil;
-    }
-    
-    thoughtChangeTimer = nil;
 	
 }
 
@@ -1130,9 +978,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 			
 			//Get the first touch.
 			UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
-			
-			[self stopTimers];
-			
+    
 			CGPoint conscienceCenter = [touch locationInView:self.view];
 			UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];
 			
@@ -1148,21 +994,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 				appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
 				[appDelegate.userConscienceView.conscienceBubbleView setNeedsDisplay];	
 				[UIView commitAnimations];
-				
-				[UIView beginAnimations:@"MoveConscience" context:nil];
-				[UIView setAnimationDuration:animationDuration];
-				[UIView setAnimationBeginsFromCurrentState:YES];
-				conscienceCenter.x = conscienceCenter.x-20;
-				conscienceCenter.y = conscienceCenter.y-100;
-				
-				if (conscienceCenter.y < 60) {
-					conscienceCenter.y = 60;
-				}
-				
-				appDelegate.userConscienceView.center = conscienceCenter;
-                
-				[UIView commitAnimations];
-				
+								
 			}			
 			
 		} break;
@@ -1177,9 +1009,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
     //	[self clearTouches];
     
     initialTapDistance = -1;
-    
-	[self setTimers];
-	
+    	
 	//Return the Conscience to regular size in event of touched or zoomed
 	[UIView beginAnimations:@"ResizeConscienceBig" context:nil];
 	[UIView setAnimationDuration:0.2];
@@ -1199,18 +1029,6 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
     
 }
 
-- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-        
-	animationDuration = 0.1;
-	
-	if([touches count] < 2){
-		[self touchesBegan:touches withEvent:event];
-	}
-	
-	animationDuration = 1;
-	
-}
-
 #pragma mark -
 #pragma mark Memory management
 
@@ -1223,12 +1041,15 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    thoughtChangeTimer = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
+    
+    [thoughtChangeTimer invalidate];
     [super dealloc];
     
 }

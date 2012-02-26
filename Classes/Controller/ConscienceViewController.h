@@ -36,10 +36,8 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 	IBOutlet UIButton *virtueButton;				/**< button surrounding picture frame to cue virtue thought */
 	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue virtue thought */
 	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceModalViewController */
-
-	NSTimer *moveTimer;				/**< controls Conscience movement */
+    
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
-	NSTimer *holdTapTimer;				/**< determines if long press was initiated */
 	NSTimer *thoughtFadeTimer;			/**< determines when Conscience thought disappears */
 
 	CGFloat animationDuration;			/**< assists in gesture recognition */	
@@ -49,12 +47,7 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 	NSMutableString *homeViceDisplayName;	/**< most prominent vice text */
     NSMutableString *highestRankName;       /**< highest achieved rank */
 
-	BOOL isBeingMoved;
-
 }
-
--(CGFloat) angleBetweenLinesInRadians: (CGPoint)line1Start toPoint:(CGPoint)line1End fromPoint:(CGPoint)line2Start toPoint:(CGPoint)line2End;
--(CGFloat) distanceBetweenTwoPoints:(CGPoint)fromPoint toPoint:(CGPoint)toPoint;
 
 /**
 Present a thought bubble to the User, suggesting that the UserConscience is talking
@@ -82,18 +75,6 @@ Accepts User input in order to determine which thought Bubble to dislay or Consc
 Cancel all of shooken UserConscience behavior
  */
 -(void) shakeEnd;
-/**
-Move the UserConscience around screen
- */
--(void) timedMovement;
-/**
-Setup the movement timer
- */
--(void) setTimers;
-/**
-Stop the movement timer
- */
--(void) stopTimers;
 /**
 Create welcome message thought bubble for UserConscience
  */

@@ -31,7 +31,6 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 	IBOutlet UIButton *thoughtButton;			/**< area in which thought bubble appears */
 	IBOutlet UIButton *nextButton;              /**< area in which thought bubble appears */	
     
-	NSTimer *moveTimer;                 /**< controls Conscience movement */
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
 	NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
 	
@@ -68,15 +67,7 @@ Fade ConscienceView back from being faded out and changed
  */
 -(void)revealConscience;
 /**
-Start timers for Conscience movement
- */
--(void)setTimers;
-/**
-Stop timers for Conscience movement
- */
--(void)stopTimers;
-/**
-In case of interruption, stop Intro and movement timers
+In case of interruption, stop Intro, save state
  */
 -(void)stopIntro;
 /**
