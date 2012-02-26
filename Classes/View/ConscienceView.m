@@ -908,7 +908,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	
 }
 
-- (IBAction) changeEyeDirection{
+- (void) changeEyeDirection{
 	
 	static int expressionIndex = 0;
 	//int eyeIndex = kEyeBothIndex;

@@ -150,7 +150,9 @@ enum webViewTags{
 	kDeckCard6ButtonTag = 3029,
     kHomeVirtueButtonTag = 3030,
     kHomeViceButtonTag = 3031,
-    kHomeRankButtonTag = 3032
+    kHomeRankButtonTag = 3032,
+    kHomeThoughtButtonTag = 3033
+
     
 };
 
