@@ -51,7 +51,7 @@ the application.
 	animationDuration = 1.0;
 	messageState = 0;
 	isImpatient = TRUE;
-    
+
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -93,6 +93,12 @@ the application.
 	//Save state of intro
     if (messageState >=0) {
         [self stopIntro];
+    }
+    
+    if(thoughtChangeTimer != nil)
+    {
+//        [thoughtChangeTimer invalidate];
+        thoughtChangeTimer = nil;
     }
     
 }
@@ -599,7 +605,7 @@ the application.
     [self animateStatusText];
 
     [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons.jpg"]];
-    [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to see what I'm thinking."];
+    [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to dismiss it."];
     
 	[UIView beginAnimations:@"labelFade13" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -826,8 +832,8 @@ Implementation:  Return conscience to view
     [prefs setBool:FALSE forKey:@"firstLaunch"];
     messageState = -1;
     
-    
-    [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
+    [thoughtChangeTimer invalidate];
+    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
     
 }
 
@@ -1049,7 +1055,6 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 
 - (void)dealloc {
     
-    [thoughtChangeTimer invalidate];
     [super dealloc];
     
 }
