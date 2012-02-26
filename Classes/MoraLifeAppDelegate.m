@@ -123,22 +123,21 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	navController3.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav3Label",@"Label for Navigation 3");
 	navController3.tabBarItem.image = [UIImage imageNamed:@"tabbar-ref.png"];
 	navController3.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	
-	
-	//[navController1 pushViewController:homeViewController1 animated:NO];
+		
 	[navController1 pushViewController:conscienceViewController1 animated:NO];
-	[navController2	pushViewController:choiceIntViewController1 animated:NO];
+	
+    [navController2	pushViewController:choiceIntViewController1 animated:NO];
 	[navController3	pushViewController:referenceViewController1 animated:NO];
 	
-	//[homeViewController1 release];
-	[conscienceViewController1 release];
+    [conscienceViewController1 release];
 	[choiceIntViewController1 release];
 	[referenceViewController1 release];
 	
+    //Menubar removal
 	CGFloat cgf = 0.8;
 	
     // Override point for customization after application launch
-	mainMenuTabBarCont.viewControllers = [NSArray arrayWithObjects:navController1, navController2, navController3, nil];
+	[mainMenuTabBarCont setViewControllers:[NSArray arrayWithObjects:navController1, navController2, navController3, nil]];
 	mainMenuTabBarCont.title = NSLocalizedString(@"PrimaryMenuTitle",@"Label for Primary Tab Menu");
 	mainMenuTabBarCont.accessibilityHint = NSLocalizedString(@"PrimaryMenuHint",@"Hint for Primary Tab Menu");
 	mainMenuTabBarCont.accessibilityLabel = NSLocalizedString(@"PrimaryMenuLabel",@"Label for Primary Tab Menu");
@@ -150,7 +149,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	[navController3 release];
 		
 	application.applicationSupportsShakeToEdit = YES;
-        
+    
 	[window addSubview:mainMenuTabBarCont.view];
 	[window makeKeyAndVisible];
 	
@@ -273,11 +272,9 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
         
         NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:defaultStorePath error:&error];
         NSDate *defaultFileDate =[dictionary objectForKey:NSFileModificationDate];
-        NSDate *today =[NSDate date];
         dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:preloadData error:&error];
         NSDate *preloadFileDate =[dictionary objectForKey:NSFileModificationDate];
-        
-        NSLog(@"today's date: %@, defaultDate: %@, preloadDate: %@", today, defaultFileDate, preloadFileDate);
+
         
         if ([defaultFileDate compare:preloadFileDate] == NSOrderedDescending) {
             NSLog(@"file overridden");
@@ -285,22 +282,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
             [fileManager copyItemAtPath:defaultStorePath toPath:preloadData  error:&error];
         }
         
-        
-//        switch ([defaultFileDate compare:preloadFileDate]){
-//            case NSOrderedAscending:NSLog(@"default Newer");break;
-//            case NSOrderedSame:NSLog(@"Same");break;
-//            case NSOrderedDescending:NSLog(@"default Older:overridden");[fileManager removeItemAtPath:preloadData error:&error];
-//[fileManager copyItemAtPath:defaultStorePath toPath:preloadData  error:&error];break;
-//                
-//        }
-        
-        
-        //        if (![[[today dateByAddingTimeInterval:-(60*60*24)] earlierDate:fileDate] isEqualToDate:fileDate]) {
-        //            //file is less than 24 hours old, use this file.
-        //        }
-        //        else{
-        //            //file is older than 24 hours, replace it
-        //        }
     }
 
 
