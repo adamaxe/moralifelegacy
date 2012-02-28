@@ -38,10 +38,8 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 	
 	IBOutlet UIImageView *moralType;		/**< image to depict current status of view (Virtue/Vice) */
 	IBOutlet UIButton *moralTypeButton;		/**< button to switch between Virtue/Vice */
-	/** @todo rename to moralSortButton */
-	IBOutlet UIButton *moralListButton;		/**< button to toggle sort type (Name/Weight) */
-	/** @todo rename to moralOrderButton */
-	IBOutlet UIButton *moralSortButton;		/**< button to toggle order type (Asc/Des) */
+	IBOutlet UIButton *moralSortButton;		/**< button to toggle sort type (Name/Weight) */
+	IBOutlet UIButton *moralOrderButton;		/**< button to toggle order type (Asc/Des) */
 	IBOutlet UITableView *reportTableView;	/**< table to house results */
     IBOutlet UILabel *moralTypeLabel;       /**< is report virtue or vice */
 }

@@ -131,20 +131,20 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
             case 1:{    
                 if (isAlphabetical) {
                     isAlphabetical = FALSE;
-                    [moralListButton setTitle:@"%" forState: UIControlStateNormal];
+                    [moralSortButton setTitle:@"%" forState: UIControlStateNormal];
                 } else {
                     isAlphabetical = TRUE;
-                    [moralListButton setTitle:@"A" forState: UIControlStateNormal];
+                    [moralSortButton setTitle:@"A" forState: UIControlStateNormal];
                 }
             }
                 break;
             case 2:{    
                 if (isAscending) {
                     isAscending = FALSE;
-                    [moralSortButton setTitle:@"Des" forState: UIControlStateNormal];
+                    [moralOrderButton setTitle:@"Des" forState: UIControlStateNormal];
                 } else {
                     isAscending = TRUE;
-                    [moralSortButton setTitle:@"Asc" forState: UIControlStateNormal];
+                    [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
                     
                 }
             }
@@ -371,54 +371,6 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 	[reportTableView reloadData];
 
 }
-
-
-/**
-Generate random list of Colors that differ enough to be displayed consecutively
--(void)generatePieColors{
-        
-    CGFloat colorDecrement1 = 1.0;
-    CGFloat colorDecrement2 = 1.0;
-    CGFloat colorDecrement3 = 1.0;
-    
-    int randomSwitch1 = 0;
-    int randomSwitch2 = 0;
-    int randomSwitch3 = 0;
-    CGFloat randomDifference1 = 0.0;
-    CGFloat randomDifference2 = 0.0;
-    CGFloat randomDifference3 = 0.0;
-    
-    for (int i = 0; i < [pieValues count]; i++) {
-        
-        randomSwitch1 = arc4random() % 100;
-        randomSwitch2 = arc4random() % 100;
-        randomSwitch3 = arc4random() % 100;
-        
-        randomDifference1 = randomSwitch1/100.0;
-        randomDifference2 = randomSwitch2/100.0;
-        randomDifference3 = randomSwitch3/100.0;
-        
-        
-        switch (i%3) {
-            case 0:
-                [pieColors addObject:[UIColor colorWithRed:colorDecrement1 green:randomDifference2 blue:randomDifference3 alpha:1]];
-                if (colorDecrement1 > 0.2){ colorDecrement1 -= 0.2;} else { colorDecrement1 = 1;};
-                break;
-            case 1:
-                [pieColors addObject:[UIColor colorWithRed:randomDifference1 green:colorDecrement2 blue:randomDifference3 alpha:1]];
-                if (colorDecrement2 > 0.2){ colorDecrement2 -= 0.2;} else { colorDecrement2 = 1;};
-                break;
-            case 2:
-                [pieColors addObject:[UIColor colorWithRed:randomDifference1 green:randomDifference2 blue:colorDecrement3 alpha:1]];
-                if (colorDecrement3 > 0.2){ colorDecrement3 -= 0.2;} else { colorDecrement3 = 1;};
-                break;                
-            default:
-                break;
-        }
-        
-    }
-}
-*/
 
 #pragma mark -
 #pragma mark Table view data source
