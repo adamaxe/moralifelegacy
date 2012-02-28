@@ -383,7 +383,9 @@ static int thoughtVersion = 0;
 				
                 [self createMovementReaction];
 				
-			}			
+			}	
+            
+            /** @todo implement ability to dismiss Conscience Thought */
 			
 
 		} break;
@@ -888,10 +890,6 @@ Change the Rank picture and description.
 }
 
 - (void)viewDidUnload {
-    
-    homeViceDisplayName = nil;
-    homeViceDisplayName = nil;
-    highestRankName = nil;
     
     [super viewDidUnload];
     // Release any retained subviews of the main view.
