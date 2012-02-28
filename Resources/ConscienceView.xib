@@ -3,12 +3,12 @@
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
 		<string key="IBDocument.SystemVersion">11D50</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2166</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2177</string>
 		<string key="IBDocument.AppKitVersion">1138.32</string>
 		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1166</string>
+			<string key="NS.object.0">1173</string>
 		</object>
 		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -239,7 +239,6 @@
 						<string key="NSFrame">{{47, 133}, {80, 22}}</string>
 						<reference key="NSSuperview" ref="457160686"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -837,7 +836,6 @@
 							<string>rankLabel</string>
 							<string>thoughtArea</string>
 							<string>thoughtBubbleView1</string>
-							<string>thoughtButton</string>
 							<string>viceButton</string>
 							<string>viceImage</string>
 							<string>viceLabel</string>
@@ -855,7 +853,6 @@
 							<string>UILabel</string>
 							<string>UIView</string>
 							<string>UIImageView</string>
-							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
@@ -876,7 +873,6 @@
 							<string>rankLabel</string>
 							<string>thoughtArea</string>
 							<string>thoughtBubbleView1</string>
-							<string>thoughtButton</string>
 							<string>viceButton</string>
 							<string>viceImage</string>
 							<string>viceLabel</string>
@@ -917,10 +913,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">thoughtBubbleView1</string>
 								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">thoughtButton</string>
-								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">viceButton</string>
@@ -986,6 +978,6 @@
 				<string>{320, 150}</string>
 			</object>
 		</object>
-		<string key="IBCocoaTouchPluginVersion">1166</string>
+		<string key="IBCocoaTouchPluginVersion">1173</string>
 	</data>
 </archive>
