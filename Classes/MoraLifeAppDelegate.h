@@ -13,7 +13,7 @@ Moralife is the iPhone application which will provide its User with a Digital Co
  
 @mainpage Moralife
 @see ConscienceViewController
-@version 0.5
+@version 1.0
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @class MoralifeAppDelegate
 @date 03/28/2010

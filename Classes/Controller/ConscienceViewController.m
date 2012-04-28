@@ -817,7 +817,7 @@ Change the Rank picture and description.
 
 	//In case of no granted Ranks, setup the default User
 	[rankImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
-	[highestRankName setString:@"FNG"];       
+	[highestRankName setString:@"Neophyte"];       
     
 	//Ensure that at least one rank is present
 	if ([objects count] > 0) {

@@ -42,6 +42,9 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 	    
 }
 
+@property (nonatomic, retain) NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
+
+
 /**
 Accepts User input to select the last choice in the Introduction
 @param id Object which requested method

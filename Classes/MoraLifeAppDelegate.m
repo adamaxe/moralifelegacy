@@ -6,6 +6,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 @class MoralifeAppDelegate MoralifeAppDelegate.h
 */
 
+
+
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceViewController.h"
 #import "XMLParser.h"

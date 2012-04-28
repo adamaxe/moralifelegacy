@@ -12,9 +12,10 @@ Implementation: Test the properties for the helptext/titles and Boolean of Consc
 - (void)setUp{
     
     [super setUp];
-    
+
     testingHelpViewController = [[ConscienceHelpViewController alloc] init];
-    testingView = testingHelpViewController.view;
+
+    testingView = [testingHelpViewController view];
     isConscienceOnScreenTest = FALSE;
     
 }
@@ -41,7 +42,9 @@ Implementation: Test the properties for the helptext/titles and Boolean of Consc
 
 - (void)testViewExists{
 
+    STAssertNotNil(testingHelpViewController, @"The view controller exists.");    
     STAssertNotNil(testingView, @"The view controller should have an associated view.");
+        
 }
 
 - (void)testDefaultHelpContentTest{

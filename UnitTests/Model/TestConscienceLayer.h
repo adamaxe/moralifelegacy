@@ -10,9 +10,6 @@ Unit Test for ConscienceLayer.  Test the properties for the Conscience Layer der
 
 #define USE_APPLICATION_UNIT_TEST 0
 
-#import <SenTestingKit/SenTestingKit.h>
-#import <UIKit/UIKit.h>
-
 @class ConscienceLayer;
 
 @interface TestConscienceLayer : SenTestCase {

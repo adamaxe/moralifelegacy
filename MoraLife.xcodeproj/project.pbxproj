@@ -127,6 +127,24 @@
 		5E2EBFCA130633FE00AFC1C5 /* sur-nightcloudy-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2EBFC5130633FE00AFC1C5 /* sur-nightcloudy-sm.png */; };
 		5E2EBFCB130633FE00AFC1C5 /* sur-park-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2EBFC6130633FE00AFC1C5 /* sur-park-sm.png */; };
 		5E2EBFCC130633FE00AFC1C5 /* sur-watership-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2EBFC7130633FE00AFC1C5 /* sur-watership-sm.png */; };
+		5E2F5DC71548E0FF007DED2A /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E43FE1D12BDDB0700BF5C28 /* CoreData.framework */; };
+		5E2F5DC81548E14A007DED2A /* ReferenceBelief.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8EB1310E22D00F8EB0B /* ReferenceBelief.m */; };
+		5E2F5DC91548E195007DED2A /* ReferenceReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8EF1310E22D00F8EB0B /* ReferenceReport.m */; };
+		5E2F5DCA1548E195007DED2A /* ReferenceText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8F11310E22D00F8EB0B /* ReferenceText.m */; };
+		5E2F5DCB1548E195007DED2A /* UserChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFEE56E13121F8E00B83762 /* UserChoice.m */; };
+		5E2F5DCC1548E195007DED2A /* UserDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED8F71310E22D00F8EB0B /* UserDilemma.m */; };
+		5E2F5DCD1548E195007DED2A /* UserLuck.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED9141310FA4700F8EB0B /* UserLuck.m */; };
+		5E2F5DCE1548E195007DED2A /* UserEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFED91A1310FCE300F8EB0B /* UserEntry.m */; };
+		5E2F5DCF1548E195007DED2A /* ReferencePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E777E9313161B8C00E35222 /* ReferencePerson.m */; };
+		5E2F5DD01548E195007DED2A /* ReferenceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E862D461314DEC600B4FC4F /* ReferenceAsset.m */; };
+		5E2F5DD11548E195007DED2A /* UserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3CB178133C1BD000247A6F /* UserCollectable.m */; };
+		5E2F5DD21548E195007DED2A /* Dilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E554EAE134BF10E00554D82 /* Dilemma.m */; };
+		5E2F5DD31548E195007DED2A /* Moral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E480860137E4E2500C1E0CF /* Moral.m */; };
+		5E2F5DD41548E195007DED2A /* UserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA542271380B9BB009077B7 /* UserCharacter.m */; };
+		5E2F5DD51548E195007DED2A /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA5422A1380BB13009077B7 /* Character.m */; };
+		5E2F5DD61548E195007DED2A /* ConscienceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E336EF8139C6CD6006BF34F /* ConscienceAsset.m */; };
+		5E2F5DD71548E466007DED2A /* UserData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E340D5412F1E9FF004CDEE9 /* UserData.xcdatamodeld */; };
+		5E2F5DD81548E469007DED2A /* SystemData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E5811DB12C2EBE2008605C9 /* SystemData.xcdatamodeld */; };
 		5E303CC611FCE32700BB4E10 /* ConscienceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E303CC211FCE32700BB4E10 /* ConscienceLayer.m */; };
 		5E303D1311FD12DD00BB4E10 /* ConscienceBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E303D0F11FD12DD00BB4E10 /* ConscienceBody.m */; };
 		5E31BDA51374BB5200742F0A /* acc-sec-tail-thin-orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E31BDA41374BB5200742F0A /* acc-sec-tail-thin-orange.png */; };
@@ -1342,6 +1360,9 @@
 		5EBC9AD613524007001ACD7A /* ref-you.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9AD413524007001ACD7A /* ref-you.jpg */; };
 		5EBC9ADC1352A42E001ACD7A /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */; };
 		5EBC9ADF1352A4CD001ACD7A /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */; };
+		5EBED2F91548D28000AFE44D /* TestCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */; };
+		5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */; };
+		5EBED3011548D5EC00AFE44D /* TestReferenceBelief.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */; };
 		5EC246D312711DF100421807 /* card-addiction.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246BF12711DF100421807 /* card-addiction.png */; };
 		5EC246D412711DF100421807 /* card-caprice.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C012711DF100421807 /* card-caprice.png */; };
 		5EC246D512711DF100421807 /* card-idolatry.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C112711DF100421807 /* card-idolatry.png */; };
@@ -3005,6 +3026,9 @@
 		5EBC9AD91352A42B001ACD7A /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IntroView.xib; path = Resources/IntroView.xib; sourceTree = "<group>"; };
+		5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataStack.h; path = Model/TestCoreDataStack.h; sourceTree = "<group>"; };
+		5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataStack.m; path = Model/TestCoreDataStack.m; sourceTree = "<group>"; };
+		5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceBelief.m; sourceTree = "<group>"; };
 		5EC246BF12711DF100421807 /* card-addiction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-addiction.png"; path = "Resources/images/interface/cards/card-addiction.png"; sourceTree = "<group>"; };
 		5EC246C012711DF100421807 /* card-caprice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-caprice.png"; path = "Resources/images/interface/cards/card-caprice.png"; sourceTree = "<group>"; };
 		5EC246C112711DF100421807 /* card-idolatry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-idolatry.png"; path = "Resources/images/interface/cards/card-idolatry.png"; sourceTree = "<group>"; };
@@ -3333,6 +3357,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E2F5DC71548E0FF007DED2A /* CoreData.framework in Frameworks */,
 				5E99C5C113C552A6001F5CB8 /* QuartzCore.framework in Frameworks */,
 				5EA1D225130E38A200BA81D6 /* UIKit.framework in Frameworks */,
 				5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */,
@@ -5000,6 +5025,9 @@
 		5E99C5A013C542AC001F5CB8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5EBED2FE1548D5EC00AFE44D /* Generated */,
+				5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */,
+				5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */,
 				5E99C5A813C542E7001F5CB8 /* TestConscienceLayer.h */,
 				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
 				5E99C5AA13C542E7001F5CB8 /* TestConsciencePath.h */,
@@ -5038,6 +5066,15 @@
 				5EA1D22E130E38A200BA81D6 /* UnitTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5EBED2FE1548D5EC00AFE44D /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */,
+			);
+			name = Generated;
+			path = Model/Generated;
 			sourceTree = "<group>";
 		};
 		5EDEFBF711C9AC9300CFFE1F /* conscience */ = {
@@ -5220,9 +5257,9 @@
 				5EFED9191310FCDE00F8EB0B /* UserEntry.h */,
 				5EFED91A1310FCE300F8EB0B /* UserEntry.m */,
 				5E862D451314DEC600B4FC4F /* ReferenceAsset.h */,
+				5E862D461314DEC600B4FC4F /* ReferenceAsset.m */,
 				5E777E9213161B8C00E35222 /* ReferencePerson.h */,
 				5E777E9313161B8C00E35222 /* ReferencePerson.m */,
-				5E862D461314DEC600B4FC4F /* ReferenceAsset.m */,
 				5E3CB177133C1BD000247A6F /* UserCollectable.h */,
 				5E3CB178133C1BD000247A6F /* UserCollectable.m */,
 				5E554EAD134BF10E00554D82 /* Dilemma.h */,
@@ -6942,6 +6979,7 @@
 				5EA5422B1380BB13009077B7 /* Character.m in Sources */,
 				5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */,
 				5E336EF9139C6CD6006BF34F /* ConscienceAsset.m in Sources */,
+				5EBED2F91548D28000AFE44D /* TestCoreDataStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6966,6 +7004,25 @@
 				5E99C5B613C542F5001F5CB8 /* TestConscienceObjectView.m in Sources */,
 				5EB0C33A13F2529F0093FCA6 /* TestGraphView.m in Sources */,
 				5EB0C33B13F2533B0093FCA6 /* GraphView.m in Sources */,
+				5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */,
+				5EBED3011548D5EC00AFE44D /* TestReferenceBelief.m in Sources */,
+				5E2F5DC81548E14A007DED2A /* ReferenceBelief.m in Sources */,
+				5E2F5DC91548E195007DED2A /* ReferenceReport.m in Sources */,
+				5E2F5DCA1548E195007DED2A /* ReferenceText.m in Sources */,
+				5E2F5DCB1548E195007DED2A /* UserChoice.m in Sources */,
+				5E2F5DCC1548E195007DED2A /* UserDilemma.m in Sources */,
+				5E2F5DCD1548E195007DED2A /* UserLuck.m in Sources */,
+				5E2F5DCE1548E195007DED2A /* UserEntry.m in Sources */,
+				5E2F5DCF1548E195007DED2A /* ReferencePerson.m in Sources */,
+				5E2F5DD01548E195007DED2A /* ReferenceAsset.m in Sources */,
+				5E2F5DD11548E195007DED2A /* UserCollectable.m in Sources */,
+				5E2F5DD21548E195007DED2A /* Dilemma.m in Sources */,
+				5E2F5DD31548E195007DED2A /* Moral.m in Sources */,
+				5E2F5DD41548E195007DED2A /* UserCharacter.m in Sources */,
+				5E2F5DD51548E195007DED2A /* Character.m in Sources */,
+				5E2F5DD61548E195007DED2A /* ConscienceAsset.m in Sources */,
+				5E2F5DD71548E466007DED2A /* UserData.xcdatamodeld in Sources */,
+				5E2F5DD81548E469007DED2A /* SystemData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
