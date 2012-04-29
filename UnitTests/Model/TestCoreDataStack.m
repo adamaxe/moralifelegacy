@@ -23,25 +23,26 @@
 }
 
 - (id)insert: (Class) testClass {
+    
     return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(testClass) inManagedObjectContext:self.managedObjectContext];
 }
 
 - (void)save {
-    NSError *error;
+    
+    NSError *error = nil;
     
     @try {
         [self.managedObjectContext save: &error];
     }
     @catch (NSException *exception) {
-        
-        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext save failed %@", error] userInfo: nil] autorelease]);
-
+        @throw(exception); 
     }    
     
-//    [self.managedObjectContext save: &error];
-//    if (error) {
-//        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext save failed %@", error] userInfo: nil] autorelease]);
-//    }
+    if (error) {
+        NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data save failed: %@\n\n", [error description]];
+        [NSException raise:@"CoreDataSaveError" format:errorMessage];
+    }
+
 }
 
 - (void)delete: (id) object {
@@ -58,13 +59,14 @@
         results = [self.managedObjectContext executeFetchRequest: fetch error: &error];
     }
     @catch (NSException *exception) {
-        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext fetch failed %@", error] userInfo: nil] autorelease]);
-
+        @throw(exception);
     }    
-//    NSArray *results = [self.managedObjectContext executeFetchRequest: fetch error: &error];
-//    if (error) {
-//        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext fetch failed %@", error] userInfo: nil] autorelease]);
-//    }    
+    
+    if (error) {
+        NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data fetch failed: %@\n\n", [error description]];
+        [NSException raise:@"CoreDataFetchError" format:errorMessage];
+    }
+    
     return results;
 }
 

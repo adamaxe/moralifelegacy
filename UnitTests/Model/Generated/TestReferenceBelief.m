@@ -1,10 +1,10 @@
 #import "TestCoreDataStack.h"
 #import "ReferenceBelief.h"
-#import "ReferencePerson.h"
-#import "ReferenceAsset.h"
+//#import "ReferencePerson.h"
+//#import "ReferenceAsset.h"
 
 @interface TestReferenceBelief : SenTestCase {
-    __strong TestCoreDataStack *coreData;
+    TestCoreDataStack *coreData;
 }
 
 @end
@@ -16,11 +16,30 @@
     coreData = [[TestCoreDataStack alloc] init];
 }
 
+-(void)tearDown {
+    [coreData release];
+}
+
 - (void)testBeliefCanBeCreated {
     NSString *belief = @"test belief";
-
+    NSString *shortDescription = @"short description";
+    NSNumber *originYear = [NSNumber numberWithInt:2010];
+    NSString *name = @"name";
+    NSString *longDescription = @"long description";
+    NSString *link = @"http://www.teamaxe.org";    
+    NSString *displayName = @"display name";
+    NSString *imageName = @"image name";
+    
     ReferenceBelief *testBelief = [coreData insert:ReferenceBelief.class];
     testBelief.typeBelief = belief;
+    testBelief.shortDescriptionReference = shortDescription;
+    testBelief.originYear = originYear;
+    testBelief.nameReference = name;
+    testBelief.longDescriptionReference = longDescription;
+    testBelief.linkReference = link;
+    testBelief.displayNameReference = displayName;
+    testBelief.imageNameReference = imageName;
+    
     [coreData save];
     
     NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
@@ -28,12 +47,22 @@
     STAssertEquals(beliefs.count, (NSUInteger) 1, @"");
     ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
     STAssertEqualObjects(retrieved.typeBelief, belief, @"Belief Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
+    STAssertEquals(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
+
+    
 }
 
 - (void)testBeliefWithoutRequiredTypeBelief {
-//    ReferenceBelief *testBelief = [coreData insert:ReferenceBelief.class];
-    
-//    STAssertThrows([coreData save], @"CoreData should have thrown, but didn't.");
+    ReferenceBelief *testBelief = [coreData insert:ReferenceBelief.class];
+    [testBelief class];
+
+    STAssertThrows([coreData save], @"CD should've thrown on ReferenceBelief");
 }
 
 //- (void)testBeliefAttributeAccessors {
