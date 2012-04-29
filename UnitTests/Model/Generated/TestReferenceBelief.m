@@ -94,17 +94,17 @@
 
 - (void)testBeliefReferentialIntegrity {
     
-    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for Relationship test");
+    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for RI test");
 
     testPerson.belief = [NSSet setWithObject:testBelief];
     testText.belief = [NSSet setWithObject:testBelief];    
 
-    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for Relationship test");
+    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for RI test");
     
     testBelief.figurehead = testPerson;
     testBelief.texts = [NSSet setWithObject:testText];
 
-    STAssertNoThrow([coreData save], @"ReferenceBelief can't be updated for Relationship test");
+    STAssertNoThrow([coreData save], @"ReferenceBelief can't be updated for RI test");
     
     NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
     
@@ -126,8 +126,41 @@
 
 }
 
+- (void)testBeliefReferentialIntegrityUpdate {
+    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for RI Update test");
+        
+    testPerson.belief = [NSSet setWithObject:testBelief];
+    testText.belief = [NSSet setWithObject:testBelief];    
+    
+    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for RI Update test");
+    
+    testBelief.figurehead = testPerson;
+    testBelief.texts = [NSSet setWithObject:testText];
+    
+    NSString *newFigureheadName = @"New figurehead name";
+    testPerson.nameReference = newFigureheadName;
+    NSString *newTextName = @"New text name";
+    testText.nameReference = newTextName;
+
+    STAssertNoThrow([coreData save], @"ReferencePerson can't be updated for RI Update test");
+    
+    NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
+    ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
+    STAssertEqualObjects(retrieved.figurehead.nameReference, newFigureheadName, @"figurehead RI update failed.");
+    STAssertEqualObjects([[retrieved.texts anyObject] nameReference], newTextName, @"text RI update failed.");
+    
+}
+
 - (void)testBeliefReferentialIntegrityDelete {
     STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for RI Delete test");
+    
+    testPerson.belief = [NSSet setWithObject:testBelief];
+    testText.belief = [NSSet setWithObject:testBelief];    
+
+    testBelief.figurehead = testPerson;
+    testBelief.texts = [NSSet setWithObject:testText];    
+    
+    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for RI Delete test");
     
     STAssertNoThrow([coreData delete:testBelief], @"ReferenceBelief can't be deleted");
     
