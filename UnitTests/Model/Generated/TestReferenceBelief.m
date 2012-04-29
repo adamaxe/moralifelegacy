@@ -1,36 +1,42 @@
 #import "TestCoreDataStack.h"
 #import "ReferenceBelief.h"
-//#import "ReferencePerson.h"
-//#import "ReferenceAsset.h"
+#import "ReferencePerson.h"
+#import "ReferenceText.h"
 
 @interface TestReferenceBelief : SenTestCase {
     TestCoreDataStack *coreData;
+    ReferenceBelief *testBelief;
+    ReferenceText *testText;
+    ReferencePerson *testPerson;
+
+    NSString *belief;
+    NSString *shortDescription;
+    NSNumber *originYear;
+    NSString *name;
+    NSString *longDescription;
+    NSString *link;    
+    NSString *displayName;
+    NSString *imageName;
+
 }
 
 @end
 
 @implementation TestReferenceBelief
 
-
 - (void)setUp {
     coreData = [[TestCoreDataStack alloc] init];
-}
-
--(void)tearDown {
-    [coreData release];
-}
-
-- (void)testBeliefCanBeCreated {
-    NSString *belief = @"test belief";
-    NSString *shortDescription = @"short description";
-    NSNumber *originYear = [NSNumber numberWithInt:2010];
-    NSString *name = @"name";
-    NSString *longDescription = @"long description";
-    NSString *link = @"http://www.teamaxe.org";    
-    NSString *displayName = @"display name";
-    NSString *imageName = @"image name";
     
-    ReferenceBelief *testBelief = [coreData insert:ReferenceBelief.class];
+    belief = @"test belief";
+    shortDescription = @"short description";
+    originYear = [NSNumber numberWithInt:2010];
+    name = @"name";
+    longDescription = @"long description";
+    link = @"http://www.teamaxe.org";    
+    displayName = @"display name";
+    imageName = @"image name";
+    
+    testBelief = [coreData insert:ReferenceBelief.class];
     testBelief.typeBelief = belief;
     testBelief.shortDescriptionReference = shortDescription;
     testBelief.originYear = originYear;
@@ -40,13 +46,42 @@
     testBelief.displayNameReference = displayName;
     testBelief.imageNameReference = imageName;
     
-    [coreData save];
+    testPerson = [coreData insert:ReferencePerson.class];
+    testPerson.shortDescriptionReference = shortDescription;
+    testPerson.originYear = originYear;
+    testPerson.nameReference = name;
+    testPerson.longDescriptionReference = longDescription;
+    testPerson.linkReference = link;
+    testPerson.displayNameReference = displayName;
+    testPerson.imageNameReference = imageName;
+    
+    testText = [coreData insert:ReferenceText.class];
+    testText.shortDescriptionReference = shortDescription;
+    testText.originYear = originYear;
+    testText.nameReference = name;
+    testText.longDescriptionReference = longDescription;
+    testText.linkReference = link;
+    testText.displayNameReference = displayName;
+    testText.imageNameReference = imageName;  
+    
+}
+
+- (void)testBeliefCanBeCreated {
+    
+    //testBelief, testPerson and testText are created in setup    
+    STAssertNoThrow([coreData save], @"ReferenceBelief can't be created");
+        
+}
+
+- (void)testBeliefAccessorsAreFunctional {
+    
+    STAssertNoThrow([coreData save], @"ReferenceBelief can't be created for Accessor test");
     
     NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
     
     STAssertEquals(beliefs.count, (NSUInteger) 1, @"");
     ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
-    STAssertEqualObjects(retrieved.typeBelief, belief, @"Belief Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.typeBelief, belief, @"typeBelief Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
     STAssertEquals(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
     STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
@@ -54,45 +89,62 @@
     STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
+    
+}
+
+- (void)testBeliefReferentialIntegrity {
+    
+    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for Relationship test");
+
+    testPerson.belief = [NSSet setWithObject:testBelief];
+    testText.belief = [NSSet setWithObject:testBelief];    
+
+    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for Relationship test");
+    
+    testBelief.figurehead = testPerson;
+    testBelief.texts = [NSSet setWithObject:testText];
+
+    STAssertNoThrow([coreData save], @"ReferenceBelief can't be updated for Relationship test");
+    
+    NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
+    
+    STAssertEquals(beliefs.count, (NSUInteger) 1, @"");
+    ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
+    STAssertEqualObjects(retrieved.figurehead, testPerson, @"figurehead Relationship failed.");
+    STAssertEqualObjects([retrieved.texts anyObject], testText, @"text Relationship failed.");
+    
+}
+
+- (void)testBeliefDeletion {
+    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for Delete test");
+
+    STAssertNoThrow([coreData delete:testBelief], @"ReferenceBelief can't be deleted");
+    
+    NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
+    
+    STAssertEquals(beliefs.count, (NSUInteger) 0, @"ReferenceBelief is still present after delete");
+
+}
+
+- (void)testBeliefReferentialIntegrityDelete {
+    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for RI Delete test");
+    
+    STAssertNoThrow([coreData delete:testBelief], @"ReferenceBelief can't be deleted");
+    
+    NSArray *texts = [coreData fetch:ReferenceText.class];
+    NSArray *people = [coreData fetch:ReferencePerson.class];
+    
+    STAssertEquals(texts.count, (NSUInteger) 1, @"ReferenceText should not have been cascade deleted");
+    STAssertEquals(people.count, (NSUInteger) 1, @"ReferencePerson should not have been cascade deleted");
 
     
 }
 
 - (void)testBeliefWithoutRequiredTypeBelief {
-    ReferenceBelief *testBelief = [coreData insert:ReferenceBelief.class];
-    [testBelief class];
+    ReferenceBelief *testBeliefBad = [coreData insert:ReferenceBelief.class];
+    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testBeliefBad.class];
 
-    STAssertThrows([coreData save], @"CD should've thrown on ReferenceBelief");
+    STAssertThrows([coreData save], errorMessage);
 }
-
-//- (void)testBeliefAttributeAccessors {
-//    NSString *userUri = @"http://example.com/user.json";
-//    NSString *username = @"user1";
-//    NSString *firstName = @"Han";
-//    NSString *lastName = @"Solo";
-//    NSString *boardUri = @"http://example.com/board.json";
-//    NSString *boardname = @"board1";    
-//    
-//    RDRBoard *testBoard = [coreData insert:RDRBoard.class];
-//    testBoard.uri = boardUri;
-//    testBoard.name = boardname;
-//    [coreData save];    
-//    
-//    RDRUser *testUser = [coreData insert:RDRUser.class];
-//    testUser.uri = userUri;
-//    testUser.username = username;
-//    testUser.firstName = firstName;
-//    testUser.lastName = lastName;
-//    [coreData save];
-//    
-//    testBoard.users = [NSSet setWithObject:testUser];
-//    
-//    NSArray *boards = [coreData fetch:RDRBoard.class];
-//    
-//    RDRBoard *retrievedBoard = [boards objectAtIndex: 0];
-//    RDRUser *retrievedBoardsUser = [retrievedBoard.users anyObject];
-//    GHAssertEqualStrings(retrievedBoardsUser.uri, userUri, @"");
-//    GHAssertEqualStrings(retrievedBoardsUser.username, username, @"");
-//}
 
 @end

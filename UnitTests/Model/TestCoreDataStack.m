@@ -46,11 +46,19 @@
 }
 
 - (void)delete: (id) object {
-    [self.managedObjectContext deleteObject: object];
+        
+    @try {
+        [self.managedObjectContext deleteObject: object];
+        [self save];
+    }
+    @catch (NSException *exception) {
+        @throw(exception); 
+    }    
+    
 }
 
 - (NSArray *)fetch: (Class) testClass {
-    NSError *error;
+    NSError *error = nil;
     NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(testClass)];
 
     NSArray *results;
