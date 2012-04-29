@@ -70,17 +70,17 @@
 - (void)testTextCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([coreData save], @"ReferenceText can't be created.");
+    STAssertNoThrow([coreData save], @"ReferenceText can't be created");
         
 }
 
 - (void)testTextAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"ReferenceText can't be created for Accessor test.");
+    STAssertNoThrow([coreData save], @"ReferenceText can't be created for Accessor test");
     
     NSArray *texts = [coreData fetch:ReferenceText.class];
     
-    STAssertEquals(texts.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
+    STAssertEquals(texts.count, (NSUInteger) 1, @"");
     ReferenceText *retrieved = [texts objectAtIndex: 0];
     STAssertEqualObjects(retrieved.quote, quote, @"typeBelief Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
@@ -95,68 +95,24 @@
 
 - (void)testTextReferentialIntegrity {
     
-    STAssertNoThrow([coreData save], @"ReferenceText/Belief/Person can't be created for RI test.");
+    STAssertNoThrow([coreData save], @"ReferenceText/Belief/Person can't be created for RI test");
 
-    ReferenceText *childText1 = [coreData insert:ReferenceText.class];
-    ReferenceText *childText2 = [coreData insert:ReferenceText.class];    
-    ReferenceText *parentText = [coreData insert:ReferenceText.class];
-
-    childText1.shortDescriptionReference = shortDescription;
-    childText1.originYear = originYear;
-    childText1.nameReference = @"child1";
-    childText1.longDescriptionReference = longDescription;
-    childText1.linkReference = link;
-    childText1.displayNameReference = displayName;
-    childText1.imageNameReference = imageName;
-    childText1.parentReference = testText;
-   
-    childText2.shortDescriptionReference = shortDescription;
-    childText2.originYear = originYear;
-    childText2.nameReference = @"child2";
-    childText2.longDescriptionReference = longDescription;
-    childText2.linkReference = link;
-    childText2.displayNameReference = displayName;
-    childText2.imageNameReference = imageName;   
-    childText1.parentReference = testText;    
-    
-    parentText.shortDescriptionReference = shortDescription;
-    parentText.originYear = originYear;
-    parentText.nameReference = @"parent";
-    parentText.longDescriptionReference = longDescription;
-    parentText.linkReference = link;
-    parentText.displayNameReference = displayName;
-    parentText.imageNameReference = imageName; 
-        
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    
 
-    STAssertNoThrow([coreData save], @"ReferenceText, ReferencePerson or ReferenceBelief relationships can't be created for RI test.");
-    
-    testText.childrenReference = [NSSet setWithObjects:childText1, childText2, nil];
-    testText.parentReference = parentText;
+    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceBelief relationships can't be created for RI test");
     
     testText.author = testPerson;
     testText.belief = [NSSet setWithObject:testBelief];
 
-    STAssertNoThrow([coreData save], @"ReferenceText can't be updated for RI test.");
+    STAssertNoThrow([coreData save], @"ReferenceText can't be updated for RI test");
     
-    NSArray *allTexts = [coreData fetch:ReferenceText.class];
-    STAssertEquals(allTexts.count, (NSUInteger) 4, @"There should be 4 ReferenceTexts in the context (parent and children).");
+    NSArray *texts = [coreData fetch:ReferenceText.class];
     
-    NSError *error = nil;
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"nameReference == %@", name];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([ReferenceText class])];
-    request.predicate = searchPredicate;
-    NSArray *texts = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
-
+    STAssertEquals(texts.count, (NSUInteger) 1, @"");
     ReferenceText *retrieved = [texts objectAtIndex: 0];
-    NSArray *childrenTexts = [[retrieved childrenReference] allObjects];
-    
-    STAssertTrue([childrenTexts containsObject:childText1], @"child Relationship 1 failed.");
-    STAssertTrue([childrenTexts containsObject:childText2], @"child Relationship 2 failed.");
     STAssertEqualObjects(retrieved.author, testPerson, @"author Relationship failed.");
     STAssertEqualObjects([retrieved.belief anyObject], testBelief, @"belief Relationship failed.");
-    STAssertEqualObjects(retrieved.parentReference, parentText, @"parentReference Relationship failed.");    
     
 }
 
