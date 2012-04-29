@@ -115,17 +115,6 @@
     
 }
 
-- (void)testBeliefDeletion {
-    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for Delete test");
-
-    STAssertNoThrow([coreData delete:testBelief], @"ReferenceBelief can't be deleted");
-    
-    NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
-    
-    STAssertEquals(beliefs.count, (NSUInteger) 0, @"ReferenceBelief is still present after delete");
-
-}
-
 - (void)testBeliefReferentialIntegrityUpdate {
     STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for RI Update test");
         
@@ -151,6 +140,17 @@
     
 }
 
+- (void)testBeliefDeletion {
+    STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for Delete test");
+    
+    STAssertNoThrow([coreData delete:testBelief], @"ReferenceBelief can't be deleted");
+    
+    NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
+    
+    STAssertEquals(beliefs.count, (NSUInteger) 0, @"ReferenceBelief is still present after delete");
+    
+}
+
 - (void)testBeliefReferentialIntegrityDelete {
     STAssertNoThrow([coreData save], @"ReferenceBelief/Text/Person can't be created for RI Delete test");
     
@@ -169,7 +169,6 @@
     
     STAssertEquals(texts.count, (NSUInteger) 1, @"ReferenceText should not have been cascade deleted");
     STAssertEquals(people.count, (NSUInteger) 1, @"ReferencePerson should not have been cascade deleted");
-
     
 }
 
