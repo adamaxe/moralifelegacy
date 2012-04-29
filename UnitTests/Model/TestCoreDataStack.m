@@ -28,10 +28,20 @@
 
 - (void)save {
     NSError *error;
-    [self.managedObjectContext save: &error];
-    if (error) {
-        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext save failed %@", error] userInfo: nil] autorelease]);
+    
+    @try {
+        [self.managedObjectContext save: &error];
     }
+    @catch (NSException *exception) {
+        
+        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext save failed %@", error] userInfo: nil] autorelease]);
+
+    }    
+    
+//    [self.managedObjectContext save: &error];
+//    if (error) {
+//        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext save failed %@", error] userInfo: nil] autorelease]);
+//    }
 }
 
 - (void)delete: (id) object {
@@ -41,10 +51,20 @@
 - (NSArray *)fetch: (Class) testClass {
     NSError *error;
     NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(testClass)];
-    NSArray *results = [self.managedObjectContext executeFetchRequest: fetch error: &error];
-    if (error) {
+
+    NSArray *results;
+    
+    @try {
+        results = [self.managedObjectContext executeFetchRequest: fetch error: &error];
+    }
+    @catch (NSException *exception) {
         @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext fetch failed %@", error] userInfo: nil] autorelease]);
+
     }    
+//    NSArray *results = [self.managedObjectContext executeFetchRequest: fetch error: &error];
+//    if (error) {
+//        @throw([[[NSException alloc] initWithName: @"AssertionFailed" reason: [NSString stringWithFormat: @"ManagedObjectContext fetch failed %@", error] userInfo: nil] autorelease]);
+//    }    
     return results;
 }
 

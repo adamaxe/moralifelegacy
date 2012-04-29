@@ -27,11 +27,11 @@
     
     STAssertEquals(beliefs.count, (NSUInteger) 1, @"");
     ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
-    STAssertEqualObjects(retrieved.typeBelief, testBelief, @"Belief Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.typeBelief, belief, @"Belief Getter/Setter failed.");
 }
 
 - (void)testBeliefWithoutRequiredTypeBelief {
-    ReferenceBelief *testBelief = [coreData insert:ReferenceBelief.class];
+//    ReferenceBelief *testBelief = [coreData insert:ReferenceBelief.class];
     
 //    STAssertThrows([coreData save], @"CoreData should have thrown, but didn't.");
 }
