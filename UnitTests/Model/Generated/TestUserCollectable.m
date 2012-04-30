@@ -67,4 +67,11 @@
     
 }
 
+- (void)testUserCollectableWithoutRequiredAttributes {
+    UserCollectable *testUserCollectableBad = [coreData insert:UserCollectable.class];
+    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserCollectableBad.class];
+    
+    STAssertThrows([coreData save], errorMessage);
+}
+
 @end

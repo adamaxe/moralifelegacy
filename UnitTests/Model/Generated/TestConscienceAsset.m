@@ -83,8 +83,6 @@
     
 }
 
-
-
 - (void)testConscienceAssetDeletion {
     STAssertNoThrow([coreData save], @"ConscienceAsset/Belief/Text can't be created for Delete test");
     
@@ -94,6 +92,13 @@
     
     STAssertEquals(assets.count, (NSUInteger) 0, @"ConscienceAsset is still present after delete");
     
+}
+
+- (void)testConscienceAssetWithoutRequiredAttributes {
+    ConscienceAsset *testConscienceAssetBad = [coreData insert:ConscienceAsset.class];
+    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testConscienceAssetBad.class];
+    
+    STAssertThrows([coreData save], errorMessage);
 }
 
 @end

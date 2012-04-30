@@ -172,7 +172,7 @@
     
 }
 
-- (void)testBeliefWithoutRequiredTypeBelief {
+- (void)testBeliefWithoutRequiredAttributes {
     ReferenceBelief *testBeliefBad = [coreData insert:ReferenceBelief.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testBeliefBad.class];
 
