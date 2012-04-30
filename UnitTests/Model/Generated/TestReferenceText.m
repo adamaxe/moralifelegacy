@@ -130,7 +130,7 @@
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    
 
-    STAssertNoThrow([coreData save], @"ReferenceText, ReferencePerson or ReferenceBelief relationships can't be created for RI test.");
+    STAssertNoThrow([coreData save], @"ReferenceText/Person/Belief relationships can't be created for RI test.");
     
     testText.childrenReference = [NSSet setWithObjects:childText1, childText2, nil];
     testText.parentReference = parentText;
@@ -166,7 +166,7 @@
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    
     
-    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceBelief relationships can't be created for RI Update test");
+    STAssertNoThrow([coreData save], @"ReferencePerson/Belief relationships can't be created for RI Update test");
     
     testText.author = testPerson;
     testText.belief = [NSSet setWithObject:testBelief];
@@ -205,14 +205,14 @@
     testText.author = testPerson;
     testText.belief = [NSSet setWithObject:testBelief];    
     
-    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceBelief relationships can't be created for RI Delete test");
+    STAssertNoThrow([coreData save], @"ReferencePerso/Belief relationships can't be created for RI Delete test");
     
     STAssertNoThrow([coreData delete:testText], @"ReferenceText can't be deleted");
     
     NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
     NSArray *people = [coreData fetch:ReferencePerson.class];
     
-    STAssertEquals(beliefs.count, (NSUInteger) 1, @"ReferenceText should not have been cascade deleted");
+    STAssertEquals(beliefs.count, (NSUInteger) 1, @"ReferenceBelief should not have been cascade deleted");
     STAssertEquals(people.count, (NSUInteger) 1, @"ReferencePerson should not have been cascade deleted");
     
 }

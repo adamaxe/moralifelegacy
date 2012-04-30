@@ -79,7 +79,7 @@
     
     NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
     
-    STAssertEquals(beliefs.count, (NSUInteger) 1, @"");
+    STAssertEquals(beliefs.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
     ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
     STAssertEqualObjects(retrieved.typeBelief, belief, @"typeBelief Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
@@ -99,7 +99,7 @@
     testPerson.belief = [NSSet setWithObject:testBelief];
     testText.belief = [NSSet setWithObject:testBelief];    
 
-    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for RI test");
+    STAssertNoThrow([coreData save], @"ReferencePerson/Text relationships can't be created for RI test");
     
     testBelief.figurehead = testPerson;
     testBelief.texts = [NSSet setWithObject:testText];
@@ -108,7 +108,7 @@
     
     NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
     
-    STAssertEquals(beliefs.count, (NSUInteger) 1, @"");
+    STAssertEquals(beliefs.count, (NSUInteger) 1, @"There should only be 1 RefenceBelief in the context.");
     ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
     STAssertEqualObjects(retrieved.figurehead, testPerson, @"figurehead Relationship failed.");
     STAssertEqualObjects([retrieved.texts anyObject], testText, @"text Relationship failed.");
@@ -121,7 +121,7 @@
     testPerson.belief = [NSSet setWithObject:testBelief];
     testText.belief = [NSSet setWithObject:testBelief];    
     
-    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for RI Update test");
+    STAssertNoThrow([coreData save], @"ReferencePerson/Text relationships can't be created for RI Update test");
     
     testBelief.figurehead = testPerson;
     testBelief.texts = [NSSet setWithObject:testText];
@@ -160,7 +160,7 @@
     testBelief.figurehead = testPerson;
     testBelief.texts = [NSSet setWithObject:testText];    
     
-    STAssertNoThrow([coreData save], @"ReferencePerson or ReferenceText relationships can't be created for RI Delete test");
+    STAssertNoThrow([coreData save], @"ReferencePerson/Text relationships can't be created for RI Delete test");
     
     STAssertNoThrow([coreData delete:testBelief], @"ReferenceBelief can't be deleted");
     
