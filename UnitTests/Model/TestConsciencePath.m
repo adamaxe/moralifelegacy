@@ -1,10 +1,27 @@
 /**
-TestConsciencePath Implementation.  Test the vector construction properties for a single Conscience Path.
+ Unit Test for ConsciencePath.  Test the properties for the Conscience Path derived from svg.
  
-@class TestConsciencePath TestConsciencePath.h
+ Test the vector construction properties for a single Conscience Path.
+ 
+ @class TestConsciencePath
+ 
+ @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @date 06/25/2011
+ @file
  */
 
-#import "TestConsciencePath.h"
+#define USE_APPLICATION_UNIT_TEST 0
+
+@class ConsciencePath;
+
+@interface TestConsciencePath : SenTestCase {
+    
+    ConsciencePath *testingConsciencePath;
+    
+}
+
+@end
+
 #import "ConsciencePath.h"
 
 @implementation TestConsciencePath
@@ -37,11 +54,17 @@ TestConsciencePath Implementation.  Test the vector construction properties for 
 
 #else                           // all code under test must be linked into the Unit Test bundle
 
+/**
+ Ensure that the ConscienceLayer was able to init.
+ */
 - (void)testConsciencePathExists{
 
     STAssertNotNil(testingConsciencePath, @"The Conscience Path was not init'ed.");
 }
 
+/**
+ Ensure that the default values of the properties from init were executed.
+ */
 - (void)testDefaultConsciencePath{
     
     int countPaths = [[testingConsciencePath pathPoints] count];
@@ -60,6 +83,9 @@ TestConsciencePath Implementation.  Test the vector construction properties for 
 
 }
 
+/**
+ Ensure that the properties can be set/get correctly.
+ */
 - (void)testConsciencePathProperties{
 
 	NSMutableArray *pathPoints = [[NSMutableArray alloc] initWithCapacity:1];

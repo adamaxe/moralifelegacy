@@ -1,10 +1,27 @@
 /**
-TestConscienceObjectView Implementation.  Test the vector construction properties for the Conscience facial features.
+ Unit Test for ConscienceObjectView.  Test the properties for the Conscience Object (facial features).
  
-@class TestConscienceObjectView TestConscienceObjectView.h
+ Test the vector construction properties for the Conscience facial features.
+ 
+ @class TestConscienceObjectView
+ 
+ @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @date 06/25/2011
+ @file
  */
 
-#import "TestConscienceObjectView.h"
+#define USE_APPLICATION_UNIT_TEST 0
+
+@class ConscienceObjectView;
+
+@interface TestConscienceObjectView : SenTestCase {
+    
+    ConscienceObjectView *testingConscienceObjectView;
+    
+}
+
+@end
+
 #import "ConscienceObjectView.h"
 #import "ConscienceLayer.h"
 #import "ConscienceGradient.h"
@@ -38,11 +55,17 @@ TestConscienceObjectView Implementation.  Test the vector construction propertie
 
 #else                           // all code under test must be linked into the Unit Test bundle
 
+/**
+ Ensure that the ConscienceObjectView was able to init.
+ */
 - (void)testConscienceObjectExists{
 
     STAssertNotNil(testingConscienceObjectView, @"The Conscience object was not init'ed.");
 }
 
+/**
+ Ensure that the default values of the properties from init were executed.
+ */
 - (void)testDefaultConscienceObject{
 
 	UIColor *testColor = [UIColor clearColor];
@@ -58,6 +81,9 @@ TestConscienceObjectView Implementation.  Test the vector construction propertie
 
 }
 
+/**
+ Ensure that the properties can be set/get correctly.
+ */
 - (void)testConscienceObjectProperties{
 
 	NSMutableDictionary *testLayers = [[NSMutableDictionary alloc] initWithCapacity:1];

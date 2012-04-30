@@ -1,12 +1,29 @@
 /**
-TestConscienceLayer Implementation.  Test the vector construction properties for a single Conscience Layer.
+ Unit Test for ConscienceLayer.  Test the properties for the Conscience Layer derived from svg.
  
-@class TestConscienceLayer TestConscienceLayer.h
+ Test the vector construction properties for a single Conscience Layer.
+ 
+ @class TestConscienceLayer
+ 
+ @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @date 06/25/2011
+ @file
  */
 
-#import "TestConscienceLayer.h"
+#define USE_APPLICATION_UNIT_TEST 0
+
 #import "ConscienceLayer.h"
 #import "ConsciencePath.h"
+
+@class ConscienceLayer;
+
+@interface TestConscienceLayer : SenTestCase {
+    
+    ConscienceLayer *testingConscienceLayer;
+    
+}
+
+@end
 
 @implementation TestConscienceLayer
 
@@ -38,11 +55,17 @@ TestConscienceLayer Implementation.  Test the vector construction properties for
 
 #else                           // all code under test must be linked into the Unit Test bundle
 
+/**
+ Ensure that the ConscienceLayer was able to init.
+ */
 - (void)testConscienceLayerExists{
 
     STAssertNotNil(testingConscienceLayer, @"The Conscience Layer was not init'ed.");
 }
 
+/**
+ Ensure that the default values of the properties from init were executed.
+ */
 - (void)testDefaultConscienceLayer{
 
     NSLog(@"paths count:%d", [[testingConscienceLayer consciencePaths] count]);
@@ -57,6 +80,9 @@ TestConscienceLayer Implementation.  Test the vector construction properties for
 
 }
 
+/**
+ Ensure that the properties can be set/get correctly.
+ */
 - (void)testConscienceLayerProperties{
 
 	NSString *testColor = @"FFFFFF";

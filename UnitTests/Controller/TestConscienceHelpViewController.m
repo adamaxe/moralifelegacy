@@ -1,10 +1,26 @@
 /**
-Implementation: Test the properties for the helptext/titles and Boolean of Conscience appearance.
+ Unit Test for ConscienceHelpViewController.  Test the properties for the helptext/titles and Boolean of Conscience appearance.
  
-@class TestConscienceHelpViewController TestConscienceHelpViewController.h
+ @class TestConscienceHelpViewController 
+ @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @date 06/25/2011
+ @file
  */
 
-#import "TestConscienceHelpViewController.h"
+#define USE_APPLICATION_UNIT_TEST 0
+
+@class ConscienceHelpViewController;
+
+@interface TestConscienceHelpViewController : SenTestCase {
+    
+    ConscienceHelpViewController *testingHelpViewController;
+    BOOL isConscienceOnScreenTest;
+    UIView *testingView;
+    
+}
+
+@end
+
 #import "ConscienceHelpViewController.h"
 
 @implementation TestConscienceHelpViewController
@@ -40,6 +56,9 @@ Implementation: Test the properties for the helptext/titles and Boolean of Consc
 
 #else                           // all code under test must be linked into the Unit Test bundle
 
+/**
+ Ensure that the UIViewController was able to init.
+ */
 - (void)testViewExists{
 
     STAssertNotNil(testingHelpViewController, @"The view controller exists.");    
@@ -47,6 +66,9 @@ Implementation: Test the properties for the helptext/titles and Boolean of Consc
         
 }
 
+/**
+ Ensure that the default values of the properties from init were executed.
+ */
 - (void)testDefaultHelpContentTest{
 
     int defaultNumberOfTitles = [[testingHelpViewController helpTitles] count];
@@ -56,6 +78,9 @@ Implementation: Test the properties for the helptext/titles and Boolean of Consc
 
 }
 
+/**
+ Ensure that the properties can be set/get correctly.
+ */
 - (void)testHelpContentProperties{
 
     NSString *testTitle = @"Test Title";

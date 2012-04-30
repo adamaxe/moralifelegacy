@@ -1,10 +1,25 @@
 /**
-TestConscienceBubbleView Implementation.  Test the properties for the visualization of the Conscience bubble.
+ Unit Test for ConscienceBubbleView.  Test the properties for the Conscience Bubble visualization.
  
-@class TestConscienceBubbleView TestConscienceBubbleView.h
+ @class TestConscienceBubbleView
+ 
+ @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @date 06/25/2011
+ @file
  */
 
-#import "TestConscienceBubbleView.h"
+#define USE_APPLICATION_UNIT_TEST 0
+
+@class ConscienceBubbleView;
+
+@interface TestConscienceBubbleView: SenTestCase {
+    
+    ConscienceBubbleView *testingConscienceBubbleView;
+    
+}
+
+@end
+
 #import "ConscienceBubbleView.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
@@ -39,11 +54,17 @@ TestConscienceBubbleView Implementation.  Test the properties for the visualizat
 
 #else                           // all code under test must be linked into the Unit Test bundle
 
+/**
+ Ensure that the AccessoryObjectView was able to init.
+ */
 - (void)testBubbleExists{
 
     STAssertNotNil(testingConscienceBubbleView, @"The bubble was not init'ed.");
 }
 
+/**
+ Ensure that the default values of the properties from init were executed.
+ */
 - (void)testDefaultBubbleProperties{
     
 	STAssertEquals(kBubbleType, [testingConscienceBubbleView bubbleType], @"Default bubble type inaccurate");
@@ -53,6 +74,9 @@ TestConscienceBubbleView Implementation.  Test the properties for the visualizat
 
 }
 
+/**
+ Ensure that the properties can be set/get correctly.
+ */
 - (void)testBubbleProperties{
 
 	int testBubbleType = 1;

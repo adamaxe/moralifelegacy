@@ -1,10 +1,25 @@
 /**
-TestAccessoryObjectView Implementation.  Test the filename property for the Conscience accessory.
+ Unit Test for AccessoryObjectView.  Test the properties for the Conscience Accessories
  
-@class TestAccessoryObjectView TestAccessoryObjectView.h
+ @class TestAccessoryObjectView
+ 
+ @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @date 06/25/2011
+ @file
  */
 
-#import "TestAccessoryObjectView.h"
+#define USE_APPLICATION_UNIT_TEST 0
+
+@class AccessoryObjectView;
+
+@interface TestAccessoryObjectView : SenTestCase {
+    
+    AccessoryObjectView *testingAccessoryObjectView;
+    
+}
+
+@end
+
 #import "AccessoryObjectView.h"
 
 @implementation TestAccessoryObjectView
@@ -36,16 +51,25 @@ TestAccessoryObjectView Implementation.  Test the filename property for the Cons
 
 #else                           // all code under test must be linked into the Unit Test bundle
 
+/**
+ Ensure that the AccessoryObjectView was able to init.
+ */
 - (void)testAccessoryExists{
 
     STAssertNotNil(testingAccessoryObjectView, @"The accessory was not init'ed.");
 }
 
+/**
+ Ensure that the default values of the properties from init were executed.
+ */
 - (void)testDefaultAccessory{
 
     STAssertEqualObjects(kAccessoryFileNameResource, [testingAccessoryObjectView accessoryFilename], @"Default accessory name inaccurate.");
 }
 
+/**
+ Ensure that the properties can be set/get correctly.
+ */
 - (void)testAccessoryProperties{
 
     NSString *testFilename = @"testAccessory";

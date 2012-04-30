@@ -1,10 +1,22 @@
 /**
-Implementation: Unit Tests to ensure proper init/alloc of Pie Chart.
-
-@class TestGraphView TestGraphView.h
+ TestGraphView.h Unit Tests for Graph.  Unit Tests to ensure proper init/alloc of Pie Chart.
+ 
+ @author Copyright Team Axe, LLC. http://www.teamaxe.org, All rights reserved.
+ @class TestGraphView
+ @date 03/30/2011
+ @file
  */
 
-#import "TestGraphView.h"
+#define USE_APPLICATION_UNIT_TEST 0
+
+@class GraphView;
+
+@interface TestGraphView : SenTestCase {
+    GraphView *testingGraphView;
+}
+
+@end
+
 #import "GraphView.h"
 
 const int kGraphHeight = 240;
@@ -37,10 +49,17 @@ const int kGraphWidth = 240;
 
 #else                           // all code under test must be linked into the Unit Test bundle
 
+/**
+ Ensure that the GraphView was able to init.
+ */
 - (void)testGraphExists{
     
     STAssertNotNil(testingGraphView, @"The graph was not init'ed.");
 }
+
+/**
+ Ensure that the default values of the data/colors from init were executed.
+ */
 
 - (void)testDefaultData{
     
@@ -48,6 +67,9 @@ const int kGraphWidth = 240;
     STAssertEqualObjects([UIColor redColor], [[testingGraphView pieColors] objectAtIndex:0], @"Default Graph Color inaccurate.");
 }
 
+/**
+ Ensure that the properties can be set/get correctly.
+ */
 - (void)testGraphProperties{
 
     NSNumber *pieValue1 = [[NSNumber alloc] initWithFloat:30.0];
