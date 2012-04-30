@@ -1255,6 +1255,7 @@
 		5EA01A2A1346C872001E8581 /* ref-meerabai.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A241346C872001E8581 /* ref-meerabai.jpg */; };
 		5EA01A2B1346C872001E8581 /* ref-tiradentes-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A251346C872001E8581 /* ref-tiradentes-sm.png */; };
 		5EA01A2C1346C872001E8581 /* ref-tiradentes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A261346C872001E8581 /* ref-tiradentes.jpg */; };
+		5EA108DB154E3234008A7936 /* TestUserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DA154E3234008A7936 /* TestUserCollectable.m */; };
 		5EA1D225130E38A200BA81D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -2905,6 +2906,7 @@
 		5EA01A241346C872001E8581 /* ref-meerabai.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-meerabai.jpg"; path = "Resources/images/reference/ref-meerabai.jpg"; sourceTree = "<group>"; };
 		5EA01A251346C872001E8581 /* ref-tiradentes-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-tiradentes-sm.png"; path = "Resources/images/reference/ref-tiradentes-sm.png"; sourceTree = "<group>"; };
 		5EA01A261346C872001E8581 /* ref-tiradentes.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-tiradentes.jpg"; path = "Resources/images/reference/ref-tiradentes.jpg"; sourceTree = "<group>"; };
+		5EA108DA154E3234008A7936 /* TestUserCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCollectable.m; sourceTree = "<group>"; };
 		5EA1D224130E38A200BA81D6 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA1D22A130E38A200BA81D6 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		5EA1D22C130E38A200BA81D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -5057,6 +5059,7 @@
 		5EBED2FE1548D5EC00AFE44D /* Generated */ = {
 			isa = PBXGroup;
 			children = (
+				5EA108DA154E3234008A7936 /* TestUserCollectable.m */,
 				5E7FC824154E17E50051D494 /* TestConscienceAsset.m */,
 				5E7FC822154E0FB60051D494 /* TestReferencePerson.m */,
 				5E7FC820154DDFF80051D494 /* TestReferenceText.m */,
@@ -7013,6 +7016,7 @@
 				5E7FC821154DDFF80051D494 /* TestReferenceText.m in Sources */,
 				5E7FC823154E0FB60051D494 /* TestReferencePerson.m in Sources */,
 				5E7FC825154E17E50051D494 /* TestConscienceAsset.m in Sources */,
+				5EA108DB154E3234008A7936 /* TestUserCollectable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
