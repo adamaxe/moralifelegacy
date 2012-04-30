@@ -15,6 +15,13 @@
 @property (nonatomic, retain) NSManagedObjectContext *managedObjectContext; /**< Provide handle to MOC for other functions */
 
 /**
+ Inserts an NSManagedObject
+ @param NSString filename of managedObjectModel (no extension)
+ @return id ManagedObjectContext
+ */
+- (id)initWithManagedObjectModel: (NSString *) managedObjectModelName;
+
+/**
 Inserts an NSManagedObject
  @param Class type of Class to be inserted
  @return id Class type that was sent for insertion

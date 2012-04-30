@@ -1,7 +1,9 @@
 #import <CoreData/CoreData.h>
 #import "TestCoreDataStack.h"
 
-@implementation TestCoreDataStack
+@implementation TestCoreDataStack {
+    NSString *objectModelName;  /**< filename of managedObjectModel */
+}
 
 @synthesize managedObjectContext = _managedObjectContext;
 
@@ -9,8 +11,11 @@
     self = [super init];
     if (self) {
         
+        if (objectModelName == nil) {
+            objectModelName = @"SystemData";
+        }
         
-        NSURL *modelURL = [[NSBundle bundleForClass:TestCoreDataStack.class] URLForResource:@"SystemData" withExtension:@"momd"];
+        NSURL *modelURL = [[NSBundle bundleForClass:TestCoreDataStack.class] URLForResource:objectModelName withExtension:@"momd"];
         NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL: modelURL] autorelease];
 
         NSPersistentStoreCoordinator *persistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: managedObjectModel] autorelease];
@@ -20,6 +25,14 @@
         [self.managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
     return self;
+}
+
+- (id)initWithManagedObjectModel: (NSString *) managedObjectModelName {
+    
+    objectModelName = managedObjectModelName;
+    
+    return [self init];
+
 }
 
 - (id)insert: (Class) testClass {
