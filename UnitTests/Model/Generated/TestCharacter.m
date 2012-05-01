@@ -1,9 +1,11 @@
 #import "TestCoreDataStack.h"
 #import "Character.h"
+#import "Dilemma.h"
 
 @interface TestCharacter: SenTestCase {
     TestCoreDataStack *coreData;
     Character *testCharacter;
+    Dilemma *testDilemma;
     
     NSString * characterAccessoryPrimary;
     NSString * characterAccessorySecondary;
@@ -20,7 +22,8 @@
     NSString * characterBrowColor;
     NSString * characterBubbleColor;
     NSDecimalNumber * characterSize;
-    NSNumber * characterBubbleType;    
+    NSNumber * characterBubbleType;
+
 }
 
 @end
@@ -45,7 +48,7 @@
     characterBubbleColor = @"bubbleColor";
     characterSize = [NSDecimalNumber decimalNumberWithString:@"1.0"];
     characterBubbleType = [NSNumber numberWithFloat:1.0];
-    
+        
     testCharacter = [coreData insert:Character.class];
     
     testCharacter.accessoryPrimaryCharacter = characterAccessoryPrimary;
@@ -62,6 +65,18 @@
     testCharacter.bubbleColor = characterBubbleColor;
     testCharacter.sizeCharacter = characterSize;
     testCharacter.bubbleType = characterBubbleType;
+    
+    testDilemma = [coreData insert:Dilemma.class];
+    testDilemma.rewardADilemma = @"dilemma";
+    testDilemma.choiceB = @"choiceB";
+    testDilemma.moodDilemma  = [NSNumber numberWithFloat:1.0];
+    testDilemma.displayNameDilemma = @"displayName";
+    testDilemma.surrounding = @"surrounding";
+    testDilemma.nameDilemma = @"name";
+    testDilemma.rewardBDilemma = @"reward";
+    testDilemma.choiceA = @"choice";
+    testDilemma.enthusiasmDilemma = [NSNumber numberWithFloat:1.0];
+    testDilemma.dilemmaText = @"text";
     
 }
 
@@ -98,6 +113,40 @@
     
 }
 
+- (void)testCharacterReferentialIntegrity {
+    
+    STAssertNoThrow([coreData save], @"Character/Dilemma can't be created for RI test");
+
+    testDilemma.antagonist = testCharacter;
+    
+    STAssertNoThrow([coreData save], @"Character/Dilemma relationships can't be created for RI test");
+            
+    NSArray *characters = [coreData fetch:Character.class];
+    
+    Character *retrieved = [characters objectAtIndex: 0];
+    STAssertEqualObjects([retrieved.story anyObject], testDilemma, @"story Relationship failed.");
+    
+}
+
+- (void)testCharacterReferentialIntegrityUpdate {
+    STAssertNoThrow([coreData save], @"Character/Dilemma can't be created for RI Update test");
+    
+    testCharacter.story = [NSSet setWithObject:testDilemma];
+    
+    STAssertNoThrow([coreData save], @"Character/Dilemma relationships can't be created for RI Update test");
+        
+    NSString *newDilemmadName = @"New dilemma name";
+    testDilemma.nameDilemma = newDilemmadName;
+    
+    STAssertNoThrow([coreData save], @"Dilemma can't be updated for RI Update test");
+    
+    NSArray *characters = [coreData fetch:Character.class];
+    Character *retrieved = [characters objectAtIndex: 0];
+    STAssertEqualObjects([[retrieved.story anyObject] nameDilemma], newDilemmadName, @"story RI update failed.");
+    
+}
+
+
 - (void)testCharacterDeletion {
     STAssertNoThrow([coreData save], @"Character can't be created for Delete test");
     
@@ -106,6 +155,21 @@
     NSArray *characters = [coreData fetch:Character.class];
     
     STAssertEquals(characters.count, (NSUInteger) 0, @"Character is still present after delete");
+    
+}
+
+- (void)testCharacterReferentialIntegrityDelete {
+    STAssertNoThrow([coreData save], @"Character/Dilemma can't be created for RI Delete test");
+    
+    testCharacter.story = [NSSet setWithObject:testDilemma];
+    
+    STAssertNoThrow([coreData save], @"Character/Dilemma relationships can't be created for RI Delete test");
+    
+    STAssertNoThrow([coreData delete:testCharacter], @"Character can't be deleted");
+    
+    NSArray *stories = [coreData fetch:Dilemma.class];
+    
+    STAssertEquals(stories.count, (NSUInteger) 1, @"Dilemma should not have been cascade deleted");
     
 }
 

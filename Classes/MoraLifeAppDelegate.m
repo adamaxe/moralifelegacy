@@ -4,6 +4,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 <br>All setup for Conscience data, navigation, UI, is done in App delegate.  All setup for data, navigation, UI, is done in App delegate.
 @todo project->buildsettings->architectures->debug->remove any IOS SDK
 @todo Model: change ReferenceText.belief to-many relationship to beliefs
+@todo Model: change Character.story to-many relationship to stories
 @todo Model: change delete rule for ReferenceText.children to cascade
 @todo Model: change Character.sizeCharacter type to Float, change UserCharacter and Character to similiar
 @class MoralifeAppDelegate MoralifeAppDelegate.h
