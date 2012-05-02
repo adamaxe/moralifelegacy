@@ -7,6 +7,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 @todo Model: change Character.story to-many relationship to stories
 @todo Model: change delete rule for ReferenceText.children to cascade
 @todo Model: change Character.sizeCharacter type to Float, change UserCharacter and Character to similiar
+@todo Model: change Moral.dilemmaA/B typo
+@todo Model: why is Moral.dilemma 1 to many?
 @class MoralifeAppDelegate MoralifeAppDelegate.h
 */
 

@@ -59,16 +59,16 @@
 - (void)setUp {
     coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
     
-    rewardADilemma = @"dilemma";
+    rewardADilemma = @"dilemma reward";
     choiceB = @"choiceB";
     moodDilemma  = [NSNumber numberWithFloat:1.0];
-    displayNameDilemma = @"displayName";
+    displayNameDilemma = @"displayNameDilemma";
     surrounding = @"surrounding";
-    nameDilemma = @"name";
-    rewardBDilemma = @"reward";
-    choiceA = @"choice";
+    nameDilemma = @"nameDilemma";
+    rewardBDilemma = @"rewardBDilemma";
+    choiceA = @"choiceA";
     enthusiasmDilemma = [NSNumber numberWithFloat:1.0];
-    dilemmaText = @"text";
+    dilemmaText = @"dilemmaText";
     
     testDilemma = [coreData insert:Dilemma.class];
     testDilemma.rewardADilemma = rewardADilemma;
@@ -115,16 +115,16 @@
     testCharacter.sizeCharacter = characterSize;
     testCharacter.bubbleType = characterBubbleType;
     
-    imageNameMoral = @"imageName";
-    colorMoral = @"color";
-    displayNameMoral = @"displayName";
-    longDescriptionMoral = @"longDescription";
+    imageNameMoral = @"imageNameMoral";
+    colorMoral = @"colorMoral";
+    displayNameMoral = @"displayNameMoral";
+    longDescriptionMoral = @"longDescriptionMoral";
     component = @"component";
-    shortDescriptionMoral = @"shortDescription";
-    linkMoral = @"link";
-    nameMoral = @"name";
-    nameMoral2 = @"name 2";
-    definitionMoral = @"definition"; 
+    shortDescriptionMoral = @"shortDescriptionMoral";
+    linkMoral = @"linkMoral";
+    nameMoral = @"nameMoral";
+    nameMoral2 = @"nameMoral2";
+    definitionMoral = @"definitionMoral"; 
     
     testMoral = [coreData insert:Moral.class];
     testMoral2 = [coreData insert:Moral.class];
