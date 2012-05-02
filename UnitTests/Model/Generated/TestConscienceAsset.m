@@ -70,11 +70,11 @@
     STAssertEquals(assets.count, (NSUInteger) 1, @"There should only be 1 ConscienceAsset in the context.");
     ConscienceAsset *retrieved = [assets objectAtIndex: 0];
 
-    STAssertEquals(retrieved.costAsset, costAsset, @"costAsset Getter/Setter failed.");
-    STAssertEquals(retrieved.moralValueAsset, moralValueAsset, @"moralValueAsset Getter/Setter failed.");
-    STAssertEquals(retrieved.orientationAsset, orientationAsset, @"orientationAsset Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.costAsset, costAsset, @"costAsset Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.moralValueAsset, moralValueAsset, @"moralValueAsset Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.orientationAsset, orientationAsset, @"orientationAsset Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
-    STAssertEquals(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
     STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");

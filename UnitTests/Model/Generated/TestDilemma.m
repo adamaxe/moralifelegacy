@@ -120,9 +120,9 @@
     STAssertEquals(dilemmas.count, (NSUInteger) 1, @"There should only be 1 Dilemma in the context.");
     Dilemma *retrieved = [dilemmas objectAtIndex: 0];
         
-    STAssertEquals(retrieved.enthusiasmDilemma, enthusiasmDilemma, @"enthusiasmDilemma Getter/Setter failed.");
-    STAssertEquals(retrieved.moodDilemma, moodDilemma, @"moodDilemma Getter/Setter failed.");
-    STAssertEquals(retrieved.rewardADilemma, rewardADilemma, @"rewardADilemma Getter/Setter failed.");    
+    STAssertEqualObjects(retrieved.enthusiasmDilemma, enthusiasmDilemma, @"enthusiasmDilemma Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.moodDilemma, moodDilemma, @"moodDilemma Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.rewardADilemma, rewardADilemma, @"rewardADilemma Getter/Setter failed.");    
     STAssertEqualObjects(retrieved.choiceB, choiceB, @"choiceB Getter/Setter failed.");
     STAssertEqualObjects(retrieved.displayNameDilemma, displayNameDilemma, @"displayNameDilemma Getter/Setter failed.");
     STAssertEqualObjects(retrieved.surrounding, surrounding, @"surrounding Getter/Setter failed.");

@@ -83,7 +83,7 @@
     ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
     STAssertEqualObjects(retrieved.typeBelief, belief, @"typeBelief Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
-    STAssertEquals(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
     STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");

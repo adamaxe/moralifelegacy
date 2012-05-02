@@ -84,11 +84,11 @@
     STAssertEquals(characters.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
     UserCharacter *retrieved = [characters objectAtIndex: 0];
     
-    STAssertEquals(retrieved.characterEnthusiasm, characterEnthusiasm, @"characterEnthusiasm Getter/Setter failed.");
-    STAssertEquals(retrieved.characterAge, characterAge, @"characterAge Getter/Setter failed.");
-    STAssertEquals(retrieved.characterMood, characterMood, @"characterMood Getter/Setter failed.");
-    STAssertEquals(retrieved.characterSize, characterSize, @"characterSize Getter/Setter failed.");
-    STAssertEquals(retrieved.characterBubbleType, characterBubbleType, @"characterBubbleType Getter/Setter failed.");    
+    STAssertEqualObjects(retrieved.characterEnthusiasm, characterEnthusiasm, @"characterEnthusiasm Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.characterAge, characterAge, @"characterAge Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.characterMood, characterMood, @"characterMood Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.characterSize, characterSize, @"characterSize Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.characterBubbleType, characterBubbleType, @"characterBubbleType Getter/Setter failed.");    
     STAssertEqualObjects(retrieved.characterAccessoryPrimary, characterAccessoryPrimary, @"characterAccessoryPrimary Getter/Setter failed.");
     STAssertEqualObjects(retrieved.characterAccessorySecondary, characterAccessorySecondary, @"characterAccessorySecondary Getter/Setter failed.");
     STAssertEqualObjects(retrieved.characterAccessoryTop, characterAccessoryTop, @"characterAccessoryTop Getter/Setter failed.");

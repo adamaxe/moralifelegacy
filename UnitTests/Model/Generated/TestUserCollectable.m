@@ -49,7 +49,7 @@
     STAssertEquals(collectables.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
     UserCollectable *retrieved = [collectables objectAtIndex: 0];
     
-    STAssertEquals(retrieved.collectableValue, collectableValue, @"collectableValue Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.collectableValue, collectableValue, @"collectableValue Getter/Setter failed.");
     STAssertEqualObjects(retrieved.collectableCreationDate, collectableCreationDate, @"collectableCreationDate Getter/Setter failed.");
     STAssertEqualObjects(retrieved.collectableName, collectableName, @"collectableName Getter/Setter failed.");
     STAssertEqualObjects(retrieved.collectableKey, collectableKey, @"collectableKey Getter/Setter failed.");

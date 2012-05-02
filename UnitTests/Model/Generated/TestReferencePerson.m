@@ -85,8 +85,8 @@
     ReferencePerson *retrieved = [people objectAtIndex: 0];
     STAssertEqualObjects(retrieved.quotePerson, quote, @"quotePerson Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
-    STAssertEquals(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
-    STAssertEquals(retrieved.deathYearPerson, originYear, @"deathYearPerson Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.deathYearPerson, originYear, @"deathYearPerson Getter/Setter failed.");
     STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
     STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");

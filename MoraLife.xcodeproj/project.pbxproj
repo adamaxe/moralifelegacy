@@ -24,7 +24,6 @@
 		5E06413512FCE28F0051F4B1 /* card-irrationality.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E06412712FCE28F0051F4B1 /* card-irrationality.png */; };
 		5E06413712FCE28F0051F4B1 /* card-wantonness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E06412812FCE28F0051F4B1 /* card-wantonness.png */; };
 		5E06F8AA11DDA71900CA5A3B /* background-wall@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E06F8A711DDA71900CA5A3B /* background-wall@2x.jpg */; };
-		5E071E651550CBE9009A5357 /* TestDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E071E641550CBE9009A5357 /* TestDilemma.m */; };
 		5E076858137A22BC0023E250 /* acc-bottom-necktie-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E076857137A22BC0023E250 /* acc-bottom-necktie-gray.png */; };
 		5E07E9F8130B587C00007A36 /* sur-chichenitza.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9F4130B587C00007A36 /* sur-chichenitza.png */; };
 		5E07E9F9130B587C00007A36 /* sur-easterisland.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9F5130B587C00007A36 /* sur-easterisland.png */; };
@@ -48,6 +47,14 @@
 		5E16502B130105EA0024C4D1 /* card-flexibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E165027130105EA0024C4D1 /* card-flexibility.png */; };
 		5E16502C130105EA0024C4D1 /* card-humor.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E165028130105EA0024C4D1 /* card-humor.png */; };
 		5E16502D130105EA0024C4D1 /* card-judgement.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E165029130105EA0024C4D1 /* card-judgement.png */; };
+		5E1ACE131550F82D00DBDE6E /* TestUserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DA154E3234008A7936 /* TestUserCollectable.m */; };
+		5E1ACE141550F91400DBDE6E /* TestUserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DC154F8848008A7936 /* TestUserCharacter.m */; };
+		5E1ACE151550F96200DBDE6E /* TestDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E071E641550CBE9009A5357 /* TestDilemma.m */; };
+		5E1ACE161550F97E00DBDE6E /* TestCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DE154F8EE8008A7936 /* TestCharacter.m */; };
+		5E1ACE171550F99800DBDE6E /* TestConscienceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC824154E17E50051D494 /* TestConscienceAsset.m */; };
+		5E1ACE181550F9A400DBDE6E /* TestReferencePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC822154E0FB60051D494 /* TestReferencePerson.m */; };
+		5E1ACE191550F9C300DBDE6E /* TestReferenceText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC820154DDFF80051D494 /* TestReferenceText.m */; };
+		5E1ACE1A1550F9D200DBDE6E /* TestReferenceBelief.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */; };
 		5E1D107A1267FCAE003381CF /* card-despair.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D10661267FCAE003381CF /* card-despair.png */; };
 		5E1D107B1267FCAE003381CF /* card-envy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D10671267FCAE003381CF /* card-envy.png */; };
 		5E1D107C1267FCAE003381CF /* card-impatience.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D10681267FCAE003381CF /* card-impatience.png */; };
@@ -1164,9 +1171,6 @@
 		5E7F115012DE7A9E00B64DC1 /* ref-sorenaabyekierkegaard.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7F10BC12DE7A9E00B64DC1 /* ref-sorenaabyekierkegaard.jpg */; };
 		5E7F115112DE7A9E00B64DC1 /* ref-thomashenryhuxley-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7F10BD12DE7A9E00B64DC1 /* ref-thomashenryhuxley-sm.png */; };
 		5E7F115212DE7A9E00B64DC1 /* ref-thomashenryhuxley.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7F10BE12DE7A9E00B64DC1 /* ref-thomashenryhuxley.jpg */; };
-		5E7FC821154DDFF80051D494 /* TestReferenceText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC820154DDFF80051D494 /* TestReferenceText.m */; };
-		5E7FC823154E0FB60051D494 /* TestReferencePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC822154E0FB60051D494 /* TestReferencePerson.m */; };
-		5E7FC825154E17E50051D494 /* TestConscienceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC824154E17E50051D494 /* TestConscienceAsset.m */; };
 		5E857137137CC58900FF91B1 /* interface-tabbaricons2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E857133137CC58900FF91B1 /* interface-tabbaricons2.jpg */; };
 		5E857138137CC58900FF91B1 /* interface-tabbaricons3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E857134137CC58900FF91B1 /* interface-tabbaricons3.jpg */; };
 		5E857139137CC58900FF91B1 /* interface-tabbaricons3@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E857135137CC58900FF91B1 /* interface-tabbaricons3@2x.jpg */; };
@@ -1256,9 +1260,6 @@
 		5EA01A2A1346C872001E8581 /* ref-meerabai.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A241346C872001E8581 /* ref-meerabai.jpg */; };
 		5EA01A2B1346C872001E8581 /* ref-tiradentes-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A251346C872001E8581 /* ref-tiradentes-sm.png */; };
 		5EA01A2C1346C872001E8581 /* ref-tiradentes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A261346C872001E8581 /* ref-tiradentes.jpg */; };
-		5EA108DB154E3234008A7936 /* TestUserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DA154E3234008A7936 /* TestUserCollectable.m */; };
-		5EA108DD154F8848008A7936 /* TestUserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DC154F8848008A7936 /* TestUserCharacter.m */; };
-		5EA108DF154F8EE8008A7936 /* TestCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DE154F8EE8008A7936 /* TestCharacter.m */; };
 		5EA1D225130E38A200BA81D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -1365,9 +1366,7 @@
 		5EBC9AD613524007001ACD7A /* ref-you.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9AD413524007001ACD7A /* ref-you.jpg */; };
 		5EBC9ADC1352A42E001ACD7A /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */; };
 		5EBC9ADF1352A4CD001ACD7A /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */; };
-		5EBED2F91548D28000AFE44D /* TestCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */; };
 		5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */; };
-		5EBED3011548D5EC00AFE44D /* TestReferenceBelief.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */; };
 		5EC246D312711DF100421807 /* card-addiction.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246BF12711DF100421807 /* card-addiction.png */; };
 		5EC246D412711DF100421807 /* card-caprice.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C012711DF100421807 /* card-caprice.png */; };
 		5EC246D512711DF100421807 /* card-idolatry.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C112711DF100421807 /* card-idolatry.png */; };
@@ -6979,7 +6978,6 @@
 				5EA5422B1380BB13009077B7 /* Character.m in Sources */,
 				5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */,
 				5E336EF9139C6CD6006BF34F /* ConscienceAsset.m in Sources */,
-				5EBED2F91548D28000AFE44D /* TestCoreDataStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7004,7 +7002,6 @@
 				5EB0C33A13F2529F0093FCA6 /* TestGraphView.m in Sources */,
 				5EB0C33B13F2533B0093FCA6 /* GraphView.m in Sources */,
 				5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */,
-				5EBED3011548D5EC00AFE44D /* TestReferenceBelief.m in Sources */,
 				5E2F5DC81548E14A007DED2A /* ReferenceBelief.m in Sources */,
 				5E2F5DC91548E195007DED2A /* ReferenceReport.m in Sources */,
 				5E2F5DCA1548E195007DED2A /* ReferenceText.m in Sources */,
@@ -7022,13 +7019,14 @@
 				5E2F5DD61548E195007DED2A /* ConscienceAsset.m in Sources */,
 				5E2F5DD71548E466007DED2A /* UserData.xcdatamodeld in Sources */,
 				5E2F5DD81548E469007DED2A /* SystemData.xcdatamodeld in Sources */,
-				5E7FC821154DDFF80051D494 /* TestReferenceText.m in Sources */,
-				5E7FC823154E0FB60051D494 /* TestReferencePerson.m in Sources */,
-				5E7FC825154E17E50051D494 /* TestConscienceAsset.m in Sources */,
-				5EA108DB154E3234008A7936 /* TestUserCollectable.m in Sources */,
-				5EA108DD154F8848008A7936 /* TestUserCharacter.m in Sources */,
-				5EA108DF154F8EE8008A7936 /* TestCharacter.m in Sources */,
-				5E071E651550CBE9009A5357 /* TestDilemma.m in Sources */,
+				5E1ACE131550F82D00DBDE6E /* TestUserCollectable.m in Sources */,
+				5E1ACE141550F91400DBDE6E /* TestUserCharacter.m in Sources */,
+				5E1ACE151550F96200DBDE6E /* TestDilemma.m in Sources */,
+				5E1ACE161550F97E00DBDE6E /* TestCharacter.m in Sources */,
+				5E1ACE171550F99800DBDE6E /* TestConscienceAsset.m in Sources */,
+				5E1ACE181550F9A400DBDE6E /* TestReferencePerson.m in Sources */,
+				5E1ACE191550F9C300DBDE6E /* TestReferenceText.m in Sources */,
+				5E1ACE1A1550F9D200DBDE6E /* TestReferenceBelief.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
