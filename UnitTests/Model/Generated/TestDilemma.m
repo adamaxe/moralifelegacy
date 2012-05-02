@@ -36,6 +36,16 @@
     NSString * characterBubbleColor;
     NSDecimalNumber * characterSize;
     NSNumber * characterBubbleType;
+    
+    NSString * imageNameMoral;
+    NSString * colorMoral;
+    NSString * displayNameMoral;
+    NSString * longDescriptionMoral;
+    NSString * component;
+    NSString * shortDescriptionMoral;
+    NSString * linkMoral;
+    NSString * nameMoral;
+    NSString * definitionMoral;    
 
 }
 
@@ -102,6 +112,28 @@
     testCharacter.sizeCharacter = characterSize;
     testCharacter.bubbleType = characterBubbleType;
     
+    imageNameMoral = @"imageName";
+    colorMoral = @"color";
+    displayNameMoral = @"displayName";
+    longDescriptionMoral = @"longDescription";
+    component = @"component";
+    shortDescriptionMoral = @"shortDescription";
+    linkMoral = @"link";
+    nameMoral = @"name";
+    definitionMoral = @"definition"; 
+    
+    testMoral = [coreData insert:Moral.class];
+
+    testMoral.imageNameMoral = imageNameMoral;
+    testMoral.colorMoral = colorMoral;
+    testMoral.displayNameMoral = displayNameMoral;
+    testMoral.longDescriptionMoral = longDescriptionMoral;
+    testMoral.component = component;
+    testMoral.shortDescriptionMoral = shortDescriptionMoral;
+    testMoral.linkMoral = linkMoral;
+    testMoral.nameMoral = nameMoral;
+    testMoral.definitionMoral = definitionMoral;
+    
 }
 
 - (void)testDilemmaCanBeCreated {
@@ -137,6 +169,7 @@
     STAssertNoThrow([coreData save], @"Dilemma/Character/Moral can't be created for RI test");
 
     testDilemma.antagonist = testCharacter;
+    testDilemma.moralChoiceA = testMoral;
     
     STAssertNoThrow([coreData save], @"Dilemma/Character/Moral relationships can't be created for RI test");
             
@@ -144,6 +177,7 @@
     
     Dilemma *retrieved = [dilemmas objectAtIndex: 0];
     STAssertEqualObjects(retrieved.antagonist, testCharacter, @"antagonist Relationship failed.");
+    STAssertEqualObjects(retrieved.moralChoiceA, testMoral, @"moralChoiceA Relationship failed.");
     
 }
 
@@ -151,17 +185,22 @@
     STAssertNoThrow([coreData save], @"Dilemma/Character/Moral can't be created for RI Update test");
     
     testDilemma.antagonist = testCharacter;
+    testDilemma.moralChoiceA = testMoral;
     
     STAssertNoThrow([coreData save], @"Dilemma/Character/Moral relationships can't be created for RI Update test");
         
     NSString *newCharacterName = @"New character name";
     testCharacter.nameCharacter = newCharacterName;
     
+    NSString *newMoralName = @"New moral name";
+    testMoral.nameMoral = newMoralName;
+    
     STAssertNoThrow([coreData save], @"Character can't be updated for RI Update test");
     
     NSArray *dilemmas = [coreData fetch:Dilemma.class];
     Dilemma *retrieved = [dilemmas objectAtIndex: 0];
     STAssertEqualObjects(retrieved.antagonist.nameCharacter, newCharacterName, @"story RI update failed.");
+    STAssertEqualObjects(retrieved.moralChoiceA.nameMoral, newMoralName, @"moralChoiceA RI update failed.");    
     
 }
 
@@ -180,14 +219,18 @@
     STAssertNoThrow([coreData save], @"Dilemma/Character/Moral can't be created for RI Delete test");
     
     testDilemma.antagonist = testCharacter;
+    testDilemma.moralChoiceA = testMoral;    
     
     STAssertNoThrow([coreData save], @"Dilemma/Character/Moral relationships can't be created for RI Delete test");
     
     STAssertNoThrow([coreData delete:testDilemma], @"Dilemma can't be deleted");
     
     NSArray *characters = [coreData fetch:Character.class];
-    
+    NSArray *morals = [coreData fetch:Moral.class];
+
     STAssertEquals(characters.count, (NSUInteger) 1, @"Character should not have been cascade deleted");
+    
+    STAssertEquals(morals.count, (NSUInteger) 1, @"Morals should not have been cascade deleted");    
     
 }
 
