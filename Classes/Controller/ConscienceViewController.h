@@ -28,16 +28,16 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 	
 	IBOutlet UIImageView *virtueImage;				/**< most prominent virtue image */
 	IBOutlet UIImageView *viceImage;				/**< most troublesome vice image */
+	IBOutlet UIImageView *rankImage;				/**< current rank image */
 	IBOutlet UILabel *virtueLabel;				/**< most prominent virtue label */
 	IBOutlet UILabel *viceLabel;					/**< most prominent vice label */
+	IBOutlet UILabel *rankLabel;					/**< rank frame label */    
     
 	IBOutlet UIButton *virtueButton;				/**< button surrounding picture frame to cue virtue thought */
-	IBOutlet UIButton *viceButton;				/**< button surrounding picture frame to cue virtue thought */
-	IBOutlet UIButton *thoughtButton;
-
-	NSTimer *moveTimer;				/**< controls Conscience movement */
+	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue virtue thought */
+	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceModalViewController */
+    
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
-	NSTimer *holdTapTimer;				/**< determines if long press was initiated */
 	NSTimer *thoughtFadeTimer;			/**< determines when Conscience thought disappears */
 
 	CGFloat animationDuration;			/**< assists in gesture recognition */	
@@ -45,13 +45,9 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 	    
 	NSMutableString *homeVirtueDisplayName;	/**< most prominent virtue text */
 	NSMutableString *homeViceDisplayName;	/**< most prominent vice text */
-    
-	BOOL isBeingMoved;
+    NSMutableString *highestRankName;       /**< highest achieved rank */
 
 }
-
--(CGFloat) angleBetweenLinesInRadians: (CGPoint)line1Start toPoint:(CGPoint)line1End fromPoint:(CGPoint)line2Start toPoint:(CGPoint)line2End;
--(CGFloat) distanceBetweenTwoPoints:(CGPoint)fromPoint toPoint:(CGPoint)toPoint;
 
 /**
 Present a thought bubble to the User, suggesting that the UserConscience is talking
@@ -80,18 +76,6 @@ Cancel all of shooken UserConscience behavior
  */
 -(void) shakeEnd;
 /**
-Move the UserConscience around screen
- */
--(void) timedMovement;
-/**
-Setup the movement timer
- */
--(void) setTimers;
-/**
-Stop the movement timer
- */
--(void) stopTimers;
-/**
 Create welcome message thought bubble for UserConscience
  */
 -(void) createWelcomeMessage;
@@ -101,6 +85,10 @@ Calculate through all UserChoices which most prominent/troublesome virtue/vice i
  */
 -(void) retrieveBiggestChoice:(BOOL) isVirtue;
 /**
+Find highest rank
+ */
+-(void) retrieveHighestRank;
+/**
 User choices affect UserConscience immediately, must return Conscience to regular state
 @param originalMood float representing overall Conscience mood
 @param originalEnthusiasm float representing overall Conscience enthusiasm
@@ -109,5 +97,6 @@ User choices affect UserConscience immediately, must return Conscience to regula
 
 -(void) createMovementReaction;
 -(void) endMovementReaction;
+-(void) setupModalWorkflow;
 
 @end

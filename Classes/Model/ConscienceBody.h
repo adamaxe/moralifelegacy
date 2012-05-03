@@ -10,8 +10,9 @@ Each Dictionary contains every expression frame for currently selected feature t
 @file
  */
 
-@interface ConscienceBody : NSObject <NSMutableCopying> {
-	
+//@interface ConscienceBody : NSObject <NSMutableCopying> {
+@interface ConscienceBody : NSObject {
+
 }
 
 @property (nonatomic, retain) NSMutableDictionary *browLayers;	/**< Conscience Layer states of eye brow */

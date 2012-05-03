@@ -10,7 +10,7 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 @date 06/23/2010
 @file
  */
-
+#import <QuartzCore/QuartzCore.h>
 
 @class MoraLifeAppDelegate, ConscienceBody, ConscienceAccessories, ConscienceMind, ConscienceObjectView, AccessoryObjectView, ConscienceBubbleView;
 
@@ -158,5 +158,12 @@ Stop timers for eyes/mouth changes
 Make Conscience reappear
  */
 - (void)makeConscienceVisible;
+
+/**
+Make Conscience reappear
+@return CAKeyFrameAnimation animation to implement for shaken
+ */
+-(CAKeyframeAnimation *) shakeAnimation;
+
 
 @end

@@ -43,7 +43,8 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 	IBOutlet UISearchBar *dilemmaSearchBar;			/**< ui element for limiting choices in table */
 	
 	IBOutlet UIView *thoughtModalArea;
-
+    int dilemmaCampaign;                    /**< current campaign to select correct dilemmas */
+    
 }
 
 /**

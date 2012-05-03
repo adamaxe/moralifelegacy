@@ -18,6 +18,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "ReferenceDetailViewController.h"
 #import "UserCollectable.h"
 #import "UserCharacter.h"
+#import "ChoiceHistoryViewController.h"
 
 @implementation ChoiceViewController
 
@@ -35,6 +36,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
 	context = [appDelegate managedObjectContext];
+    
+    choiceKey = [[NSMutableString alloc] init];
     
 	if (!isChoiceFinished) {
 		isChoiceFinished = FALSE;
@@ -74,8 +77,10 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
     
 	//Create input for requesting ChoiceDetailViewController
-	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showChoiceDetailEntry)];
+//	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showChoiceDetailEntry)];
 	
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",@"Hint for Details Label") style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
+    
 	self.navigationItem.rightBarButtonItem = barButtonItem;
 	[barButtonItem release];
     
@@ -93,6 +98,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	NSMutableString *localString = [NSString stringWithFormat:@"ChoiceScreen%dTitle", isVirtue];
 	//Change Title of screen to reflect good or bad choice
 	[self setTitle:NSLocalizedString(localString, @"Title for Choice screen")];
+	[severityLabel setText:NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Hint for Details Label")];
 
 	severityLabel.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dHint", isVirtue]), @"Hint for Severity Label");
 	severitySlider.accessibilityHint =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dHint", isVirtue]), @"Hint for Severity Slider");
@@ -139,15 +145,11 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	}
 	
 	if (restoreChoiceKey != nil) {
-		choiceKey = restoreChoiceKey;
+		[choiceKey setString:restoreChoiceKey];
 		[prefs removeObjectForKey:@"entryKey"];
-		
 	}else {
-		choiceKey = @"";
+		[choiceKey setString:@""];
 	}
-    
-	/** @todo determine why the choiceKey retain necessary */
-	[choiceKey retain];
     
 	if (restoreSeverity > 0) {
 		severitySlider.value = restoreSeverity;
@@ -212,7 +214,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         
 		//Save off entries to NSUserDefaults
 		[prefs setObject:choiceKey forKey:@"entryKey"];
-		[choiceKey release];
 		[prefs setFloat:severitySlider.value forKey:@"entrySeverity"];
 		[prefs setBool:isVirtue forKey:@"entryIsGood"];
 	}
@@ -228,7 +229,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	[moralImageView setAlpha:1];
 	[UIView commitAnimations];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.6 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
 
 }
@@ -246,12 +247,17 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     if (firstChoiceEntryCheck == nil) {
         
-		NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
-		NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
+		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
+
         
 		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), 
+                           NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), 
+                                                            NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
         
 		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
         
@@ -259,8 +265,10 @@ Implementation: Show an initial help screen if this is the User's first use of t
 		[conscienceHelpViewCont setHelpTexts:texts];
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         
-		[helpTitleName release];
-		[helpTextName release];
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[helpTitleName2 release];
+		[helpTextName2 release];
 		[titles release];
 		[texts release];
 		
@@ -324,6 +332,30 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// and the root view controller is owned by the navigation controller,
 	// so both objects should be released to prevent over-retention.
 	[virtueViceViewController release];
+	
+}
+
+/**
+ Implementation: Present ChoiceHistoryViewController to all User to enter in previous choice
+ */
+-(IBAction)showHistoryModal:(id)sender {
+    
+	// Create the root view controller for the navigation controller
+	// The new view controller configures a Cancel and Done button for the
+	// navigation bar.
+	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithNibName:@"ChoiceHistoryView" bundle:nil];
+    
+	[moralReferenceButton setAlpha:0];
+	[moralImageView setAlpha:0];
+    
+	[prefs setBool:isVirtue forKey:@"entryIsGood"];
+    
+	[self presentModalViewController:historyViewController animated:NO];
+	
+	// The navigation controller is now owned by the current view controller
+	// and the root view controller is owned by the navigation controller,
+	// so both objects should be released to prevent over-retention.
+	[historyViewController release];
 	
 }
 
@@ -698,16 +730,14 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
     [dateFormatter release];
-	
-    //choiceKey = [prefs objectForKey:@"choiceKey"];
-	
+		
     BOOL isNewChoice = TRUE;
 
-    if (choiceKey != @"") {
+    if (![choiceKey isEqualToString:@""]) {
         
         isNewChoice = FALSE;
     }else {
-        choiceKey = [NSString stringWithFormat:@"%@%@", currentDTS, [moralKey lowercaseString]];
+        [choiceKey setString:[NSString stringWithFormat:@"%@%@", currentDTS, [moralKey lowercaseString]]];
     }
     
     float severityConversion = severitySlider.value;
@@ -906,6 +936,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 }
 
 - (void)dealloc {
+    [choiceKey release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
 	[severityLabelDescriptions release];
 	[super dealloc];

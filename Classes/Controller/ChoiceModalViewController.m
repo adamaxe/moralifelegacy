@@ -198,18 +198,18 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	}
     
 	//Populate cell information
-	[[cell textLabel] setText:[[tableData objectAtIndex:indexPath.row] capitalizedString]];
-	
-	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
-//	[rowImageName appendString:@".png"];
-    
-    UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
-//	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
-    [[cell imageView] setImage:rowImage];
-    [rowImage release];
-    [rowImageName release];
-	
-	[[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
+    if ([tableData count] > 0) {
+        [[cell textLabel] setText:[[tableData objectAtIndex:indexPath.row] capitalizedString]];
+        
+        NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
+        
+        UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
+        [[cell imageView] setImage:rowImage];
+        [rowImage release];
+        [rowImageName release];
+        
+        [[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
+    }
 	
 	return cell;
 }

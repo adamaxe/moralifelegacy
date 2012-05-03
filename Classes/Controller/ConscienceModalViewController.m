@@ -33,7 +33,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	/** @todo change hardcoded selection descriptions into localized strings */
 	buttonImages = [[NSMutableDictionary alloc] init];
 	buttonLabels = [[NSMutableDictionary alloc] init];
-	screenTitles = [[NSArray alloc] initWithObjects:@"What do you need?", @"What would you like to change?", @"Morathology Campaigns", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?", nil];
+	screenTitles = [[NSArray alloc] initWithObjects:@"What do you need?", @"What would you like to change?", @"Morathology Adventures", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?", nil];
 	
 	currentState = 0;
 
@@ -41,11 +41,11 @@ User selection causes selectChoice to be called which sets the currentState vari
 	thoughtModalArea.alpha = 0;
 
 	/** @todo determine better screen loading method */
-	NSArray *tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-customization.png", @"icon-beliefs.png", @"icon-piechart.png", @" ",nil];
+	NSArray *tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-customization.png", @"icon-rank.png", @"icon-piechart.png", @" ",nil];
 	[buttonImages setObject:tempButtonImages forKey:@"0"];
 	[tempButtonImages release];
 
-	NSArray *tempButtonLabels = [[NSArray alloc] initWithObjects:@"Greenroom", @"Morathology", @"Moral Report", @" ", nil];
+	NSArray *tempButtonLabels = [[NSArray alloc] initWithObjects:@"Commissary", @"Morathology", @"Moral Report", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"0"];
 	[tempButtonLabels release];
 	
@@ -53,8 +53,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	[tempButtonImages release];
 	
-//    tempButtonLabels = [[NSArray alloc] initWithObjects:@"Western", @"Atlantic", @"Eastern", @"Pacific", nil];
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Western", @"Coming Soonest!", @"Coming Sooner!", @"Coming Soon!", nil];
+	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"Coming Soon!", @"Coming Soon!", @"Coming Soon!", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	[tempButtonLabels release];
 	
@@ -89,14 +88,15 @@ User selection causes selectChoice to be called which sets the currentState vari
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Eye", @"Brow", @"Bubble", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"6"];
 	[tempButtonLabels release];	
-    	
+ 
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 	
 	//Add User Conscience to view
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
+    [self.view addSubview:appDelegate.userConscienceView];
+//	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	//Flip Conscience direction if facing left
 	if (appDelegate.userConscienceView.directionFacing == kDirectionFacingLeft) {
@@ -111,10 +111,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 	
 		[UIView commitAnimations];
 	}
-	
-	//Move Conscience to Lower left screen to emulate thought bubble
-//	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
-//	
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
@@ -124,22 +120,14 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	thoughtModalArea.alpha = 1;
-//    appDelegate.userConscienceView.alpha = 1;
-//	
-//	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
-//
-//	appDelegate.userConscienceView.center = centerPoint;
-//	
+
 	[UIView commitAnimations];
-//
-//	[appDelegate.userConscienceView setNeedsDisplay];
     
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationBeginsFromCurrentState:NO];
     appDelegate.userConscienceView.alpha = 0;
     
-    //    appDelegate.userConscienceView.center = centerPoint;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
     
@@ -155,7 +143,8 @@ User selection causes selectChoice to be called which sets the currentState vari
         currentState = 0;
     }
     
-    [self changeSelectionScreen];
+    //Call showSelectionChoices directly in order to avoid double fade-in
+    [self showSelectionChoices];
 	 
 }
 
@@ -166,16 +155,61 @@ User selection causes selectChoice to be called which sets the currentState vari
     [UIView setAnimationBeginsFromCurrentState:NO];
     appDelegate.userConscienceView.alpha = 0;
     
-    //    appDelegate.userConscienceView.center = centerPoint;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
     
     [UIView commitAnimations];
     
+	//Present help screen after a split second
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 }
 
 #pragma mark - UI Interaction
 
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the intro
+    NSObject *firstConscienceModalCheck = [prefs objectForKey:@"firstConscienceModal"];
+    
+    if (firstConscienceModalCheck == nil) {
+        
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
+		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+        
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[helpTitleName2 release];
+		[helpTextName2 release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstConscienceModal"];
+        
+    }
+}
+
+/**
+Implementation:  Sometimes the Conscience can be put in the wrong section of the screen depending upon screen prior to this one. 
+  We must ensure that the Conscience doesn't take up the whole screen.
+*/
 -(void) moveConscienceToBottom{
     
     //Move Conscience to center of boxes
@@ -221,7 +255,7 @@ Determines if current screen should change or if another UIViewController needs 
 //			case 10:currentState = 11;[self changeSelectionScreen];break;			
 //			case 11:currentState = 12;[self changeSelectionScreen];break;			
 			case 8:[self selectController:choiceIndex];break;
-//			case 9:[self selectController:choiceIndex];break;
+			case 9:[self selectController:choiceIndex];break;
 //			case 10:[self selectController:choiceIndex];break;			
 //			case 11:[self selectController:choiceIndex];break;
 			case 12:/*[self selectController:choiceIndex];*/break;
@@ -239,14 +273,11 @@ Determines if current screen should change or if another UIViewController needs 
 	
 }
 
-/**
-Implementation:  Set the Status message at top of screen and the image and label of each button.  Button tags are updated to reflect new version of the screen.
- */
-- (void) changeSelectionScreen{
-
-	//Change buttons and status bar for appropriate requested screen
+- (void) showSelectionChoices{
+    
+    //Change buttons and status bar for appropriate requested screen
 	statusMessage1.text = (NSString *)[screenTitles objectAtIndex:currentState];
-
+    
 	//Set button image and names, set tags for screen derivation
 	NSString *buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:0];
 	NSString *buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:0];
@@ -254,27 +285,53 @@ Implementation:  Set the Status message at top of screen and the image and label
 	[labelButton1 setTitle:buttonLabel forState: UIControlStateNormal];
 	button1.tag = currentState*4;
 	labelButton1.tag = currentState*4;
-
+    
 	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:1];
 	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:1];
 	[button2 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton2 setTitle:buttonLabel forState: UIControlStateNormal];
 	button2.tag = currentState*4 + 1;
 	labelButton2.tag = currentState*4 + 1;
-
+    
 	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:2];
 	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:2];
 	[button3 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton3 setTitle:buttonLabel forState: UIControlStateNormal];
 	button3.tag = currentState*4 + 2;
 	labelButton3.tag = currentState*4 + 2;
-
+    
 	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:3];
 	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:3];
 	[button4 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton4 setTitle:buttonLabel forState: UIControlStateNormal];
 	button4.tag = currentState*4 + 3;
 	labelButton4.tag = currentState*4 + 3;
+    
+    
+    [UIView beginAnimations:@"ShowChoices" context:nil];
+    [UIView setAnimationDuration:0.1];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    thoughtModalArea.alpha = 1;
+        
+    [UIView commitAnimations];
+}
+
+
+/**
+Implementation:  Set the Status message at top of screen and the image and label of each button.  Button tags are updated to reflect new version of the screen.
+ */
+- (void) changeSelectionScreen{
+    
+    [UIView beginAnimations:@"HideChoices" context:nil];
+    [UIView setAnimationDuration:0.1];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    [UIView setAnimationDelegate:self]; // self is a view controller
+    [UIView setAnimationDidStopSelector:@selector(showSelectionChoices)];
+
+    thoughtModalArea.alpha = 0;    
+    
+    [UIView commitAnimations];
 
 }
 
@@ -285,25 +342,14 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 - (void) selectController:(int) controllerID{
 	
 	BOOL isListViewControllerNeeded = FALSE;
+	BOOL isDilemmaViewControllerNeeded = FALSE;
 	int requestedAccessorySlot = 0;
+	int requestedCampaign = 0;
 	
 	//Determine if a new view controller has been requested
 	if (controllerID > 0) {
 
 		switch (controllerID) {
-//			case 1:{
-//				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-//				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-//				[dilemmaListViewCont release];
-//			}
-//				break;				
-//			case 4:{
-//				ConscienceActionViewController *conscienceActionViewCont = [[ConscienceActionViewController alloc] initWithNibName:@"ConscienceActionView" bundle:[NSBundle mainBundle]];
-//				
-//				[self.navigationController pushViewController:conscienceActionViewCont animated:NO];
-//				[conscienceActionViewCont release];
-//			}
-//				break;                
 			case 2:{
 				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithNibName:@"ReportPieView" bundle:[NSBundle mainBundle]];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
@@ -322,47 +368,11 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
                 
-			case 8:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:1 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-				break;
-			case 9:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:2 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-	                break;
-			case 10:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:3 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-      	          break;
-			case 11:{
-				DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
-                
-				[prefs setInteger:4 forKey:@"dilemmaCampaign"];
-                
-				[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-				[dilemmaListViewCont release];
-			}
-            	    break;                
-			case 12:{
-				[self removeUserData];
-			}
-				break;                
-                
+			case 8:requestedCampaign=1;isDilemmaViewControllerNeeded = TRUE;break;
+			case 9:requestedCampaign=2;isDilemmaViewControllerNeeded = TRUE;break;
+			case 10:requestedCampaign=3;isDilemmaViewControllerNeeded = TRUE;break;
+			case 11:requestedCampaign=4;isDilemmaViewControllerNeeded = TRUE;break;                
+			case 12:[self removeUserData];break;                
 			case 20:requestedAccessorySlot = 4;isListViewControllerNeeded = TRUE;break;
 			case 21:requestedAccessorySlot = 5;isListViewControllerNeeded = TRUE;break;
 			case 22:requestedAccessorySlot = 6;isListViewControllerNeeded = TRUE;break;
@@ -374,13 +384,52 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 				break;
 		}
 	}	
-	
+
+	//Present a list of choices for accessories	
 	if (isListViewControllerNeeded) {
 
 		ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] initWithNibName:@"ConscienceListView" bundle:[NSBundle mainBundle]];
 		[conscienceListCont setAccessorySlot:requestedAccessorySlot];
 		[self.navigationController pushViewController:conscienceListCont animated:NO];
 		[conscienceListCont release];
+	}
+
+	//Present a DilemmaListViewController
+	if (isDilemmaViewControllerNeeded) {
+
+		//Determine if User has completed the first Campaign
+		//If not, present help view.
+		if((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) {
+
+        NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title2",NSStringFromClass([self class])];
+        NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text2",NSStringFromClass([self class])];
+        
+        NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
+        NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+        
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        conscienceHelpViewCont.helpTitles = titles;
+        conscienceHelpViewCont.helpTexts = texts;
+        conscienceHelpViewCont.isConscienceOnScreen = TRUE;
+        
+        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [helpTitleName release];
+        [helpTextName release];
+        [titles release];
+        [texts release];
+        [conscienceHelpViewCont release];
+            
+			
+    } else {
+
+		DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
+
+		[prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
+
+		[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
+		[dilemmaListViewCont release];
+		}
 	}
 }
 
@@ -396,7 +445,7 @@ Implementation: Revert Conscience to homescreen position, dismiss UIViewControll
 		[UIView setAnimationBeginsFromCurrentState:YES];
 		thoughtModalArea.alpha = 0;
 		appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-		
+        appDelegate.userConscienceView.alpha = 0;
 		
 		[UIView commitAnimations];
 		

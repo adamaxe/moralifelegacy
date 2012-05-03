@@ -17,15 +17,55 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 {
     self = [super init];
 	if (self) {
-        //In case of first time run, or User does not supply configuration, default gradient
-        [self setPathFillColor:@"000000"];
-        [self setPathStrokeColor:@"000000"];
-        [self setPathID:@"none"];
-        [self setPathGradient:@""];
+		//In case of first time run, or User does not supply configuration, default gradient
+		[self setPathFillColor:kPathColor];
+		[self setPathStrokeColor:kPathColor];
+		[self setPathID:@"none"];
+		[self setPathGradient:@""];
+		[self setPathStrokeWidth:kDefault0Float];
+		[self setPathFillOpacity:kDefault0Float];
+		[self setPathStrokeMiterLimit:kDefault0Float];
+		[self setPathStrokeOpacity:kDefault0Float];
+
 		pathPoints = [[NSMutableArray alloc] init];
 		pathInstructions = [[NSMutableArray alloc] init];		
     }
     return self;
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    self = [super init];
+    if (self) {         
+        
+		self.pathInstructions = [decoder decodeObjectForKey:@"pathInstructions"];
+		self.pathPoints = [decoder decodeObjectForKey:@"pathPoints"];
+		self.pathFillColor = [decoder decodeObjectForKey:@"pathFillColor"];
+		self.pathStrokeColor = [decoder decodeObjectForKey:@"pathStrokeColor"];
+		self.pathID = [decoder decodeObjectForKey:@"pathID"];
+		self.pathGradient = [decoder decodeObjectForKey:@"pathGradient"];
+		
+        self.pathStrokeWidth = [decoder decodeFloatForKey:@"pathStrokeWidth"];
+        self.pathFillOpacity = [decoder decodeFloatForKey:@"pathFillOpacity"];
+        self.pathStrokeOpacity = [decoder decodeFloatForKey:@"pathStrokeOpacity"];
+        self.pathStrokeMiterLimit = [decoder decodeFloatForKey:@"pathStrokeMiterLimit"];
+        
+	}
+	return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    
+	[encoder encodeObject:pathInstructions forKey:@"pathInstructions"];
+	[encoder encodeObject:pathPoints forKey:@"pathPoints"];
+	[encoder encodeObject:pathFillColor forKey:@"pathFillColor"];
+	[encoder encodeObject:pathStrokeColor forKey:@"pathStrokeColor"];    
+	[encoder encodeObject:pathID forKey:@"pathID"];
+	[encoder encodeObject:pathGradient forKey:@"pathGradient"];    
+	[encoder encodeFloat:pathStrokeWidth forKey:@"pathStrokeWidth"];
+    [encoder encodeFloat:pathFillOpacity forKey:@"pathFillOpacity"];
+	[encoder encodeFloat:pathStrokeOpacity forKey:@"pathStrokeOpacity"];
+    [encoder encodeFloat:pathStrokeMiterLimit forKey:@"pathStrokeMiterLimit"];
+    
 }
 
 /**
@@ -43,7 +83,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 	bool addInstruction = FALSE;
 
 	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-    NSMutableString *previousInstruction = [[NSMutableString alloc] initWithString:@""];
+	NSMutableString *previousInstruction = [[NSMutableString alloc] initWithString:@""];
 	
     /**
 	Tokenize path data.

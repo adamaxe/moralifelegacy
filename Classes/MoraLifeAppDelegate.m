@@ -1,12 +1,15 @@
 /**
-Moralife AppDelegate.  Implementation.
+Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data Stack and the Conscience.  User Conscience can appear on any screen, so it makes sense to create and maintain him in the delegate. He is not a singleton, however, due to the fact that there can be many different iterations of a Conscience type.
  
-All setup for data, navigation, UI, is done in App delegate.
- 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+<br>All setup for Conscience data, navigation, UI, is done in App delegate.  All setup for data, navigation, UI, is done in App delegate.
+@todo project->buildsettings->architectures->debug->remove any IOS SDK
+@todo Model: change ReferenceText.belief to-many relationship to beliefs
+@todo Model: change Character.story to-many relationship to stories
+@todo Model: change delete rule for ReferenceText.children to cascade
+@todo Model: change Character.sizeCharacter type to Float, change UserCharacter and Character to similiar
+@todo Model: change Moral.dilemmaA/B typo
+@todo Model: why is Moral.dilemma 1 to many?
 @class MoralifeAppDelegate MoralifeAppDelegate.h
-@date 03/28/2010
-@file
 */
 
 #import "MoraLifeAppDelegate.h"
@@ -43,18 +46,10 @@ All setup for data, navigation, UI, is done in App delegate.
 
 - (void)awakeFromNib {
     
+	//Call method to create base Conscience.    
     [self createConscience];
-    
-    //RootViewController *rootViewController = (RootViewController *)[navigationController topViewController];
-    //rootViewController.managedObjectContext = self.managedObjectContext;
-}
 
-/*
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-	
-    return YES;
 }
-*/
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -134,22 +129,21 @@ All setup for data, navigation, UI, is done in App delegate.
 	navController3.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav3Label",@"Label for Navigation 3");
 	navController3.tabBarItem.image = [UIImage imageNamed:@"tabbar-ref.png"];
 	navController3.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	
-	
-	//[navController1 pushViewController:homeViewController1 animated:NO];
+		
 	[navController1 pushViewController:conscienceViewController1 animated:NO];
-	[navController2	pushViewController:choiceIntViewController1 animated:NO];
+	
+    [navController2	pushViewController:choiceIntViewController1 animated:NO];
 	[navController3	pushViewController:referenceViewController1 animated:NO];
 	
-	//[homeViewController1 release];
-	[conscienceViewController1 release];
+    [conscienceViewController1 release];
 	[choiceIntViewController1 release];
 	[referenceViewController1 release];
 	
+    //Menubar removal
 	CGFloat cgf = 0.8;
 	
     // Override point for customization after application launch
-	mainMenuTabBarCont.viewControllers = [NSArray arrayWithObjects:navController1, navController2, navController3, nil];
+	[mainMenuTabBarCont setViewControllers:[NSArray arrayWithObjects:navController1, navController2, navController3, nil]];
 	mainMenuTabBarCont.title = NSLocalizedString(@"PrimaryMenuTitle",@"Label for Primary Tab Menu");
 	mainMenuTabBarCont.accessibilityHint = NSLocalizedString(@"PrimaryMenuHint",@"Hint for Primary Tab Menu");
 	mainMenuTabBarCont.accessibilityLabel = NSLocalizedString(@"PrimaryMenuLabel",@"Label for Primary Tab Menu");
@@ -161,7 +155,7 @@ All setup for data, navigation, UI, is done in App delegate.
 	[navController3 release];
 		
 	application.applicationSupportsShakeToEdit = YES;
-        
+    
 	[window addSubview:mainMenuTabBarCont.view];
 	[window makeKeyAndVisible];
 	
@@ -251,35 +245,56 @@ All setup for data, navigation, UI, is done in App delegate.
 
 	//Determine if pre-loaded SQLite db exists
 	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadData];
-
+    NSError *error = nil;
+    
+    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"sqlite"];
+    
+    
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
 	if (!isSQLiteFilePresent) {
-		NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"sqlite"];
+        
         NSString *defaultStorePathWrite = [[NSBundle mainBundle] pathForResource:@"UserData" ofType:@"sqlite"];
-
+        
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePath) {
-			NSError *error = nil;
-
+            
 			[fileManager copyItemAtPath:defaultStorePath toPath:preloadData error:&error];
-
+            
 			NSLog(@"Unresolved error %@", error);
-		}
+        }
         
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePathWrite) {
-			NSError *error = nil;
+			error = nil;
             
 			[fileManager copyItemAtPath:defaultStorePathWrite toPath:preloadDataReadWrite error:&error];
             
 			NSLog(@"Unresolved error %@", error);
-		}        
-	}
+		}  
+        
+    } else {
+        
+        error = nil;
+        
+        NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:defaultStorePath error:&error];
+        NSDate *defaultFileDate =[dictionary objectForKey:NSFileModificationDate];
+        dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:preloadData error:&error];
+        NSDate *preloadFileDate =[dictionary objectForKey:NSFileModificationDate];
+
+        
+        if ([defaultFileDate compare:preloadFileDate] == NSOrderedDescending) {
+            NSLog(@"file overridden");
+            [fileManager removeItemAtPath:preloadData error:&error];
+            [fileManager copyItemAtPath:defaultStorePath toPath:preloadData  error:&error];
+        }
+        
+    }
+
 
 	//handle db upgrade for auto migration for minor schema changes
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
 	
-    NSError *error = nil;
+    error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
 
 	if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
@@ -351,6 +366,9 @@ All setup for data, navigation, UI, is done in App delegate.
 #pragma mark -
 #pragma mark Conscience Setup
 
+/**
+ Implementation: Call all constructors for default Conscience features if they do not already exist.  These setups will be overridden by the configuration task.
+ */
 - (void) createConscience{
     
     if (!userConscienceBody) {
@@ -373,9 +391,11 @@ All setup for data, navigation, UI, is done in App delegate.
         
     }
 	    
+	//Apply User customizations to Conscience and User Data    
     [self configureConscience];
     [self configureCollection];    
 	
+	//Create physcial, viewable Conscience from constructs    
     if (!userConscienceView) {
         userConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(20, 130, 200, 200) withBody:userConscienceBody withAccessories:userConscienceAccessories withMind:userConscienceMind];
         
@@ -385,6 +405,9 @@ All setup for data, navigation, UI, is done in App delegate.
     
 }
 
+/**
+ Implementation: Tear down Conscience.  This is used in low-memory/background scenarios.  Monitor is re-creatable at any point from persistent data.
+ */
 - (void) destroyConscience{
     
 	[userConscienceBody release];
@@ -393,6 +416,9 @@ All setup for data, navigation, UI, is done in App delegate.
 	[userConscienceView release];
 }
 
+/**
+ Implementation: Retrieve User-customizations to Monitor from Core Data.  Then build physical traits (eyes/mouth/face/mind).
+ */
 - (void)configureConscience{
 
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -441,9 +467,13 @@ All setup for data, navigation, UI, is done in App delegate.
     
     [request release];
 
+	//Call utility class to parse svg data for feature building    
 	[ConscienceBuilder buildConscience:userConscienceBody];
 }
 
+/**
+ Implementation: Retrieve User-entries such as questions/responses.
+ */
 - (void)configureCollection{
     
     NSManagedObjectContext *context = [self managedObjectContext];
@@ -493,6 +523,7 @@ All setup for data, navigation, UI, is done in App delegate.
  */
 - (void)dealloc {
 	
+	/** @todo revisit memory management for ARC migration */    
 	[managedObjectContext release];
     [managedObjectModel release];
     [persistentStoreCoordinator release];

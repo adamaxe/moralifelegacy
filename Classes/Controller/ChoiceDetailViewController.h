@@ -28,13 +28,13 @@ Last screen in Choice/Luck Entry Workflow.
 	
 	IBOutlet UIButton *doneButton;		/**< Done Button */
 	IBOutlet UIButton *cancelButton;		/**< Cancel Button */
-	
+	IBOutlet UIButton *influenceButton;		/**< Influence Button */	
+    
 	IBOutlet StructuredTextField *justificationTextField;	/**< Text field for User-entered justification */
 	IBOutlet StructuredTextField *consequencesTextField;	/**< Text field for User-entered consequence */
 	StructuredTextField *activeField;				/**< Temporary field designation for active field */
 
-	/** @todo rename BOOL to correct description */	
-	BOOL isChoiceFinished;		/**< is Choice being cancelled */
+	BOOL isChoiceCancelled;		/**< is Choice being cancelled, don't save */
 }
 
 /**
@@ -46,8 +46,6 @@ Accepts User input to change the description of the Influence slider
 
 /**
 Accepts User input to dismiss current UIViewController
-@todo possibly rename previousNav to consistent name
-
 @param id Object which requested the view dismissal
 @return IBAction referenced from Interface Builder
  */
@@ -59,6 +57,13 @@ Accepts User input to remove all changes
 @return IBAction referenced from Interface Builder
  */
 -(IBAction)cancelChoice:(id) sender;
+
+/**
+ Accepts User input to view purpose of Influence slider
+ @param id Object which requested the slider change
+ @return IBAction referenced from Interface Builder
+ */
+-(IBAction)selectInfluence:(id) sender;
 
 /**
 Limit a text field for each key press

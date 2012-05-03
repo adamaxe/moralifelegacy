@@ -14,6 +14,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "Moral.h"
 #import "UserCollectable.h"
 #import "ConscienceActionViewController.h"
+#import "ConscienceHelpViewController.h"
 
 @implementation DilemmaListViewController
 
@@ -42,7 +43,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	choiceNames = [[NSMutableArray alloc] init];			
 	choiceImages = [[NSMutableArray alloc] init];			
 	choiceDetails = [[NSMutableArray alloc] init];
-    choiceTypes = [[NSMutableArray alloc] init];
+	choiceTypes = [[NSMutableArray alloc] init];
 	choiceDisplayNames = [[NSMutableArray alloc] init];
 	userChoices = [[NSMutableDictionary alloc] init];
 	moralNames = [[NSMutableDictionary alloc] init];
@@ -61,7 +62,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	tableDataImages = [[NSMutableArray alloc] init];
 	tableDataDetails = [[NSMutableArray alloc] init];
 	tableDataKeys = [[NSMutableArray alloc] init];
-    tableDataTypes = [[NSMutableArray alloc] init];
+	tableDataTypes = [[NSMutableArray alloc] init];
 
 }
 
@@ -99,12 +100,51 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	
 	[dilemmaListTableView reloadData];
 
+	//If this is the first time in Morathology, then show the intro
+	NSObject *firstLaunchCheck = [prefs objectForKey:@"firstMorathology"];
+    
+	if (firstLaunchCheck == nil) {
+
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
+		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
+		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
+		NSString *helpTitleName3 =[[NSString alloc] initWithFormat:@"Help%@0Title3",NSStringFromClass([self class])];
+		NSString *helpTextName3 =[[NSString alloc] initWithFormat:@"Help%@0Text3",NSStringFromClass([self class])];
+
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), NSLocalizedString(helpTitleName3,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), NSLocalizedString(helpTextName3,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		conscienceHelpViewCont.helpTitles = titles;
+		conscienceHelpViewCont.helpTexts = texts;
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[helpTitleName2 release];
+		[helpTextName2 release];
+		[helpTitleName3 release];
+		[helpTextName3 release];
+		[titles release];
+		[texts release];
+		conscienceHelpViewCont.isConscienceOnScreen = TRUE;
+        
+        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [conscienceHelpViewCont release];
+
+		[prefs setBool:FALSE forKey:@"firstMorathology"];
+
+	}
+
+
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
     
     int nextRow = [userChoices count] - 1;
-    
+        
     if (nextRow > 0) {
 
         [dilemmaListTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:nextRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
@@ -195,27 +235,12 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 	[[cell detailTextLabel] setAdjustsFontSizeToFitWidth:TRUE];   
 
 
+    /** @todo check for empty arrays */
 	//Generate array of all keys in User Dictionary
 	NSArray *allUserChoices = [[NSArray alloc] initWithArray:[userChoices allKeys]];
     
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
-//    if ([allUserChoices containsObject:[tableDataKeys objectAtIndex:indexPath.row]]) {
-//        cell.accessoryType = UITableViewCellAccessoryCheckmark;
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
-//        
-//        NSString *moralName = [moralNames valueForKey:[userChoices valueForKey:[tableDataKeys objectAtIndex:indexPath.row]]];
-//        [[cell detailTextLabel] setText:moralName];
-//        
-//    }else {
-//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-//		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-//		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-//        [[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
-//
-//    }
-    
 	int previousRow = indexPath.row;
     
 	BOOL isSelectable = FALSE;
@@ -304,7 +329,6 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             
             [selectedRowKey release];
 
-            //if ([[tableDataDetails objectAtIndex:indexPath.row] rangeOfString:@"vs. "].location != NSNotFound){
             if ([[tableDataTypes objectAtIndex:indexPath.row] boolValue]){
                 DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:[NSBundle mainBundle]];
                 [self.navigationController pushViewController:dilemmaViewCont animated:NO];
@@ -390,7 +414,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[choiceImages removeAllObjects];	
 	[choiceDetails removeAllObjects];	
 	[choiceDisplayNames removeAllObjects];	
-    [choiceTypes removeAllObjects];	
+	[choiceTypes removeAllObjects];	
 	[userChoices removeAllObjects];	
     
 	[dataSource removeAllObjects];	
@@ -399,11 +423,11 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[tableDataImages removeAllObjects];	
 	[tableDataDetails removeAllObjects];	
 	[tableDataKeys removeAllObjects];
-    [tableDataTypes removeAllObjects];
+	[tableDataTypes removeAllObjects];
 
-    BOOL isDilemma = TRUE;
+	BOOL isDilemma = TRUE;
 	NSObject *boolCheck = [prefs objectForKey:@"dilemmaCampaign"];
-	NSInteger dilemmaCampaign;
+//	NSInteger dilemmaCampaign;
     
 	if (boolCheck != nil) {
 		dilemmaCampaign = [prefs integerForKey:@"dilemmaCampaign"];
@@ -414,12 +438,15 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	//Begin CoreData Retrieval			
 	NSError *outError;
 	
-	//Retrieve all available Dilemmas, sort by name
+	//Retrieve all available Dilemmas, sort by name, limit to currently requested Campaign
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Dilemma" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"campaign == %d", dilemmaCampaign];
+	//NSPredicate *pred = [NSPredicate predicateWithFormat:@"campaign == %d", dilemmaCampaign];
+	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
+	[dilemmaPredicate release];
 
 	if (dilemmaCampaign > 0) {
 		[request setPredicate:pred];
@@ -438,6 +465,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 		
         //Add dilemmas to list, concatenate two morals together for detail text
 		for (Dilemma *matches in objects){
+            
 			[choiceNames addObject:[matches nameDilemma]];
 			[choiceImages addObject:[matches surrounding]];
 			[choiceDisplayNames addObject:[matches displayNameDilemma]];
@@ -471,7 +499,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[tableDataImages addObjectsFromArray:choiceImages];
 	[tableDataKeys addObjectsFromArray:choiceNames];
 	[tableDataDetails addObjectsFromArray:choiceDetails];
-    [tableDataTypes addObjectsFromArray:choiceTypes];
+	[tableDataTypes addObjectsFromArray:choiceTypes];
 
 	[dilemmaListTableView reloadData];
     
@@ -487,6 +515,12 @@ Implementation: Load User data to determine which Dilemmas have already been com
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserDilemma" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
+    
+    NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey contains[cd] %@", dilemmaPredicate];
+	[dilemmaPredicate release];
+    
+    [request setPredicate:pred];
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];

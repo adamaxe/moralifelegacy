@@ -21,12 +21,19 @@ Implementation: Call various utilities to construct User's Conscience.  Call XML
     [requestedConscienceBody retain];
     NSString *featurePath = [[NSBundle mainBundle] bundlePath];
     NSFileManager *fileManager = [NSFileManager defaultManager];     
+
+    NSMutableString *featureFileName = [NSMutableString stringWithFormat:@"%@.svg", requestedConscienceBody.eyeName];
+	NSMutableString *dataPath = [NSMutableString stringWithString:[featurePath stringByAppendingPathComponent:featureFileName]];
+            
+    if ([fileManager fileExistsAtPath:dataPath]){ 
+        [self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.eyeName];
+    } else {
+        [self populateConscience:requestedConscienceBody WithFeature:@"con-nothing"];
+        
+    }
     
-	[self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.eyeName];
-    
-    /** @todo apply svg checking to other features */
-    NSString *featureFileName = [NSString stringWithFormat:@"%@.svg", requestedConscienceBody.symbolName];
-	NSString *dataPath = [featurePath stringByAppendingPathComponent:featureFileName];	
+	[featureFileName setString:[NSMutableString stringWithFormat:@"%@.svg", requestedConscienceBody.symbolName]];
+    [dataPath setString:[NSMutableString stringWithString:[featurePath stringByAppendingPathComponent:featureFileName]]];
     
     if ([fileManager fileExistsAtPath:dataPath]){ 
         [self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.symbolName];
@@ -34,9 +41,18 @@ Implementation: Call various utilities to construct User's Conscience.  Call XML
         [self populateConscience:requestedConscienceBody WithFeature:@"con-nothing"];
 
     }
+        
+    [featureFileName setString:[NSMutableString stringWithFormat:@"%@.svg", requestedConscienceBody.mouthName]];
+    [dataPath setString:[NSMutableString stringWithString:[featurePath stringByAppendingPathComponent:featureFileName]]];
+
     
-//	[self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.symbolName];
-	[self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.mouthName];
+    if ([fileManager fileExistsAtPath:dataPath]){ 
+        [self populateConscience:requestedConscienceBody WithFeature:requestedConscienceBody.mouthName];
+    } else {
+        [self populateConscience:requestedConscienceBody WithFeature:@"con-nothing"];
+        
+    }
+    
     [requestedConscienceBody release];
     
 }
@@ -69,11 +85,12 @@ Implementation: Parse the XML document and feed the ConscienceBody based upon re
 	
 	//Start parsing the XML file.
 	BOOL success = [xmlParser parse];
-	
+
 	if(success)
 		NSLog(@"No Errors");
 	else
 		NSLog(@"Error Error Error!!!");
+    
 	[xmlParser setDelegate:nil];
 	[featureData release];
 	[parser release];

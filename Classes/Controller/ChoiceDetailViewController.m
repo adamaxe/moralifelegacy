@@ -7,6 +7,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 #import "ChoiceDetailViewController.h"
 #import "StructuredTextField.h"
+#import "ConscienceHelpViewController.h"
 
 @implementation ChoiceDetailViewController
 
@@ -25,6 +26,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	@todo utilize consistent localization string references 
 	@todo convert localization of all UIViewControllers into protocol
 	*/
+    
 	[self setTitle:NSLocalizedString(@"ChoiceDetailsScreenTitle",@"Label for Choice Details Screen")];
 
 	//Retrieve localized done button string
@@ -47,10 +49,12 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];	
 
 	//Make slider decoration invisible so that fade-in is possible
+	[influenceButton setAlpha:0];
 	[influenceImageView setAlpha:0];
 	[cloudImageView setAlpha:0];
 	
 	//Retrieve localized influence description strings
+    [influenceLabel setText:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider")];
 	influenceLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel1",@"Label for Influence Level 1"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel2",@"Label for Influence Level 2"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel3",@"Label for Influence Level 3"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel4",@"Label for Influence Level 4"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel5",@"Label for Influence Level 5"), nil];
 
 	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];
@@ -64,7 +68,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenCancelButtonLabel",@"Label for Cancel button");	
 
 	//Setting to determine if details are being cancelled
-	isChoiceFinished = FALSE;
+	isChoiceCancelled = FALSE;
 	
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
@@ -104,14 +108,18 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 -(void)viewDidAppear:(BOOL)animated {
     [UIView beginAnimations:@"showInfluenceImage" context:nil];
     [UIView setAnimationDuration:0.5];
+    [influenceButton setAlpha:1];
     [influenceImageView setAlpha:1];
     [cloudImageView setAlpha:1];
     [UIView commitAnimations];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
 	
-	if (!isChoiceFinished) {
+	if (!isChoiceCancelled) {
 
 		//Do not save default help text
 		NSString *defaultTextJustification = [[NSString alloc] initWithString:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",@"Label for Justification Textfield")];
@@ -137,10 +145,47 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 #pragma mark -
 #pragma mark UI Interaction
+
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time that the app, then show the initial help
+    NSObject *firstChoiceEntryCheck = [prefs objectForKey:@"firstChoiceDetailEntry"];
+    
+    if (firstChoiceEntryCheck == nil) {
+        
+		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
+		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];        
+        
+		NSArray *titles = [[NSArray alloc] initWithObjects:
+                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), nil];
+		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), nil];
+        
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        
+		[conscienceHelpViewCont setHelpTitles:titles];
+		[conscienceHelpViewCont setHelpTexts:texts];
+		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        
+		[helpTitleName1 release];
+		[helpTextName1 release];
+		[titles release];
+		[texts release];
+		
+		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		[conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
+        
+    }
+}
+
 /**
 Implementation: change the influence value and update the influence Label
  */
--(void)influenceChange:(id) sender{
+-(IBAction)influenceChange:(id) sender{
 	
 	//Ensure that sender is the right input
 	if ([sender isKindOfClass:[UISlider class]]) {
@@ -158,7 +203,7 @@ Implementation: change the influence value and update the influence Label
 /**
 Implementation: pop UIViewController from current navigationController
  */
--(void)previousNav:(id) sender{
+-(IBAction)previousNav:(id) sender{
 	//Return to previous view by popping current view off navigation controller	
 	[self.navigationController popViewControllerAnimated:TRUE];
 }
@@ -166,17 +211,44 @@ Implementation: pop UIViewController from current navigationController
 /**
 Implementation: remove NSUserDefault state information, set Cancel flag, pop UIViewController from current navigationController
  */
--(void)cancelChoice:(id) sender{
+-(IBAction)cancelChoice:(id) sender{
 	
 	//Remove ChoiceDetail state information
 	[prefs removeObjectForKey:@"choiceJustification"];
 	[prefs removeObjectForKey:@"choiceConsequence"];
 	[prefs removeObjectForKey:@"choiceInfluence"];	
 	
-	isChoiceFinished = TRUE;
+	isChoiceCancelled = TRUE;
 	
 	[self.navigationController popViewControllerAnimated:TRUE];
 	
+}
+
+/**
+ Implementation: Present ConscienceHelpViewController that shows User purpose of the Influence button.
+ */
+-(IBAction)selectInfluence:(id) sender{
+    
+    NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
+    NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text1",NSStringFromClass([self class])];
+    
+    NSArray *titles = [[NSArray alloc] initWithObjects:
+                       NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
+    NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
+    
+    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+    
+    [conscienceHelpViewCont setHelpTitles:titles];
+    [conscienceHelpViewCont setHelpTexts:texts];
+    [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+    
+    [helpTitleName release];
+    [helpTextName release];
+    [titles release];
+    [texts release];
+    
+    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+    [conscienceHelpViewCont release];
 }
 
 #pragma mark -

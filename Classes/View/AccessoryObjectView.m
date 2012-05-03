@@ -23,7 +23,7 @@ Implementation: An image wrapper is used for accessories as to simplify the setu
 		self.multipleTouchEnabled = TRUE;
 		self.contentMode = UIViewContentModeCenter;
 		
-		//Set filename to known blank pdf at initialization
+		//Set filename to known blank png at initialization
 		[self setAccessoryFilename:kAccessoryFileNameResource];
 		
 	}
@@ -33,15 +33,12 @@ Implementation: An image wrapper is used for accessories as to simplify the setu
 - (void)drawRect:(CGRect)rect {
     
     if ([accessoryFilename isEqualToString:@""]) {
-        [self setAccessoryFilename:@"acc-nothing"];
+        [self setAccessoryFilename:kAccessoryFileNameResource];
     }
     
-    NSString *imageName = [[NSString alloc] initWithString:accessoryFilename];
-    
-    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:imageName ofType:@"png"]];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[self accessoryFilename] ofType:@"png"]];
     [image drawInRect:rect];
     [image release];
-    [imageName release];
     
 }
 

@@ -31,9 +31,7 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 	IBOutlet UIButton *thoughtButton;			/**< area in which thought bubble appears */
 	IBOutlet UIButton *nextButton;              /**< area in which thought bubble appears */	
     
-	NSTimer *moveTimer;                 /**< controls Conscience movement */
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
-	NSTimer *holdTapTimer;				/**< determines if long press was initiated */
 	NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
 	
 	CGFloat initialTapDistance;			/**< assists in gesture recognition */
@@ -43,6 +41,9 @@ Application Introduction.  View controller for first time into app.  Only utiliz
     BOOL isImpatient;                   /**< has User decided to skip intro */
 	    
 }
+
+@property (nonatomic, retain) NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
+
 
 /**
 Accepts User input to select the last choice in the Introduction
@@ -69,21 +70,17 @@ Fade ConscienceView back from being faded out and changed
  */
 -(void)revealConscience;
 /**
-Start timers for Conscience movement
- */
--(void)setTimers;
-/**
-Stop timers for Conscience movement
- */
--(void)stopTimers;
-/**
-In case of interruption, stop Intro and movement timers
+In case of interruption, stop Intro, save state
  */
 -(void)stopIntro;
 /**
 Animate UI arrow to draw User attention
  */
 -(void)animateDownButton;
+/**
+ Animate fading text
+ */
+-(void)animateStatusText;
 /**
 Animate UI arrow to draw User attention to interaction button
  */

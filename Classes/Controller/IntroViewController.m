@@ -1,5 +1,7 @@
 /**
 Implementation:  Present Conscience and basic User interaction elements to User in measured, controlled way.
+Monitor will float around screen, talk to User, introduce UI elements and acclimate User to the design metaphors of 
+the application.
 
 @class IntroViewController IntroViewController.h
  */
@@ -14,9 +16,7 @@ Implementation:  Present Conscience and basic User interaction elements to User 
 
 @implementation IntroViewController
 
-static int numberOfShakes = 8;
-static float durationOfShake = 0.5f;
-static float vigourOfShake = 0.05f;
+@synthesize thoughtChangeTimer = _thoughtChangeTimer;
 
 #pragma mark -
 #pragma mark ViewController lifecycle
@@ -28,26 +28,32 @@ static float vigourOfShake = 0.05f;
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
     
-	appDelegate.userConscienceAccessories.primaryAccessory = @"acc-nothing";
-	appDelegate.userConscienceAccessories.secondaryAccessory = @"acc-nothing";
-	appDelegate.userConscienceAccessories.topAccessory = @"acc-nothing";
-	appDelegate.userConscienceAccessories.bottomAccessory = @"acc-nothing";
-	appDelegate.userConscienceBody.symbolName = @"con-nothing";    
+	//Setup the default Conscience
+	appDelegate.userConscienceAccessories.primaryAccessory = kAccessoryFileNameResource;
+	appDelegate.userConscienceAccessories.secondaryAccessory = kAccessoryFileNameResource;
+	appDelegate.userConscienceAccessories.topAccessory = kAccessoryFileNameResource;
+	appDelegate.userConscienceAccessories.bottomAccessory = kAccessoryFileNameResource;
+	appDelegate.userConscienceBody.symbolName = kSymbolFileNameResource;    
     
 	[consciencePlayground addSubview:appDelegate.userConscienceView];
     
 	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
 	
-    /** @todo remove Beta tester messaging */
 	appDelegate.userConscienceView.center = centerPoint;
-	[conscienceStatus setText:@"Hi Beta Testers!  Welcome to..."];
-    
+	[conscienceStatus setText:@"Hello there!  Welcome to..."];
+
+    thoughtButton.accessibilityHint = NSLocalizedString(@"IntroThoughtButtonHint", @"Hint for thought button");
+	thoughtButton.accessibilityLabel =  NSLocalizedString(@"IntroThoughtButtonLabel",@"Label for thought button");
+    nextButton.accessibilityHint = NSLocalizedString(@"IntroNextButtonHint", @"Hint for next button");
+	nextButton.accessibilityLabel =  NSLocalizedString(@"IntroNextButtonLabel",@"Label for next button");
+
 	backgroundImage.alpha = 0;
 	moraLifeLogoImage.alpha = 0;
     
 	animationDuration = 1.0;
 	messageState = 0;
-	isImpatient = FALSE;
+	isImpatient = TRUE;
+
 }
 
 -(void) viewWillAppear:(BOOL)animated{
@@ -56,6 +62,7 @@ static float vigourOfShake = 0.05f;
 
 	teamAxeLogoImage.alpha = 0;
 
+    //If device is capable of multitasking setup notifcations for backgrounding
 	if ([appDelegate isCurrentIOS]) { 
 		[[NSNotificationCenter defaultCenter] addObserver: self
                                              selector: @selector(stopIntro) 
@@ -74,6 +81,7 @@ static float vigourOfShake = 0.05f;
 
 -(void)viewWillDisappear:(BOOL)animated {
 
+	//If multitasking OS is available, remove notifications
 	if ([appDelegate isCurrentIOS]) { 
 		[[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:UIApplicationDidEnterBackgroundNotification
@@ -83,18 +91,28 @@ static float vigourOfShake = 0.05f;
                                                     name:UIApplicationWillEnterForegroundNotification
                                                   object:nil];
 	}
-    
+
+	//Save state of intro
     if (messageState >=0) {
         [self stopIntro];
     }
     
+    if(self.thoughtChangeTimer != nil)
+    {
+//        [self.thoughtChangeTimer invalidate];
+        self.thoughtChangeTimer = nil;
+    }
+    
 }
 
+/**
+ Implementation: In case introduction was interrupted, restart script from point last reached.
+ */
 -(void)resumeIntro {
-
 
     id placeholderID = nil;
     
+	//Check for presences of previously interrupted intro
     NSObject *introCheck = [prefs objectForKey:@"introStateRestore"];
     int messageStateRestore = 0;
     
@@ -104,11 +122,9 @@ static float vigourOfShake = 0.05f;
 
     }
     
-    
+    //If User was left at a particular stage in the intro, return them to that state
     if (messageStateRestore > 0) {
     
-        NSLog(@"resume intro res:%d, message:%d", messageStateRestore, messageState);
-
         [prefs removeObjectForKey:@"introStateRestore"];
         messageState = messageStateRestore;
         
@@ -121,11 +137,11 @@ static float vigourOfShake = 0.05f;
         [UIView commitAnimations];
         [appDelegate.userConscienceView setNeedsDisplay];
         
-        [self setTimers];
         [self switchNow:placeholderID];
         
     } else {
-    
+
+       //Restart introduction
         messageState = 0;
         thoughtArea.alpha = 0;
         
@@ -145,117 +161,36 @@ static float vigourOfShake = 0.05f;
         [UIView commitAnimations];
         [appDelegate.userConscienceView setNeedsDisplay];
                 
-        thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(startIntro) userInfo:nil repeats:NO];
+        self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(startIntro) userInfo:nil repeats:NO];
     }
 
 	[prefs removeObjectForKey:@"introStateRestore"];
     
 }
 
-
+/**
+ Implementation: In case introduction was interrupted, stop the script, so that User can continue where it left off.
+ */
 -(void)stopIntro {
-    NSLog(@"stop intro");
-    [self stopTimers];
     
-    //Stop the conscience from moving
-    if(thoughtChangeTimer != nil && thoughtChangeTimer != NULL){
-    		
-    		[thoughtChangeTimer invalidate];
-    		thoughtChangeTimer = nil;
-    }
-    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = nil;
+        
     [prefs setInteger:messageState forKey:@"introStateRestore"];
-    NSLog(@"viewwilldisappear:%d", [prefs integerForKey:@"introStateRestore"]);
-    
-}
-
-#pragma mark -
-#pragma mark Conscience Movement
-
--(void) timedMovement {
-	BOOL switchOrientationBool = FALSE;
-	
-	//Create illusion that the conscience is randomly floating around screen
-	CGPoint pos = CGPointMake(20,150);
-	
-	CGPoint posCenter = CGPointMake(consciencePlayground.center.x, consciencePlayground.center.y);
-	CGPoint conCenter = CGPointMake(appDelegate.userConscienceView.center.x, appDelegate.userConscienceView.center.y);
-	pos.x = (10 + arc4random() % 5);
-	pos.y = (20 + arc4random() % 7);
-    
-	if (arc4random() % 2 < 1) {
-		posCenter.x += pos.x;
-	}else {
-		posCenter.x -= pos.x;
-	}
-    
-	if (arc4random() % 2 < 1) {
-		posCenter.y += pos.y;
-	}else {
-		posCenter.y -= pos.y;
-	}
-
-	//Ensure that Conscience stays within bounds of area designated
-	if(posCenter.x > 110 || posCenter.x < 70)
-		posCenter.x = 90 + arc4random() % 20;
-	if(posCenter.y > 230 || posCenter.y < 160)
-		posCenter.y = 150 + arc4random() % 50;
-	
-	//Determine if Conscience change direction it is facing
-	if(conCenter.x > 110){
-		
-		if (appDelegate.userConscienceView.directionFacing == kDirectionFacingRight) {
-			switchOrientationBool = TRUE;
-		}
-		
-	}
-    
-    if (appDelegate.userConscienceView.directionFacing == kDirectionFacingLeft) {
-		switchOrientationBool = TRUE;
-	}
-    
-    //Animate the change of facing direction
-	if (switchOrientationBool) {
-        
-		[UIView beginAnimations:@"conscienceFlip" context:nil];
-		[UIView setAnimationDuration:0.25];
-		
-		[UIView setAnimationBeginsFromCurrentState:YES];
-		appDelegate.userConscienceView.alpha = 0;
-		[UIView setAnimationDelegate:appDelegate.userConscienceView]; // self is a view controller
-		[UIView setAnimationDidStopSelector:@selector(removeConscienceInvisibility)];
-        
-		[UIView commitAnimations];
-        
-	}
-    
-    //Conscience Float speed determined by enthusiasm
-    float movementRandom = (1.0/((arc4random() % 7) + 1));  
-    
-    if ((arc4random() % 3 > 0) || switchOrientationBool) {
-        
-        //Animate the change of Conscience location
-        [UIView beginAnimations:@"MoveConscience" context:nil];
-        [UIView setAnimationDuration:(2+movementRandom)];
-        [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        
-        
-        appDelegate.userConscienceView.center = posCenter;
-        
-        [UIView commitAnimations];
-        
-    }
     
 }
 
 #pragma mark -
 #pragma mark Intro States
 
+/**
+ Implementation: Begin introduction.  Shrink Conscience, move to middle of screen, flash screen and dismiss TAO logo.
+ */
 -(void) startIntro{
     
     CGPoint centerPoint = CGPointMake(kConscienceHomeX, kConscienceHomeY-40);
-    
+
+	//Move Monitor onscreen, resize to simulate moving into background
     [UIView beginAnimations:@"CenterConscience" context:nil];
 	[UIView setAnimationDuration:1.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
@@ -269,13 +204,14 @@ static float vigourOfShake = 0.05f;
     [appDelegate.userConscienceView setNeedsDisplay];
     messageState = 0;
     
-    [self setTimers];
-    
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText1) userInfo:nil repeats:NO];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText) userInfo:nil repeats:NO];
     
 }
 
--(void) switchText1{
+/**
+  Implementation: Multiple private methods utilized for scripting due to flexibility needed in animation Monitor/text.
+*/
+-(void) switchText{
 
     
 	[UIView beginAnimations:@"labelFade1" context:nil];
@@ -289,11 +225,15 @@ static float vigourOfShake = 0.05f;
     [appDelegate.userConscienceView setNeedsDisplay];
     
     messageState = 1;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(switchText2) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(switchText0) userInfo:nil repeats:NO];
     
 }
 
--(void) switchText2{
+-(void) switchText0{
+
+    [conscienceStatus setText:@"I am your Conscience.  I'll help you record the things you do throughout the day."];
     
 	[UIView beginAnimations:@"labelFade2" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -301,39 +241,103 @@ static float vigourOfShake = 0.05f;
     
     moraLifeLogoImage.alpha = 0;
     conscienceStatus.alpha = 1;
-    [conscienceStatus setText:@"I am your Conscience.  I'll help you record the things you do throughout the day."];
     
 	[UIView commitAnimations];
     
     messageState = 2;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(switchText3) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText1) userInfo:nil repeats:NO];
+    
+}
+
+-(void) switchText1{
+    
+    nextButton.alpha = 0;
+    nextButtonImage.alpha = 0;
+    nextButton.hidden = FALSE;
+    nextButtonImage.hidden = FALSE;
+    
+    [self animateStatusText];
+    
+    [conscienceStatus setText:@"You can skip this introduction by tapping on the right arrow bubble over there."];
+
+	[UIView beginAnimations:@"labelFade2a" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+    
+    nextButton.alpha = 1;
+    nextButtonImage.alpha = 1;
+    
+    moraLifeLogoImage.alpha = 0;
+    conscienceStatus.alpha = 1;    
+	[UIView commitAnimations];
+    
+    [self animateNextButton];
+    
+    messageState = 2;
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText2) userInfo:nil repeats:NO];
+    
+}
+
+-(void) switchText2{
+        
+    [self animateStatusText];
+    
+    [conscienceStatus setText:@"But I get lonely, so you should stick around until the end.  You can tap my thought bubble to get me to hurry up, though."];
+    
+	[UIView beginAnimations:@"labelFade2b" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+    
+    nextButton.alpha = 1;
+    nextButtonImage.alpha = 1;
+    
+    moraLifeLogoImage.alpha = 0;
+    conscienceStatus.alpha = 1;    
+	[UIView commitAnimations];
+    
+    [self animateNextButton];
+    
+    messageState = 2;
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText3) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText3{
     
+    [self animateStatusText];
+    [conscienceStatus setText:@"Using MoraLife, you can journal your moral actions, and I'll usually respond to them."];
+    
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     conscienceStatus.alpha = 1;
-    [conscienceStatus setText:@"Using MoraLife, you can journal your moral actions, and I'll usually respond to them."];
     
 	[UIView commitAnimations];
 
-    messageState = 3;    
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText4) userInfo:nil repeats:NO];
+    messageState = 3;
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText4) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText4{
     
+    [self animateStatusText];
+    [conscienceStatus setText:@"...like so.  *Hay-LOW!*"];
+    
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     conscienceStatus.alpha = 1;
-    [conscienceStatus setText:@"...like so.  *Hay-LOW!*"];
     
 	[UIView commitAnimations];
     
@@ -355,35 +359,43 @@ static float vigourOfShake = 0.05f;
 	[appDelegate.userConscienceView setIsExpressionForced:TRUE];
 	[appDelegate.userConscienceView setNeedsDisplay];
     
-    messageState = 4;    
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText5) userInfo:nil repeats:NO];
+    messageState = 4; 
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText5) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText5{
     
+    [self animateStatusText];
+    [conscienceStatus setText:@"You can record naughty actions as well and get the opposite results."];    
+    
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     conscienceStatus.alpha = 1;
-    [conscienceStatus setText:@"You can record naughty actions as well and get the opposite results."];
     
 	[UIView commitAnimations];
    
-    messageState = 5;    
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText6) userInfo:nil repeats:NO];
+    messageState = 5;
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText6) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText6{
     
+    [self animateStatusText];
+    [conscienceStatus setText:@"Check it out.  *Triah-DENT!*"];    
+    
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     conscienceStatus.alpha = 1;
-    [conscienceStatus setText:@"Check it out.  *Triah-DENT!*"];
     
 	[UIView commitAnimations];
     
@@ -391,9 +403,6 @@ static float vigourOfShake = 0.05f;
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-
-    appDelegate.userConscienceMind.mood = 40;
-    appDelegate.userConscienceMind.enthusiasm = 80;
 
     appDelegate.userConscienceView.alpha = 0;
     
@@ -401,28 +410,36 @@ static float vigourOfShake = 0.05f;
     [UIView setAnimationDidStopSelector:@selector(makeDevil)];
     
     [UIView commitAnimations];
+    
+    appDelegate.userConscienceMind.mood = 35;
+    appDelegate.userConscienceMind.enthusiasm = 80;
 
 	[appDelegate.userConscienceView setIsExpressionForced:TRUE];
 	[appDelegate.userConscienceView setNeedsDisplay];
     
     messageState = 6;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText7) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText7) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText7{
     
+    [self animateStatusText];
+    appDelegate.userConscienceMind.mood = 60;
+    appDelegate.userConscienceMind.enthusiasm = 60;
+    [conscienceStatus setText:@"You can think of me as your ethical accountant."];
+    
     [UIView beginAnimations:@"conscienceFlip" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    appDelegate.userConscienceMind.mood = 60;
-    appDelegate.userConscienceMind.enthusiasm = 60;
 
     appDelegate.userConscienceView.alpha = 0;
     
-    [conscienceStatus setText:@"You can think of me as your ethical accountant."];
-
+    conscienceStatus.alpha = 1;
+    
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(makeNormal)];
     
@@ -431,37 +448,49 @@ static float vigourOfShake = 0.05f;
     [appDelegate.userConscienceView setNeedsDisplay];
     
     messageState = 7;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText8) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText8) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText8{
     
+    [self animateStatusText];
+    [conscienceStatus setText:@"Now before we get started, I want to talk about how to use MoraLife."];
+    
 	[UIView beginAnimations:@"labelFade7" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
-    [conscienceStatus setText:@"Now before we get started, I want to talk about how to use MoraLife."];
-    
+    conscienceStatus.alpha = 1;
+        
 	[UIView commitAnimations];
     
     messageState = 8;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(switchText9) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText9) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText9{
+    
+    [self animateStatusText];
+    [conscienceStatus setText:@"I'll communicate with you via these thought bubbles.  Tapping on me will present different options."];
         
 	[UIView beginAnimations:@"labelFade8" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
         
-    [conscienceStatus setText:@"I'll communicate with you via these thought bubbles.  Tapping on me will present different options."];
-    
+    conscienceStatus.alpha = 1;
+        
 	[UIView commitAnimations];
     
     messageState = 9;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText10) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText10) userInfo:nil repeats:NO];
     
 }
 
@@ -474,6 +503,8 @@ static float vigourOfShake = 0.05f;
     tabBarImage.hidden = FALSE;
     navBarImage.hidden = FALSE;
 
+    [self animateStatusText];
+    [conscienceStatus setText:@"I'll bring up the rest of the User Interface now.  Check out that woodgrain."];
     
 	[UIView beginAnimations:@"labelFade9" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -481,13 +512,14 @@ static float vigourOfShake = 0.05f;
     
     tabBarImage.alpha = 1;
     navBarImage.alpha = 1;
-    
-    [conscienceStatus setText:@"I'll bring up the rest of the User Interface now.  Check out that woodgrain."];
-    
+    conscienceStatus.alpha = 1;
+        
 	[UIView commitAnimations];
     
     messageState = 10;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText11) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText11) userInfo:nil repeats:NO];
     
 }
 
@@ -497,68 +529,85 @@ static float vigourOfShake = 0.05f;
     downButtonImage.hidden = FALSE;    
     downButtonImage.center = CGPointMake(48, 362);
     
+    [self animateStatusText];
+    [conscienceStatus setText:@"You can tap on the Home Tab Bar icon to return to this screen anytime."];
+    
 	[UIView beginAnimations:@"labelFade10" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
+    conscienceStatus.alpha = 1;
     downButtonImage.alpha = 1;
-    
-    [conscienceStatus setText:@"You can tap on the Home Tab Bar icon to return to this screen anytime."];
     
 	[UIView commitAnimations];
     
     [self animateDownButton];
     
     messageState = 11;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(switchText12) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText12) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText12{
-            
+    
+    [self animateStatusText];
+    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons2.jpg"]];
+    [conscienceStatus setText:@"Tapping on the Journal Tab Bar icon lets you enter in moral or immoral Choices."];
+    
 	[UIView beginAnimations:@"labelFade11" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     downButtonImage.alpha = 1;
     downButtonImage.center = CGPointMake(166, downButtonImage.center.y);
-    
-    
-    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons2.jpg"]];
-    [conscienceStatus setText:@"Tapping on the Journal Tab Bar icon lets you enter in moral or immoral Choices."];
-    
+    conscienceStatus.alpha = 1;
+        
 	[UIView commitAnimations];
     
     [self animateDownButton];
 
     
     messageState = 12;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText13) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText13) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText13{
-        
+    
+    [self animateStatusText];
+
+    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons3.jpg"]];
+    [conscienceStatus setText:@"Tap that Collection Tab Bar icon to review the things that you've bought or received in Morathology."];
+    
 	[UIView beginAnimations:@"labelFade12" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     downButtonImage.alpha = 1;
     downButtonImage.center = CGPointMake(263, downButtonImage.center.y);
-
-    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons3.jpg"]];
-    [conscienceStatus setText:@"Tap that Collection Tab Bar icon to review the loot that you've bought or won in Morathology."];
+    conscienceStatus.alpha = 1;
     
 	[UIView commitAnimations];
     
     [self animateDownButton];
         
     messageState = 13;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText14) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText14) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText14{
+
+    [self animateStatusText];
+
+    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons.jpg"]];
+    [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to dismiss it."];
     
 	[UIView beginAnimations:@"labelFade13" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -566,35 +615,40 @@ static float vigourOfShake = 0.05f;
     
     downButtonImage.alpha = 1;
     downButtonImage.transform = CGAffineTransformMakeRotation (3.14);
-    downButtonImage.center = CGPointMake(243, downButtonImage.center.y-125);
-
-    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons.jpg"]];
-    [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to access the Greenroom, Morathology and Reports."];
+    downButtonImage.center = CGPointMake(243, downButtonImage.center.y-155);
+    conscienceStatus.alpha = 1;
     
 	[UIView commitAnimations];
     
     [self animateDownButton];
     
     messageState = 14;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText15) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText15) userInfo:nil repeats:NO];
     
 }
 
 -(void) switchText15{
+    
+    [self animateStatusText];
+    
+    [conscienceStatus setText:@"Most things in MoraLife will respond to touches.  So, go touch-crazy and tap on everything you see."];
     
 	[UIView beginAnimations:@"labelFade14" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     downButtonImage.alpha = 0;
-    
-    [conscienceStatus setText:@"Most things in MoraLife will respond to touches.  So, go touch-crazy and tap on everything you see."];
-    
+    conscienceStatus.alpha = 1;
+        
 	[UIView commitAnimations];
 	downButtonImage.transform = CGAffineTransformMakeRotation (-3.14);
 
     messageState = 15;
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText16) userInfo:nil repeats:NO];
+    
+    [self.thoughtChangeTimer invalidate];
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText16) userInfo:nil repeats:NO];
     
 }
 
@@ -605,17 +659,21 @@ static float vigourOfShake = 0.05f;
     nextButton.hidden = FALSE;
     nextButtonImage.hidden = FALSE;
     
+    [self animateStatusText];
+    [conscienceStatus setText:@"So, I'm done yapping at you, now.  Tap the right arrow to get started."];
     [thoughtButton setEnabled:FALSE];
+    
+    isImpatient = FALSE;
     
 	[UIView beginAnimations:@"labelFade15" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
+    conscienceStatus.alpha = 1;
     downButtonImage.alpha = 0;
     nextButton.alpha = 1;
     nextButtonImage.alpha = 1;
     
-    [conscienceStatus setText:@"Whenever you see this little arrow, that means that you have control over advancing to the next screen.  Tap it and see."];
     
 	[UIView commitAnimations];
     
@@ -623,41 +681,10 @@ static float vigourOfShake = 0.05f;
     
     messageState = 16;
     
-}
+    [self.thoughtChangeTimer invalidate];
 
-#pragma mark -
-#pragma mark Conscience Manipulation
-
--(void) zoomConscienceIn{
-        
-	[UIView beginAnimations:@"ZoomIn" context:nil];
-	[UIView setAnimationDuration:1.5];
-	[UIView setAnimationBeginsFromCurrentState:NO];
-    
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargestSize, kConscienceLargestSize);
-	
-	[UIView commitAnimations];
-    [appDelegate.userConscienceView setNeedsDisplay];
-    
-    [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(zoomConscienceOut) userInfo:nil repeats:NO];
     
 }
-
--(void) zoomConscienceOut{
-    
-	[UIView beginAnimations:@"ZoomOut" context:nil];
-	[UIView setAnimationDuration:1.5];
-	[UIView setAnimationBeginsFromCurrentState:NO];
-    
-    thoughtArea.alpha = 1;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceSize, kConscienceSize);
-	
-	[UIView commitAnimations];
-    [appDelegate.userConscienceView setNeedsDisplay];
-    
-    
-}
-
 
 /**
 Implementation:  Accessorize Conscience with Angel accessories
@@ -730,14 +757,6 @@ Implementation:  Return conscience to view
     
     //setup id for passing to IB capable method
     id placeholderID = nil;
-    isImpatient = TRUE;
-    
-    //stop thought change
-    if(thoughtChangeTimer != nil){
-        
-        [thoughtChangeTimer invalidate];
-        thoughtChangeTimer = nil;
-    }
     
     //Determine current state of Intro, then advance to next state
     if (messageState >= 0) {
@@ -785,13 +804,9 @@ Implementation:  Return conscience to view
     
     [UIView commitAnimations];
     
-	[UIView beginAnimations:@"labelFadeLast" context:nil];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationBeginsFromCurrentState:NO];
-    
-    nextButton.alpha = 0;
-    nextButtonImage.alpha = 0;
-    
+
+    [self animateStatusText];
+
     //Display appropriate text if User has watched entire Intro
     if (isImpatient) {
         [conscienceStatus setText:@"Okay, so I can tell that you're ready to go.  Let's skip the intro and get to the good stuff."];
@@ -799,17 +814,29 @@ Implementation:  Return conscience to view
         [conscienceStatus setText:@"Awesome.  You're like the best User ever for not skipping the intro.  Let's rock this."];
         
     }
+
+	[UIView beginAnimations:@"labelFadeLast" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+
+	conscienceStatus.alpha = 1;
+   
+	nextButton.alpha = 0;
+	nextButtonImage.alpha = 0;
+	downButtonImage.alpha = 0;
     
 	[UIView commitAnimations];
     
+    appDelegate.userConscienceMind.mood = 60;
+    appDelegate.userConscienceMind.enthusiasm = 60;
+
     //Set NSUserDefaults indicating intro has been completed.
     [prefs setBool:FALSE forKey:@"firstLaunch"];
     messageState = -1;
-    
-    //Stop Conscience Movement
-	[self stopTimers];
-    
-    thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
+    if (self.thoughtChangeTimer) {
+        [self.thoughtChangeTimer invalidate];
+    }
+    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
     
 }
 
@@ -823,7 +850,7 @@ Implementation:  Animate the fading button to get User to see that they should e
     [UIView beginAnimations:@"AnimateDown" context:nil];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationBeginsFromCurrentState:YES];
-    [UIView setAnimationRepeatCount:15];
+    [UIView setAnimationRepeatCount:10];
     [UIView setAnimationRepeatAutoreverses:TRUE];        
     
     downButtonImage.alpha = 0.5;
@@ -848,11 +875,23 @@ Implementation:  Animate the fading button to get User to see that they should e
 }
 
 /**
+ Implementation:  Animate the fading button to get User to see that they should either dismiss the view or continue to more help pages.
+ */
+-(void)animateStatusText{
+    
+    [UIView beginAnimations:@"AnimateStatus" context:nil];
+    [UIView setAnimationDuration:0.5];
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    
+    conscienceStatus.alpha = 0;
+    
+    [UIView commitAnimations];
+}
+
+/**
 Implementation:  Stop any timers, animate Conscience and Thought fades, delay dismissal of View Controller until animation has finished.
  */
 -(void)dismissIntroModal{
-
-	[self stopTimers];
 
 	//Fade view controller from view
 	[UIView beginAnimations:@"HideBubble" context:nil];
@@ -881,55 +920,8 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 }
 
 /**
- Implementation:  Set the movement timer.  If UserConscience is asleep, it shouldn't move
- */
-- (void) setTimers{
-	        
-    //Restart Conscience movement after User has moved it
-    if(![moveTimer isValid]){
-        moveTimer = [NSTimer scheduledTimerWithTimeInterval:kMovementInterval target:self selector:@selector(timedMovement) userInfo:nil repeats:YES];
-    }
-    
-}
-
-/**
- Implementation:  Stop the movement timer whenever UserConscience moves out of Home screen (since movement is not allowed)
- */
-- (void) stopTimers{
-
-	//Stop the conscience from moving
-	if(moveTimer != nil && moveTimer != NULL){
-		
-		[moveTimer invalidate];
-		moveTimer = nil;
-	}
-	
-}
-
-#pragma mark -
-#pragma mark Movement Callbacks
-
--(CAKeyframeAnimation *) shakeAnimation:(CGRect)frame{
-    CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
-	
-    CGMutablePathRef shakePath = CGPathCreateMutable();
-    CGPathMoveToPoint(shakePath, NULL, CGRectGetMinX(frame), CGRectGetMinY(frame));
-	int index;
-	for (index = 0; index < numberOfShakes; ++index)
-	{
-		
-		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX(frame) - frame.size.width * vigourOfShake, CGRectGetMidY(frame) - frame.size.height * vigourOfShake);
-		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX(frame) + frame.size.width * vigourOfShake, CGRectGetMidY(frame) + frame.size.height * vigourOfShake);
-		
-	}
-    CGPathCloseSubpath(shakePath);
-    shakeAnimation.path = shakePath;
-    shakeAnimation.duration = durationOfShake;
-    return shakeAnimation;
-}
-
-
-//Implement Shaking response
+  Implementation: firstResponder necessary for implementation of shake gesture recognizer
+*/
 -(BOOL)canBecomeFirstResponder {
     return YES;
 }
@@ -942,7 +934,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	SEL shakeSelector = @selector(changeEyeDirection);
 	SEL shakeEndSelector = @selector(shakeEnd);
 	
-	// create a singature from the selector
+	// create a singature from the selectors, google the eyes and shake the physical Monitor
 	NSMethodSignature *shakeSignature = [[ConscienceView class] instanceMethodSignatureForSelector:shakeSelector];
 	NSMethodSignature *shakeEndSignature = [[self class] instanceMethodSignatureForSelector:shakeEndSelector];
 	
@@ -953,7 +945,8 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	[shakeInvocation setSelector:shakeSelector];
 	[shakeEndInvocation setTarget:self];
 	[shakeEndInvocation setSelector:shakeEndSelector];	
-    
+
+	//Detect if a User has shaken the device  
     if (motion == UIEventSubtypeMotionShake)
     {
 		//Stop the conscience from moving
@@ -967,11 +960,14 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
             
 		}
 		
-		[appDelegate.userConscienceView.layer addAnimation:(CAAnimation *)[self shakeAnimation:[appDelegate.userConscienceView frame]] forKey:@"position"];
+		[appDelegate.userConscienceView.layer addAnimation:(CAAnimation *)[appDelegate.userConscienceView shakeAnimation] forKey:@"position"];
         
     }
 }
 
+/**
+  Implementation: Terminate the shake animation NSTimer
+*/
 - (void) shakeEnd
 {
     if(shakeTimer != nil){
@@ -991,9 +987,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 			
 			//Get the first touch.
 			UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
-			
-			[self stopTimers];
-			
+    
 			CGPoint conscienceCenter = [touch locationInView:self.view];
 			UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];
 			
@@ -1009,34 +1003,9 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 				appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
 				[appDelegate.userConscienceView.conscienceBubbleView setNeedsDisplay];	
 				[UIView commitAnimations];
-				
-				[UIView beginAnimations:@"MoveConscience" context:nil];
-				[UIView setAnimationDuration:animationDuration];
-				[UIView setAnimationBeginsFromCurrentState:YES];
-				conscienceCenter.x = conscienceCenter.x-20;
-				conscienceCenter.y = conscienceCenter.y-100;
-				
-				if (conscienceCenter.y < 60) {
-					conscienceCenter.y = 60;
-				}
-				
-				appDelegate.userConscienceView.center = conscienceCenter;
-                
-				[UIView commitAnimations];
-				
+								
 			}			
 			
-			switch ([touch tapCount])
-			{
-				case 1: //Single Tap.
-				{
-					//Start a timer for 2 seconds.
-					holdTapTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self 
-																  selector:@selector(refreshConscience) userInfo:nil repeats:NO];
-				} break;
-				case 2: /** @todo implement Conscience doubletap */;break;
-                    
-			}
 		} break;
 		default:break;
 	}
@@ -1049,16 +1018,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
     //	[self clearTouches];
     
     initialTapDistance = -1;
-    
-	//Stop the doubletap counter from moving
-	if(holdTapTimer != nil){
-		
-		[holdTapTimer invalidate];
-		holdTapTimer = nil;
-	}
-	
-	[self setTimers];
-	
+    	
 	//Return the Conscience to regular size in event of touched or zoomed
 	[UIView beginAnimations:@"ResizeConscienceBig" context:nil];
 	[UIView setAnimationDuration:0.2];
@@ -1078,25 +1038,6 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
     
 }
 
-- (void) touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-        
-	//Stop the doubletap counter from moving
-	if(holdTapTimer != nil){
-		
-		[holdTapTimer invalidate];
-		holdTapTimer = nil;
-	}	
-	
-	animationDuration = 0.1;
-	
-	if([touches count] < 2){
-		[self touchesBegan:touches withEvent:event];
-	}
-	
-	animationDuration = 1;
-	
-}
-
 #pragma mark -
 #pragma mark Memory management
 
@@ -1109,12 +1050,14 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    self.thoughtChangeTimer = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
 
 - (void)dealloc {
+    
     [super dealloc];
     
 }

@@ -23,7 +23,7 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-
+    
 	NSMutableDictionary *buttonLabels;		/**< various button labels for the screens of UI */
 	NSMutableDictionary *buttonImages;		/**< various button image filenames for the screens of UI */
 	NSArray *screenTitles;				/**< various screen titles for the pages of UI */
@@ -42,6 +42,9 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 	int currentState;					/**< current state of the screen (which button names, etc.) */
 }
 
+/**
+Implementation:  Ensure Conscience is placed correctly.
+*/
 -(void) moveConscienceToBottom;
 
 /**
@@ -66,13 +69,18 @@ Accepts User input to change the state of the screen.
 -(IBAction)returnToHome:(id)sender;
 
 /**
-Changes the display of the UIViewController without additional XIB load
+ Makes selection choices reappear 
+ */
+- (void) showSelectionChoices;
+
+/**
+ Changes the display of the UIViewController without additional XIB load
  */
 -(void)changeSelectionScreen;
 
 /**
-Accepts User input to change the state of the screen.
-@param controllerID int of UIViewController to be selected
+ Accepts User input to change the state of the screen.
+ @param controllerID int of UIViewController to be selected
  */
 -(void)selectController:(int) controllerID;
 

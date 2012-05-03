@@ -1,5 +1,4 @@
-/**
-Conscience Accessories Collection.  Object that designates currently adorned Accessories.
+/** Conscience Accessories Collection.  Object that designates currently adorned Accessories.
  Member of ConscienceView.
  
 @class ConscienceAccessories

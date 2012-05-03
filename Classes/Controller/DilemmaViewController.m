@@ -339,10 +339,19 @@ Construct antagonist Conscience
 		antagonistConscienceBody.symbolName = [[currentDilemma antagonist] faceCharacter];
 		antagonistConscienceBody.eyeName = [[currentDilemma antagonist] eyeCharacter];
 		antagonistConscienceBody.mouthName = [[currentDilemma antagonist] mouthCharacter];
-		antagonistConscienceAccessories.primaryAccessory = [[currentDilemma antagonist] accessoryPrimaryCharacter];
-		antagonistConscienceAccessories.secondaryAccessory = [[currentDilemma antagonist] accessorySecondaryCharacter];
-		antagonistConscienceAccessories.topAccessory = [[currentDilemma antagonist] accessoryTopCharacter];
-		antagonistConscienceAccessories.bottomAccessory = [[currentDilemma antagonist] accessoryBottomCharacter];
+
+        if (![[[currentDilemma antagonist] accessoryPrimaryCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.primaryAccessory = [[currentDilemma antagonist] accessoryPrimaryCharacter];
+        }
+        if (![[[currentDilemma antagonist] accessorySecondaryCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.secondaryAccessory = [[currentDilemma antagonist] accessorySecondaryCharacter];
+        }
+        if (![[[currentDilemma antagonist] accessoryTopCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.topAccessory = [[currentDilemma antagonist] accessoryTopCharacter];
+        }
+        if (![[[currentDilemma antagonist] accessoryBottomCharacter] isEqualToString:@""]) {            
+            antagonistConscienceAccessories.bottomAccessory = [[currentDilemma antagonist] accessoryBottomCharacter];
+        }
         
 		[antagonistConscienceMind setMood:[[currentDilemma moodDilemma] floatValue]];
 		[antagonistConscienceMind setEnthusiasm:[[currentDilemma enthusiasmDilemma] floatValue]];
@@ -473,7 +482,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	if ([selectedReward rangeOfString:kCollectableEthicals].location != NSNotFound) {
 		//Ethicals are rewarded, process
 		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:kCollectableEthicals]];
-		[moralSelectedRewardLabel setText:[NSString stringWithString:@"Ethicals!"]];        
+		[moralSelectedRewardLabel setText:[NSString stringWithString:@"Have some Ethicals!"]];        
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
         
 		//ReferencePerson rewarded, process, use large moralRewardImage
@@ -550,6 +559,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	int ethicalIncrease = [[currentUserCollectable collectableValue] intValue];
 
 	[moralRewardLabel setText:[NSString stringWithString:@"+1"]];
+    //append epsilon to score
 	[ethicalRewardLabel setText:[NSString stringWithFormat:@"+%dε", [selectedReward intValue]]];
     
 	//Limit total ethicals to 999

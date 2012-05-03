@@ -1,9 +1,9 @@
 /**
-Global Constants.  Centralized location of constants used in code.
-
-@class Constants
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
-@date 06/27/2010
+ Global Constants.  Centralized location of constants used in code.
+ 
+ @class Constants
+ @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @date 06/27/2010
  */
 
 /**
@@ -13,11 +13,12 @@ UIKIT_EXTERN NSString* const UIApplicationDidEnterBackgroundNotification __attri
 UIKIT_EXTERN NSString* const UIApplicationWillEnterForegroundNotification __attribute__((weak_import));
 
 /**
-Filenames of resources to be rendered
-*/
+ Filenames of resources to be rendered
+ */
 extern NSString* const kEyeColor;
 extern NSString* const kBrowColor;
 extern NSString* const kBubbleColor;
+extern NSString* const kPathColor;
 extern NSString* const kEyeFileNameResource;
 extern NSString* const kMouthFileNameResource;
 extern NSString* const kSymbolFileNameResource;
@@ -39,22 +40,26 @@ extern NSString* const kDefaultFontName;
 extern NSString* const kFallbackFontName;
 
 /**
-File metadata descriptions
-*/
+ File metadata descriptions
+ */
 extern NSString* const kConscienceFileType;
 extern NSString* const kConscienceDefaultTextEncoding;
 extern NSString* const kConscienceDefaultMimeType;
 extern NSString* const kConscienceEyeHorizontalJS;
 
 /**
-Conscience feature sizes and orientation
-*/
+ Conscience feature sizes and orientation
+ */
 extern float const kConscienceEnthusiasm;
 extern float const kConscienceMood;
 extern float const kConscienceSize;
 extern float const kConscienceLargeSizeX;
 extern float const kConscienceLargeSizeY;
 extern float const kConscienceLargestSize;
+extern float const kFeatureOffsetX;
+extern float const kFeatureOffsetY;
+extern float const kDefault0Float;
+extern float const kBubbleWidth;
 extern int const kBubbleType;
 extern int const kThoughtIterations;
 extern int const kConscienceAge;
@@ -88,6 +93,7 @@ extern float const kBlinkInterval;
 extern float const kThoughtInterval;
 extern float const kTransientInterval;
 extern float const kLookDirectionDuration;
+extern float const kBubbleDuration;
 extern int const kExpressionInterval;
 extern float const kMovementInterval;
 extern int const kChoiceTextFieldLength;
@@ -102,15 +108,15 @@ extern int const kConscienceAntagonistWidth;
 extern int const kConscienceAntagonistHeight;
 
 /*
-extern int const kEyeRightWebViewTag;	
-extern int const kEyeLeftWebViewTag;
-extern int const kMouthWebViewTag;	
-extern int const kSymbolWebViewTag;	
-*/
+ extern int const kEyeRightWebViewTag;	
+ extern int const kEyeLeftWebViewTag;
+ extern int const kMouthWebViewTag;	
+ extern int const kSymbolWebViewTag;	
+ */
 
 /**
-Tag Numbers for webViews in order to reference them
-*/
+ Tag Numbers for webViews in order to reference them
+ */
 enum webViewTags{
 	kEyeRightViewTag = 3000,
 	kEyeLeftViewTag = 3001,
@@ -144,14 +150,16 @@ enum webViewTags{
 	kDeckCard6ButtonTag = 3029,
     kHomeVirtueButtonTag = 3030,
     kHomeViceButtonTag = 3031,
-    kHomeRankButtonTag = 3032
+    kHomeRankButtonTag = 3032,
+    kHomeThoughtButtonTag = 3033
 
+    
 };
 
 /**
-Possible positions of Extensions
-typedef utilized to avoid having to use enum declaration
-*/
+ Possible positions of Extensions
+ typedef utilized to avoid having to use enum declaration
+ */
 typedef enum extensionPositionEnum{
 	kExtensionsPositionLeft,
 	kExtensionsPositionRight,
@@ -160,8 +168,8 @@ typedef enum extensionPositionEnum{
 }extensionPositionEnum;
 
 /**
-Possible expression states of Lips
-*/
+ Possible expression states of Lips
+ */
 typedef enum expressionLipsEnum{
 	kExpressionLipsSadShock,
 	kExpressionLipsSadOpenAlt1,
@@ -181,8 +189,8 @@ typedef enum expressionLipsEnum{
 }expressionLipsEnum;
 
 /**
-Possible expression states of Dimples
-*/
+ Possible expression states of Dimples
+ */
 typedef enum expressionDimplesEnum{
 	kExpressionDimplesSad,
 	kExpressionDimplesNormal,
@@ -190,8 +198,8 @@ typedef enum expressionDimplesEnum{
 }expressionDimplesEnum;
 
 /**
-Possible expression states of Teeth
-*/
+ Possible expression states of Teeth
+ */
 typedef enum expressionTeethEnum{
 	kExpressionTeethSadOpenAlt1,
 	kExpressionTeethSadOpen,
@@ -200,8 +208,8 @@ typedef enum expressionTeethEnum{
 }expressionTeethEnum;
 
 /**
-Possible expression states of Tongue
-*/
+ Possible expression states of Tongue
+ */
 typedef enum expressionTongueEnum{
 	kExpressionTongueSadCenter,
 	kExpressionTongueSadLeft,
@@ -212,8 +220,8 @@ typedef enum expressionTongueEnum{
 }expressionTongueEnum;
 
 /**
-Possible expression states of Brow
-*/
+ Possible expression states of Brow
+ */
 typedef enum expressionBrowEnum{
 	kExpressionBrowAngry,
 	kExpressionBrowNormal,
@@ -222,16 +230,16 @@ typedef enum expressionBrowEnum{
 }expressionBrowEnum;
 
 /**
-Possible expression states of Lashes
-*/
+ Possible expression states of Lashes
+ */
 typedef enum expressionLashesEnum{
 	kExpressionLashesUp,
 	kExpressionLashesDown
 }expressionLashesEnum;
 
 /**
-Possible expression states of Lid
-*/
+ Possible expression states of Lid
+ */
 typedef enum expressionLidEnum{
 	kExpressionLidAngry,
 	kExpressionLidSleepy,
@@ -241,8 +249,8 @@ typedef enum expressionLidEnum{
 
 
 /**
-Possible look direction of Eye
-*/
+ Possible look direction of Eye
+ */
 typedef enum expressionLookEnum{
 	kExpressionLookCenter,
 	kExpressionLookDown,
@@ -254,8 +262,8 @@ typedef enum expressionLookEnum{
 }expressionLookEnum;
 
 /**
-Possible expression states of Bags
-*/
+ Possible expression states of Bags
+ */
 typedef enum expressionBagsEnum{
 	kExpressionBagsNormal,
 	kExpressionBagsOld,
@@ -273,4 +281,25 @@ typedef enum referenceTypeEnum{
 	kReferenceTypePeople,
 	kReferenceTypePlaces,
 	kReferenceTypeReports
-}refereneTypeEnum;
+}referenceTypeEnum;
+
+/**
+ Possible bubbleTypes
+ */
+typedef enum bubbleTypeEnum{
+	kBubbleTypeRoundNormal,
+	kBubbleTypeRoundTall,
+	kBubbleTypeRoundShort,
+	kBubbleTypeDiamondNormal,
+	kBubbleTypeDiamondTall,
+	kBubbleTypeDiamondShort,
+	kBubbleTypeStarNormal,
+	kBubbleTypeStarTall,
+	kBubbleTypeStarShort,
+	kBubbleTypePuffyNormal,
+	kBubbleTypePuffyTall,
+	kBubbleTypePuffyShort,
+	kBubbleTypeGearNormal,
+	kBubbleTypeGearTall,
+	kBubbleTypeGearShort     
+}bubbleTypeEnum;

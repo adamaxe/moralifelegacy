@@ -76,7 +76,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	[super viewWillAppear:animated];
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 
-	thoughtModalArea.alpha = 0;
+//	thoughtModalArea.alpha = 0;
 	
 	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
 	
@@ -193,16 +193,6 @@ Show reward views once User has completed dilemma and refuse access to previous 
 		default:break;
 			
 	}
-	
-	int screenMaximum = [helpTitles count];
-	
-	//Animate button that User should use
-	if (screenVersion >= screenMaximum){
-		nextButton.hidden = TRUE;
-		[self animateCorrectButton:TRUE];
-	} else {
-		[self animateCorrectButton:FALSE];
-	}
 
 	//Change the active view except in the case of dismissing the entire ViewController
 	if (screenVersion > 0 && screenVersion < 7) {
@@ -222,6 +212,17 @@ Show reward views once User has completed dilemma and refuse access to previous 
 		//Change Button tag in order to determine which "screen" is active
 		nextButton.tag = 2 + buttonFactor;
 		previousButton.tag = buttonFactor;
+	}
+    
+    int screenMaximum = [helpTitles count];
+	
+	//Animate button that User should use
+	if (screenVersion >= screenMaximum){
+		nextButton.hidden = TRUE;
+		[self animateCorrectButton:TRUE];
+        previousButton.tag = 0;
+	} else {
+		[self animateCorrectButton:FALSE];
 	}
 }
 
@@ -255,12 +256,12 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	[UIView beginAnimations:@"ReplaceConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	thoughtModalArea.alpha = 0;
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+//	thoughtModalArea.alpha = 0;
 
 	//If Conscience wasn't on screen, place it offscreen, otherwise place it centrally.
 	if (!isConscienceOnScreen) {
 		appDelegate.userConscienceView.center = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+        appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	} else {
         appDelegate.userConscienceView.center = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
 	}

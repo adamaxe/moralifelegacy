@@ -1,8 +1,8 @@
 //
 //  ConscienceAsset.m
-//  Moralife
+//  MoraLife
 //
-//  Created by aaxe on 2/11/11.
+//  Created by aaxe on 6/5/11.
 //  Copyright (c) 2011 Team Axe, LLC. All rights reserved.
 //
 
@@ -12,5 +12,6 @@
 @implementation ConscienceAsset
 @dynamic costAsset;
 @dynamic orientationAsset;
+@dynamic moralValueAsset;
 
 @end

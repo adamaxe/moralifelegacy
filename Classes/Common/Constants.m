@@ -4,9 +4,13 @@ Implementation: Various filenames, strings, values and enums for use throughout 
 @class Constants Constants.h
  */
 
+
 NSString* const kEyeColor = @"1C943D";
 NSString* const kBrowColor = @"7B4027";
 NSString* const kBubbleColor = @"0000FF";
+/** @todo fix default path color */
+//NSString* const kPathColor = @"000000";
+NSString* const kPathColor = @"";
 NSString* const kEyeFileNameResource = @"body-eye2";
 NSString* const kMouthFileNameResource = @"body-mouth1";
 NSString* const kSymbolFileNameResource = @"con-nothing";
@@ -31,13 +35,17 @@ NSString* const kDefaultFontName = @"Futura-Medium";
 NSString* const kFallbackFontName = @"Helvetica";
 
 float const kConscienceEnthusiasm = 50.0;
-float const kConscienceMood = 58.0;
+float const kConscienceMood = 55.0;
 float const kConscienceSize = 1.0;
 float const kConscienceLargeSizeX = 1.25;
 float const kConscienceLargeSizeY = 1.25;
 float const kConscienceLargestSize = 2.25;
+float const kFeatureOffsetX = 0.0;
+float const kFeatureOffsetY = 0.0;
+float const kDefault0Float = 0.0;
+float const kBubbleWidth = 5.0;
 int const kBubbleType = 0;
-int const kThoughtIterations = 3;
+int const kThoughtIterations = 4;
 int const kConscienceAge = 0;
 int const kDirectionFacingLeft = 0;
 int const kDirectionFacingRight = 1;
@@ -45,8 +53,6 @@ int const kEyeHeight = 32;
 int const kEyeWidth = 32;
 int const kMouthHeight = 32;
 int const kMouthWidth = 50;
-//int const kSymbolHeight = 90;
-//int const kSymbolWidth = 90;
 int const kSymbolHeight = 200;
 int const kSymbolWidth = 200;
 int const kSideAccessoryWidth = 75;
@@ -63,6 +69,7 @@ float const kBlinkInterval = 2;
 float const kThoughtInterval = 5;
 float const kTransientInterval = 7;
 float const kLookDirectionDuration = 0.25;
+float const kBubbleDuration = 0.75;
 int const kExpressionInterval = 3;
 float const kMovementInterval = 1.5;
 int const kChoiceTextFieldLength = 64;
@@ -83,6 +90,3 @@ int const kConscienceReferenceX = 115;
 int const kConscienceReferenceY = 130;
 int const kConscienceAntagonistWidth = 165;
 int const kConscienceAntagonistHeight = 165;
-
-
-

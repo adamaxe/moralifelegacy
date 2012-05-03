@@ -49,7 +49,7 @@ Second screen in Moral Entry Workflow.  User can either Virtue or Vice depending
 	BOOL isChoiceFinished;						/** determine if choice is complete */
 	
 	UserChoice *currentUserChoice;				/** nsmanagedobject of current choice */
-	NSString *choiceKey;						/** string to hold primary key of current choice */
+	NSMutableString *choiceKey;						/** string to hold primary key of current choice */
 	NSString *moralKey;						/** string to hold primary key of current moral */
 
 }
@@ -72,6 +72,13 @@ Accepts User input to present ChoiceModalViewController for User to enter in Mor
 @return IBAction method available from Interface Builder
  */
 -(IBAction)showChoiceModal:(id)sender;
+
+/**
+ Accepts User input to present ChoiceHistoryViewController for User to enter in previous choice
+ @param id Object which requested method
+ @return IBAction method available from Interface Builder
+ */
+-(IBAction)showHistoryModal:(id)sender;
 
 /**
 Accepts User input to present ConscienceHelpViewController help screen for User to identify selected Moral

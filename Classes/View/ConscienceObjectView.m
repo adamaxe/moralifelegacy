@@ -24,8 +24,8 @@ ConscienceObjectView draws via Core Graphics these points when provided the draw
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		//By default, each ConscienceObject must be transparent
-		self.backgroundColor = [UIColor clearColor];
 		conscienceBackgroundColor = [UIColor clearColor];
+		self.backgroundColor = conscienceBackgroundColor;
 		self.multipleTouchEnabled = TRUE;
 		totalLayers = [[NSMutableDictionary alloc] init];
 		totalGradients = [[NSMutableDictionary alloc] init];

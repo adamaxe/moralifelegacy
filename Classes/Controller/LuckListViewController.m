@@ -7,6 +7,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
  */
 
 #import "LuckListViewController.h"
+#import "MoraLifeAppDelegate.h"
 #import "LuckViewController.h"
 #import "UserLuck.h"
 
@@ -602,6 +603,8 @@ Implementation:  VERSION 2.0 Delete selected luck
 - (void)viewDidUnload {
     // Relinquish ownership of anything that can be recreated in viewDidLoad or on demand.
     // For example: self.myOutlet = nil;
+    [super viewDidUnload];
+
 }
 
 

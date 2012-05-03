@@ -22,6 +22,10 @@ Actual facial changes are requested by ViewController.
 
 @implementation ConscienceView
 
+static int numberOfShakes = 8;
+static float durationOfShake = 0.5f;
+static float vigourOfShake = 0.05f;
+
 @synthesize currentConscienceBody;
 @synthesize currentConscienceAccessories;
 @synthesize currentConscienceMind;
@@ -35,61 +39,47 @@ Actual facial changes are requested by ViewController.
 - (id)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
 withMind: (ConscienceMind *) argMind{
 
-	[self setCurrentConscienceBody:argBody];
-	[self setCurrentConscienceAccessories:argAccessories];
-	[self setCurrentConscienceMind:argMind];
-
-    //Conscience Look direction determined by layeroffset
-	//Array of pixel offsets by X/Y coordinates utilized for every eyetype
-	//Values are look: center, up, down, left, right, cross, crazy
-	eyeLeftPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
-                                 [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
-                                 [NSValue valueWithCGPoint:CGPointMake(0, 3)],
-                                 [NSValue valueWithCGPoint:CGPointMake(-2, 1)],	
-                                 [NSValue valueWithCGPoint:CGPointMake(3, 0)],
-                                 [NSValue valueWithCGPoint:CGPointMake(4, 1)],
-                                 [NSValue valueWithCGPoint:CGPointMake(4, -2)], nil];
-    
-	eyeRightPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
-                                  [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
-                                  [NSValue valueWithCGPoint:CGPointMake(0, 3)],
-                                  [NSValue valueWithCGPoint:CGPointMake(3, 1)],
-                                  [NSValue valueWithCGPoint:CGPointMake(-3, -1)],
-                                  [NSValue valueWithCGPoint:CGPointMake(4, 1)],
-								  [NSValue valueWithCGPoint:CGPointMake(-1, 4)], nil];
-
-    lipsExpressions = [[NSArray alloc] initWithObjects:@"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock", nil];
-    dimplesExpressions = [[NSArray alloc] initWithObjects:@"layerDimplesSad", @"layerDimplesNormal", @"layerDimplesHappy", nil];        
-    teethExpressions = [[NSArray alloc] initWithObjects:@"layerTeethSadOpenAlt1", @"layerTeethSadOpen", @"layerTeethNormal", @"layerTeethHappyOpen", @"layerTeethHappyOpenAlt1", nil];
-    tongueExpressions = [[NSArray alloc] initWithObjects:@"layerTongueSadCenter", @"layerTongueSadLeft", @"layerTongueSadRight", @"layerTongueNormal", @"layerTongueHappyCenter", @"layerTongueHappyLeft", @"layerTongueHappyRight", nil];
-    browExpressions = [[NSArray alloc] initWithObjects:@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited", nil];
-    lidExpressions = [[NSArray alloc] initWithObjects:@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder", nil];
-
-    
-	[self initWithFrame:frame];
-	
-	return self;
-	
-}
-
-/**
-Implementation: Actual values to set for the Conscience are populated in currentConscienceBody, currentConscienceMind
-Color is chosen by User
-Animation is dictated by Conscience Mood/Enthusiasm
-@see ConscienceView::setNeedsDisplay
-*/
-- (id)initWithFrame:(CGRect)frame {
-
     if ((self = [super initWithFrame:frame])) {
 
-		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        [self setCurrentConscienceBody:argBody];
+        [self setCurrentConscienceAccessories:argAccessories];
+        [self setCurrentConscienceMind:argMind];
+
+        //Conscience Look direction determined by layeroffset
+        //Array of pixel offsets by X/Y coordinates utilized for every eyetype
+        //Values are look: center, up, down, left, right, cross, crazy
+        eyeLeftPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
+                                     [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
+                                     [NSValue valueWithCGPoint:CGPointMake(0, 3)],
+                                     [NSValue valueWithCGPoint:CGPointMake(-2, 1)],	
+                                     [NSValue valueWithCGPoint:CGPointMake(3, 0)],
+                                     [NSValue valueWithCGPoint:CGPointMake(4, 1)],
+                                     [NSValue valueWithCGPoint:CGPointMake(4, -2)], nil];
+        
+        eyeRightPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
+                                      [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
+                                      [NSValue valueWithCGPoint:CGPointMake(0, 3)],
+                                      [NSValue valueWithCGPoint:CGPointMake(3, 1)],
+                                      [NSValue valueWithCGPoint:CGPointMake(-3, -1)],
+                                      [NSValue valueWithCGPoint:CGPointMake(4, 1)],
+                                      [NSValue valueWithCGPoint:CGPointMake(-1, 4)], nil];
+
+        lipsExpressions = [[NSArray alloc] initWithObjects:@"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock", nil];
+        dimplesExpressions = [[NSArray alloc] initWithObjects:@"layerDimplesSad", @"layerDimplesNormal", @"layerDimplesHappy", nil];        
+        teethExpressions = [[NSArray alloc] initWithObjects:@"layerTeethSadOpenAlt1", @"layerTeethSadOpen", @"layerTeethNormal", @"layerTeethHappyOpen", @"layerTeethHappyOpenAlt1", nil];
+        tongueExpressions = [[NSArray alloc] initWithObjects:@"layerTongueSadCenter", @"layerTongueSadLeft", @"layerTongueSadRight", @"layerTongueNormal", @"layerTongueHappyCenter", @"layerTongueHappyLeft", @"layerTongueHappyRight", nil];
+        browExpressions = [[NSArray alloc] initWithObjects:@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited", nil];
+        lidExpressions = [[NSArray alloc] initWithObjects:@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder", nil];
+
+        
+        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
 		//Setup initial views
 		directionFacing = kDirectionFacingLeft;
 		self.contentMode = UIViewContentModeScaleAspectFit;
 		self.multipleTouchEnabled = TRUE;
 		self.backgroundColor = [UIColor clearColor];
-
+        
 		/** @todo change hardcoded x/y coordinates to constants */
 		//Allocate actual Conscience features
 		//set tag number for each view so they can be changed with reinitialization
@@ -97,8 +87,8 @@ Animation is dictated by Conscience Mood/Enthusiasm
 		conscienceBubbleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
 		conscienceBubbleView.tag = kBubbleViewTag;
 		conscienceBubbleView.multipleTouchEnabled = TRUE;
-
-		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
+        
+		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
 		animatedBubbleView.tag = kAnimatedBubbleViewTag;
 		[conscienceBubbleView insertSubview:animatedBubbleView atIndex:0];
 		[animatedBubbleView release];		
@@ -135,7 +125,7 @@ Animation is dictated by Conscience Mood/Enthusiasm
 		conscienceEyeLeftView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
 		[conscienceBubbleView addSubview:conscienceEyeLeftView];
 		[conscienceEyeLeftView release];		
-	
+        
 		conscienceMouthView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kMouthWidth, kMouthHeight)];
 		conscienceMouthView.tag = kMouthViewTag;
 		[conscienceBubbleView addSubview:conscienceMouthView];
@@ -143,18 +133,19 @@ Animation is dictated by Conscience Mood/Enthusiasm
 		
 		conscienceSymbolView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
 		conscienceSymbolView.tag = kSymbolViewTag;
-
+        
 		[conscienceBubbleView addSubview:conscienceSymbolView];
 		[conscienceSymbolView release];
-
+        
 		
 		[self addSubview: conscienceBubbleView];
 		
 		[conscienceBubbleView release];
-		
-
-	}
-    return self;
+        
+    }
+	
+	return self;
+	
 }
 
 /**
@@ -917,7 +908,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	
 }
 
-- (IBAction) changeEyeDirection{
+- (void) changeEyeDirection{
 	
 	static int expressionIndex = 0;
 	//int eyeIndex = kEyeBothIndex;
@@ -930,6 +921,28 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	[self changeEyeDirection:expressionIndex forEye:kEyeLeftIndex];
 	[self changeEyeDirection:expressionIndex forEye:kEyeRightIndex];
 	expressionIndex++;		
+}
+
+-(CAKeyframeAnimation *) shakeAnimation {
+    CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
+	
+    CGMutablePathRef shakePath = CGPathCreateMutable();
+    CGPathMoveToPoint(shakePath, NULL, CGRectGetMinX([self frame]), CGRectGetMinY([self frame]));
+	int index;
+	for (index = 0; index < numberOfShakes; ++index)
+	{
+		
+		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX([self frame]) - [self frame].size.width * vigourOfShake, CGRectGetMidY([self frame]) - [self frame].size.height * vigourOfShake);
+		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX([self frame]) + [self frame].size.width * vigourOfShake, CGRectGetMidY([self frame]) + [self frame].size.height * vigourOfShake);
+		
+	}
+    
+    CGPathCloseSubpath(shakePath);
+    shakeAnimation.path = shakePath;
+    shakeAnimation.duration = durationOfShake;
+    
+    CGPathRelease(shakePath);
+    return shakeAnimation;
 }
 
 #pragma mark -

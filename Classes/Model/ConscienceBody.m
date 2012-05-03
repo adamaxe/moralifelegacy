@@ -49,58 +49,58 @@ Implementation:  Each NSMutableDictionary holds the CoreGraphics drawing instruc
     return self;
 }
 
-/**@todo figure out copying */
-
-- copyWithZone:(NSZone *)zone {
-	ConscienceBody *bodyCopy = [[ConscienceBody allocWithZone:zone] init];
-	//NSMutableDictionary *deepCopy = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: browLayers]];
-	
-	bodyCopy.browLayers = [browLayers mutableCopy];
-	bodyCopy.bagsLayers = [bagsLayers mutableCopy];
-	bodyCopy.eyeLayers = [eyeLayers mutableCopy];
-	bodyCopy.lidLayers = [lidLayers mutableCopy];
-	bodyCopy.lashesLayers = [lashesLayers mutableCopy];	
-	bodyCopy.socketLayers = [socketLayers mutableCopy];	
-	bodyCopy.lipsLayers = [lipsLayers mutableCopy];
-	bodyCopy.dimplesLayers = [dimplesLayers mutableCopy];
-	bodyCopy.teethLayers = [teethLayers mutableCopy];
-	bodyCopy.tongueLayers = [tongueLayers mutableCopy];
-	bodyCopy.symbolLayers = [symbolLayers mutableCopy];
-	bodyCopy.gradientLayers = [gradientLayers mutableCopy];
-	bodyCopy.eyeName = [eyeName copy];
-	bodyCopy.mouthName = [mouthName copy];
-	bodyCopy.symbolName = [symbolName copy];
-	bodyCopy.eyeColor = [eyeColor copy];
-	bodyCopy.browColor = [browColor copy];
-	bodyCopy.bubbleColor = [bubbleColor copy];
-	
-	return bodyCopy;
-}
-
-- mutableCopyWithZone:(NSZone *)zone {
-	ConscienceBody *bodyCopy = [[ConscienceBody allocWithZone:zone] init];
-
-	bodyCopy.browLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: browLayers]];
-	bodyCopy.bagsLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: bagsLayers]];
-	bodyCopy.eyeLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: eyeLayers]];
-	bodyCopy.lidLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: lidLayers]];
-	bodyCopy.lashesLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: lashesLayers]];
-	bodyCopy.socketLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: socketLayers]];
-	bodyCopy.lipsLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: lipsLayers]];
-	bodyCopy.dimplesLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: dimplesLayers]];
-	bodyCopy.teethLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: teethLayers]];
-	bodyCopy.tongueLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: tongueLayers]];
-	bodyCopy.symbolLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: symbolLayers]];
-	bodyCopy.gradientLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: gradientLayers]];
-	bodyCopy.eyeName = [eyeName copy];
-	bodyCopy.mouthName = [mouthName copy];
-	bodyCopy.symbolName = [symbolName copy];
-	bodyCopy.eyeColor = [eyeColor copy];
-	bodyCopy.browColor = [browColor copy];
-	bodyCopy.bubbleColor = [bubbleColor copy];
-	
-	return bodyCopy;
-}
+///**@todo figure out copying */
+//
+//- copyWithZone:(NSZone *)zone {
+//	ConscienceBody *bodyCopy = [[ConscienceBody allocWithZone:zone] init];
+//	//NSMutableDictionary *deepCopy = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: browLayers]];
+//	
+//	bodyCopy.browLayers = [browLayers mutableCopy];
+//	bodyCopy.bagsLayers = [bagsLayers mutableCopy];
+//	bodyCopy.eyeLayers = [eyeLayers mutableCopy];
+//	bodyCopy.lidLayers = [lidLayers mutableCopy];
+//	bodyCopy.lashesLayers = [lashesLayers mutableCopy];	
+//	bodyCopy.socketLayers = [socketLayers mutableCopy];	
+//	bodyCopy.lipsLayers = [lipsLayers mutableCopy];
+//	bodyCopy.dimplesLayers = [dimplesLayers mutableCopy];
+//	bodyCopy.teethLayers = [teethLayers mutableCopy];
+//	bodyCopy.tongueLayers = [tongueLayers mutableCopy];
+//	bodyCopy.symbolLayers = [symbolLayers mutableCopy];
+//	bodyCopy.gradientLayers = [gradientLayers mutableCopy];
+//	bodyCopy.eyeName = [eyeName copy];
+//	bodyCopy.mouthName = [mouthName copy];
+//	bodyCopy.symbolName = [symbolName copy];
+//	bodyCopy.eyeColor = [eyeColor copy];
+//	bodyCopy.browColor = [browColor copy];
+//	bodyCopy.bubbleColor = [bubbleColor copy];
+//	
+//	return bodyCopy;
+//}
+//
+//- mutableCopyWithZone:(NSZone *)zone {
+//	ConscienceBody *bodyCopy = [[ConscienceBody allocWithZone:zone] init];
+//
+//	bodyCopy.browLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: browLayers]];
+//	bodyCopy.bagsLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: bagsLayers]];
+//	bodyCopy.eyeLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: eyeLayers]];
+//	bodyCopy.lidLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: lidLayers]];
+//	bodyCopy.lashesLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: lashesLayers]];
+//	bodyCopy.socketLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: socketLayers]];
+//	bodyCopy.lipsLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: lipsLayers]];
+//	bodyCopy.dimplesLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: dimplesLayers]];
+//	bodyCopy.teethLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: teethLayers]];
+//	bodyCopy.tongueLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: tongueLayers]];
+//	bodyCopy.symbolLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: symbolLayers]];
+//	bodyCopy.gradientLayers = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject: gradientLayers]];
+//	bodyCopy.eyeName = [eyeName copy];
+//	bodyCopy.mouthName = [mouthName copy];
+//	bodyCopy.symbolName = [symbolName copy];
+//	bodyCopy.eyeColor = [eyeColor copy];
+//	bodyCopy.browColor = [browColor copy];
+//	bodyCopy.bubbleColor = [bubbleColor copy];
+//	
+//	return bodyCopy;
+//}
 
 - (void) dealloc {
 

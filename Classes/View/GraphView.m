@@ -10,6 +10,8 @@ Implementation: Take data and draw a pie chart.  Iterate through all values in a
 
 @synthesize pieValues, pieColors;
 
+const float kDefaultPieDegrees = 360;
+
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -19,6 +21,9 @@ Implementation: Take data and draw a pie chart.  Iterate through all values in a
         
 		//Ensure that background color is transparent
 		self.backgroundColor = [UIColor clearColor];
+        pieValues = [[NSArray alloc] initWithObjects:[NSNumber numberWithFloat:kDefaultPieDegrees], nil];
+        pieColors = [[NSArray alloc] initWithObjects:[UIColor redColor], nil];
+        
 	}
     
     return self;
