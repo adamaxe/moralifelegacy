@@ -25,7 +25,7 @@
 @implementation TestReferencePerson
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] init];
+    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
     
     quote = @"test quote";
     shortDescription = @"short description";

@@ -24,7 +24,7 @@
 @implementation TestConscienceAsset
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] init];
+    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
     
     costAsset = [NSNumber numberWithFloat:1.0];
     moralValueAsset = [NSNumber numberWithFloat:2.0];

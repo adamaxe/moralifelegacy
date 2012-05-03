@@ -10,13 +10,13 @@
     ReferencePerson *testPerson;
 
     NSString *quote;
-    NSString *shortDescription;
+    NSString *shortDescriptionReference;
     NSNumber *originYear;
-    NSString *name;
-    NSString *longDescription;
-    NSString *link;    
-    NSString *displayName;
-    NSString *imageName;
+    NSString *nameReference;
+    NSString *longDescriptionReference;
+    NSString *linkReference;    
+    NSString *displayNameReference;
+    NSString *imageNameReference;
 
 }
 
@@ -25,45 +25,45 @@
 @implementation TestReferenceText
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] init];
+    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
     
-    quote = @"test quote";
-    shortDescription = @"short description";
+    quote = @"quote";
+    shortDescriptionReference = @"shortDescriptionReference";
     originYear = [NSNumber numberWithInt:2010];
-    name = @"name";
-    longDescription = @"long description";
-    link = @"http://www.teamaxe.org";    
-    displayName = @"display name";
-    imageName = @"image name";
+    nameReference = @"nameReference";
+    longDescriptionReference = @"longDescriptionReference";
+    linkReference = @"http://www.teamaxe.org";    
+    displayNameReference = @"displayNameReference";
+    imageNameReference = @"imageNameReferencee";
     
     testText = [coreData insert:ReferenceText.class];
     testText.quote = quote;
-    testText.shortDescriptionReference = shortDescription;
+    testText.shortDescriptionReference = shortDescriptionReference;
     testText.originYear = originYear;
-    testText.nameReference = name;
-    testText.longDescriptionReference = longDescription;
-    testText.linkReference = link;
-    testText.displayNameReference = displayName;
-    testText.imageNameReference = imageName; 
+    testText.nameReference = nameReference;
+    testText.longDescriptionReference = longDescriptionReference;
+    testText.linkReference = linkReference;
+    testText.displayNameReference = displayNameReference;
+    testText.imageNameReference = imageNameReference; 
     
     testBelief = [coreData insert:ReferenceBelief.class];
     testBelief.typeBelief = @"belief";
-    testBelief.shortDescriptionReference = shortDescription;
+    testBelief.shortDescriptionReference = shortDescriptionReference;
     testBelief.originYear = originYear;
-    testBelief.nameReference = name;
-    testBelief.longDescriptionReference = longDescription;
-    testBelief.linkReference = link;
-    testBelief.displayNameReference = displayName;
-    testBelief.imageNameReference = imageName;
+    testBelief.nameReference = nameReference;
+    testBelief.longDescriptionReference = longDescriptionReference;
+    testBelief.linkReference = linkReference;
+    testBelief.displayNameReference = displayNameReference;
+    testBelief.imageNameReference = imageNameReference;
     
     testPerson = [coreData insert:ReferencePerson.class];
-    testPerson.shortDescriptionReference = shortDescription;
+    testPerson.shortDescriptionReference = shortDescriptionReference;
     testPerson.originYear = originYear;
-    testPerson.nameReference = name;
-    testPerson.longDescriptionReference = longDescription;
-    testPerson.linkReference = link;
-    testPerson.displayNameReference = displayName;
-    testPerson.imageNameReference = imageName;
+    testPerson.nameReference = nameReference;
+    testPerson.longDescriptionReference = longDescriptionReference;
+    testPerson.linkReference = linkReference;
+    testPerson.displayNameReference = displayNameReference;
+    testPerson.imageNameReference = imageNameReference;
     
 }
 
@@ -83,13 +83,13 @@
     STAssertEquals(texts.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
     ReferenceText *retrieved = [texts objectAtIndex: 0];
     STAssertEqualObjects(retrieved.quote, quote, @"typeBelief Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescriptionReference, @"shortDescription Getter/Setter failed.");
     STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.nameReference, nameReference, @"nameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.longDescriptionReference, longDescriptionReference, @"longDescriptionReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.linkReference, linkReference, @"linkReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.displayNameReference, displayNameReference, @"displayNameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.imageNameReference, imageNameReference, @"imageNameReference Getter/Setter failed.");
     
 }
 
@@ -101,31 +101,31 @@
     ReferenceText *childText2 = [coreData insert:ReferenceText.class];    
     ReferenceText *parentText = [coreData insert:ReferenceText.class];
 
-    childText1.shortDescriptionReference = shortDescription;
+    childText1.shortDescriptionReference = shortDescriptionReference;
     childText1.originYear = originYear;
     childText1.nameReference = @"child1";
-    childText1.longDescriptionReference = longDescription;
-    childText1.linkReference = link;
-    childText1.displayNameReference = displayName;
-    childText1.imageNameReference = imageName;
+    childText1.longDescriptionReference = longDescriptionReference;
+    childText1.linkReference = linkReference;
+    childText1.displayNameReference = displayNameReference;
+    childText1.imageNameReference = imageNameReference;
     childText1.parentReference = testText;
    
-    childText2.shortDescriptionReference = shortDescription;
+    childText2.shortDescriptionReference = shortDescriptionReference;
     childText2.originYear = originYear;
     childText2.nameReference = @"child2";
-    childText2.longDescriptionReference = longDescription;
-    childText2.linkReference = link;
-    childText2.displayNameReference = displayName;
-    childText2.imageNameReference = imageName;   
+    childText2.longDescriptionReference = longDescriptionReference;
+    childText2.linkReference = linkReference;
+    childText2.displayNameReference = displayNameReference;
+    childText2.imageNameReference = imageNameReference;   
     childText1.parentReference = testText;    
     
-    parentText.shortDescriptionReference = shortDescription;
+    parentText.shortDescriptionReference = shortDescriptionReference;
     parentText.originYear = originYear;
     parentText.nameReference = @"parent";
-    parentText.longDescriptionReference = longDescription;
-    parentText.linkReference = link;
-    parentText.displayNameReference = displayName;
-    parentText.imageNameReference = imageName; 
+    parentText.longDescriptionReference = longDescriptionReference;
+    parentText.linkReference = linkReference;
+    parentText.displayNameReference = displayNameReference;
+    parentText.imageNameReference = imageNameReference; 
         
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    
@@ -144,7 +144,7 @@
     STAssertEquals(allTexts.count, (NSUInteger) 4, @"There should be 4 ReferenceTexts in the context (parent and children).");
     
     NSError *error = nil;
-    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"nameReference == %@", name];
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"nameReference == %@", nameReference];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([ReferenceText class])];
     request.predicate = searchPredicate;
     NSArray *texts = [[coreData managedObjectContext] executeFetchRequest:request error:&error];

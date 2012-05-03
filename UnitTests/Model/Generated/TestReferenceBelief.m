@@ -9,14 +9,14 @@
     ReferenceText *testText;
     ReferencePerson *testPerson;
 
-    NSString *belief;
-    NSString *shortDescription;
+    NSString *typeBelief;
+    NSString *shortDescriptionReference;
     NSNumber *originYear;
-    NSString *name;
-    NSString *longDescription;
-    NSString *link;    
-    NSString *displayName;
-    NSString *imageName;
+    NSString *nameReference;
+    NSString *longDescriptionReference;
+    NSString *linkReference;    
+    NSString *displayNameReference;
+    NSString *imageNameReference;
 
 }
 
@@ -25,44 +25,44 @@
 @implementation TestReferenceBelief
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] init];
+    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
     
-    belief = @"test belief";
-    shortDescription = @"short description";
+    typeBelief = @"typeBelief";
+    shortDescriptionReference = @"short description";
     originYear = [NSNumber numberWithInt:2010];
-    name = @"name";
-    longDescription = @"long description";
-    link = @"http://www.teamaxe.org";    
-    displayName = @"display name";
-    imageName = @"image name";
+    nameReference = @"name";
+    longDescriptionReference = @"long description";
+    linkReference = @"http://www.teamaxe.org";    
+    displayNameReference = @"display name";
+    imageNameReference = @"image name";
     
     testBelief = [coreData insert:ReferenceBelief.class];
-    testBelief.typeBelief = belief;
-    testBelief.shortDescriptionReference = shortDescription;
+    testBelief.typeBelief = typeBelief;
+    testBelief.shortDescriptionReference = shortDescriptionReference;
     testBelief.originYear = originYear;
-    testBelief.nameReference = name;
-    testBelief.longDescriptionReference = longDescription;
-    testBelief.linkReference = link;
-    testBelief.displayNameReference = displayName;
-    testBelief.imageNameReference = imageName;
+    testBelief.nameReference = nameReference;
+    testBelief.longDescriptionReference = longDescriptionReference;
+    testBelief.linkReference = linkReference;
+    testBelief.displayNameReference = displayNameReference;
+    testBelief.imageNameReference = imageNameReference;
     
     testPerson = [coreData insert:ReferencePerson.class];
-    testPerson.shortDescriptionReference = shortDescription;
+    testPerson.shortDescriptionReference = shortDescriptionReference;
     testPerson.originYear = originYear;
-    testPerson.nameReference = name;
-    testPerson.longDescriptionReference = longDescription;
-    testPerson.linkReference = link;
-    testPerson.displayNameReference = displayName;
-    testPerson.imageNameReference = imageName;
+    testPerson.nameReference = nameReference;
+    testPerson.longDescriptionReference = longDescriptionReference;
+    testPerson.linkReference = linkReference;
+    testPerson.displayNameReference = displayNameReference;
+    testPerson.imageNameReference = imageNameReference;
     
     testText = [coreData insert:ReferenceText.class];
-    testText.shortDescriptionReference = shortDescription;
+    testText.shortDescriptionReference = shortDescriptionReference;
     testText.originYear = originYear;
-    testText.nameReference = name;
-    testText.longDescriptionReference = longDescription;
-    testText.linkReference = link;
-    testText.displayNameReference = displayName;
-    testText.imageNameReference = imageName;  
+    testText.nameReference = nameReference;
+    testText.longDescriptionReference = longDescriptionReference;
+    testText.linkReference = linkReference;
+    testText.displayNameReference = displayNameReference;
+    testText.imageNameReference = imageNameReference;  
     
 }
 
@@ -81,14 +81,14 @@
     
     STAssertEquals(beliefs.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
     ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
-    STAssertEqualObjects(retrieved.typeBelief, belief, @"typeBelief Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.typeBelief, typeBelief, @"typeBelief Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescriptionReference, @"shortDescription Getter/Setter failed.");
     STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.nameReference, nameReference, @"nameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.longDescriptionReference, longDescriptionReference, @"longDescriptionReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.linkReference, linkReference, @"linkReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.displayNameReference, displayNameReference, @"displayNameReference Getter/Setter failed.");
+    STAssertEqualObjects(retrieved.imageNameReference, imageNameReference, @"imageNameReference Getter/Setter failed.");
     
 }
 
