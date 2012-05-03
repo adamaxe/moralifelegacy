@@ -1,9 +1,9 @@
 #import "TestCoreDataStack.h"
-#import "UserDilemma.h"
+#import "UserLuck.h"
 
-@interface TestUserDilemma : SenTestCase {
+@interface TestUserLuck : SenTestCase {
     TestCoreDataStack *coreData;
-    UserDilemma *testUserDilemma;
+    UserLuck *testUserLuck;
 
     NSString * entryShortDescription;
     NSNumber * entryIsGood;
@@ -11,12 +11,14 @@
     NSString * entryLongDescription;
     NSNumber * entrySeverity;
     NSDate * entryCreationDate;
+    
+    NSDate * entryModificationDate;
 
 }
 
 @end
 
-@implementation TestUserDilemma
+@implementation TestUserLuck
 
 - (void)setUp {
     coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"UserData"];
@@ -28,42 +30,44 @@
     entrySeverity =[NSNumber numberWithFloat:5];
     entryCreationDate = [NSDate date];
     
-    testUserDilemma = [coreData insert:UserDilemma.class];
+    testUserLuck = [coreData insert:UserLuck.class];
     
-    testUserDilemma.entryShortDescription = entryShortDescription;
-    testUserDilemma.entryIsGood = entryIsGood;
-    testUserDilemma.entryKey = entryKey;
-    testUserDilemma.entryLongDescription = entryLongDescription;
-    testUserDilemma.entrySeverity = entrySeverity;
-    testUserDilemma.entryCreationDate = entryCreationDate;
+    testUserLuck.entryShortDescription = entryShortDescription;
+    testUserLuck.entryIsGood = entryIsGood;
+    testUserLuck.entryKey = entryKey;
+    testUserLuck.entryLongDescription = entryLongDescription;
+    testUserLuck.entrySeverity = entrySeverity;
+    testUserLuck.entryCreationDate = entryCreationDate;
+    testUserLuck.entryModificationDate = entryCreationDate;
+
         
 }
 
-- (void)testUserDilemmaCanBeCreated {
+- (void)testUserLuckCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([coreData save], @"UserDilemma can't be created");
+    STAssertNoThrow([coreData save], @"UserLuck can't be created");
     
 }
 
-- (void)testUserDilemmaValidatesAttributes {
+- (void)testUserLuckValidatesAttributes {
         
-    testUserDilemma.entrySeverity = [NSNumber numberWithInt:-6];    
+    testUserLuck.entrySeverity = [NSNumber numberWithInt:-6];    
     STAssertThrows([coreData save], @"entrySeverity lower bound validation failed.");
     
-    testUserDilemma.entrySeverity = [NSNumber numberWithInt:6];    
+    testUserLuck.entrySeverity = [NSNumber numberWithInt:6];    
     STAssertThrows([coreData save], @"entrySeverity upper bound validation failed.");
     
 }
 
-- (void)testUserDilemmaAccessorsAreFunctional {
+- (void)testUserLuckAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"UserDilemma can't be created for Accessor test");
+    STAssertNoThrow([coreData save], @"UserLuck can't be created for Accessor test");
     
-    NSArray *userDilemmas = [coreData fetch:UserDilemma.class];
+    NSArray *UserLucks = [coreData fetch:UserLuck.class];
         
-    STAssertEquals(userDilemmas.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
-    UserDilemma *retrieved = [userDilemmas objectAtIndex: 0];
+    STAssertEquals(UserLucks.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
+    UserLuck *retrieved = [UserLucks objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, entryShortDescription, @"entryShortDescription Getter/Setter failed.");
     STAssertEqualObjects(retrieved.entryIsGood, entryIsGood, @"entryIsGood Getter/Setter failed.");
     STAssertEqualObjects(retrieved.entryKey, entryKey, @"entryKey Getter/Setter failed.");
@@ -72,40 +76,41 @@
     STAssertEqualObjects(retrieved.entryCreationDate, entryCreationDate, @"entryCreationDate Getter/Setter failed.");
 }
 
-- (void)testUserDilemmaDeletion {
-    STAssertNoThrow([coreData save], @"UserDilemma can't be created for Delete test");
+- (void)testUserLuckDeletion {
+    STAssertNoThrow([coreData save], @"UserLuck can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testUserDilemma], @"UserDilemma can't be deleted");
+    STAssertNoThrow([coreData delete:testUserLuck], @"UserLuck can't be deleted");
     
-    NSArray *userDilemmas = [coreData fetch:UserDilemma.class];
+    NSArray *UserLucks = [coreData fetch:UserLuck.class];
     
-    STAssertEquals(userDilemmas.count, (NSUInteger) 0, @"UserDilemma is still present after delete");
+    STAssertEquals(UserLucks.count, (NSUInteger) 0, @"UserLuck is still present after delete");
     
 }
 
-- (void)testUserDilemmaWithoutRequiredAttributes {
-    UserDilemma *testUserDilemmaBad = [coreData insert:UserDilemma.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserDilemmaBad.class];
+- (void)testUserLuckWithoutRequiredAttributes {
+    UserLuck *testUserLuckBad = [coreData insert:UserLuck.class];
+    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserLuckBad.class];
 
-    testUserDilemma.entryCreationDate = nil;
+    testUserLuck.entryCreationDate = nil;
     STAssertThrows([coreData save], errorMessage);
 }
 
-- (void)testUserDilemmaDefaultValues {
-    UserDilemma *testUserDilemmaDefault = [coreData insert:UserDilemma.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserDilemmaDefault.class];
+- (void)testUserLuckDefaultValues {
+    UserLuck *testUserLuckDefault = [coreData insert:UserLuck.class];
+    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserLuckDefault.class];
 
-    testUserDilemmaDefault.entryCreationDate = entryCreationDate;
+    testUserLuckDefault.entryCreationDate = entryCreationDate;
+    testUserLuckDefault.entryModificationDate = entryCreationDate;    
     
     STAssertNoThrow([coreData save], errorMessage);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserDilemma.class)];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserLuck.class)];
     request.predicate = searchPredicate;
-    NSArray *userDilemmas = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *userLucks = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
 
-    UserDilemma *retrieved = [userDilemmas objectAtIndex: 0];
+    UserLuck *retrieved = [userLucks objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
     STAssertEquals(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");
     STAssertEqualObjects(retrieved.entryKey, @"0", @"entryKey default value failed.");
