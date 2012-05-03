@@ -67,7 +67,7 @@
     
 }
 
-- (void)testUserChoiceValidatesChoiceWeight {
+- (void)testUserChoiceValidatesAttributes {
     
     testChoice.choiceInfluence = [NSNumber numberWithInt:0];    
     STAssertThrows([coreData save], @"choiceInfluence lower bound validation failed.");
@@ -123,6 +123,36 @@
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceBad.class];
 
     STAssertThrows([coreData save], errorMessage);
+}
+
+- (void)testUserChoiceDefaultValues {
+    UserChoice *testUserChoiceDefault = [coreData insert:UserChoice.class];
+    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceDefault.class];
+
+    testUserChoiceDefault.entryCreationDate = entryCreationDate;
+    testUserChoiceDefault.entryModificationDate = entryModificationDate;
+    
+    STAssertNoThrow([coreData save], errorMessage);
+    
+    NSError *error = nil;
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserChoice.class)];
+    request.predicate = searchPredicate;
+    NSArray *userChoices = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
+
+    UserChoice *retrieved = [userChoices objectAtIndex: 0];
+    STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
+    STAssertEquals(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");
+    STAssertEqualObjects(retrieved.entryKey, @"0", @"entryKey default value failed.");
+    STAssertEqualObjects(retrieved.entryLongDescription, @"0", @"entryLongDescription default value failed.");
+    STAssertEqualObjects(retrieved.entrySeverity, [NSNumber numberWithInt:0], @"entrySeverity default value failed.");
+    
+    STAssertEqualObjects(retrieved.choiceInfluence, [NSNumber numberWithInt:1], @"choiceInfluence default value failed.");
+    STAssertEqualObjects(retrieved.choiceConsequences, @"0", @"choiceConsequences default value failed.");
+    STAssertEqualObjects(retrieved.choiceJustification, @"0", @"choiceJustification default value failed.");
+    STAssertEqualObjects(retrieved.choiceMoral, @"NA", @"choiceMoral default value failed.");
+    STAssertEqualObjects(retrieved.choiceWeight, [NSNumber numberWithFloat:0], @"choiceWeight default value failed.");
+
 }
 
 @end
