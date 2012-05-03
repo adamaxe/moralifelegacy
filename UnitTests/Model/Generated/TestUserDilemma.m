@@ -107,7 +107,7 @@
 
     UserDilemma *retrieved = [userDilemmas objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
-    STAssertEquals(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");
+    STAssertEqualObjects(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");
     STAssertEqualObjects(retrieved.entryKey, @"0", @"entryKey default value failed.");
     STAssertEqualObjects(retrieved.entryLongDescription, @"0", @"entryLongDescription default value failed.");
     STAssertEqualObjects(retrieved.entrySeverity, [NSNumber numberWithInt:0], @"entrySeverity default value failed.");
