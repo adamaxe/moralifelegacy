@@ -202,4 +202,30 @@
     STAssertThrows([coreData save], errorMessage);
 }
 
+- (void)testMoralDefaultValues {
+    Moral *testMoralDefault = [coreData insert:Moral.class];
+    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testMoralDefault.class];
+    
+    NSString *defaultLinkMoral = @"defaultLinkMoral";
+        
+    testMoralDefault.linkMoral = defaultLinkMoral;
+    testMoralDefault.colorMoral = @"colorMoral";
+    
+    STAssertNoThrow([coreData save], errorMessage);
+    
+    NSError *error = nil;
+    NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"linkMoral == %@", defaultLinkMoral];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(Moral.class)];
+    request.predicate = searchPredicate;
+    NSArray *userChoices = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
+    
+    Moral *retrieved = [userChoices objectAtIndex: 0];
+    STAssertEqualObjects(retrieved.shortDescriptionMoral, @"Virtue", @"shortDescriptionMoral default value failed.");
+    STAssertEqualObjects(retrieved.nameMoral, @"Moral", @"nameMoral default value failed.");
+    STAssertEqualObjects(retrieved.longDescriptionMoral, @"Moral", @"longDescriptionMoral default value failed.");
+    STAssertEqualObjects(retrieved.imageNameMoral, @"card-nothing", @"imageNameMoral default value failed.");
+    STAssertEqualObjects(retrieved.component, @"NA", @"component default value failed.");
+    
+}
+
 @end
