@@ -26,6 +26,11 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "UserChoice.h"
 #import "UserCharacter.h"
 
+enum viewToAnimate{
+kViewVersus,
+kViewReward
+};
+
 @interface DilemmaViewController () {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
@@ -85,7 +90,10 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
     NSMutableString *moralBDescription;    /**< description of Moral B */    
     
 	BOOL isChoiceA;				/**< is ChoiceA selected */
+    
 }
+
+- (void) animateViewDetail: (int) viewToAnimateIndex atBeginning: (BOOL) isBeginning;
 
 @end
 
@@ -132,13 +140,12 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 	
 	screen1View.hidden = TRUE;
 	screen1View.alpha = 0;
-	versusImage.alpha = 0;
 	
     //Build vs. image animation
+	versusImage.alpha = 0;    
     versusImage.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
 
-	rewardView.alpha = 0;
-	rewardView.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
+    [self animateViewDetail: kViewVersus atBeginning: TRUE];    
     
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
@@ -153,12 +160,15 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 	screen1View.alpha = 1;
 	
 	screen1View.hidden = FALSE;
-	versusImage.alpha = 1;
-	versusImage.transform = CGAffineTransformIdentity;
+    
+    [self animateViewDetail: kViewVersus atBeginning: FALSE];
     
 	appDelegate.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
+    
+    [self animateViewDetail: kViewReward atBeginning: TRUE];    
+
 	
 	[appDelegate.userConscienceView setNeedsDisplay];
 	
@@ -278,17 +288,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
 			
             nextButton.tag = 8;
             
-            
-
-            [UIView beginAnimations:@"RewardChange" context:nil];
-			[UIView setAnimationDuration:1];
-			[UIView setAnimationBeginsFromCurrentState:YES];
-			
-            rewardView.alpha = 1;
-            rewardView.transform = CGAffineTransformIdentity;
-            
-			[UIView commitAnimations];
-            
+            [self animateViewDetail: kViewReward atBeginning: FALSE];    
             
 			[UIView beginAnimations:@"ScoreChange" context:nil];
 			[UIView setAnimationDuration:3];
@@ -728,6 +728,82 @@ Calculate changes to User's ethicals.  Limit to 999.
     [requestCharacter release];
     
 	[context reset];
+}
+
+- (void) animateViewDetail: (int) viewToAnimateIndex atBeginning: (BOOL) isBeginning {
+    
+    int animationType = arc4random()%4;
+    CGAffineTransform viewAnimationTransform;
+    
+    switch (animationType) {
+        case 0:{
+            viewAnimationTransform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));                
+        }
+            break;
+        case 1:{
+            viewAnimationTransform = CGAffineTransformMakeTranslation(0, 400);                
+        }
+            break;                        
+        case 2:{
+            viewAnimationTransform = CGAffineTransformMakeTranslation(400, 0);                
+        }
+            break;                        
+        case 3:{
+            viewAnimationTransform = CGAffineTransformMakeTranslation(-400, 0);                
+        }
+            break; 
+        default:
+            break;
+    }
+    
+    if (isBeginning) {
+    
+        switch (viewToAnimateIndex) {
+            case kViewVersus: {
+                versusImage.alpha = 0;
+                versusImage.transform = viewAnimationTransform;
+
+            }
+                break;
+            case kViewReward: {
+                rewardView.alpha = 0;
+                rewardView.transform = viewAnimationTransform;
+                
+            }
+                break;            
+            default:
+                break;
+        }
+        
+    } else {
+
+        switch (viewToAnimateIndex) {
+            case kViewVersus: {
+                //Animate vs. image and Consciences
+                [UIView beginAnimations:@"Versus" context:nil];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                versusImage.alpha = 1;
+                versusImage.transform = CGAffineTransformIdentity;                        
+                [UIView commitAnimations];
+                
+            }
+                break;
+            case kViewReward: {
+                //Animate vs. image and Consciences
+                [UIView beginAnimations:@"Reward" context:nil];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                rewardView.alpha = 1;
+                rewardView.transform = CGAffineTransformIdentity;                        
+                [UIView commitAnimations];
+            }
+                break;            
+            default:
+                break;
+        }
+        
+    }
 }
 
 #pragma mark -
