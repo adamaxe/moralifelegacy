@@ -9,6 +9,32 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 #import "StructuredTextField.h"
 #import "ConscienceHelpViewController.h"
 
+@interface ChoiceDetailViewController () {
+    
+	NSUserDefaults *prefs;					/**< serialized user settings/state retention */
+	
+	IBOutlet UIImageView *influenceImageView;		/**< people image decorating influenceSlider */
+	IBOutlet UIImageView *cloudImageView;		/**< cloud image decorating influenceSlider */
+    
+	IBOutlet UISlider *influenceSlider;         /**< Slider control dictating how many people were affected */
+	IBOutlet UILabel *influenceLabel;           /**< Label that shows User amount of influence */
+	IBOutlet UILabel *justificationLabel;       /**< Justification textField label */
+	IBOutlet UILabel *consequencesLabel;        /**< Consequences textField label */
+	NSArray *influenceLabelDescriptions;        /**< Array of NSLocalized Strings to display to User */
+	
+	IBOutlet UIButton *doneButton;		/**< Done Button */
+	IBOutlet UIButton *cancelButton;		/**< Cancel Button */
+	IBOutlet UIButton *influenceButton;		/**< Influence Button */	
+    
+	IBOutlet StructuredTextField *justificationTextField;	/**< Text field for User-entered justification */
+	IBOutlet StructuredTextField *consequencesTextField;	/**< Text field for User-entered consequence */
+	StructuredTextField *activeField;				/**< Temporary field designation for active field */
+    
+	BOOL isChoiceCancelled;		/**< is Choice being cancelled, don't save */
+}
+
+@end 
+
 @implementation ChoiceDetailViewController
 
 #pragma mark -

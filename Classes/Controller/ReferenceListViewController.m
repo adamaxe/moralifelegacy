@@ -14,6 +14,32 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferenceText.h"
 #import "Moral.h"
 
+@interface ReferenceListViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSManagedObjectContext *context;		/**< Core Data context */
+	NSEntityDescription *entityAssetDesc;	/**< select for request */
+	
+	NSMutableArray *references;			/**< text to appear as row name */
+	NSMutableArray *referenceKeys;		/**< text to key on DB */
+	NSMutableArray *icons;				/**< filename of picture to be shown in row */
+	NSMutableArray *details;			/**< text to appear under row name */
+	
+	NSMutableArray *dataSource;			/**< array for storing of References populated from previous view*/
+	NSMutableArray *searchedData;
+	NSMutableArray *tableData;			/**< array for stored data displayed in table populated from dataSource */
+	NSMutableArray *tableDataImages;		/**< array for stored data images */
+	NSMutableArray *tableDataDetails;		/**< array for stored data details */
+	NSMutableArray *tableDataKeys;		/**< array for stored data primary keys */	
+	
+	IBOutlet UITableView *referencesTableView;	/**< table housing requested data */ 
+	IBOutlet UISearchBar *referenceSearchBar;		/**< search bar for limiting list */
+	IBOutlet UIView *namesView;
+}
+
+@end
+
 @implementation ReferenceListViewController
 
 @synthesize referenceType;

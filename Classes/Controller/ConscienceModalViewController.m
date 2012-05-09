@@ -18,6 +18,31 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ConscienceHelpViewController.h"
 #import "ReportPieViewController.h"
 
+@interface ConscienceModalViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+    
+	NSMutableDictionary *buttonLabels;		/**< various button labels for the screens of UI */
+	NSMutableDictionary *buttonImages;		/**< various button image filenames for the screens of UI */
+	NSArray *screenTitles;				/**< various screen titles for the pages of UI */
+	
+	IBOutlet UIView *thoughtModalArea;		/**< area in which user ConscienceView can float */
+	IBOutlet UILabel *statusMessage1;		/**< title at top of screen */
+	IBOutlet UIButton *labelButton1;		/**< label for menu choice button 1 */
+	IBOutlet UIButton *labelButton2;		/**< label for menu choice button 2 */
+	IBOutlet UIButton *labelButton3;		/**< label for menu choice button 3 */
+	IBOutlet UIButton *labelButton4;		/**< label for menu choice button 4 */
+	IBOutlet UIButton *button1;			/**< image for menu choice button 1 */
+	IBOutlet UIButton *button2;			/**< image for menu choice button 2 */
+	IBOutlet UIButton *button3;			/**< image for menu choice button 3 */
+	IBOutlet UIButton *button4;			/**< image for menu choice button 4 */
+	
+	int currentState;					/**< current state of the screen (which button names, etc.) */
+}
+
+@end
+
 @implementation ConscienceModalViewController
 
 #pragma mark - View lifecycle

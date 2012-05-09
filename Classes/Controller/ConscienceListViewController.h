@@ -12,43 +12,7 @@ Secondary Conscience interaction screen.  Most other Conscience interactions req
 @file
  */
 
-#import <CoreData/CoreData.h>
-
-@class MoraLifeAppDelegate;
-
-@interface ConscienceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> {
-    
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
-
-	NSMutableArray *searchedData;			/**< array for matched data from User search */
-
-	NSMutableArray *choices;			/**< unfiltered list of assets */
-	NSMutableArray *choiceIDs;			/**< unfiltered list of asset pkeys */
-	NSMutableArray *choiceCosts;			/**< unfiltered list of asset costs */
-	NSMutableArray *choiceSubtitles;		/**< unfiltered list of asset descriptions */
-	NSMutableArray *choiceImages;			/**< unfiltered list of asset images */
-	
-	NSMutableArray *dataSource;			/**< array for filtering raw data without having to re-query */
-	NSMutableArray *tableData;			/**< array for filtering data displayed in table populated from dataSource */
-	NSMutableArray *tableDataImages;		/**< array for filtering data images */
-	NSMutableArray *tableDataDetails;		/**< array for filtering data details */
-	NSMutableArray *tableDataKeys;		/**< array for filtering data primary keys */
-	NSMutableArray *tableDataCosts;		/**< array for filtering item cost */
-    
-	IBOutlet UITableView *choicesTableView;	/**< tableview of choices */
-    
-	IBOutlet UIView *thoughtModalArea;			/**< area in which user ConscienceView can float */
-	IBOutlet UIButton *fundsButton;			/**< allow User to filter only affordable choices */
-	IBOutlet UILabel *listType;			/**< show which view is active */    
-	
-	IBOutlet UISearchBar *accessorySearchBar;		/**< ui element for limiting choices in table */
-    
-	int currentFunds;						/**< amount of ethicals possessed */
-    	BOOL isLessThanCost;					/**< is User requesting to show only affordable options */
-    int searchViewFilter;                    /**< which view to show */
-}
+@interface ConscienceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, assign) int accessorySlot;	/**< which slot is ConscienceAsset, set from ConscienceAccessoryViewController */
 

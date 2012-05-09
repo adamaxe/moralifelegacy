@@ -12,31 +12,7 @@ Primary screen of Reference selection Workflow.  User can select what type of Re
 @todo rename to ReferenceInitViewController
 */
 
-@class MoraLifeAppDelegate;
-
-@interface ReferenceViewController : UIViewController {
-    
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	    
-	IBOutlet UIButton *peopleLabelButton;		/**< label for People button */
-	IBOutlet UIButton *placesLabelButton;		/**< label for Places button */
-	IBOutlet UIButton *booksLabelButton;		/**< label for Books button */
-	IBOutlet UIButton *beliefsLabelButton;		/**< label for Beliefs button */
-	IBOutlet UIButton *reportsLabelButton;		/**< label for Reports button */
-	IBOutlet UIButton *accessoriesLabelButton;	/**< label for Accessories button */
-	
-	IBOutlet UIButton *peopleButton;		/**< label for People button */
-	IBOutlet UIButton *placesButton;		/**< label for Places button */
-	IBOutlet UIButton *booksButton;		/**< label for Books button */
-	IBOutlet UIButton *beliefsButton;		/**< label for Beliefs button */
-	IBOutlet UIButton *reportsButton;		/**< label for Reports button */
-	IBOutlet UIButton *accessoriesButton;	/**< label for Accessories button */
-	
-	NSArray *buttonNames;
-	NSTimer *buttonTimer;
-
-}
+@interface ReferenceViewController : UIViewController
 
 /**
 Accepts User input to determine type of Reference requested

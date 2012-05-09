@@ -11,6 +11,22 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 #import "ConscienceAccessories.h"
 #import "ConscienceAsset.h"
 
+@interface ConscienceAccessoryViewController () {
+	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+    
+	IBOutlet UIView *consciencePlayground;		/**< ui for Conscience to sit */
+	IBOutlet UILabel *statusMessage1;			/**< delegate for application level callbacks */
+	IBOutlet UILabel *primaryAccessoryLabel;		/**< label for primary accessory outline */
+	IBOutlet UILabel *secondaryAccessoryLabel;	/**< label for secondary accessory outline */
+	IBOutlet UILabel *topAccessoryLabel;		/**< label for top accessory outline */
+	IBOutlet UILabel *bottomAccessoryLabel;		/**< label for bottom accessory outline */
+    
+    int accessorySlot;
+}
+
+@end
+
 @implementation ConscienceAccessoryViewController
 
 #pragma mark -

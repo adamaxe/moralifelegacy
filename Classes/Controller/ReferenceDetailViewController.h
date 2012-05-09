@@ -12,49 +12,7 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
 @todo rename to ReferenceViewController
  */
 
-#import "CoreData/CoreData.h"
-
-@class MoraLifeAppDelegate;
-
-@interface ReferenceDetailViewController : UIViewController <UIActionSheetDelegate> {
-
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
-	
-	IBOutlet UIButton *wwwLinkButton;			/**< button to allow Safari access to more info */
-	IBOutlet UIButton *quoteButton;			/**< button to push Quote modal window */
-	
-	IBOutlet UIImageView *referencePictureView;		/**< card surrounding reference image */
-	IBOutlet UIImageView *referenceSmallPictureView;	/**< card surrounding reference image */
-	IBOutlet UIImageView *moralPictureView;             	/**< moral image referencing asset's moral value*/
-	IBOutlet UIImageView *cardView;             	/**< moral image referencing asset's moral value*/
-	IBOutlet UILabel *referenceNameLabel;			/**< reference name */
-	IBOutlet UILabel *referenceDateLabel;			/**< reference date of birth/construction/publishment */
-	IBOutlet UILabel *referenceOriginLabel;			/**< reference's place of creation/birth/construction */
-	IBOutlet UILabel *referenceShortDescriptionLabel;	/**< text to appear under reference name */
-	IBOutlet UILabel *cardNumberLabel;                  	/**< text to appear over card */
-	IBOutlet UITextView *referenceLongDescriptionTextView;	 /**< detailed reference text */
-
-	int referenceType;			/**< which type of reference is being presented */
-	bool hasQuote;				/**< does reference have a quote */
-	bool hasLink;				/**< does reference have an external link */
-	
-	NSString *referenceName;			/**< display name of Reference */
-	NSString *referenceKey;				/**< reference pkey */
-	NSMutableString *referenceDate;		/**< reference origin date */
-	NSMutableString *referenceDeathDate;	/**< reference death date */
-	NSString *referencePicture;			/**< picture of reference */
-	NSString *referenceReferenceURL;		/**< URL of external reference text */
-	NSString *referenceShortDescription;	/**< description of reference */
-	NSString *referenceLongDescription;		/**< detailed account of reference */
-	NSString *referenceOrigin;			/**< place of reference origin */
-
-	NSString *referenceOrientation;
-	NSString *referenceMoral; 			/**< moral assigned to reference */
-	NSString *referenceQuote;			/**< quote by or referencing reference */
-    
-}
+@interface ReferenceDetailViewController : UIViewController <UIActionSheetDelegate>
 
 /**
 Accepts User input to ask for a Quote from reference.

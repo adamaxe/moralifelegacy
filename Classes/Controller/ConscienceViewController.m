@@ -20,6 +20,43 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UserCharacter.h"
 #import "ConscienceAsset.h"
 
+@interface ConscienceViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSManagedObjectContext *context;		/**< Core Data context */
+    
+	IBOutlet UILabel *conscienceStatus;				/**< Conscience's thought presented in bubble */
+	IBOutlet ConscienceView *initialConscienceView;		/**< pointer to UserConscienceView */
+	IBOutlet UIImageView *thoughtBubbleView1;			/**< bubble surrounding Conscience's thought */
+	IBOutlet UIView *consciencePlayground;			/**< area in which custom ConscienceView can float */
+	IBOutlet UIView *thoughtArea;					/**< area in which thought bubble appears */
+	
+	IBOutlet UIImageView *virtueImage;				/**< most prominent virtue image */
+	IBOutlet UIImageView *viceImage;				/**< most troublesome vice image */
+	IBOutlet UIImageView *rankImage;				/**< current rank image */
+	IBOutlet UILabel *virtueLabel;				/**< most prominent virtue label */
+	IBOutlet UILabel *viceLabel;					/**< most prominent vice label */
+	IBOutlet UILabel *rankLabel;					/**< rank frame label */    
+    
+	IBOutlet UIButton *virtueButton;				/**< button surrounding picture frame to cue virtue thought */
+	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue virtue thought */
+	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceModalViewController */
+    
+	NSTimer *shakeTimer;				/**< limits Conscience shake response */
+	NSTimer *thoughtFadeTimer;			/**< determines when Conscience thought disappears */
+    
+	CGFloat animationDuration;			/**< assists in gesture recognition */	
+	CGFloat initialTapDistance;			/**< assists in gesture recognition */
+    
+	NSMutableString *homeVirtueDisplayName;	/**< most prominent virtue text */
+	NSMutableString *homeViceDisplayName;	/**< most prominent vice text */
+    NSMutableString *highestRankName;       /**< highest achieved rank */
+    
+}
+
+@end
+
 @implementation ConscienceViewController
 
 /** @todo externalize angle and shake functions if possible */

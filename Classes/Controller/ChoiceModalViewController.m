@@ -9,6 +9,38 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 #import "ConscienceView.h"
 #import "Moral.h"
 
+@interface ChoiceModalViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSManagedObjectContext *context;		/**< Core Data context */	
+	
+	IBOutlet UITableView *choiceModalTableView;  	/**< table referenced by IB */
+    
+	//Raw data of all available morals
+	NSMutableArray *searchedData;			/**< array for matched data from User search */
+	NSMutableArray *choiceNames;			/**< array for Moral pkey */
+	NSMutableArray *choiceDisplayNames;		/**< array for Moral name */
+	NSMutableArray *choiceImages;			/**< array for Moral Image */
+	NSMutableArray *choiceDetails;		/**< array for Moral synonyms */
+    
+	//Data for filtering/searching sourced from raw data
+	NSMutableArray *dataSource;				/**< array for storing of Choices populated from previous view*/
+	NSMutableArray *tableData;				/**< array for stored data displayed in table populated from dataSource */
+	NSMutableArray *tableDataImages;			/**< array for stored data images */
+	NSMutableArray *tableDataDetails;			/**< array for stored data details */
+	NSMutableArray *tableDataKeys;			/**< array for stored data pkeys */
+    
+	IBOutlet UISearchBar *moralSearchBar;			/**< ui element for limiting choices in table */
+	
+	IBOutlet UIView *thoughtModalArea;				/**< ui surrounding table */
+	
+	BOOL isVirtue;		/**< is Moral Virtue or Vice */
+    
+}
+
+@end
+
 @implementation ChoiceModalViewController
 
 #pragma mark - 

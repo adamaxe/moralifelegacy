@@ -14,6 +14,41 @@ the application.
 #import "ConscienceMind.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface IntroViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
+    
+	IBOutlet UILabel *conscienceStatus;			/**< Conscience's thought presented in bubble */
+	IBOutlet UIImageView *thoughtBubbleView1;	/**< bubble surrounding Conscience's thought */
+	IBOutlet UIImageView *backgroundImage;		/**< background image manipulation */
+	IBOutlet UIImageView *navBarImage;			/**< image that will appear once interaction is done */
+	IBOutlet UIImageView *tabBarImage;			/**< image that will appear once interaction is done */
+	IBOutlet UIImageView *teamAxeLogoImage;		/**< Team Axe Logo */
+	IBOutlet UIImageView *moraLifeLogoImage;	/**< MoraLife Logo */
+    IBOutlet UIImageView *nextButtonImage;      /**< image for Next arrow */
+    IBOutlet UIImageView *downButtonImage;      /**< image for Down arrow */
+	IBOutlet UIView *consciencePlayground;		/**< area in which custom ConscienceView can float */
+	IBOutlet UIView *thoughtArea;				/**< area in which thought bubble appears */
+	
+	IBOutlet UIButton *thoughtButton;			/**< area in which thought bubble appears */
+	IBOutlet UIButton *nextButton;              /**< area in which thought bubble appears */	
+    
+	NSTimer *shakeTimer;				/**< limits Conscience shake response */
+	NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
+	
+	CGFloat initialTapDistance;			/**< assists in gesture recognition */
+    CGFloat animationDuration;          /**< duration variable for determining movement */
+    
+    int messageState;                   /**< which stage of intro is current */
+    BOOL isImpatient;                   /**< has User decided to skip intro */
+    
+}
+
+@property (nonatomic, retain) NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
+
+@end
+
 @implementation IntroViewController
 
 @synthesize thoughtChangeTimer = _thoughtChangeTimer;

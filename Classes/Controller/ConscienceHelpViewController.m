@@ -5,9 +5,32 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 @class ConscienceHelpViewController ConscienceHelpViewController.h
  */
 
-#import "ConscienceHelpViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ConscienceHelpViewController.h"
 #import "ConscienceView.h"
+
+@interface ConscienceHelpViewController () {
+	
+	MoraLifeAppDelegate *appDelegate;			/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;					/**< serialized user settings/state retention */
+    
+	IBOutlet UIView *thoughtModalArea;			/**< area in which Conscience floats */
+    
+	IBOutlet UIView *screen1View;				/**< 1st possible help page */
+	IBOutlet UIView *screen2View;				/**< 2nd possible help page */
+	IBOutlet UIView *screen3View;				/**< 3rd possible help page */
+	IBOutlet UIView *screen4View;				/**< 4th possible help page */
+	IBOutlet UIView *screen5View;				/**< 5th possible help page */
+	IBOutlet UIView *screen6View;				/**< 6th possible help page */
+    
+	IBOutlet UILabel *helpTitle;			/**< title of each page*/
+	IBOutlet UITextView *helpText;		/**< text of each page*/
+	IBOutlet UIButton *previousButton;		/**< return to previous page */
+	IBOutlet UIButton *nextButton;		/**< proceed to next page */
+	
+}
+
+@end
 
 @implementation ConscienceHelpViewController
 

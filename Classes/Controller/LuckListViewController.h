@@ -10,40 +10,7 @@ Luck Listing screen.  Listing of all previously-entered in Lucks.
 @file
  */
 
-#import <CoreData/CoreData.h>
-
-@class MoraLifeAppDelegate;
-
-@interface LuckListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> {
-
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
-
-	NSMutableArray *lucks;			/**< Array of User-entered luck titles */
-	NSMutableArray *lucksAreGood;		/**< Array of whether choices are good/bad */
-	NSMutableArray *luckKeys;		/**< Array of User-entered luck pkeys */
-	NSMutableArray *details;		/**< Array of User-entered severities */
-	NSMutableArray *icons;			/**< Array of User-entered severities */
-	
-	NSMutableArray *dataSource;			/**< array for storing of Choices populated from previous view*/
-	NSMutableArray *tableData;			/**< array for stored data displayed in table populated from dataSource */
-	NSMutableArray *tableDataColorBools;	/**< array for stored data boolean */
-	NSMutableArray *tableDataImages;		/**< array for stored data images */
-	NSMutableArray *tableDataDetails;		/**< array for stored data details */
-	NSMutableArray *tableDataKeys;		/**< array for stored data primary keys */
-	
-	IBOutlet UISearchBar *luckSearchBar;	/**< ui element for limiting choices in table */
-	
-	IBOutlet UITableView *lucksTableView;	/**< table of User lucks */
-	IBOutlet UIView *lucksView;			/**< ui surrounding tableview */
-    
-	IBOutlet UIButton *luckSortButton;		/**< button for sorting criteria */
-	IBOutlet UIButton *luckOrderButton;		/**< button for ordering criteria */
-    
-	NSMutableString *luckSortDescriptor;	/**< sort descriptor for filtering Core Data */
-	BOOL isAscending;					/**< is data ascending or descending order */
-}
+@interface LuckListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 /**
 Accepts User input to selects the data sort and order types

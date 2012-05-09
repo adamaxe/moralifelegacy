@@ -12,6 +12,40 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
 
+@interface ReportPieViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSManagedObjectContext *context;		/**< Core Data context */
+    
+	NSMutableDictionary *reportValues;		/**< */
+	NSMutableDictionary *moralDisplayNames;	/**< names to be displayed on list */
+	NSMutableDictionary *moralImageNames;	/**< image file names for Moral */
+	NSMutableDictionary *moralColors;		/**< text color associated with Moral */
+    
+	NSString *reportName;				/**< label for name of the report */
+	float runningTotal;				/**< total of Moral Weight for calculation purposes */
+	IBOutlet UIView *thoughtModalArea;
+    
+	NSMutableArray *pieColors;		/**< all Moral colors in order */
+	NSMutableArray *pieValues;		/**< all degrees of circle in order */
+	NSMutableArray *reportNames;		
+	NSMutableArray *moralNames;
+    
+	BOOL isGood;		/**< is current view for Virtues or Vices */
+	BOOL isAscending;		/**< current order type */
+	BOOL isAlphabetical;	/**< current sort type */
+	
+	IBOutlet UIImageView *moralType;		/**< image to depict current status of view (Virtue/Vice) */
+	IBOutlet UIButton *moralTypeButton;		/**< button to switch between Virtue/Vice */
+	IBOutlet UIButton *moralSortButton;		/**< button to toggle sort type (Name/Weight) */
+	IBOutlet UIButton *moralOrderButton;		/**< button to toggle order type (Asc/Des) */
+	IBOutlet UITableView *reportTableView;	/**< table to house results */
+    IBOutlet UILabel *moralTypeLabel;       /**< is report virtue or vice */
+}
+
+@end
+
 @implementation ReportPieViewController
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.

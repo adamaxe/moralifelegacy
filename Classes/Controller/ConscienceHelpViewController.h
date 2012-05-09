@@ -8,28 +8,7 @@ Conscience modular Help screen.  View controller for Conscience helping User wit
 @file
  */
 
-@class MoraLifeAppDelegate, ConscienceView, ConscienceBody, ConscienceAccessories;
-
-@interface ConscienceHelpViewController : UIViewController {
-	
-	MoraLifeAppDelegate *appDelegate;			/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;					/**< serialized user settings/state retention */
-		
-	IBOutlet UIView *thoughtModalArea;			/**< area in which Conscience floats */
-
-	IBOutlet UIView *screen1View;				/**< 1st possible help page */
-	IBOutlet UIView *screen2View;				/**< 2nd possible help page */
-	IBOutlet UIView *screen3View;				/**< 3rd possible help page */
-	IBOutlet UIView *screen4View;				/**< 4th possible help page */
-	IBOutlet UIView *screen5View;				/**< 5th possible help page */
-	IBOutlet UIView *screen6View;				/**< 6th possible help page */
-
-	IBOutlet UILabel *helpTitle;			/**< title of each page*/
-	IBOutlet UITextView *helpText;		/**< text of each page*/
-	IBOutlet UIButton *previousButton;		/**< return to previous page */
-	IBOutlet UIButton *nextButton;		/**< proceed to next page */
-	
-}
+@interface ConscienceHelpViewController : UIViewController
 
 @property(nonatomic, retain) NSArray *helpTitles;		/**< title for each page */
 @property(nonatomic, retain) NSArray *helpTexts;		/**< text for each page */

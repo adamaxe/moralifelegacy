@@ -16,6 +16,40 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "ConscienceActionViewController.h"
 #import "ConscienceHelpViewController.h"
 
+@interface DilemmaListViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSManagedObjectContext *context;		/**< Core Data context */
+	
+	IBOutlet UITableView *dilemmaListTableView;  	/**< table referenced by IB */
+    
+	NSMutableArray *dataSource;				/**< array for storing of Choices populated from previous view*/
+	NSMutableArray *tableData;				/**< array for stored data displayed in table populated from dataSource */
+	NSMutableArray *tableDataImages;			/**< array for stored data images */
+	NSMutableArray *tableDataDetails;			/**< array for stored data details */
+	NSMutableArray *tableDataKeys;			/**< array for stored data primary keys */
+    NSMutableArray *tableDataTypes;			/**< array for stored data primary keys */
+    
+	NSMutableArray *searchedData;			/**< array for matched data from User search */
+	NSMutableArray *choiceNames;			/**< these arrays house origial queried data to be re-entered into search results */
+	NSMutableArray *choiceDisplayNames;		/**< name to be shown to User */
+	NSMutableArray *choiceImages;			/**< image in tableRowCell */
+	NSMutableArray *choiceDetails;		/**< tableRowCell detailText */
+    NSMutableArray *choiceTypes;		/**< tableRowCell detailText */
+    
+	NSMutableDictionary *userChoices;		/**< dictionary to hold Dilemmas already completed by User */
+	NSMutableDictionary *moralNames;		/**< dictionary to hold names of selected Morals */
+    
+	IBOutlet UISearchBar *dilemmaSearchBar;			/**< ui element for limiting choices in table */
+	
+	IBOutlet UIView *thoughtModalArea;
+    int dilemmaCampaign;                    /**< current campaign to select correct dilemmas */
+    
+}
+
+@end
+
 @implementation DilemmaListViewController
 
 #pragma mark -

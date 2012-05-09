@@ -12,6 +12,41 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #import "UserChoice.h"
 #import "Moral.h"
 
+@interface ChoiceListViewController () {
+	
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSManagedObjectContext *context;		/**< Core Data context */
+	
+	//Raw data of all entered choices
+	NSMutableArray *choices;			/**< Array of User-entered choice titles */
+	NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
+	NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
+	NSMutableArray *details;			/**< Array of User-entered details */
+	NSMutableArray *icons;				/**< Array of associated images */
+    
+	//Data for filtering/searching sourced from raw data
+	NSMutableArray *dataSource;			/**< array for storing of Choices populated from previous view*/
+	NSMutableArray *tableData;			/**< array for stored data displayed in table populated from dataSource */
+	NSMutableArray *tableDataColorBools;	/**< array for stored data booleans for Virtue/Vice distinction */
+	NSMutableArray *tableDataImages;		/**< array for stored data images */
+	NSMutableArray *tableDataDetails;		/**< array for stored data details */
+	NSMutableArray *tableDataKeys;		/**< array for stored data primary keys */
+	
+	IBOutlet UISearchBar *choiceSearchBar;	/**< ui element for limiting choices in table */
+	
+	IBOutlet UITableView *choicesTableView;	/**< table of User choices*/
+	IBOutlet UIView *choicesView;			/**< ui surrounding tableview */
+    
+	IBOutlet UIButton *moralSortButton;		/**< button for sorting criteria */
+	IBOutlet UIButton *moralOrderButton;	/**< button for ordering criteria */
+    
+	NSMutableString *choiceSortDescriptor;	/**< sort descriptor for filtering Core Data */
+	BOOL isAscending;					/**< is data ascending or descending order */
+}
+
+@end
+
 @implementation ChoiceListViewController
 
 #pragma mark -

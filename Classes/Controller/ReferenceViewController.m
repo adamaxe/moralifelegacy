@@ -4,11 +4,42 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 @class ReferenceViewController ReferenceViewController.h
  */
 
+#import "MoraLifeAppDelegate.h"
 #import "ReferenceViewController.h"
 #import "ReferenceListViewController.h"
 #import "ConscienceHelpViewController.h"
 
+@interface ReferenceViewController () {
+    
+	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+    
+	IBOutlet UIButton *peopleLabelButton;		/**< label for People button */
+	IBOutlet UIButton *placesLabelButton;		/**< label for Places button */
+	IBOutlet UIButton *booksLabelButton;		/**< label for Books button */
+	IBOutlet UIButton *beliefsLabelButton;		/**< label for Beliefs button */
+	IBOutlet UIButton *reportsLabelButton;		/**< label for Reports button */
+	IBOutlet UIButton *accessoriesLabelButton;	/**< label for Accessories button */
+	
+	IBOutlet UIButton *peopleButton;		/**< label for People button */
+	IBOutlet UIButton *placesButton;		/**< label for Places button */
+	IBOutlet UIButton *booksButton;		/**< label for Books button */
+	IBOutlet UIButton *beliefsButton;		/**< label for Beliefs button */
+	IBOutlet UIButton *reportsButton;		/**< label for Reports button */
+	IBOutlet UIButton *accessoriesButton;	/**< label for Accessories button */
+	
+	NSArray *buttonNames;
+    
+}
+
+@property (nonatomic, retain) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
+
+
+@end
+
 @implementation ReferenceViewController
+
+@synthesize buttonTimer = _buttonTimer;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -68,7 +99,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	
 	[self refreshButtons];
 	
-	buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
+	self.buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
 	
 }
 
@@ -230,8 +261,8 @@ Implementation: Return the button's icon to default after animation finishes
 
 -(void) viewWillDisappear:(BOOL)animated {
 	
-	[buttonTimer invalidate];
-	buttonTimer = nil;
+	[self.buttonTimer invalidate];
+	self.buttonTimer = nil;
 	
 }
 

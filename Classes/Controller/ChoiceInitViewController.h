@@ -10,32 +10,7 @@ Primary screen in Choice/Luck Entry and Listing Workflows.  Allows for selection
 @date 08/18/2010
 */
 
-@class MoraLifeAppDelegate;
-
-@interface ChoiceInitViewController : UIViewController {
-	
-	MoraLifeAppDelegate *appDelegate;           /**< delegate for application level callbacks */
-	NSUserDefaults *prefs;                      /**< serialized state retention */
-	
-	IBOutlet UIButton *goodChoiceLabelButton;		/**< Label for Good Choice entry selection */
-	IBOutlet UIButton *badChoiceLabelButton;		/**< Label for Bad Choice entry selection */
-	IBOutlet UIButton *choiceListLabelButton;		/**< Label for All Choice listing selection */
-	
-	IBOutlet UIButton *goodChoiceButton;		/**< Button for Good Choice entry selection */
-	IBOutlet UIButton *badChoiceButton;			/**< Button for Bad Choice entry selection */
-	IBOutlet UIButton *choiceListButton;		/**< Button for All Choice listing selection */
-	
-	IBOutlet UIButton *goodLuckLabelButton;		/**< Label for Good Choice entry selection */
-	IBOutlet UIButton *badLuckLabelButton;		/**< Label for Bad Choice entry selection */
-	IBOutlet UIButton *luckListLabelButton;		/**< Label for All Choice listing selection */
-	
-	IBOutlet UIButton *goodLuckButton;		/**< Button for Good Choice entry selection */
-	IBOutlet UIButton *badLuckButton;		/**< Button for Bad Choice entry selection */
-	IBOutlet UIButton *luckListButton;		/**< Button for All Choice listing selection */
-
-	NSArray *buttonNames;		/**< button image names */
-	NSTimer *buttonTimer;		/**< Timer for animating buttons */
-}
+@interface ChoiceInitViewController : UIViewController
 
 /**
 Accepts User input to selects the data entry screen type for Choices or Luck
