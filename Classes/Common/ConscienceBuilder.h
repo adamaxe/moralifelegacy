@@ -11,10 +11,7 @@ Static Utility Class used to build Consciences.
 
 @class ConscienceBody;
 
-@interface ConscienceBuilder : NSObject {
-
-}
-
+@interface ConscienceBuilder : NSObject 
 /**
 Build Conscience by rendering all Core Graphics objects and accessory images
 @param requestedConscienceBody ConscienceBody to be populated

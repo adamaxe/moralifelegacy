@@ -8,17 +8,9 @@ Limitations: SVG must be unoptimized, only small subset of SVG instructions are 
 @file
 */
 
-@class ConscienceBody, ConscienceLayer, ConsciencePath, ConscienceGradient;
+@class ConscienceBody;
 
-@interface XMLParser : NSObject <NSXMLParserDelegate> {
-
-    NSAutoreleasePool *pool;
-    
-	ConscienceLayer *currentConscienceLayer;	/**< current Layer selected for population */
-	ConsciencePath *currentConsciencePath;		/**< current Path selected for population */
-	ConscienceGradient *currentConscienceGradient;	/**< current gradient selected for population */
-
-}
+@interface XMLParser : NSObject <NSXMLParserDelegate> 
 
 @property (nonatomic, retain) ConscienceBody *currentConscienceBody;    /**< current Conscience selected for population */
 

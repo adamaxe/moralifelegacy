@@ -13,6 +13,18 @@ Implementation:  We are parsing the svg's of the animatable facial features.  Ea
 #import "ConscienceGradient.h"
 #import "ConscienceBody.h"
 
+@interface XMLParser () {
+    
+    NSAutoreleasePool *pool;
+    
+	ConscienceLayer *currentConscienceLayer;	/**< current Layer selected for population */
+	ConsciencePath *currentConsciencePath;		/**< current Path selected for population */
+	ConscienceGradient *currentConscienceGradient;	/**< current gradient selected for population */
+    
+}
+
+@end
+
 @implementation XMLParser 
 
 @synthesize currentConscienceBody;
