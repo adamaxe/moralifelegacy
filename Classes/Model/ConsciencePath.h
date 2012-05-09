@@ -10,9 +10,7 @@ Path from XML represents an image portion of a feature (iris, teeth, etc.)  Poss
 @file
  */
 
-@interface ConsciencePath : NSObject <NSCoding> {
-
-}
+@interface ConsciencePath : NSObject <NSCoding> 
 
 @property (nonatomic, retain) NSMutableArray *pathInstructions;     /**< array of integer instructions */
 @property (nonatomic, retain) NSMutableArray *pathPoints;           /**< array of CGFloat points */

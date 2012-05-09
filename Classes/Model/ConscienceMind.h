@@ -10,9 +10,7 @@ Data derived from User's actions.  Member of ConscienceView.
 @file
  */
 
-@interface ConscienceMind : NSObject {
-
-}
+@interface ConscienceMind : NSObject
 
 @property (nonatomic, retain) NSMutableDictionary *enthusiasmMemories;	/**< past enthusiasm states and timestamps */
 @property (nonatomic, retain) NSMutableDictionary *moodMemories;		/**< past mood states and timestamps */

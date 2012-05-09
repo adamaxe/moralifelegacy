@@ -11,9 +11,7 @@ Member of ConscienceObjectView.
 @file
  */
 
-@interface ConscienceLayer : NSObject <NSCoding> {
-
-}
+@interface ConscienceLayer : NSObject <NSCoding> 
 
 @property (nonatomic, retain) NSMutableArray *consciencePaths;	/**< array of ConsciencePath defining structure */
 @property (nonatomic, retain) NSString *layerID;                /**< id from SVG */

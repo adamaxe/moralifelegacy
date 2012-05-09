@@ -9,9 +9,7 @@
 @file
 */
 
-@interface ConscienceAccessories : NSObject {
-	
-}
+@interface ConscienceAccessories : NSObject 
 
 @property (nonatomic, retain) NSString *primaryAccessory;		/**< Conscience left-hand image filename */
 @property (nonatomic, retain) NSString *secondaryAccessory;		/**< Conscience right-hand image filename */
