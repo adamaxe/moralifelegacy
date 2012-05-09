@@ -24,22 +24,7 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 
 @class ConscienceBody, ConscienceAccessories, ConscienceView, ConscienceMind;
 
-@interface MoraLifeAppDelegate : NSObject <UIApplicationDelegate> {
-
-	UIWindow *window;	/**< UIWindow that contains all other UIViews */
-	
-	UITabBarController *mainMenuTabBarCont;	/**< UITabBarController along bottom of screens */
-	UINavigationController *navController1; /**< UINavController for first screen, Home */
-	UINavigationController *navController2; /**< UINavController for second screen, Choices */
-	UINavigationController *navController3; /**< UINavController for third screen, Reference */
-    
-	@private	
-	NSManagedObjectModel	*managedObjectModel;
-	NSManagedObjectContext	*managedObjectContext;
-	NSPersistentStoreCoordinator	*persistentStoreCoordinator;
-	
-	
-}
+@interface MoraLifeAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
 @property (nonatomic, retain) ConscienceBody *userConscienceBody;   /**< Representation of User's Conscience */

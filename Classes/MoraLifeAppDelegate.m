@@ -26,6 +26,25 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "ConscienceMind.h"
 #import "UserCollectable.h"
 
+@interface MoraLifeAppDelegate () {
+    
+	UIWindow *window;	/**< UIWindow that contains all other UIViews */
+	
+	UITabBarController *mainMenuTabBarCont;	/**< UITabBarController along bottom of screens */
+	UINavigationController *navController1; /**< UINavController for first screen, Home */
+	UINavigationController *navController2; /**< UINavController for second screen, Choices */
+	UINavigationController *navController3; /**< UINavController for third screen, Reference */
+    
+@private	
+	NSManagedObjectModel	*managedObjectModel;
+	NSManagedObjectContext	*managedObjectContext;
+	NSPersistentStoreCoordinator	*persistentStoreCoordinator;
+	
+	
+}
+
+@end
+
 @implementation MoraLifeAppDelegate
 
 @synthesize window;
