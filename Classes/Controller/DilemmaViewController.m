@@ -154,7 +154,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 	
 	screen1View.hidden = FALSE;
 	versusImage.alpha = 1;
-	versusImage.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	versusImage.transform = CGAffineTransformIdentity;
     
 	appDelegate.userConscienceView.center = centerPoint;
 	
@@ -285,7 +285,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
 			[UIView setAnimationBeginsFromCurrentState:YES];
 			
             rewardView.alpha = 1;
-            rewardView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            rewardView.transform = CGAffineTransformIdentity;
             
 			[UIView commitAnimations];
             
