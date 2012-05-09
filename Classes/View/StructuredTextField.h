@@ -8,9 +8,7 @@ Maximum Length Textfield Subclass UIView.  Allow for a maximum length to be ente
 @file
 */
 
-@interface StructuredTextField: UITextField {
-
-}
+@interface StructuredTextField: UITextField 
 
 @property (nonatomic, assign) int maxLength;	/**< maximum length of field */
 

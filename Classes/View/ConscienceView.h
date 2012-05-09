@@ -10,41 +10,10 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 @date 06/23/2010
 @file
  */
-#import <QuartzCore/QuartzCore.h>
 
-@class MoraLifeAppDelegate, ConscienceBody, ConscienceAccessories, ConscienceMind, ConscienceObjectView, AccessoryObjectView, ConscienceBubbleView;
+@class ConscienceBody, ConscienceAccessories, ConscienceMind, CAKeyframeAnimation;
 
-@interface ConscienceView : UIView {
-
-	MoraLifeAppDelegate *appDelegate;               /**< delegate for application level callbacks */
-
-    //Conscience visual display
-	ConscienceBubbleView *animatedBubbleView;		/**< External animated bubble */
-	ConscienceObjectView *conscienceEyeLeftView;	/**< Conscience left eye (right-most eye on screen) */
-	ConscienceObjectView *conscienceEyeRightView;   /**< Conscience right eye (left-most eye on screen) */
-	ConscienceObjectView *conscienceSymbolView;     /**< Conscience symbol */
-	ConscienceObjectView *conscienceMouthView;      /**< Conscience mouth */
-
-	//Conscience possession visual display
-	AccessoryObjectView *accessoryPrimaryView;      /**< Conscience left hand (right-most on screen) */
-	AccessoryObjectView *accessorySecondaryView;	/**< Conscience right hand/back (left-most on screen) */
-	AccessoryObjectView *accessoryTopView;          /**< Conscience head */
-	AccessoryObjectView *accessoryBottomView;		/**< Conscience neck/chest */
-	
-    NSArray *browExpressions;
-    NSArray *lidExpressions;    
-    NSArray *lipsExpressions;
-    NSArray *tongueExpressions;
-    NSArray *teethExpressions;
-    NSArray *dimplesExpressions;
-    NSArray *eyeLeftPositions;
-    NSArray *eyeRightPositions;    
-    
-	NSTimer *mouthTimer;		/**< controls expression interval */
-	NSTimer *eyeTimer;          /**< controls eye state interval */
-	NSTimer *blinkTimer;		/**< controls blink/wink interval */
-	
-}
+@interface ConscienceView : UIView
 
 @property (nonatomic, assign) int directionFacing;                  /**< Which way the Conscience is currently facing */
 @property (nonatomic, assign) BOOL isExpressionForced;				/**< allow for forcing of an expression */
@@ -164,6 +133,5 @@ Make Conscience reappear
 @return CAKeyFrameAnimation animation to implement for shaken
  */
 -(CAKeyframeAnimation *) shakeAnimation;
-
 
 @end

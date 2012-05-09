@@ -13,9 +13,7 @@ Visual Object that represents animatable facial feature, eye, mouth, symbol.
 
 @class ConscienceLayer;
 
-@interface ConscienceObjectView : UIView{	
-
-}
+@interface ConscienceObjectView : UIView
 
 @property (nonatomic, retain) NSMutableDictionary *totalLayers;     /**< all ConscienceLayers of an Object */
 @property (nonatomic, retain) NSMutableDictionary *totalGradients;  /**< dictionary of ConscienceGradients */

@@ -7,6 +7,7 @@ Actual facial changes are requested by ViewController.
 @class ConscienceView ConscienceView.h
  */
 
+#import <QuartzCore/QuartzCore.h>
 #import "ConscienceView.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceBody.h"
@@ -19,6 +20,40 @@ Actual facial changes are requested by ViewController.
 #import "ConscienceAsset.h"
 #import "ConscienceMind.h"
 #import "ConsciencePath.h"
+
+@interface ConscienceView () {
+    
+	MoraLifeAppDelegate *appDelegate;               /**< delegate for application level callbacks */
+    
+    //Conscience visual display
+	ConscienceBubbleView *animatedBubbleView;		/**< External animated bubble */
+	ConscienceObjectView *conscienceEyeLeftView;	/**< Conscience left eye (right-most eye on screen) */
+	ConscienceObjectView *conscienceEyeRightView;   /**< Conscience right eye (left-most eye on screen) */
+	ConscienceObjectView *conscienceSymbolView;     /**< Conscience symbol */
+	ConscienceObjectView *conscienceMouthView;      /**< Conscience mouth */
+    
+	//Conscience possession visual display
+	AccessoryObjectView *accessoryPrimaryView;      /**< Conscience left hand (right-most on screen) */
+	AccessoryObjectView *accessorySecondaryView;	/**< Conscience right hand/back (left-most on screen) */
+	AccessoryObjectView *accessoryTopView;          /**< Conscience head */
+	AccessoryObjectView *accessoryBottomView;		/**< Conscience neck/chest */
+	
+    NSArray *browExpressions;
+    NSArray *lidExpressions;    
+    NSArray *lipsExpressions;
+    NSArray *tongueExpressions;
+    NSArray *teethExpressions;
+    NSArray *dimplesExpressions;
+    NSArray *eyeLeftPositions;
+    NSArray *eyeRightPositions;    
+    
+	NSTimer *mouthTimer;		/**< controls expression interval */
+	NSTimer *eyeTimer;          /**< controls eye state interval */
+	NSTimer *blinkTimer;		/**< controls blink/wink interval */
+	
+}
+
+@end
 
 @implementation ConscienceView
 

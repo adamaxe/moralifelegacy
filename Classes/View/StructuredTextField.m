@@ -16,9 +16,7 @@ override text for a field in order to prevent it from being updated
 */
 -(void)setText:(NSString *) textArg{
 
-//	NSMutableString *transformString = [NSMutableString stringWithCapacity:maxLength];
 	NSMutableString *transformString = [[NSMutableString alloc] initWithCapacity:maxLength];
-
 	
 	if ([textArg length] > maxLength) {
 		[transformString setString:[textArg substringToIndex:maxLength]];

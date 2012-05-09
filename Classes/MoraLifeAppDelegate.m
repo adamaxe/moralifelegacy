@@ -40,7 +40,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	NSManagedObjectContext	*managedObjectContext;
 	NSPersistentStoreCoordinator	*persistentStoreCoordinator;
 	
-	
 }
 
 @end
@@ -54,7 +53,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 @synthesize userConscienceMind;
 @synthesize userCollection;
 @synthesize isCurrentIOS;
-
 
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;

@@ -9,9 +9,7 @@ Conscience Bubble visualization.  The appearance and animation of the User's or 
 @file
  */
 
-@interface ConscienceBubbleView : UIView {
-
-}
+@interface ConscienceBubbleView : UIView 
 
 @property (nonatomic, assign) int bubbleType;		/**< type of bubble */
 @property (nonatomic, assign) CGFloat bubbleGlowWidth;	/**< width of black bubble outline */

@@ -17,17 +17,19 @@ Implementation:  We are parsing the svg's of the animatable facial features.  Ea
     
     NSAutoreleasePool *pool;
     
-	ConscienceLayer *currentConscienceLayer;	/**< current Layer selected for population */
 	ConsciencePath *currentConsciencePath;		/**< current Path selected for population */
 	ConscienceGradient *currentConscienceGradient;	/**< current gradient selected for population */
     
 }
+
+@property (nonatomic, retain) ConscienceLayer *currentConscienceLayer;   /**< current Layer selected for population */
 
 @end
 
 @implementation XMLParser 
 
 @synthesize currentConscienceBody;
+@synthesize currentConscienceLayer = _currentConscienceLayer;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -52,8 +54,8 @@ attributes:(NSDictionary *)attributeDict {
 	//Determine element type for opening
 	if([elementName isEqualToString:@"g"]) {
 		//Layer Group has been found, initialize containers to hold data
-		currentConscienceLayer = [[[ConscienceLayer alloc] init] autorelease];
-		[currentConscienceLayer setLayerID:[attributeDict objectForKey:@"id"]];
+		self.currentConscienceLayer = [[[ConscienceLayer alloc] init] autorelease];
+		[self.currentConscienceLayer setLayerID:[attributeDict objectForKey:@"id"]];
 
 	} else if([elementName isEqualToString:@"path"]) {
 
@@ -74,7 +76,7 @@ attributes:(NSDictionary *)attributeDict {
         [currentConsciencePath convertToConsciencePath:[attributeDict objectForKey:@"d"] WithStyle:[attributeDict objectForKey:@"style"]];
         
 		//Add completed path to layer
-		[currentConscienceLayer.consciencePaths addObject:currentConsciencePath];
+		[self.currentConscienceLayer.consciencePaths addObject:currentConsciencePath];
 		[currentConsciencePath release];
 		
 	} else if([elementName isEqualToString:@"linearGradient"]) {
@@ -100,30 +102,30 @@ attributes:(NSDictionary *)attributeDict {
 namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 
 	//Determine which layer is found
-	NSRange subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Brow"];
+	NSRange subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Brow"];
 	BOOL browFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Lashes"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Lashes"];
 	BOOL lashesFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Eye"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Eye"];
 	BOOL eyeFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Lid"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Lid"];
 	BOOL lidFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Socket"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Socket"];
 	BOOL socketFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Bags"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Bags"];
 	BOOL bagsFoundBool =  (subStrRange.location != NSNotFound);
 
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Dimples"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Dimples"];
 	BOOL dimplesFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Lips"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Lips"];
 	BOOL lipsFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Teeth"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Teeth"];
 	BOOL teethFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Tongue"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Tongue"];
 	BOOL tongueFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Symbol"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Symbol"];
 	BOOL symbolFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [[currentConscienceLayer layerID] rangeOfString:@"Position"];
+	subStrRange = [[self.currentConscienceLayer layerID] rangeOfString:@"Position"];
 	BOOL positionFoundBool =  (subStrRange.location != NSNotFound);	
 
 	/** @todo convert dictionary key to kExpression enum */
@@ -131,29 +133,29 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 	if([elementName isEqualToString:@"g"]){
 		//Determine which ConscienceLayer path belongs
 		if (browFoundBool) {
-			[currentConscienceBody.browLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.browLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (bagsFoundBool) {
-			[currentConscienceBody.bagsLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.bagsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (eyeFoundBool) {
-			[currentConscienceBody.eyeLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.eyeLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (lashesFoundBool) {
-			[currentConscienceBody.lashesLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.lashesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (lidFoundBool) {
-			[currentConscienceBody.lidLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.lidLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (socketFoundBool) {
-			[currentConscienceBody.socketLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.socketLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (dimplesFoundBool) {
-			[currentConscienceBody.dimplesLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.dimplesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (lipsFoundBool) {
-			[currentConscienceBody.lipsLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.lipsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (teethFoundBool) {
-			[currentConscienceBody.teethLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.teethLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (tongueFoundBool) {
-			[currentConscienceBody.tongueLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.tongueLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (symbolFoundBool) {
-			[currentConscienceBody.symbolLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (positionFoundBool) {
-			[currentConscienceBody.symbolLayers setObject: currentConscienceLayer forKey:[currentConscienceLayer layerID]];
+			[currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		}
 		
 	}

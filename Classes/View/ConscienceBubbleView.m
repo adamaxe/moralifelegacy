@@ -6,10 +6,9 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 @class ConscienceBubbleView ConscienceBubbleView.h
  */
 
-#import "ConscienceBubbleView.h"
 #import <CoreGraphics/CoreGraphics.h>
-//QuarzCore necessary for CABasicAnimation
 #import <QuartzCore/QuartzCore.h>
+#import "ConscienceBubbleView.h"
 
 @implementation ConscienceBubbleView
 @synthesize bubbleType;
