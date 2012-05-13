@@ -1352,6 +1352,30 @@
 		5EB58EC513415D8A00B67E0D /* card-unhealthiness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB58EBD13415D8900B67E0D /* card-unhealthiness.png */; };
 		5EB5A318122624E800879E11 /* ConscienceAccessoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5A317122624E800879E11 /* ConscienceAccessoryView.xib */; };
 		5EB5CD63122E1F300075CDE8 /* whitecircle.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5CD5F122E1F300075CDE8 /* whitecircle.png */; };
+		5EB5D9DA155F67DC00B0C061 /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3E8805122609B600F2708A /* XMLParser.m */; };
+		5EB5D9DB155F67E100B0C061 /* ConscienceBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */; };
+		5EB5D9DC155F67F000B0C061 /* ConscienceAccessories.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EF57BEF1218DE770053B97B /* ConscienceAccessories.m */; };
+		5EB5D9DD155F67F600B0C061 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
+		5EB5D9DE155F67FC00B0C061 /* ConscienceBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E303D0F11FD12DD00BB4E10 /* ConscienceBody.m */; };
+		5EB5D9DF155F691800B0C061 /* ChoiceInitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3F48E812FD103C00B4B4EC /* ChoiceInitViewController.m */; };
+		5EB5D9E0155F691C00B0C061 /* ChoiceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7712FD23CF002E2C1E /* ChoiceDetailViewController.m */; };
+		5EB5D9E1155F692400B0C061 /* ChoiceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */; };
+		5EB5D9E2155F692700B0C061 /* ChoiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */; };
+		5EB5D9E3155F692A00B0C061 /* ChoiceModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E592130F88FB00C4AEE1 /* ChoiceModalViewController.m */; };
+		5EB5D9E4155F692D00B0C061 /* ChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E594130F893D00C4AEE1 /* ChoiceViewController.m */; };
+		5EB5D9E5155F693000B0C061 /* ConscienceAcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5DB58512FD97DC007F85FA /* ConscienceAcceptViewController.m */; };
+		5EB5D9E6155F693200B0C061 /* ConscienceAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7D12FD253E002E2C1E /* ConscienceAccessoryViewController.m */; };
+		5EB5D9E7155F693500B0C061 /* ConscienceActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC8312FD2607002E2C1E /* ConscienceActionViewController.m */; };
+		5EB5D9E8155F693900B0C061 /* ConscienceDeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC8912FD9177002E2C1E /* ConscienceDeckViewController.m */; };
+		5EB5D9E9155F694200B0C061 /* ConscienceModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */; };
+		5EB5D9EA155F694600B0C061 /* ConscienceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A7F1612FD9540001ADB66 /* ConscienceListViewController.m */; };
+		5EB5D9EB155F694A00B0C061 /* ConscienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E155122608840091140B /* ConscienceViewController.m */; };
+		5EB5D9EC155F694D00B0C061 /* DilemmaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA21241307498200C1DB02 /* DilemmaListViewController.m */; };
+		5EB5D9ED155F695000B0C061 /* DilemmaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA21211307451000C1DB02 /* DilemmaViewController.m */; };
+		5EB5D9EE155F695800B0C061 /* ReferenceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB9BE9712FD200500584F67 /* ReferenceDetailViewController.m */; };
+		5EB5D9EF155F695B00B0C061 /* ReferenceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */; };
+		5EB5D9F0155F695E00B0C061 /* ReportPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB9BE9D12FD200600584F67 /* ReportPieViewController.m */; };
+		5EB5D9F1155F696100B0C061 /* ReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB9BE9F12FD200700584F67 /* ReferenceViewController.m */; };
 		5EB76149123EE9860063C15A /* ReportPieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB76148123EE9860063C15A /* ReportPieView.xib */; };
 		5EB7D36513861EAA0050DD1A /* sur-sheetmusicbass-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7D36413861EAA0050DD1A /* sur-sheetmusicbass-sm.png */; };
 		5EB7D36713861EB60050DD1A /* sur-sheetmusicbass.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7D36613861EB60050DD1A /* sur-sheetmusicbass.png */; };
@@ -7043,6 +7067,30 @@
 				5E1ACE2215521A0700DBDE6E /* TestUserChoice.m in Sources */,
 				5E1ACE2415523C1900DBDE6E /* TestUserDilemma.m in Sources */,
 				5E1ACE2615523E2900DBDE6E /* TestUserLuck.m in Sources */,
+				5EB5D9DA155F67DC00B0C061 /* XMLParser.m in Sources */,
+				5EB5D9DB155F67E100B0C061 /* ConscienceBuilder.m in Sources */,
+				5EB5D9DC155F67F000B0C061 /* ConscienceAccessories.m in Sources */,
+				5EB5D9DD155F67F600B0C061 /* ConscienceMind.m in Sources */,
+				5EB5D9DE155F67FC00B0C061 /* ConscienceBody.m in Sources */,
+				5EB5D9DF155F691800B0C061 /* ChoiceInitViewController.m in Sources */,
+				5EB5D9E0155F691C00B0C061 /* ChoiceDetailViewController.m in Sources */,
+				5EB5D9E1155F692400B0C061 /* ChoiceHistoryViewController.m in Sources */,
+				5EB5D9E2155F692700B0C061 /* ChoiceListViewController.m in Sources */,
+				5EB5D9E3155F692A00B0C061 /* ChoiceModalViewController.m in Sources */,
+				5EB5D9E4155F692D00B0C061 /* ChoiceViewController.m in Sources */,
+				5EB5D9E5155F693000B0C061 /* ConscienceAcceptViewController.m in Sources */,
+				5EB5D9E6155F693200B0C061 /* ConscienceAccessoryViewController.m in Sources */,
+				5EB5D9E7155F693500B0C061 /* ConscienceActionViewController.m in Sources */,
+				5EB5D9E8155F693900B0C061 /* ConscienceDeckViewController.m in Sources */,
+				5EB5D9E9155F694200B0C061 /* ConscienceModalViewController.m in Sources */,
+				5EB5D9EA155F694600B0C061 /* ConscienceListViewController.m in Sources */,
+				5EB5D9EB155F694A00B0C061 /* ConscienceViewController.m in Sources */,
+				5EB5D9EC155F694D00B0C061 /* DilemmaListViewController.m in Sources */,
+				5EB5D9ED155F695000B0C061 /* DilemmaViewController.m in Sources */,
+				5EB5D9EE155F695800B0C061 /* ReferenceDetailViewController.m in Sources */,
+				5EB5D9EF155F695B00B0C061 /* ReferenceListViewController.m in Sources */,
+				5EB5D9F0155F695E00B0C061 /* ReportPieViewController.m in Sources */,
+				5EB5D9F1155F696100B0C061 /* ReferenceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
