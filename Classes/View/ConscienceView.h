@@ -25,8 +25,11 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 /**
 Change eye state to imitate winking/blinking
 Values are open and closed
-@param eyeState int whether eye is open or closed
-@param eyeNumber int eye designation to affect (left, right, both, random)
+@param frame CGRect encompassing entire Conscience
+@param argBody ConscienceBody object to display
+@param argAccessories ConscienceAccessories currently outfitted
+@param argMind ConscienceMind containing Conscience's current state of mind
+@return id Self
  */
 - (id)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
            withMind:(ConscienceMind *) argMind;

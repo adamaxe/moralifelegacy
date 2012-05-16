@@ -68,7 +68,6 @@
  */
 - (void)testDefaultConscienceLayer{
 
-    NSLog(@"paths count:%d", [[testingConscienceLayer consciencePaths] count]);
     int count = [[testingConscienceLayer consciencePaths] count];
     
 	STAssertEquals(0, count, @"Default empty paths array inaccurate.");

@@ -261,9 +261,7 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
     CGPathCloseSubpath(dynamicPath);
 	
 	CGContextAddPath(context, outerPath);
-	CGContextFillPath(context);
-//    CGContextStrokePath(context);
-    
+	CGContextFillPath(context);    
     
     //Reset shadow for outer glow of bubble
 	shadowOffset = CGSizeMake (0,  0);
@@ -274,12 +272,9 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
     CGContextStrokePath(context);
     
     CGContextSetLineWidth(context, 3.0);
-//	CGContextSetRGBStrokeColor(context, 0,0,0,0.6);
     CGContextSetStrokeColor(context, shadowColorValues);
     CGContextAddPath(context, outerPath);
     CGContextStrokePath(context);
-    
-//	CGPathRelease(outerPath);
         
 	//Draw bubble surface
 	//Generate path to mimic shimmer in upper-right corner of sphere

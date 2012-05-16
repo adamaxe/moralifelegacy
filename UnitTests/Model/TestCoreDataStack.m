@@ -97,8 +97,10 @@
 }
 @end
 
+//Needed to avoid problems in setting up gcovr
+//Project -> Instrument Program Flow : YES
+//Project -> Generate Test Coverage Files : YES
 #include <stdio.h>
-// Prototype declarations
 FILE *fopen$UNIX2003( const char *filename, const char *mode );
 size_t fwrite$UNIX2003( const void *a, size_t b, size_t c, FILE *d );
 
