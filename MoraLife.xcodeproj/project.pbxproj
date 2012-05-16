@@ -992,6 +992,7 @@
 		5E746D01155F6BD4003A2652 /* LuckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E590130F88B100C4AEE1 /* LuckViewController.m */; };
 		5E746D03155F6C05003A2652 /* ConscienceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E31D90011D58CB6001B273E /* ConscienceView.m */; };
 		5E746D04155F6C1B003A2652 /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */; };
+		5E746D05156354F0003A2652 /* MoraLifeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E3FC12EC86B9009C94E9 /* MoraLifeAppDelegate.m */; };
 		5E751DC512E6899000D573C1 /* con-zodiac-scorpio.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E751DC112E6899000D573C1 /* con-zodiac-scorpio.svg */; };
 		5E7591A713C68E7700CE606D /* ConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */; };
 		5E777E9413161B8C00E35222 /* ReferencePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E777E9313161B8C00E35222 /* ReferencePerson.m */; };
@@ -7099,6 +7100,7 @@
 				5E746D01155F6BD4003A2652 /* LuckViewController.m in Sources */,
 				5E746D03155F6C05003A2652 /* ConscienceView.m in Sources */,
 				5E746D04155F6C1B003A2652 /* IntroViewController.m in Sources */,
+				5E746D05156354F0003A2652 /* MoraLifeAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7190,7 +7192,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_ENTITLEMENTS[sdk=*]" = Entitlements.plist;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
@@ -7209,6 +7210,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1.2.2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -7267,6 +7269,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1.2.2;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
