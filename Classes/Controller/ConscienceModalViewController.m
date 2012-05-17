@@ -78,7 +78,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	[tempButtonImages release];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"Coming Soon!", @"Coming Soon!", @"Coming Soon!", nil];
+	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"Atlantic", @"Coming Soon!", @"Coming Soon!", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	[tempButtonLabels release];
 	

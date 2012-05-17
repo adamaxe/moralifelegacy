@@ -790,9 +790,9 @@ Calculate changes to User's ethicals.  Limit to 999.
             }
                 break;
             case kViewReward: {
-                //Animate vs. image and Consciences
+                //Animate reward image
                 [UIView beginAnimations:@"Reward" context:nil];
-                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationDuration:0.75];
                 [UIView setAnimationBeginsFromCurrentState:YES];
                 rewardView.alpha = 1;
                 rewardView.transform = CGAffineTransformIdentity;                        
