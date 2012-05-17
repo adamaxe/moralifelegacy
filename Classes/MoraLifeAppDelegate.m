@@ -156,11 +156,15 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	[choiceIntViewController1 release];
 	[referenceViewController1 release];
 
+#if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
+    
     if ([UINavigationBar respondsToSelector:@selector(appearance)])	{
     
         [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navbar-texture-bevel.png"] forBarMetrics:UIBarMetricsDefault];
     }    
-    
+
+#endif
+
     //Menubar removal
 	CGFloat cgf = 0.8;
 	
