@@ -10,7 +10,15 @@ Limitations: SVG must be unoptimized, only small subset of SVG instructions are 
 
 @class ConscienceBody;
 
+#if defined(__IPHONE_4_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_4_0
+
 @interface XMLParser : NSObject <NSXMLParserDelegate> 
+
+#else
+
+@interface XMLParser : NSObject
+
+#endif
 
 @property (nonatomic, retain) ConscienceBody *currentConscienceBody;    /**< current Conscience selected for population */
 

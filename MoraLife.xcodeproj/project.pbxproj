@@ -1674,6 +1674,7 @@
 		5EF5ABC412B1C958001E25BC /* icon-luckbadani3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF5ABB812B1C958001E25BC /* icon-luckbadani3.png */; };
 		5EF5ABC512B1C958001E25BC /* icon-luckbadani4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF5ABB912B1C958001E25BC /* icon-luckbadani4.png */; };
 		5EF76207121626F400650257 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF76204121626F400650257 /* Icon.png */; };
+		5EFBBF0A1569DB59004FA197 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B91226090B00F2708A /* MainWindow.xib */; };
 		5EFCB9811378D2D00063402D /* interface-tabbaricons@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB9801378D2D00063402D /* interface-tabbaricons@2x.jpg */; };
 		5EFCB9831378D3BC0063402D /* interface-tabbaricons.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB9821378D3BB0063402D /* interface-tabbaricons.jpg */; };
 		5EFCB98C1378D6320063402D /* interface-choicesdown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB9881378D6320063402D /* interface-choicesdown.png */; };
@@ -6934,6 +6935,7 @@
 			files = (
 				5EA1D22D130E38A200BA81D6 /* InfoPlist.strings in Resources */,
 				5EE9A92014FC90A500DD428A /* ConscienceHelpView.xib in Resources */,
+				5EFBBF0A1569DB59004FA197 /* MainWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7211,7 +7213,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CURRENT_PROJECT_VERSION = 1.2.2;
+				CURRENT_PROJECT_VERSION = 1.2.3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -7231,6 +7233,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = "Ad Hoc Distribution";
@@ -7239,7 +7242,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CURRENT_PROJECT_VERSION = 1.2.2;
+				CURRENT_PROJECT_VERSION = 1.2.3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -7261,6 +7264,8 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				"TEST_HOST[sdk=*]" = "";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
@@ -7270,7 +7275,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_IDENTITY = "";
-				CURRENT_PROJECT_VERSION = 1.2.2;
+				CURRENT_PROJECT_VERSION = 1.2.3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -7290,6 +7295,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;

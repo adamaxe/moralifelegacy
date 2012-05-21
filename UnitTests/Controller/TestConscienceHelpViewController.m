@@ -9,10 +9,12 @@
 
 #define USE_APPLICATION_UNIT_TEST 0
 
+#import "MoraLifeAppDelegate.h"
 @class ConscienceHelpViewController;
 
 @interface TestConscienceHelpViewController : SenTestCase {
     
+    MoraLifeAppDelegate *delegate;
     ConscienceHelpViewController *testingHelpViewController;
     BOOL isConscienceOnScreenTest;
     UIView *testingView;
@@ -28,6 +30,7 @@
 - (void)setUp{
     
     [super setUp];
+    delegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
     testingHelpViewController = [[ConscienceHelpViewController alloc] init];
 
@@ -49,8 +52,7 @@
 
 - (void)testAppDelegate {
         
-    id yourApplicationDelegate = [[UIApplication sharedApplication] delegate];
-    STAssertNotNil(yourApplicationDelegate, @"UIApplication failed to find the AppDelegate.");
+    STAssertNotNil(delegate, @"UIApplication failed to find the AppDelegate.");
     
 }
 
