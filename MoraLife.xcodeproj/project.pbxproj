@@ -71,6 +71,8 @@
 		5E23DE9313307D7F00B66412 /* ref-davidhume.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8D13307D7F00B66412 /* ref-davidhume.jpg */; };
 		5E23DE9413307D7F00B66412 /* ref-sttheresevonlisieux-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8E13307D7F00B66412 /* ref-sttheresevonlisieux-sm.png */; };
 		5E23DE9513307D7F00B66412 /* ref-sttheresevonlisieux.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8F13307D7F00B66412 /* ref-sttheresevonlisieux.jpg */; };
+		5E266039156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266038156B2827007DF236 /* ConscienceBubbleFactory.m */; };
+		5E26603A156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266038156B2827007DF236 /* ConscienceBubbleFactory.m */; };
 		5E29039E131DE1000048DFC8 /* con-sports-soccerball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E29039D131DE1000048DFC8 /* con-sports-soccerball.svg */; };
 		5E2903A1131DE1250048DFC8 /* con-eighthnote-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */; };
 		5E2903A2131DE1250048DFC8 /* con-sports-soccerball-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */; };
@@ -1755,6 +1757,8 @@
 		5E23DE8D13307D7F00B66412 /* ref-davidhume.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-davidhume.jpg"; path = "Resources/images/reference/ref-davidhume.jpg"; sourceTree = "<group>"; };
 		5E23DE8E13307D7F00B66412 /* ref-sttheresevonlisieux-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-sttheresevonlisieux-sm.png"; path = "Resources/images/reference/ref-sttheresevonlisieux-sm.png"; sourceTree = "<group>"; };
 		5E23DE8F13307D7F00B66412 /* ref-sttheresevonlisieux.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-sttheresevonlisieux.jpg"; path = "Resources/images/reference/ref-sttheresevonlisieux.jpg"; sourceTree = "<group>"; };
+		5E266037156B2827007DF236 /* ConscienceBubbleFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceBubbleFactory.h; path = Model/ConscienceBubbleFactory.h; sourceTree = "<group>"; };
+		5E266038156B2827007DF236 /* ConscienceBubbleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceBubbleFactory.m; path = Model/ConscienceBubbleFactory.m; sourceTree = "<group>"; };
 		5E29039D131DE1000048DFC8 /* con-sports-soccerball.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-sports-soccerball.svg"; path = "Resources/images/conscience/con-sports-soccerball.svg"; sourceTree = "<group>"; };
 		5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-eighthnote-sm.png"; path = "Resources/images/conscience/icons/con-eighthnote-sm.png"; sourceTree = "<group>"; };
 		5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-sports-soccerball-sm.png"; path = "Resources/images/conscience/icons/con-sports-soccerball-sm.png"; sourceTree = "<group>"; };
@@ -4490,6 +4494,8 @@
 				5EAF299C11FA697000DF7A4B /* ConsciencePath.m */,
 				5E340D5412F1E9FF004CDEE9 /* UserData.xcdatamodeld */,
 				5E5811DB12C2EBE2008605C9 /* SystemData.xcdatamodeld */,
+				5E266037156B2827007DF236 /* ConscienceBubbleFactory.h */,
+				5E266038156B2827007DF236 /* ConscienceBubbleFactory.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -7021,6 +7027,7 @@
 				5EA5422B1380BB13009077B7 /* Character.m in Sources */,
 				5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */,
 				5E336EF9139C6CD6006BF34F /* ConscienceAsset.m in Sources */,
+				5E266039156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7103,6 +7110,7 @@
 				5E746D03155F6C05003A2652 /* ConscienceView.m in Sources */,
 				5E746D04155F6C1B003A2652 /* IntroViewController.m in Sources */,
 				5E746D05156354F0003A2652 /* MoraLifeAppDelegate.m in Sources */,
+				5E26603A156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

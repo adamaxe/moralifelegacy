@@ -21,7 +21,6 @@ Accepts User input to change the presently displayed UIView
  */
 -(IBAction)selectChoice:(id)sender;
 
-
 /**
  Accepts User input to return to ConscienceModalViewController
  @param id Object which requested method
