@@ -5,7 +5,7 @@
  
  @class TestConscienceBubbleFactory
  
- @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
  @date 05/22/2012
  @file
  */
@@ -54,7 +54,7 @@
 }
 
 /**
- Ensure that the default values of the properties from init were executed.
+ Ensure that the different bubble types are available.
  */
 - (void)testPathsRoundBubbleTypes{
 
@@ -74,6 +74,86 @@
     STAssertFalse(CGPathIsEmpty(outerPathTall), @"Normal Round Bubble outerPath failed");
     STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Normal Round Bubble dynamic failed");
 
+}
+
+- (void)testPathsStarBubbleTypes{
+    
+    CGMutablePathRef outerPath = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeStarNormal];
+    CGMutablePathRef dynamicPath = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeStarNormal];
+    CGMutablePathRef outerPathShort = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeStarShort];
+    CGMutablePathRef dynamicPathShort = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeStarShort];
+    CGMutablePathRef outerPathTall = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeStarTall];
+    CGMutablePathRef dynamicPathTall = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeStarTall];
+    
+    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Star Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Star Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Normal Star Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Normal Star Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Normal Star Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Normal Star Bubble dynamic failed");
+    
+}
+
+- (void)testPathsDiamondBubbleTypes{
+    
+    CGMutablePathRef outerPath = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeDiamondNormal];
+    CGMutablePathRef dynamicPath = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeDiamondNormal];
+    CGMutablePathRef outerPathShort = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeDiamondShort];
+    CGMutablePathRef dynamicPathShort = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeDiamondShort];
+    CGMutablePathRef outerPathTall = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeDiamondTall];
+    CGMutablePathRef dynamicPathTall = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeDiamondTall];
+    
+    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Diamond Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Diamond Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Normal Diamond Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Normal Diamond Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Normal Diamond Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Normal Diamond Bubble dynamic failed");
+    
+}
+
+- (void)testPathsPuffyBubbleTypes{
+    
+    CGMutablePathRef outerPath = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyNormal];
+    CGMutablePathRef dynamicPath = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyNormal];
+    CGMutablePathRef outerPathShort = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyShort];
+    CGMutablePathRef dynamicPathShort = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyShort];
+    CGMutablePathRef outerPathTall = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyTall];
+    CGMutablePathRef dynamicPathTall = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyTall];
+    
+    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Puffy Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Puffy Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Normal Puffy Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Normal Puffy Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Normal Puffy Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Normal Puffy Bubble dynamic failed");
+    
+}
+
+- (void)testPathsGearBubbleTypes{
+    
+    CGMutablePathRef outerPath = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeGearNormal];
+    CGMutablePathRef dynamicPath = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeGearNormal];
+    CGMutablePathRef outerPathShort = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyShort];
+    CGMutablePathRef dynamicPathShort = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyShort];
+    CGMutablePathRef outerPathTall = [ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyTall];
+    CGMutablePathRef dynamicPathTall = [ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyTall];
+    
+    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Puffy Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Puffy Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Normal Puffy Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Normal Puffy Bubble dynamic failed");
+    
+    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Normal Puffy Bubble outerPath failed");
+    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Normal Puffy Bubble dynamic failed");
+    
 }
 
 #endif

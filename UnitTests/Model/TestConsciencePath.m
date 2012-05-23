@@ -55,7 +55,7 @@
 #else                           // all code under test must be linked into the Unit Test bundle
 
 /**
- Ensure that the ConscienceLayer was able to init.
+ Ensure that the ConsciencePath was able to init.
  */
 - (void)testConsciencePathExists{
 
