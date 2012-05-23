@@ -56,7 +56,6 @@ Must override drawRect because custom drawing from a vector source is required
 	NSArray *layerKeys = [totalLayers allKeys];
 	NSArray *sortedKeys = [layerKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	
-	/** @bug eliminate leak from dynamicPath */
 	//Iterated through layers, drawing each.
 	//for (ConscienceLayer *layerElement in [totalLayers allValues]){
 	ConscienceLayer *currentLayer;

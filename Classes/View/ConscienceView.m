@@ -156,7 +156,6 @@ withMind: (ConscienceMind *) argMind{
 		
 		conscienceEyeLeftView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kEyeWidth, kEyeHeight)];
 		conscienceEyeLeftView.tag = kEyeLeftViewTag;
-		conscienceEyeLeftView.transform = CGAffineTransformIdentity;
 		conscienceEyeLeftView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
 		[conscienceBubbleView addSubview:conscienceEyeLeftView];
 		[conscienceEyeLeftView release];		
@@ -186,8 +185,6 @@ withMind: (ConscienceMind *) argMind{
 /**
 Implementation: Must override setNeedsDisplay because Conscience can be altered by User at any time.
 Views are called by tags which are set in initWithFrame by constants
-Symbol/Eye/Mouth/Accessories choices/color determined by User's symbol/eye/mouth/accessories color/choice.
-currentConscienceBody is either userConscienceBody, or antagonistConscienceBody set by ViewController
 @see ConscienceView::initWithFrame
 */
 -(void) setNeedsDisplay{
@@ -195,18 +192,52 @@ currentConscienceBody is either userConscienceBody, or antagonistConscienceBody 
 	//Ensure correct bubble color/animation is set	
 	[self changeBubble];	
 
-	//Set Eye layer, Eye is actually composed of separate layers to allow for animation
+    //Display accessories chosen by User or System for Antagonists
+	accessoryPrimaryView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kPrimaryAccessoryViewTag];
+	accessoryPrimaryView.accessoryFilename = currentConscienceAccessories.primaryAccessory;
+    
+	[accessoryPrimaryView setNeedsDisplay];
+	
+	accessorySecondaryView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kSecondaryAccessoryViewTag];
+	accessorySecondaryView.accessoryFilename = currentConscienceAccessories.secondaryAccessory;
+	[accessorySecondaryView setNeedsDisplay];
+	
+	accessoryTopView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kTopAccessoryViewTag];
+	accessoryTopView.accessoryFilename = currentConscienceAccessories.topAccessory;
+	[accessoryTopView setNeedsDisplay];
+	
+	accessoryBottomView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kBottomAccessoryViewTag];
+	accessoryBottomView.accessoryFilename = currentConscienceAccessories.bottomAccessory;
+	[accessoryBottomView setNeedsDisplay];
+	
+	animatedBubbleView = (ConscienceBubbleView *) [conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
+	[animatedBubbleView setNeedsDisplay];	
+
+    
+	[self setTimers];
+	
+	[super setNeedsDisplay];
+
+}
+
+/**
+ Implementation: Symbol/Eye/Mouth/Accessories choices/color determined by User's symbol/eye/mouth/accessories color/choice.
+ currentConscienceBody is either userConscienceBody, or antagonistConscienceBody set by ViewController
+ @see ConscienceView::initWithFrame
+ */
+-(void)layoutSubviews {
+    //Set Eye layer, Eye is actually composed of separate layers to allow for animation
 	//insertLayer is needed to modify iris/brow colors
 	//currentConscienceBody layers are pulled for each eye feature
 	//then set into view in specific order to account for layer draw order
 	//order is determined by leading number in setObject:forKey:
 	ConscienceLayer *insertLayer = [currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisLeft"];
 	insertLayer.currentFillColor = currentConscienceBody.eyeColor;
-
+    
 	[conscienceEyeLeftView.totalLayers setObject:insertLayer forKey:@"4layerEyeball"];
 	insertLayer = [currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
 	insertLayer.currentFillColor = currentConscienceBody.browColor;
-
+    
 	[conscienceEyeLeftView.totalLayers setObject:insertLayer forKey:@"2layerBrow"];
 	
 	//Rest of Eye layers are without color
@@ -239,7 +270,7 @@ currentConscienceBody is either userConscienceBody, or antagonistConscienceBody 
 	[conscienceEyeRightView.totalLayers setObject:insertLayer forKey:@"4layerEyeball"];
 	insertLayer = [currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
 	insertLayer.currentFillColor = currentConscienceBody.browColor;
-
+    
 	[conscienceEyeRightView.totalLayers setObject:insertLayer forKey:@"2layerBrow"];
     
 	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.lidLayers objectForKey:@"layerLidNormal"] forKey:@"6layerLid"];	
@@ -248,7 +279,7 @@ currentConscienceBody is either userConscienceBody, or antagonistConscienceBody 
 	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
 	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
 	[ageLayer release];
-
+    
 	[conscienceEyeRightView.totalGradients addEntriesFromDictionary:currentConscienceBody.gradientLayers];
 	[conscienceEyeRightView setNeedsDisplay];	
 	
@@ -256,14 +287,14 @@ currentConscienceBody is either userConscienceBody, or antagonistConscienceBody 
 	//Position layer is included to set the positioning of the eyes/mouth for each symbol
 	[conscienceSymbolView.totalLayers setObject:[currentConscienceBody.symbolLayers objectForKey:@"layerSymbol"] forKey:@"layerSymbol"];
 	[conscienceSymbolView setNeedsDisplay];
-
+    
 	//Set Mouth layer, Mouth is actually composed of separate layers to allow for animation
 	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.dimplesLayers objectForKey:@"layerDimplesHappy"] forKey:@"layerDimples"];
 	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.lipsLayers objectForKey:@"layerLipsNormal"] forKey:@"layerLips"];				
 	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.teethLayers objectForKey:@"layerTeethNormal"] forKey:@"layerTeeth"];
 	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.tongueLayers objectForKey:@"layerTongueNormal"] forKey:@"layerTongue"];
 	[conscienceMouthView.totalGradients addEntriesFromDictionary:currentConscienceBody.gradientLayers];
-
+    
 	//Positioning of Eyes/Mouth/Symbol actually housed in symbol SVG file
 	//Position is a single path in SVG where each point represents a facial feature location		
 	ConscienceLayer *positionLayer = (ConscienceLayer *)[currentConscienceBody.symbolLayers objectForKey:@"layerPosition"];
@@ -275,36 +306,10 @@ currentConscienceBody is either userConscienceBody, or antagonistConscienceBody 
 	conscienceEyeLeftView.center = p;		
 	p = CGPointMake([[positionPath.pathPoints objectAtIndex:4] floatValue], [[positionPath.pathPoints objectAtIndex:5] floatValue]);
 	conscienceMouthView.center = p;
-		
-	//Display accessories chosen by User or System for Antagonists
-	accessoryPrimaryView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kPrimaryAccessoryViewTag];
-	accessoryPrimaryView.accessoryFilename = currentConscienceAccessories.primaryAccessory;
-
-	[accessoryPrimaryView setNeedsDisplay];
-	
-	accessorySecondaryView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kSecondaryAccessoryViewTag];
-	accessorySecondaryView.accessoryFilename = currentConscienceAccessories.secondaryAccessory;
-	[accessorySecondaryView setNeedsDisplay];
-	
-	accessoryTopView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kTopAccessoryViewTag];
-	accessoryTopView.accessoryFilename = currentConscienceAccessories.topAccessory;
-	[accessoryTopView setNeedsDisplay];
-	
-	accessoryBottomView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kBottomAccessoryViewTag];
-	accessoryBottomView.accessoryFilename = currentConscienceAccessories.bottomAccessory;
-	[accessoryBottomView setNeedsDisplay];
-	
-	animatedBubbleView = (ConscienceBubbleView *) [conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
-	[animatedBubbleView setNeedsDisplay];	
-
+        
 	isExpressionForced = FALSE;
-
-	[self setTimers];
-	
-	[super setNeedsDisplay];
-
+    
 }
-
 
 #pragma mark -
 #pragma mark Eye expression control
