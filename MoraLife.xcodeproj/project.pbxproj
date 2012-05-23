@@ -75,6 +75,9 @@
 		5E26603A156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266038156B2827007DF236 /* ConscienceBubbleFactory.m */; };
 		5E266045156C5D72007DF236 /* TestConscienceBubbleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266044156C5D72007DF236 /* TestConscienceBubbleFactory.m */; };
 		5E266060156C6538007DF236 /* TestConscienceAccessories.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E26605F156C6538007DF236 /* TestConscienceAccessories.m */; };
+		5E266063156C6DCB007DF236 /* TestConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266062156C6DCB007DF236 /* TestConscienceMind.m */; };
+		5E266065156C70FA007DF236 /* TestConscienceBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266064156C70FA007DF236 /* TestConscienceBody.m */; };
+		5E266067156C79BF007DF236 /* TestConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266066156C79BF007DF236 /* TestConscienceGradient.m */; };
 		5E29039E131DE1000048DFC8 /* con-sports-soccerball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E29039D131DE1000048DFC8 /* con-sports-soccerball.svg */; };
 		5E2903A1131DE1250048DFC8 /* con-eighthnote-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */; };
 		5E2903A2131DE1250048DFC8 /* con-sports-soccerball-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */; };
@@ -1763,6 +1766,9 @@
 		5E266038156B2827007DF236 /* ConscienceBubbleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceBubbleFactory.m; path = Model/ConscienceBubbleFactory.m; sourceTree = "<group>"; };
 		5E266044156C5D72007DF236 /* TestConscienceBubbleFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceBubbleFactory.m; path = Model/TestConscienceBubbleFactory.m; sourceTree = "<group>"; };
 		5E26605F156C6538007DF236 /* TestConscienceAccessories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceAccessories.m; path = Model/TestConscienceAccessories.m; sourceTree = "<group>"; };
+		5E266062156C6DCB007DF236 /* TestConscienceMind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceMind.m; path = Model/TestConscienceMind.m; sourceTree = "<group>"; };
+		5E266064156C70FA007DF236 /* TestConscienceBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceBody.m; path = Model/TestConscienceBody.m; sourceTree = "<group>"; };
+		5E266066156C79BF007DF236 /* TestConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceGradient.m; path = Model/TestConscienceGradient.m; sourceTree = "<group>"; };
 		5E29039D131DE1000048DFC8 /* con-sports-soccerball.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-sports-soccerball.svg"; path = "Resources/images/conscience/con-sports-soccerball.svg"; sourceTree = "<group>"; };
 		5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-eighthnote-sm.png"; path = "Resources/images/conscience/icons/con-eighthnote-sm.png"; sourceTree = "<group>"; };
 		5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-sports-soccerball-sm.png"; path = "Resources/images/conscience/icons/con-sports-soccerball-sm.png"; sourceTree = "<group>"; };
@@ -5078,6 +5084,9 @@
 				5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */,
 				5E266044156C5D72007DF236 /* TestConscienceBubbleFactory.m */,
 				5E26605F156C6538007DF236 /* TestConscienceAccessories.m */,
+				5E266062156C6DCB007DF236 /* TestConscienceMind.m */,
+				5E266064156C70FA007DF236 /* TestConscienceBody.m */,
+				5E266066156C79BF007DF236 /* TestConscienceGradient.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -7119,6 +7128,9 @@
 				5E26603A156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */,
 				5E266045156C5D72007DF236 /* TestConscienceBubbleFactory.m in Sources */,
 				5E266060156C6538007DF236 /* TestConscienceAccessories.m in Sources */,
+				5E266063156C6DCB007DF236 /* TestConscienceMind.m in Sources */,
+				5E266065156C70FA007DF236 /* TestConscienceBody.m in Sources */,
+				5E266067156C79BF007DF236 /* TestConscienceGradient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

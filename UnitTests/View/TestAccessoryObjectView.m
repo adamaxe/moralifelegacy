@@ -14,7 +14,7 @@
 
 @interface TestAccessoryObjectView : SenTestCase {
     
-    AccessoryObjectView *testingAccessoryObjectView;
+    AccessoryObjectView *testingSubject;
     
 }
 
@@ -28,13 +28,13 @@
     
     [super setUp];
     
-    testingAccessoryObjectView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(0, 0, kSideAccessoryWidth, kSideAccessoryHeight)];
+    testingSubject = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(0, 0, kSideAccessoryWidth, kSideAccessoryHeight)];
     
 }
 
 - (void)tearDown{
 
-    [testingAccessoryObjectView release];
+    [testingSubject release];
     
 	[super tearDown];
     
@@ -56,7 +56,7 @@
  */
 - (void)testAccessoryExists{
 
-    STAssertNotNil(testingAccessoryObjectView, @"The accessory was not init'ed.");
+    STAssertNotNil(testingSubject, @"The accessory was not init'ed.");
 }
 
 /**
@@ -64,7 +64,7 @@
  */
 - (void)testDefaultAccessory{
 
-    STAssertEqualObjects(kAccessoryFileNameResource, [testingAccessoryObjectView accessoryFilename], @"Default accessory name inaccurate.");
+    STAssertEqualObjects(kAccessoryFileNameResource, [testingSubject accessoryFilename], @"Default accessory name inaccurate.");
 }
 
 /**
@@ -74,9 +74,9 @@
 
     NSString *testFilename = @"testAccessory";
     
-    [testingAccessoryObjectView setAccessoryFilename:testFilename];
+    [testingSubject setAccessoryFilename:testFilename];
     
-    STAssertEqualObjects(testFilename, [testingAccessoryObjectView accessoryFilename], @"Filename setter/getter inaccurate.");
+    STAssertEqualObjects(testFilename, [testingSubject accessoryFilename], @"Filename setter/getter inaccurate.");
 }
 
 #endif

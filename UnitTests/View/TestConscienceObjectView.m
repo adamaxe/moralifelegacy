@@ -16,7 +16,7 @@
 
 @interface TestConscienceObjectView : SenTestCase {
     
-    ConscienceObjectView *testingConscienceObjectView;
+    ConscienceObjectView *testingSubject;
     
 }
 
@@ -32,13 +32,13 @@
     
     [super setUp];
     
-    testingConscienceObjectView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kEyeWidth, kEyeHeight)];
+    testingSubject = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kEyeWidth, kEyeHeight)];
     
 }
 
 - (void)tearDown{
 
-    [testingConscienceObjectView release];
+    [testingSubject release];
     
 	[super tearDown];
     
@@ -60,7 +60,7 @@
  */
 - (void)testConscienceObjectExists{
 
-    STAssertNotNil(testingConscienceObjectView, @"The Conscience object was not init'ed.");
+    STAssertNotNil(testingSubject, @"The Conscience object was not init'ed.");
 }
 
 /**
@@ -70,14 +70,14 @@
 
 	UIColor *testColor = [UIColor clearColor];
 	int count = 0;
-    int countSetter = [[testingConscienceObjectView totalLayers] count];
+    int countSetter = [[testingSubject totalLayers] count];
     
 	STAssertEquals(count, countSetter, @"totalLayers was not initialized properly.");
     
-    countSetter = [[testingConscienceObjectView totalGradients] count];
+    countSetter = [[testingSubject totalGradients] count];
     
 	STAssertEquals(count, countSetter, @"totalGradients was not initialized properly.");
-	STAssertEqualObjects(testColor, [testingConscienceObjectView conscienceBackgroundColor], @"conscienceBackgroundColor was not initialized properly.");
+	STAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor was not initialized properly.");
 
 }
 
@@ -97,18 +97,18 @@
 	[testLayers setObject:testLayer forKey:@"layer1"];
 	[testGradients setObject:testGradient forKey:@"gradient1"];
 
-	[testingConscienceObjectView setTotalLayers:testLayers];
-	[testingConscienceObjectView setTotalGradients:testGradients];
-	[testingConscienceObjectView setConscienceBackgroundColor:testColor];
+	[testingSubject setTotalLayers:testLayers];
+	[testingSubject setTotalGradients:testGradients];
+	[testingSubject setConscienceBackgroundColor:testColor];
     
-    int countSetter = [[testingConscienceObjectView totalLayers] count];
+    int countSetter = [[testingSubject totalLayers] count];
     
 	STAssertEquals(count, countSetter, @"totalLayers setter/getter inaccurate.");
     
-    countSetter = [[testingConscienceObjectView totalGradients] count];
+    countSetter = [[testingSubject totalGradients] count];
 
 	STAssertEquals(count, countSetter, @"totalGradients setter/getter inaccurate.");
-	STAssertEqualObjects(testColor, [testingConscienceObjectView conscienceBackgroundColor], @"conscienceBackgroundColor setter/getter inaccurate.");
+	STAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor setter/getter inaccurate.");
 
 	[testLayers release];
 	[testGradients release];

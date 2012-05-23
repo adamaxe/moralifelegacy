@@ -14,7 +14,7 @@
 
 @interface TestConscienceBubbleView: SenTestCase {
     
-    ConscienceBubbleView *testingConscienceBubbleView;
+    ConscienceBubbleView *testingSubject;
     
 }
 
@@ -31,13 +31,13 @@
     
     [super setUp];
     
-    testingConscienceBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
+    testingSubject = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
     
 }
 
 - (void)tearDown{
 
-    [testingConscienceBubbleView release];
+    [testingSubject release];
     
 	[super tearDown];
     
@@ -59,7 +59,7 @@
  */
 - (void)testBubbleExists{
 
-    STAssertNotNil(testingConscienceBubbleView, @"The bubble was not init'ed.");
+    STAssertNotNil(testingSubject, @"The bubble was not init'ed.");
 }
 
 /**
@@ -67,10 +67,10 @@
  */
 - (void)testDefaultBubbleProperties{
     
-	STAssertEquals(kBubbleType, [testingConscienceBubbleView bubbleType], @"Default bubble type inaccurate");
-	STAssertEquals(kBubbleWidth, [testingConscienceBubbleView bubbleGlowWidth], @"Default bubble glow inaccurate");
-	STAssertEquals(kBubbleDuration, [testingConscienceBubbleView bubbleGlowDuration], @"Default bubble duration inaccurate");
-	STAssertEqualObjects(kBubbleColor, [testingConscienceBubbleView bubbleColor], @"Default bubble color inaccurate");
+	STAssertEquals(kBubbleType, [testingSubject bubbleType], @"Default bubble type inaccurate");
+	STAssertEquals(kBubbleWidth, [testingSubject bubbleGlowWidth], @"Default bubble glow inaccurate");
+	STAssertEquals(kBubbleDuration, [testingSubject bubbleGlowDuration], @"Default bubble duration inaccurate");
+	STAssertEqualObjects(kBubbleColor, [testingSubject bubbleColor], @"Default bubble color inaccurate");
 
 }
 
@@ -84,15 +84,15 @@
 	CGFloat testBubbleGlowDuration = 0.50;
 	NSString *testBubbleColor = @"FF00FF";
 
-	[testingConscienceBubbleView setBubbleType:testBubbleType];
-	[testingConscienceBubbleView setBubbleGlowWidth:testBubbleGlowWidth];
-	[testingConscienceBubbleView setBubbleGlowDuration:testBubbleGlowDuration];
-	[testingConscienceBubbleView setBubbleColor:testBubbleColor];
+	[testingSubject setBubbleType:testBubbleType];
+	[testingSubject setBubbleGlowWidth:testBubbleGlowWidth];
+	[testingSubject setBubbleGlowDuration:testBubbleGlowDuration];
+	[testingSubject setBubbleColor:testBubbleColor];
 
-	STAssertEquals(testBubbleType, [testingConscienceBubbleView bubbleType], @"Bubble type setter/getter inaccurate");
-	STAssertEquals(testBubbleGlowWidth, [testingConscienceBubbleView bubbleGlowWidth], @"Bubble glow setter/getter inaccurate");
-	STAssertEquals(testBubbleGlowDuration, [testingConscienceBubbleView bubbleGlowDuration], @"Bubble duration setter/getter inaccurate");
-	STAssertEqualObjects(testBubbleColor, [testingConscienceBubbleView bubbleColor], @"Bubble color setter/getter inaccurate");
+	STAssertEquals(testBubbleType, [testingSubject bubbleType], @"Bubble type setter/getter inaccurate");
+	STAssertEquals(testBubbleGlowWidth, [testingSubject bubbleGlowWidth], @"Bubble glow setter/getter inaccurate");
+	STAssertEquals(testBubbleGlowDuration, [testingSubject bubbleGlowDuration], @"Bubble duration setter/getter inaccurate");
+	STAssertEqualObjects(testBubbleColor, [testingSubject bubbleColor], @"Bubble color setter/getter inaccurate");
 }
 
 #endif

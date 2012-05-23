@@ -12,7 +12,7 @@
 @class GraphView;
 
 @interface TestGraphView : SenTestCase {
-    GraphView *testingGraphView;
+    GraphView *testingSubject;
 }
 
 @end
@@ -27,14 +27,14 @@ const int kGraphWidth = 240;
 - (void)setUp
 {
     [super setUp];
-    testingGraphView = [[GraphView alloc] initWithFrame:CGRectMake(0, 0,  kGraphWidth, kGraphHeight)];
+    testingSubject = [[GraphView alloc] initWithFrame:CGRectMake(0, 0,  kGraphWidth, kGraphHeight)];
 }
 
 - (void)tearDown
 {
     
     [super tearDown];
-    [testingGraphView release];
+    [testingSubject release];
 
 }
 
@@ -54,7 +54,7 @@ const int kGraphWidth = 240;
  */
 - (void)testGraphExists{
     
-    STAssertNotNil(testingGraphView, @"The graph was not init'ed.");
+    STAssertNotNil(testingSubject, @"The graph was not init'ed.");
 }
 
 /**
@@ -63,8 +63,8 @@ const int kGraphWidth = 240;
 
 - (void)testDefaultData{
     
-    STAssertEqualObjects([NSNumber numberWithFloat:360.0], [[testingGraphView pieValues] objectAtIndex:0], @"Default Graph data inaccurate.");
-    STAssertEqualObjects([UIColor redColor], [[testingGraphView pieColors] objectAtIndex:0], @"Default Graph Color inaccurate.");
+    STAssertEqualObjects([NSNumber numberWithFloat:360.0], [[testingSubject pieValues] objectAtIndex:0], @"Default Graph data inaccurate.");
+    STAssertEqualObjects([UIColor redColor], [[testingSubject pieColors] objectAtIndex:0], @"Default Graph Color inaccurate.");
 }
 
 /**
@@ -78,11 +78,11 @@ const int kGraphWidth = 240;
 	NSArray *testValues = [[NSArray alloc] initWithObjects:pieValue1, pieValue2, nil];
 	NSArray *testColors = [[NSArray alloc] initWithObjects:[UIColor blueColor], [UIColor greenColor], nil];
     
-    [testingGraphView setPieValues:testValues];
-    [testingGraphView setPieColors:testColors];
+    [testingSubject setPieValues:testValues];
+    [testingSubject setPieColors:testColors];
     
-    STAssertEqualObjects(pieValue1, [[testingGraphView pieValues] objectAtIndex:0], @"Graph data setter inaccurate.");
-    STAssertEqualObjects([UIColor blueColor], [[testingGraphView pieColors] objectAtIndex:0], @"Graph color setter inaccurate.");
+    STAssertEqualObjects(pieValue1, [[testingSubject pieValues] objectAtIndex:0], @"Graph data setter inaccurate.");
+    STAssertEqualObjects([UIColor blueColor], [[testingSubject pieColors] objectAtIndex:0], @"Graph color setter inaccurate.");
 
 	[pieValue1 release];
 	[pieValue2 release];

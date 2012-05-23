@@ -15,7 +15,7 @@
 @interface TestConscienceHelpViewController : SenTestCase {
     
     MoraLifeAppDelegate *delegate;
-    ConscienceHelpViewController *testingHelpViewController;
+    ConscienceHelpViewController *testingSubject;
     BOOL isConscienceOnScreenTest;
     UIView *testingView;
     
@@ -32,9 +32,9 @@
     [super setUp];
     delegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    testingHelpViewController = [[ConscienceHelpViewController alloc] init];
+    testingSubject = [[ConscienceHelpViewController alloc] init];
 
-    testingView = [testingHelpViewController view];
+    testingView = [testingSubject view];
     isConscienceOnScreenTest = FALSE;
     
 }
@@ -42,7 +42,7 @@
 - (void)tearDown{
 	//Tear-down code here.
     testingView = nil;
-    [testingHelpViewController release];
+    [testingSubject release];
     
 	[super tearDown];
     
@@ -63,7 +63,7 @@
  */
 - (void)testViewExists{
 
-    STAssertNotNil(testingHelpViewController, @"The view controller exists.");    
+    STAssertNotNil(testingSubject, @"The view controller exists.");    
     STAssertNotNil(testingView, @"The view controller should have an associated view.");
         
 }
@@ -73,8 +73,8 @@
  */
 - (void)testDefaultHelpContentTest{
 
-    int defaultNumberOfTitles = [[testingHelpViewController helpTitles] count];
-    isConscienceOnScreenTest = [testingHelpViewController isConscienceOnScreen];
+    int defaultNumberOfTitles = [[testingSubject helpTitles] count];
+    isConscienceOnScreenTest = [testingSubject isConscienceOnScreen];
     STAssertEquals(0, defaultNumberOfTitles, @"Title array was not initialized properly.");
     STAssertFalse(isConscienceOnScreenTest, @"Monitor Bool not initialized correctly.");
 
@@ -91,16 +91,16 @@
     NSArray *titles = [[NSArray alloc] initWithObjects:testTitle, nil];
     NSArray *texts = [[NSArray alloc] initWithObjects:testText, nil];
     
-    [testingHelpViewController setHelpTitles:titles];
-    [testingHelpViewController setHelpTexts:texts];
-    [testingHelpViewController setIsConscienceOnScreen:TRUE];
+    [testingSubject setHelpTitles:titles];
+    [testingSubject setHelpTexts:texts];
+    [testingSubject setIsConscienceOnScreen:TRUE];
     
-    int numberOfTitles = [[testingHelpViewController helpTitles] count];
-    isConscienceOnScreenTest = [testingHelpViewController isConscienceOnScreen];
+    int numberOfTitles = [[testingSubject helpTitles] count];
+    isConscienceOnScreenTest = [testingSubject isConscienceOnScreen];
     STAssertEquals(1, numberOfTitles, @"Title setter/getter non-functional");
-    STAssertEquals(isConscienceOnScreenTest, [testingHelpViewController isConscienceOnScreen], @"Conscience Bool setter/getter non-functional.");    
-    STAssertEqualObjects(testTitle, [[testingHelpViewController helpTitles] objectAtIndex:0], @"Title setter/getter inaccurate.");
-    STAssertEqualObjects(testText, [[testingHelpViewController helpTexts] objectAtIndex:0], @"Title setter/getter inaccurate.");
+    STAssertEquals(isConscienceOnScreenTest, [testingSubject isConscienceOnScreen], @"Conscience Bool setter/getter non-functional.");    
+    STAssertEqualObjects(testTitle, [[testingSubject helpTitles] objectAtIndex:0], @"Title setter/getter inaccurate.");
+    STAssertEqualObjects(testText, [[testingSubject helpTexts] objectAtIndex:0], @"Title setter/getter inaccurate.");
 }
 
 #endif

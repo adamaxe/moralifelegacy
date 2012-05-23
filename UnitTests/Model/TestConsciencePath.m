@@ -16,7 +16,7 @@
 
 @interface TestConsciencePath : SenTestCase {
     
-    ConsciencePath *testingConsciencePath;
+    ConsciencePath *testingSubject;
     
 }
 
@@ -30,14 +30,14 @@
     
     [super setUp];
     
-    testingConsciencePath = [[ConsciencePath alloc] init];
+    testingSubject = [[ConsciencePath alloc] init];
     
 }
 
 - (void)tearDown{
 
 	//Tear-down code here.
-	[testingConsciencePath release];
+	[testingSubject release];
     
 	[super tearDown];
     
@@ -59,7 +59,7 @@
  */
 - (void)testConsciencePathExists{
 
-    STAssertNotNil(testingConsciencePath, @"The Conscience Path was not init'ed.");
+    STAssertNotNil(testingSubject, @"The Conscience Path was not init'ed.");
 }
 
 /**
@@ -67,19 +67,19 @@
  */
 - (void)testDefaultConsciencePath{
     
-    int countPaths = [[testingConsciencePath pathPoints] count];
-    int countInstructions = [[testingConsciencePath pathInstructions] count];
+    int countPaths = [[testingSubject pathPoints] count];
+    int countInstructions = [[testingSubject pathInstructions] count];
 
 	STAssertEquals(0, countPaths, @"Default empty path points array inaccurate.");
 	STAssertEquals(0, countInstructions, @"Default empty path instructions array inaccurate.");
-	STAssertEquals(kDefault0Float, [testingConsciencePath pathStrokeWidth], @"Default path stroke width inaccurate.");
-	STAssertEquals(kDefault0Float, [testingConsciencePath pathFillOpacity], @"Default path fill opacity inaccurate.");
-	STAssertEquals(kDefault0Float, [testingConsciencePath pathStrokeMiterLimit], @"Default path stroke miter limit inaccurate.");
-	STAssertEquals(kDefault0Float, [testingConsciencePath pathStrokeOpacity], @"Default path stroke opacity inaccurate.");
-	STAssertEqualObjects(kPathColor, [testingConsciencePath pathFillColor], @"Default fill color inaccurate.");
-	STAssertEqualObjects(kPathColor, [testingConsciencePath pathStrokeColor], @"Default stroke color inaccurate.");
-	STAssertEqualObjects(@"none", [testingConsciencePath pathID], @"Default path ID inaccurate.");
-	STAssertEqualObjects(@"", [testingConsciencePath pathGradient], @"Default gradient inaccurate.");
+	STAssertEquals(kDefault0Float, [testingSubject pathStrokeWidth], @"Default path stroke width inaccurate.");
+	STAssertEquals(kDefault0Float, [testingSubject pathFillOpacity], @"Default path fill opacity inaccurate.");
+	STAssertEquals(kDefault0Float, [testingSubject pathStrokeMiterLimit], @"Default path stroke miter limit inaccurate.");
+	STAssertEquals(kDefault0Float, [testingSubject pathStrokeOpacity], @"Default path stroke opacity inaccurate.");
+	STAssertEqualObjects(kPathColor, [testingSubject pathFillColor], @"Default fill color inaccurate.");
+	STAssertEqualObjects(kPathColor, [testingSubject pathStrokeColor], @"Default stroke color inaccurate.");
+	STAssertEqualObjects(@"none", [testingSubject pathID], @"Default path ID inaccurate.");
+	STAssertEqualObjects(@"", [testingSubject pathGradient], @"Default gradient inaccurate.");
 
 }
 
@@ -94,34 +94,40 @@
 	[pathPoints addObject:[NSNumber numberWithFloat:1.0]];
 	[pathInstructions addObject:[NSNumber numberWithInt:1]];
 
-	NSString *testColor = @"FFFFFF";
-	NSString *testID = @"none";
-	CGFloat testOffset = 1.0;
-
-	[testingConsciencePath setPathFillColor:testColor];
-	[testingConsciencePath setPathStrokeColor:testColor];
-	[testingConsciencePath setPathID:testID];
-	[testingConsciencePath setPathGradient:testID];
-	[testingConsciencePath setPathStrokeWidth:testOffset];
-	[testingConsciencePath setPathFillOpacity:testOffset];
-	[testingConsciencePath setPathStrokeMiterLimit:testOffset];
-	[testingConsciencePath setPathStrokeOpacity:testOffset];
-    [testingConsciencePath setPathPoints:pathPoints];
-    [testingConsciencePath setPathInstructions:pathInstructions];
+	NSString *testFillColor = @"FFFFFF";
+	NSString *testStrokeColor = @"FF00FF";
+	NSString *testPathID = @"pathID";
+	NSString *testGradientID = @"gradientID";
     
-    int countPaths = [[testingConsciencePath pathPoints] count];
-    int countInstructions = [[testingConsciencePath pathInstructions] count];
+	CGFloat testStrokeWidth = 1.0;
+	CGFloat testFillOpacity = 0.5;
+	CGFloat testStrokeMiterLimit = 0.8;    
+	CGFloat testStrokeOpacity = 0.4;    
+
+	[testingSubject setPathFillColor:testFillColor];
+	[testingSubject setPathStrokeColor:testStrokeColor];
+	[testingSubject setPathID:testPathID];
+	[testingSubject setPathGradient:testGradientID];
+	[testingSubject setPathStrokeWidth:testStrokeWidth];
+	[testingSubject setPathFillOpacity:testFillOpacity];
+	[testingSubject setPathStrokeMiterLimit:testStrokeMiterLimit];
+	[testingSubject setPathStrokeOpacity:testStrokeOpacity];
+    [testingSubject setPathPoints:pathPoints];
+    [testingSubject setPathInstructions:pathInstructions];
+    
+    int countPaths = [[testingSubject pathPoints] count];
+    int countInstructions = [[testingSubject pathInstructions] count];
     
 	STAssertEquals(1, countPaths, @"Path points array setter/getter inaccurate.");
 	STAssertEquals(1, countInstructions, @"Path instructions array setter/getter inaccurate.");
-	STAssertEquals(testOffset, [testingConsciencePath pathStrokeWidth], @"Path stroke width setter/getter inaccurate.");
-	STAssertEquals(testOffset, [testingConsciencePath pathFillOpacity], @"Path fill opacity setter/getter inaccurate.");
-	STAssertEquals(testOffset, [testingConsciencePath pathStrokeMiterLimit], @"Path stroke miter limit setter/getter inaccurate.");
-	STAssertEquals(testOffset, [testingConsciencePath pathStrokeOpacity], @"Path stroke opacity setter/getter inaccurate.");
-	STAssertEqualObjects(testColor , [testingConsciencePath pathFillColor], @"Fill color setter/getter inaccurate.");
-	STAssertEqualObjects(testColor , [testingConsciencePath pathStrokeColor], @"Stroke color setter/getter inaccurate.");
-	STAssertEqualObjects(testID , [testingConsciencePath pathID], @"Path ID setter/getter inaccurate.");
-	STAssertEqualObjects(testID , [testingConsciencePath pathGradient], @"Gradient setter/getter inaccurate.");
+	STAssertEquals(testStrokeWidth, [testingSubject pathStrokeWidth], @"Path stroke width setter/getter inaccurate.");
+	STAssertEquals(testFillOpacity, [testingSubject pathFillOpacity], @"Path fill opacity setter/getter inaccurate.");
+	STAssertEquals(testStrokeMiterLimit, [testingSubject pathStrokeMiterLimit], @"Path stroke miter limit setter/getter inaccurate.");
+	STAssertEquals(testStrokeOpacity, [testingSubject pathStrokeOpacity], @"Path stroke opacity setter/getter inaccurate.");
+	STAssertEqualObjects(testFillColor , [testingSubject pathFillColor], @"Fill color setter/getter inaccurate.");
+	STAssertEqualObjects(testStrokeColor , [testingSubject pathStrokeColor], @"Stroke color setter/getter inaccurate.");
+	STAssertEqualObjects(testPathID , [testingSubject pathID], @"Path ID setter/getter inaccurate.");
+	STAssertEqualObjects(testGradientID , [testingSubject pathGradient], @"Gradient setter/getter inaccurate.");
 
 	[pathPoints release];
 	[pathInstructions release];

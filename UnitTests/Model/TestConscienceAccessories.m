@@ -14,7 +14,7 @@
 
 @interface TestConscienceAccessories : SenTestCase {
     
-    ConscienceAccessories *testingConscienceAccessories;
+    ConscienceAccessories *testingSubject;
     
 }
 
@@ -28,14 +28,14 @@
     
     [super setUp];
     
-    testingConscienceAccessories = [[ConscienceAccessories alloc] init];
+    testingSubject = [[ConscienceAccessories alloc] init];
     
 }
 
 - (void)tearDown{
 
 	//Tear-down code here.
-	[testingConscienceAccessories release];
+	[testingSubject release];
     
 	[super tearDown];
     
@@ -57,7 +57,7 @@
  */
 - (void)testConscienceAccessoriesExists{
 
-    STAssertNotNil(testingConscienceAccessories, @"The Conscience Accessory was not init'ed.");
+    STAssertNotNil(testingSubject, @"The Conscience Accessory was not init'ed.");
 }
 
 /**
@@ -65,10 +65,10 @@
  */
 - (void)testDefaultConscienceAccessories{
     
-	STAssertEquals(kPrimaryAccessoryFileNameResource, [testingConscienceAccessories primaryAccessory], @"Default primaryAccessory inaccurate.");
-	STAssertEquals(kSecondaryAccessoryFileNameResource, [testingConscienceAccessories secondaryAccessory], @"Default secondaryAccessory inaccurate.");
-	STAssertEquals(kTopAccessoryFileNameResource, [testingConscienceAccessories topAccessory], @"Default topAccessory inaccurate.");
-	STAssertEquals(kBottomAccessoryFileNameResource, [testingConscienceAccessories bottomAccessory], @"Default bottomAccessory inaccurate.");
+	STAssertEquals(kPrimaryAccessoryFileNameResource, [testingSubject primaryAccessory], @"Default primaryAccessory inaccurate.");
+	STAssertEquals(kSecondaryAccessoryFileNameResource, [testingSubject secondaryAccessory], @"Default secondaryAccessory inaccurate.");
+	STAssertEquals(kTopAccessoryFileNameResource, [testingSubject topAccessory], @"Default topAccessory inaccurate.");
+	STAssertEquals(kBottomAccessoryFileNameResource, [testingSubject bottomAccessory], @"Default bottomAccessory inaccurate.");
 }
 
 /**
@@ -80,15 +80,15 @@
 	NSString *testTopAccessory = @"topAccessory";
 	NSString *testBottomAccessory = @"bottomAccessory";
 
-    [testingConscienceAccessories setPrimaryAccessory:testPrimaryAccessory];
-    [testingConscienceAccessories setSecondaryAccessory:testSecondaryAccessory];
-    [testingConscienceAccessories setTopAccessory:testTopAccessory];
-    [testingConscienceAccessories setBottomAccessory:testBottomAccessory];
+    [testingSubject setPrimaryAccessory:testPrimaryAccessory];
+    [testingSubject setSecondaryAccessory:testSecondaryAccessory];
+    [testingSubject setTopAccessory:testTopAccessory];
+    [testingSubject setBottomAccessory:testBottomAccessory];
         
-	STAssertEqualObjects(testPrimaryAccessory, [testingConscienceAccessories primaryAccessory], @"primaryAccessory setter/getter inaccurate.");
-	STAssertEqualObjects(testSecondaryAccessory, [testingConscienceAccessories secondaryAccessory], @"secondaryAccessory setter/getter inaccurate.");
-	STAssertEqualObjects(testTopAccessory, [testingConscienceAccessories topAccessory], @"topAccessory setter/getter inaccurate.");
-	STAssertEqualObjects(testBottomAccessory, [testingConscienceAccessories bottomAccessory], @"bottomAccessory setter/getter inaccurate.");
+	STAssertEqualObjects(testPrimaryAccessory, [testingSubject primaryAccessory], @"primaryAccessory setter/getter inaccurate.");
+	STAssertEqualObjects(testSecondaryAccessory, [testingSubject secondaryAccessory], @"secondaryAccessory setter/getter inaccurate.");
+	STAssertEqualObjects(testTopAccessory, [testingSubject topAccessory], @"topAccessory setter/getter inaccurate.");
+	STAssertEqualObjects(testBottomAccessory, [testingSubject bottomAccessory], @"bottomAccessory setter/getter inaccurate.");
 
 }
 

@@ -43,6 +43,7 @@ Implementation:  Each NSMutableDictionary holds the CoreGraphics drawing instruc
         [self setBubbleColor:kBubbleColor];
         [self setAge:kConscienceAge];
         [self setSize:kConscienceSize];
+        [self setBubbleType:kBubbleType];
         
     }
 
