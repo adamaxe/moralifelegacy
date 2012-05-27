@@ -68,7 +68,6 @@ Determine which fields and UI elements should be presented depending up on Refer
 #pragma mark -
 #pragma mark ViewController Lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
 

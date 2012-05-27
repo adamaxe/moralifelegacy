@@ -52,7 +52,6 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 #pragma mark -
 #pragma mark View lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	

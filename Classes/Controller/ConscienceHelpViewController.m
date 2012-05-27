@@ -40,7 +40,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 #pragma mark -
 #pragma mark ViewController lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	

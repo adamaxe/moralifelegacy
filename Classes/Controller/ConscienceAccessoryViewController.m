@@ -32,7 +32,6 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 #pragma mark -
 #pragma mark ViewController lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];

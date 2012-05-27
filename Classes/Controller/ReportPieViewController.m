@@ -48,7 +48,6 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 @implementation ReportPieViewController
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
     

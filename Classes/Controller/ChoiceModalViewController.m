@@ -46,7 +46,6 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 #pragma mark - 
 #pragma mark - View lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
