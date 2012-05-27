@@ -130,7 +130,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
                            NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         
 		[conscienceHelpViewCont setHelpTitles:titles];
 		[conscienceHelpViewCont setHelpTexts:texts];
@@ -155,7 +155,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (IBAction) selectReferenceType:(id) sender{
 	
 	//Create view controller to be pushed upon navigation stack
-	ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithNibName:@"ReferenceListView" bundle:[NSBundle mainBundle]];
+	ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] init];
 
 	int referenceType = 0;
 		

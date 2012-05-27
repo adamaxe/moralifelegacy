@@ -136,7 +136,7 @@ User can filter list by only things that are affordable to currentFunds.
                            NSLocalizedString(helpTitleName1,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         
 		[conscienceHelpViewCont setHelpTitles:titles];
 		[conscienceHelpViewCont setHelpTexts:texts];
@@ -580,7 +580,7 @@ Implementation: Retrieve User's current ethicals from UserData
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	//Create next view to accept, review or reject purchase	
-	ConscienceAcceptViewController *conscienceAcceptCont = [[ConscienceAcceptViewController alloc] initWithNibName:@"ConscienceAcceptView" bundle:[NSBundle mainBundle]];
+	ConscienceAcceptViewController *conscienceAcceptCont = [[ConscienceAcceptViewController alloc] init];
                 
 	NSMutableString *selectedRow = [NSMutableString stringWithString:[tableDataKeys objectAtIndex:indexPath.row]];
 

@@ -15,7 +15,7 @@
 
 -(void) presentHelpScreen:(NSDictionary *) helpTitleTexts withConscienceOnScreen: (BOOL) isOnScreen{
     
-    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
 
     NSArray *titles = [helpTitleTexts allKeys];
     NSArray *texts = [helpTitleTexts allValues];

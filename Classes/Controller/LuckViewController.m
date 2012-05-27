@@ -274,7 +274,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 		NSArray *titles = [[NSArray alloc] initWithObjects: NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
 		conscienceHelpViewCont.helpTitles = titles;
 		conscienceHelpViewCont.helpTexts = texts;
 		conscienceHelpViewCont.isConscienceOnScreen = FALSE;

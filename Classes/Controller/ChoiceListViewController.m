@@ -521,7 +521,7 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 	
 	//Create subsequent view controller to be pushed onto stack
 	//ChoiceViewController gets data from NSUserDefaults
-	ChoiceViewController *choiceCont = [[ChoiceViewController alloc] initWithNibName:@"ChoiceView" bundle:[NSBundle mainBundle]];
+	ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
 	
 	//Push view onto stack
 	[self.navigationController pushViewController:choiceCont animated:YES];

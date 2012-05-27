@@ -40,7 +40,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 #pragma mark -
 #pragma mark View lifecycle
 
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
@@ -189,7 +188,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
                            NSLocalizedString(helpTitleName1,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         
 		[conscienceHelpViewCont setHelpTitles:titles];
 		[conscienceHelpViewCont setHelpTexts:texts];
@@ -262,7 +261,7 @@ Implementation: remove NSUserDefault state information, set Cancel flag, pop UIV
                        NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
     NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
     
-    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
     
     [conscienceHelpViewCont setHelpTitles:titles];
     [conscienceHelpViewCont setHelpTexts:texts];

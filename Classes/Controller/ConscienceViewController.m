@@ -294,7 +294,7 @@ static int thoughtVersion = 0;
 	// The new view controller configures a Cancel and Done button for the
 	// navigation bar.
     
-	ConscienceModalViewController *conscienceModalViewController1 = [[ConscienceModalViewController alloc] initWithNibName:@"ConscienceModalView" bundle:nil];
+	ConscienceModalViewController *conscienceModalViewController1 = [[ConscienceModalViewController alloc] init];
 	
     [modalNavController1 pushViewController:conscienceModalViewController1 animated:NO];
 	[conscienceModalViewController1 release];
@@ -330,7 +330,7 @@ static int thoughtVersion = 0;
  */
 -(void)showIntroView{
     
-    IntroViewController *introViewCont = [[IntroViewController alloc] initWithNibName:@"IntroView" bundle:[NSBundle mainBundle]];
+    IntroViewController *introViewCont = [[IntroViewController alloc] init];
     
     [self presentModalViewController:introViewCont animated:NO];
     [introViewCont release];

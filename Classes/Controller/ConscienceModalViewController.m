@@ -210,7 +210,7 @@ User selection causes selectChoice to be called which sets the currentState vari
                            NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         
 		[conscienceHelpViewCont setHelpTitles:titles];
 		[conscienceHelpViewCont setHelpTexts:texts];
@@ -376,7 +376,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 
 		switch (controllerID) {
 			case 2:{
-				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithNibName:@"ReportPieView" bundle:[NSBundle mainBundle]];
+				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] init];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
 				[self.navigationController pushViewController:reportPieViewCont animated:NO];
@@ -386,7 +386,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
 			case 6:{
-				ConscienceAccessoryViewController *conscienceAccessoryCont = [[ConscienceAccessoryViewController alloc] initWithNibName:@"ConscienceAccessoryView" bundle:[NSBundle mainBundle]];
+				ConscienceAccessoryViewController *conscienceAccessoryCont = [[ConscienceAccessoryViewController alloc] init];
                 
 				[self.navigationController pushViewController:conscienceAccessoryCont animated:NO];
 				[conscienceAccessoryCont release];
@@ -413,7 +413,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a list of choices for accessories	
 	if (isListViewControllerNeeded) {
 
-		ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] initWithNibName:@"ConscienceListView" bundle:[NSBundle mainBundle]];
+		ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] init];
 		[conscienceListCont setAccessorySlot:requestedAccessorySlot];
 		[self.navigationController pushViewController:conscienceListCont animated:NO];
 		[conscienceListCont release];
@@ -433,7 +433,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
                            NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
         NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         conscienceHelpViewCont.helpTitles = titles;
         conscienceHelpViewCont.helpTexts = texts;
         conscienceHelpViewCont.isConscienceOnScreen = TRUE;
@@ -448,7 +448,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			
     } else {
 
-		DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] initWithNibName:@"DilemmaListView" bundle:[NSBundle mainBundle]];
+		DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] init];
 
 		[prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
 
@@ -588,7 +588,7 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
                            NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
         NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         conscienceHelpViewCont.helpTitles = titles;
         conscienceHelpViewCont.helpTexts = texts;
         conscienceHelpViewCont.isConscienceOnScreen = TRUE;

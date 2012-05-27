@@ -151,7 +151,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
                            NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), NSLocalizedString(helpTitleName3,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), NSLocalizedString(helpTextName3,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
 		conscienceHelpViewCont.helpTitles = titles;
 		conscienceHelpViewCont.helpTexts = texts;
 		[helpTitleName1 release];
@@ -364,11 +364,11 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             [selectedRowKey release];
 
             if ([[tableDataTypes objectAtIndex:indexPath.row] boolValue]){
-                DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:[NSBundle mainBundle]];
+                DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] init];
                 [self.navigationController pushViewController:dilemmaViewCont animated:NO];
                 [dilemmaViewCont release];
             } else {
-                ConscienceActionViewController *actionViewCont = [[ConscienceActionViewController alloc] initWithNibName:@"ConscienceActionView" bundle:[NSBundle mainBundle]];
+                ConscienceActionViewController *actionViewCont = [[ConscienceActionViewController alloc] init];
                 [self.navigationController pushViewController:actionViewCont animated:NO];
                 [actionViewCont release];
             }

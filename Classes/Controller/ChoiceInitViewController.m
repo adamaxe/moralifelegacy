@@ -138,7 +138,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
                            NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         
 		[conscienceHelpViewCont setHelpTitles:titles];
 		[conscienceHelpViewCont setHelpTexts:texts];
@@ -211,12 +211,12 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 
 		//Create subsequent view controller to be pushed onto stack, determine if choice or luck
 		if (isChoice) {
-			ChoiceViewController *choiceCont = [[ChoiceViewController alloc] initWithNibName:@"ChoiceView" bundle:[NSBundle mainBundle]];
+			ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
 			//Push view onto stack	
 			[self.navigationController pushViewController:choiceCont animated:YES];
 			[choiceCont release];
 		} else {
-			LuckViewController *luckCont = [[LuckViewController alloc] initWithNibName:@"LuckView" bundle:[NSBundle mainBundle]];
+			LuckViewController *luckCont = [[LuckViewController alloc] init];
 			//Push view onto stack	
 			[self.navigationController pushViewController:luckCont animated:YES];
 			[luckCont release];
@@ -225,11 +225,11 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 
 		//Create subsequent view controller to be pushed onto stack, determine if choice or luck
 		if (isChoice) {
-			ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithNibName:@"ChoiceListView" bundle:[NSBundle mainBundle]];
+			ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] init];
 			[self.navigationController pushViewController:choiceListCont animated:YES];
 			[choiceListCont release];
 		} else {
-			LuckListViewController *luckListCont = [[LuckListViewController alloc] initWithNibName:@"LuckListView" bundle:[NSBundle mainBundle]];
+			LuckListViewController *luckListCont = [[LuckListViewController alloc] init];
 			[self.navigationController pushViewController:luckListCont animated:YES];
 			[luckListCont release];
 		}

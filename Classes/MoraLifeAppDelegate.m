@@ -126,9 +126,9 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	navController2 = [[UINavigationController alloc] init];
 	navController3 = [[UINavigationController alloc] init];
 	
-	ConscienceViewController *conscienceViewController1 = [[ConscienceViewController alloc] initWithNibName:@"ConscienceView" bundle:[NSBundle mainBundle]];
-	ChoiceInitViewController *choiceIntViewController1 = [[ChoiceInitViewController alloc] initWithNibName:@"ChoiceInitView" bundle:[NSBundle mainBundle]];
-	ReferenceViewController *referenceViewController1 = [[ReferenceViewController alloc] initWithNibName:@"ReferenceView" bundle:[NSBundle mainBundle]];
+	ConscienceViewController *conscienceViewController1 = [[ConscienceViewController alloc] init];
+	ChoiceInitViewController *choiceIntViewController1 = [[ChoiceInitViewController alloc] init];
+	ReferenceViewController *referenceViewController1 = [[ReferenceViewController alloc] init];
 	
 	navController1.tabBarItem.title = NSLocalizedString(@"PrimaryNav1Title",@"Title for Navigation 1");
 	navController1.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav1Hint",@"Hint for Navigation 1");

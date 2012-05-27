@@ -499,7 +499,7 @@ Implementation:  VERSION 2.0 Delete selected luck
 	[selectedRow release];
 	
 	//Create subsequent view controller to be pushed onto stack
-	LuckViewController *luckCont = [[LuckViewController alloc] initWithNibName:@"LuckView" bundle:[NSBundle mainBundle]];
+	LuckViewController *luckCont = [[LuckViewController alloc] init];
 	
 	//Push view onto stack
 	[self.navigationController pushViewController:luckCont animated:YES];

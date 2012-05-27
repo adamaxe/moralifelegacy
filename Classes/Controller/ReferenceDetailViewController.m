@@ -126,7 +126,7 @@ Implementation: Show Conscience thoughtbubble containing Quote
     NSArray *titles = [[NSArray alloc] initWithObjects:
                        NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
     
-    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
     
 
     NSString *quoteFormatted = [[NSString alloc] initWithString:[referenceQuote stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];

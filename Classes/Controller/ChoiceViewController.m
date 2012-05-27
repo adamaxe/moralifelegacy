@@ -297,7 +297,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), 
                                                             NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         
 		[conscienceHelpViewCont setHelpTitles:titles];
 		[conscienceHelpViewCont setHelpTexts:texts];
@@ -324,7 +324,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 -(void) showChoiceDetailEntry{
 	
 	//Allow User to enter in more specific details
-	ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] initWithNibName:@"ChoiceDetailView" bundle:[NSBundle mainBundle]];
+	ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] init];
 	
 	[self.navigationController pushViewController:choiceDetailViewCont animated:YES];
 	[choiceDetailViewCont release];
@@ -357,7 +357,7 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// Create the root view controller for the navigation controller
 	// The new view controller configures a Cancel and Done button for the
 	// navigation bar.
-	ChoiceModalViewController *virtueViceViewController = [[ChoiceModalViewController alloc] initWithNibName:@"ChoiceModalView" bundle:nil];
+	ChoiceModalViewController *virtueViceViewController = [[ChoiceModalViewController alloc] init];
 
 	[moralReferenceButton setAlpha:0];
 	[moralImageView setAlpha:0];
@@ -381,7 +381,7 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// Create the root view controller for the navigation controller
 	// The new view controller configures a Cancel and Done button for the
 	// navigation bar.
-	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithNibName:@"ChoiceHistoryView" bundle:nil];
+	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] init];
     
 	[moralReferenceButton setAlpha:0];
 	[moralImageView setAlpha:0];
@@ -406,7 +406,7 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
 	NSMutableArray *titles = [[NSMutableArray alloc] init];
 	NSMutableArray *texts = [[NSMutableArray alloc] init];
 
-	ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+	ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
 
 	//If User has selected a Moral, display the extended description.  Otherwise, ask them to fill in Moral.
 	if (moralKey != nil) {
@@ -479,7 +479,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
                            NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
 		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         
 		[conscienceHelpViewCont setHelpTitles:titles];
 		[conscienceHelpViewCont setHelpTexts:texts];
@@ -511,7 +511,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
                                NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
             NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
             
-            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] initWithNibName:@"ConscienceHelpView" bundle:[NSBundle mainBundle]];
+            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
             
             [conscienceHelpViewCont setHelpTitles:titles];
             [conscienceHelpViewCont setHelpTexts:texts];

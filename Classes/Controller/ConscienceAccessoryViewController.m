@@ -145,7 +145,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 
 -(void)createList{
     
-    ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] initWithNibName:@"ConscienceListView" bundle:[NSBundle mainBundle]];
+    ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] init];
     
     [conscienceListCont setAccessorySlot:accessorySlot];
     
