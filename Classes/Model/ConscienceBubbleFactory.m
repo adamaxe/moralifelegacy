@@ -131,7 +131,7 @@
 
     }    
     
-    if (((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)) &&isBubbleDefault){
+    if (((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)) ||isBubbleDefault){
         CGPathMoveToPoint(outerPath, &outerTransform, 130.59967,171.05272);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 101.14148,183.84373, 64.547682,177.22538, 41.566855,154.80468);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 18.279603,133.23266, 9.7828123,97.692812, 20.651667,67.934483);
@@ -205,7 +205,7 @@
     }
 
     
-    if (((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)) && isBubbleDefault){
+    if (((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)) || isBubbleDefault){
         
         CGPathMoveToPoint(dynamicPath, &transform, 100.56817, 30.166705);
         CGPathAddCurveToPoint(dynamicPath, &transform, 66.791491, 37.335987, 36.124184, 69.452376, 33.144898, 112.51362);
