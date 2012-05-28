@@ -59,6 +59,8 @@
 		5E1ACE2215521A0700DBDE6E /* TestUserChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */; };
 		5E1ACE2415523C1900DBDE6E /* TestUserDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */; };
 		5E1ACE2615523E2900DBDE6E /* TestUserLuck.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2515523E2800DBDE6E /* TestUserLuck.m */; };
+		5E1C81551573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = 5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */; };
+		5E1C81561573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = 5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */; };
 		5E1D107A1267FCAE003381CF /* card-despair.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D10661267FCAE003381CF /* card-despair.png */; };
 		5E1D107B1267FCAE003381CF /* card-envy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D10671267FCAE003381CF /* card-envy.png */; };
 		5E1D107C1267FCAE003381CF /* card-impatience.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D10681267FCAE003381CF /* card-impatience.png */; };
@@ -1751,6 +1753,7 @@
 		5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserDilemma.m; sourceTree = "<group>"; };
 		5E1ACE2515523E2800DBDE6E /* TestUserLuck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserLuck.m; sourceTree = "<group>"; };
 		5E1B3C3F12FDA196006E4582 /* ChoiceModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceModalViewController.h; sourceTree = "<group>"; };
+		5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "org.teamaxe.moralife-nointrohelp.xcappdata"; sourceTree = "<group>"; };
 		5E1D10661267FCAE003381CF /* card-despair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-despair.png"; path = "Resources/images/interface/cards/card-despair.png"; sourceTree = "<group>"; };
 		5E1D10671267FCAE003381CF /* card-envy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-envy.png"; path = "Resources/images/interface/cards/card-envy.png"; sourceTree = "<group>"; };
 		5E1D10681267FCAE003381CF /* card-impatience.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-impatience.png"; path = "Resources/images/interface/cards/card-impatience.png"; sourceTree = "<group>"; };
@@ -5104,6 +5107,7 @@
 		5EA1D228130E38A200BA81D6 /* UnitTests */ = {
 			isa = PBXGroup;
 			children = (
+				5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */,
 				5E99C5A113C542B0001F5CB8 /* Controller */,
 				5E99C5A013C542AC001F5CB8 /* Model */,
 				5E99C59F13C5429E001F5CB8 /* View */,
@@ -6949,6 +6953,7 @@
 				5E2D0C081405284500CB3032 /* bubble-type12-sm.png in Resources */,
 				5E2D0C091405284500CB3032 /* bubble-type13-sm.png in Resources */,
 				5E2D0C0A1405284500CB3032 /* bubble-type14-sm.png in Resources */,
+				5E1C81551573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6959,6 +6964,7 @@
 				5EA1D22D130E38A200BA81D6 /* InfoPlist.strings in Resources */,
 				5EE9A92014FC90A500DD428A /* ConscienceHelpView.xib in Resources */,
 				5EFBBF0A1569DB59004FA197 /* MainWindow.xib in Resources */,
+				5E1C81561573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
