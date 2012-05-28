@@ -96,6 +96,10 @@ static int thoughtVersion = 0;
     [virtueLabel setText:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
     [viceLabel setText:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
     
+    [virtueButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
+    [viceButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
+    [rankButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenRankLabel",@"Label for Rank Button")];
+    
     initialConscienceView = appDelegate.userConscienceView;
     
     virtueImage.alpha = 0;
