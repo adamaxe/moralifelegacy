@@ -54,6 +54,11 @@ Implementation: List cardviews of UserCollectable.  Allows User to select a sele
 	
 }
 
+/**
+ Dismiss entire UIViewController
+ */
+-(void)dismissThoughtModal:(id)sender;
+
 @end
 
 @implementation ConscienceDeckViewController

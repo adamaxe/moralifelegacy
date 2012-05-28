@@ -38,6 +38,17 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	IBOutlet UIView *namesView;
 }
 
+/**
+ Load Reference data from Core Data for table
+ */
+- (void) retrieveAllReferences;
+
+/**
+ Remove entries from tableview that don't correspond to being searched
+ @param searchText NSString of requested reference
+ */
+- (void)filterResults:(NSString *) searchText;
+
 @end
 
 @implementation ReferenceListViewController

@@ -47,6 +47,31 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	
 }
 
+/**
+ Accepts User input to return to ConscienceModalViewController
+ */
+-(void)dismissAcceptModal;
+
+/**
+ Accepts User input to return to ConscienceModalViewController
+ */
+-(void)returnToHome;
+
+/**
+ Retrieve how many ethicals User currently has from MoraLifeAppDelegate::userCollection.
+ */
+-(void)retrieveCurrentFunds;
+
+/**
+ Subtract cost of ConscienceAsset from MoraLifeAppDelegate::userCollection.
+ */
+-(void)processCollection;
+
+/**
+ Commit the choice of ConscienceAsset to ConscienceView.
+ */
+-(void)saveConscience;
+
 @end
 
 @implementation ConscienceAcceptViewController

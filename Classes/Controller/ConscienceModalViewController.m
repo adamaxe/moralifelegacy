@@ -41,6 +41,34 @@ User selection causes selectChoice to be called which sets the currentState vari
 	int currentState;					/**< current state of the screen (which button names, etc.) */
 }
 
+/**
+ Implementation:  Ensure Conscience is placed correctly.
+ */
+-(void) moveConscienceToBottom;
+
+/**
+ Makes selection choices reappear 
+ */
+- (void) showSelectionChoices;
+
+/**
+ Changes the display of the UIViewController without additional XIB load
+ */
+-(void)changeSelectionScreen;
+
+/**
+ Accepts User input to change the state of the screen.
+ @param controllerID int of UIViewController to be selected
+ */
+-(void)selectController:(int) controllerID;
+
+/**
+ VERSION 2.0 FEATURE
+ Allows the deletion of all User content.
+ @todo implement delete capability
+ */
+-(void)removeUserData;
+
 @end
 
 @implementation ConscienceModalViewController

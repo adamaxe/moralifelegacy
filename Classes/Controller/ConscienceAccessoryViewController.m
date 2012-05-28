@@ -25,6 +25,10 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
     int accessorySlot;
 }
 
+-(void) moveConscienceToCenter;
+
+-(void) createList;
+
 @end
 
 @implementation ConscienceAccessoryViewController

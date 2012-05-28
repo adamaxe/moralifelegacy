@@ -25,15 +25,4 @@ Accepts User input to return to ConscienceModalViewController
  */
 - (IBAction) returnToHome:(id) sender;
 
-/**
-Retrieve all User entered Morals
- */
-- (void) retrieveChoices;
-//- (void) generatePieColors;
-
-/**
-Convert UserData into graphable data, create a GraphView
- */
-- (void) generateGraph;
-
 @end

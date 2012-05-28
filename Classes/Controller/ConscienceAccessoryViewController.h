@@ -13,9 +13,6 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 
 @interface ConscienceAccessoryViewController : UIViewController
 
--(void) moveConscienceToCenter;
--(void) createList;
-
 /**
 Accepts User input to select a ConscienceAsset for review
 @param id Object which requested method
@@ -26,6 +23,6 @@ Accepts User input to select a ConscienceAsset for review
 /**
 Accepts User input to return to ConscienceModalViewController
  */
--(void)dismissAccessoryModal;
+-(IBAction)dismissAccessoryModal;
 
 @end

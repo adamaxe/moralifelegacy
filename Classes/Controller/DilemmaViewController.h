@@ -25,20 +25,4 @@ Accepts User input to return to ConscienceModalViewController
  */
 -(IBAction)returnToHome:(id)sender;
 
-/**
-Load the dilemma's details from SystemData
- */
--(void)loadDilemma;
-
-/**
-Change the active UIView within the UIViewController
-@param screenVersion intDesignating which page of screen to display
- */
--(void)changeScreen:(int) screenVersion;
-
-/**
-Commit User's choice to UserData
- */
--(void)commitDilemma;
-
 @end

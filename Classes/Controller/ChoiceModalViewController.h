@@ -21,10 +21,4 @@ Accepts User Input to remove modal screen
  */
 -(IBAction)dismissChoiceModal:(id)sender;
 
-/**
-Retrieve all available Morals
- */
--(void)retrieveAllSelections;
-
-
 @end

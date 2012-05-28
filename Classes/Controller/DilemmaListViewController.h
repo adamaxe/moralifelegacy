@@ -27,25 +27,4 @@ Accepts User input to return to ConscienceModalViewController
  */
 -(IBAction)returnToHome:(id)sender;
 
-/**
-Load User data to determine which Dilemmas have already been completed
- */
-- (void) loadUserData;
-
-/**
-Load Dilemma data from Core Data for table
- */
-- (void) retrieveAllDilemmas;
-
-/**
-VERSION 2.0
-Allow limited ability to rechoose dilemma
- */
-- (void) deleteChoice:(NSString *) choiceKey;
-
-/**
-Remove entries from tableview that don't correspond to being searched
- */
-- (void)filterResults:(NSString *) searchText;
-
 @end

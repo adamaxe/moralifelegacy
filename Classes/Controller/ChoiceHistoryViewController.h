@@ -21,21 +21,4 @@
 */
 -(IBAction)dismissChoiceModal:(id)sender;
 
-/**
- Retrieve all User entered Choices
- */
-- (void) retrieveAllChoices;
-
-/**
- Retrieve choice for selection
- @param choiceKey NSString of requested pkey
- */
-- (void) retrieveChoice:(NSString *) choiceKey;
-
-/**
- Filter the list based on User search string
- @param searchText NSString of requested pkey
- */
-- (void) filterResults: (NSString *)searchText;
-
 @end

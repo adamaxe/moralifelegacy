@@ -30,6 +30,25 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	
 }
 
+/**
+ Animate the back or previous button to show User if more text is available.
+ 
+ @param isPrevious BOOL which determines which button to animate
+ */
+-(void)animateCorrectButton:(BOOL)isPrevious;
+
+/**
+ Change the active UIView within the UIViewController
+ @param screenVersion intDesignating which version of screen to display
+ */
+-(void)changeScreen:(int) screenVersion;
+
+/**
+ Commit User's choice to UserData
+ @param id Object which requested method
+ */
+-(void)dismissThoughtModal:(id)sender;
+
 @end
 
 @implementation ConscienceHelpViewController

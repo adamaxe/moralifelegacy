@@ -29,12 +29,12 @@ User can filter list by only things that are affordable to currentFunds.
 	NSMutableArray *choiceSubtitles;		/**< unfiltered list of asset descriptions */
 	NSMutableArray *choiceImages;			/**< unfiltered list of asset images */
 	
-	NSMutableArray *dataSource;			/**< array for filtering raw data without having to re-query */
-	NSMutableArray *tableData;			/**< array for filtering data displayed in table populated from dataSource */
+	NSMutableArray *dataSource;             /**< array for filtering raw data without having to re-query */
+	NSMutableArray *tableData;              /**< array for filtering data displayed in table populated from dataSource */
 	NSMutableArray *tableDataImages;		/**< array for filtering data images */
 	NSMutableArray *tableDataDetails;		/**< array for filtering data details */
-	NSMutableArray *tableDataKeys;		/**< array for filtering data primary keys */
-	NSMutableArray *tableDataCosts;		/**< array for filtering item cost */
+	NSMutableArray *tableDataKeys;          /**< array for filtering data primary keys */
+	NSMutableArray *tableDataCosts;         /**< array for filtering item cost */
     
 	IBOutlet UITableView *choicesTableView;	/**< tableview of choices */
     
@@ -48,6 +48,16 @@ User can filter list by only things that are affordable to currentFunds.
     BOOL isLessThanCost;					/**< is User requesting to show only affordable options */
     int searchViewFilter;                    /**< which view to show */
 }
+
+/**
+ Retrieve all available ConscienceAssets
+ */
+-(void)retrieveAllSelections;
+
+/**
+ Retrieve amount of ethicals available to User (money)
+ */
+-(void)retrieveCurrentFunds;
 
 @end
 
