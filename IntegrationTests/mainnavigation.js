@@ -9,19 +9,20 @@ Moralife UI mainnavigation
 
 var target = UIATarget.localTarget();
 
-UIALogger.logStart("MoraLife Testing Begins");
-UIALogger.logDebug("Main Navigation");
+UIALogger.logStart("MoraLife Main Navigation Testing Begins");
+
+//UIALogger.logDebug("Main Navigation");
 UIATarget.localTarget().frontMostApp().logElementTree();
 
-target.captureScreenWithName("Initial Screenshot");
+//target.captureScreenWithName("Initial Screenshot");
 
 if (target.frontMostApp().tabBar().buttons()["Home"]!=null) {
 target.frontMostApp().mainWindow().buttons()["Rank"].tap();
 target.frontMostApp().mainWindow().buttons()["Vice"].tap();
 target.frontMostApp().mainWindow().buttons()["Virtue"].tap();
-   UIALogger.logPass("PASS: UITabBar Home loaded"); 
+   UIALogger.logPass("UITabBar Home loaded"); 
 } else {
-   UIALogger.logFail("FAIL: UITabBar Home NOT loaded"); 
+   UIALogger.logFail("UITabBar Home NOT loaded"); 
 } 
 
 if (target.frontMostApp().tabBar().buttons()["Journal"]!=null){ 
@@ -37,10 +38,10 @@ target.frontMostApp().navigationBar().leftButton().tap();
 target.frontMostApp().mainWindow().buttons()["All Choices"].tap();
 target.frontMostApp().navigationBar().leftButton().tap();
 
-   UIALogger.logPass("PASS: UITabBar Journal loaded"); 
+   UIALogger.logPass("UITabBar Journal loaded"); 
 } else {
 
-   UIALogger.logFail("FAIL:. UITabBar Journal not loaded"); 
+   UIALogger.logFail("UITabBar Journal not loaded"); 
 }
 
 if (target.frontMostApp().tabBar().buttons()["Collection"]!=null) {
@@ -52,10 +53,9 @@ target.frontMostApp().navigationBar().leftButton().tap();
 target.frontMostApp().mainWindow().buttons()["Morals"].tap();
 target.frontMostApp().navigationBar().leftButton().tap();
 target.frontMostApp().tabBar().buttons()["Home"].tap();
-  UIALogger.logPass("PASS: UITabBar Collection loaded");
+  UIALogger.logPass("UITabBar Collection loaded");
 } else {
-  UIALogger.logFail("FAIL: UITabBar Collection NOT loaded");
+  UIALogger.logFail("UITabBar Collection NOT loaded");
 }
 
-UIALogger.logFail("FAIL: Test Fail");
-UIALogger.logPass("PASS: Main Navigation Complete"); 
+UIALogger.logPass("Main Navigation Complete"); 
