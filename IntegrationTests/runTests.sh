@@ -1,4 +1,5 @@
 #! /bin/sh
+# ${WORKSPACE}/IntegrationTests/runTests.sh mainnavigation build/Release-iphonesimulator/MoraLife.app ${WORKSPACE}
 
 XCODE_PATH=`xcode-select -print-path`
 TRACETEMPLATE="$XCODE_PATH/Platforms/iPhoneOS.platform/Developer/Library/Instruments/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate"
