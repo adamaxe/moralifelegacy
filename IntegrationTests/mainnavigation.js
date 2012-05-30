@@ -9,9 +9,8 @@ Moralife UI mainnavigation
 
 var target = UIATarget.localTarget();
 
-
-UIALogger.logDebug("MoraLife Main Navigation");
-UIATarget.localTarget().frontMostApp().logElementTree();
+UIALogger.logMessage("MoraLife Main Navigation");
+//UIATarget.localTarget().frontMostApp().logElementTree();
 
 //target.captureScreenWithName("Initial Screenshot");
 

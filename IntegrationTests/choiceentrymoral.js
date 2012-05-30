@@ -10,12 +10,40 @@ Moralife UI Choice Moral Entry
 var target = UIATarget.localTarget();
 
 UIALogger.logMessage("MoraLife Choice Moral Testing Begins");
+//UIATarget.localTarget().frontMostApp().logElementTree();
 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
-target.frontMostApp().mainWindow().buttons()[0].tap();
+
+UIALogger.logStart("Choice Cancel Test");
+
+target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
+
 target.frontMostApp().mainWindow().textFields()["Choice"].tap();
 
+UIATarget.localTarget().frontMostApp().logElementTree();
+
+var choiceCancel = "Choice Cancel 1";
+
+for (i = 0; i < choiceCancel.length; i++)
+{
+    var strChar = choiceCancel.charAt(i);
+    target.frontMostApp().keyboard().typeString(strChar);
+}
+
+target.frontMostApp().keyboard().typeString("\n");
+
+target.frontMostApp().mainWindow().buttons()["Cancel"].tap();
+target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
+
+if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == choiceCancel) {
+	UIALogger.logFail("Choice field cleared incorrectly: " + target.frontMostApp().mainWindow().textFields()["Choice"].value());
+} else {
+	UIALogger.logPass("Choice field cleared correctly"); 
+}
+
 UIALogger.logStart("Choice Name Test");
+
+target.frontMostApp().mainWindow().textFields()["Choice"].tap();
 
 var moralName = "Test moral 1";
 
@@ -107,10 +135,10 @@ target.frontMostApp().keyboard().typeString("\n");
 target.frontMostApp().mainWindow().buttons()["Cancel"].tap();
 target.frontMostApp().navigationBar().rightButton().tap();
 
-if(target.frontMostApp().mainWindow().textFields()["Consequence"].value() == "") {
-       UIALogger.logPass("Consequence field cleared correctly"); 
+if(target.frontMostApp().mainWindow().textFields()["Consequence"].value() == consequenceCancel) {
+	UIALogger.logFail("Consequence field cleared incorrectly: " + target.frontMostApp().mainWindow().textFields()["Consequence"].value());
 } else {
-       UIALogger.logFail("Consequence field cleared incorrectly: " + target.frontMostApp().mainWindow().textFields()["Consequence"].value());
+	UIALogger.logPass("Consequence field cleared correctly"); 
 }
 
 UIALogger.logStart("Choice Justification Test");
@@ -165,6 +193,44 @@ if(target.frontMostApp().mainWindow().sliders()["Influence"].value() == influenc
 } else {
        UIALogger.logFail("Influence entered incorrectly: " + target.frontMostApp().mainWindow().sliders()["Influence"].value());
 }
+
+target.frontMostApp().mainWindow().buttons()["Done"].tap();
+
+UIALogger.logStart("Details Save Test");
+
+hasError = 0;
+
+target.frontMostApp().navigationBar().rightButton().tap();
+
+if(target.frontMostApp().mainWindow().textFields()["Justification"].value() == justification) {
+       UIALogger.logMessage("Justification field saved correctly");
+} else {
+       UIALogger.logError("Justification field didn't save: " + target.frontMostApp().mainWindow().textFields()["Justification"].value());
+		hasError = 1;
+}
+
+if(target.frontMostApp().mainWindow().textFields()["Consequence"].value() == consequence) {
+	UIALogger.logMessage("Consequence field saved correctly"); 
+} else {
+	UIALogger.logError("Consequence field didn't save: " + target.frontMostApp().mainWindow().textFields()["Consequence"].value());
+	hasError = 1;
+}
+
+if(target.frontMostApp().mainWindow().sliders()["Influence"].value() == influenceSliderValue) {
+       UIALogger.logMessage("Influence saved correctly"); 
+} else {
+       UIALogger.logError("Influence didn't save: " + target.frontMostApp().mainWindow().sliders()["Influence"].value());
+		hasError = 1;
+}
+
+if(hasError){
+	UIALogger.logFail("At least one Choice Detail field didn't save.");
+} else {
+	UIALogger.logPass("All Choice Detail fields saved correctly.");
+}
+
+target.frontMostApp().mainWindow().textFields()["Justification"].tap();
+target.frontMostApp().keyboard().typeString("\n");
 
 target.frontMostApp().mainWindow().buttons()["Done"].tap();
 target.frontMostApp().mainWindow().buttons()["Done"].tap();
