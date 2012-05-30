@@ -9,12 +9,13 @@ Moralife UI mainnavigation
 
 var target = UIATarget.localTarget();
 
-UIALogger.logStart("MoraLife Main Navigation Testing Begins");
 
-//UIALogger.logDebug("Main Navigation");
+UIALogger.logDebug("MoraLife Main Navigation");
 UIATarget.localTarget().frontMostApp().logElementTree();
 
 //target.captureScreenWithName("Initial Screenshot");
+
+UIALogger.logStart("MoraLife Home Screen Test");
 
 if (target.frontMostApp().tabBar().buttons()["Home"]!=null) {
 target.frontMostApp().mainWindow().buttons()["Rank"].tap();
@@ -24,6 +25,8 @@ target.frontMostApp().mainWindow().buttons()["Virtue"].tap();
 } else {
    UIALogger.logFail("UITabBar Home NOT loaded"); 
 } 
+
+UIALogger.logStart("MoraLife Journal Screen Test");
 
 if (target.frontMostApp().tabBar().buttons()["Journal"]!=null){ 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
@@ -44,6 +47,8 @@ target.frontMostApp().navigationBar().leftButton().tap();
    UIALogger.logFail("UITabBar Journal not loaded"); 
 }
 
+UIALogger.logStart("MoraLife Collection Screen Test");
+
 if (target.frontMostApp().tabBar().buttons()["Collection"]!=null) {
 target.frontMostApp().tabBar().buttons()["Collection"].tap();
 target.frontMostApp().mainWindow().buttons()["Accessories"].tap();
@@ -57,5 +62,3 @@ target.frontMostApp().tabBar().buttons()["Home"].tap();
 } else {
   UIALogger.logFail("UITabBar Collection NOT loaded");
 }
-
-UIALogger.logPass("Main Navigation Complete"); 

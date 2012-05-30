@@ -8,12 +8,15 @@ Moralife UI Choice Moral Entry
 */
 
 var target = UIATarget.localTarget();
+var hasError = FALSE;
 
-UIALogger.logStart("MoraLife Choice Moral Testing Begins");
+UIALogger.logMessage("MoraLife Choice Moral Testing Begins");
 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
 target.frontMostApp().mainWindow().buttons()[0].tap();
 target.frontMostApp().mainWindow().textFields()["Choice"].tap();
+
+UIALogger.logStart("MoraLife Choice Name Test");
 
 var moralName = "Test moral 1";
 
@@ -34,6 +37,7 @@ if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == moralNam
 target.frontMostApp().mainWindow().buttons()["Select a Virtue"].tap();
 target.frontMostApp().mainWindow().searchBars()[0].tap();
 var moralType = "Aptitude\n";
+
 
 for (i = 0; i < moralType.length; i++)
 {
@@ -58,6 +62,8 @@ target.frontMostApp().mainWindow().buttons()[3].tap();
 target.frontMostApp().navigationBar().rightButton().tap();
 target.frontMostApp().mainWindow().textFields()["Justification"].tap();
 
+UIALogger.logStart("MoraLife Justification Test");
+
 var justification = "Justification test 1";
 
 for (i = 0; i < justification.length; i++)
@@ -76,6 +82,8 @@ if(target.frontMostApp().mainWindow().textFields()["Justification"].value() == j
 
 target.frontMostApp().mainWindow().textFields()["Consequence"].tap();
 
+UIALogger.logStart("MoraLife Consequence Test");
+
 var consequence = "Consequence test 1";
 
 for (i = 0; i < consequence.length; i++)
@@ -86,7 +94,6 @@ for (i = 0; i < consequence.length; i++)
 
 target.frontMostApp().keyboard().typeString("\n");
 
-
 if(target.frontMostApp().mainWindow().textFields()["Consequence"].value() == consequence) {
        UIALogger.logPass("Consequence field entered correctly"); 
 } else {
@@ -96,5 +103,3 @@ if(target.frontMostApp().mainWindow().textFields()["Consequence"].value() == con
 target.frontMostApp().mainWindow().sliders()[0].dragToValue(0.25);
 target.frontMostApp().mainWindow().buttons()["Done"].tap();
 target.frontMostApp().mainWindow().buttons()["Done"].tap();
-
-UIALogger.logPass("Choice Form navigation Pass."); 
