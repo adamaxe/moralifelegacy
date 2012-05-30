@@ -71,8 +71,11 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	consequencesTextField.maxLength = kChoiceTextFieldLength;
 
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
-	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];	
-
+	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];
+    
+    influenceSlider.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenInfluenceHint",@"Hint for Influence Slider");
+    influenceSlider.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider");
+    
 	//Make slider decoration invisible so that fade-in is possible
 	[influenceButton setAlpha:0];
 	[influenceImageView setAlpha:0];

@@ -110,6 +110,10 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];
     
+    severitySlider.accessibilityHint = NSLocalizedString(@"ChoiceScreenSeverityHint",@"Hint for Severity slider");
+	severitySlider.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Label for Severity slider");
+
+    
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
     
