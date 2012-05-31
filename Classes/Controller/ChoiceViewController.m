@@ -163,6 +163,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 	[moralButton setTitle:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button") forState:UIControlStateNormal];
 	moralButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dHint", isVirtue]), @"Hint for Moral Button");
+	moralButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button");
 	[descriptionTextView setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenDescription", isVirtue]), @"Label for Description Textview")];
 	
 	

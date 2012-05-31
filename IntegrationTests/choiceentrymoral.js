@@ -14,6 +14,7 @@ UIALogger.logMessage("MoraLife Choice Moral Testing Begins");
 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
 
+
 UIALogger.logStart("Choice Cancel Test");
 
 target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
@@ -39,6 +40,30 @@ if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == choiceCa
 	UIALogger.logFail("Choice field cleared incorrectly: " + target.frontMostApp().mainWindow().textFields()["Choice"].value());
 } else {
 	UIALogger.logPass("Choice field cleared correctly"); 
+}
+
+UIALogger.logStart("Choice Default Text Test");
+
+if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter in your good deed.") {
+	UIALogger.logPass("Choice Default Text correct"); 
+} else {
+	UIALogger.logFail("Choice Default Text incorrect: " + target.frontMostApp().mainWindow().textFields()["Choice"].value());
+}
+
+UIALogger.logStart("Choice Moral Button Display Test");
+
+if(target.frontMostApp().mainWindow().buttons()["Select a Virtue"].value() == "") {
+	UIALogger.logFail("Choice Button Title incorrect");
+} else {
+	UIALogger.logPass("Choice Button Title correct"); 
+}
+
+UIALogger.logStart("Moral Severity Label Display Test");
+
+if(target.frontMostApp().mainWindow().buttons()["Good"].value() == "") {
+	UIALogger.logFail("Severity Label incorrect");
+} else {
+	UIALogger.logPass("Severity Label correct"); 
 }
 
 UIALogger.logStart("Choice Name Test");
