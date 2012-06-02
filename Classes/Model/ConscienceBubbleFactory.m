@@ -13,7 +13,7 @@
 + (CGMutablePathRef)bubbleSurfaceWithType:(int)bubbleType{
     
     BOOL isBubbleDefault = TRUE;
-    
+        
     CGMutablePathRef outerPath = CGPathCreateMutable();
     CGAffineTransform outerTransform = CGAffineTransformMakeTranslation(-5.0, -5.0);
 
@@ -130,8 +130,14 @@
         isBubbleDefault = FALSE;
 
     }    
+
+    if ((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)){
+
+        isBubbleDefault = TRUE;
+        
+    }
     
-    if (((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)) ||isBubbleDefault){
+    if (isBubbleDefault) {
         CGPathMoveToPoint(outerPath, &outerTransform, 130.59967,171.05272);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 101.14148,183.84373, 64.547682,177.22538, 41.566855,154.80468);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 18.279603,133.23266, 9.7828123,97.692812, 20.651667,67.934483);
@@ -139,9 +145,8 @@
         CGPathAddCurveToPoint(outerPath, &outerTransform, 126.26539,11.054474, 158.25507,29.735571, 172.29013,58.469917);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 177.96222,69.720795, 181.07794,81.087624, 181.05328,94.471925);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 181.43745,127.60968, 160.58597,158.80135, 130.59967,171.05272);
-                
     }
-    
+
     CGPathCloseSubpath(outerPath);
     return (CGMutablePathRef)[(NSObject*)outerPath autorelease];
 
@@ -204,13 +209,18 @@
         isBubbleDefault = FALSE;
     }
 
+    if ((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)){
+        
+        isBubbleDefault = TRUE;
+                
+    }
     
-    if (((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)) || isBubbleDefault){
+    if (isBubbleDefault) {
         
         CGPathMoveToPoint(dynamicPath, &transform, 100.56817, 30.166705);
         CGPathAddCurveToPoint(dynamicPath, &transform, 66.791491, 37.335987, 36.124184, 69.452376, 33.144898, 112.51362);
         CGPathAddCurveToPoint(dynamicPath, &transform, 25.42531, 72.733457,  64.4555, 27.727181, 100.56817, 30.166705);
-        
+
     }
     
     CGPathCloseSubpath(dynamicPath);
