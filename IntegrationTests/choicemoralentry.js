@@ -146,37 +146,41 @@ if(target.frontMostApp().mainWindow().sliders()["Influence"].value() == influenc
 
 target.frontMostApp().mainWindow().buttons()["Done"].tap();
 
-UIALogger.logStart("Details Save Test");
+UIALogger.logMessage("Details Save Test");
 
 hasError = 0;
 
 target.frontMostApp().navigationBar().rightButton().tap();
-
+UIALogger.logStart("Justification Save Test");
 if(target.frontMostApp().mainWindow().textFields()["Justification"].value() == justification) {
-       UIALogger.logMessage("Justification field saved correctly");
+       UIALogger.logPass("Justification field saved correctly");
 } else {
-       UIALogger.logError("Justification field didn't save: " + target.frontMostApp().mainWindow().textFields()["Justification"].value());
+       UIALogger.logFail("Justification field didn't save: " + target.frontMostApp().mainWindow().textFields()["Justification"].value());
 		hasError = 1;
 }
 
+UIALogger.logStart("Consequence Save Test");
+
 if(target.frontMostApp().mainWindow().textFields()["Consequence"].value() == consequence) {
-	UIALogger.logMessage("Consequence field saved correctly"); 
+	UIALogger.logPass("Consequence field saved correctly"); 
 } else {
-	UIALogger.logError("Consequence field didn't save: " + target.frontMostApp().mainWindow().textFields()["Consequence"].value());
+	UIALogger.logFail("Consequence field didn't save: " + target.frontMostApp().mainWindow().textFields()["Consequence"].value());
 	hasError = 1;
 }
 
+UIALogger.logStart("Influence Save Test");
+
 if(target.frontMostApp().mainWindow().sliders()["Influence"].value() == influenceSliderValue) {
-       UIALogger.logMessage("Influence saved correctly"); 
+       UIALogger.logPass("Influence saved correctly"); 
 } else {
-       UIALogger.logError("Influence didn't save: " + target.frontMostApp().mainWindow().sliders()["Influence"].value());
+       UIALogger.logFail("Influence didn't save: " + target.frontMostApp().mainWindow().sliders()["Influence"].value());
 		hasError = 1;
 }
 
 if(hasError){
-	UIALogger.logFail("At least one Choice Detail field didn't save.");
+	UIALogger.logError("At least one Choice Detail field didn't save.");
 } else {
-	UIALogger.logPass("All Choice Detail fields saved correctly.");
+	UIALogger.logMessage("All Choice Detail fields saved correctly.");
 }
 
 target.frontMostApp().mainWindow().textFields()["Justification"].tap();
