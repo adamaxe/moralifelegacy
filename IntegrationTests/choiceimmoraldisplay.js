@@ -1,23 +1,23 @@
 /**
-Moralife UI Choice Moral Display validation
+Moralife UI Choice Immoral Display validation
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
 @date 05/28/2012
-@file choicemoraldisplay.js
+@file choiceimmoraldisplay.js
 */
 
 var target = UIATarget.localTarget();
 
-UIALogger.logMessage("MoraLife Choice Moral Testing Begins");
+UIALogger.logMessage("MoraLife Choice Immoral Testing Begins");
 //UIATarget.localTarget().frontMostApp().logElementTree();
 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
-target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
+target.frontMostApp().mainWindow().buttons()["Immoral Choice"].tap();
 
 UIALogger.logStart("Choice Default Text Test");
 
-if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter in your good deed.") {
+if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter in your bad deed.") {
 	UIALogger.logPass("Choice Default Text correct"); 
 } else {
 	UIALogger.logFail("Choice Default Text incorrect: " + target.frontMostApp().mainWindow().textFields()["Choice"].value());
@@ -25,7 +25,7 @@ if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter i
 
 UIALogger.logStart("Choice Moral Button Display Test");
 
-if(target.frontMostApp().mainWindow().buttons()["Select a Virtue"].value() == "") {
+if(target.frontMostApp().mainWindow().buttons()["Select a Vice"].value() == "") {
 	UIALogger.logFail("Choice Button Title incorrect");
 } else {
 	UIALogger.logPass("Choice Button Title correct"); 
@@ -33,7 +33,7 @@ if(target.frontMostApp().mainWindow().buttons()["Select a Virtue"].value() == ""
 
 UIALogger.logStart("Moral Severity Label Display Test");
 
-if(target.frontMostApp().mainWindow().buttons()["Good"].value() == "") {
+if(target.frontMostApp().mainWindow().buttons()["Bad"].value() == "") {
 	UIALogger.logFail("Severity Label incorrect");
 } else {
 	UIALogger.logPass("Severity Label correct"); 

@@ -1,5 +1,5 @@
 /**
-Moralife UI Choice Moral Entry
+Moralife UI Choice Moral Entry Validation
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 

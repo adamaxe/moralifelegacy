@@ -1,10 +1,10 @@
 /**
-Moralife UI Choice Moral Entry
+Moralife UI Choice Moral Cancel validation
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
 @date 05/28/2012
-@file choiceentrymoral.js
+@file choicemoralcancel.js
 */
 
 var target = UIATarget.localTarget();

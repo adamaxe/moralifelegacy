@@ -1,5 +1,5 @@
 /**
-Moralife UI mainnavigation
+Moralife UI Main Navigation traversal validation
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
