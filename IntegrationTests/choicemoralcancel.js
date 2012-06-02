@@ -9,12 +9,12 @@ Moralife UI Choice Moral Cancel validation
 
 var target = UIATarget.localTarget();
 
-UIALogger.logMessage("MoraLife Choice Moral Testing Begins");
+UIALogger.logMessage("MoraLife Choice Cancel Testing Begins");
 //UIATarget.localTarget().frontMostApp().logElementTree();
 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
 
-UIALogger.logStart("Choice Cancel Test");
+UIALogger.logStart("Choice Clear Test");
 
 target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
 
@@ -57,7 +57,7 @@ if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == choiceCa
 //
 //UIALogger.logPass("Virtue Selected");
 
-UIALogger.logStart("Virtue Severity Test");
+UIALogger.logStart("Virtue Severity Clear Test");
 
 var virtueSeverity = 0.25;
 var virtueSeveritySliderValue = (virtueSeverity * 100) + "%";
@@ -96,7 +96,7 @@ if(target.frontMostApp().mainWindow().textViews()["Description"].value() == mora
     UIALogger.logPass("Description field cleared correctly"); 
 }
 
-UIALogger.logMessage("Details Cancel Testing");
+UIALogger.logMessage("Details Clear Testing");
 target.frontMostApp().navigationBar().rightButton().tap();
 
 UIALogger.logStart("Choice Justification Cancel Test");
@@ -122,7 +122,7 @@ if(target.frontMostApp().mainWindow().textFields()["Justification"].value() == j
     UIALogger.logPass("Justification field cleared correctly");     
 }
 
-UIALogger.logStart("Choice Consequence Cancel Test");
+UIALogger.logStart("Choice Consequence Clear Test");
 
 target.frontMostApp().mainWindow().textFields()["Consequence"].tap();
 

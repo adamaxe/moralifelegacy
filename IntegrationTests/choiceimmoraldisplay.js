@@ -15,7 +15,7 @@ UIALogger.logMessage("MoraLife Choice Immoral Testing Begins");
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
 target.frontMostApp().mainWindow().buttons()["Immoral Choice"].tap();
 
-UIALogger.logStart("Choice Default Text Test");
+UIALogger.logStart("Choice Immoral Default Text Test");
 
 if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter in your bad deed.") {
 	UIALogger.logPass("Choice Default Text correct"); 
@@ -23,7 +23,7 @@ if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter i
 	UIALogger.logFail("Choice Default Text incorrect: " + target.frontMostApp().mainWindow().textFields()["Choice"].value());
 }
 
-UIALogger.logStart("Choice Moral Button Display Test");
+UIALogger.logStart("Choice Immoral Button Display Test");
 
 if(target.frontMostApp().mainWindow().buttons()["Select a Vice"].value() == "") {
 	UIALogger.logFail("Choice Button Title incorrect");
@@ -31,7 +31,7 @@ if(target.frontMostApp().mainWindow().buttons()["Select a Vice"].value() == "") 
 	UIALogger.logPass("Choice Button Title correct"); 
 }
 
-UIALogger.logStart("Moral Severity Label Display Test");
+UIALogger.logStart("Choice Immoral Severity Label Display Test");
 
 if(target.frontMostApp().mainWindow().buttons()["Bad"].value() == "") {
 	UIALogger.logFail("Severity Label incorrect");

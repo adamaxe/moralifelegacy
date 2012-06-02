@@ -9,14 +9,14 @@ Moralife UI Choice Moral Entry Validation
 
 var target = UIATarget.localTarget();
 
-UIALogger.logMessage("MoraLife Choice Moral Testing Begins");
+UIALogger.logMessage("MoraLife Choice Moral Entry Testing Begins");
 //UIATarget.localTarget().frontMostApp().logElementTree();
 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
 
 target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
 
-UIALogger.logStart("Choice Name Test");
+UIALogger.logStart("Choice Name Entry Test");
 
 target.frontMostApp().mainWindow().textFields()["Choice"].tap();
 
@@ -53,7 +53,7 @@ target.frontMostApp().mainWindow().tableViews()["Empty list"].cells()["Aptitude,
 
 UIALogger.logPass("Virtue Selected");
 
-UIALogger.logStart("Virtue Severity Test");
+UIALogger.logStart("Virtue Severity Set Test");
 
 var virtueSeverity = 0.25;
 var virtueSeveritySliderValue = (virtueSeverity * 100) + "%";
@@ -68,7 +68,7 @@ if(target.frontMostApp().mainWindow().sliders()["Virtue Severity"].value() == vi
 
 //target.frontMostApp().mainWindow().textViews()["Description"].tapWithOptions({tapOffset:{x:0.36, y:0.71}});
 
-UIALogger.logStart("Choice Description Test");
+UIALogger.logStart("Choice Description Entry Test");
 
 target.frontMostApp().mainWindow().textViews()["Description"].tap();
 
@@ -91,7 +91,7 @@ if(target.frontMostApp().mainWindow().textViews()["Description"].value() == mora
 UIALogger.logMessage("Details Entry Testing");
 target.frontMostApp().navigationBar().rightButton().tap();
 
-UIALogger.logStart("Choice Justification Test");
+UIALogger.logStart("Details Justification Entry Test");
 
 target.frontMostApp().mainWindow().textFields()["Justification"].tap();
 
@@ -111,7 +111,7 @@ if(target.frontMostApp().mainWindow().textFields()["Justification"].value() == j
        UIALogger.logFail("Justification field entered incorrectly: " + target.frontMostApp().mainWindow().textFields()["Justification"].value());
 }
 
-UIALogger.logStart("Choice Consequence Test");
+UIALogger.logStart("Details Consequence Entry Test");
 
 target.frontMostApp().mainWindow().textFields()["Consequence"].tap();
 
@@ -131,7 +131,7 @@ if(target.frontMostApp().mainWindow().textFields()["Consequence"].value() == con
        UIALogger.logFail("Consequence field entered incorrectly: " + target.frontMostApp().mainWindow().textFields()["Consequence"].value());
 }
 
-UIALogger.logStart("Influence Test");
+UIALogger.logStart("Details Influence Set Test");
 
 var influence = 0.25;
 var influenceSliderValue = (influence * 100) + "%";

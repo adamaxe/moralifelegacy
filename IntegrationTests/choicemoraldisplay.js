@@ -9,13 +9,13 @@ Moralife UI Choice Moral Display validation
 
 var target = UIATarget.localTarget();
 
-UIALogger.logMessage("MoraLife Choice Moral Testing Begins");
+UIALogger.logMessage("MoraLife Choice Moral Display Testing Begins");
 //UIATarget.localTarget().frontMostApp().logElementTree();
 
 target.frontMostApp().tabBar().buttons()["Journal"].tap();
 target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
 
-UIALogger.logStart("Choice Default Text Test");
+UIALogger.logStart("Choice Moral Default Text Test");
 
 if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter in your good deed.") {
 	UIALogger.logPass("Choice Default Text correct"); 
@@ -31,7 +31,7 @@ if(target.frontMostApp().mainWindow().buttons()["Select a Virtue"].value() == ""
 	UIALogger.logPass("Choice Button Title correct"); 
 }
 
-UIALogger.logStart("Moral Severity Label Display Test");
+UIALogger.logStart("Choice Moral Severity Label Display Test");
 
 if(target.frontMostApp().mainWindow().buttons()["Good"].value() == "") {
 	UIALogger.logFail("Severity Label incorrect");
