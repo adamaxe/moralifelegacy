@@ -55,6 +55,11 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	NSArray *viewsArray = [[NSArray alloc] initWithObjects:screen1View, screen2View, screen3View, screen4View, screen5View, screen6View, nil];
 	int counter = 0;
 	
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
+    nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
+    
 	for (NSString *helpTextIterate in helpTitles) {
 		 
 		//Create content dynamically and iterate through possible screens

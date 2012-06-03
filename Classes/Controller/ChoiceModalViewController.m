@@ -33,6 +33,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 	IBOutlet UISearchBar *moralSearchBar;			/**< ui element for limiting choices in table */
 	
+    IBOutlet UIButton *previousButton;
 	IBOutlet UIView *thoughtModalArea;				/**< ui surrounding table */
 	
 	BOOL isVirtue;		/**< is Moral Virtue or Vice */
@@ -65,6 +66,9 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	appDelegate.userConscienceView.center = centerPoint;
+    
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
     
     //User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
@@ -383,6 +387,8 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 
 - (void)viewDidUnload
 {
+    [previousButton release];
+    previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -400,6 +406,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	[choiceImages release];
 	[choiceDetails release];
 	[choiceDisplayNames release];
+    [previousButton release];
     [super dealloc];
 }
 
