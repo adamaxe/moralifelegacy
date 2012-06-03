@@ -7,36 +7,43 @@ Moralife UI Choice Moral Display validation
 @file choicemoraldisplay.js
 */
 
-var target = UIATarget.localTarget();
+var target = UIATarget.localTarget().frontMostApp();
+var testSuiteName = "Choice - Moral";
+var testCaseName;
 
-UIALogger.logMessage("MoraLife Choice Moral Display Testing Begins");
-//UIATarget.localTarget().frontMostApp().logElementTree();
+UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
 
-target.frontMostApp().tabBar().buttons()["Journal"].tap();
-target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
+target.tabBar().buttons()["Journal"].tap();
+target.mainWindow().buttons()["Moral Choice"].tap();
 
-UIALogger.logStart("Choice Moral Default Text Test");
+testCaseName = testSuiteName + " choiceTextField Default Text";
 
-if(target.frontMostApp().mainWindow().textFields()["Choice"].value() == "Enter in your good deed.") {
-	UIALogger.logPass("Choice Default Text correct"); 
+UIALogger.logStart(testCaseName + " Test");
+
+if(target.mainWindow().textFields()["Choice"].value() == "Enter in your good deed.") {
+	UIALogger.logPass(testCaseName + " correct"); 
 } else {
-	UIALogger.logFail("Choice Default Text incorrect: " + target.frontMostApp().mainWindow().textFields()["Choice"].value());
+	UIALogger.logFail(testCaseName + " incorrect: " + target.mainWindow().textFields()["Choice"].value());
 }
 
-UIALogger.logStart("Choice Moral Button Display Test");
+testCaseName = testSuiteName + " moralButton Title Text";
 
-if(target.frontMostApp().mainWindow().buttons()["Select a Virtue"].value() == "") {
-	UIALogger.logFail("Choice Button Title incorrect");
+UIALogger.logStart(testCaseName + " Test");
+
+if(target.mainWindow().buttons()["Select a Virtue"].value() == "") {
+	UIALogger.logFail(testCaseName + " incorrect");
 } else {
-	UIALogger.logPass("Choice Button Title correct"); 
+	UIALogger.logPass(testCaseName + " correct"); 
 }
 
-UIALogger.logStart("Choice Moral Severity Label Display Test");
+testCaseName = testSuiteName + " severityLabel Text";
+UIALogger.logStart(testCaseName + " Test");
 
-if(target.frontMostApp().mainWindow().buttons()["Good"].value() == "") {
-	UIALogger.logFail("Severity Label incorrect");
+if(target.mainWindow().staticTexts()["Good"].value() == "") {
+	UIALogger.logFail(testCaseName + " incorrect");
 } else {
-	UIALogger.logPass("Severity Label correct"); 
+	UIALogger.logPass(testCaseName + " correct"); 
 }
 
-target.frontMostApp().mainWindow().buttons()["Cancel"].tap();
+target.mainWindow().buttons()["Cancel"].tap();
+target.tabBar().buttons()["Home"].tap();

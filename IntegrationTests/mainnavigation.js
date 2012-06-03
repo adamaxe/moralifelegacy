@@ -7,57 +7,71 @@ Moralife UI Main Navigation traversal validation
 @file mainnavigation.js
 */
 
-var target = UIATarget.localTarget();
+var target = UIATarget.localTarget().frontMostApp();
+var testSuiteName = "Main UITabBar Navigation";
+var testCaseName;
 
-UIALogger.logMessage("MoraLife Main Navigation");
-//UIATarget.localTarget().frontMostApp().logElementTree();
+UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
 
-//target.captureScreenWithName("Initial Screenshot");
+testCaseName = testSuiteName + " Home Screen";
 
-UIALogger.logStart("MoraLife Home Screen Test");
+UIALogger.logStart(testCaseName + " Test");
 
-if (target.frontMostApp().tabBar().buttons()["Home"]!=null) {
-target.frontMostApp().mainWindow().buttons()["Rank"].tap();
-target.frontMostApp().mainWindow().buttons()["Vice"].tap();
-target.frontMostApp().mainWindow().buttons()["Virtue"].tap();
-   UIALogger.logPass("UITabBar Home loaded"); 
+if (target.tabBar().buttons()["Home"]!=null) {
+    target.mainWindow().buttons()["Rank"].tap();
+    target.mainWindow().buttons()["Vice"].tap();
+    target.mainWindow().buttons()["Virtue"].tap();
+    
+    UIALogger.logPass(testCaseName + " loaded"); 
 } else {
-   UIALogger.logFail("UITabBar Home NOT loaded"); 
+   UIALogger.logFail(testCaseName + " NOT loaded"); 
 } 
 
-UIALogger.logStart("MoraLife Journal Screen Test");
+testCaseName = testSuiteName + " Journal Screen";
 
-if (target.frontMostApp().tabBar().buttons()["Journal"]!=null){ 
-target.frontMostApp().tabBar().buttons()["Journal"].tap();
-target.frontMostApp().mainWindow().buttons()["Moral Choice"].tap();
-target.frontMostApp().navigationBar().rightButton().tap();
-target.frontMostApp().navigationBar().leftButton().tap();
-target.frontMostApp().navigationBar().leftButton().tap();
-target.frontMostApp().mainWindow().buttons()["Immoral Choice"].tap();
-target.frontMostApp().navigationBar().rightButton().tap();
-target.frontMostApp().navigationBar().leftButton().tap();
-target.frontMostApp().navigationBar().leftButton().tap();
-target.frontMostApp().mainWindow().buttons()["All Choices"].tap();
-target.frontMostApp().navigationBar().leftButton().tap();
+UIALogger.logStart(testCaseName + " Test");
 
-   UIALogger.logPass("UITabBar Journal loaded"); 
+if (target.tabBar().buttons()["Journal"]!=null){ 
+    target.tabBar().buttons()["Journal"].tap();
+    target.mainWindow().buttons()["Moral Choice"].tap();
+    target.mainWindow().buttons()["..."].tap();
+    target.mainWindow().buttons()["Previous"].tap();
+    target.mainWindow().buttons()["thoughtbubble smallest"].tap();
+    target.mainWindow().buttons()[2].tap();
+    target.mainWindow().buttons()["Select a Virtue"].tap();
+    target.mainWindow().buttons()["Previous"].tap();    
+    target.navigationBar().rightButton().tap();
+    target.navigationBar().leftButton().tap();
+    target.navigationBar().leftButton().tap();
+    target.mainWindow().buttons()["Immoral Choice"].tap();
+    target.navigationBar().rightButton().tap();
+    target.navigationBar().leftButton().tap();
+    target.navigationBar().leftButton().tap();
+    target.mainWindow().buttons()["All Choices"].tap();
+    target.navigationBar().leftButton().tap();
+
+    UIALogger.logPass(testCaseName + " loaded"); 
 } else {
-
-   UIALogger.logFail("UITabBar Journal not loaded"); 
+    UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-UIALogger.logStart("MoraLife Collection Screen Test");
+testCaseName = testSuiteName + " Collection Screen";
 
-if (target.frontMostApp().tabBar().buttons()["Collection"]!=null) {
-target.frontMostApp().tabBar().buttons()["Collection"].tap();
-target.frontMostApp().mainWindow().buttons()["Accessories"].tap();
-target.frontMostApp().navigationBar().leftButton().tap();
-target.frontMostApp().mainWindow().buttons()["Figures"].tap();
-target.frontMostApp().navigationBar().leftButton().tap();
-target.frontMostApp().mainWindow().buttons()["Morals"].tap();
-target.frontMostApp().navigationBar().leftButton().tap();
-target.frontMostApp().tabBar().buttons()["Home"].tap();
-  UIALogger.logPass("UITabBar Collection loaded");
+UIALogger.logStart(testCaseName + " Test");
+
+if (target.tabBar().buttons()["Collection"]!=null) {
+    target.tabBar().buttons()["Collection"].tap();
+    target.mainWindow().buttons()["Accessories"].tap();
+    target.navigationBar().leftButton().tap();
+    target.mainWindow().buttons()["Figures"].tap();
+    target.navigationBar().leftButton().tap();
+    target.mainWindow().buttons()["Morals"].tap();
+    target.navigationBar().leftButton().tap();
+    target.tabBar().buttons()["Home"].tap();
+    
+    UIALogger.logPass(testCaseName + " loaded"); 
 } else {
-  UIALogger.logFail("UITabBar Collection NOT loaded");
+    UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
+
+target.tabBar().buttons()["Home"].tap();
