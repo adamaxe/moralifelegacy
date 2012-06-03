@@ -39,6 +39,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	IBOutlet UIButton *moralButton;					/**< moral button list selection for ViewController dismissal */
 	IBOutlet UIButton *moralReferenceButton;				/**< moral button which selects moral reference */
     
+    IBOutlet UIButton *moralHistoryButton;  /**< moral history button which selects previous entries */
 	IBOutlet StructuredTextField *choiceTextField;			/**< overloaded text field for choice title */
 	IBOutlet UITextView *descriptionTextView;				/**< UITextView for choice's extended description */
 	IBOutlet UISlider *severitySlider;					/**< UISlider for choice's severity */
@@ -100,7 +101,15 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	choiceTextField.maxLength = kChoiceTextFieldLength;
 	choiceTextField.accessibilityHint = NSLocalizedString(@"ChoiceScreenChoiceTextFieldHint",@"Hint for Choice textField");
 	choiceTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenChoiceTextFieldLabel",@"Label for Choice textField");
-	descriptionTextView.delegate = self;
+
+    moralReferenceButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonHint",@"Hint for Moral Reference button");	
+	moralReferenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonLabel",@"Label for Moral Reference button");	
+
+    moralHistoryButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonHint",@"Hint for Moral History button");	
+	moralHistoryButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonLabel",@"Label for Moral History button");	
+
+    
+    descriptionTextView.delegate = self;
 	descriptionTextView.accessibilityHint =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewHint",@"Hint for Description textField");
 	descriptionTextView.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewLabel",@"Label for Description textField");
     
@@ -972,6 +981,8 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 }
 
 - (void)viewDidUnload {
+    [moralHistoryButton release];
+    moralHistoryButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -981,6 +992,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     [choiceKey release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
 	[severityLabelDescriptions release];
+    [moralHistoryButton release];
 	[super dealloc];
 }
 

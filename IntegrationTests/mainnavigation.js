@@ -34,10 +34,10 @@ UIALogger.logStart(testCaseName + " Test");
 if (target.tabBar().buttons()["Journal"]!=null){ 
     target.tabBar().buttons()["Journal"].tap();
     target.mainWindow().buttons()["Moral Choice"].tap();
-    target.mainWindow().buttons()["..."].tap();
+    target.mainWindow().buttons()["Moral History"].tap();
     target.mainWindow().buttons()["Previous"].tap();
-    target.mainWindow().buttons()["thoughtbubble smallest"].tap();
-    target.mainWindow().buttons()[2].tap();
+    target.mainWindow().buttons()["Moral Reference"].tap();
+    target.mainWindow().buttons()["Previous"].tap();
     target.mainWindow().buttons()["Select a Virtue"].tap();
     target.mainWindow().buttons()["Previous"].tap();    
     target.navigationBar().rightButton().tap();

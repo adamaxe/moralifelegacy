@@ -134,7 +134,6 @@
 						<string key="NSFrame">{{176, 355}, {124, 60}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="IBUIContentStretch">{{1.3877799999999999e-17, 0}, {1, 1}}</string>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -536,6 +535,14 @@
 					<int key="connectionID">140</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">moralHistoryButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="648670369"/>
+					</object>
+					<int key="connectionID">143</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">severityChange:</string>
 						<reference key="source" ref="1055676634"/>
@@ -788,7 +795,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">142</int>
+			<int key="maxID">143</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -877,6 +884,7 @@
 							<string>doneButton</string>
 							<string>hideKeyboardButton</string>
 							<string>moralButton</string>
+							<string>moralHistoryButton</string>
 							<string>moralImageView</string>
 							<string>moralReferenceButton</string>
 							<string>severityLabel</string>
@@ -891,6 +899,7 @@
 							<string>StructuredTextField</string>
 							<string>UIImageView</string>
 							<string>UITextView</string>
+							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
@@ -914,6 +923,7 @@
 							<string>doneButton</string>
 							<string>hideKeyboardButton</string>
 							<string>moralButton</string>
+							<string>moralHistoryButton</string>
 							<string>moralImageView</string>
 							<string>moralReferenceButton</string>
 							<string>severityLabel</string>
@@ -959,6 +969,10 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">moralButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">moralHistoryButton</string>
 								<string key="candidateClassName">UIButton</string>
 							</object>
 							<object class="IBToOneOutletInfo">
