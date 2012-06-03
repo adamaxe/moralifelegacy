@@ -40,7 +40,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 	IBOutlet UILabel *rankLabel;					/**< rank frame label */    
     
 	IBOutlet UIButton *virtueButton;				/**< button surrounding picture frame to cue virtue thought */
-	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue virtue thought */
+	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue vice thought */
 	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceModalViewController */
     
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
