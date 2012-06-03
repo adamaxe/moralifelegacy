@@ -13,7 +13,6 @@ var target = UIATarget.localTarget().frontMostApp();
 var testSuiteName = "Choice Cancel";
 var testCaseName;
 
-
 UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
 
 testCaseName = testSuiteName + " Choice Clear";
