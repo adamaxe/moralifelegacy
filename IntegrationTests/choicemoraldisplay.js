@@ -17,7 +17,6 @@ target.tabBar().buttons()["Journal"].tap();
 target.mainWindow().buttons()["Moral Choice"].tap();
 
 testCaseName = testSuiteName + " choiceTextField Default Text";
-
 UIALogger.logStart(testCaseName + " Test");
 
 if(target.mainWindow().textFields()["Choice"].value() == "Enter in your good deed.") {
@@ -27,7 +26,6 @@ if(target.mainWindow().textFields()["Choice"].value() == "Enter in your good dee
 }
 
 testCaseName = testSuiteName + " moralButton Title Text";
-
 UIALogger.logStart(testCaseName + " Test");
 
 if(target.mainWindow().buttons()["Select a Virtue"].value() == "") {

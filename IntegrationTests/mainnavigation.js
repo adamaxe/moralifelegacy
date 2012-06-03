@@ -13,7 +13,7 @@ var testCaseName;
 
 UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
 
-testCaseName = testSuiteName + " Home Screen";
+testCaseName = testSuiteName + " ConscienceView (Home)";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -25,7 +25,7 @@ if (target.tabBar().buttons()["Home"]!=null) {
    UIALogger.logFail(testCaseName + " NOT loaded"); 
 } 
 
-testCaseName = testSuiteName + " Rank Button";
+testCaseName = testSuiteName + " rankButton";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -37,7 +37,7 @@ if (target.mainWindow().buttons()["Rank"]!=null) {
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 } 
 
-testCaseName = testSuiteName + " Vice Button";
+testCaseName = testSuiteName + " viceButton";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -49,7 +49,7 @@ if (target.mainWindow().buttons()["Vice"]!=null) {
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 } 
 
-testCaseName = testSuiteName + " Virtue Button";
+testCaseName = testSuiteName + " virtueButton";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -61,7 +61,7 @@ if (target.mainWindow().buttons()["Virtue"]!=null) {
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 } 
 
-testCaseName = testSuiteName + " Journal Screen";
+testCaseName = testSuiteName + " ChoiceInit (Journal)";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -82,7 +82,7 @@ if (target.tabBar().buttons()["Journal"]!=null){
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-testCaseName = testSuiteName + " Moral Choice Screen";
+testCaseName = testSuiteName + " Choice (Moral)";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -104,7 +104,7 @@ if (target.tabBar().buttons()["Journal"]!=null){
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-testCaseName = testSuiteName + " Immoral Choice Screen";
+testCaseName = testSuiteName + " Choice (Immoral)";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -138,7 +138,7 @@ if (target.tabBar().buttons()["Journal"]!=null){
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-testCaseName = testSuiteName + " Collection Screen";
+testCaseName = testSuiteName + " ChoiceList (All Choices)";
 
 UIALogger.logStart(testCaseName + " Test");
 

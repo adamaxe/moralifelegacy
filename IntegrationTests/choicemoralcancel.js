@@ -10,12 +10,12 @@ Moralife UI Choice Moral Cancel validation
 var target = UIATarget.localTarget();
 
 var target = UIATarget.localTarget().frontMostApp();
-var testSuiteName = "Choice Cancel";
+var testSuiteName = "Choice - Cancel";
 var testCaseName;
 
 UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
 
-testCaseName = testSuiteName + " Choice Clear";
+testCaseName = testSuiteName + " choiceTextField Clear";
 
 target.tabBar().buttons()["Journal"].tap();
 target.mainWindow().buttons()["Moral Choice"].tap();
@@ -42,7 +42,7 @@ if(target.mainWindow().textFields()["Choice"].value() == choiceCancel) {
 	UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
 
-testCaseName = testSuiteName + " Virtue Severity Clear";
+testCaseName = testSuiteName + " severitySlider Clear";
 UIALogger.logStart(testCaseName + " Test");
 
 var virtueSeverity = 0.25;
@@ -59,7 +59,7 @@ if(target.mainWindow().sliders()["Virtue Severity"].value() == virtueSeveritySli
     UIALogger.logPass(testCaseName + " cleared correctly");     
 }
 
-testCaseName = testSuiteName + " Choice Description Clear";
+testCaseName = testSuiteName + " descriptionTextView Clear";
 UIALogger.logStart(testCaseName + " Test");
 
 target.mainWindow().textViews()["Description"].tap();
@@ -86,8 +86,7 @@ if(target.mainWindow().textViews()["Description"].value() == moralDescription) {
 UIALogger.logMessage("Details Clear Testing");
 target.navigationBar().rightButton().tap();
 
-
-testCaseName = testSuiteName + " Choice Justification Clear";
+testCaseName = testSuiteName + " justificationTextField Clear";
 UIALogger.logStart(testCaseName + " Test");
 
 target.mainWindow().textFields()["Justification"].tap();
@@ -111,7 +110,7 @@ if(target.mainWindow().textFields()["Justification"].value() == justification) {
     UIALogger.logPass(testCaseName + " cleared correctly");     
 }
 
-testCaseName = testSuiteName + " Choice Consequence Clear";
+testCaseName = testSuiteName + " consequenceTextField Clear";
 UIALogger.logStart(testCaseName + " Test");
 
 target.mainWindow().textFields()["Consequence"].tap();
@@ -135,7 +134,7 @@ if(target.mainWindow().textFields()["Consequence"].value() == consequenceCancel)
 	UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
 
-testCaseName = testSuiteName + " Influence Clear";
+testCaseName = testSuiteName + " influenceSlider Clear";
 UIALogger.logStart(testCaseName + " Test");
 
 var influence = 0.25;
