@@ -72,6 +72,12 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	[moralSortButton setTitle:@"Sort" forState: UIControlStateNormal];
 	[moralOrderButton setTitle:@"Order" forState: UIControlStateNormal];
     
+    moralSortButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenSortButtonLabel",@"Label for Sort Button");
+	moralSortButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenSortButtonHint",@"Hint for Sort Button");
+
+    moralOrderButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenOrderButtonLabel",@"Label for Order Button");
+	moralOrderButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenOrderButtonHint",@"Hint for Order Button");
+    
 	choiceSearchBar.barStyle = UIBarStyleBlack;
 	choiceSearchBar.delegate = self;
 	choiceSearchBar.showsCancelButton = NO;

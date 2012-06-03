@@ -79,7 +79,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	goodChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",@"Hint for Good Choice Button");
 	badChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",@"Hint for Bad Choice Button");
 	choiceListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",@"Hint for Choice List Button");		
-
 	goodChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",@"Label for Good Choice Button");
 	badChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",@"Label for Bad Choice Button");
 	choiceListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",@"Label for Choice List Button");
