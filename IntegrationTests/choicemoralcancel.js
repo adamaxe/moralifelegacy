@@ -7,19 +7,18 @@ Moralife UI Choice Moral Cancel validation
 @file choicemoralcancel.js
 */
 
-var target = UIATarget.localTarget();
+#import "include/uiajsinclude.js"
 
-var target = UIATarget.localTarget().frontMostApp();
 var testSuiteName = "Choice - Cancel";
 var testCaseName;
 
-UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
+UIALogger.logMessage(testSuiteName + " Testing Begins");
 
 testCaseName = testSuiteName + " choiceTextField Clear";
 
-target.tabBar().buttons()["Journal"].tap();
-target.mainWindow().buttons()["Moral Choice"].tap();
-target.mainWindow().textFields()["Choice"].tap();
+app.tabBar().buttons()["Journal"].tap();
+window.buttons()["Moral Choice"].tap();
+window.textFields()["Choice"].tap();
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -28,16 +27,16 @@ var choiceCancel = "Choice Cancel 1";
 for (i = 0; i < choiceCancel.length; i++)
 {
     var strChar = choiceCancel.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.keyboard().typeString("\n");
+app.keyboard().typeString("\n");
 
-target.mainWindow().buttons()["Cancel"].tap();
-target.mainWindow().buttons()["Moral Choice"].tap();
+window.buttons()["Cancel"].tap();
+window.buttons()["Moral Choice"].tap();
 
-if(target.mainWindow().textFields()["Choice"].value() == choiceCancel) {
-	UIALogger.logFail(testCaseName + " cleared incorrectly: " + target.mainWindow().textFields()["Choice"].value());
+if(window.textFields()["Choice"].value() == choiceCancel) {
+	UIALogger.logFail(testCaseName + " cleared incorrectly: " + window.textFields()["Choice"].value());
 } else {
 	UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
@@ -48,13 +47,13 @@ UIALogger.logStart(testCaseName + " Test");
 var virtueSeverity = 0.25;
 var virtueSeveritySliderValue = (virtueSeverity * 100) + "%";
 
-target.mainWindow().sliders()["Virtue Severity"].dragToValue(virtueSeverity);
+window.sliders()["Virtue Severity"].dragToValue(virtueSeverity);
 
-target.mainWindow().buttons()["Cancel"].tap();
-target.mainWindow().buttons()["Moral Choice"].tap();
+window.buttons()["Cancel"].tap();
+window.buttons()["Moral Choice"].tap();
 
-if(target.mainWindow().sliders()["Virtue Severity"].value() == virtueSeveritySliderValue) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + target.frontMostApp().mainWindow().sliders()["Virtue Severity"].value());
+if(window.sliders()["Virtue Severity"].value() == virtueSeveritySliderValue) {
+    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().sliders()["Virtue Severity"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly");     
 }
@@ -62,50 +61,50 @@ if(target.mainWindow().sliders()["Virtue Severity"].value() == virtueSeveritySli
 testCaseName = testSuiteName + " descriptionTextView Clear";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().textViews()["Description"].tap();
+window.textViews()["Description"].tap();
 
 var moralDescription = "Moral test description 1\n\nLine 2";
 
 for (i = 0; i < moralDescription.length; i++)
 {
     var strChar = moralDescription.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.mainWindow().buttons()["Done"].tap();
+window.buttons()["Done"].tap();
 
-target.mainWindow().buttons()["Cancel"].tap();
-target.mainWindow().buttons()["Moral Choice"].tap();
+window.buttons()["Cancel"].tap();
+window.buttons()["Moral Choice"].tap();
 
-if(target.mainWindow().textViews()["Description"].value() == moralDescription) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + target.frontMostApp().mainWindow().textViews()["Description"].value());
+if(window.textViews()["Description"].value() == moralDescription) {
+    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().textViews()["Description"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
 
 UIALogger.logMessage("Details Clear Testing");
-target.navigationBar().rightButton().tap();
+app.navigationBar().rightButton().tap();
 
 testCaseName = testSuiteName + " justificationTextField Clear";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().textFields()["Justification"].tap();
+window.textFields()["Justification"].tap();
 
 var justification = "Justification test 1";
 
 for (i = 0; i < justification.length; i++)
 {
     var strChar = justification.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.keyboard().typeString("\n");
+app.keyboard().typeString("\n");
 
-target.mainWindow().buttons()["Cancel"].tap();
-target.navigationBar().rightButton().tap();
+window.buttons()["Cancel"].tap();
+app.navigationBar().rightButton().tap();
 
-if(target.mainWindow().textFields()["Justification"].value() == justification) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + target.frontMostApp().mainWindow().textFields()["Justification"].value());
+if(window.textFields()["Justification"].value() == justification) {
+    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().textFields()["Justification"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly");     
 }
@@ -113,23 +112,23 @@ if(target.mainWindow().textFields()["Justification"].value() == justification) {
 testCaseName = testSuiteName + " consequenceTextField Clear";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().textFields()["Consequence"].tap();
+window.textFields()["Consequence"].tap();
 
 var consequenceCancel = "Consequence Cancel 1";
 
 for (i = 0; i < consequenceCancel.length; i++)
 {
     var strChar = consequenceCancel.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.keyboard().typeString("\n");
+app.keyboard().typeString("\n");
 
-target.mainWindow().buttons()["Cancel"].tap();
-target.navigationBar().rightButton().tap();
+window.buttons()["Cancel"].tap();
+app.navigationBar().rightButton().tap();
 
-if(target.mainWindow().textFields()["Consequence"].value() == consequenceCancel) {
-	UIALogger.logFail(testCaseName + " cleared incorrectly: " + target.frontMostApp().mainWindow().textFields()["Consequence"].value());
+if(window.textFields()["Consequence"].value() == consequenceCancel) {
+	UIALogger.logFail(testCaseName + " cleared incorrectly: " + app.frontMostApp().mainWindow().textFields()["Consequence"].value());
 } else {
 	UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
@@ -140,19 +139,19 @@ UIALogger.logStart(testCaseName + " Test");
 var influence = 0.25;
 var influenceSliderValue = (influence * 100) + "%";
 
-target.mainWindow().sliders()["Influence"].dragToValue(influence);
+window.sliders()["Influence"].dragToValue(influence);
 
-target.mainWindow().buttons()["Cancel"].tap();
-target.navigationBar().rightButton().tap();
+window.buttons()["Cancel"].tap();
+app.navigationBar().rightButton().tap();
 
-if(target.mainWindow().sliders()["Influence"].value() == influenceSliderValue) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + target.frontMostApp().mainWindow().sliders()["Influence"].value());
+if(window.sliders()["Influence"].value() == influenceSliderValue) {
+    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().sliders()["Influence"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
 
-target.mainWindow().sliders()["Influence"].dragToValue(influence);
+window.sliders()["Influence"].dragToValue(influence);
 
-target.mainWindow().buttons()["Cancel"].tap();
-target.mainWindow().buttons()["Cancel"].tap();
-target.tabBar().buttons()["Home"].tap();
+window.buttons()["Cancel"].tap();
+window.buttons()["Cancel"].tap();
+app.tabBar().buttons()["Home"].tap();

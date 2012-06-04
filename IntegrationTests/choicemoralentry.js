@@ -7,51 +7,52 @@ Moralife UI Choice Moral Entry Validation
 @file choiceentrymoral.js
 */
 
-var target = UIATarget.localTarget().frontMostApp();
+#import "include/uiajsinclude.js"
+
 var testSuiteName = "Choice - Moral Entry";
 var testCaseName;
 
-UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
+UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-target.tabBar().buttons()["Journal"].tap();
+app.tabBar().buttons()["Journal"].tap();
 
-target.mainWindow().buttons()["Moral Choice"].tap();
+window.buttons()["Moral Choice"].tap();
 
 testCaseName = testSuiteName + " choiceTextField Entry";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().textFields()["Choice"].tap();
+window.textFields()["Choice"].tap();
 
 var moralName = "Test moral 1";
 
 for (i = 0; i < moralName.length; i++)
 {
     var strChar = moralName.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.keyboard().typeString("\n");
+app.keyboard().typeString("\n");
 
-if(target.mainWindow().textFields()["Choice"].value() == moralName) {
+if(window.textFields()["Choice"].value() == moralName) {
        UIALogger.logPass(testCaseName + " correct."); 
 } else {
-       UIALogger.logFail(testCaseName + " incorrect: " + target.mainWindow().textFields()["Choice"].value());
+       UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Choice"].value());
 }
 
 testCaseName = testSuiteName + " Virtue moralButton Selection";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().buttons()["Select a Virtue"].tap();
-target.mainWindow().searchBars()[0].tap();
+window.buttons()["Select a Virtue"].tap();
+window.searchBars()[0].tap();
 var moralType = "Aptitude\n";
 
 for (i = 0; i < moralType.length; i++)
 {
     var strChar = moralType.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.mainWindow().tableViews()["Empty list"].cells()["Aptitude, Ability, Excellence, Potential, Precision, Industriousness, Savvy, Talent"].tap();
+window.tableViews()["Empty list"].cells()["Aptitude, Ability, Excellence, Potential, Precision, Industriousness, Savvy, Talent"].tap();
 
 UIALogger.logPass(testCaseName + " Selected");
 
@@ -61,78 +62,78 @@ UIALogger.logStart(testCaseName + " Test");
 var virtueSeverity = 0.25;
 var virtueSeveritySliderValue = (virtueSeverity * 100) + "%";
 
-target.mainWindow().sliders()["Virtue Severity"].dragToValue(virtueSeverity);
+window.sliders()["Virtue Severity"].dragToValue(virtueSeverity);
 
-if(target.mainWindow().sliders()["Virtue Severity"].value() == virtueSeveritySliderValue) {
+if(window.sliders()["Virtue Severity"].value() == virtueSeveritySliderValue) {
        UIALogger.logPass(testCaseName + " correctly"); 
 } else {
-       UIALogger.logFail(testCaseName + " incorrectly: " + target.mainWindow().sliders()["Virtue Severity"].value());
+       UIALogger.logFail(testCaseName + " incorrectly: " + window.sliders()["Virtue Severity"].value());
 }
 
 testCaseName = testSuiteName + " Choice descriptionTextView Entry";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().textViews()["Description"].tap();
+window.textViews()["Description"].tap();
 
 var moralDescription = "Moral test description 1\n\nLine 2";
 
 for (i = 0; i < moralDescription.length; i++)
 {
     var strChar = moralDescription.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.mainWindow().buttons()["Done"].tap();
+window.buttons()["Done"].tap();
 
-if(target.mainWindow().textViews()["Description"].value() == moralDescription) {
+if(window.textViews()["Description"].value() == moralDescription) {
        UIALogger.logPass(testCaseName + " correct."); 
 } else {
-       UIALogger.logFail(testCaseName + " incorrect: " + target.mainWindow().textViews()["Description"].value());
+       UIALogger.logFail(testCaseName + " incorrect: " + window.textViews()["Description"].value());
 }
 
 UIALogger.logMessage("Details Entry Testing");
-target.navigationBar().rightButton().tap();
+app.navigationBar().rightButton().tap();
 
 testCaseName = testSuiteName + " Details justificationTextField Entry";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().textFields()["Justification"].tap();
+window.textFields()["Justification"].tap();
 
 var justification = "Justification test 1";
 
 for (i = 0; i < justification.length; i++)
 {
     var strChar = justification.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.keyboard().typeString("\n");
+app.keyboard().typeString("\n");
 
-if(target.mainWindow().textFields()["Justification"].value() == justification) {
+if(window.textFields()["Justification"].value() == justification) {
        UIALogger.logPass(testCaseName + " correct."); 
 } else {
-       UIALogger.logFail(testCaseName + " incorrect: " + target.mainWindow().textFields()["Justification"].value());
+       UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Justification"].value());
 }
 
 testCaseName = testSuiteName + " Details consequenceTextField Entry";
 UIALogger.logStart(testCaseName + " Test");
 
-target.mainWindow().textFields()["Consequence"].tap();
+window.textFields()["Consequence"].tap();
 
 var consequence = "Consequence test 1";
 
 for (i = 0; i < consequence.length; i++)
 {
     var strChar = consequence.charAt(i);
-    target.keyboard().typeString(strChar);
+    app.keyboard().typeString(strChar);
 }
 
-target.keyboard().typeString("\n");
+app.keyboard().typeString("\n");
 
-if(target.mainWindow().textFields()["Consequence"].value() == consequence) {
+if(window.textFields()["Consequence"].value() == consequence) {
        UIALogger.logPass(testCaseName + " correct."); 
 } else {
-       UIALogger.logFail(testCaseName + " incorrect: " + target.mainWindow().textFields()["Consequence"].value());
+       UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Consequence"].value());
 }
 
 testCaseName = testSuiteName + " Details influenceSlider Set";
@@ -141,49 +142,49 @@ UIALogger.logStart(testCaseName + " Test");
 var influence = 0.25;
 var influenceSliderValue = (influence * 100) + "%";
 
-target.mainWindow().sliders()["Influence"].dragToValue(influence);
+window.sliders()["Influence"].dragToValue(influence);
 
-if(target.mainWindow().sliders()["Influence"].value() == influenceSliderValue) {
+if(window.sliders()["Influence"].value() == influenceSliderValue) {
        UIALogger.logPass(testCaseName + " correctly."); 
 } else {
-       UIALogger.logFail(testCaseName + " incorrectly: " + target.mainWindow().sliders()["Influence"].value());
+       UIALogger.logFail(testCaseName + " incorrectly: " + window.sliders()["Influence"].value());
 }
 
-target.mainWindow().buttons()["Done"].tap();
+window.buttons()["Done"].tap();
 
 UIALogger.logMessage("Details Save Test");
 
 hasError = 0;
 
-target.navigationBar().rightButton().tap();
+app.navigationBar().rightButton().tap();
 
 testCaseName = testSuiteName + " Details justificationTextField Save";
 UIALogger.logStart(testCaseName + " Test");
 
-if(target.mainWindow().textFields()["Justification"].value() == justification) {
+if(window.textFields()["Justification"].value() == justification) {
        UIALogger.logPass(testCaseName + " succeeded.");
 } else {
-       UIALogger.logFail(testCaseName + " failed: " + target.mainWindow().textFields()["Justification"].value());
+       UIALogger.logFail(testCaseName + " failed: " + window.textFields()["Justification"].value());
 		hasError = 1;
 }
 
 testCaseName = testSuiteName + " Details consequenceTextField Save";
 UIALogger.logStart(testCaseName + " Test");
 
-if(target.mainWindow().textFields()["Consequence"].value() == consequence) {
+if(window.textFields()["Consequence"].value() == consequence) {
 	UIALogger.logPass(testCaseName + " succeeded."); 
 } else {
-	UIALogger.logFail(testCaseName + " failed: " + target.mainWindow().textFields()["Consequence"].value());
+	UIALogger.logFail(testCaseName + " failed: " + window.textFields()["Consequence"].value());
 	hasError = 1;
 }
 
 testCaseName = testSuiteName + " Details influenceSlider Save";
 UIALogger.logStart(testCaseName + " Test");
 
-if(target.mainWindow().sliders()["Influence"].value() == influenceSliderValue) {
+if(window.sliders()["Influence"].value() == influenceSliderValue) {
        UIALogger.logPass(testCaseName + " succeeded."); 
 } else {
-       UIALogger.logFail(testCaseName + " failed: " + target.mainWindow().sliders()["Influence"].value());
+       UIALogger.logFail(testCaseName + " failed: " + window.sliders()["Influence"].value());
 		hasError = 1;
 }
 
@@ -193,8 +194,8 @@ if(hasError){
 	UIALogger.logMessage("All Choice Detail fields saved correctly.");
 }
 
-target.mainWindow().textFields()["Justification"].tap();
-target.keyboard().typeString("\n");
+window.textFields()["Justification"].tap();
+app.keyboard().typeString("\n");
 
-target.mainWindow().buttons()["Done"].tap();
-target.mainWindow().buttons()["Done"].tap();
+window.buttons()["Done"].tap();
+window.buttons()["Done"].tap();

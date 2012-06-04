@@ -7,18 +7,19 @@ Moralife UI Main Navigation traversal validation
 @file mainnavigation.js
 */
 
-var target = UIATarget.localTarget().frontMostApp();
+#import "include/uiajsinclude.js"
+
 var testSuiteName = "Main UITabBar Navigation";
 var testCaseName;
 
-UIALogger.logMessage("MoraLife " + testSuiteName + " Testing Begins");
+UIALogger.logMessage(testSuiteName + " Testing Begins");
 
 testCaseName = testSuiteName + " ConscienceView (Home)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.tabBar().buttons()["Home"]!=null) {
-    target.tabBar().buttons()["Home"].tap();
+if (app.tabBar().buttons()["Home"]!=null) {
+    app.tabBar().buttons()["Home"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -29,8 +30,8 @@ testCaseName = testSuiteName + " rankButton";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.mainWindow().buttons()["Rank"]!=null) {
-    target.mainWindow().buttons()["Rank"].tap();
+if (window.buttons()["Rank"]!=null) {
+    window.buttons()["Rank"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -41,8 +42,8 @@ testCaseName = testSuiteName + " viceButton";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.mainWindow().buttons()["Vice"]!=null) {
-    target.mainWindow().buttons()["Vice"].tap();
+if (window.buttons()["Vice"]!=null) {
+    window.buttons()["Vice"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -53,8 +54,8 @@ testCaseName = testSuiteName + " virtueButton";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.mainWindow().buttons()["Virtue"]!=null) {
-    target.mainWindow().buttons()["Virtue"].tap();
+if (window.buttons()["Virtue"]!=null) {
+    window.buttons()["Virtue"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -65,17 +66,17 @@ testCaseName = testSuiteName + " ChoiceInit (Journal)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.tabBar().buttons()["Journal"]!=null){ 
+if (app.tabBar().buttons()["Journal"]!=null){ 
 
-    target.tabBar().buttons()["Journal"].tap();
-    target.mainWindow().buttons()["Moral Choice"].tap();
-    target.navigationBar().leftButton().tap();
+    app.tabBar().buttons()["Journal"].tap();
+    window.buttons()["Moral Choice"].tap();
+    app.navigationBar().leftButton().tap();
         
-    target.mainWindow().buttons()["Immoral Choice"].tap();
-    target.navigationBar().leftButton().tap();    
+    window.buttons()["Immoral Choice"].tap();
+    app.navigationBar().leftButton().tap();    
     
-    target.mainWindow().buttons()["All Choices"].tap();
-    target.navigationBar().leftButton().tap();
+    window.buttons()["All Choices"].tap();
+    app.navigationBar().leftButton().tap();
 
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -86,18 +87,18 @@ testCaseName = testSuiteName + " Choice (Moral)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.tabBar().buttons()["Journal"]!=null){ 
-    target.tabBar().buttons()["Journal"].tap();
-    target.mainWindow().buttons()["Moral Choice"].tap();
-    target.mainWindow().buttons()["Moral History"].tap();
-    target.mainWindow().buttons()["Previous"].tap();
-    target.mainWindow().buttons()["Moral Reference"].tap();
-    target.mainWindow().buttons()["Previous"].tap();
-    target.mainWindow().buttons()["Select a Virtue"].tap();
-    target.mainWindow().buttons()["Previous"].tap();    
-    target.navigationBar().rightButton().tap();
-    target.navigationBar().leftButton().tap();
-    target.navigationBar().leftButton().tap();
+if (app.tabBar().buttons()["Journal"]!=null){ 
+    app.tabBar().buttons()["Journal"].tap();
+    window.buttons()["Moral Choice"].tap();
+    window.buttons()["Moral History"].tap();
+    window.buttons()["Previous"].tap();
+    window.buttons()["Moral Reference"].tap();
+    window.buttons()["Previous"].tap();
+    window.buttons()["Select a Virtue"].tap();
+    window.buttons()["Previous"].tap();    
+    app.navigationBar().rightButton().tap();
+    app.navigationBar().leftButton().tap();
+    app.navigationBar().leftButton().tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -108,13 +109,13 @@ testCaseName = testSuiteName + " Choice (Immoral)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.tabBar().buttons()["Journal"]!=null){ 
-    target.tabBar().buttons()["Journal"].tap();    
+if (app.tabBar().buttons()["Journal"]!=null){ 
+    app.tabBar().buttons()["Journal"].tap();    
     
-    target.mainWindow().buttons()["Immoral Choice"].tap();
-    target.navigationBar().rightButton().tap();
-    target.navigationBar().leftButton().tap();
-    target.navigationBar().leftButton().tap();
+    window.buttons()["Immoral Choice"].tap();
+    app.navigationBar().rightButton().tap();
+    app.navigationBar().leftButton().tap();
+    app.navigationBar().leftButton().tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -125,13 +126,13 @@ testCaseName = testSuiteName + " All Choices Screen";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.tabBar().buttons()["Journal"]!=null){ 
-    target.tabBar().buttons()["Journal"].tap();
+if (app.tabBar().buttons()["Journal"]!=null){ 
+    app.tabBar().buttons()["Journal"].tap();
     
-    target.mainWindow().buttons()["All Choices"].tap();
-    target.mainWindow().buttons()["Sort"].tap();
-    target.mainWindow().buttons()["Order"].tap();    
-    target.navigationBar().leftButton().tap();
+    window.buttons()["All Choices"].tap();
+    window.buttons()["Sort"].tap();
+    window.buttons()["Order"].tap();    
+    app.navigationBar().leftButton().tap();
 
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -142,19 +143,19 @@ testCaseName = testSuiteName + " ChoiceList (All Choices)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (target.tabBar().buttons()["Collection"]!=null) {
-    target.tabBar().buttons()["Collection"].tap();
-    target.mainWindow().buttons()["Accessories"].tap();
-    target.navigationBar().leftButton().tap();
-    target.mainWindow().buttons()["Figures"].tap();
-    target.navigationBar().leftButton().tap();
-    target.mainWindow().buttons()["Morals"].tap();
-    target.navigationBar().leftButton().tap();
-    target.tabBar().buttons()["Home"].tap();
+if (app.tabBar().buttons()["Collection"]!=null) {
+    app.tabBar().buttons()["Collection"].tap();
+    window.buttons()["Accessories"].tap();
+    app.navigationBar().leftButton().tap();
+    window.buttons()["Figures"].tap();
+    app.navigationBar().leftButton().tap();
+    window.buttons()["Morals"].tap();
+    app.navigationBar().leftButton().tap();
+    app.tabBar().buttons()["Home"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-target.tabBar().buttons()["Home"].tap();
+app.tabBar().buttons()["Home"].tap();
