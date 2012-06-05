@@ -2977,6 +2977,8 @@
 		5EA542291380BB13009077B7 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		5EA5422A1380BB13009077B7 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		5EA639B612625D9100C72419 /* button-large-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-large-down.png"; path = "Resources/images/interface/button-large-down.png"; sourceTree = "<group>"; };
+		5EA696DB157DFF440075115F /* helpscreendismissals.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = helpscreendismissals.js; sourceTree = "<group>"; };
+		5EA696DC157DFF440075115F /* introcompletion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = introcompletion.js; sourceTree = "<group>"; };
 		5EA90DD612B31275005F82A4 /* icon-accessoriesani1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani1.png"; path = "Resources/images/interface/icons/icon-accessoriesani1.png"; sourceTree = "<group>"; };
 		5EA90DD712B31275005F82A4 /* icon-accessoriesani2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani2.png"; path = "Resources/images/interface/icons/icon-accessoriesani2.png"; sourceTree = "<group>"; };
 		5EA90DD812B31275005F82A4 /* icon-accessoriesani3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani3.png"; path = "Resources/images/interface/icons/icon-accessoriesani3.png"; sourceTree = "<group>"; };
@@ -3101,7 +3103,6 @@
 		5EC55447157748FF004BF692 /* choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoraldisplay.js; sourceTree = "<group>"; };
 		5EC55448157748FF004BF692 /* choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralentry.js; sourceTree = "<group>"; };
 		5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoraldisplay.js; sourceTree = "<group>"; };
-		5EC5544A157C6CDC004BF692 /* introandhelp.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = introandhelp.js; sourceTree = "<group>"; };
 		5EC91DE5124D91A1000FB490 /* con-bassclef-nose-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-bassclef-nose-sm.png"; path = "Resources/images/conscience/icons/con-bassclef-nose-sm.png"; sourceTree = "<group>"; };
 		5EC9909412D4190200F5F245 /* card-confidence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-confidence.png"; path = "Resources/images/interface/cards/card-confidence.png"; sourceTree = "<group>"; };
 		5EC9909512D4190200F5F245 /* card-courage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-courage.png"; path = "Resources/images/interface/cards/card-courage.png"; sourceTree = "<group>"; };
@@ -5158,7 +5159,8 @@
 			isa = PBXGroup;
 			children = (
 				5EC5543915774064004BF692 /* include */,
-				5EC5544A157C6CDC004BF692 /* introandhelp.js */,
+				5EA696DC157DFF440075115F /* introcompletion.js */,
+				5EA696DB157DFF440075115F /* helpscreendismissals.js */,
 				5EC5543C15774064004BF692 /* mainnavigation.js */,
 				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
 				5EC55447157748FF004BF692 /* choicemoraldisplay.js */,

@@ -1,44 +1,27 @@
 /**
-Moralife UI Main Navigation traversal validation
+Moralife Help Screen dismissals
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
 @date 05/28/2012
-@file mainnavigation.js
+@file helpscreendismissals.js
 */
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Intro and Help Screen Dismissal";
+var testSuiteName = "Help Screen Dismissal";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-testCaseName = testSuiteName + " UITabBar unloaded";
+testCaseName = testSuiteName + " UITabBar loaded";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (!app.tabBar().buttons()["Home"].checkIsValid()){
+if (app.tabBar().buttons()["Home"].checkIsValid()){
 	
 	UIALogger.logPass(testCaseName + " correctly."); 
 	
-    target.delay(20.0);
-	
-	testCaseName = testSuiteName + " Introduction skip";
-    UIALogger.logStart(testCaseName + " Test");
-    
-    if (window.buttons()["Introduction skip"].checkIsValid()){ 
-
-        window.buttons()["Introduction skip"].tap();
-		
-        UIALogger.logPass(testCaseName + " available."); 
-
-    } else {
-        UIALogger.logFail(testCaseName + " unavailable."); 
-    }
-		
-    target.delay(5.0);
-
     testCaseName = testSuiteName + " Initial Help Screens";
     UIALogger.logStart(testCaseName + " Test");
         
@@ -53,8 +36,8 @@ if (!app.tabBar().buttons()["Home"].checkIsValid()){
         app.tabBar().buttons()["Collection"].tap();
         window.buttons()["Previous"].tap();
         app.tabBar().buttons()["Home"].tap();
-        window.buttons()["Previous"].tap();
         target.tap({x:130.00, y:300.00});
+        window.buttons()["Previous"].tap();
         window.buttons()["Commissary"].tap();
         window.buttons()["Features"].tap();
         window.buttons()["Previous"].tap();
@@ -67,25 +50,6 @@ if (!app.tabBar().buttons()["Home"].checkIsValid()){
         window.buttons()["Previous"].tap();
         window.buttons()["Moral Report"].tap();
         window.buttons()["Previous"].tap();
-
-        
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["icon customization"].tap();
-//        window.buttons()["icon features"].tap();
-//        window.buttons()["icon eye"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["icon rank"].tap();
-//        window.buttons()["icon placesani1"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["icon piechart"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Previous"].tap();
                 
         UIALogger.logPass(testCaseName + " passed."); 
         
