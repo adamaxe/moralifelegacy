@@ -7,7 +7,6 @@ var window = app.mainWindow();
 //Retrieve view elements 
 var view = window.elements()[0]; 
 
-UIALogger.logStart("MoraLife Integration Testing Begins");
 //UIATarget.localTarget().frontMostApp().logElementTree();
 
 //Generic tap events take a parameter that must contain an X and Y value

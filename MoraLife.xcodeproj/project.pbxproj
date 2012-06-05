@@ -3101,6 +3101,7 @@
 		5EC55447157748FF004BF692 /* choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoraldisplay.js; sourceTree = "<group>"; };
 		5EC55448157748FF004BF692 /* choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralentry.js; sourceTree = "<group>"; };
 		5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoraldisplay.js; sourceTree = "<group>"; };
+		5EC5544A157C6CDC004BF692 /* introandhelp.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = introandhelp.js; sourceTree = "<group>"; };
 		5EC91DE5124D91A1000FB490 /* con-bassclef-nose-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-bassclef-nose-sm.png"; path = "Resources/images/conscience/icons/con-bassclef-nose-sm.png"; sourceTree = "<group>"; };
 		5EC9909412D4190200F5F245 /* card-confidence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-confidence.png"; path = "Resources/images/interface/cards/card-confidence.png"; sourceTree = "<group>"; };
 		5EC9909512D4190200F5F245 /* card-courage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-courage.png"; path = "Resources/images/interface/cards/card-courage.png"; sourceTree = "<group>"; };
@@ -5157,6 +5158,7 @@
 			isa = PBXGroup;
 			children = (
 				5EC5543915774064004BF692 /* include */,
+				5EC5544A157C6CDC004BF692 /* introandhelp.js */,
 				5EC5543C15774064004BF692 /* mainnavigation.js */,
 				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
 				5EC55447157748FF004BF692 /* choicemoraldisplay.js */,
