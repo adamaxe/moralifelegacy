@@ -2979,6 +2979,7 @@
 		5EA639B612625D9100C72419 /* button-large-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-large-down.png"; path = "Resources/images/interface/button-large-down.png"; sourceTree = "<group>"; };
 		5EA696DB157DFF440075115F /* helpscreendismissals.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = helpscreendismissals.js; sourceTree = "<group>"; };
 		5EA696DC157DFF440075115F /* introcompletion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = introcompletion.js; sourceTree = "<group>"; };
+		5EA696DD15804A190075115F /* consciencenavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = consciencenavigation.js; sourceTree = "<group>"; };
 		5EA90DD612B31275005F82A4 /* icon-accessoriesani1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani1.png"; path = "Resources/images/interface/icons/icon-accessoriesani1.png"; sourceTree = "<group>"; };
 		5EA90DD712B31275005F82A4 /* icon-accessoriesani2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani2.png"; path = "Resources/images/interface/icons/icon-accessoriesani2.png"; sourceTree = "<group>"; };
 		5EA90DD812B31275005F82A4 /* icon-accessoriesani3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani3.png"; path = "Resources/images/interface/icons/icon-accessoriesani3.png"; sourceTree = "<group>"; };
@@ -5163,6 +5164,7 @@
 				5EA696DB157DFF440075115F /* helpscreendismissals.js */,
 				5EC5543C15774064004BF692 /* mainnavigation.js */,
 				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
+				5EA696DD15804A190075115F /* consciencenavigation.js */,
 				5EC55447157748FF004BF692 /* choicemoraldisplay.js */,
 				5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */,
 				5EC55448157748FF004BF692 /* choicemoralentry.js */,

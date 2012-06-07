@@ -38,25 +38,35 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
         app.tabBar().buttons()["Home"].tap();
         target.tap({x:130.00, y:300.00});
         window.buttons()["Previous"].tap();
+
         window.buttons()["Commissary"].tap();
         window.buttons()["Features"].tap();
+        window.buttons()["Eye"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
-        window.buttons()["Colors"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
-        window.buttons()["Accessories"].tap();
+		target.delay(2.0);		
         window.buttons()["Previous"].tap();
-        window.buttons()["Previous"].tap();
+		        
         window.buttons()["Morathology"].tap();
+        window.buttons()["Orientation"].tap();
         window.buttons()["Previous"].tap();
+        window.buttons()["Previous"].tap();
+        window.buttons()["Previous"].tap();
+        
         window.buttons()["Moral Report"].tap();
         window.buttons()["Previous"].tap();
-                
+        window.buttons()["Previous"].tap();
+        window.buttons()["Previous"].tap();
+        
         UIALogger.logPass(testCaseName + " passed."); 
         
     } else {
         UIALogger.logFail(testCaseName + " incorrect."); 
     }
     
+    app.tabBar().buttons()["Home"].tap();
 		
 } else {
 	UIALogger.logFail(testCaseName + " incorrectly."); 

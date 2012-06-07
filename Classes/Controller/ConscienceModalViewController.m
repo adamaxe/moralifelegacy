@@ -29,15 +29,16 @@ User selection causes selectChoice to be called which sets the currentState vari
 	
 	IBOutlet UIView *thoughtModalArea;		/**< area in which user ConscienceView can float */
 	IBOutlet UILabel *statusMessage1;		/**< title at top of screen */
-	IBOutlet UIButton *labelButton1;		/**< label for menu choice button 1 */
-	IBOutlet UIButton *labelButton2;		/**< label for menu choice button 2 */
-	IBOutlet UIButton *labelButton3;		/**< label for menu choice button 3 */
-	IBOutlet UIButton *labelButton4;		/**< label for menu choice button 4 */
-	IBOutlet UIButton *button1;			/**< image for menu choice button 1 */
-	IBOutlet UIButton *button2;			/**< image for menu choice button 2 */
-	IBOutlet UIButton *button3;			/**< image for menu choice button 3 */
-	IBOutlet UIButton *button4;			/**< image for menu choice button 4 */
+	IBOutlet UIButton *labelButton1;		/**< label button for menu choice button 1 */
+	IBOutlet UIButton *labelButton2;		/**< label button for menu choice button 2 */
+	IBOutlet UIButton *labelButton3;		/**< label button for menu choice button 3 */
+	IBOutlet UIButton *labelButton4;		/**< label button for menu choice button 4 */
+	IBOutlet UIButton *button1;			/**< image button for menu choice button 1 */
+	IBOutlet UIButton *button2;			/**< image button for menu choice button 2 */
+	IBOutlet UIButton *button3;			/**< image button for menu choice button 3 */
+	IBOutlet UIButton *button4;			/**< image button for menu choice button 4 */
 	
+    IBOutlet UIButton *previousButton;  /**< button for previous screen */
 	int currentState;					/**< current state of the screen (which button names, etc.) */
 }
 
@@ -112,6 +113,10 @@ User selection causes selectChoice to be called which sets the currentState vari
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Eye", @"Brow", @"Bubble", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"6"];
 	[tempButtonLabels release];	
+    
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+
  
 }
 
@@ -641,6 +646,8 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
 }
 
 - (void)viewDidUnload {
+    [previousButton release];
+    previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -651,6 +658,7 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
 	[buttonImages release];
 	[buttonLabels release];
 	[screenTitles release];
+    [previousButton release];
 	[super dealloc];
 }
 

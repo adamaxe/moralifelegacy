@@ -21,7 +21,13 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 	IBOutlet UILabel *secondaryAccessoryLabel;	/**< label for secondary accessory outline */
 	IBOutlet UILabel *topAccessoryLabel;		/**< label for top accessory outline */
 	IBOutlet UILabel *bottomAccessoryLabel;		/**< label for bottom accessory outline */
-    
+
+    IBOutlet UIButton *topAccessoryButton;          /**< button for top accessory outline */
+    IBOutlet UIButton *primaryAccessoryButton;      /**< button for primary accessory outline */
+    IBOutlet UIButton *bottomAccessoryButton;       /**< button for bottom accessory outline */
+    IBOutlet UIButton *secondaryAccessoryButton;    /**< button for secondary accessory outline */
+    IBOutlet UIButton *previousButton;              /**< button for accessing previous screen */
+
     int accessorySlot;
 }
 
@@ -42,6 +48,19 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 	//Rotate accessoryLabels to be parallel to longest side	
 	primaryAccessoryLabel.transform = CGAffineTransformMakeRotation (3.14/2);
 	secondaryAccessoryLabel.transform = CGAffineTransformMakeRotation (-3.14/2);
+    
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    
+    primaryAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenPrimaryAccessoryHint",@"Hint for Primary Accessory Button");
+	primaryAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenPrimaryAccessoryLabel",@"Label for Primary Accessory Button");
+    secondaryAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenSecondaryAccessoryHint",@"Hint for Secondary Accessory Button");
+	secondaryAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenSecondaryAccessoryLabel",@"Label for Secondary Accessory Button");
+    topAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenTopAccessoryHint",@"Hint for Top Accessory Button");
+	topAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenTopAccessoryLabel",@"Label for Top Accessory Button");
+    bottomAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenBottomAccessoryHint",@"Hint for Bottom Accessory Button");
+	bottomAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenBottomAccessoryLabel",@"Label for Bottom Accessory Button");
+
 
 }
 
@@ -172,6 +191,16 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 }
 
 - (void)viewDidUnload {
+    [topAccessoryButton release];
+    topAccessoryButton = nil;
+    [primaryAccessoryButton release];
+    primaryAccessoryButton = nil;
+    [bottomAccessoryButton release];
+    bottomAccessoryButton = nil;
+    [secondaryAccessoryButton release];
+    secondaryAccessoryButton = nil;
+    [previousButton release];
+    previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -179,6 +208,11 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 
 - (void)dealloc {
 
+    [topAccessoryButton release];
+    [primaryAccessoryButton release];
+    [bottomAccessoryButton release];
+    [secondaryAccessoryButton release];
+    [previousButton release];
     [super dealloc];
 }
 

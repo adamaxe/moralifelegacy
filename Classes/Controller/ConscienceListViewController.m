@@ -37,6 +37,7 @@ User can filter list by only things that are affordable to currentFunds.
 	NSMutableArray *tableDataCosts;		/**< array for filtering item cost */
     
 	IBOutlet UITableView *choicesTableView;	/**< tableview of choices */
+    IBOutlet UIButton *previousButton;
     
 	IBOutlet UIView *thoughtModalArea;			/**< area in which user ConscienceView can float */
 	IBOutlet UIButton *fundsButton;			/**< allow User to filter only affordable choices */
@@ -84,6 +85,9 @@ User can filter list by only things that are affordable to currentFunds.
 
 	//Display available ethicals to User
 	[fundsButton setTitle:[NSString stringWithFormat:@"%dε", currentFunds] forState:UIControlStateNormal];
+    
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
     
 }
 
@@ -606,6 +610,8 @@ Implementation: Retrieve User's current ethicals from UserData
 
 - (void)viewDidUnload
 {
+    [previousButton release];
+    previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -625,6 +631,7 @@ Implementation: Retrieve User's current ethicals from UserData
 	[choiceIDs release], choiceImages = nil;
 	[choiceSubtitles release], choiceSubtitles = nil;	
 	[choiceCosts release], choiceCosts = nil;
+    [previousButton release];
 	[super dealloc];
 }
 
