@@ -881,6 +881,7 @@ Implementation:  Return conscience to view
     
     //Set NSUserDefaults indicating intro has been completed.
     [prefs setBool:FALSE forKey:@"firstLaunch"];
+    [prefs removeObjectForKey:@"introStateRestore"];
 
     [self animateStatusText];
 
