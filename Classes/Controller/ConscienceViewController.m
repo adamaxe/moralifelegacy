@@ -117,6 +117,15 @@ static int thoughtVersion = 0;
     viceImage.alpha = 1;
     rankImage.alpha = 1;
     
+    //If this is the first time that the app, then show the intro
+    NSObject *firstLaunchCheck = [prefs objectForKey:@"firstLaunch"];
+    
+    if (firstLaunchCheck == nil) {
+        
+        [self showIntroView];
+        
+    }  
+    
     [self createWelcomeMessage];
     
 }
@@ -135,15 +144,6 @@ static int thoughtVersion = 0;
 //                                                     name: UIApplicationWillEnterForegroundNotification
 //                                                   object: nil];
 //	}
-    
-    //If this is the first time that the app, then show the intro
-    NSObject *firstLaunchCheck = [prefs objectForKey:@"firstLaunch"];
-    
-    if (firstLaunchCheck == nil) {
-        
-        [self showIntroView];
-        
-    }    
                 
 	initialConscienceView.alpha = 0;
 	
