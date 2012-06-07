@@ -134,9 +134,9 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	[dilemmaListTableView reloadData];
 
 	//If this is the first time in Morathology, then show the intro
-	NSObject *firstLaunchCheck = [prefs objectForKey:@"firstMorathology"];
+	NSObject *firstMorathologyCheck = [prefs objectForKey:@"firstMorathology"];
     
-	if (firstLaunchCheck == nil) {
+	if (firstMorathologyCheck == nil) {
 
 		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
 		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];

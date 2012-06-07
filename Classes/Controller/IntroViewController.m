@@ -879,6 +879,8 @@ Implementation:  Return conscience to view
     
     [UIView commitAnimations];
     
+    //Set NSUserDefaults indicating intro has been completed.
+    [prefs setBool:FALSE forKey:@"firstLaunch"];
 
     [self animateStatusText];
 
@@ -905,8 +907,6 @@ Implementation:  Return conscience to view
     appDelegate.userConscienceMind.mood = 60;
     appDelegate.userConscienceMind.enthusiasm = 60;
 
-    //Set NSUserDefaults indicating intro has been completed.
-    [prefs setBool:FALSE forKey:@"firstLaunch"];
     messageState = -1;
     if (self.thoughtChangeTimer) {
         [self.thoughtChangeTimer invalidate];
