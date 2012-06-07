@@ -48,16 +48,24 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
         window.buttons()["Previous"].tap();
 		target.delay(2.0);		
         window.buttons()["Previous"].tap();
-		        
+		target.delay(2.0);		
+        window.buttons()["Previous"].tap();
+		
         window.buttons()["Morathology"].tap();
         window.buttons()["Orientation"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
+		target.delay(2.0);		
         window.buttons()["Previous"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
         
         window.buttons()["Moral Report"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
         
         UIALogger.logPass(testCaseName + " passed."); 
