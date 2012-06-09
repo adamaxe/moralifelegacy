@@ -1,5 +1,5 @@
 /**
-Moralife UI Choice Moral Entry Validation
+Moralife UI Choice Moral Entry Validation.  Test Data populated from uijsinclude
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -23,8 +23,6 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Choice"].tap();
 
-var moralName = "Test moral 1";
-
 for (i = 0; i < moralName.length; i++)
 {
     var strChar = moralName.charAt(i);
@@ -44,7 +42,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.buttons()["Select a Virtue"].tap();
 window.searchBars()[0].tap();
-var moralType = "Aptitude\n";
+var moralType = "Aptitude";
 
 for (i = 0; i < moralType.length; i++)
 {
@@ -52,15 +50,14 @@ for (i = 0; i < moralType.length; i++)
     app.keyboard().typeString(strChar);
 }
 
+app.keyboard().typeString("\n");
+
 window.tableViews()[0].cells()[0].tap();
 
 UIALogger.logPass(testCaseName + " Selected");
 
 testCaseName = testSuiteName + " Virtue severitySlider Set";
 UIALogger.logStart(testCaseName + " Test");
-
-var virtueSeverity = 0.25;
-var virtueSeveritySliderValue = (virtueSeverity * 100) + "%";
 
 window.sliders()["Virtue Severity"].dragToValue(virtueSeverity);
 
@@ -74,8 +71,6 @@ testCaseName = testSuiteName + " Choice descriptionTextView Entry";
 UIALogger.logStart(testCaseName + " Test");
 
 window.textViews()["Description"].tap();
-
-var moralDescription = "Moral test description 1\n\nLine 2";
 
 for (i = 0; i < moralDescription.length; i++)
 {
@@ -99,17 +94,15 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Justification"].tap();
 
-var justification = "Justification test 1";
-
-for (i = 0; i < justification.length; i++)
+for (i = 0; i < moralJustification.length; i++)
 {
-    var strChar = justification.charAt(i);
+    var strChar = moralJustification.charAt(i);
     app.keyboard().typeString(strChar);
 }
 
 app.keyboard().typeString("\n");
 
-if(window.textFields()["Justification"].value() == justification) {
+if(window.textFields()["Justification"].value() == moralJustification) {
        UIALogger.logPass(testCaseName + " correct."); 
 } else {
        UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Justification"].value());
@@ -120,17 +113,15 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Consequence"].tap();
 
-var consequence = "Consequence test 1";
-
-for (i = 0; i < consequence.length; i++)
+for (i = 0; i < moralConsequence.length; i++)
 {
-    var strChar = consequence.charAt(i);
+    var strChar = moralConsequence.charAt(i);
     app.keyboard().typeString(strChar);
 }
 
 app.keyboard().typeString("\n");
 
-if(window.textFields()["Consequence"].value() == consequence) {
+if(window.textFields()["Consequence"].value() == moralConsequence) {
        UIALogger.logPass(testCaseName + " correct."); 
 } else {
        UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Consequence"].value());
@@ -139,12 +130,9 @@ if(window.textFields()["Consequence"].value() == consequence) {
 testCaseName = testSuiteName + " Details influenceSlider Set";
 UIALogger.logStart(testCaseName + " Test");
 
-var influence = 0.25;
-var influenceSliderValue = (influence * 100) + "%";
+window.sliders()["Influence"].dragToValue(moralInfluence);
 
-window.sliders()["Influence"].dragToValue(influence);
-
-if(window.sliders()["Influence"].value() == influenceSliderValue) {
+if(window.sliders()["Influence"].value() == moralInfluenceSliderValue) {
        UIALogger.logPass(testCaseName + " correctly."); 
 } else {
        UIALogger.logFail(testCaseName + " incorrectly: " + window.sliders()["Influence"].value());
@@ -161,7 +149,7 @@ app.navigationBar().rightButton().tap();
 testCaseName = testSuiteName + " Details justificationTextField Save";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textFields()["Justification"].value() == justification) {
+if(window.textFields()["Justification"].value() == moralJustification) {
        UIALogger.logPass(testCaseName + " succeeded.");
 } else {
        UIALogger.logFail(testCaseName + " failed: " + window.textFields()["Justification"].value());
@@ -171,7 +159,7 @@ if(window.textFields()["Justification"].value() == justification) {
 testCaseName = testSuiteName + " Details consequenceTextField Save";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textFields()["Consequence"].value() == consequence) {
+if(window.textFields()["Consequence"].value() == moralConsequence) {
 	UIALogger.logPass(testCaseName + " succeeded."); 
 } else {
 	UIALogger.logFail(testCaseName + " failed: " + window.textFields()["Consequence"].value());
@@ -181,7 +169,7 @@ if(window.textFields()["Consequence"].value() == consequence) {
 testCaseName = testSuiteName + " Details influenceSlider Save";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.sliders()["Influence"].value() == influenceSliderValue) {
+if(window.sliders()["Influence"].value() == moralInfluenceSliderValue) {
        UIALogger.logPass(testCaseName + " succeeded."); 
 } else {
        UIALogger.logFail(testCaseName + " failed: " + window.sliders()["Influence"].value());
