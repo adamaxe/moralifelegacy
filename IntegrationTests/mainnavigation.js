@@ -139,19 +139,51 @@ if (app.tabBar().buttons()["Journal"].checkIsValid()){
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-testCaseName = testSuiteName + " ChoiceList (All Choices)";
+testCaseName = testSuiteName + " Collection Init";
 
 UIALogger.logStart(testCaseName + " Test");
 
 if (app.tabBar().buttons()["Collection"].checkIsValid()) {
     app.tabBar().buttons()["Collection"].tap();
+    
+    UIALogger.logPass(testCaseName + " loaded"); 
+} else {
+    UIALogger.logFail(testCaseName + " NOT loaded"); 
+}
+
+testCaseName = testSuiteName + " Accessories";
+
+UIALogger.logStart(testCaseName + " Test");
+
+if (app.tabBar().buttons()["Accessories"].checkIsValid()){ 
     window.buttons()["Accessories"].tap();
     app.navigationBar().leftButton().tap();
+    
+    UIALogger.logPass(testCaseName + " loaded"); 
+} else {
+    UIALogger.logFail(testCaseName + " NOT loaded"); 
+}
+
+testCaseName = testSuiteName + " Figures";
+
+UIALogger.logStart(testCaseName + " Test");
+
+if (app.tabBar().buttons()["Figures"].checkIsValid()){ 
     window.buttons()["Figures"].tap();
     app.navigationBar().leftButton().tap();
+    
+    UIALogger.logPass(testCaseName + " loaded"); 
+} else {
+    UIALogger.logFail(testCaseName + " NOT loaded"); 
+}
+
+testCaseName = testSuiteName + " Morals";
+
+UIALogger.logStart(testCaseName + " Test");
+
+if (app.tabBar().buttons()["Morals"].checkIsValid()){ 
     window.buttons()["Morals"].tap();
     app.navigationBar().leftButton().tap();
-    app.tabBar().buttons()["Home"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {

@@ -17,6 +17,17 @@ UIALogger.logMessage(testSuiteName + " Testing Begins");
 app.tabBar().buttons()["Journal"].tap();
 window.buttons()["Moral Choice"].tap();
 
+testCaseName = testSuiteName + " navigationBar Title Text";
+UIALogger.logStart(testCaseName + " Test");
+
+target.delay(2.0);
+
+if(app.navigationBar().name() == "Moral Choice") {
+	UIALogger.logPass(testCaseName + " correct"); 
+} else {
+	UIALogger.logFail(testCaseName + " incorrect: " + app.navigationBar().name());
+}
+
 testCaseName = testSuiteName + " choiceTextField Default Text";
 UIALogger.logStart(testCaseName + " Test");
 

@@ -3077,6 +3077,7 @@
 		5EB9BE9D12FD200600584F67 /* ReportPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportPieViewController.m; sourceTree = "<group>"; };
 		5EB9BE9E12FD200600584F67 /* ReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceViewController.h; sourceTree = "<group>"; };
 		5EB9BE9F12FD200700584F67 /* ReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceViewController.m; sourceTree = "<group>"; };
+		5EBBDC781582E9D700355FDE /* choicemoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralverify.js; sourceTree = "<group>"; };
 		5EBC21ED121394F3005E4644 /* con-ahimsa.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-ahimsa.svg"; path = "Resources/images/conscience/con-ahimsa.svg"; sourceTree = "<group>"; };
 		5EBC21EE121394F3005E4644 /* con-aum.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-aum.svg"; path = "Resources/images/conscience/con-aum.svg"; sourceTree = "<group>"; };
 		5EBC21EF121394F3005E4644 /* con-cross.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-cross.svg"; path = "Resources/images/conscience/con-cross.svg"; sourceTree = "<group>"; };
@@ -5165,11 +5166,12 @@
 				5EA696DC157DFF440075115F /* introcompletion.js */,
 				5EA696DB157DFF440075115F /* helpscreendismissals.js */,
 				5EC5543C15774064004BF692 /* mainnavigation.js */,
-				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
 				5EA696DD15804A190075115F /* consciencenavigation.js */,
 				5EC55447157748FF004BF692 /* choicemoraldisplay.js */,
+				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
 				5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */,
 				5EC55448157748FF004BF692 /* choicemoralentry.js */,
+				5EBBDC781582E9D700355FDE /* choicemoralverify.js */,
 				5EC5543D15774064004BF692 /* runTests.sh */,
 			);
 			path = IntegrationTests;

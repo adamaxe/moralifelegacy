@@ -4,7 +4,7 @@ Moralife UI Choice Moral Entry Validation
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
 @date 05/28/2012
-@file choiceentrymoral.js
+@file choicemoralentry.js
 */
 
 #import "include/uiajsinclude.js"
@@ -52,7 +52,7 @@ for (i = 0; i < moralType.length; i++)
     app.keyboard().typeString(strChar);
 }
 
-window.tableViews()["Empty list"].cells()["Aptitude, Ability, Excellence, Potential, Precision, Industriousness, Savvy, Talent"].tap();
+window.tableViews()[0].cells()[0].tap();
 
 UIALogger.logPass(testCaseName + " Selected");
 
