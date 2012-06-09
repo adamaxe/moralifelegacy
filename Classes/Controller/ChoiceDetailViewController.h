@@ -41,10 +41,4 @@ Accepts User input to remove all changes
  */
 -(IBAction)selectInfluence:(id) sender;
 
-/**
-Limit a text field for each key press
-@param note NSNotification Allows system to check field length with every keypress
- */
--(void)limitTextField:(NSNotification *)note;
-
 @end

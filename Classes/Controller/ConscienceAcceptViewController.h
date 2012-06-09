@@ -24,29 +24,4 @@ Accepts User input to commit the choice of ConscienceAsset to persistence.  Retu
  */
 -(IBAction)acceptThoughtModal:(id)sender;
 
-/**
-Accepts User input to return to ConscienceModalViewController
- */
--(void)dismissAcceptModal;
-
-/**
-Accepts User input to return to ConscienceModalViewController
- */
--(void)returnToHome;
-
-/**
-Retrieve how many ethicals User currently has from MoraLifeAppDelegate::userCollection.
- */
--(void)retrieveCurrentFunds;
-
-/**
-Subtract cost of ConscienceAsset from MoraLifeAppDelegate::userCollection.
- */
--(void)processCollection;
-
-/**
-Commit the choice of ConscienceAsset to ConscienceView.
- */
--(void)saveConscience;
-
 @end

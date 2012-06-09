@@ -21,28 +21,4 @@ Accepts User input to selects the data sort and order types
  */
 - (IBAction) switchList:(id) sender;
 
-/**
-Retrieve all User entered Choices
- */
-- (void) retrieveAllChoices;
-
-/**
-Filter the list based on User search string
-@param searchText NSString of requested pkey
- */
-- (void) filterResults: (NSString *)searchText;
-
-/**
-Retrieve choice for selection
-@param choiceKey NSString of requested pkey
- */
-- (void) retrieveChoice:(NSString *) choiceKey;
-
-/**
-Delete the particular choice
-@param choiceKey NSString of requested pkey
-@todo v2.0 determine best course for Choice deletion
- */
-- (void) deleteChoice:(NSString *) choiceKey;
-
 @end

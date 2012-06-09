@@ -45,6 +45,31 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 	
 }
 
+/**
+ Present a customized Done UIButton on top of the UITextView for data entry.
+ */
+-(void)presentDoneButton;
+
+/**
+ Shift UI elements to move UITextView to top of screen to accomodate keyboard
+ */
+-(void)animateOptionChange:(int)viewNumber;
+
+/**
+ Called from custom Done button to return UI back to normal
+ */
+-(void)hideKeyboard;
+
+/**
+ Prevent User from entering more text than field allows
+ */
+-(void)limitTextField:(NSNotification *)note;
+
+/**
+ Actually commits data to UserData from User request
+ */
+-(void)commitDataToUserData;
+
 @end
 
 @implementation LuckViewController

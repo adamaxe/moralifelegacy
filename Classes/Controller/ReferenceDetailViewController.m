@@ -61,6 +61,26 @@ Determine which fields and UI elements should be presented depending up on Refer
     
 }
 
+/**
+ Create a date view for a reference
+ */
+-(void)createDateView;
+
+/**
+ Take data from UserData and populate fields and UI
+ */
+-(void)populateReferenceScreen;
+
+/**
+ Retrieve userCollection to determine what value the assets have
+ */
+-(void)retrieveCollection;
+
+/**
+ Retrieve reference from SystemData
+ */
+-(void)retrieveReference;
+
 @end
 
 @implementation ReferenceDetailViewController

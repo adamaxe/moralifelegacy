@@ -42,6 +42,31 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	BOOL isAscending;					/**< is data ascending or descending order */
 }
 
+
+/**
+ Retrieve all User entered Lucks
+ */
+- (void) retrieveAllLucks;
+
+/**
+ Filter the list based on User search string
+ @param searchText NSString of requested pkey
+ */
+- (void) filterResults: (NSString *)searchText;
+
+/**
+ Retrieve luck for selection
+ @param choiceKey NSString of requested pkey
+ */
+- (void) retrieveLuck:(NSString *) luckKey;
+
+/**
+ Delete the particular luck
+ @param choiceKey NSString of requested pkey
+ @todo v2.0 determine best course for Luck deletion
+ */
+- (void) deleteLuck:(NSString *) luckKey;
+
 @end
 
 @implementation LuckListViewController

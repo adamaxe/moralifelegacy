@@ -33,6 +33,12 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	BOOL isChoiceCancelled;		/**< is Choice being cancelled, don't save */
 }
 
+/**
+ Limit a text field for each key press
+ @param note NSNotification Allows system to check field length with every keypress
+ */
+-(void)limitTextField:(NSNotification *)note;
+
 @end 
 
 @implementation ChoiceDetailViewController

@@ -8,8 +8,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "ReferenceViewController.h"
 #import "ReferenceListViewController.h"
 #import "ConscienceHelpViewController.h"
+#import "MenuScreenAnimations.h"
 
-@interface ReferenceViewController () {
+@interface ReferenceViewController () <MenuScreenAnimations> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -33,7 +34,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 }
 
 @property (nonatomic, retain) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
-
 
 @end
 
@@ -182,7 +182,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 }
 
 #pragma mark -
-#pragma mark UI Interaction
+#pragma mark MenuScreenAnimationsProtocol
 
 /**
 Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visually distracting

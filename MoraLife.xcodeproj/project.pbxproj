@@ -1738,6 +1738,7 @@
 		5E0B2239139AC27A002A8664 /* icon-rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rank.png"; path = "Resources/images/interface/icons/icon-rank.png"; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
+		5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScreenAnimations.h; path = Common/MenuScreenAnimations.h; sourceTree = "<group>"; };
 		5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-zodiac-scorpio-sm.png"; path = "Resources/images/conscience/icons/con-zodiac-scorpio-sm.png"; sourceTree = "<group>"; };
 		5E15BE0512A5ED3100B99258 /* card-obscenity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-obscenity.png"; path = "Resources/images/interface/cards/card-obscenity.png"; sourceTree = "<group>"; };
 		5E15BE0612A5ED3100B99258 /* card-insensitivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-insensitivity.png"; path = "Resources/images/interface/cards/card-insensitivity.png"; sourceTree = "<group>"; };
@@ -3552,6 +3553,7 @@
 				5EE7FD0B12E8B22200ABDBEC /* ConscienceBuilder.h */,
 				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
 				5E5B2E46131AFB8B0080E1E8 /* UIViewController+HelpScreen.h */,
+				5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */,
 				5E5B2E47131AFB8B0080E1E8 /* UIViewController+HelpScreen.m */,
 			);
 			name = Common;

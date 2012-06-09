@@ -11,8 +11,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "LuckListViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
+#import "MenuScreenAnimations.h"
 
-@interface ChoiceInitViewController () {
+@interface ChoiceInitViewController () <MenuScreenAnimations> {
 	
 	MoraLifeAppDelegate *appDelegate;           /**< delegate for application level callbacks */
 	NSUserDefaults *prefs;                      /**< serialized state retention */
@@ -236,7 +237,8 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 }
 
 #pragma mark -
-#pragma mark Custom UI animations
+#pragma mark MenuScreenAnimationsProtocol
+
 /**
  Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visually distracting
  */

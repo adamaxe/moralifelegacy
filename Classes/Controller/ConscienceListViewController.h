@@ -37,14 +37,4 @@ Accepts User input to cancel the choice of ConscienceAsset.  Either returns User
  */
 -(IBAction)returnToHome:(id)sender;
 
-/**
-Retrieve all available ConscienceAssets
- */
--(void)retrieveAllSelections;
-
-/**
-Retrieve amount of ethicals available to User (money)
- */
--(void)retrieveCurrentFunds;
-
 @end

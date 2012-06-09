@@ -20,9 +20,4 @@ Accept User input to flip card from selected to deselected state
  */
 -(IBAction)cardToggle:(id)sender;
 
-/**
-Dismiss entire UIViewController
- */
--(void)dismissThoughtModal:(id)sender;
-
 @end

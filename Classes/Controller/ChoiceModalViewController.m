@@ -40,6 +40,11 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 }
 
+/**
+ Retrieve all available Morals
+ */
+-(void)retrieveAllSelections;
+
 @end
 
 @implementation ChoiceModalViewController

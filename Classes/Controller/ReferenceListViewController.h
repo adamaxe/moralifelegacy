@@ -14,15 +14,4 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
 
 @property (nonatomic, assign) int referenceType;	/**< int determining type of reference selection */
 
-/**
-Load Reference data from Core Data for table
- */
-- (void) retrieveAllReferences;
-
-/**
-Remove entries from tableview that don't correspond to being searched
-@param searchText NSString of requested reference
- */
-- (void)filterResults:(NSString *) searchText;
-
 @end

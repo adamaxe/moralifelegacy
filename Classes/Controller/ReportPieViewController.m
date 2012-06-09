@@ -44,6 +44,17 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     IBOutlet UILabel *moralTypeLabel;       /**< is report virtue or vice */
 }
 
+/**
+ Retrieve all User entered Morals
+ */
+- (void) retrieveChoices;
+//- (void) generatePieColors;
+
+/**
+ Convert UserData into graphable data, create a GraphView
+ */
+- (void) generateGraph;
+
 @end
 
 @implementation ReportPieViewController

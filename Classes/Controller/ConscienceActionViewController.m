@@ -77,6 +77,22 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 	BOOL isRequirementOwned;					/**< does User have key necessary to pass */
 }
 
+/**
+ Load the dilemma's details from SystemData
+ */
+-(void)loadDilemma;
+
+/**
+ Change the active UIView within the UIViewController
+ @param screenVersion intDesignating which version of screen to display
+ */
+-(void)changeScreen:(int) screenVersion;
+
+/**
+ Commit User's choice to UserData
+ */
+-(void)commitDilemma;
+
 @end
 
 @implementation ConscienceActionViewController
