@@ -208,6 +208,7 @@ the application.
         [UIView setAnimationBeginsFromCurrentState:NO];
         
         backgroundImage.alpha = 1;
+        appDelegate.userConscienceView.center = CGPointMake(kConscienceHomeX, kConscienceHomeY-40);        
                 
         [UIView commitAnimations];
         [appDelegate.userConscienceView setNeedsDisplay];
@@ -880,8 +881,10 @@ Implementation:  Return conscience to view
     [UIView commitAnimations];
     
     //Set NSUserDefaults indicating intro has been completed.
-    [prefs setBool:FALSE forKey:@"firstLaunch"];
+    [prefs setBool:TRUE forKey:@"introComplete"];
     [prefs removeObjectForKey:@"introStateRestore"];
+    
+    [prefs synchronize];
 
     [self animateStatusText];
 

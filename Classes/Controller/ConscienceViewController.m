@@ -118,9 +118,9 @@ static int thoughtVersion = 0;
     rankImage.alpha = 1;
     
     //If this is the first time that the app, then show the intro
-    NSObject *firstLaunchCheck = [prefs objectForKey:@"firstLaunch"];
+    BOOL introComplete = [prefs boolForKey:@"introComplete"];
     
-    if (firstLaunchCheck == nil) {
+    if (!introComplete) {
         
         [self showIntroView];
         
