@@ -155,7 +155,7 @@ testCaseName = testSuiteName + " Accessories";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Accessories"].checkIsValid()){ 
+if (window.buttons()["Accessories"].checkIsValid()){ 
     window.buttons()["Accessories"].tap();
     app.navigationBar().leftButton().tap();
     
@@ -168,7 +168,7 @@ testCaseName = testSuiteName + " Figures";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Figures"].checkIsValid()){ 
+if (window.buttons()["Figures"].checkIsValid()){ 
     window.buttons()["Figures"].tap();
     app.navigationBar().leftButton().tap();
     
@@ -181,7 +181,7 @@ testCaseName = testSuiteName + " Morals";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Morals"].checkIsValid()){ 
+if (window.buttons()["Morals"].checkIsValid()){ 
     window.buttons()["Morals"].tap();
     app.navigationBar().leftButton().tap();
     

@@ -187,3 +187,5 @@ app.keyboard().typeString("\n");
 
 window.buttons()["Done"].tap();
 window.buttons()["Done"].tap();
+
+app.tabBar().buttons()["Home"].tap();

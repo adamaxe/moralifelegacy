@@ -184,5 +184,9 @@ if(hasError){
 window.textFields()["Justification"].tap();
 app.keyboard().typeString("\n");
 
+target.delay(2.0);
+
 window.buttons()["Done"].tap();
 window.buttons()["Done"].tap();
+
+app.tabBar().buttons()["Home"].tap();
