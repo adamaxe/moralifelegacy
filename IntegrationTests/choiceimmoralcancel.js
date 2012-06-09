@@ -1,15 +1,15 @@
 /**
-Moralife UI Choice Moral Cancel validation
+ Moralife UI Choice Immoral Cancel validation
  
-@author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
-
-@date 05/28/2012
-@file choicemoralcancel.js
-*/
+ @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ 
+ @date 05/28/2012
+ @file choiceimmoralcancel.js
+ */
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Moral Choice - Cancel";
+var testSuiteName = "Immoral Choice - Cancel";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -17,23 +17,23 @@ UIALogger.logMessage(testSuiteName + " Testing Begins");
 testCaseName = testSuiteName + " choiceTextField Clear";
 
 app.tabBar().buttons()["Journal"].tap();
-window.buttons()["Moral Choice"].tap();
+window.buttons()["Immoral Choice"].tap();
 window.textFields()["Choice"].tap();
 
 UIALogger.logStart(testCaseName + " Test");
 
-for (i = 0; i < moralChoiceCancel.length; i++)
+for (i = 0; i < immoralChoiceCancel.length; i++)
 {
-    var strChar = moralChoiceCancel.charAt(i);
+    var strChar = immoralChoiceCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
 
 app.keyboard().typeString("\n");
 
 window.buttons()["Cancel"].tap();
-window.buttons()["Moral Choice"].tap();
+window.buttons()["Immoral Choice"].tap();
 
-if(window.textFields()["Choice"].value() == moralChoiceCancel) {
+if(window.textFields()["Choice"].value() == immoralChoiceCancel) {
 	UIALogger.logFail(testCaseName + " cleared incorrectly: " + window.textFields()["Choice"].value());
 } else {
 	UIALogger.logPass(testCaseName + " cleared correctly"); 
@@ -42,13 +42,13 @@ if(window.textFields()["Choice"].value() == moralChoiceCancel) {
 testCaseName = testSuiteName + " severitySlider Clear";
 UIALogger.logStart(testCaseName + " Test");
 
-window.sliders()["Virtue Severity"].dragToValue(virtueSeverityCancel);
+window.sliders()["Vice Severity"].dragToValue(viceSeverityCancel);
 
 window.buttons()["Cancel"].tap();
-window.buttons()["Moral Choice"].tap();
+window.buttons()["Immoral Choice"].tap();
 
-if(window.sliders()["Virtue Severity"].value() == virtueSeveritySliderValueCancel) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().sliders()["Virtue Severity"].value());
+if(window.sliders()["Vice Severity"].value() == viceSeveritySliderValueCancel) {
+    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().sliders()["Vice Severity"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly");     
 }
@@ -58,18 +58,18 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textViews()["Description"].tap();
 
-for (i = 0; i < moralDescriptionCancel.length; i++)
+for (i = 0; i < immoralDescriptionCancel.length; i++)
 {
-    var strChar = moralDescriptionCancel.charAt(i);
+    var strChar = immoralDescriptionCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
 
 window.buttons()["Done"].tap();
 
 window.buttons()["Cancel"].tap();
-window.buttons()["Moral Choice"].tap();
+window.buttons()["Immoral Choice"].tap();
 
-if(window.textViews()["Description"].value() == moralDescriptionCancel) {
+if(window.textViews()["Description"].value() == immoralDescriptionCancel) {
     UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().textViews()["Description"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly"); 
@@ -83,11 +83,9 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Justification"].tap();
 
-var justification = "Justification test 1";
-
-for (i = 0; i < moralJustificationCancel.length; i++)
+for (i = 0; i < immoralJustificationCancel.length; i++)
 {
-    var strChar = moralJustificationCancel.charAt(i);
+    var strChar = immoralJustificationCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
 
@@ -96,7 +94,7 @@ app.keyboard().typeString("\n");
 window.buttons()["Cancel"].tap();
 app.navigationBar().rightButton().tap();
 
-if(window.textFields()["Justification"].value() == moralJustificationCancel) {
+if(window.textFields()["Justification"].value() == immoralJustificationCancel) {
     UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().textFields()["Justification"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly");     
@@ -109,9 +107,9 @@ window.textFields()["Consequence"].tap();
 
 var consequenceCancel = "Consequence Cancel 1";
 
-for (i = 0; i < moralConsequenceCancel.length; i++)
+for (i = 0; i < immoralConsequenceCancel.length; i++)
 {
-    var strChar = moralConsequenceCancel.charAt(i);
+    var strChar = immoralConsequenceCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
 
@@ -120,7 +118,7 @@ app.keyboard().typeString("\n");
 window.buttons()["Cancel"].tap();
 app.navigationBar().rightButton().tap();
 
-if(window.textFields()["Consequence"].value() == moralConsequenceCancel) {
+if(window.textFields()["Consequence"].value() == immoralConsequenceCancel) {
 	UIALogger.logFail(testCaseName + " cleared incorrectly: " + app.frontMostApp().mainWindow().textFields()["Consequence"].value());
 } else {
 	UIALogger.logPass(testCaseName + " cleared correctly"); 
@@ -129,18 +127,18 @@ if(window.textFields()["Consequence"].value() == moralConsequenceCancel) {
 testCaseName = testSuiteName + " influenceSlider Clear";
 UIALogger.logStart(testCaseName + " Test");
 
-window.sliders()["Influence"].dragToValue(moralInfluenceCancel);
+window.sliders()["Influence"].dragToValue(immoralInfluenceCancel);
 
 window.buttons()["Cancel"].tap();
 app.navigationBar().rightButton().tap();
 
-if(window.sliders()["Influence"].value() == moralInfluenceSliderValueCancel) {
+if(window.sliders()["Influence"].value() == immoralInfluenceSliderValueCancel) {
     UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().sliders()["Influence"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
 
-window.sliders()["Influence"].dragToValue(moralInfluenceCancel);
+window.sliders()["Influence"].dragToValue(immoralInfluenceCancel);
 
 window.buttons()["Cancel"].tap();
 window.buttons()["Cancel"].tap();

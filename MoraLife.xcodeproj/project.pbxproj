@@ -2972,6 +2972,9 @@
 		5EA1D22A130E38A200BA81D6 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		5EA1D22C130E38A200BA81D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5EA1D22E130E38A200BA81D6 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
+		5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralcancel.js; sourceTree = "<group>"; };
+		5EA26D5A1583A0E700CDA802 /* choiceimmoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralentry.js; sourceTree = "<group>"; };
+		5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralverify.js; sourceTree = "<group>"; };
 		5EA41704125EB1E4002C0646 /* card-independence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-independence.png"; path = "Resources/images/interface/cards/card-independence.png"; sourceTree = "<group>"; };
 		5EA542261380B9BB009077B7 /* UserCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCharacter.h; sourceTree = "<group>"; };
 		5EA542271380B9BB009077B7 /* UserCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCharacter.m; sourceTree = "<group>"; };
@@ -5167,9 +5170,12 @@
 				5EA696DB157DFF440075115F /* helpscreendismissals.js */,
 				5EC5543C15774064004BF692 /* mainnavigation.js */,
 				5EA696DD15804A190075115F /* consciencenavigation.js */,
+				5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */,
+				5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */,
+				5EA26D5A1583A0E700CDA802 /* choiceimmoralentry.js */,
+				5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */,
 				5EC55447157748FF004BF692 /* choicemoraldisplay.js */,
 				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
-				5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */,
 				5EC55448157748FF004BF692 /* choicemoralentry.js */,
 				5EBBDC781582E9D700355FDE /* choicemoralverify.js */,
 				5EC5543D15774064004BF692 /* runTests.sh */,
