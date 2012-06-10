@@ -14,7 +14,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceViewController.h"
-#import "XMLParser.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceView.h"
@@ -37,6 +36,23 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	UINavigationController *navController3; /**< UINavController for third screen, Reference */
     	
 }
+
+/**
+ Create base Monitor before personalization re-instatement
+ */
+- (void)createConscience;
+/**
+ Remove Monitor for memory-restricted conditions
+ */
+- (void)destroyConscience;
+/**
+ Apply User's changes to base Monitor
+ */
+- (void)configureConscience;
+/**
+ Retrieve all User's current possessions/interview questions from persistent store.
+ */
+- (void)configureCollection;
 
 @end
 
@@ -134,7 +150,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	navController2.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav2Hint",@"Hint for Navigation 2");
 	navController2.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav2Label",@"Label for Navigation 2");
 	navController2.tabBarItem.image = [UIImage imageNamed:@"tabbar-quill.png"];	
-	//[navController2.navigationBar setTintColor:[UIColor colorWithHue:0 saturation:0 brightness:0.5f alpha:0.1f]];
 	navController2.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 	navController3.tabBarItem.title = NSLocalizedString(@"PrimaryNav3Title",@"Title for Navigation 3");
 	navController3.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav3Hint",@"Hint for Navigation 3");

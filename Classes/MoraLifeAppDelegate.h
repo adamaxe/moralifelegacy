@@ -38,22 +38,6 @@ Moralife is the iPhone application which will provide its User with a Digital Co
  @return Documents NSURL of sandboxed application writable Doc directory
  */
 - (NSURL *)applicationDocumentsDirectory;
-/**
- Create base Monitor before personalization re-instatement
- */
-- (void)createConscience;
-/**
- Remove Monitor for memory-restricted conditions
- */
-- (void)destroyConscience;
-/**
- Apply User's changes to base Monitor
- */
-- (void)configureConscience;
-/**
- Retrieve all User's current possessions/interview questions from persistent store.
- */
-- (void)configureCollection;
 
 @end
 
