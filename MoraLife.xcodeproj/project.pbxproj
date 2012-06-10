@@ -1284,6 +1284,7 @@
 		5EA1D22D130E38A200BA81D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EA1D22B130E38A200BA81D6 /* InfoPlist.strings */; };
 		5EA26D661584351500CDA802 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA26D651584351500CDA802 /* ModelManager.m */; };
 		5EA26D671584351500CDA802 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA26D651584351500CDA802 /* ModelManager.m */; };
+		5EA26D7315843DB600CDA802 /* TestModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA26D7215843DB600CDA802 /* TestModelManager.m */; };
 		5EA41708125EB1E4002C0646 /* card-independence.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA41704125EB1E4002C0646 /* card-independence.png */; };
 		5EA542281380B9BB009077B7 /* UserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA542271380B9BB009077B7 /* UserCharacter.m */; };
 		5EA5422B1380BB13009077B7 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA5422A1380BB13009077B7 /* Character.m */; };
@@ -2979,6 +2980,7 @@
 		5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralverify.js; sourceTree = "<group>"; };
 		5EA26D641584351500CDA802 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelManager.h; path = Model/ModelManager.h; sourceTree = "<group>"; };
 		5EA26D651584351500CDA802 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelManager.m; path = Model/ModelManager.m; sourceTree = "<group>"; };
+		5EA26D7215843DB600CDA802 /* TestModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestModelManager.m; path = Model/TestModelManager.m; sourceTree = "<group>"; };
 		5EA41704125EB1E4002C0646 /* card-independence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-independence.png"; path = "Resources/images/interface/cards/card-independence.png"; sourceTree = "<group>"; };
 		5EA542261380B9BB009077B7 /* UserCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCharacter.h; sourceTree = "<group>"; };
 		5EA542271380B9BB009077B7 /* UserCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCharacter.m; sourceTree = "<group>"; };
@@ -5108,6 +5110,7 @@
 				5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */,
 				5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */,
 				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
+				5EA26D7215843DB600CDA802 /* TestModelManager.m */,
 				5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */,
 				5E266044156C5D72007DF236 /* TestConscienceBubbleFactory.m */,
 				5E26605F156C6538007DF236 /* TestConscienceAccessories.m */,
@@ -7193,6 +7196,7 @@
 				5E266065156C70FA007DF236 /* TestConscienceBody.m in Sources */,
 				5E266067156C79BF007DF236 /* TestConscienceGradient.m in Sources */,
 				5EA26D671584351500CDA802 /* ModelManager.m in Sources */,
+				5EA26D7315843DB600CDA802 /* TestModelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
