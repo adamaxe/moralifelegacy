@@ -104,7 +104,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	//and to get Core Data Context and prefs to save state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
     
     choiceKey = [[NSMutableString alloc] init];
     

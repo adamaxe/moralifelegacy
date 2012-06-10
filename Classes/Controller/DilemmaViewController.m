@@ -125,7 +125,7 @@ kViewReward
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
-		context = [appDelegate managedObjectContext];
+		context = [appDelegate.moralModelManager managedObjectContext];
         
 		//Setup default values
         reward1 = [[NSMutableString alloc] init];

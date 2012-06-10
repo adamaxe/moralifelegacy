@@ -20,9 +20,7 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 @file
 */
 
-#import <CoreData/CoreData.h>
-
-@class ConscienceBody, ConscienceAccessories, ConscienceView, ConscienceMind;
+@class ConscienceBody, ConscienceAccessories, ConscienceView, ConscienceMind, ModelManager;
 
 @interface MoraLifeAppDelegate : NSObject <UIApplicationDelegate>
 
@@ -33,20 +31,13 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 @property (nonatomic, retain) ConscienceMind *userConscienceMind;   /**< Representation of User's Mental State */
 @property (nonatomic, retain) NSMutableArray *userCollection;       /**< Currently owned items */
 @property (nonatomic, assign) BOOL isCurrentIOS;
-
-@property (nonatomic, retain, readonly) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
+@property (nonatomic, retain) ModelManager *moralModelManager;
 
 /**
  Retrieve current sandbox Documents directory
  @return Documents NSURL of sandboxed application writable Doc directory
  */
 - (NSURL *)applicationDocumentsDirectory;
-/**
- Save the current Core Data context for whenever a modify is needed.
- */
-- (void)saveContext;
 /**
  Create base Monitor before personalization re-instatement
  */

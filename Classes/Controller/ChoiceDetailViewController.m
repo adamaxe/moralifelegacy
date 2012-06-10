@@ -39,6 +39,17 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
  */
 -(void)limitTextField:(NSNotification *)note;
 
+/**
+ Saves the details.
+ */
+- (void)saveChoice;
+
+/**
+ Cancels the details.
+ */
+- (void)cancelChoice;
+
+
 @end 
 
 @implementation ChoiceDetailViewController
@@ -151,29 +162,10 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 }
 
+
 -(void) viewWillDisappear:(BOOL)animated{
 	
-	if (!isChoiceCancelled) {
-
-		//Do not save default help text
-		NSString *defaultTextJustification = [[NSString alloc] initWithString:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",@"Label for Justification Textfield")];
-		NSString *defaultTextConsequences = [[NSString alloc] initWithString:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",@"Label for Consequence Textfield")];
-
-	
-		if (![justificationTextField.text isEqualToString:@""] && ![justificationTextField.text isEqualToString:defaultTextJustification]) {
-			[prefs setObject:justificationTextField.text forKey:@"choiceJustification"];    
-		}
-	
-		if (![consequencesTextField.text isEqualToString:@""] && ![consequencesTextField.text isEqualToString:defaultTextConsequences]) {
-
-			[prefs setObject:consequencesTextField.text forKey:@"choiceConsequence"];    		
-		}
-	
-		[prefs setFloat:influenceSlider.value forKey:@"choiceInfluence"];
-		
-		[defaultTextJustification release];
-		[defaultTextConsequences release];
-	}
+	[self saveChoice];
 		
 }
 
@@ -237,26 +229,61 @@ Implementation: change the influence value and update the influence Label
 /**
 Implementation: pop UIViewController from current navigationController
  */
--(IBAction)previousNav:(id) sender{
+-(IBAction)doneTapped:(id) sender{
+    
+    [self saveChoice];
 	//Return to previous view by popping current view off navigation controller	
 	[self.navigationController popViewControllerAnimated:TRUE];
 }
 
 /**
-Implementation: remove NSUserDefault state information, set Cancel flag, pop UIViewController from current navigationController
+ Implementation: remove NSUserDefault state information, set Cancel flag, pop UIViewController from current navigationController
  */
--(IBAction)cancelChoice:(id) sender{
-	
+-(IBAction)cancelTapped {
+    
+    [self cancelChoice];
+    
+    [self.navigationController popViewControllerAnimated:TRUE];
+    
+}
+
+- (void)saveChoice {
+    
+    if (!isChoiceCancelled) {
+        
+        //Do not save default help text
+        NSString *defaultTextJustification = [[NSString alloc] initWithString:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",@"Label for Justification Textfield")];
+        NSString *defaultTextConsequences = [[NSString alloc] initWithString:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",@"Label for Consequence Textfield")];
+        
+        
+        if (![justificationTextField.text isEqualToString:@""] && ![justificationTextField.text isEqualToString:defaultTextJustification]) {
+            [prefs setObject:justificationTextField.text forKey:@"choiceJustification"];    
+        }
+        
+        if (![consequencesTextField.text isEqualToString:@""] && ![consequencesTextField.text isEqualToString:defaultTextConsequences]) {
+            
+            [prefs setObject:consequencesTextField.text forKey:@"choiceConsequence"];    		
+        }
+        
+        [prefs setFloat:influenceSlider.value forKey:@"choiceInfluence"];
+        
+        [prefs synchronize];
+        
+        [defaultTextJustification release];
+        [defaultTextConsequences release];
+    }
+}
+
+- (void)cancelChoice {
+    
 	//Remove ChoiceDetail state information
-	[prefs removeObjectForKey:@"choiceJustification"];
+    [prefs removeObjectForKey:@"choiceJustification"];
 	[prefs removeObjectForKey:@"choiceConsequence"];
 	[prefs removeObjectForKey:@"choiceInfluence"];	
 	
 	isChoiceCancelled = TRUE;
-	
-	[self.navigationController popViewControllerAnimated:TRUE];
-	
 }
+
 
 /**
  Implementation: Present ConscienceHelpViewController that shows User purpose of the Influence button.

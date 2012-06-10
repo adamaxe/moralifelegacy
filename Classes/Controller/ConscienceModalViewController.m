@@ -610,7 +610,7 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
         
         //Delete all User data
         /** @todo figure out deletion */
-        NSManagedObjectContext *context = [appDelegate managedObjectContext];
+        NSManagedObjectContext *context = [appDelegate.moralModelManager managedObjectContext];
         
         //Retrieve readwrite Documents directory
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);

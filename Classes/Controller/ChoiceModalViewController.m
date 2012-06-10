@@ -58,7 +58,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
     
 	moralSearchBar.barStyle = UIBarStyleBlack;
 	moralSearchBar.delegate = self;

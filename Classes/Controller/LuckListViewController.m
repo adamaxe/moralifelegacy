@@ -81,7 +81,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	//and to get Core Data Context
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
     
     isAscending = FALSE;
     luckSortDescriptor = [[NSMutableString alloc] initWithString:kChoiceListSortDate];

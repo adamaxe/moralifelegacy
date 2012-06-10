@@ -92,7 +92,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 	[super viewDidLoad];
 
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];		
     
 	if ([self.title length] == 0) {

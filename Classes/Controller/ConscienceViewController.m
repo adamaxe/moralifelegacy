@@ -118,7 +118,7 @@ static int thoughtVersion = 0;
 		//Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
-        context = [appDelegate managedObjectContext];
+        context = [appDelegate.moralModelManager managedObjectContext];
 
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];

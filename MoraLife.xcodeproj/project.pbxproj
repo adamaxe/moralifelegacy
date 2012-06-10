@@ -1282,6 +1282,8 @@
 		5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		5EA1D22D130E38A200BA81D6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EA1D22B130E38A200BA81D6 /* InfoPlist.strings */; };
+		5EA26D661584351500CDA802 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA26D651584351500CDA802 /* ModelManager.m */; };
+		5EA26D671584351500CDA802 /* ModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA26D651584351500CDA802 /* ModelManager.m */; };
 		5EA41708125EB1E4002C0646 /* card-independence.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA41704125EB1E4002C0646 /* card-independence.png */; };
 		5EA542281380B9BB009077B7 /* UserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA542271380B9BB009077B7 /* UserCharacter.m */; };
 		5EA5422B1380BB13009077B7 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA5422A1380BB13009077B7 /* Character.m */; };
@@ -2975,6 +2977,8 @@
 		5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralcancel.js; sourceTree = "<group>"; };
 		5EA26D5A1583A0E700CDA802 /* choiceimmoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralentry.js; sourceTree = "<group>"; };
 		5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralverify.js; sourceTree = "<group>"; };
+		5EA26D641584351500CDA802 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelManager.h; path = Model/ModelManager.h; sourceTree = "<group>"; };
+		5EA26D651584351500CDA802 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelManager.m; path = Model/ModelManager.m; sourceTree = "<group>"; };
 		5EA41704125EB1E4002C0646 /* card-independence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-independence.png"; path = "Resources/images/interface/cards/card-independence.png"; sourceTree = "<group>"; };
 		5EA542261380B9BB009077B7 /* UserCharacter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCharacter.h; sourceTree = "<group>"; };
 		5EA542271380B9BB009077B7 /* UserCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCharacter.m; sourceTree = "<group>"; };
@@ -4508,6 +4512,8 @@
 		5E7677E011A2423800DD195A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5EA26D641584351500CDA802 /* ModelManager.h */,
+				5EA26D651584351500CDA802 /* ModelManager.m */,
 				5E8FBE09138A136200173584 /* SystemData.sqlite */,
 				5E8FBE0A138A136200173584 /* UserData.sqlite */,
 				5EFED8DF1310E22D00F8EB0B /* Generated */,
@@ -7097,6 +7103,7 @@
 				5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */,
 				5E336EF9139C6CD6006BF34F /* ConscienceAsset.m in Sources */,
 				5E266039156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */,
+				5EA26D661584351500CDA802 /* ModelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7185,6 +7192,7 @@
 				5E266063156C6DCB007DF236 /* TestConscienceMind.m in Sources */,
 				5E266065156C70FA007DF236 /* TestConscienceBody.m in Sources */,
 				5E266067156C79BF007DF236 /* TestConscienceGradient.m in Sources */,
+				5EA26D671584351500CDA802 /* ModelManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -91,7 +91,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
     
 	//Setup permanent holders, table does not key on these, it keys on tabledata which is affected by searchbar
 	//tabledatas are reloaded from these master arrays

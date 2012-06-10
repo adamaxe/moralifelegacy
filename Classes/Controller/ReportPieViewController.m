@@ -64,7 +64,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     //appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
     
     //Position Conscience in lower-left of screen

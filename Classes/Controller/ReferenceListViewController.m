@@ -73,7 +73,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
     
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	referenceSearchBar.barStyle = UIBarStyleBlack;

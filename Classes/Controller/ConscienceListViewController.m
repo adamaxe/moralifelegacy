@@ -78,7 +78,7 @@ User can filter list by only things that are affordable to currentFunds.
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
     
 	//Create search bar
 	accessorySearchBar.barStyle = UIBarStyleBlack;

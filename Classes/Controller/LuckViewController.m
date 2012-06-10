@@ -84,7 +84,7 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 	//and to get Core Data Context
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate managedObjectContext];
+	context = [appDelegate.moralModelManager managedObjectContext];
     
 	[self setTitle:NSLocalizedString(@"LuckScreenTitle",@"Title for Luck screen")];
 	self.accessibilityLabel = NSLocalizedString(@"LuckScreenLabel",@"Label for Luck Screen");

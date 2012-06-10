@@ -25,14 +25,13 @@ Accepts User input to dismiss current UIViewController
 @param id Object which requested the view dismissal
 @return IBAction referenced from Interface Builder
  */
--(IBAction)previousNav:(id) sender;
+-(IBAction)doneTapped:(id) sender;
 
 /**
 Accepts User input to remove all changes
-@param id Object which requested the button
 @return IBAction referenced from Interface Builder
  */
--(IBAction)cancelChoice:(id) sender;
+-(IBAction)cancelTapped;
 
 /**
  Accepts User input to view purpose of Influence slider

@@ -89,7 +89,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
-		context = [appDelegate managedObjectContext];
+		context = [appDelegate.moralModelManager managedObjectContext];
         
         resetFeature = [[NSMutableString alloc] init];
         
