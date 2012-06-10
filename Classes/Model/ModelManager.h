@@ -1,10 +1,12 @@
-//
-//  ModelManager.h
-//  MoraLife
-//
-//  Created by Adam Axe on 6/9/12.
-//  Copyright (c) 2012 Team Axe, LLC. All rights reserved.
-//
+/**
+ Moralife Model Manager.  This class handles the setup and destruction of Core Data.
+  
+ @see MoraLifeAppDelegate
+ @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @class ModelManager
+ @date 06/09/2012
+ @file
+ */
 
 #import <CoreData/CoreData.h>
 

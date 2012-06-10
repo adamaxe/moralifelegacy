@@ -1,11 +1,8 @@
-//
-//  ModelManager.m
-//  MoraLife
-//
-//  Created by Adam Axe on 6/9/12.
-//  Copyright (c) 2012 Team Axe, LLC. All rights reserved.
-//
-
+/**
+ Moralife Model Manager Implementation.  This class is the interface to Core Data and the entire persistence stack.
+ 
+ @class ModelManager ModelManager.h
+ */
 #import "ModelManager.h"
 
 @interface ModelManager () {
