@@ -28,13 +28,16 @@ if(app.navigationBar().name() == "Moral Choice") {
 	UIALogger.logFail(testCaseName + " incorrect: " + app.navigationBar().name());
 }
 
-testCaseName = testSuiteName + " choiceTextField Default Text";
+testCaseName = testSuiteName + " moralReferenceButton Default";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textFields()["Choice"].value() == "Enter in your good deed.") {
+window.buttons()["Moral Reference"].tap();
+
+if(window.buttons()["Previous"].checkIsValid()) {
+	window.buttons()["Previous"].tap();
 	UIALogger.logPass(testCaseName + " correct"); 
 } else {
-	UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Choice"].value());
+	UIALogger.logFail(testCaseName + " incorrect.");
 }
 
 testCaseName = testSuiteName + " moralButton Title Text";
@@ -54,6 +57,21 @@ if(window.staticTexts()["Good"].value() == "") {
 } else {
 	UIALogger.logPass(testCaseName + " correct"); 
 }
+
+testCaseName = testSuiteName + " influenceButton Default";
+UIALogger.logStart(testCaseName + " Test");
+
+app.navigationBar().rightButton().tap();
+window.buttons()["Influence Description"].tap();
+
+if(window.buttons()["Previous"].checkIsValid()) {
+	window.buttons()["Previous"].tap();
+	UIALogger.logPass(testCaseName + " correct"); 
+} else {
+	UIALogger.logFail(testCaseName + " incorrect");
+}
+
+window.buttons()["Cancel"].tap();
 
 window.buttons()["Cancel"].tap();
 app.tabBar().buttons()["Home"].tap();

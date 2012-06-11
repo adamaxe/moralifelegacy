@@ -18,13 +18,24 @@ app.tabBar().buttons()["Journal"].tap();
 
 window.buttons()["Immoral Choice"].tap();
 
+testCaseName = testSuiteName + " choiceTextField Required Field";
+UIALogger.logStart(testCaseName + " Test");
+
+window.buttons()["Done"].tap();
+
+if(window.buttons()["Previous"].checkIsValid()) {
+    window.buttons()["Previous"].tap();
+    UIALogger.logPass(testCaseName + " correct."); 
+} else {
+    UIALogger.logFail(testCaseName + " incorrect.");
+}
+
 testCaseName = testSuiteName + " choiceTextField Entry";
 UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Choice"].tap();
 
-for (i = 0; i < immoralName.length; i++)
-{
+for (i = 0; i < immoralName.length; i++) {
     var strChar = immoralName.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -37,14 +48,25 @@ if(window.textFields()["Choice"].value() == immoralName) {
        UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Choice"].value());
 }
 
+testCaseName = testSuiteName + " Virtue moralButton Required Field";
+UIALogger.logStart(testCaseName + " Test");
+
+window.buttons()["Done"].tap();
+
+if(window.buttons()["Previous"].checkIsValid()) {
+    window.buttons()["Previous"].tap();
+    UIALogger.logPass(testCaseName + " correct."); 
+} else {
+    UIALogger.logFail(testCaseName + " incorrect.");
+}
+                      
 testCaseName = testSuiteName + " Vice moralButton Selection";
 UIALogger.logStart(testCaseName + " Test");
 
 window.buttons()["Select a Vice"].tap();
 window.searchBars()[0].tap();
 
-for (i = 0; i < immoralType.length; i++)
-{
+for (i = 0; i < immoralType.length; i++) {
     var strChar = immoralType.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -71,8 +93,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textViews()["Description"].tap();
 
-for (i = 0; i < immoralDescription.length; i++)
-{
+for (i = 0; i < immoralDescription.length; i++) {
     var strChar = immoralDescription.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -93,8 +114,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Justification"].tap();
 
-for (i = 0; i < immoralJustification.length; i++)
-{
+for (i = 0; i < immoralJustification.length; i++) {
     var strChar = immoralJustification.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -112,8 +132,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Consequence"].tap();
 
-for (i = 0; i < immoralConsequence.length; i++)
-{
+for (i = 0; i < immoralConsequence.length; i++) {
     var strChar = immoralConsequence.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -175,7 +194,7 @@ if(window.sliders()["Influence"].value() == immoralInfluenceSliderValue) {
 		hasError = 1;
 }
 
-if(hasError){
+if(hasError) {
 	UIALogger.logError("At least one Choice Detail field didn't save.");
 } else {
 	UIALogger.logMessage("All Choice Detail fields saved correctly.");

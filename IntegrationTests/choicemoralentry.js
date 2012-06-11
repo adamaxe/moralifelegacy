@@ -18,13 +18,24 @@ app.tabBar().buttons()["Journal"].tap();
 
 window.buttons()["Moral Choice"].tap();
 
+testCaseName = testSuiteName + " choiceTextField Required Field";
+UIALogger.logStart(testCaseName + " Test");
+
+window.buttons()["Done"].tap();
+
+if(window.buttons()["Previous"].checkIsValid()) {
+    window.buttons()["Previous"].tap();
+    UIALogger.logPass(testCaseName + " correct."); 
+} else {
+    UIALogger.logFail(testCaseName + " incorrect.");
+}
+
 testCaseName = testSuiteName + " choiceTextField Entry";
 UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Choice"].tap();
 
-for (i = 0; i < moralName.length; i++)
-{
+for (i = 0; i < moralName.length; i++) {
     var strChar = moralName.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -36,6 +47,18 @@ if(window.textFields()["Choice"].value() == moralName) {
 } else {
        UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Choice"].value());
 }
+                      
+testCaseName = testSuiteName + " Virtue moralButton Required Field";
+UIALogger.logStart(testCaseName + " Test");
+
+window.buttons()["Done"].tap();
+
+if(window.buttons()["Previous"].checkIsValid()) {
+    window.buttons()["Previous"].tap();
+    UIALogger.logPass(testCaseName + " correct."); 
+} else {
+    UIALogger.logFail(testCaseName + " incorrect.");
+}
 
 testCaseName = testSuiteName + " Virtue moralButton Selection";
 UIALogger.logStart(testCaseName + " Test");
@@ -44,8 +67,7 @@ window.buttons()["Select a Virtue"].tap();
 window.searchBars()[0].tap();
 var moralType = "Aptitude";
 
-for (i = 0; i < moralType.length; i++)
-{
+for (i = 0; i < moralType.length; i++) {
     var strChar = moralType.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -72,8 +94,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textViews()["Description"].tap();
 
-for (i = 0; i < moralDescription.length; i++)
-{
+for (i = 0; i < moralDescription.length; i++) {
     var strChar = moralDescription.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -94,8 +115,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Justification"].tap();
 
-for (i = 0; i < moralJustification.length; i++)
-{
+for (i = 0; i < moralJustification.length; i++) {
     var strChar = moralJustification.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -113,8 +133,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Consequence"].tap();
 
-for (i = 0; i < moralConsequence.length; i++)
-{
+for (i = 0; i < moralConsequence.length; i++) {
     var strChar = moralConsequence.charAt(i);
     app.keyboard().typeString(strChar);
 }

@@ -97,7 +97,11 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	[influenceButton setAlpha:0];
 	[influenceImageView setAlpha:0];
 	[cloudImageView setAlpha:0];
+
+    influenceButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenInfluenceButtonHint",@"Hint for Influence Button");
+    influenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenInfluenceButtonLabel",@"Label for Influence Button");
 	
+    
 	//Retrieve localized influence description strings
     [influenceLabel setText:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider")];
 	influenceLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel1",@"Label for Influence Level 1"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel2",@"Label for Influence Level 2"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel3",@"Label for Influence Level 3"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel4",@"Label for Influence Level 4"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel5",@"Label for Influence Level 5"), nil];

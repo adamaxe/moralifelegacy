@@ -22,8 +22,7 @@ window.textFields()["Choice"].tap();
 
 UIALogger.logStart(testCaseName + " Test");
 
-for (i = 0; i < immoralChoiceCancel.length; i++)
-{
+for (i = 0; i < immoralChoiceCancel.length; i++) {
     var strChar = immoralChoiceCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -58,8 +57,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textViews()["Description"].tap();
 
-for (i = 0; i < immoralDescriptionCancel.length; i++)
-{
+for (i = 0; i < immoralDescriptionCancel.length; i++) {
     var strChar = immoralDescriptionCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -83,8 +81,7 @@ UIALogger.logStart(testCaseName + " Test");
 
 window.textFields()["Justification"].tap();
 
-for (i = 0; i < immoralJustificationCancel.length; i++)
-{
+for (i = 0; i < immoralJustificationCancel.length; i++) {
     var strChar = immoralJustificationCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
@@ -107,8 +104,7 @@ window.textFields()["Consequence"].tap();
 
 var consequenceCancel = "Consequence Cancel 1";
 
-for (i = 0; i < immoralConsequenceCancel.length; i++)
-{
+for (i = 0; i < immoralConsequenceCancel.length; i++) {
     var strChar = immoralConsequenceCancel.charAt(i);
     app.keyboard().typeString(strChar);
 }
