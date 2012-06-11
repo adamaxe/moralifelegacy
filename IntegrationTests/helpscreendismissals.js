@@ -22,7 +22,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
 	
 	UIALogger.logPass(testCaseName + " correctly."); 
 	
-    testCaseName = testSuiteName + " Initial Help Screens";
+    testCaseName = testSuiteName + " Journal Help Screens";
     UIALogger.logStart(testCaseName + " Test");
         
     if (app.tabBar().buttons()["Journal"].checkIsValid()){ 
@@ -35,33 +35,78 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
         window.buttons()["Previous"].tap();
         app.tabBar().buttons()["Collection"].tap();
         window.buttons()["Previous"].tap();
-        app.tabBar().buttons()["Home"].tap();
-        target.tap({x:130.00, y:300.00});
-        window.buttons()["Previous"].tap();
 
-        window.buttons()["Commissary"].tap();
-        window.buttons()["Features"].tap();
-        window.buttons()["Eye"].tap();
-		target.delay(2.0);
-        window.buttons()["Previous"].tap();
-		target.delay(2.0);
-        window.buttons()["Previous"].tap();
-		target.delay(2.0);		
-        window.buttons()["Previous"].tap();
-		target.delay(2.0);		
-        window.buttons()["Previous"].tap();
-		
-        window.buttons()["Morathology"].tap();
-        window.buttons()["Orientation"].tap();
-		target.delay(2.0);
-        window.buttons()["Previous"].tap();
-		target.delay(2.0);		
-        window.buttons()["Previous"].tap();
-		target.delay(2.0);
-        window.buttons()["Previous"].tap();
+        UIALogger.logPass(testCaseName + " passed."); 
         
-        window.buttons()["Moral Report"].tap();
+    } else {
+        UIALogger.logFail(testCaseName + " incorrect."); 
+    }
+        
+    testCaseName = testSuiteName + " Conscience View Help Screen";
+    UIALogger.logStart(testCaseName + " Test");
+    app.tabBar().buttons()["Home"].tap();        
+    target.tap({x:130.00, y:300.00});
+    
+    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+    
+        window.buttons()["Previous"].tap();
+        UIALogger.logPass(testCaseName + " passed."); 
+        
+    } else {
+        UIALogger.logFail(testCaseName + " incorrect."); 
+    }
+
+    testCaseName = testSuiteName + " Commissary Help Screen";
+    UIALogger.logStart(testCaseName + " Test");
+
+    window.buttons()["Commissary"].tap();
+    window.buttons()["Features"].tap();
+    window.buttons()["Eye"].tap();
+    target.delay(2.0);    
+    
+    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+    
+        window.buttons()["Previous"].tap();
 		target.delay(2.0);
+        window.buttons()["Previous"].tap();
+		target.delay(2.0);		
+        window.buttons()["Previous"].tap();
+		target.delay(2.0);		
+        window.buttons()["Previous"].tap();
+        UIALogger.logPass(testCaseName + " passed."); 
+        
+    } else {
+        UIALogger.logFail(testCaseName + " incorrect."); 
+    }
+        
+    testCaseName = testSuiteName + " Morathology Help Screen";
+    UIALogger.logStart(testCaseName + " Test");
+    
+    window.buttons()["Morathology"].tap();
+    window.buttons()["Orientation"].tap();
+    target.delay(2.0);
+    
+    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+		
+        window.buttons()["Previous"].tap();
+		target.delay(2.0);		
+        window.buttons()["Previous"].tap();
+		target.delay(2.0);
+        window.buttons()["Previous"].tap();
+        UIALogger.logPass(testCaseName + " passed."); 
+        
+    } else {
+        UIALogger.logFail(testCaseName + " incorrect."); 
+    }
+        
+    testCaseName = testSuiteName + " Moral Report Help Screen";
+    UIALogger.logStart(testCaseName + " Test");
+    
+    window.buttons()["Moral Report"].tap();
+    target.delay(2.0);
+    
+    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+        
         window.buttons()["Previous"].tap();
 		target.delay(2.0);
         window.buttons()["Previous"].tap();
