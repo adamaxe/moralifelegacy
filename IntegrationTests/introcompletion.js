@@ -22,7 +22,7 @@ if (!app.tabBar().buttons()["Home"].checkIsValid()){
 	
 	UIALogger.logPass(testCaseName + " correctly."); 
 	
-    target.delay(20.0);
+    target.delay(5.0);
 
     testCaseName = testSuiteName + " Thought bubble tap";
     UIALogger.logStart(testCaseName + " Test");

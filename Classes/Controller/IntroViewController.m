@@ -363,20 +363,7 @@ the application.
     [self animateStatusText];
     
     [conscienceStatus setText:@"But I get lonely, so you should stick around until the end.  You can tap my thought bubble to get me to hurry up, though."];
-    
-	[UIView beginAnimations:@"labelFade2b" context:nil];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationBeginsFromCurrentState:NO];
-    
-    nextButton.alpha = 1;
-    nextButtonImage.alpha = 1;
-    
-    moraLifeLogoImage.alpha = 0;
-    conscienceStatus.alpha = 1;    
-	[UIView commitAnimations];
-    
-    [self animateNextButton];
-    
+        
     messageState = 2;
     
     [self.thoughtChangeTimer invalidate];
@@ -827,7 +814,7 @@ Implementation:  Return conscience to view
 #pragma mark UI configuration/interaction
 
 /**
- Implementation:  User can advance Intro state by selecting Conscience Thougth bubbble.  Determine current Intro state by inspecting ivar, switch to appropriate state
+ Implementation:  User can advance Intro state by selecting Conscience Thought bubbble.  Determine current Intro state by inspecting ivar, switch to appropriate state
  */
 -(IBAction)switchNow:(id)sender {
     
@@ -857,7 +844,26 @@ Implementation:  Return conscience to view
             default:
                 break;
         }
-	}
+        
+        
+        if ((nextButton.hidden == TRUE) || (nextButton.alpha == 0)) {
+
+            nextButton.hidden = FALSE;
+            nextButtonImage.hidden = FALSE;
+            
+            [UIView beginAnimations:@"labelFade2a" context:nil];
+            [UIView setAnimationDuration:0.5];
+            [UIView setAnimationBeginsFromCurrentState:NO];
+            
+            nextButton.alpha = 1;
+            nextButtonImage.alpha = 1;
+            
+            [UIView commitAnimations];
+            
+            [self animateNextButton];        
+        
+        }
+    }
     
 }
 

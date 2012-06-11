@@ -47,7 +47,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
     app.tabBar().buttons()["Home"].tap();        
     target.tap({x:130.00, y:300.00});
     
-    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+    if (window.buttons()["Previous"].checkIsValid()){ 
     
         window.buttons()["Previous"].tap();
         UIALogger.logPass(testCaseName + " passed."); 
@@ -64,7 +64,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
     window.buttons()["Eye"].tap();
     target.delay(2.0);    
     
-    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+    if (window.buttons()["Previous"].checkIsValid()){ 
     
         window.buttons()["Previous"].tap();
 		target.delay(2.0);
@@ -86,7 +86,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
     window.buttons()["Orientation"].tap();
     target.delay(2.0);
     
-    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+    if (window.buttons()["Previous"].checkIsValid()){ 
 		
         window.buttons()["Previous"].tap();
 		target.delay(2.0);		
@@ -105,7 +105,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
     window.buttons()["Moral Report"].tap();
     target.delay(2.0);
     
-    if (app.tabBar().buttons()["Previous"].checkIsValid()){ 
+    if (window.buttons()["Previous"].checkIsValid()){ 
         
         window.buttons()["Previous"].tap();
 		target.delay(2.0);
