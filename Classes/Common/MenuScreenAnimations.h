@@ -1,3 +1,12 @@
+/**
+ UIViewController Menu Screen Protocol.  Used for providing animated buttons on menus.
+ 
+ Copyright 2010 Team Axe, LLC. All rights reserved.
+ 
+ @class MenuScreenAnimations.h
+ @author Team Axe, LLC. http://www.teamaxe.org
+ @date 07/20/2010
+ */
 @protocol MenuScreenAnimations <NSObject>
 
 /**

@@ -2950,6 +2950,7 @@
 		5E9B1A3013AAC1DE000DE701 /* acc-nothing-bottom-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-nothing-bottom-sm.png"; sourceTree = "<group>"; };
 		5E9B1A3113AAC1DE000DE701 /* acc-nothing-side-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-nothing-side-sm.png"; sourceTree = "<group>"; };
 		5E9B1A3213AAC1DE000DE701 /* acc-nothing-top-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-nothing-top-sm.png"; sourceTree = "<group>"; };
+		5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewControllerLocalization.h; path = Common/ViewControllerLocalization.h; sourceTree = "<group>"; };
 		5E9CCE4C124991C200A18428 /* body-eye9.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-eye9.svg"; path = "Resources/images/conscience/body-eye9.svg"; sourceTree = "<group>"; };
 		5E9CCE4D124991C200A18428 /* con-glasses-round.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-glasses-round.svg"; path = "Resources/images/conscience/con-glasses-round.svg"; sourceTree = "<group>"; };
 		5E9CCE4E124991C200A18428 /* con-glasses-square.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-glasses-square.svg"; path = "Resources/images/conscience/con-glasses-square.svg"; sourceTree = "<group>"; };
@@ -3564,6 +3565,7 @@
 				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
 				5E5B2E46131AFB8B0080E1E8 /* UIViewController+HelpScreen.h */,
 				5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */,
+				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
 				5E5B2E47131AFB8B0080E1E8 /* UIViewController+HelpScreen.m */,
 			);
 			name = Common;

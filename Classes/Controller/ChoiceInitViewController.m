@@ -12,8 +12,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
 #import "MenuScreenAnimations.h"
+#import "ViewControllerLocalization.h"
 
-@interface ChoiceInitViewController () <MenuScreenAnimations> {
+@interface ChoiceInitViewController () <MenuScreenAnimations, ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;           /**< delegate for application level callbacks */
 	NSUserDefaults *prefs;                      /**< serialized state retention */
@@ -64,43 +65,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	//Retrieve localized view title string
-	/** 
-    @todo utilize consistent localization string references
-    @todo convert localization of all UIViewControllers into protocol
-    */
-	[self setTitle:NSLocalizedString(@"ChoiceInitScreenTitle",@"Title for Choice Home Screen")];
-	self.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLabel",@"Label for Choice Home Screen");
-	self.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenHint",@"Hint for Choice Home Screen");
-
-	//Set localized Button Titles.  Do no do this in init, XIB is not loaded until viewDidLoad
-	[goodChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",@"Label for Good Choice Button") forState: UIControlStateNormal];
-	[badChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",@"Label for Bad Choice Button") forState: UIControlStateNormal];
-	[choiceListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",@"Label for Choice List Button") forState: UIControlStateNormal];
-	goodChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",@"Hint for Good Choice Button");
-	badChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",@"Hint for Bad Choice Button");
-	choiceListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",@"Hint for Choice List Button");		
-	goodChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",@"Label for Good Choice Button");
-	badChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",@"Label for Bad Choice Button");
-	choiceListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",@"Label for Choice List Button");
-	goodChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",@"Hint for Good Choice Button");
-	badChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",@"Hint for Bad Choice Button");
-	choiceListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",@"Hint for Choice List Button");
-	
-	[goodLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",@"Label for Good Luck Button") forState: UIControlStateNormal];
-	[badLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",@"Label for Bad Luck Button") forState: UIControlStateNormal];
-	[luckListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckListLabel",@"Label for Luck List Button") forState: UIControlStateNormal];
-	goodLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",@"Hint for Good Luck Button");
-	badLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",@"Hint for Bad Luck Button");
-	luckListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",@"Hint for Luck List Button");		
-	
-	goodLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",@"Label for Good Luck Button");
-	badLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",@"Label for Bad Luck Button");
-	luckListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckListLabel",@"Label for Luck List Button");
-	goodLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",@"Hint for Good Luck Button");
-	badLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",@"Hint for Bad Luck Button");
-	luckListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",@"Hint for Luck List Button");
-	
+    [self localizeUI];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -237,7 +202,49 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 }
 
 #pragma mark -
-#pragma mark MenuScreenAnimationsProtocol
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    
+    //Retrieve localized view title string
+	[self setTitle:NSLocalizedString(@"ChoiceInitScreenTitle",@"Title for Choice Home Screen")];
+	self.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLabel",@"Label for Choice Home Screen");
+	self.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenHint",@"Hint for Choice Home Screen");
+    
+	//Set localized Button Titles.  Do no do this in init, XIB is not loaded until viewDidLoad
+	[goodChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",@"Label for Good Choice Button") forState: UIControlStateNormal];
+	[badChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",@"Label for Bad Choice Button") forState: UIControlStateNormal];
+	[choiceListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",@"Label for Choice List Button") forState: UIControlStateNormal];
+	goodChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",@"Hint for Good Choice Button");
+	badChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",@"Hint for Bad Choice Button");
+	choiceListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",@"Hint for Choice List Button");		
+	goodChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",@"Label for Good Choice Button");
+	badChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",@"Label for Bad Choice Button");
+	choiceListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",@"Label for Choice List Button");
+	goodChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",@"Hint for Good Choice Button");
+	badChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",@"Hint for Bad Choice Button");
+	choiceListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",@"Hint for Choice List Button");
+	
+	[goodLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",@"Label for Good Luck Button") forState: UIControlStateNormal];
+	[badLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",@"Label for Bad Luck Button") forState: UIControlStateNormal];
+	[luckListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckListLabel",@"Label for Luck List Button") forState: UIControlStateNormal];
+	goodLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",@"Hint for Good Luck Button");
+	badLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",@"Hint for Bad Luck Button");
+	luckListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",@"Hint for Luck List Button");		
+	
+	goodLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",@"Label for Good Luck Button");
+	badLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",@"Label for Bad Luck Button");
+	luckListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckListLabel",@"Label for Luck List Button");
+	goodLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",@"Hint for Good Luck Button");
+	badLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",@"Hint for Bad Luck Button");
+	luckListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",@"Hint for Luck List Button");
+
+    
+}
+
+
+#pragma mark -
+#pragma mark MenuScreenAnimations Protocol
 
 /**
  Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visually distracting
