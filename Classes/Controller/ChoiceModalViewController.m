@@ -8,8 +8,9 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceView.h"
 #import "Moral.h"
+#import "ViewControllerLocalization.h"
 
-@interface ChoiceModalViewController () {
+@interface ChoiceModalViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -71,10 +72,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	appDelegate.userConscienceView.center = centerPoint;
-    
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
-    
+        
     //User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
 	NSObject *boolCheck = [prefs objectForKey:@"entryIsGood"];
@@ -112,6 +110,8 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
+	[super viewWillDisappear:animated];
+    
 	id placeHolderID = nil;
 	
 	[self dismissChoiceModal:placeHolderID];
@@ -378,6 +378,15 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	[searchBar resignFirstResponder];
 }
 
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+
+}
 
 #pragma mark -
 #pragma mark Memory management

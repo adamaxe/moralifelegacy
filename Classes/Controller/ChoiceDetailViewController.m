@@ -8,8 +8,9 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 #import "ChoiceDetailViewController.h"
 #import "StructuredTextField.h"
 #import "ConscienceHelpViewController.h"
+#import "ViewControllerLocalization.h"
 
-@interface ChoiceDetailViewController () {
+@interface ChoiceDetailViewController () <ViewControllerLocalization> {
     
 	NSUserDefaults *prefs;					/**< serialized user settings/state retention */
 	
@@ -62,25 +63,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	
 	//Reference serialized User state retention
 	prefs = [NSUserDefaults standardUserDefaults];
-
-	//Retrieve localized view title string.  Do no do this in init, XIB is not loaded until viewDidLoad
-	/** 
-	@todo utilize consistent localization string references 
-	@todo convert localization of all UIViewControllers into protocol
-	*/
     
-	[self setTitle:NSLocalizedString(@"ChoiceDetailsScreenTitle",@"Label for Choice Details Screen")];
-
-	//Retrieve localized done button string
-	//Set localization for UI elements, accessors are utilized in order to format text correctly (fit text)
-	[justificationLabel setText:NSLocalizedString(@"ChoiceDetailsScreenJustificationLabel",@"Label for Justification textField")];
-	justificationTextField.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenJustificationHint",@"Hint for Justification textField");
-	justificationTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceDetailsScreenJustificationLabel",@"Label for Justification textField");
-    
-	[consequencesLabel setText:NSLocalizedString(@"ChoiceDetailsScreenConsequenceLabel",@"Label for Consequence textField")];
-	consequencesTextField.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenConsequenceHint",@"Hint for Consequence textField");
-	consequencesTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceDetailsScreenConsequenceLabel",@"Label for Consequence textField");
-
 	//Set maximum lengths for User-entry to textfields
 	justificationTextField.delegate = self;
 	justificationTextField.maxLength = kChoiceTextFieldLength;
@@ -89,32 +72,11 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];
-    
-    influenceSlider.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenInfluenceHint",@"Hint for Influence Slider");
-    influenceSlider.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider");
-    
+
 	//Make slider decoration invisible so that fade-in is possible
 	[influenceButton setAlpha:0];
 	[influenceImageView setAlpha:0];
 	[cloudImageView setAlpha:0];
-
-    influenceButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenInfluenceButtonHint",@"Hint for Influence Button");
-    influenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenInfluenceButtonLabel",@"Label for Influence Button");
-	
-    
-	//Retrieve localized influence description strings
-    [influenceLabel setText:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider")];
-	influenceLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel1",@"Label for Influence Level 1"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel2",@"Label for Influence Level 2"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel3",@"Label for Influence Level 3"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel4",@"Label for Influence Level 4"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel5",@"Label for Influence Level 5"), nil];
-
-	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];
-	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateHighlighted];
-	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenDoneButtonHint",@"Hint for Done button");	
-	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenDoneButtonLabel",@"Label for Done button");	
-    
-	[cancelButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateNormal];
-	[cancelButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateHighlighted];
-	cancelButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenCancelButtonHint",@"Hint for Cancel button");	
-	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenCancelButtonLabel",@"Label for Cancel button");	
 
 	//Setting to determine if details are being cancelled
 	isChoiceCancelled = FALSE;
@@ -126,8 +88,9 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 -(void) viewWillAppear:(BOOL)animated{
 	
-	[justificationTextField setText:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",@"Help Text for Justification Textfield")];
-	[consequencesTextField setText:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",@"Help Text for Consequence Textfield")];
+    [super viewWillAppear:animated];
+
+    [self localizeUI];
 	
 	//Restore state of prior view if applicable	
 	NSString *restoreJustification = [prefs objectForKey:@"choiceJustification"];
@@ -155,6 +118,9 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
+    
     [UIView beginAnimations:@"showInfluenceImage" context:nil];
     [UIView setAnimationDuration:0.5];
     [influenceButton setAlpha:1];
@@ -169,6 +135,8 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 -(void) viewWillDisappear:(BOOL)animated{
 	
+    [super viewWillDisappear:animated];
+    
 	[self saveChoice];
 		
 }
@@ -362,6 +330,48 @@ Implementation:  Truncate the field on each keypress if length is greater
 		//If current length is greater, truncate
 		[activeField setText:[[activeField text] substringToIndex:activeField.maxLength]];
     }
+}
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    
+    //Retrieve localized view title string.  Do no do this in init, XIB is not loaded until viewDidLoad    
+	[self setTitle:NSLocalizedString(@"ChoiceDetailsScreenTitle",@"Label for Choice Details Screen")];
+    
+	//Retrieve localized done button string
+	//Set localization for UI elements, accessors are utilized in order to format text correctly (fit text)
+	[justificationLabel setText:NSLocalizedString(@"ChoiceDetailsScreenJustificationLabel",@"Label for Justification textField")];
+	justificationTextField.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenJustificationHint",@"Hint for Justification textField");
+	justificationTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceDetailsScreenJustificationLabel",@"Label for Justification textField");
+    
+	[consequencesLabel setText:NSLocalizedString(@"ChoiceDetailsScreenConsequenceLabel",@"Label for Consequence textField")];
+	consequencesTextField.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenConsequenceHint",@"Hint for Consequence textField");
+	consequencesTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceDetailsScreenConsequenceLabel",@"Label for Consequence textField");
+    
+    influenceSlider.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenInfluenceHint",@"Hint for Influence Slider");
+    influenceSlider.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider");
+    
+    influenceButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenInfluenceButtonHint",@"Hint for Influence Button");
+    influenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenInfluenceButtonLabel",@"Label for Influence Button");
+    
+	//Retrieve localized influence description strings
+    [influenceLabel setText:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider")];
+	influenceLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel1",@"Label for Influence Level 1"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel2",@"Label for Influence Level 2"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel3",@"Label for Influence Level 3"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel4",@"Label for Influence Level 4"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel5",@"Label for Influence Level 5"), nil];
+    
+	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];
+	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateHighlighted];
+	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenDoneButtonHint",@"Hint for Done button");	
+	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenDoneButtonLabel",@"Label for Done button");	
+    
+	[cancelButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateNormal];
+	[cancelButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateHighlighted];
+	cancelButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenCancelButtonHint",@"Hint for Cancel button");	
+	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenCancelButtonLabel",@"Label for Cancel button");	
+    [justificationTextField setText:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",@"Help Text for Justification Textfield")];
+    [consequencesTextField setText:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",@"Help Text for Consequence Textfield")];
+
 }
 
 #pragma mark -

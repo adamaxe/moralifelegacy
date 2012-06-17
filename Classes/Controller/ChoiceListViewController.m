@@ -11,8 +11,9 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #import "ChoiceViewController.h"
 #import "UserChoice.h"
 #import "Moral.h"
+#import "ViewControllerLocalization.h"
 
-@interface ChoiceListViewController () {
+@interface ChoiceListViewController () <ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -92,16 +93,9 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	/** 
 	@todo utilize consistent localization string references 
 	*/
-	self.title = NSLocalizedString(@"ChoiceListScreenTitle",@"Label for Choice List Screen");
 	[moralSortButton setTitle:@"Sort" forState: UIControlStateNormal];
 	[moralOrderButton setTitle:@"Order" forState: UIControlStateNormal];
-    
-    moralSortButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenSortButtonLabel",@"Label for Sort Button");
-	moralSortButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenSortButtonHint",@"Hint for Sort Button");
-
-    moralOrderButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenOrderButtonLabel",@"Label for Order Button");
-	moralOrderButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenOrderButtonHint",@"Hint for Order Button");
-    
+        
 	choiceSearchBar.barStyle = UIBarStyleBlack;
 	choiceSearchBar.delegate = self;
 	choiceSearchBar.showsCancelButton = NO;
@@ -127,6 +121,8 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+    
+    [self localizeUI];
     
 	//Refresh Data in case something changed since last time onscreen
 	[self retrieveAllChoices];
@@ -679,6 +675,19 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
 	[searchBar resignFirstResponder];
+}
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    self.title = NSLocalizedString(@"ChoiceListScreenTitle",@"Label for Choice List Screen");
+    moralSortButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenSortButtonLabel",@"Label for Sort Button");
+	moralSortButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenSortButtonHint",@"Hint for Sort Button");
+    
+    moralOrderButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenOrderButtonLabel",@"Label for Order Button");
+	moralOrderButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenOrderButtonHint",@"Hint for Order Button");
+
 }
 
 #pragma mark -

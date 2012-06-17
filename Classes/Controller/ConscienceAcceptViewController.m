@@ -18,8 +18,9 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #import "UserCharacter.h"
 #import "Moral.h"
 #import "UserCollectable.h"
+#import "ViewControllerLocalization.h"
 
-@interface ConscienceAcceptViewController () {
+@interface ConscienceAcceptViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -37,9 +38,10 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	IBOutlet UILabel *accessoryCostLabel;			/**< cost of ConscienceAsset */
 	IBOutlet UILabel *insufficientEthicalsLabel;	/**< insufficient ethicals notification */
     
-	IBOutlet UIButton *yesButton;					/**< button used to accept new ConscienceAsset */
-	IBOutlet UIButton *noButton;					/**< button used to reject new ConscienceAsset */
+	IBOutlet UIButton *buyButton;					/**< button used to accept new ConscienceAsset */
+	IBOutlet UIButton *backButton;					/**< button used to reject new ConscienceAsset */
     
+    IBOutlet UIButton *previousButton;              /**< button used to cancel choice workflow */
  	int currentFunds;		/**< current amount of ethicals from MoraLifeAppDelegate::userCollection */
 	int assetCost;		/**< cost of ConscienceAsset */
     
@@ -157,10 +159,10 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		//If ConscienceAsset is already owned, change verbiage of UI
 		if (isOwned) {
 			[accessoryCostLabel setText:@"Owned!"];
-			[[yesButton titleLabel] setText:@"Use"];
+			[[buyButton titleLabel] setText:@"Use"];
 		} else {
             	[accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %dε", assetCost]];
-	            [[yesButton titleLabel] setText:@"Buy"];
+	            [[buyButton titleLabel] setText:@"Buy"];
 		}
         
 		//Set UI image of Moral
@@ -221,10 +223,10 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	//Inform/restrict User's ability to actually purchase ConscienceAsset
 	//Flash assetCost is ConscienceAsset is unbuyable
 	if ((assetCost > currentFunds) && !isOwned) {
-		[yesButton setHidden:TRUE];
+		[buyButton setHidden:TRUE];
         [insufficientEthicalsLabel setHidden:FALSE];
         
-		[noButton setCenter:CGPointMake(noButton.center.x-50, noButton.center.y)];
+		[backButton setCenter:CGPointMake(backButton.center.x-50, backButton.center.y)];
 		[accessoryCostLabel setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
         
 		[UIView beginAnimations:@"PulseCost" context:nil];
@@ -337,9 +339,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
                 [ConscienceBuilder buildConscience:appDelegate.userConscienceBody];
                 
             }
-            
-//            [appDelegate.userConscienceView setTimers];
-            
+                        
             [UIView beginAnimations:@"conscienceHide" context:nil];
             [UIView setAnimationDuration:0.25];
             
@@ -552,6 +552,22 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 }
 
 #pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+
+    buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonHint", @"Hint for buy button");
+	buyButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBuyButtonLabel",@"Label for buy button");
+
+    backButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBackButtonHint", @"Hint for back button");
+	backButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBackButtonLabel",@"Label for back button");    
+    
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
@@ -562,6 +578,8 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 }
 
 - (void)viewDidUnload {
+    [previousButton release];
+    previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -573,6 +591,7 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 	[currentFeature release];
     [resetFeature release];
 	[assetSelection release];
+    [previousButton release];
 	[super dealloc];
 
 }

@@ -19,8 +19,9 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "UserCollectable.h"
 #import "UserCharacter.h"
 #import "ChoiceHistoryViewController.h"
+#import "ViewControllerLocalization.h"
 
-@interface ChoiceViewController () {
+@interface ChoiceViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -56,11 +57,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	NSString *moralKey;						/** string to hold primary key of current moral */
     
 }
-
-/**
- Present a customized Done UIButton on top of the UITextView for data entry.
- */
--(void)presentDoneButton;
 
 /**
  Shift UI elements to move UITextView to top of screen to accomodate keyboard
@@ -112,59 +108,39 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 		isChoiceFinished = FALSE;
 	}
     
-	//Set localization for UI elements, accessors are utilized in order to format text correctly (fit text)
-	/** 
-	@todo utilize consistent localization string references 
-	@todo convert localization of all UIViewControllers into protocol
-	*/
-	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];
-	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateHighlighted];
-	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenDoneButtonHint",@"Hint for Done button");	
-	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenDoneButtonLabel",@"Label for Done button");	
-    
-	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateNormal];
-	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateHighlighted];
-	cancelButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenCancelButtonHint",@"Hint for Cancel button");	
-	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenCancelButtonLabel",@"Label for Cancel button");	
-    
-	//choiceTextField is a custom StructuredTextField with max length.
-	choiceTextField.delegate = self;
-	choiceTextField.maxLength = kChoiceTextFieldLength;
-	choiceTextField.accessibilityHint = NSLocalizedString(@"ChoiceScreenChoiceTextFieldHint",@"Hint for Choice textField");
-	choiceTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenChoiceTextFieldLabel",@"Label for Choice textField");
-
-    moralReferenceButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonHint",@"Hint for Moral Reference button");	
-	moralReferenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonLabel",@"Label for Moral Reference button");	
-
-    moralHistoryButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonHint",@"Hint for Moral History button");	
-	moralHistoryButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonLabel",@"Label for Moral History button");	
-
-    
+    //choiceTextField is a custom StructuredTextField with max length.
+    choiceTextField.delegate = self;
+    choiceTextField.maxLength = kChoiceTextFieldLength;
     descriptionTextView.delegate = self;
-	descriptionTextView.accessibilityHint =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewHint",@"Hint for Description textField");
-	descriptionTextView.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewLabel",@"Label for Description textField");
-    
+
 	//Place inner shadow around flat UITextView
 	[descriptionInnerShadow setImage:[UIImage imageNamed:@"textview-innershadow.png"]];
     
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];
     
-    severitySlider.accessibilityHint = NSLocalizedString(@"ChoiceScreenSeverityHint",@"Hint for Severity slider");
-	severitySlider.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Label for Severity slider");
-
-    
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
     
 	//Create input for requesting ChoiceDetailViewController
 //	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showChoiceDetailEntry)];
-	
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",@"Hint for Details Label") style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
-    
+	
 	self.navigationItem.rightBarButtonItem = barButtonItem;
 	[barButtonItem release];
     
+    hideKeyboardButton = [UIButton buttonWithType: UIButtonTypeCustom];
+    hideKeyboardButton.frame = CGRectMake(250, 480, 74, 39);
+    hideKeyboardButton.alpha = 0;
+    
+    [hideKeyboardButton setBackgroundImage:[UIImage imageNamed:@"button-normal-down.png"] forState: UIControlStateNormal];
+    [hideKeyboardButton setBackgroundImage:[UIImage imageNamed:@"button-normal-down.png"] forState: UIControlStateHighlighted];	
+    [hideKeyboardButton addTarget: self action:@selector(hideKeyboard) forControlEvents: UIControlEventTouchUpInside];
+    [[hideKeyboardButton titleLabel] setShadowColor:[UIColor blackColor]];
+    [[hideKeyboardButton titleLabel] setShadowOffset:CGSizeMake(0, -1)];
+    
+    [self.view addSubview: hideKeyboardButton];
+        
 	//User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
 	NSObject *boolCheck = [prefs objectForKey:@"entryIsGood"];
@@ -176,36 +152,14 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 		isVirtue = TRUE;
 	}
     
-	NSMutableString *localString = [NSString stringWithFormat:@"ChoiceScreen%dTitle", isVirtue];
-	//Change Title of screen to reflect good or bad choice
-	[self setTitle:NSLocalizedString(localString, @"Title for Choice screen")];
-	[severityLabel setText:NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Hint for Details Label")];
-
-	severityLabel.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dHint", isVirtue]), @"Hint for Severity Label");
-	severitySlider.accessibilityHint =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dHint", isVirtue]), @"Hint for Severity Slider");
-	severitySlider.accessibilityLabel =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dLabel", isVirtue]), @"Label for Severity Slider");		
-	
-	//Populate severity arrays for descriptions to reflect good or bad choice
-	//Localized string are keyed to accept the isVirtue BOOL as an int (Virtue = 1, Vice = 0)
-	severityLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]), @"Label for Severity Level 1"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%db", isVirtue]), @"Label for Severity Level 2"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dc", isVirtue]), @"Label for Severity Level 3"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]), @"Label for Severity Level 4"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%de", isVirtue]), @"Label for Severity Level 5"), nil];
 	
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	
 	[super viewWillAppear:animated];
-        
-	[choiceTextField setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield")];
     
-	[moralButton setTitle:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button") forState:UIControlStateNormal];
-	moralButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dHint", isVirtue]), @"Hint for Moral Button");
-	moralButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button");
-	[descriptionTextView setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenDescription", isVirtue]), @"Label for Description Textview")];
-	
+    [self localizeUI];
 	
 	//Restore state of prior view if applicable	
 	NSString *restoreShortDescription = [prefs objectForKey:@"entryShortDescription"];
@@ -276,6 +230,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
+    
+    [super viewWillDisappear:animated];
 	
 	//Save current state of form unless choice is finished
 	if (!isChoiceFinished) {
@@ -303,6 +259,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+    
+    [super viewDidAppear:animated];
 
 	//Present Moral image as a fade in to provide distinction between Conscience elements and User entry elements
 	[UIView beginAnimations:@"showMoralImage" context:nil];
@@ -624,45 +582,6 @@ Implementation: Cancel all choice attributes, delete NSUserDefault values, dismi
 #pragma mark Custom UI animations
 
 /**
-Implementation: Enter key in UITextView only inputs CRLF.  A separate button is needed to resignFirstResponder.
- */
-- (void)presentDoneButton{
-    
-	//Do not display done button if TextField is active
-	if (activeField == nil) {
-        
-		//Re-arrange view
-		[self animateOptionChange:1];
-		
-		hideKeyboardButton = [UIButton buttonWithType: UIButtonTypeCustom];
-		hideKeyboardButton.frame = CGRectMake(250, 480, 74, 39);
-		hideKeyboardButton.alpha = 0;
-        
-		/** 
-		@todo utilize consistent localization string references 
-		@todo convert localization of all UIViewControllers into protocol
-		*/
-		[hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateNormal];
-		[hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateHighlighted];
-		[hideKeyboardButton setBackgroundImage:[UIImage imageNamed:@"button-normal-down.png"] forState: UIControlStateNormal];
-		[hideKeyboardButton setBackgroundImage:[UIImage imageNamed:@"button-normal-down.png"] forState: UIControlStateHighlighted];	
-		[hideKeyboardButton addTarget: self action:@selector(hideKeyboard) forControlEvents: UIControlEventTouchUpInside];
-		[[hideKeyboardButton titleLabel] setShadowColor:[UIColor blackColor]];
-		[[hideKeyboardButton titleLabel] setShadowOffset:CGSizeMake(0, -1)];
-		
-        	//Float Done button up from bottom
-		[UIView beginAnimations:@"doneButtonAnimation" context:nil];
-		[UIView setAnimationDuration:0.5];
-		[self.view addSubview: hideKeyboardButton];
-		hideKeyboardButton.frame = CGRectMake(250, 205, 74, 39);
-		hideKeyboardButton.alpha = 1;
-		[UIView commitAnimations];
-        
-	}
-	
-}
-
-/**
 Implementation: Shift UITextView up to top of screen, hide elements underneath, present a button to cancel keyboard
  */
 - (void)animateOptionChange:(int)viewNumber{
@@ -691,7 +610,7 @@ Implementation: Resign first responder and return the views to original location
 {
 	[self animateOptionChange:0];
     
-	[hideKeyboardButton removeFromSuperview];
+	[hideKeyboardButton setAlpha:0];
 	[descriptionTextView resignFirstResponder];
 }
 
@@ -707,7 +626,23 @@ Implementation: Resign first responder and return the views to original location
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {	
-	[self presentDoneButton];
+	//Do not display done button if TextField is active
+	if (activeField == nil) {
+        
+		//Re-arrange view
+		[self animateOptionChange:1];
+        
+        CGRect hideKeyboardButtonFrame = hideKeyboardButton.frame; 
+        hideKeyboardButtonFrame.origin.y -= 275;           
+        
+        //Float Done button up from bottom
+		[UIView beginAnimations:@"doneButtonAnimation" context:nil];
+		[UIView setAnimationDuration:0.5];
+        hideKeyboardButton.frame = hideKeyboardButtonFrame;
+		hideKeyboardButton.alpha = 1;
+		[UIView commitAnimations];
+        
+	}
     
 	//If text in view is default, then clear it
 	if ([textView.text isEqualToString:NSLocalizedString(@"ChoiceScreenDescription",@"Label for Choice TextView")]) {
@@ -738,6 +673,22 @@ Implementation: Resign first responder and return the views to original location
 }
 
 - (BOOL)textViewShouldEndEditing:(UITextView *)textView{
+    
+    //Do not display done button if TextField is active
+	if (activeField == nil) {
+        
+        CGRect hideKeyboardButtonFrame = hideKeyboardButton.frame; 
+        hideKeyboardButtonFrame.origin.y += 275;        
+
+        //Float Done button up from bottom
+		[UIView beginAnimations:@"doneButtonAnimation" context:nil];
+		[UIView setAnimationDuration:0.5];
+        hideKeyboardButton.frame = hideKeyboardButtonFrame;
+
+        hideKeyboardButton.alpha = 0;
+		[UIView commitAnimations];
+        
+	}
     
 	[descriptionTextView resignFirstResponder];
 	
@@ -1001,6 +952,67 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 }
 
 #pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    
+	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];
+	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateHighlighted];
+	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenDoneButtonHint",@"Hint for Done button");	
+	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenDoneButtonLabel",@"Label for Done button");	
+    
+	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateNormal];
+	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateHighlighted];
+	cancelButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenCancelButtonHint",@"Hint for Cancel button");	
+	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenCancelButtonLabel",@"Label for Cancel button");	
+    
+	choiceTextField.accessibilityHint = NSLocalizedString(@"ChoiceScreenChoiceTextFieldHint",@"Hint for Choice textField");
+	choiceTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenChoiceTextFieldLabel",@"Label for Choice textField");
+    
+    moralReferenceButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonHint",@"Hint for Moral Reference button");	
+	moralReferenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonLabel",@"Label for Moral Reference button");	
+    
+    moralHistoryButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonHint",@"Hint for Moral History button");	
+	moralHistoryButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonLabel",@"Label for Moral History button");	
+    
+    
+	descriptionTextView.accessibilityHint =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewHint",@"Hint for Description textField");
+	descriptionTextView.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewLabel",@"Label for Description textField");
+    
+    severitySlider.accessibilityHint = NSLocalizedString(@"ChoiceScreenSeverityHint",@"Hint for Severity slider");
+	severitySlider.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Label for Severity slider");
+    NSMutableString *localString = [NSString stringWithFormat:@"ChoiceScreen%dTitle", isVirtue];
+    
+    //Change Title of screen to reflect good or bad choice
+    [self setTitle:NSLocalizedString(localString, @"Title for Choice screen")];
+    [severityLabel setText:NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Hint for Details Label")];
+    
+    severityLabel.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dHint", isVirtue]), @"Hint for Severity Label");
+    severitySlider.accessibilityHint =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dHint", isVirtue]), @"Hint for Severity Slider");
+    severitySlider.accessibilityLabel =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dLabel", isVirtue]), @"Label for Severity Slider");		
+    
+    //Populate severity arrays for descriptions to reflect good or bad choice
+    //Localized string are keyed to accept the isVirtue BOOL as an int (Virtue = 1, Vice = 0)
+    severityLabelDescriptions = [NSArray arrayWithObjects:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]), @"Label for Severity Level 1"), 
+                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%db", isVirtue]), @"Label for Severity Level 2"), 
+                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dc", isVirtue]), @"Label for Severity Level 3"), 
+                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]), @"Label for Severity Level 4"), 
+                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%de", isVirtue]), @"Label for Severity Level 5"), nil];    
+
+	[choiceTextField setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield")];
+    
+	[moralButton setTitle:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button") forState:UIControlStateNormal];
+	moralButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dHint", isVirtue]), @"Hint for Moral Button");
+	moralButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button");
+	[descriptionTextView setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenDescription", isVirtue]), @"Label for Description Textview")];
+    
+    [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateNormal];
+    [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateHighlighted];    
+
+
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning {
@@ -1022,7 +1034,6 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 - (void)dealloc {
     [choiceKey release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
-	[severityLabelDescriptions release];
     [moralHistoryButton release];
 	[super dealloc];
 }

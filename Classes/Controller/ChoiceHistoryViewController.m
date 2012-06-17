@@ -14,8 +14,9 @@
 #import "ConscienceView.h"
 #import "UserChoice.h"
 #import "Moral.h"
+#import "ViewControllerLocalization.h"
 
-@interface ChoiceHistoryViewController () {
+@interface ChoiceHistoryViewController () <ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -40,7 +41,7 @@
 	
 	IBOutlet UITableView *choicesTableView;	/**< table of User choices*/
     IBOutlet UIView *thoughtArea;			/**< area in which thought bubble appears */
-    
+	IBOutlet UIButton *previousButton;		/**< return to previous page */    
     
 	NSMutableString *choiceSortDescriptor;	/**< sort descriptor for filtering Core Data */
 	BOOL isAscending;					/**< is data ascending or descending order */
@@ -64,7 +65,6 @@
  */
 - (void) filterResults: (NSString *)searchText;
 
-
 @end
 
 @implementation ChoiceHistoryViewController
@@ -83,12 +83,6 @@
 	//Set default listing and sort order
 	isAscending = FALSE;
 	choiceSortDescriptor = [[NSMutableString alloc] initWithString:kChoiceListSortDate];
-    
-	//Retrieve localized view title string
-	/** 
-     @todo utilize consistent localization string references 
-     */
-	self.title = NSLocalizedString(@"ChoiceListScreenTitle",@"Label for Choice List Screen");
     
 	choiceSearchBar.barStyle = UIBarStyleBlack;
 	choiceSearchBar.delegate = self;
@@ -131,7 +125,10 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    
 	[super viewWillAppear:animated];
+    
+    [self localizeUI];
     
 	//Refresh Data in case something changed since last time onscreen
 	[self retrieveAllChoices];
@@ -175,6 +172,7 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    
     [super viewWillDisappear:animated];
 	
 	//If search text was present, retain it for retrieval upon return to this UIViewController
@@ -603,6 +601,16 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
 	[searchBar resignFirstResponder];
+}
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    
+    self.title = NSLocalizedString(@"ChoiceListScreenTitle",@"Label for Choice List Screen");
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
 }
 
 #pragma mark -

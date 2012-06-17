@@ -65,11 +65,13 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-    [self localizeUI];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:animated];
+
+    [self localizeUI];
 	//Setup repeating NSTimer to make the buttons animate randomly
 	[self refreshButtons];
 	buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
@@ -78,6 +80,8 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 -(void)viewDidAppear:(BOOL)animated {
     
+    [super viewDidAppear:animated];
+
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
 }
