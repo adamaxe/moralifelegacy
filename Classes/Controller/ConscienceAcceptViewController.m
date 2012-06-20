@@ -201,14 +201,13 @@ User can return to the previous screen:  return to ConscienceListViewController 
         }break;            
 		default: break;
 	}
-    
-
-
 	
     if ((accessorySlot > 3) && (accessorySlot < 7)) {
         [ConscienceBuilder buildConscience:appDelegate.userConscienceBody];
 
     }
+    
+    [self localizeUI];    
 
 }
 

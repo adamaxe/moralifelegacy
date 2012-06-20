@@ -41,6 +41,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	NSMutableDictionary *userChoices;		/**< dictionary to hold Dilemmas already completed by User */
 	NSMutableDictionary *moralNames;		/**< dictionary to hold names of selected Morals */
     
+    IBOutlet UIButton *previousButton;
 	IBOutlet UISearchBar *dilemmaSearchBar;			/**< ui element for limiting choices in table */
 	
 	IBOutlet UIView *thoughtModalArea;
@@ -118,6 +119,8 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	tableDataDetails = [[NSMutableArray alloc] init];
 	tableDataKeys = [[NSMutableArray alloc] init];
 	tableDataTypes = [[NSMutableArray alloc] init];
+    
+    [self localizeUI];
 
 }
 
@@ -804,6 +807,15 @@ Implementation - Delete
 //}
 
 #pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+        
+}
+
+#pragma mark -
 #pragma mark Memory management
 
 - (void)didReceiveMemoryWarning
@@ -817,6 +829,8 @@ Implementation - Delete
 
 - (void)viewDidUnload
 {
+    [previousButton release];
+    previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -838,6 +852,7 @@ Implementation - Delete
 	[choiceDisplayNames release];
 	[userChoices release];
 	[moralNames release];
+    [previousButton release];
 	[super dealloc];
 }
 

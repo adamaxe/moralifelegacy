@@ -13,8 +13,9 @@ the application.
 #import "ConscienceBody.h"
 #import "ConscienceMind.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ViewControllerLocalization.h"
 
-@interface IntroViewController () {
+@interface IntroViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
@@ -117,17 +118,14 @@ the application.
 	appDelegate.userConscienceView.center = centerPoint;
 	[conscienceStatus setText:@"Hello there!  Welcome to..."];
 
-    thoughtButton.accessibilityHint = NSLocalizedString(@"IntroThoughtButtonHint", @"Hint for thought button");
-	thoughtButton.accessibilityLabel =  NSLocalizedString(@"IntroThoughtButtonLabel",@"Label for thought button");
-    nextButton.accessibilityHint = NSLocalizedString(@"IntroNextButtonHint", @"Hint for next button");
-	nextButton.accessibilityLabel =  NSLocalizedString(@"IntroNextButtonLabel",@"Label for next button");
-
 	backgroundImage.alpha = 0;
 	moraLifeLogoImage.alpha = 0;
     
 	animationDuration = 1.0;
 	messageState = 0;
 	isImpatient = TRUE;
+    
+    [self localizeUI];    
 
 }
 
@@ -1120,6 +1118,19 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
     
 	[self touchesEnded:touches withEvent:event];
     
+    
+}
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
+	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
+    thoughtButton.accessibilityHint = NSLocalizedString(@"IntroThoughtButtonHint", @"Hint for thought button");
+	thoughtButton.accessibilityLabel =  NSLocalizedString(@"IntroThoughtButtonLabel",@"Label for thought button");
+
     
 }
 

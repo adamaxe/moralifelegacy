@@ -14,8 +14,9 @@ User can filter list by only things that are affordable to currentFunds.
 #import "ConscienceAsset.h"
 #import "UserCollectable.h"
 #import "ConscienceHelpViewController.h"
+#import "ViewControllerLocalization.h"
 
-@interface ConscienceListViewController () {
+@interface ConscienceListViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -96,8 +97,7 @@ User can filter list by only things that are affordable to currentFunds.
 	//Display available ethicals to User
 	[fundsButton setTitle:[NSString stringWithFormat:@"%dε", currentFunds] forState:UIControlStateNormal];
     
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    [self localizeUI];    
     
 }
 
@@ -604,6 +604,15 @@ Implementation: Retrieve User's current ethicals from UserData
 		
 	[self.navigationController pushViewController:conscienceAcceptCont animated:NO];
 	[conscienceAcceptCont release];
+        
+}
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
         
 }
 

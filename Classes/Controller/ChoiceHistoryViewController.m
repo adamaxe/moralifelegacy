@@ -122,13 +122,13 @@
 	tableDataKeys = [[NSMutableArray alloc] init];
 	tableDataDetails = [[NSMutableArray alloc] init];
 	
+    [self localizeUI];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     
 	[super viewWillAppear:animated];
     
-    [self localizeUI];
     
 	//Refresh Data in case something changed since last time onscreen
 	[self retrieveAllChoices];

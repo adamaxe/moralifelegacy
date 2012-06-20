@@ -27,8 +27,9 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "ReferenceAsset.h"
 #import "UserChoice.h"
 #import "UserCharacter.h"
+#import "ViewControllerLocalization.h"
 
-@interface ConscienceActionViewController () {
+@interface ConscienceActionViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -125,9 +126,9 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
-	/** @bug determined abandoned memory */
 	//Get relevant dilemma information
 	[self loadDilemma];
+    [self localizeUI];    
         
 }
 
@@ -755,6 +756,19 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	[context reset];
 }
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
+	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
+
+}
+
 
 #pragma mark -
 #pragma mark Memory management

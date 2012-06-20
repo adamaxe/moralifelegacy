@@ -25,13 +25,14 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "ReferenceAsset.h"
 #import "UserChoice.h"
 #import "UserCharacter.h"
+#import "ViewControllerLocalization.h"
 
 enum viewToAnimate{
 kViewVersus,
 kViewReward
 };
 
-@interface DilemmaViewController () {
+@interface DilemmaViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -146,6 +147,8 @@ kViewReward
     [self loadDilemma];
     
     isChoiceA = FALSE;
+    
+    [self localizeUI];    
 
 }
 
@@ -819,6 +822,18 @@ Calculate changes to User's ethicals.  Limit to 999.
         }
         
     }
+}
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
+	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
+    
 }
 
 #pragma mark -

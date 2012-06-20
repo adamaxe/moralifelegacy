@@ -86,6 +86,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
     [self retrieveAllSelections];
 
+    [self localizeUI];    
     
 }
 

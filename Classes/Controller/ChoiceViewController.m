@@ -158,9 +158,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 - (void)viewWillAppear:(BOOL)animated {
 	
 	[super viewWillAppear:animated];
-    
     [self localizeUI];
-	
+    
 	//Restore state of prior view if applicable	
 	NSString *restoreShortDescription = [prefs objectForKey:@"entryShortDescription"];
 	NSString *restoreLongDescription = [prefs objectForKey:@"entryLongDescription"];
@@ -993,7 +992,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     
     //Populate severity arrays for descriptions to reflect good or bad choice
     //Localized string are keyed to accept the isVirtue BOOL as an int (Virtue = 1, Vice = 0)
-    severityLabelDescriptions = [NSArray arrayWithObjects:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]), @"Label for Severity Level 1"), 
+    severityLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]), @"Label for Severity Level 1"), 
                                  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%db", isVirtue]), @"Label for Severity Level 2"), 
                                  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dc", isVirtue]), @"Label for Severity Level 3"), 
                                  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]), @"Label for Severity Level 4"), 
@@ -1035,6 +1034,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     [choiceKey release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
     [moralHistoryButton release];
+    [severityLabelDescriptions release];
 	[super dealloc];
 }
 

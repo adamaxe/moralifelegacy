@@ -8,8 +8,9 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
 #import "ConscienceView.h"
+#import "ViewControllerLocalization.h"
 
-@interface ConscienceHelpViewController () {
+@interface ConscienceHelpViewController () <ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;			/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;					/**< serialized user settings/state retention */
@@ -114,6 +115,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	}
 	
 	[viewsArray release];
+    
+    [self localizeUI];    
 	
 }
 
@@ -333,6 +336,18 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
 	
+}
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
+	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
+    
 }
 
 #pragma mark -

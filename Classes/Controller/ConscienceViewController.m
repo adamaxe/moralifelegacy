@@ -19,8 +19,9 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "IntroViewController.h"
 #import "UserCharacter.h"
 #import "ConscienceAsset.h"
+#import "ViewControllerLocalization.h"
 
-@interface ConscienceViewController () {
+@interface ConscienceViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -133,18 +134,6 @@ static int thoughtVersion = 0;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-
-	[self setTitle:NSLocalizedString(@"ConscienceScreenTitle",@"Title for Conscience Screen")];
-	self.accessibilityLabel = NSLocalizedString(@"ConscienceScreenLabel",@"Label for Conscience Screen");
-	self.accessibilityHint = NSLocalizedString(@"ConscienceScreenHint",@"Hint for Conscience Screen");
-	consciencePlayground.multipleTouchEnabled = TRUE;
-    
-    [virtueLabel setText:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
-    [viceLabel setText:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
-    
-    [virtueButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
-    [viceButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
-    [rankButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenRankLabel",@"Label for Rank Button")];
     
     initialConscienceView = appDelegate.userConscienceView;
     
@@ -173,6 +162,8 @@ static int thoughtVersion = 0;
     }  
     
     [self createWelcomeMessage];
+    
+    [self localizeUI];    
     
 }
 
@@ -958,13 +949,23 @@ Change the Rank picture and description.
     
 }
 
-/*
- // Override to allow orientations other than the default portrait orientation.
- - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
- // Return YES for supported orientations
- return (interfaceOrientation == UIInterfaceOrientationPortrait);
- }
- */
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+	[self setTitle:NSLocalizedString(@"ConscienceScreenTitle",@"Title for Conscience Screen")];
+	self.accessibilityLabel = NSLocalizedString(@"ConscienceScreenLabel",@"Label for Conscience Screen");
+	self.accessibilityHint = NSLocalizedString(@"ConscienceScreenHint",@"Hint for Conscience Screen");
+	consciencePlayground.multipleTouchEnabled = TRUE;
+    
+    [virtueLabel setText:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
+    [viceLabel setText:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
+    
+    [virtueButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
+    [viceButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
+    [rankButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenRankLabel",@"Label for Rank Button")];
+    
+}
 
 #pragma mark -
 #pragma mark Memory management

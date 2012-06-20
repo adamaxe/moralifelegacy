@@ -11,8 +11,9 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "ConscienceView.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
+#import "ViewControllerLocalization.h"
 
-@interface ReportPieViewController () {
+@interface ReportPieViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -40,6 +41,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 	IBOutlet UIButton *moralTypeButton;		/**< button to switch between Virtue/Vice */
 	IBOutlet UIButton *moralSortButton;		/**< button to toggle sort type (Name/Weight) */
 	IBOutlet UIButton *moralOrderButton;		/**< button to toggle order type (Asc/Des) */
+    IBOutlet UIButton *previousButton;
 	IBOutlet UITableView *reportTableView;	/**< table to house results */
     IBOutlet UILabel *moralTypeLabel;       /**< is report virtue or vice */
 }
@@ -94,6 +96,8 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     moralNames = [[NSMutableArray alloc] init];
     
     [self generateGraph];
+    
+    [self localizeUI];    
 
 }
 
@@ -474,6 +478,27 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     return cell;
 }
 
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+    
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    
+    moralTypeButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralTypeButtonHint", @"Hint for moralTypeButton");
+	moralTypeButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralTypeButtonLabel",@"Label for moralTypeButton");
+
+    moralSortButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralSortButtonHint", @"Hint for moralSortButton");
+	moralSortButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralSortButtonLabel",@"Label for moralSortButton");
+
+    moralOrderButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralOrderButtonHint", @"Hint for moralOrderButton");
+	moralOrderButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralOrderButtonLabel",@"Label for moralOrderButton");
+    
+}
+
+
 #pragma mark -
 #pragma mark Memory Management
 
@@ -485,6 +510,8 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 }
 
 - (void)viewDidUnload {
+    [previousButton release];
+    previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -501,6 +528,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     [reportNames release];
     [moralNames release];
     
+    [previousButton release];
     [super dealloc];
 
 

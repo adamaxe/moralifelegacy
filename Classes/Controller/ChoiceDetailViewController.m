@@ -84,13 +84,13 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
 
+    [self localizeUI];
 }
 
 -(void) viewWillAppear:(BOOL)animated{
 	
     [super viewWillAppear:animated];
 
-    [self localizeUI];
 	
 	//Restore state of prior view if applicable	
 	NSString *restoreJustification = [prefs objectForKey:@"choiceJustification"];

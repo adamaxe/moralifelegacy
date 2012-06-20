@@ -125,6 +125,9 @@ if (window.buttons()["Commissary"].checkIsValid()){
                 
         window.buttons()["Moral Report"].tap();
 		target.delay(2.0);
+        window.buttons()["Moral Sort"].tap();
+        window.buttons()["Moral Order"].tap();        
+        window.buttons()["Moral Type"].tap();        
         window.buttons()["Previous"].tap();
         
         UIALogger.logPass(testCaseName + " correct."); 
