@@ -40,9 +40,9 @@ if (!app.tabBar().buttons()["Home"].checkIsValid()){
 	testCaseName = testSuiteName + " Introduction skip";
     UIALogger.logStart(testCaseName + " Test");
     
-    if (window.buttons()["Introduction skip"].checkIsValid()){ 
+    if (window.buttons()["Next"].checkIsValid()){ 
 
-        window.buttons()["Introduction skip"].tap();
+        window.buttons()["Next"].tap();
 		
         UIALogger.logPass(testCaseName + " available."); 
 
