@@ -286,31 +286,10 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     if (firstChoiceEntryCheck == nil) {
         
-		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
-		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
-		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
-		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
-
-        
-		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), 
-                           NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), 
-                                                            NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
-        
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        
-		[conscienceHelpViewCont setHelpTitles:titles];
-		[conscienceHelpViewCont setHelpTexts:texts];
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        
-		[helpTitleName1 release];
-		[helpTextName1 release];
-		[helpTitleName2 release];
-		[helpTextName2 release];
-		[titles release];
-		[texts release];
-		
+        [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
 		[conscienceHelpViewCont release];
         
@@ -403,15 +382,15 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
  */
 -(IBAction)selectMoralReference:(id) sender{
     
-	//Create help text and controller for presentation	
-	NSMutableArray *titles = [[NSMutableArray alloc] init];
-	NSMutableArray *texts = [[NSMutableArray alloc] init];
-
-	ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-
 	//If User has selected a Moral, display the extended description.  Otherwise, ask them to fill in Moral.
 	if (moralKey != nil) {
         
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        
+        //Create help text and controller for presentation	
+        NSMutableArray *titles = [[NSMutableArray alloc] init];
+        NSMutableArray *texts = [[NSMutableArray alloc] init];
+
       	//Retrieve Moral
 		NSError *outError;
         
@@ -435,25 +414,28 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
 		}
         
 		[request release];
+        //Set help title and verbiage
+        [conscienceHelpViewCont setHelpTitles:titles];
+        [conscienceHelpViewCont setHelpTexts:texts];
+        [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        
+        [titles release];
+        [texts release];   
+        
+        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [conscienceHelpViewCont release];
         
 	} else {
      
-		/** @todo localize help text */
-		[titles addObject:@"Choose a Moral"];
-		[texts addObject:@"When you select a Moral, you can get a longer description of the Moral by tapping the button you just tapped.  Go back and select a Moral.  It will be awesome.  You'll get a little picture to pop up in the thought cloud there and everything!"];
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
+        [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        [conscienceHelpViewCont setHelpVersion:3];
+        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [conscienceHelpViewCont release];
 
 	}
     
-	//Set help title and verbiage
-	[conscienceHelpViewCont setHelpTitles:titles];
-	[conscienceHelpViewCont setHelpTexts:texts];
-	[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-    
-	[titles release];
-	[texts release];   
-    
-	[self presentModalViewController:conscienceHelpViewCont animated:NO];
-	[conscienceHelpViewCont release];
 
 }
 
@@ -472,28 +454,14 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 	NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield");
     
 	if ([choiceFirst isEqualToString:@""] || [choiceFirst isEqualToString:defaultTextFieldText]) {
-        
-		NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
-		NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text1",NSStringFromClass([self class])];
-        
-		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
-        
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        
-		[conscienceHelpViewCont setHelpTitles:titles];
-		[conscienceHelpViewCont setHelpTexts:texts];
+
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        
-		[helpTitleName release];
-		[helpTextName release];
-		[titles release];
-		[texts release];
-		
+        [conscienceHelpViewCont setHelpVersion:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
 		[conscienceHelpViewCont release];
-        
+
 	} else {
 		isReadyToCommit = TRUE;
 	}
@@ -505,24 +473,10 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
         
         if (choiceMoral == nil){
             
-            NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@2Title1",NSStringFromClass([self class])];
-            NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@2Text1",NSStringFromClass([self class])];
-            
-            NSArray *titles = [[NSArray alloc] initWithObjects:
-                               NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-            NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
-            
             ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-            
-            [conscienceHelpViewCont setHelpTitles:titles];
-            [conscienceHelpViewCont setHelpTexts:texts];
+            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
             [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-            
-            [helpTitleName release];
-            [helpTextName release];
-            [titles release];
-            [texts release];
-            
+            [conscienceHelpViewCont setHelpVersion:2];
             [self presentModalViewController:conscienceHelpViewCont animated:NO];
             [conscienceHelpViewCont release];
             

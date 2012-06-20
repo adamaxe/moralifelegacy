@@ -143,27 +143,13 @@ User can filter list by only things that are affordable to currentFunds.
     
     if (firstConscienceListCheck == nil) {
         
-		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
-		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
-        
-		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), nil];
-        
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        
-		[conscienceHelpViewCont setHelpTitles:titles];
-		[conscienceHelpViewCont setHelpTexts:texts];
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        
-		[helpTitleName1 release];
-		[helpTextName1 release];
-		[titles release];
-		[texts release];
-		
+        [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
 		[conscienceHelpViewCont release];
-        
+
         [prefs setBool:FALSE forKey:@"firstConscienceList"];
         
     }

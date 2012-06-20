@@ -233,28 +233,10 @@ User selection causes selectChoice to be called which sets the currentState vari
     
     if (firstConscienceModalCheck == nil) {
         
-		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
-		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
-		NSString *helpTitleName2 =[[NSString alloc] initWithFormat:@"Help%@0Title2",NSStringFromClass([self class])];
-		NSString *helpTextName2 =[[NSString alloc] initWithFormat:@"Help%@0Text2",NSStringFromClass([self class])];
-        
-		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), NSLocalizedString(helpTitleName2,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), NSLocalizedString(helpTextName2,@"Text for Help Screen"), nil];
-        
 		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        
-		[conscienceHelpViewCont setHelpTitles:titles];
-		[conscienceHelpViewCont setHelpTexts:texts];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        
-		[helpTitleName1 release];
-		[helpTextName1 release];
-		[helpTitleName2 release];
-		[helpTextName2 release];
-		[titles release];
-		[texts release];
-		
+        [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
 		[conscienceHelpViewCont release];
         
@@ -479,26 +461,13 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 		//Determine if User has completed the first Campaign
 		//If not, present help view.
 		if((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) {
-
-        NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title2",NSStringFromClass([self class])];
-        NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text2",NSStringFromClass([self class])];
-        
-        NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-        NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
-        
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        conscienceHelpViewCont.helpTitles = titles;
-        conscienceHelpViewCont.helpTexts = texts;
-        conscienceHelpViewCont.isConscienceOnScreen = TRUE;
-        
-        [self presentModalViewController:conscienceHelpViewCont animated:NO];
-        [helpTitleName release];
-        [helpTextName release];
-        [titles release];
-        [texts release];
-        [conscienceHelpViewCont release];
             
+            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
+            [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+            [conscienceHelpViewCont setHelpVersion:2];
+            [self presentModalViewController:conscienceHelpViewCont animated:NO];
+            [conscienceHelpViewCont release];
 			
     } else {
 
@@ -635,23 +604,11 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
         [prefs removeObjectForKey:@"isReadyToRemove"];
     } else {
         
-        NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
-        NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text1",NSStringFromClass([self class])];
-        
-        NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-        NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
-        
         ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        conscienceHelpViewCont.helpTitles = titles;
-        conscienceHelpViewCont.helpTexts = texts;
-        conscienceHelpViewCont.isConscienceOnScreen = TRUE;
-        
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
+        [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+        [conscienceHelpViewCont setHelpVersion:1];
         [self presentModalViewController:conscienceHelpViewCont animated:NO];
-        [helpTitleName release];
-        [helpTextName release];
-        [titles release];
-        [texts release];
         [conscienceHelpViewCont release];
         
         [prefs setBool:TRUE forKey:@"isReadyToRemove"];    

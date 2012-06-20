@@ -9,7 +9,6 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceView.h"
 #import "ConscienceModalViewController.h"
-#import "ConscienceHelpViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ConscienceMind.h"
 #import "CoreData/CoreData.h"

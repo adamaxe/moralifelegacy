@@ -154,24 +154,10 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     
     if (firstChoiceEntryCheck == nil) {
         
-		NSString *helpTitleName1 =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
-		NSString *helpTextName1 =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];        
-        
-		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName1,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName1,@"Text for Help Screen"), nil];
-        
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        
-		[conscienceHelpViewCont setHelpTitles:titles];
-		[conscienceHelpViewCont setHelpTexts:texts];
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        
-		[helpTitleName1 release];
-		[helpTextName1 release];
-		[titles release];
-		[texts release];
-		
+        [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
 		[conscienceHelpViewCont release];
         
@@ -262,24 +248,11 @@ Implementation: pop UIViewController from current navigationController
  */
 -(IBAction)selectInfluence:(id) sender{
     
-    NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
-    NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text1",NSStringFromClass([self class])];
-    
-    NSArray *titles = [[NSArray alloc] initWithObjects:
-                       NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-    NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
     
     ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-    
-    [conscienceHelpViewCont setHelpTitles:titles];
-    [conscienceHelpViewCont setHelpTexts:texts];
+    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
     [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-    
-    [helpTitleName release];
-    [helpTextName release];
-    [titles release];
-    [texts release];
-    
+    [conscienceHelpViewCont setHelpVersion:1];
     [self presentModalViewController:conscienceHelpViewCont animated:NO];
     [conscienceHelpViewCont release];
 }

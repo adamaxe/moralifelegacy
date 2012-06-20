@@ -13,7 +13,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 @interface ConscienceHelpViewController () <ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;			/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;					/**< serialized user settings/state retention */
     
 	IBOutlet UIView *thoughtModalArea;			/**< area in which Conscience floats */
     
@@ -54,34 +53,85 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 @implementation ConscienceHelpViewController
 
+@synthesize viewControllerClassName;
 @synthesize helpTitles, helpTexts;
+@synthesize helpVersion;
 @synthesize isConscienceOnScreen;
 
 #pragma mark -
 #pragma mark ViewController lifecycle
+
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        viewControllerClassName = nil;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 	
 	//appDelegate needed to reference Conscience and to get Core Data Context and prefs to save state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	prefs = [NSUserDefaults standardUserDefaults];
     
 	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	appDelegate.userConscienceView.center = centerPoint;	
-		
+    
+    [self localizeUI];    
+	
+}
+
+-(void) viewWillAppear:(BOOL)animated{
+	
+	[super viewWillAppear:animated];
+    
+    if (self.viewControllerClassName) {
+
+        NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
+        NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
+        
+        for (int i = 0; i < 6; i++) {
+            [helpTitleNames addObject:[[NSString alloc] initWithFormat:@"Help%@%dTitle%d",self.viewControllerClassName, helpVersion, i+1]];
+            [helpTextNames addObject:[[NSString alloc] initWithFormat:@"Help%@%dText%d",self.viewControllerClassName, helpVersion, i+1]];
+        }
+        
+        NSMutableArray *helpAllTitles = [[NSMutableArray alloc] init];
+        NSMutableArray *helpAllTexts = [[NSMutableArray alloc] init];    
+        
+        for (int i = 0; i < 6; i++) {
+            NSString *tempTitle = [[NSString alloc] initWithString:NSLocalizedString([helpTitleNames objectAtIndex:i],@"Title for Help Screen")];
+            NSString *tempText = [[NSString alloc] initWithString:NSLocalizedString([helpTextNames objectAtIndex:i],@"Text for Help Screen")];
+            
+            if (![tempText isEqualToString:[helpTextNames objectAtIndex:i]]) {
+                [helpAllTexts addObject:tempText];
+            }
+            
+            if (![tempTitle isEqualToString:[helpTitleNames objectAtIndex:i]]) {
+                [helpAllTitles addObject:tempTitle];
+            }
+            [tempText release];
+            [tempTitle release];
+        }
+        
+        helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
+        helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
+        
+        [helpTitleNames release];
+        [helpTextNames release];
+        [helpAllTitles release];
+        [helpAllTexts release];
+    }
+        
+    
 	//Create NSArray of help screens.  Populate them programattically
 	NSArray *viewsArray = [[NSArray alloc] initWithObjects:screen1View, screen2View, screen3View, screen4View, screen5View, screen6View, nil];
 	int counter = 0;
-	
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
-    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
-    nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
     
 	for (NSString *helpTextIterate in helpTitles) {
-		 
+        
 		//Create content dynamically and iterate through possible screens
 		CGRect labelFrame = CGRectMake(38, 37, 240, 35);
 		UILabel* label = [[UILabel alloc] initWithFrame: labelFrame];
@@ -108,21 +158,15 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		[label setShadowOffset:CGSizeMake(0, 1)];        
 		[textView setEditable:FALSE];
 		[[viewsArray objectAtIndex:counter] addSubview:textView];
-
+        
 		[textView release];
-
+        
 		counter++;
 	}
 	
-	[viewsArray release];
+	[viewsArray release];    
     
-    [self localizeUI];    
-	
-}
-
--(void) viewWillAppear:(BOOL)animated{
-	
-	[super viewWillAppear:animated];
+    
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 
 //	thoughtModalArea.alpha = 0;

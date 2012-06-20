@@ -96,24 +96,10 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
     if (firstReferenceCheck == nil) {
         
-		NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@0Title1",NSStringFromClass([self class])];
-		NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@0Text1",NSStringFromClass([self class])];
-        
-		NSArray *titles = [[NSArray alloc] initWithObjects:
-                           NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
-        
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        
-		[conscienceHelpViewCont setHelpTitles:titles];
-		[conscienceHelpViewCont setHelpTexts:texts];
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        
-		[helpTitleName release];
-		[helpTextName release];
-		[titles release];
-		[texts release];
-		
+        [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
 		[conscienceHelpViewCont release];
         

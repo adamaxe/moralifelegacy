@@ -292,22 +292,11 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
     
 	if ([luckFirst isEqualToString:@""] || [luckFirst isEqualToString:defaultTextFieldText]) {
         
-		NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
-      	NSString *helpTextName =[[NSString alloc] initWithFormat:@"Help%@1Text1",NSStringFromClass([self class])];
-        
-		NSArray *titles = [[NSArray alloc] initWithObjects: NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
-		NSArray *texts = [[NSArray alloc] initWithObjects:NSLocalizedString(helpTextName,@"Text for Help Screen"), nil];
-        
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-		conscienceHelpViewCont.helpTitles = titles;
-		conscienceHelpViewCont.helpTexts = texts;
-		conscienceHelpViewCont.isConscienceOnScreen = FALSE;
-		
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
+		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        [conscienceHelpViewCont setHelpVersion:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[helpTitleName release];
-		[helpTextName release];
-		[titles release];
-		[texts release];
 		[conscienceHelpViewCont release];
 		
 	}else { 

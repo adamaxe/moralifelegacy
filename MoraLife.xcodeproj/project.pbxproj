@@ -932,7 +932,6 @@
 		5E5695491239EFEA00D03030 /* sur-sheetmusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5695401239EFEA00D03030 /* sur-sheetmusic.png */; };
 		5E56954A1239EFEA00D03030 /* sur-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5695411239EFEA00D03030 /* sur-water.png */; };
 		5E5811DC12C2EBE2008605C9 /* SystemData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E5811DB12C2EBE2008605C9 /* SystemData.xcdatamodeld */; };
-		5E5B2E48131AFB8B0080E1E8 /* UIViewController+HelpScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5B2E47131AFB8B0080E1E8 /* UIViewController+HelpScreen.m */; };
 		5E5B9DDD135FD9A80043420F /* ref-isaacnewton-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */; };
 		5E5B9DDE135FD9A80043420F /* ref-isaacnewton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */; };
 		5E5B9DE1135FE9880043420F /* moralifelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDF135FE9880043420F /* moralifelogo.png */; };
@@ -2624,8 +2623,6 @@
 		5E5695401239EFEA00D03030 /* sur-sheetmusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-sheetmusic.png"; sourceTree = "<group>"; };
 		5E5695411239EFEA00D03030 /* sur-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-water.png"; sourceTree = "<group>"; };
 		5E5811E012C2EBE2008605C9 /* SystemData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SystemData.xcdatamodel; sourceTree = "<group>"; };
-		5E5B2E46131AFB8B0080E1E8 /* UIViewController+HelpScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+HelpScreen.h"; path = "Common/UIViewController+HelpScreen.h"; sourceTree = "<group>"; };
-		5E5B2E47131AFB8B0080E1E8 /* UIViewController+HelpScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+HelpScreen.m"; path = "Common/UIViewController+HelpScreen.m"; sourceTree = "<group>"; };
 		5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-isaacnewton-sm.png"; path = "Resources/images/reference/ref-isaacnewton-sm.png"; sourceTree = "<group>"; };
 		5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-isaacnewton.jpg"; path = "Resources/images/reference/ref-isaacnewton.jpg"; sourceTree = "<group>"; };
 		5E5B9DDF135FE9880043420F /* moralifelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moralifelogo.png; path = Resources/images/interface/moralifelogo.png; sourceTree = "<group>"; };
@@ -3563,10 +3560,8 @@
 				5E3E8805122609B600F2708A /* XMLParser.m */,
 				5EE7FD0B12E8B22200ABDBEC /* ConscienceBuilder.h */,
 				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
-				5E5B2E46131AFB8B0080E1E8 /* UIViewController+HelpScreen.h */,
 				5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */,
 				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
-				5E5B2E47131AFB8B0080E1E8 /* UIViewController+HelpScreen.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -7098,7 +7093,6 @@
 				5EFEE56F13121F8E00B83762 /* UserChoice.m in Sources */,
 				5E862D471314DEC700B4FC4F /* ReferenceAsset.m in Sources */,
 				5E777E9413161B8C00E35222 /* ReferencePerson.m in Sources */,
-				5E5B2E48131AFB8B0080E1E8 /* UIViewController+HelpScreen.m in Sources */,
 				5E3CB179133C1BD000247A6F /* UserCollectable.m in Sources */,
 				5E554EAF134BF10E00554D82 /* Dilemma.m in Sources */,
 				5EBC9ADC1352A42E001ACD7A /* IntroViewController.m in Sources */,
