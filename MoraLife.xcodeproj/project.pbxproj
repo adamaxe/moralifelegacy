@@ -3474,7 +3474,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				5EA1D228130E38A200BA81D6 /* UnitTests */,
-				5EC5543715774064004BF692 /* IntegrationTests */,
+				5EC5543715774064004BF692 /* SystemTests */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -5168,7 +5168,7 @@
 			path = Model/Generated;
 			sourceTree = "<group>";
 		};
-		5EC5543715774064004BF692 /* IntegrationTests */ = {
+		5EC5543715774064004BF692 /* SystemTests */ = {
 			isa = PBXGroup;
 			children = (
 				5EC5543915774064004BF692 /* include */,
@@ -5186,7 +5186,7 @@
 				5EBBDC781582E9D700355FDE /* choicemoralverify.js */,
 				5EC5543D15774064004BF692 /* runTests.sh */,
 			);
-			path = IntegrationTests;
+			path = SystemTests;
 			sourceTree = "<group>";
 		};
 		5EC5543915774064004BF692 /* include */ = {
