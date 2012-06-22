@@ -188,6 +188,7 @@ Views are called by tags which are set in initWithFrame by constants
 @see ConscienceView::initWithFrame
 */
 -(void) setNeedsDisplay{
+    [super setNeedsDisplay];
 
 	//Ensure correct bubble color/animation is set	
 	[self changeBubble];	
@@ -216,7 +217,6 @@ Views are called by tags which are set in initWithFrame by constants
     
 	[self setTimers];
 	
-	[super setNeedsDisplay];
 
 }
 

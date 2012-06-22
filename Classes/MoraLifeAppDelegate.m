@@ -1,7 +1,7 @@
 /**
 Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data Stack and the Conscience.  User Conscience can appear on any screen, so it makes sense to create and maintain him in the delegate. He is not a singleton, however, due to the fact that there can be many different iterations of a Conscience type.
  
-<br>All setup for Conscience data, navigation, UI, is done in App delegate.  All setup for data, navigation, UI, is done in App delegate.
+<br>All setup for navigation, UI, is done in App delegate.
 @todo project->buildsettings->architectures->debug->remove any IOS SDK
 @todo Model: change ReferenceText.belief to-many relationship to beliefs
 @todo Model: change Character.story to-many relationship to stories

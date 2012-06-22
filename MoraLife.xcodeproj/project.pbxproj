@@ -1686,6 +1686,8 @@
 		5EF5ABC512B1C958001E25BC /* icon-luckbadani4.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF5ABB912B1C958001E25BC /* icon-luckbadani4.png */; };
 		5EF76207121626F400650257 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EF76204121626F400650257 /* Icon.png */; };
 		5EFBBF0A1569DB59004FA197 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B91226090B00F2708A /* MainWindow.xib */; };
+		5EFC5A0E15940F5000E11A71 /* MoralDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC5A0D15940F5000E11A71 /* MoralDAO.m */; };
+		5EFC5A0F15940F5000E11A71 /* MoralDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EFC5A0D15940F5000E11A71 /* MoralDAO.m */; };
 		5EFCB9811378D2D00063402D /* interface-tabbaricons@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB9801378D2D00063402D /* interface-tabbaricons@2x.jpg */; };
 		5EFCB9831378D3BC0063402D /* interface-tabbaricons.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB9821378D3BB0063402D /* interface-tabbaricons.jpg */; };
 		5EFCB98C1378D6320063402D /* interface-choicesdown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EFCB9881378D6320063402D /* interface-choicesdown.png */; };
@@ -3392,6 +3394,8 @@
 		5EF5ABB812B1C958001E25BC /* icon-luckbadani3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-luckbadani3.png"; path = "Resources/images/interface/icons/icon-luckbadani3.png"; sourceTree = "<group>"; };
 		5EF5ABB912B1C958001E25BC /* icon-luckbadani4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-luckbadani4.png"; path = "Resources/images/interface/icons/icon-luckbadani4.png"; sourceTree = "<group>"; };
 		5EF76204121626F400650257 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		5EFC5A0C15940F5000E11A71 /* MoralDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoralDAO.h; sourceTree = "<group>"; };
+		5EFC5A0D15940F5000E11A71 /* MoralDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoralDAO.m; sourceTree = "<group>"; };
 		5EFCB9801378D2D00063402D /* interface-tabbaricons@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "interface-tabbaricons@2x.jpg"; path = "Resources/images/interface/interface-tabbaricons@2x.jpg"; sourceTree = "<group>"; };
 		5EFCB9821378D3BB0063402D /* interface-tabbaricons.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "interface-tabbaricons.jpg"; path = "Resources/images/interface/interface-tabbaricons.jpg"; sourceTree = "<group>"; };
 		5EFCB9881378D6320063402D /* interface-choicesdown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-choicesdown.png"; path = "Resources/images/interface/interface-choicesdown.png"; sourceTree = "<group>"; };
@@ -4511,6 +4515,7 @@
 		5E7677E011A2423800DD195A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5EFC5A0B15940F3300E11A71 /* DAO */,
 				5EA26D641584351500CDA802 /* ModelManager.h */,
 				5EA26D651584351500CDA802 /* ModelManager.m */,
 				5E8FBE09138A136200173584 /* SystemData.sqlite */,
@@ -5358,6 +5363,16 @@
 				5EB9BE9F12FD200700584F67 /* ReferenceViewController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		5EFC5A0B15940F3300E11A71 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				5EFC5A0C15940F5000E11A71 /* MoralDAO.h */,
+				5EFC5A0D15940F5000E11A71 /* MoralDAO.m */,
+			);
+			name = DAO;
+			path = Model/DAO;
 			sourceTree = "<group>";
 		};
 		5EFED8DF1310E22D00F8EB0B /* Generated */ = {
@@ -7103,6 +7118,7 @@
 				5E336EF9139C6CD6006BF34F /* ConscienceAsset.m in Sources */,
 				5E266039156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */,
 				5EA26D661584351500CDA802 /* ModelManager.m in Sources */,
+				5EFC5A0E15940F5000E11A71 /* MoralDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7193,6 +7209,7 @@
 				5E266067156C79BF007DF236 /* TestConscienceGradient.m in Sources */,
 				5EA26D671584351500CDA802 /* ModelManager.m in Sources */,
 				5EA26D7315843DB600CDA802 /* TestModelManager.m in Sources */,
+				5EFC5A0F15940F5000E11A71 /* MoralDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

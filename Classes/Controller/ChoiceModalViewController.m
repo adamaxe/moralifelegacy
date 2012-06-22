@@ -7,7 +7,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 #import "ChoiceModalViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceView.h"
-#import "Moral.h"
+#import "MoralDAO.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceModalViewController () <ViewControllerLocalization> {
@@ -20,10 +20,10 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 	//Raw data of all available morals
 	NSMutableArray *searchedData;			/**< array for matched data from User search */
-	NSMutableArray *choiceNames;			/**< array for Moral pkey */
-	NSMutableArray *choiceDisplayNames;		/**< array for Moral name */
-	NSMutableArray *choiceImages;			/**< array for Moral Image */
-	NSMutableArray *choiceDetails;		/**< array for Moral synonyms */
+	NSArray *moralNames;			/**< array for Moral pkey */
+	NSArray *moralDisplayNames;		/**< array for Moral name */
+	NSArray *moralImages;			/**< array for Moral Image */
+	NSArray *moralDetails;		/**< array for Moral synonyms */
     
 	//Data for filtering/searching sourced from raw data
 	NSMutableArray *dataSource;				/**< array for storing of Choices populated from previous view*/
@@ -156,18 +156,12 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
 }
 
 #pragma mark -
-#pragma mark Data Manipulation
+//#pragma mark Data Manipulation
 
 /**
 Implementation: Retrieve all available Virtues/Vices and populate searchable data set.
  */
 - (void) retrieveAllSelections {
-	//Begin CoreData Retrieval			
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
 	
 	NSString *value;
 	
@@ -175,47 +169,23 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 		value = [NSString stringWithString:@"Virtue"];
 	}else {
 		value = [NSString stringWithString:@"Vice"];
-		
 	}
-	
-	//Virtue or Vice is stored in shortDescription
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", value];
-	[request setPredicate:pred];
-	
-	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameMoral" ascending:YES];
-	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptor release];
-	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	choiceNames = [[NSMutableArray alloc] initWithCapacity:[objects count]];			
-	choiceImages = [[NSMutableArray alloc] initWithCapacity:[objects count]];			
-	choiceDetails = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-	choiceDisplayNames = [[NSMutableArray alloc] initWithCapacity:[objects count]];
     
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithMoralType:value];
 	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
-		for (Moral *matches in objects){
-			[choiceNames addObject:[matches nameMoral]];
-			[choiceImages addObject:[matches imageNameMoral]];
-			[choiceDisplayNames addObject:[matches displayNameMoral]];
-			[choiceDetails addObject:[matches longDescriptionMoral]];			
-			
-		}
-	}
-	
-	[request release];
-	//End CoreData Retrieval
-	
-	dataSource = [[NSMutableArray alloc] initWithArray:choiceDisplayNames];
+	moralNames = [[NSArray alloc] initWithArray:[currentMoralDAO getAllMoralNames]];			
+	moralImages = [[NSArray alloc] initWithArray:[currentMoralDAO getAllMoralImages]];			
+	moralDetails = [[NSArray alloc] initWithArray:[currentMoralDAO getAllMoralDetails]];
+	moralDisplayNames = [[NSArray alloc] initWithArray:[currentMoralDAO getAllMoralDisplayNames]];
+    
+    [currentMoralDAO release];
+    
+	dataSource = [[NSMutableArray alloc] initWithArray:moralDisplayNames];
 	searchedData = [[NSMutableArray alloc]init];
 	tableData = [[NSMutableArray alloc]initWithArray:dataSource];
-	tableDataImages = [[NSMutableArray alloc]initWithArray:choiceImages];
-	tableDataDetails = [[NSMutableArray alloc]initWithArray:choiceDetails];
-	tableDataKeys = [[NSMutableArray alloc]initWithArray:choiceNames];
+	tableDataImages = [[NSMutableArray alloc]initWithArray:moralImages];
+	tableDataDetails = [[NSMutableArray alloc]initWithArray:moralDetails];
+	tableDataKeys = [[NSMutableArray alloc]initWithArray:moralNames];
     
 }
 
@@ -317,7 +287,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[choiceDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+		NSRange searchRangeDetails = [[[moralDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         
 		
 		//A match was found
@@ -334,10 +304,10 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 			//if(searchRange.location== 0)
 			//{			
 			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:name];
-			[tableDataImages addObject:[choiceImages objectAtIndex:counter]];
-			[tableDataDetails addObject:[choiceDetails objectAtIndex:counter]];
-			[tableDataKeys addObject:[choiceNames objectAtIndex:counter]];
+			[tableData addObject:[moralDisplayNames objectAtIndex:counter]];
+			[tableDataImages addObject:[moralImages objectAtIndex:counter]];
+			[tableDataDetails addObject:[moralDetails objectAtIndex:counter]];
+			[tableDataKeys addObject:[moralNames objectAtIndex:counter]];
             
 			//}
 		}
@@ -359,9 +329,9 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	[tableDataKeys removeAllObjects];
     
 	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:choiceImages];
-	[tableDataDetails addObjectsFromArray:choiceDetails];
-	[tableDataKeys addObjectsFromArray:choiceNames];
+	[tableDataImages addObjectsFromArray:moralImages];
+	[tableDataDetails addObjectsFromArray:moralDetails];
+	[tableDataKeys addObjectsFromArray:moralNames];
 	
 	@try{
 		[choiceModalTableView reloadData];
@@ -417,10 +387,10 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	[tableDataDetails release];
 	[tableDataKeys release];
 	[dataSource release];
-	[choiceNames release];
-	[choiceImages release];
-	[choiceDetails release];
-	[choiceDisplayNames release];
+	[moralNames release];
+	[moralImages release];
+	[moralDetails release];
+	[moralDisplayNames release];
     [previousButton release];
     [super dealloc];
 }
