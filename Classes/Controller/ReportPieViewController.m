@@ -7,7 +7,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "ReportPieViewController.h"
 #import "GraphView.h"
 #import "UserChoice.h"
-#import "Moral.h"
+#import "MoralDAO.h"
 #import "ConscienceView.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
@@ -254,54 +254,42 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
 
 	            [reportValues setValue:[NSNumber numberWithFloat:currentValue] forKey:[match choiceMoral]];
 
-      	      NSEntityDescription *entityAssetDesc2 = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
-            	NSFetchRequest *request2 = [[NSFetchRequest alloc] init];
-	            [request2 setEntity:entityAssetDesc2];
+            NSString *value = [match choiceMoral];            
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
             
-      	      NSString *value = [match choiceMoral];
-            	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameMoral == %@", value];
-	            [request2 setPredicate:pred];
+            NSString *moralDisplayName = [[NSString alloc] initWithString:[currentMoralDAO findMoralDisplayName:value]];
+            NSString *moralName = [[NSString alloc] initWithString:value];
+            NSString *moralImageName = [[NSString alloc] initWithString:[currentMoralDAO findMoralImageName:value]];
+            NSString *moralColor = [[NSString alloc] initWithString:[currentMoralDAO findMoralColor:value]];            
             
-      	      NSArray *objects = [context executeFetchRequest:request2 error:&outError];
+            [currentMoralDAO release];
             
-	            if ([objects count] == 0) {
-      	          NSLog(@"No matches");
-            	} else {
-                
-				NSString *moralDisplayName = [[NSString alloc] initWithString:[[objects objectAtIndex:0] displayNameMoral]];
-				NSString *moralName = [[NSString alloc] initWithString:[[objects objectAtIndex:0] nameMoral]];
-				NSString *moralImageName = [[NSString alloc] initWithString:[[objects objectAtIndex:0] imageNameMoral]];
-				NSString *moralColor = [[NSString alloc] initWithString:[[objects objectAtIndex:0] colorMoral]];
-                
-				//Moral color stored as hex, must convert to CGColorRef
-				NSScanner *fillColorScanner = [[NSScanner alloc] initWithString:moralColor];
-                
-				unsigned fillColorInt;
-                
-				[fillColorScanner scanHexInt:&fillColorInt]; 
-                
-				//Bitshift each position to get 1-255 value
-				//Divide value by 255 to get CGColorRef compatible value
-				CGFloat red   = ((fillColorInt & 0xFF0000) >> 16) / 255.0f;
-				CGFloat green = ((fillColorInt & 0x00FF00) >>  8) / 255.0f;
-				CGFloat blue  =  (fillColorInt & 0x0000FF) / 255.0f;
-                
-				UIColor *moralColorTemp = [[UIColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
-                                
-				[moralDisplayNames setValue:moralDisplayName forKey:moralName];
-				[moralImageNames setValue:moralImageName forKey:moralName];
-				[moralColors setValue:moralColorTemp forKey:moralName];
-                
-				[moralColorTemp release];
-				[fillColorScanner release];
-                
-				[moralDisplayName release];
-				[moralName release];
-				[moralImageName release];
-				[moralColor release];
-			}
+            //Moral color stored as hex, must convert to CGColorRef
+            NSScanner *fillColorScanner = [[NSScanner alloc] initWithString:moralColor];
             
-			[request2 release];
+            unsigned fillColorInt;
+            
+            [fillColorScanner scanHexInt:&fillColorInt]; 
+            
+            //Bitshift each position to get 1-255 value
+            //Divide value by 255 to get CGColorRef compatible value
+            CGFloat red   = ((fillColorInt & 0xFF0000) >> 16) / 255.0f;
+            CGFloat green = ((fillColorInt & 0x00FF00) >>  8) / 255.0f;
+            CGFloat blue  =  (fillColorInt & 0x0000FF) / 255.0f;
+            
+            UIColor *moralColorTemp = [[UIColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
+            
+            [moralDisplayNames setValue:moralDisplayName forKey:moralName];
+            [moralImageNames setValue:moralImageName forKey:moralName];
+            [moralColors setValue:moralColorTemp forKey:moralName];
+            
+            [moralColorTemp release];
+            [fillColorScanner release];
+            
+            [moralDisplayName release];
+            [moralName release];
+            [moralImageName release];
+            [moralColor release];
 
 	        }
 		

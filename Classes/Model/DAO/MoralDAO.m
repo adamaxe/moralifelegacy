@@ -55,6 +55,18 @@
     return self;
 }
 
+- (NSString *)findMoralColor:(NSString *)moralName {
+    return [self findMoral:moralName].colorMoral;
+}
+
+- (NSString *)findMoralDefinition:(NSString *)moralName {
+    return [self findMoral:moralName].definitionMoral;
+}
+
+- (NSString *)findMoralLongDescription:(NSString *)moralName {
+    return [self findMoral:moralName].longDescriptionMoral;
+}
+
 - (NSString *)findMoralDisplayName:(NSString *)moralName {
     return [self findMoral:moralName].displayNameMoral;
 }
