@@ -6,6 +6,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 #import "ChoiceModalViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceView.h"
 #import "MoralDAO.h"
 #import "ViewControllerLocalization.h"
