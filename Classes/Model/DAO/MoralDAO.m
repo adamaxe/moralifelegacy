@@ -7,7 +7,11 @@
 	NSManagedObjectContext *context;		/**< Core Data context */	
 }
 
+- (Moral *)findMoral:(NSString *)moralName;
+- (NSArray *)listMorals;
+
 @property (nonatomic, retain) NSString *currentMoralType;
+@property (nonatomic, retain) NSArray *morals;
 @property (nonatomic, retain) NSMutableArray *moralNames;
 @property (nonatomic, retain) NSMutableArray *moralImages;
 @property (nonatomic, retain) NSMutableArray *moralDetails;
@@ -21,7 +25,13 @@
 @implementation MoralDAO 
 
 @synthesize currentMoralType;
+@synthesize morals;
 @synthesize moralNames, moralImages, moralDetails, moralDisplayNames;
+
+- (id) init {
+    
+    return [self initWithMoralType:nil];
+}
 
 - (id) initWithMoralType:(NSString *)moralType {
     self = [super init];
@@ -39,36 +49,77 @@
         } else {
             currentMoralType = [[NSString alloc] initWithFormat:@"all"];
         }
-        
-        [self processMorals];
-        
+                
     }
     
     return self;
 }
 
-- (NSArray *)getAllMoralNames {
+- (NSString *)findMoralDisplayName:(NSString *)moralName {
+    return [self findMoral:moralName].displayNameMoral;
+}
+
+- (NSString *)findMoralImageName:(NSString *)moralName {
+    return [self findMoral:moralName].imageNameMoral;    
+}
+
+- (NSArray *)listAllMoralNames {
+    if (morals.count == 0) {
+        [self processMorals];
+    }
     return moralNames;
 }
 
-- (NSArray *)getAllMoralDisplayNames {
+- (NSArray *)listAllMoralDisplayNames {
+    if (morals.count == 0) {
+        [self processMorals];
+    }
+    
     return moralDisplayNames;
 }
 
-- (NSArray *)getAllMoralImages {
+- (NSArray *)listAllMoralImages {
+    if (morals.count == 0) {
+        [self processMorals];
+    }
+    
     return moralImages;
 }
 
-- (NSArray *)getAllMoralDetails {
+- (NSArray *)listAllMoralDetails {
+    if (morals.count == 0) {
+        [self processMorals];
+    }
+    
     return moralDetails;
 }
 
 #pragma mark -
 #pragma mark Private API
+- (Moral *)findMoral:(NSString *)moralName {
+    if (morals.count == 0) {
+        [self processMorals];
+    }
+    
+    NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", moralName];
+    
+    NSArray *objects = [morals filteredArrayUsingPredicate:findPred];
+    
+    return [objects objectAtIndex:0];
+    
+}
+
+- (NSArray *)listMorals {
+    if (morals.count == 0) {
+        [self processMorals];
+    }    
+    
+    return [self retrieveMorals];
+}
 
 - (void)processMorals {
     
-    NSArray *morals = [self retrieveMorals];
+    morals = [self retrieveMorals];
     
     for (Moral *match in morals){
         [moralNames addObject:[match nameMoral]];
@@ -78,7 +129,6 @@
     }
     
 }
-
 
 - (NSArray *)retrieveMorals {
     //Begin CoreData Retrieval			

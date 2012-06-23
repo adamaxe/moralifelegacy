@@ -13,7 +13,7 @@
 #import "ChoiceViewController.h"
 #import "ConscienceView.h"
 #import "UserChoice.h"
-#import "Moral.h"
+#import "MoralDAO.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceHistoryViewController () <ViewControllerLocalization> {
@@ -285,27 +285,13 @@
             
 			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
             
-			//Must fetch Moral as we have RI between UserData and SystemData
-			NSEntityDescription *entityAssetDesc2 = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
-			NSFetchRequest *request2 = [[NSFetchRequest alloc] init];
-			[request2 setEntity:entityAssetDesc2];
-			
-			NSString *value = [matches choiceMoral];
-			NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameMoral == %@", value];
-			[request2 setPredicate:pred];
-            
-			NSArray *objects = [context executeFetchRequest:request2 error:&outError];
-			
-			if ([objects count] == 0) {
-				NSLog(@"No matches");
-			} else {
 				
-				//Display image and moral name
-				[icons addObject:[[objects objectAtIndex:0] imageNameMoral]];
-				[detailText appendString:[[objects objectAtIndex:0] displayNameMoral]];
-			}
-			
-			[request2 release];
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+            
+            [icons addObject:[currentMoralDAO findMoralImageName:[matches choiceMoral]]];
+            [detailText appendString:[currentMoralDAO findMoralDisplayName:[matches choiceMoral]]];
+            
+            [currentMoralDAO release];
             
 			//Display date last modified for sorting
             NSDate *modificationDate = [matches entryModificationDate];
@@ -378,28 +364,14 @@
 		[prefs setObject:[match choiceMoral] forKey:@"moralKey"];
 		[prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
 		
-		NSEntityDescription *entityAssetDesc2 = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
-		NSFetchRequest *request2 = [[NSFetchRequest alloc] init];
-		[request2 setEntity:entityAssetDesc2];
-		
-		NSString *value = [match choiceMoral];
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameMoral == %@", value];
-		[request2 setPredicate:pred];
         
-		NSArray *objects = [context executeFetchRequest:request2 error:&outError];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+        
+        [prefs setObject:[currentMoralDAO findMoralDisplayName:[match choiceMoral]] forKey:@"moralName"];
+        [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+        [prefs setObject:[currentMoralDAO findMoralImageName:[match choiceMoral]] forKey:@"moralImage"];
 		
-		if ([objects count] == 0) {
-			NSLog(@"No matches");
-		} else {
-			
-			[prefs setObject:[[objects objectAtIndex:0] displayNameMoral] forKey:@"moralName"];
-			[prefs setObject:[[objects objectAtIndex:0] nameMoral] forKey:@"moralKey"];
-			[prefs setObject:[[objects objectAtIndex:0] imageNameMoral] forKey:@"moralImage"];
-			
-		}
-		
-		[request2 release];
-		
+        [currentMoralDAO release];
 	}
 	
 	[request release];

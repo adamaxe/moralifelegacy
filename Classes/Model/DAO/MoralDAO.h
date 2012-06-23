@@ -1,10 +1,15 @@
+@class Moral;
+
 @interface MoralDAO : NSObject
 
 - (id)initWithMoralType:(NSString *)moralType;
 
-- (NSArray *)getAllMoralNames;
-- (NSArray *)getAllMoralDisplayNames;
-- (NSArray *)getAllMoralImages;
-- (NSArray *)getAllMoralDetails;
+- (NSString *)findMoralDisplayName:(NSString *)moralName;
+- (NSString *)findMoralImageName:(NSString *)moralName;
+
+- (NSArray *)listAllMoralNames;
+- (NSArray *)listAllMoralDisplayNames;
+- (NSArray *)listAllMoralImages;
+- (NSArray *)listAllMoralDetails;
 
 @end
