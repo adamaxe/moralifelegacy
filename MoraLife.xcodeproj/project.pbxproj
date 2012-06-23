@@ -931,6 +931,7 @@
 		5E5695481239EFEA00D03030 /* sur-night.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E56953F1239EFEA00D03030 /* sur-night.png */; };
 		5E5695491239EFEA00D03030 /* sur-sheetmusic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5695401239EFEA00D03030 /* sur-sheetmusic.png */; };
 		5E56954A1239EFEA00D03030 /* sur-water.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5695411239EFEA00D03030 /* sur-water.png */; };
+		5E5761411595975600E14606 /* TestMoralDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5761401595975600E14606 /* TestMoralDAO.m */; };
 		5E5811DC12C2EBE2008605C9 /* SystemData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E5811DB12C2EBE2008605C9 /* SystemData.xcdatamodeld */; };
 		5E5B9DDD135FD9A80043420F /* ref-isaacnewton-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */; };
 		5E5B9DDE135FD9A80043420F /* ref-isaacnewton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */; };
@@ -2624,6 +2625,7 @@
 		5E56953F1239EFEA00D03030 /* sur-night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-night.png"; sourceTree = "<group>"; };
 		5E5695401239EFEA00D03030 /* sur-sheetmusic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-sheetmusic.png"; sourceTree = "<group>"; };
 		5E5695411239EFEA00D03030 /* sur-water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-water.png"; sourceTree = "<group>"; };
+		5E5761401595975600E14606 /* TestMoralDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMoralDAO.m; sourceTree = "<group>"; };
 		5E5811E012C2EBE2008605C9 /* SystemData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SystemData.xcdatamodel; sourceTree = "<group>"; };
 		5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-isaacnewton-sm.png"; path = "Resources/images/reference/ref-isaacnewton-sm.png"; sourceTree = "<group>"; };
 		5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-isaacnewton.jpg"; path = "Resources/images/reference/ref-isaacnewton.jpg"; sourceTree = "<group>"; };
@@ -4365,6 +4367,15 @@
 			path = Resources/images/surroundings;
 			sourceTree = "<group>";
 		};
+		5E57613F1595975600E14606 /* DAO */ = {
+			isa = PBXGroup;
+			children = (
+				5E5761401595975600E14606 /* TestMoralDAO.m */,
+			);
+			name = DAO;
+			path = Model/DAO;
+			sourceTree = "<group>";
+		};
 		5E73B191125968DE0039A577 /* cards */ = {
 			isa = PBXGroup;
 			children = (
@@ -5108,6 +5119,7 @@
 		5E99C5A013C542AC001F5CB8 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5E57613F1595975600E14606 /* DAO */,
 				5EBED2FE1548D5EC00AFE44D /* Generated */,
 				5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */,
 				5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */,
@@ -7210,6 +7222,7 @@
 				5EA26D671584351500CDA802 /* ModelManager.m in Sources */,
 				5EA26D7315843DB600CDA802 /* TestModelManager.m in Sources */,
 				5EFC5A0F15940F5000E11A71 /* MoralDAO.m in Sources */,
+				5E5761411595975600E14606 /* TestMoralDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -77,16 +77,7 @@
 	
 	[modelReadOnly release];
 	[modelReadWrite release];
-	
-	/*
-     //After versioning enabled, mom becomes directory
-     NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"momd"];
-     //NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"mom"];
-     
-     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
-     managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
-     */
-	
+		
 	return managedObjectModel;
 }
 
