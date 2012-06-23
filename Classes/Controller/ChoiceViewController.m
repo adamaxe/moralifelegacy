@@ -12,7 +12,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "ChoiceDetailViewController.h"
 #import "ChoiceModalViewController.h"
 #import "StructuredTextField.h"
-#import "Moral.h"
+#import "MoralDAO.h"
 #import "UserChoice.h"
 #import "ConscienceHelpViewController.h"
 #import "ReferenceDetailViewController.h"
@@ -389,31 +389,15 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         
         //Create help text and controller for presentation	
         NSMutableArray *titles = [[NSMutableArray alloc] init];
-        NSMutableArray *texts = [[NSMutableArray alloc] init];
+        NSMutableArray *texts = [[NSMutableArray alloc] init];        
+        
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+        
+        [titles addObject:[currentMoralDAO findMoralDisplayName:moralKey]];
+        [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", [currentMoralDAO findMoralDefinition:moralKey], [currentMoralDAO findMoralLongDescription:moralKey]]];
 
-      	//Retrieve Moral
-		NSError *outError;
-        
-		NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		[request setEntity:entityAssetDesc];
-                
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameMoral == %@", moralKey];
-		[request setPredicate:pred];
-        
-		NSArray *objects = [context executeFetchRequest:request error:&outError];
-        
-		if ([objects count] == 0) {
-			NSLog(@"No matches");
-		} else {
-            
-			Moral *match = [objects objectAtIndex:0];
-		
-			[titles addObject:[match displayNameMoral]];
-			[texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", [match definitionMoral], [match longDescriptionMoral]]];
-		}
-        
-		[request release];
+        [currentMoralDAO release];
+
         //Set help title and verbiage
         [conscienceHelpViewCont setHelpTitles:titles];
         [conscienceHelpViewCont setHelpTexts:texts];

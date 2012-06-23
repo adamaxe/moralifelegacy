@@ -153,7 +153,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 	
 	//Add User Conscience to view
     [self.view addSubview:appDelegate.userConscienceView];
-//	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	//Flip Conscience direction if facing left
 	if (appDelegate.userConscienceView.directionFacing == kDirectionFacingLeft) {

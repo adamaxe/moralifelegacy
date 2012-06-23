@@ -14,7 +14,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "CoreData/CoreData.h"
 #import "UserChoice.h"
 #import "UserCollectable.h"
-#import "Moral.h"
+#import "MoralDAO.h"
 #import "IntroViewController.h"
 #import "UserCharacter.h"
 #import "ConscienceAsset.h"
@@ -821,26 +821,14 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
         NSArray* reversedPercentages = [[sortedPercentages reverseObjectEnumerator] allObjects];
         
-        NSEntityDescription *entityAssetDesc2 = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
-        NSFetchRequest *request2 = [[NSFetchRequest alloc] init];
-        [request2 setEntity:entityAssetDesc2];
-        
         NSString *value = [reversedPercentages objectAtIndex:0];
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameMoral == %@", value];
-        [request2 setPredicate:pred];
-        
-        NSArray *objects = [context executeFetchRequest:request2 error:&outError];
-        
-        if ([objects count] == 0) {
-            NSLog(@"No matches");
-        } else {
-            
-            [moralDisplayName setString:[[objects objectAtIndex:0] displayNameMoral]];
-            [moralImageName setString:[[objects objectAtIndex:0] imageNameMoral]];
-            
-        }
-        
-        [request2 release];
+
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+
+        [moralDisplayName setString:[currentMoralDAO findMoralDisplayName:value]];
+        [moralImageName setString:[currentMoralDAO findMoralImageName:value]];
+                
+        [currentMoralDAO release];
         
         if (isVirtue) {
             [virtueButton setEnabled:TRUE];

@@ -43,17 +43,19 @@
     
 }
 
-/**
- Ensure that the ConsciencePath was able to init.
- */
+//TODO: Cannot test ModelManager until Main Bundle issue for Unit Test Target is resolved
+
+///**
+// Ensure that the ModelManager was able to init.
+// */
 //- (void)testModelManagerExists{
 //    
 //    STAssertNotNil(testingSubject, @"The ModelManager was not init'ed.");
 //}
-
-/**
- Ensure that the ConsciencePath was able to init.
- */
+//
+///**
+// Ensure that the ModelManager was able to save.
+// */
 //- (void)testModelManagerCanSave{
 //    
 //    STAssertNoThrow([testingSubject saveContext], @"The ModelManager was not able to save.");

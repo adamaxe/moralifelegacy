@@ -284,7 +284,6 @@
 			NSMutableString *detailText = [[NSMutableString alloc] init];
             
 			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
-            
 				
             MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
             

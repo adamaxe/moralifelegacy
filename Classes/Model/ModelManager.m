@@ -11,7 +11,11 @@
 	NSManagedObjectModel	*managedObjectModel;
 	NSManagedObjectContext	*managedObjectContext;
 	NSPersistentStoreCoordinator	*persistentStoreCoordinator;
+    
 }
+
+@property (nonatomic, retain) NSBundle *currentBundle;
+@property (nonatomic, retain) NSString *storeType;
 
 @end
 
@@ -20,14 +24,29 @@
 @synthesize managedObjectModel;
 @synthesize managedObjectContext;
 @synthesize persistentStoreCoordinator;
+@synthesize currentBundle;
+@synthesize storeType;
 
 #pragma mark -
 #pragma mark Core Data stack
 
 - (id)init {
+    
+    return [self initWithBundle:[NSBundle mainBundle] andIsPeristentStoreType:YES];
+}
+
+- (id)initWithBundle:(NSBundle *)bundle andIsPeristentStoreType:(BOOL)isPersistent {
+
     self = [super init];
     
     if (self) {
+        currentBundle = [bundle retain];
+        if (isPersistent) {
+            storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
+        } else {
+            storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
+        }
+
         NSManagedObjectContext *context = [self managedObjectContext];
         managedObjectContext = context;
     }
@@ -64,12 +83,12 @@
         return managedObjectModel;
     }
 	
-	NSString *pathReadWrite = [[NSBundle mainBundle] pathForResource:@"UserData" ofType:@"momd"];
+	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
     
 	NSManagedObjectModel *modelReadWrite = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
 	
-	NSString *pathReadOnly = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"momd"];
+	NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData" ofType:@"momd"];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
 	
@@ -77,16 +96,7 @@
 	
 	[modelReadOnly release];
 	[modelReadWrite release];
-	
-	/*
-     //After versioning enabled, mom becomes directory
-     NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"momd"];
-     //NSString *modelPath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"mom"];
-     
-     NSURL *modelURL = [NSURL fileURLWithPath:modelPath];
-     managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];    
-     */
-	
+		
 	return managedObjectModel;
 }
 
@@ -118,13 +128,13 @@
 	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadData];
     NSError *error = nil;
     
-    NSString *defaultStorePath = [[NSBundle mainBundle] pathForResource:@"SystemData" ofType:@"sqlite"];
+    NSString *defaultStorePath = [self.currentBundle pathForResource:@"SystemData" ofType:@"sqlite"];
     
     
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
 	if (!isSQLiteFilePresent) {
         
-        NSString *defaultStorePathWrite = [[NSBundle mainBundle] pathForResource:@"UserData" ofType:@"sqlite"];
+        NSString *defaultStorePathWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"sqlite"];
         
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePath) {
@@ -168,13 +178,13 @@
     error = nil;
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-	if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
+	if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
 
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 	
-	if (![persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURLReadWrite options:options error:&error]) {
+	if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURLReadWrite options:options error:&error]) {
         
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
@@ -183,21 +193,84 @@
     return persistentStoreCoordinator;
 }
 
+- (NSArray *)fetch: (Class) fetchClass {
+    NSError *error = nil;
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(fetchClass)];
+    
+    NSArray *results;
+    
+    @try {
+        results = [self.managedObjectContext executeFetchRequest: fetch error: &error];
+    }
+    @catch (NSException *exception) {
+        @throw(exception);
+    }    
+    
+    if (error) {
+        NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data fetch failed: %@\n\n", [error description]];
+        [NSException raise:@"CoreDataFetchError" format:errorMessage];
+    }
+    
+    return results;
+}
+
+
+- (id)insert: (Class) insertedClass {
+    
+    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
+}
+
+- (void)delete: (id) object {
+    
+    @try {
+        [self.managedObjectContext deleteObject: object];
+        [self saveContext];
+    }
+    @catch (NSException *exception) {
+        @throw(exception); 
+    }    
+    
+}
+
+
 - (void)saveContext {
     
     NSError *error = nil;
 	NSManagedObjectContext *saveManagedObjectContext = self.managedObjectContext;
     if (saveManagedObjectContext != nil) {
-        if ([saveManagedObjectContext hasChanges] && ![saveManagedObjectContext save:&error]) {
-            /*
-             Replace this implementation with code to handle the error appropriately.
-             
-             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-             */
-            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        
+        @try {
+            if ([saveManagedObjectContext hasChanges]) {
+                [self.managedObjectContext save: &error];
+            }
+        }
+        @catch (NSException *exception) {
+            @throw(exception); 
             abort();
-        } 
+        }    
+        
+        if (error) {
+            NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data save failed: %@\n\n", [error description]];
+            [NSException raise:@"CoreDataSaveError" format:errorMessage];
+
+        }
+                
+//        if ([saveManagedObjectContext hasChanges] && ![saveManagedObjectContext save:&error]) {
+//            /*
+//             Replace this implementation with code to handle the error appropriately.
+//             
+//             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
+//             */
+//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+//            abort();
+//        } 
     }
 } 
 
+-(void)dealloc {
+    [currentBundle release];
+    [storeType release];
+    
+    [super dealloc];
+}
 @end

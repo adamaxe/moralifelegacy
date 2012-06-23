@@ -9,6 +9,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 @todo Model: change Character.sizeCharacter type to Float, change UserCharacter and Character to similiar
 @todo Model: change Moral.dilemmaA/B typo
 @todo Model: why is Moral.dilemma 1 to many?
+@todo View: Figure out why appdelegate.userConscienceView has to be loaded at every viewWillAppear
 @class MoralifeAppDelegate MoralifeAppDelegate.h
 */
 
@@ -70,15 +71,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #pragma mark -
 #pragma mark AppDelegate lifecycle
 
-- (void)awakeFromNib {
-    
-    moralModelManager = [[ModelManager alloc] init];
-    
-	//Call method to create base Conscience.    
-    [self createConscience];
-
-}
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -131,6 +123,11 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
 	
     isCurrentIOS = (&UIApplicationDidEnterBackgroundNotification != NULL);
+    
+    moralModelManager = [[ModelManager alloc] init];
+
+    //Call method to create base Conscience.    
+    [self createConscience];
     
 	mainMenuTabBarCont = [[UITabBarController alloc] init];
 	navController1 = [[UINavigationController alloc] init];
