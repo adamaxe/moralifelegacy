@@ -822,7 +822,7 @@ Implementation:  Return conscience to view
     //Determine current state of Intro, then advance to next state
     if (messageState >= 0) {
         switch (messageState) {
-            case 0:[self switchText1];break;            
+            case 0:[self switchText1];moraLifeLogoImage.alpha = 0;break;            
             case 1:[self switchText2];break;
             case 2:[self switchText3];break;
             case 3:[self switchText4];break;
@@ -842,7 +842,6 @@ Implementation:  Return conscience to view
             default:
                 break;
         }
-        
         
         if ((nextButton.hidden == TRUE) || (nextButton.alpha == 0)) {
 

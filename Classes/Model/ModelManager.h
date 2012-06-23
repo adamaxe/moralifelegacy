@@ -16,6 +16,11 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
 
+- (id)initWithBundle:(NSBundle *)bundle andIsPeristentStoreType:(BOOL)isPersistent;
+
+- (id)insert: (Class) insertedClass;
+- (NSArray *)fetch: (Class) fetchClass;
+- (void)delete: (id) object;
 /**
  Save the current Core Data context for whenever a modify is needed.
  */

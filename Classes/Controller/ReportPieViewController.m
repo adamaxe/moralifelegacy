@@ -68,24 +68,11 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	context = [appDelegate.moralModelManager managedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
-    
-    //Position Conscience in lower-left of screen
-    CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
-	
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
-	
-	appDelegate.userConscienceView.center = centerPoint;
-    
+        
     isGood = TRUE;
     isAlphabetical = FALSE;
     isAscending = FALSE;
-        
-    NSString *titleName =[[NSString alloc] initWithFormat:@"%@",NSStringFromClass([self class])];
-
-    [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, isGood]), @"Title For View Controller")];
-    [moralTypeLabel setText:@"Virtue"];                
-    [titleName release];
-    
+            
     reportValues = [[NSMutableDictionary alloc] init];
     moralDisplayNames = [[NSMutableDictionary alloc] init];
     moralImageNames = [[NSMutableDictionary alloc] init];
@@ -108,6 +95,18 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    
+    //Position Conscience in lower-left of screen
+    CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+
+    //Add User Conscience to view
+    [self.view addSubview:appDelegate.userConscienceView];
+    
+    appDelegate.userConscienceView.center = centerPoint;
+
+    
+}
 
 #pragma mark -
 #pragma mark UI Interaction
@@ -453,6 +452,12 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {
+    
+    NSString *titleName =[[NSString alloc] initWithFormat:@"%@",NSStringFromClass([self class])];
+    
+    [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, isGood]), @"Title For View Controller")];
+    [moralTypeLabel setText:@"Virtue"];                
+    [titleName release];
     
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");

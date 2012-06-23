@@ -1358,6 +1358,7 @@
 		5EB190A1120E41ED000A35CF /* body-mouth5.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EB19095120E41ED000A35CF /* body-mouth5.svg */; };
 		5EB190A2120E41ED000A35CF /* body-mouth3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EB19096120E41ED000A35CF /* body-mouth3.svg */; };
 		5EB190A3120E41ED000A35CF /* body-mouth2.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EB19097120E41ED000A35CF /* body-mouth2.svg */; };
+		5EB2FEDD1596849600CAF1DD /* MoraLifeBaseUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB2FEDC1596849600CAF1DD /* MoraLifeBaseUnitTest.m */; };
 		5EB4C4BD1201352B0058F1C0 /* body-eye3.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EB4C4BA1201352B0058F1C0 /* body-eye3.svg */; };
 		5EB58EBE13415D8A00B67E0D /* card-obsession.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB58EB613415D8900B67E0D /* card-obsession.png */; };
 		5EB58EBF13415D8A00B67E0D /* card-pettiness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB58EB713415D8900B67E0D /* card-pettiness.png */; };
@@ -3064,6 +3065,7 @@
 		5EB19095120E41ED000A35CF /* body-mouth5.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-mouth5.svg"; path = "Resources/images/conscience/body-mouth5.svg"; sourceTree = "<group>"; };
 		5EB19096120E41ED000A35CF /* body-mouth3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-mouth3.svg"; path = "Resources/images/conscience/body-mouth3.svg"; sourceTree = "<group>"; };
 		5EB19097120E41ED000A35CF /* body-mouth2.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-mouth2.svg"; path = "Resources/images/conscience/body-mouth2.svg"; sourceTree = "<group>"; };
+		5EB2FEDC1596849600CAF1DD /* MoraLifeBaseUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoraLifeBaseUnitTest.m; sourceTree = "<group>"; };
 		5EB4C4BA1201352B0058F1C0 /* body-eye3.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-eye3.svg"; path = "Resources/images/conscience/body-eye3.svg"; sourceTree = "<group>"; };
 		5EB58EB613415D8900B67E0D /* card-obsession.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-obsession.png"; path = "Resources/images/interface/cards/card-obsession.png"; sourceTree = "<group>"; };
 		5EB58EB713415D8900B67E0D /* card-pettiness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-pettiness.png"; path = "Resources/images/interface/cards/card-pettiness.png"; sourceTree = "<group>"; };
@@ -5151,6 +5153,7 @@
 				5E99C5A013C542AC001F5CB8 /* Model */,
 				5E99C59F13C5429E001F5CB8 /* View */,
 				5EA1D229130E38A200BA81D6 /* Supporting Files */,
+				5EB2FEDC1596849600CAF1DD /* MoraLifeBaseUnitTest.m */,
 			);
 			path = UnitTests;
 			sourceTree = "<group>";
@@ -7223,6 +7226,7 @@
 				5EA26D7315843DB600CDA802 /* TestModelManager.m in Sources */,
 				5EFC5A0F15940F5000E11A71 /* MoralDAO.m in Sources */,
 				5E5761411595975600E14606 /* TestMoralDAO.m in Sources */,
+				5EB2FEDD1596849600CAF1DD /* MoraLifeBaseUnitTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

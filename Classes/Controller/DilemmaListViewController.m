@@ -158,33 +158,41 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	
 	[dilemmaListTableView reloadData];
 
-	//If this is the first time in Morathology, then show the intro
-	NSObject *firstMorathologyCheck = [prefs objectForKey:@"firstMorathology"];
-    
-	if (firstMorathologyCheck == nil) {
-        
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setHelpVersion:0];
-		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
-        
-		[prefs setBool:FALSE forKey:@"firstMorathology"];
-
-	}
-
-
-
 }
+
 
 -(void)viewDidAppear:(BOOL)animated{
     
+    //Present help screen after a split second
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+
     int nextRow = [userChoices count] - 1;
         
     if (nextRow > 0) {
 
         [dilemmaListTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:nextRow inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:TRUE];
+    }
+}
+
+/**
+ Implementation: Show an initial help screen if this is the User's first use of the screen.  Set a User Default after help screen is presented.  Launch a ConscienceHelpViewController and populate a localized help message.
+ */
+-(void)showInitialHelpScreen {
+    
+    //If this is the first time in Morathology, then show the intro
+    NSObject *firstMorathologyCheck = [prefs objectForKey:@"firstMorathology"];
+    
+    if (firstMorathologyCheck == nil) {
+        
+        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
+        [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+        [conscienceHelpViewCont setHelpVersion:0];
+        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [conscienceHelpViewCont release];
+        
+        [prefs setBool:FALSE forKey:@"firstMorathology"];
+        
     }
 }
 

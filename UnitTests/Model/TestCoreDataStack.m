@@ -8,31 +8,32 @@
 @synthesize managedObjectContext = _managedObjectContext;
 
 - (id)init {
+
+    return [self initWithManagedObjectModel:nil];
+}
+
+- (id)initWithManagedObjectModel: (NSString *) managedObjectModelName {
+
     self = [super init];
     if (self) {
         
-        if (objectModelName == nil) {
+        if (managedObjectModelName) {
+            objectModelName = managedObjectModelName;            
+        } else {
             objectModelName = @"SystemData";
         }
         
         NSURL *modelURL = [[NSBundle bundleForClass:TestCoreDataStack.class] URLForResource:objectModelName withExtension:@"momd"];
         NSManagedObjectModel *managedObjectModel = [[[NSManagedObjectModel alloc] initWithContentsOfURL: modelURL] autorelease];
-
+        
         NSPersistentStoreCoordinator *persistentStoreCoordinator = [[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: managedObjectModel] autorelease];
         [persistentStoreCoordinator addPersistentStoreWithType:NSInMemoryStoreType configuration:nil URL:nil options:nil error:NULL];
-
+        
         self.managedObjectContext = [[[NSManagedObjectContext alloc] init] autorelease];
         [self.managedObjectContext setPersistentStoreCoordinator:persistentStoreCoordinator];
     }
-    return self;
-}
-
-- (id)initWithManagedObjectModel: (NSString *) managedObjectModelName {
     
-    objectModelName = managedObjectModelName;
-    
-    return [self init];
-
+    return self;    
 }
 
 - (id)insert: (Class) testClass {
@@ -95,18 +96,5 @@
     
     [super dealloc];
 }
+
 @end
-
-//Needed to avoid problems in setting up gcovr
-//Project -> Instrument Program Flow : YES
-//Project -> Generate Test Coverage Files : YES
-#include <stdio.h>
-FILE *fopen$UNIX2003( const char *filename, const char *mode );
-size_t fwrite$UNIX2003( const void *a, size_t b, size_t c, FILE *d );
-
-FILE *fopen$UNIX2003( const char *filename, const char *mode ) {
-    return fopen(filename, mode);
-}
-size_t fwrite$UNIX2003( const void *a, size_t b, size_t c, FILE *d ) {
-    return fwrite(a, b, c, d);
-}
