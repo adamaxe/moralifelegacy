@@ -34,7 +34,11 @@
         moralDisplayNames = [[NSMutableArray alloc] init];
         moralDetails = [[NSMutableArray alloc] init];
         
-        currentMoralType = [[NSString alloc] initWithFormat:moralType];
+        if (moralType) {
+            currentMoralType = [[NSString alloc] initWithFormat:moralType];
+        } else {
+            currentMoralType = [[NSString alloc] initWithFormat:@"all"];
+        }
         
         [self processMorals];
         
@@ -43,8 +47,6 @@
     return self;
 }
 
-         
-         
 - (NSArray *)getAllMoralNames {
     return moralNames;
 }
@@ -86,9 +88,11 @@
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
 		
-	//Virtue or Vice is stored in shortDescription
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", currentMoralType];
-	[request setPredicate:pred];
+
+    if (![currentMoralType isEqualToString:@"all"]) {
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", currentMoralType];
+        [request setPredicate:pred];
+    }
 	
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameMoral" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
