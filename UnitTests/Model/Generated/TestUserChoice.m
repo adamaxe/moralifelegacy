@@ -1,8 +1,8 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "UserChoice.h"
 
 @interface TestUserChoice : SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     UserChoice *testChoice;
 
     NSString * entryShortDescription;
@@ -26,7 +26,7 @@
 @implementation TestUserChoice
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"UserData"];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
     
     entryShortDescription = @"entryShortDescription";
     entryIsGood = [NSNumber numberWithInt:1];
@@ -42,7 +42,7 @@
     choiceMoral = @"choiceMoral";
     choiceWeight = [NSNumber numberWithFloat:5];    
     
-    testChoice = [coreData insert:UserChoice.class];
+    testChoice = [testModelManager create:UserChoice.class];
     
     testChoice.entryShortDescription = entryShortDescription;
     testChoice.entryIsGood = entryIsGood;
@@ -63,31 +63,31 @@
 - (void)testUserChoiceCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([coreData save], @"UserChoice can't be created");
+    STAssertNoThrow([testModelManager saveContext], @"UserChoice can't be created");
     
 }
 
 - (void)testUserChoiceValidatesAttributes {
     
     testChoice.choiceInfluence = [NSNumber numberWithInt:0];    
-    STAssertThrows([coreData save], @"choiceInfluence lower bound validation failed.");
+    STAssertThrows([testModelManager saveContext], @"choiceInfluence lower bound validation failed.");
     
     testChoice.choiceInfluence = [NSNumber numberWithInt:6];    
-    STAssertThrows([coreData save], @"choiceInfluence upper bound validation failed.");
+    STAssertThrows([testModelManager saveContext], @"choiceInfluence upper bound validation failed.");
     
     testChoice.entrySeverity = [NSNumber numberWithInt:-6];    
-    STAssertThrows([coreData save], @"entrySeverity lower bound validation failed.");
+    STAssertThrows([testModelManager saveContext], @"entrySeverity lower bound validation failed.");
     
     testChoice.entrySeverity = [NSNumber numberWithInt:6];    
-    STAssertThrows([coreData save], @"entrySeverity upper bound validation failed.");
+    STAssertThrows([testModelManager saveContext], @"entrySeverity upper bound validation failed.");
     
 }
 
 - (void)testUserChoiceAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"UserChoice can't be created for Accessor test");
+    STAssertNoThrow([testModelManager saveContext], @"UserChoice can't be created for Accessor test");
     
-    NSArray *userChoices = [coreData fetch:UserChoice.class];
+    NSArray *userChoices = [testModelManager readAll:UserChoice.class];
         
     STAssertEquals(userChoices.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
     UserChoice *retrieved = [userChoices objectAtIndex: 0];
@@ -108,37 +108,37 @@
 }
 
 - (void)testUserChoiceDeletion {
-    STAssertNoThrow([coreData save], @"UserChoice can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"UserChoice can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testChoice], @"UserChoice can't be deleted");
+    STAssertNoThrow([testModelManager delete:testChoice], @"UserChoice can't be deleted");
     
-    NSArray *userChoices = [coreData fetch:UserChoice.class];
+    NSArray *userChoices = [testModelManager readAll:UserChoice.class];
     
     STAssertEquals(userChoices.count, (NSUInteger) 0, @"UserChoice is still present after delete");
     
 }
 
 - (void)testUserChoiceWithoutRequiredAttributes {
-    UserChoice *testUserChoiceBad = [coreData insert:UserChoice.class];
+    UserChoice *testUserChoiceBad = [testModelManager create:UserChoice.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceBad.class];
 
-    STAssertThrows([coreData save], errorMessage);
+    STAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 - (void)testUserChoiceDefaultValues {
-    UserChoice *testUserChoiceDefault = [coreData insert:UserChoice.class];
+    UserChoice *testUserChoiceDefault = [testModelManager create:UserChoice.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceDefault.class];
 
     testUserChoiceDefault.entryCreationDate = entryCreationDate;
     testUserChoiceDefault.entryModificationDate = entryModificationDate;
     
-    STAssertNoThrow([coreData save], errorMessage);
+    STAssertNoThrow([testModelManager saveContext], errorMessage);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserChoice.class)];
     request.predicate = searchPredicate;
-    NSArray *userChoices = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *userChoices = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
 
     UserChoice *retrieved = [userChoices objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");

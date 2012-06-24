@@ -1,8 +1,8 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "UserCharacter.h"
 
 @interface TestUserCharacter: SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     UserCharacter *testUserCharacter;
     
     NSString * characterAccessoryPrimary;
@@ -28,7 +28,7 @@
 @implementation TestUserCharacter
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"UserData"];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
     
     characterAccessoryPrimary = @"accessoryPrimary";
     characterAccessorySecondary = @"accessorySecondary";
@@ -47,7 +47,7 @@
     characterSize = [NSNumber numberWithFloat:1.0];
     characterBubbleType = [NSNumber numberWithFloat:1.0];
     
-    testUserCharacter = [coreData insert:UserCharacter.class];
+    testUserCharacter = [testModelManager create:UserCharacter.class];
     
     testUserCharacter.characterAccessoryPrimary = characterAccessoryPrimary;
     testUserCharacter.characterAccessorySecondary = characterAccessorySecondary;
@@ -71,15 +71,15 @@
 - (void)testUserCharacterCanBeCreated {
     
     //testUserCollectable are created in setup    
-    STAssertNoThrow([coreData save], @"UserCharacter can't be created.");
+    STAssertNoThrow([testModelManager saveContext], @"UserCharacter can't be created.");
     
 }
 
 - (void)testUserCharacterAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"UserCharacter can't be created for Accessor test.");
+    STAssertNoThrow([testModelManager saveContext], @"UserCharacter can't be created for Accessor test.");
     
-    NSArray *characters = [coreData fetch:UserCharacter.class];
+    NSArray *characters = [testModelManager readAll:UserCharacter.class];
     
     STAssertEquals(characters.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
     UserCharacter *retrieved = [characters objectAtIndex: 0];
@@ -104,21 +104,21 @@
 }
 
 - (void)testUserCharacterDeletion {
-    STAssertNoThrow([coreData save], @"UserCharacter can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"UserCharacter can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testUserCharacter], @"UserCharacter can't be deleted");
+    STAssertNoThrow([testModelManager delete:testUserCharacter], @"UserCharacter can't be deleted");
     
-    NSArray *characters = [coreData fetch:UserCharacter.class];
+    NSArray *characters = [testModelManager readAll:UserCharacter.class];
     
     STAssertEquals(characters.count, (NSUInteger) 0, @"UserCharacter is still present after delete");
     
 }
 
 - (void)testUserCharacterWithoutRequiredAttributes {
-    UserCharacter *testUserCharacterBad = [coreData insert:UserCharacter.class];
+    UserCharacter *testUserCharacterBad = [testModelManager create:UserCharacter.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserCharacterBad.class];
     
-    STAssertThrows([coreData save], errorMessage);
+    STAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 @end

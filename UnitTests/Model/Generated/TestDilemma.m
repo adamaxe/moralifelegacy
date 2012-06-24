@@ -1,17 +1,14 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "Dilemma.h"
 #import "Character.h"
 #import "Moral.h"
-#import "ModelManager.h"
 
 @interface TestDilemma: SenTestCase {
     ModelManager *testModelManager;
-    TestCoreDataStack *coreData;
     Dilemma *testDilemma;
     Character *testCharacter;
     Moral *testMoral;
     Moral *testMoral2;
-
     
     NSString * rewardADilemma;
     NSString * choiceB;
@@ -59,8 +56,7 @@
 @implementation TestDilemma
 
 - (void)setUp {
-//    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsPeristentStoreType:NO];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
     
     rewardADilemma = @"dilemma reward";
     choiceB = @"choiceB";
@@ -73,7 +69,7 @@
     enthusiasmDilemma = [NSNumber numberWithFloat:1.0];
     dilemmaText = @"dilemmaText";
     
-    testDilemma = [testModelManager insert:Dilemma.class];
+    testDilemma = [testModelManager create:Dilemma.class];
     testDilemma.rewardADilemma = rewardADilemma;
     testDilemma.choiceB = choiceB;
     testDilemma.moodDilemma = moodDilemma;
@@ -101,7 +97,7 @@
     characterSize = [NSDecimalNumber decimalNumberWithString:@"1.0"];
     characterBubbleType = [NSNumber numberWithFloat:1.0];
     
-    testCharacter = [testModelManager insert:Character.class];
+    testCharacter = [testModelManager create:Character.class];
     
     testCharacter.accessoryPrimaryCharacter = characterAccessoryPrimary;
     testCharacter.accessorySecondaryCharacter = characterAccessorySecondary;
@@ -129,8 +125,8 @@
     nameMoral2 = @"nameMoral2";
     definitionMoral = @"definitionMoral"; 
     
-    testMoral = [testModelManager insert:Moral.class];
-    testMoral2 = [testModelManager insert:Moral.class];
+    testMoral = [testModelManager create:Moral.class];
+    testMoral2 = [testModelManager create:Moral.class];
     
 
     testMoral.imageNameMoral = imageNameMoral;
@@ -167,7 +163,7 @@
     
     STAssertNoThrow([testModelManager saveContext], @"Dilemma can't be created for Accessor test.");
     
-    NSArray *dilemmas = [testModelManager fetch:Dilemma.class];
+    NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     
     STAssertEquals(dilemmas.count, (NSUInteger) 1, @"There should only be 1 Dilemma in the context.");
     Dilemma *retrieved = [dilemmas objectAtIndex: 0];
@@ -195,7 +191,7 @@
     
     STAssertNoThrow([testModelManager saveContext], @"Dilemma/Character/Moral relationships can't be created for RI test");
             
-    NSArray *dilemmas = [testModelManager fetch:Dilemma.class];
+    NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     
     Dilemma *retrieved = [dilemmas objectAtIndex: 0];
     STAssertEqualObjects(retrieved.antagonist, testCharacter, @"antagonist Relationship failed.");
@@ -226,7 +222,7 @@
     
     STAssertNoThrow([testModelManager saveContext], @"Character can't be updated for RI Update test");
     
-    NSArray *dilemmas = [testModelManager fetch:Dilemma.class];
+    NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     Dilemma *retrieved = [dilemmas objectAtIndex: 0];
     STAssertEqualObjects(retrieved.antagonist.nameCharacter, newCharacterName, @"story RI update failed.");
     STAssertEqualObjects(retrieved.moralChoiceA.nameMoral, newMoralName, @"moralChoiceA RI update failed.");    
@@ -239,7 +235,7 @@
     
     STAssertNoThrow([testModelManager delete:testDilemma], @"Dilemma can't be deleted");
     
-    NSArray *dilemmas = [testModelManager fetch:Dilemma.class];
+    NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     
     STAssertEquals(dilemmas.count, (NSUInteger) 0, @"Dilemma is still present after delete");
     
@@ -257,8 +253,8 @@
     
     STAssertNoThrow([testModelManager delete:testDilemma], @"Dilemma can't be deleted");
     
-    NSArray *characters = [testModelManager fetch:Character.class];
-    NSArray *morals = [testModelManager fetch:Moral.class];
+    NSArray *characters = [testModelManager readAll:Character.class];
+    NSArray *morals = [testModelManager readAll:Moral.class];
 
     STAssertEquals(characters.count, (NSUInteger) 1, @"Character should not have been cascade deleted");
     
@@ -267,7 +263,7 @@
 }
 
 - (void)testDilemmaWithoutRequiredAttributes {
-    Dilemma *testDilemmaBad = [testModelManager insert:Dilemma.class];
+    Dilemma *testDilemmaBad = [testModelManager create:Dilemma.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testDilemmaBad.class];
     
     STAssertThrows([testModelManager saveContext], errorMessage);

@@ -1,9 +1,9 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "Character.h"
 #import "Dilemma.h"
 
 @interface TestCharacter: SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     Character *testCharacter;
     Dilemma *testDilemma;
     
@@ -31,7 +31,7 @@
 @implementation TestCharacter
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
     
     characterAccessoryPrimary = @"accessoryPrimary";
     characterAccessorySecondary = @"accessorySecondary";
@@ -49,7 +49,7 @@
     characterSize = [NSDecimalNumber decimalNumberWithString:@"1.0"];
     characterBubbleType = [NSNumber numberWithFloat:1.0];
         
-    testCharacter = [coreData insert:Character.class];
+    testCharacter = [testModelManager create:Character.class];
     
     testCharacter.accessoryPrimaryCharacter = characterAccessoryPrimary;
     testCharacter.accessorySecondaryCharacter = characterAccessorySecondary;
@@ -66,7 +66,7 @@
     testCharacter.sizeCharacter = characterSize;
     testCharacter.bubbleType = characterBubbleType;
     
-    testDilemma = [coreData insert:Dilemma.class];
+    testDilemma = [testModelManager create:Dilemma.class];
     testDilemma.rewardADilemma = @"dilemma";
     testDilemma.choiceB = @"choiceB";
     testDilemma.moodDilemma  = [NSNumber numberWithFloat:1.0];
@@ -83,15 +83,15 @@
 - (void)testCharacterCanBeCreated {
     
     //testUserCollectable are created in setup    
-    STAssertNoThrow([coreData save], @"Character can't be created.");
+    STAssertNoThrow([testModelManager saveContext], @"Character can't be created.");
     
 }
 
 - (void)testCharacterAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"Character can't be created for Accessor test.");
+    STAssertNoThrow([testModelManager saveContext], @"Character can't be created for Accessor test.");
     
-    NSArray *characters = [coreData fetch:Character.class];
+    NSArray *characters = [testModelManager readAll:Character.class];
     
     STAssertEquals(characters.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
     Character *retrieved = [characters objectAtIndex: 0];
@@ -115,13 +115,13 @@
 
 - (void)testCharacterReferentialIntegrity {
     
-    STAssertNoThrow([coreData save], @"Character/Dilemma can't be created for RI test");
+    STAssertNoThrow([testModelManager saveContext], @"Character/Dilemma can't be created for RI test");
 
     testDilemma.antagonist = testCharacter;
     
-    STAssertNoThrow([coreData save], @"Character/Dilemma relationships can't be created for RI test");
+    STAssertNoThrow([testModelManager saveContext], @"Character/Dilemma relationships can't be created for RI test");
             
-    NSArray *characters = [coreData fetch:Character.class];
+    NSArray *characters = [testModelManager readAll:Character.class];
     
     Character *retrieved = [characters objectAtIndex: 0];
     STAssertEqualObjects([retrieved.story anyObject], testDilemma, @"story Relationship failed.");
@@ -129,18 +129,18 @@
 }
 
 - (void)testCharacterReferentialIntegrityUpdate {
-    STAssertNoThrow([coreData save], @"Character/Dilemma can't be created for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"Character/Dilemma can't be created for RI Update test");
     
     testCharacter.story = [NSSet setWithObject:testDilemma];
     
-    STAssertNoThrow([coreData save], @"Character/Dilemma relationships can't be created for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"Character/Dilemma relationships can't be created for RI Update test");
         
     NSString *newDilemmadName = @"New dilemma name";
     testDilemma.nameDilemma = newDilemmadName;
     
-    STAssertNoThrow([coreData save], @"Dilemma can't be updated for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"Dilemma can't be updated for RI Update test");
     
-    NSArray *characters = [coreData fetch:Character.class];
+    NSArray *characters = [testModelManager readAll:Character.class];
     Character *retrieved = [characters objectAtIndex: 0];
     STAssertEqualObjects([[retrieved.story anyObject] nameDilemma], newDilemmadName, @"story RI update failed.");
     
@@ -148,36 +148,36 @@
 
 
 - (void)testCharacterDeletion {
-    STAssertNoThrow([coreData save], @"Character can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"Character can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testCharacter], @"Character can't be deleted");
+    STAssertNoThrow([testModelManager delete:testCharacter], @"Character can't be deleted");
     
-    NSArray *characters = [coreData fetch:Character.class];
+    NSArray *characters = [testModelManager readAll:Character.class];
     
     STAssertEquals(characters.count, (NSUInteger) 0, @"Character is still present after delete");
     
 }
 
 - (void)testCharacterReferentialIntegrityDelete {
-    STAssertNoThrow([coreData save], @"Character/Dilemma can't be created for RI Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"Character/Dilemma can't be created for RI Delete test");
     
     testCharacter.story = [NSSet setWithObject:testDilemma];
     
-    STAssertNoThrow([coreData save], @"Character/Dilemma relationships can't be created for RI Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"Character/Dilemma relationships can't be created for RI Delete test");
     
-    STAssertNoThrow([coreData delete:testCharacter], @"Character can't be deleted");
+    STAssertNoThrow([testModelManager delete:testCharacter], @"Character can't be deleted");
     
-    NSArray *stories = [coreData fetch:Dilemma.class];
+    NSArray *stories = [testModelManager readAll:Dilemma.class];
     
     STAssertEquals(stories.count, (NSUInteger) 1, @"Dilemma should not have been cascade deleted");
     
 }
 
 - (void)testCharacterWithoutRequiredAttributes {
-    Character *testCharacterBad = [coreData insert:Character.class];
+    Character *testCharacterBad = [testModelManager create:Character.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testCharacterBad.class];
     
-    STAssertThrows([coreData save], errorMessage);
+    STAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 @end

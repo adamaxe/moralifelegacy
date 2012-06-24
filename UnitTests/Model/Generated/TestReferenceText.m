@@ -1,10 +1,10 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "ReferenceText.h"
 #import "ReferenceBelief.h"
 #import "ReferencePerson.h"
 
 @interface TestReferenceText: SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     ReferenceText *testText;    
     ReferenceBelief *testBelief;
     ReferencePerson *testPerson;
@@ -25,7 +25,7 @@
 @implementation TestReferenceText
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
     
     quote = @"quote";
     shortDescriptionReference = @"shortDescriptionReference";
@@ -36,7 +36,7 @@
     displayNameReference = @"displayNameReference";
     imageNameReference = @"imageNameReferencee";
     
-    testText = [coreData insert:ReferenceText.class];
+    testText = [testModelManager create:ReferenceText.class];
     testText.quote = quote;
     testText.shortDescriptionReference = shortDescriptionReference;
     testText.originYear = originYear;
@@ -46,7 +46,7 @@
     testText.displayNameReference = displayNameReference;
     testText.imageNameReference = imageNameReference; 
     
-    testBelief = [coreData insert:ReferenceBelief.class];
+    testBelief = [testModelManager create:ReferenceBelief.class];
     testBelief.typeBelief = @"belief";
     testBelief.shortDescriptionReference = shortDescriptionReference;
     testBelief.originYear = originYear;
@@ -56,7 +56,7 @@
     testBelief.displayNameReference = displayNameReference;
     testBelief.imageNameReference = imageNameReference;
     
-    testPerson = [coreData insert:ReferencePerson.class];
+    testPerson = [testModelManager create:ReferencePerson.class];
     testPerson.shortDescriptionReference = shortDescriptionReference;
     testPerson.originYear = originYear;
     testPerson.nameReference = nameReference;
@@ -70,15 +70,15 @@
 - (void)testTextCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([coreData save], @"ReferenceText can't be created.");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText can't be created.");
         
 }
 
 - (void)testTextAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"ReferenceText can't be created for Accessor test.");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText can't be created for Accessor test.");
     
-    NSArray *texts = [coreData fetch:ReferenceText.class];
+    NSArray *texts = [testModelManager readAll:ReferenceText.class];
     
     STAssertEquals(texts.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
     ReferenceText *retrieved = [texts objectAtIndex: 0];
@@ -95,11 +95,11 @@
 
 - (void)testTextReferentialIntegrity {
     
-    STAssertNoThrow([coreData save], @"ReferenceText/Belief/Person can't be created for RI test.");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText/Belief/Person can't be created for RI test.");
 
-    ReferenceText *childText1 = [coreData insert:ReferenceText.class];
-    ReferenceText *childText2 = [coreData insert:ReferenceText.class];    
-    ReferenceText *parentText = [coreData insert:ReferenceText.class];
+    ReferenceText *childText1 = [testModelManager create:ReferenceText.class];
+    ReferenceText *childText2 = [testModelManager create:ReferenceText.class];    
+    ReferenceText *parentText = [testModelManager create:ReferenceText.class];
 
     childText1.shortDescriptionReference = shortDescriptionReference;
     childText1.originYear = originYear;
@@ -130,7 +130,7 @@
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    
 
-    STAssertNoThrow([coreData save], @"ReferenceText/Person/Belief relationships can't be created for RI test.");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText/Person/Belief relationships can't be created for RI test.");
     
     testText.childrenReference = [NSSet setWithObjects:childText1, childText2, nil];
     testText.parentReference = parentText;
@@ -138,16 +138,16 @@
     testText.author = testPerson;
     testText.belief = [NSSet setWithObject:testBelief];
 
-    STAssertNoThrow([coreData save], @"ReferenceText can't be updated for RI test.");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText can't be updated for RI test.");
     
-    NSArray *allTexts = [coreData fetch:ReferenceText.class];
+    NSArray *allTexts = [testModelManager readAll:ReferenceText.class];
     STAssertEquals(allTexts.count, (NSUInteger) 4, @"There should be 4 ReferenceTexts in the context (parent and children).");
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"nameReference == %@", nameReference];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass([ReferenceText class])];
     request.predicate = searchPredicate;
-    NSArray *texts = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *texts = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
 
     ReferenceText *retrieved = [texts objectAtIndex: 0];
     NSArray *childrenTexts = [[retrieved childrenReference] allObjects];
@@ -161,12 +161,12 @@
 }
 
 - (void)testTextReferentialIntegrityUpdate {
-    STAssertNoThrow([coreData save], @"ReferenceText/Belief/Person can't be created for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText/Belief/Person can't be created for RI Update test");
         
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    
     
-    STAssertNoThrow([coreData save], @"ReferencePerson/Belief relationships can't be created for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief relationships can't be created for RI Update test");
     
     testText.author = testPerson;
     testText.belief = [NSSet setWithObject:testBelief];
@@ -176,9 +176,9 @@
     NSString *newBeliefName = @"New belief name";
     testBelief.nameReference = newBeliefName;
 
-    STAssertNoThrow([coreData save], @"ReferenceText can't be updated for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText can't be updated for RI Update test");
     
-    NSArray *texts = [coreData fetch:ReferenceText.class];
+    NSArray *texts = [testModelManager readAll:ReferenceText.class];
     ReferenceText *retrieved = [texts objectAtIndex: 0];
     STAssertEqualObjects(retrieved.author.nameReference, newAuthorName, @"author RI update failed.");
     STAssertEqualObjects([[retrieved.belief anyObject] nameReference], newBeliefName, @"belief RI update failed.");
@@ -186,18 +186,18 @@
 }
 
 - (void)testTextDeletion {
-    STAssertNoThrow([coreData save], @"ReferenceText/Belief/Person can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText/Belief/Person can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testText], @"ReferenceText can't be deleted");
+    STAssertNoThrow([testModelManager delete:testText], @"ReferenceText can't be deleted");
     
-    NSArray *texts = [coreData fetch:ReferenceText.class];
+    NSArray *texts = [testModelManager readAll:ReferenceText.class];
     
     STAssertEquals(texts.count, (NSUInteger) 0, @"ReferenceText is still present after delete");
     
 }
 
 - (void)testTextReferentialIntegrityDelete {
-    STAssertNoThrow([coreData save], @"ReferenceText/Belief/Person can't be created for RI Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"ReferenceText/Belief/Person can't be created for RI Delete test");
     
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    
@@ -205,12 +205,12 @@
     testText.author = testPerson;
     testText.belief = [NSSet setWithObject:testBelief];    
     
-    STAssertNoThrow([coreData save], @"ReferencePerso/Belief relationships can't be created for RI Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"ReferencePerso/Belief relationships can't be created for RI Delete test");
     
-    STAssertNoThrow([coreData delete:testText], @"ReferenceText can't be deleted");
+    STAssertNoThrow([testModelManager delete:testText], @"ReferenceText can't be deleted");
     
-    NSArray *beliefs = [coreData fetch:ReferenceBelief.class];
-    NSArray *people = [coreData fetch:ReferencePerson.class];
+    NSArray *beliefs = [testModelManager readAll:ReferenceBelief.class];
+    NSArray *people = [testModelManager readAll:ReferencePerson.class];
     
     STAssertEquals(beliefs.count, (NSUInteger) 1, @"ReferenceBelief should not have been cascade deleted");
     STAssertEquals(people.count, (NSUInteger) 1, @"ReferencePerson should not have been cascade deleted");

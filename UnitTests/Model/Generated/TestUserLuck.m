@@ -1,8 +1,8 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "UserLuck.h"
 
 @interface TestUserLuck : SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     UserLuck *testUserLuck;
 
     NSString * entryShortDescription;
@@ -21,7 +21,7 @@
 @implementation TestUserLuck
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"UserData"];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
     
     entryShortDescription = @"entryShortDescription";
     entryIsGood = [NSNumber numberWithInt:1];
@@ -30,7 +30,7 @@
     entrySeverity =[NSNumber numberWithFloat:5];
     entryCreationDate = [NSDate date];
     
-    testUserLuck = [coreData insert:UserLuck.class];
+    testUserLuck = [testModelManager create:UserLuck.class];
     
     testUserLuck.entryShortDescription = entryShortDescription;
     testUserLuck.entryIsGood = entryIsGood;
@@ -46,25 +46,25 @@
 - (void)testUserLuckCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([coreData save], @"UserLuck can't be created");
+    STAssertNoThrow([testModelManager saveContext], @"UserLuck can't be created");
     
 }
 
 - (void)testUserLuckValidatesAttributes {
         
     testUserLuck.entrySeverity = [NSNumber numberWithInt:-6];    
-    STAssertThrows([coreData save], @"entrySeverity lower bound validation failed.");
+    STAssertThrows([testModelManager saveContext], @"entrySeverity lower bound validation failed.");
     
     testUserLuck.entrySeverity = [NSNumber numberWithInt:6];    
-    STAssertThrows([coreData save], @"entrySeverity upper bound validation failed.");
+    STAssertThrows([testModelManager saveContext], @"entrySeverity upper bound validation failed.");
     
 }
 
 - (void)testUserLuckAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"UserLuck can't be created for Accessor test");
+    STAssertNoThrow([testModelManager saveContext], @"UserLuck can't be created for Accessor test");
     
-    NSArray *UserLucks = [coreData fetch:UserLuck.class];
+    NSArray *UserLucks = [testModelManager readAll:UserLuck.class];
         
     STAssertEquals(UserLucks.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
     UserLuck *retrieved = [UserLucks objectAtIndex: 0];
@@ -77,38 +77,38 @@
 }
 
 - (void)testUserLuckDeletion {
-    STAssertNoThrow([coreData save], @"UserLuck can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"UserLuck can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testUserLuck], @"UserLuck can't be deleted");
+    STAssertNoThrow([testModelManager delete:testUserLuck], @"UserLuck can't be deleted");
     
-    NSArray *UserLucks = [coreData fetch:UserLuck.class];
+    NSArray *UserLucks = [testModelManager readAll:UserLuck.class];
     
     STAssertEquals(UserLucks.count, (NSUInteger) 0, @"UserLuck is still present after delete");
     
 }
 
 - (void)testUserLuckWithoutRequiredAttributes {
-    UserLuck *testUserLuckBad = [coreData insert:UserLuck.class];
+    UserLuck *testUserLuckBad = [testModelManager create:UserLuck.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserLuckBad.class];
 
     testUserLuck.entryCreationDate = nil;
-    STAssertThrows([coreData save], errorMessage);
+    STAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 - (void)testUserLuckDefaultValues {
-    UserLuck *testUserLuckDefault = [coreData insert:UserLuck.class];
+    UserLuck *testUserLuckDefault = [testModelManager create:UserLuck.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserLuckDefault.class];
 
     testUserLuckDefault.entryCreationDate = entryCreationDate;
     testUserLuckDefault.entryModificationDate = entryCreationDate;    
     
-    STAssertNoThrow([coreData save], errorMessage);
+    STAssertNoThrow([testModelManager saveContext], errorMessage);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserLuck.class)];
     request.predicate = searchPredicate;
-    NSArray *userLucks = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *userLucks = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
 
     UserLuck *retrieved = [userLucks objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");

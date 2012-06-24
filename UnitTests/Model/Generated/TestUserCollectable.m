@@ -1,8 +1,8 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "UserCollectable.h"
 
 @interface TestUserCollectable: SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     UserCollectable *testUserCollectable;
     
     NSDate * collectableCreationDate;
@@ -17,7 +17,7 @@
 @implementation TestUserCollectable
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"UserData"];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
     
     
     collectableCreationDate = [NSDate date];
@@ -25,7 +25,7 @@
     collectableKey = @"collectable key";
     collectableValue = [NSNumber numberWithFloat:1.0];
     
-    testUserCollectable = [coreData insert:UserCollectable.class];
+    testUserCollectable = [testModelManager create:UserCollectable.class];
     
     testUserCollectable.collectableCreationDate = collectableCreationDate;
     testUserCollectable.collectableName = collectableName;
@@ -36,15 +36,15 @@
 - (void)testUserCollectableCanBeCreated {
     
     //testUserCollectable are created in setup    
-    STAssertNoThrow([coreData save], @"UserCollectable can't be created.");
+    STAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created.");
     
 }
 
 - (void)testUserCollectableAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"UserCollectable can't be created for Accessor test.");
+    STAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created for Accessor test.");
     
-    NSArray *collectables = [coreData fetch:UserCollectable.class];
+    NSArray *collectables = [testModelManager readAll:UserCollectable.class];
     
     STAssertEquals(collectables.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
     UserCollectable *retrieved = [collectables objectAtIndex: 0];
@@ -57,21 +57,21 @@
 }
 
 - (void)testUserCollectableDeletion {
-    STAssertNoThrow([coreData save], @"UserCollectable can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testUserCollectable], @"UserCollectable can't be deleted");
+    STAssertNoThrow([testModelManager delete:testUserCollectable], @"UserCollectable can't be deleted");
     
-    NSArray *collectables = [coreData fetch:UserCollectable.class];
+    NSArray *collectables = [testModelManager readAll:UserCollectable.class];
     
     STAssertEquals(collectables.count, (NSUInteger) 0, @"UserCollectable is still present after delete");
     
 }
 
 - (void)testUserCollectableWithoutRequiredAttributes {
-    UserCollectable *testUserCollectableBad = [coreData insert:UserCollectable.class];
+    UserCollectable *testUserCollectableBad = [testModelManager create:UserCollectable.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserCollectableBad.class];
     
-    STAssertThrows([coreData save], errorMessage);
+    STAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 @end

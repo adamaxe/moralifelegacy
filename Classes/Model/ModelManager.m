@@ -32,10 +32,10 @@
 
 - (id)init {
     
-    return [self initWithBundle:[NSBundle mainBundle] andIsPeristentStoreType:YES];
+    return [self initWithBundle:[NSBundle mainBundle] andIsInMemory:YES];
 }
 
-- (id)initWithBundle:(NSBundle *)bundle andIsPeristentStoreType:(BOOL)isPersistent {
+- (id)initWithBundle:(NSBundle *)bundle andIsInMemory:(BOOL)isPersistent {
 
     self = [super init];
     
@@ -193,9 +193,19 @@
     return persistentStoreCoordinator;
 }
 
-- (NSArray *)fetch: (Class) fetchClass {
+#pragma mark -
+#pragma mark public API
+
+
+
+- (id)create: (Class) insertedClass {
+    
+    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSArray *)readAll: (Class) requestedClass {
     NSError *error = nil;
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(fetchClass)];
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
     NSArray *results;
     
@@ -214,11 +224,30 @@
     return results;
 }
 
-
-- (id)insert: (Class) insertedClass {
+- (id)read: (Class) requestedClass withKey: (id) classKey andValue:(id) keyValue {    NSError *error = nil;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
-    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%@ == %@", classKey, keyValue];
+	[request setPredicate:pred];
+	[pred release];
+    
+    NSArray *results;
+    
+    @try {
+        results = [self.managedObjectContext executeFetchRequest: request error: &error];
+    }
+    @catch (NSException *exception) {
+        @throw(exception);
+    }    
+    
+    if (error) {
+        NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data fetch failed: %@\n\n", [error description]];
+        [NSException raise:@"CoreDataFetchError" format:errorMessage];
+    }
+    
+    return [results objectAtIndex:0];
 }
+
 
 - (void)delete: (id) object {
     
@@ -255,15 +284,6 @@
 
         }
                 
-//        if ([saveManagedObjectContext hasChanges] && ![saveManagedObjectContext save:&error]) {
-//            /*
-//             Replace this implementation with code to handle the error appropriately.
-//             
-//             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-//             */
-//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//            abort();
-//        } 
     }
 } 
 

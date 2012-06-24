@@ -1412,7 +1412,6 @@
 		5EBC9AD613524007001ACD7A /* ref-you.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9AD413524007001ACD7A /* ref-you.jpg */; };
 		5EBC9ADC1352A42E001ACD7A /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */; };
 		5EBC9ADF1352A4CD001ACD7A /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */; };
-		5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */; };
 		5EC246D312711DF100421807 /* card-addiction.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246BF12711DF100421807 /* card-addiction.png */; };
 		5EC246D412711DF100421807 /* card-caprice.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C012711DF100421807 /* card-caprice.png */; };
 		5EC246D512711DF100421807 /* card-idolatry.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C112711DF100421807 /* card-idolatry.png */; };
@@ -3101,8 +3100,6 @@
 		5EBC9AD91352A42B001ACD7A /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IntroView.xib; path = Resources/IntroView.xib; sourceTree = "<group>"; };
-		5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataStack.h; path = Model/TestCoreDataStack.h; sourceTree = "<group>"; };
-		5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataStack.m; path = Model/TestCoreDataStack.m; sourceTree = "<group>"; };
 		5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceBelief.m; sourceTree = "<group>"; };
 		5EC246BF12711DF100421807 /* card-addiction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-addiction.png"; path = "Resources/images/interface/cards/card-addiction.png"; sourceTree = "<group>"; };
 		5EC246C012711DF100421807 /* card-caprice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-caprice.png"; path = "Resources/images/interface/cards/card-caprice.png"; sourceTree = "<group>"; };
@@ -5123,8 +5120,6 @@
 			children = (
 				5E57613F1595975600E14606 /* DAO */,
 				5EBED2FE1548D5EC00AFE44D /* Generated */,
-				5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */,
-				5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */,
 				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
 				5EA26D7215843DB600CDA802 /* TestModelManager.m */,
 				5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */,
@@ -7157,7 +7152,6 @@
 				5E99C5B613C542F5001F5CB8 /* TestConscienceObjectView.m in Sources */,
 				5EB0C33A13F2529F0093FCA6 /* TestGraphView.m in Sources */,
 				5EB0C33B13F2533B0093FCA6 /* GraphView.m in Sources */,
-				5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */,
 				5E2F5DC81548E14A007DED2A /* ReferenceBelief.m in Sources */,
 				5E2F5DC91548E195007DED2A /* ReferenceReport.m in Sources */,
 				5E2F5DCA1548E195007DED2A /* ReferenceText.m in Sources */,
