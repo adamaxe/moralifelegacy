@@ -1,18 +1,19 @@
-@class Moral;
+@class Moral, ModelManager;
 
 @interface MoralDAO : NSObject
 
-- (id)initWithMoralType:(NSString *)moralType;
+- (id)initWithModelManager:(ModelManager *) moralModelManager;
+- (id)initWithModelManager:(ModelManager *) moralModelManager andType:(NSString *)type;
 
-- (NSString *)findMoralColor:(NSString *)moralName;
-- (NSString *)findMoralDefinition:(NSString *)moralName;
-- (NSString *)findMoralLongDescription:(NSString *)moralName;
-- (NSString *)findMoralDisplayName:(NSString *)moralName;
-- (NSString *)findMoralImageName:(NSString *)moralName;
+- (NSString *)readColor:(NSString *)key;
+- (NSString *)readDefinition:(NSString *)key;
+- (NSString *)readLongDescription:(NSString *)key;
+- (NSString *)readDisplayName:(NSString *)key;
+- (NSString *)readImageName:(NSString *)key;
 
-- (NSArray *)listAllMoralNames;
-- (NSArray *)listAllMoralDisplayNames;
-- (NSArray *)listAllMoralImages;
-- (NSArray *)listAllMoralDetails;
+- (NSArray *)readAllNames;
+- (NSArray *)readAllDisplayNames;
+- (NSArray *)readAllImageNames;
+- (NSArray *)readAllDetails;
 
 @end

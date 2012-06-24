@@ -256,10 +256,10 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
             NSString *value = [match choiceMoral];            
             MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
             
-            NSString *moralDisplayName = [[NSString alloc] initWithString:[currentMoralDAO findMoralDisplayName:value]];
+            NSString *moralDisplayName = [[NSString alloc] initWithString:[currentMoralDAO readDisplayName:value]];
             NSString *moralName = [[NSString alloc] initWithString:value];
-            NSString *moralImageName = [[NSString alloc] initWithString:[currentMoralDAO findMoralImageName:value]];
-            NSString *moralColor = [[NSString alloc] initWithString:[currentMoralDAO findMoralColor:value]];            
+            NSString *moralImageName = [[NSString alloc] initWithString:[currentMoralDAO readImageName:value]];
+            NSString *moralColor = [[NSString alloc] initWithString:[currentMoralDAO readColor:value]];            
             
             [currentMoralDAO release];
             
@@ -401,7 +401,6 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-//    return [pieValues count];
     return [reportNames count];
 
 }

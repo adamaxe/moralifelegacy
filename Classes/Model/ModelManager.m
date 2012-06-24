@@ -32,19 +32,19 @@
 
 - (id)init {
     
-    return [self initWithBundle:[NSBundle mainBundle] andIsInMemory:YES];
+    return [self initWithBundle:[NSBundle mainBundle] andIsInMemory:NO];
 }
 
-- (id)initWithBundle:(NSBundle *)bundle andIsInMemory:(BOOL)isPersistent {
+- (id)initWithBundle:(NSBundle *)bundle andIsInMemory:(BOOL)isTransient {
 
     self = [super init];
     
     if (self) {
         currentBundle = [bundle retain];
-        if (isPersistent) {
-            storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
-        } else {
+        if (isTransient) {
             storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
+        } else {
+            storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
         }
 
         NSManagedObjectContext *context = [self managedObjectContext];
@@ -195,8 +195,6 @@
 
 #pragma mark -
 #pragma mark public API
-
-
 
 - (id)create: (Class) insertedClass {
     

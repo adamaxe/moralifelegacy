@@ -1,16 +1,16 @@
-#import "MoralDAO.h"
-#import "ModelManager.h"
-#import "Moral.h"
+#import "ConscienceAssetDAO.h"
+#import "MoraLifeAppDelegate.h"
+#import "ConscienceAsset.h"
 
-@interface MoralDAO () {
+@interface ConscienceAssetDAO () {
+    MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSManagedObjectContext *context;		/**< Core Data context */	
 }
 
-- (Moral *)findPersistedObject:(NSString *)key;
-- (NSArray *)listPersistedObjects;
+- (ConscienceAsset *)findPersistedObject:(NSString *)moralName;
+- (NSArray *)listMorals;
 
 @property (nonatomic, retain) NSString *currentKey;
-@property (nonatomic, retain) NSString *currentType;
 @property (nonatomic, retain) NSArray *persistedObjects;
 @property (nonatomic, retain) NSMutableArray *returnedNames;
 @property (nonatomic, retain) NSMutableArray *returnedImageNames;
@@ -22,40 +22,33 @@
 
 @end
 
-@implementation MoralDAO 
+@implementation ConscienceAssetDAO 
 
-@synthesize currentKey, currentType;
+@synthesize currentKey;
 @synthesize persistedObjects;
 @synthesize returnedNames, returnedImageNames, returnedDetails, returnedDisplayNames;
 
-- (id)init {
-    
-    ModelManager *defaultModelManager = [[[ModelManager alloc] init] autorelease];
-    return [self initWithModelManager:defaultModelManager andType:@"all"];
-    
+- (id) init {
+    return [self initWithKey:nil];
 }
 
-- (id)initWithModelManager:(ModelManager *)moralModelManager {
-    return [self initWithModelManager:moralModelManager andType:@"all"];
-}
-
-- (id)initWithModelManager:(ModelManager *)moralModelManager andType:(NSString *)type {
+- (id)initWithKey:(NSString *)key {
     self = [super init];
-
     if (self) {
-        context = [moralModelManager managedObjectContext];
-
-        NSString *requestedType;
+        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        context = [appDelegate.moralModelManager managedObjectContext];
         
-        if (type) {
-            requestedType = [[NSString alloc] initWithFormat:type];
+        NSString *requestedKey;
+        
+        if (key) {
+            requestedKey = [[NSString alloc] initWithFormat:key];
         } else {
-            requestedType = [[NSString alloc] initWithFormat:@"all"];
+            requestedKey = [[NSString alloc] initWithFormat:@""];
         }
         
-        self.currentType = requestedType;
-        [requestedType release];
-
+        self.currentKey = requestedKey;
+        [requestedKey release];
+        
         NSMutableArray *names = [[NSMutableArray alloc] init];
         self.returnedNames = names;
         [names release];
@@ -63,7 +56,7 @@
         NSMutableArray *imageNames = [[NSMutableArray alloc] init];
         self.returnedImageNames = imageNames;
         [imageNames release];
-
+        
         NSMutableArray *displayNames = [[NSMutableArray alloc] init];
         self.returnedDisplayNames = displayNames;
         [displayNames release];
@@ -77,30 +70,23 @@
         [objects release];
         
         [self processObjects];
-                
+
     }
     
     return self;
-}
-
-- (NSString *)readColor:(NSString *)key {
-    return [self findPersistedObject:key].colorMoral;
-}
-
-- (NSString *)readDefinition:(NSString *)key {
-    return [self findPersistedObject:key].definitionMoral;
+    
 }
 
 - (NSString *)readLongDescription:(NSString *)key {
-    return [self findPersistedObject:key].longDescriptionMoral;
+    return [self findPersistedObject:key].longDescriptionReference;
 }
 
 - (NSString *)readDisplayName:(NSString *)key {
-    return [self findPersistedObject:key].displayNameMoral;
+    return [self findPersistedObject:key].displayNameReference;
 }
 
 - (NSString *)readImageName:(NSString *)key {
-    return [self findPersistedObject:key].imageNameMoral;    
+    return [self findPersistedObject:key].imageNameReference;    
 }
 
 - (NSArray *)readAllNames {
@@ -120,8 +106,12 @@
 }
 
 #pragma mark -
+- (Moral *)findPersistedObject:(NSString *)key {
 #pragma mark Private API
-- (Moral *)findPersistedObject:(NSString *)key {    
+    if (self.persistedObjects.count == 0) {
+        [self processObjects];
+    }
+    
     NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
     
     NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
@@ -130,18 +120,17 @@
     
 }
 
-- (NSArray *)listPersistedObjects {
-    
-    return self.persistedObjects;
+- (NSArray *)listMorals {
+    return [self retrievePersistedObjects];
 }
 
 - (void)processObjects {
         
-    for (Moral *match in self.persistedObjects){
-        [self.returnedNames addObject:[match nameMoral]];
-        [self.returnedImageNames addObject:[match imageNameMoral]];
-        [self.returnedDisplayNames addObject:[match displayNameMoral]];
-        [self.returnedDetails addObject:[match longDescriptionMoral]];			
+    for (ConscienceAsset *match in self.persistedObjects){
+        [self.returnedNames addObject:[match nameReference]];
+        [self.returnedImageNames addObject:[match imageNameReference]];
+        [self.returnedDisplayNames addObject:[match displayNameReference]];
+        [self.returnedDetails addObject:[match longDescriptionReference]];			
     }
     
 }
@@ -150,16 +139,14 @@
     //Begin CoreData Retrieval			
 	NSError *outError;
 	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
 
-    if (![self.currentType isEqualToString:@"all"]) {
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", self.currentType];
-        [request setPredicate:pred];
-    }
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameReference == %@", currentKey];
+    [request setPredicate:pred];
 	
-	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameMoral" ascending:YES];
+	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameReference" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
 	[request setSortDescriptors:sortDescriptors];
 	[sortDescriptor release];

@@ -26,7 +26,7 @@
 @implementation TestUserChoice
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
     
     entryShortDescription = @"entryShortDescription";
     entryIsGood = [NSNumber numberWithInt:1];

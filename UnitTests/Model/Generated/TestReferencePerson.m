@@ -25,7 +25,7 @@
 @implementation TestReferencePerson
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
     
     quote = @"test quote";
     shortDescription = @"short description";

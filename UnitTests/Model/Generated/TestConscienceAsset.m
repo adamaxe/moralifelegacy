@@ -24,7 +24,7 @@
 @implementation TestConscienceAsset
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
     
     costAsset = [NSNumber numberWithFloat:1.0];
     moralValueAsset = [NSNumber numberWithFloat:2.0];

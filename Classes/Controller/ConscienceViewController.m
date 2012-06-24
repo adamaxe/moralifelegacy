@@ -17,7 +17,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "MoralDAO.h"
 #import "IntroViewController.h"
 #import "UserCharacter.h"
-#import "ConscienceAsset.h"
+#import "ConscienceAssetDAO.h"
 #import "ViewControllerLocalization.h"
 
 @interface ConscienceViewController () <ViewControllerLocalization> {
@@ -825,8 +825,8 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
 
         MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
 
-        [moralDisplayName setString:[currentMoralDAO findMoralDisplayName:value]];
-        [moralImageName setString:[currentMoralDAO findMoralImageName:value]];
+        [moralDisplayName setString:[currentMoralDAO readDisplayName:value]];
+        [moralImageName setString:[currentMoralDAO readImageName:value]];
                 
         [currentMoralDAO release];
         
@@ -887,31 +887,18 @@ Change the Rank picture and description.
 	//Ensure that at least one rank is present
 	if ([objects count] > 0) {
         
-		//Retrieve additional information from ConscienceAsset found
-		NSEntityDescription *entityAssetDesc2 = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:context];
-		NSFetchRequest *request2 = [[NSFetchRequest alloc] init];
-		[request2 setEntity:entityAssetDesc2];
+        NSString *value = [[objects objectAtIndex:0] collectableName];
+        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:value];
         
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameReference == %@", [[objects objectAtIndex:0] collectableName]];
-		[request2 setPredicate:pred];
+        [rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentAssetDAO readImageName:value]]]];
+        [highestRankName setString:[currentAssetDAO readDisplayName:value]];
         
-		NSArray *objects2 = [context executeFetchRequest:request2 error:&outError];
-        
-		if ([objects2 count] > 0) {
-
-			[rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [[objects2 objectAtIndex:0] imageNameReference]]]];
-			[highestRankName setString:[[objects2 objectAtIndex:0] displayNameReference]];        
-
-		}
-        
-		[request2 release];
-                
+        [currentAssetDAO release];
+                        
 	}
 	
 	[request release];
     
-    
-	
 }
 
 /**

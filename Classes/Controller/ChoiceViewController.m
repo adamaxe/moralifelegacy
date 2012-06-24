@@ -393,8 +393,8 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         
         MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
         
-        [titles addObject:[currentMoralDAO findMoralDisplayName:moralKey]];
-        [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", [currentMoralDAO findMoralDefinition:moralKey], [currentMoralDAO findMoralLongDescription:moralKey]]];
+        [titles addObject:[currentMoralDAO readDisplayName:moralKey]];
+        [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", [currentMoralDAO readDefinition:moralKey], [currentMoralDAO readLongDescription:moralKey]]];
 
         [currentMoralDAO release];
 

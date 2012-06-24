@@ -16,7 +16,7 @@
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic, retain, readonly) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
 
-- (id)initWithBundle:(NSBundle *)bundle andIsInMemory:(BOOL)isPersistent;
+- (id)initWithBundle:(NSBundle *)bundle andIsInMemory:(BOOL)isTransient;
 
 - (id)create: (Class) insertedClass;
 - (NSArray *)readAll: (Class) requestedClass;

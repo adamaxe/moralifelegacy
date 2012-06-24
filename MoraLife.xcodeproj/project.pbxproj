@@ -261,6 +261,8 @@
 		5E47705B13453F0600EE3EDD /* ref-williamwallace-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705613453F0600EE3EDD /* ref-williamwallace-sm.png */; };
 		5E47705C13453F0600EE3EDD /* ref-williamwallace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */; };
 		5E480861137E4E2500C1E0CF /* Moral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E480860137E4E2500C1E0CF /* Moral.m */; };
+		5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
+		5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E498ACA131C941000A13D11 /* acc-bottom-beard-braidblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */; };
 		5E498ACB131C941000A13D11 /* acc-bottom-beard-braidblonde.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */; };
 		5E498ACC131C941000A13D11 /* acc-bottom-beard-braidbrown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */; };
@@ -1953,6 +1955,8 @@
 		5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-williamwallace.jpg"; path = "Resources/images/reference/ref-williamwallace.jpg"; sourceTree = "<group>"; };
 		5E48085F137E4E2500C1E0CF /* Moral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moral.h; sourceTree = "<group>"; };
 		5E480860137E4E2500C1E0CF /* Moral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moral.m; sourceTree = "<group>"; };
+		5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAssetDAO.h; sourceTree = "<group>"; };
+		5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAssetDAO.m; sourceTree = "<group>"; };
 		5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblack.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblack.png"; sourceTree = "<group>"; };
 		5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblonde.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblonde.png"; sourceTree = "<group>"; };
 		5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidbrown.png"; path = "Resources/images/accessories/acc-bottom-beard-braidbrown.png"; sourceTree = "<group>"; };
@@ -5378,6 +5382,8 @@
 		5EFC5A0B15940F3300E11A71 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */,
+				5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */,
 				5EFC5A0C15940F5000E11A71 /* MoralDAO.h */,
 				5EFC5A0D15940F5000E11A71 /* MoralDAO.m */,
 			);
@@ -7129,6 +7135,7 @@
 				5E266039156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */,
 				5EA26D661584351500CDA802 /* ModelManager.m in Sources */,
 				5EFC5A0E15940F5000E11A71 /* MoralDAO.m in Sources */,
+				5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7221,6 +7228,7 @@
 				5EFC5A0F15940F5000E11A71 /* MoralDAO.m in Sources */,
 				5E5761411595975600E14606 /* TestMoralDAO.m in Sources */,
 				5EB2FEDD1596849600CAF1DD /* MoraLifeBaseUnitTest.m in Sources */,
+				5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

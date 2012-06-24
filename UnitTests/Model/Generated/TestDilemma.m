@@ -56,7 +56,7 @@
 @implementation TestDilemma
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
     
     rewardADilemma = @"dilemma reward";
     choiceB = @"choiceB";

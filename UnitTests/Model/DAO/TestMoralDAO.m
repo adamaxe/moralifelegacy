@@ -15,8 +15,9 @@
     NSString * nameMoral1;
     NSString * moralTypeVice;
     NSString * nameMoral2;
-    NSString * moralVirtueExtra;
+    NSString * moralTypeVirtueExtra;
     NSString * nameMoral3;
+    NSString * moralTypeAll;
     
     NSString * imageNameMoral;
     NSString * colorMoral;
@@ -33,14 +34,16 @@
 @implementation TestMoralDAO
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:NO];
+    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
     
     moralTypeVirtue = @"Virtue";
     nameMoral1 = @"Virtue Name1";
     moralTypeVice = @"Vice";
     nameMoral2 = @"Vice Name2";
-    moralVirtueExtra = @"Virtue";
+    moralTypeVirtueExtra = @"Virtue";
     nameMoral3 = @"Virtue Name3";
+    moralTypeAll = @"all";
+    
     
     imageNameMoral = @"imageName";
     colorMoral = @"color";
@@ -60,7 +63,7 @@
     testMoral2.shortDescriptionMoral = moralTypeVice;
     testMoral2.nameMoral = nameMoral2;
 
-    testMoral3.shortDescriptionMoral = moralVirtueExtra;
+    testMoral3.shortDescriptionMoral = moralTypeVirtueExtra;
     testMoral3.nameMoral = nameMoral3;
 
     testMoral1.imageNameMoral = imageNameMoral;
@@ -92,8 +95,7 @@
 
 - (void)testMoralDAOAllTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] init];
-        
+    testingSubject = [[MoralDAO alloc] initWithModelManager:testModelManager andType:moralTypeAll];        
     STAssertNotNil(testingSubject, @"MoralDAO All type can't be created.");
     [testingSubject release];
     
@@ -101,16 +103,16 @@
 
 - (void)testMoralDAOVirtueTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithMoralType:moralTypeVirtue];
+    testingSubject = [[MoralDAO alloc] initWithModelManager:testModelManager andType:moralTypeVirtue];
     
-    STAssertNotNil(testingSubject, @"MoralDAO Virtue type  can't be created.");
+    STAssertNotNil(testingSubject, @"MoralDAO Virtue type can't be created.");
     [testingSubject release];
     
 }
 
 - (void)testMoralDAOViceTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithMoralType:moralTypeVice];
+    testingSubject = [[MoralDAO alloc] initWithModelManager:testModelManager andType:moralTypeVice];
     
     STAssertNotNil(testingSubject, @"MoralDAO Vice can't be created.");
     [testingSubject release];
