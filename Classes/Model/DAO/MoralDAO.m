@@ -28,22 +28,24 @@
 @synthesize persistedObjects;
 @synthesize returnedNames, returnedImageNames, returnedDetails, returnedDisplayNames;
 
-- (id)init {
-    
-    ModelManager *defaultModelManager = [[[ModelManager alloc] init] autorelease];
-    return [self initWithModelManager:defaultModelManager andType:@"all"];
-    
+- (id)init {    
+    return [self initWithType:@"all"];
 }
 
-- (id)initWithModelManager:(ModelManager *)moralModelManager {
-    return [self initWithModelManager:moralModelManager andType:@"all"];
+- (id)initWithType:(NSString *)type {
+    
+    return [self initWithType:type andInMemory:NO];
 }
 
-- (id)initWithModelManager:(ModelManager *)moralModelManager andType:(NSString *)type {
+- (id)initWithType:(NSString *)type andInMemory:(BOOL)isTransient {
+
+
     self = [super init];
 
     if (self) {
+        ModelManager *moralModelManager = [[ModelManager alloc] initWithInMemoryStore:isTransient];
         context = [moralModelManager managedObjectContext];
+        [moralModelManager release];
 
         NSString *requestedType;
         

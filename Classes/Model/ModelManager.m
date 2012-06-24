@@ -6,7 +6,7 @@
 #import "ModelManager.h"
 
 @interface ModelManager () {
- 
+    
 @private	
 	NSManagedObjectModel	*managedObjectModel;
 	NSManagedObjectContext	*managedObjectContext;
@@ -32,21 +32,21 @@
 
 - (id)init {
     
-    return [self initWithBundle:[NSBundle mainBundle] andIsInMemory:NO];
+    return [self initWithInMemoryStore:NO];
 }
 
-- (id)initWithBundle:(NSBundle *)bundle andIsInMemory:(BOOL)isTransient {
-
+- (id)initWithInMemoryStore:(BOOL)isTransient {
+    
     self = [super init];
     
     if (self) {
-        currentBundle = [bundle retain];
+        self.currentBundle = [NSBundle bundleForClass:self.class];
         if (isTransient) {
             storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
         } else {
             storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
         }
-
+        
         NSManagedObjectContext *context = [self managedObjectContext];
         managedObjectContext = context;
     }
@@ -96,7 +96,7 @@
 	
 	[modelReadOnly release];
 	[modelReadWrite release];
-		
+    
 	return managedObjectModel;
 }
 
@@ -179,7 +179,7 @@
     persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
 	if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
-
+        
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
@@ -279,14 +279,13 @@
         if (error) {
             NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data save failed: %@\n\n", [error description]];
             [NSException raise:@"CoreDataSaveError" format:errorMessage];
-
+            
         }
-                
+        
     }
 } 
 
 -(void)dealloc {
-    [currentBundle release];
     [storeType release];
     
     [super dealloc];

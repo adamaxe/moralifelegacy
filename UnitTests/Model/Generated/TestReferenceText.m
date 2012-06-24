@@ -25,7 +25,7 @@
 @implementation TestReferenceText
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
+    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
     quote = @"quote";
     shortDescriptionReference = @"shortDescriptionReference";

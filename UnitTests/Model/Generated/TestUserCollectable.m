@@ -17,7 +17,7 @@
 @implementation TestUserCollectable
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
+    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
     
     collectableCreationDate = [NSDate date];

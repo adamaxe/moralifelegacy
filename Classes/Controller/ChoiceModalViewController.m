@@ -171,7 +171,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 		value = [NSString stringWithString:@"Vice"];
 	}
     
-    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithModelManager:[appDelegate moralModelManager] andType:value];
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithType:value];
     
     moralNames = [[NSArray alloc] initWithArray:[currentMoralDAO readAllNames]];			
 	moralImages = [[NSArray alloc] initWithArray:[currentMoralDAO readAllImageNames]];			

@@ -2,8 +2,8 @@
 
 @interface MoralDAO : NSObject
 
-- (id)initWithModelManager:(ModelManager *) moralModelManager;
-- (id)initWithModelManager:(ModelManager *) moralModelManager andType:(NSString *)type;
+- (id)initWithType:(NSString *)type;
+- (id)initWithType:(NSString *)type andInMemory:(BOOL)isTransient;
 
 - (NSString *)readColor:(NSString *)key;
 - (NSString *)readDefinition:(NSString *)key;

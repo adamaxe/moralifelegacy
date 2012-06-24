@@ -34,7 +34,7 @@
 @implementation TestMoralDAO
 
 - (void)setUp {
-    testModelManager = [[ModelManager alloc] initWithBundle:[NSBundle bundleForClass:self.class] andIsInMemory:YES];
+    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
     moralTypeVirtue = @"Virtue";
     nameMoral1 = @"Virtue Name1";
@@ -95,7 +95,7 @@
 
 - (void)testMoralDAOAllTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithModelManager:testModelManager andType:moralTypeAll];        
+    testingSubject = [[MoralDAO alloc] initWithType:moralTypeAll andInMemory:YES];        
     STAssertNotNil(testingSubject, @"MoralDAO All type can't be created.");
     [testingSubject release];
     
@@ -103,7 +103,7 @@
 
 - (void)testMoralDAOVirtueTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithModelManager:testModelManager andType:moralTypeVirtue];
+    testingSubject = [[MoralDAO alloc] initWithType:moralTypeVirtue andInMemory:YES];
     
     STAssertNotNil(testingSubject, @"MoralDAO Virtue type can't be created.");
     [testingSubject release];
@@ -112,7 +112,7 @@
 
 - (void)testMoralDAOViceTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithModelManager:testModelManager andType:moralTypeVice];
+    testingSubject = [[MoralDAO alloc] initWithType:moralTypeVice andInMemory:YES];
     
     STAssertNotNil(testingSubject, @"MoralDAO Vice can't be created.");
     [testingSubject release];

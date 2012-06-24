@@ -1,9 +1,8 @@
 #import "ConscienceAssetDAO.h"
-#import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceAsset.h"
 
 @interface ConscienceAssetDAO () {
-    MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSManagedObjectContext *context;		/**< Core Data context */	
 }
 
@@ -32,11 +31,20 @@
     return [self initWithKey:nil];
 }
 
+
+
 - (id)initWithKey:(NSString *)key {
+    return [self initWithKey:key andInMemory:NO];
+}
+
+- (id)initWithKey:(NSString *)key andInMemory:(BOOL)isTransient {
+    
     self = [super init];
+    
     if (self) {
-        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        context = [appDelegate.moralModelManager managedObjectContext];
+        ModelManager *moralModelManager = [[ModelManager alloc] initWithInMemoryStore:isTransient];
+        context = [moralModelManager managedObjectContext];
+        [moralModelManager release];
         
         NSString *requestedKey;
         
