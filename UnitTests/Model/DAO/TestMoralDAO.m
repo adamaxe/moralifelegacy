@@ -91,12 +91,12 @@
 
     [testModelManager saveContext];
     
-    testingSubject = [[MoralDAO alloc] initWithType:moralTypeAll andInMemory:YES];
+    testingSubject = [[MoralDAO alloc] initWithType:moralTypeAll andModelManager:testModelManager];
 }
 
 - (void)testMoralDAOAllTypeCanBeCreated {
     
-    MoralDAO *testingSubjectAll = [[MoralDAO alloc] initWithType:moralTypeAll andInMemory:YES]; 
+    MoralDAO *testingSubjectAll = [[MoralDAO alloc] initWithType:moralTypeAll andModelManager:testModelManager]; 
 
     STAssertNotNil(testingSubjectAll, @"MoralDAO All type can't be created.");
     [testingSubjectAll release];
@@ -105,7 +105,7 @@
 
 - (void)testMoralDAOVirtueTypeCanBeCreated {
     
-    MoralDAO *testingSubjectVirtue = [[MoralDAO alloc] initWithType:moralTypeVirtue andInMemory:YES];
+    MoralDAO *testingSubjectVirtue = [[MoralDAO alloc] initWithType:moralTypeVirtue andModelManager:testModelManager];
     
     STAssertNotNil(testingSubjectVirtue, @"MoralDAO Virtue type can't be created.");
     [testingSubjectVirtue release];
@@ -114,7 +114,7 @@
 
 - (void)testMoralDAOViceTypeCanBeCreated {
     
-    MoralDAO *testingSubjectVice = [[MoralDAO alloc] initWithType:moralTypeVice andInMemory:YES];
+    MoralDAO *testingSubjectVice = [[MoralDAO alloc] initWithType:moralTypeVice andModelManager:testModelManager];
     
     STAssertNotNil(testingSubjectVice, @"MoralDAO Vice can't be created.");
     [testingSubjectVice release];
@@ -123,6 +123,10 @@
 
 - (void)testMoralDAOColor {
     STAssertEquals([testingSubject readColor:nameMoral1], colorMoral, @"Color couldn't be set/read.");
+}
+
+- (void)testMoralDAODefinition {
+    STAssertEquals([testingSubject readDefinition:nameMoral1], definitionMoral, @"Definition couldn't be set/read.");
 }
 
 @end

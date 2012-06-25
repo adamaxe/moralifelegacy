@@ -1,4 +1,5 @@
 #import "MoralDAO.h"
+#import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "Moral.h"
 
@@ -36,17 +37,17 @@
 
 - (id)initWithType:(NSString *)type {
     
-    return [self initWithType:type andInMemory:NO];
+    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    return [self initWithType:type andModelManager: [appDelegate moralModelManager]];
 }
 
-- (id)initWithType:(NSString *)type andInMemory:(BOOL)isTransient {
+- (id)initWithType:(NSString *)type andModelManager:(ModelManager *)moralModelManager {
 
     self = [super init];
 
     if (self) {
-        ModelManager *moralModelManager = [[ModelManager alloc] initWithInMemoryStore:isTransient];
         _context = [[moralModelManager managedObjectContext] retain];
-        [moralModelManager release];
         
         if (type) {
             _currentType = [[NSString alloc] initWithFormat:type];

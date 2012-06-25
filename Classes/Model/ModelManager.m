@@ -36,15 +36,15 @@
     self = [super init];
     
     if (self) {
-        _currentBundle = [NSBundle bundleForClass:self.class];
         if (isTransient) {
+            _currentBundle = [NSBundle bundleForClass:self.class];
             _storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
         } else {
+            _currentBundle = [NSBundle mainBundle];
             _storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
         }
         
-        NSManagedObjectContext *context = [self managedObjectContext];
-        _managedObjectContext = context;
+        _managedObjectContext = [self managedObjectContext];
     }
     
     return self;
