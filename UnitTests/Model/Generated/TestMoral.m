@@ -1,10 +1,10 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "Moral.h"
 #import "Dilemma.h"
 #import "Character.h"
 
 @interface TestMoral: SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     Moral *testMoral;
     Dilemma *testDilemma;
     Dilemma *testDilemma2;
@@ -38,7 +38,7 @@
 @implementation TestMoral
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
+    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
     imageNameMoral = @"imageName";
     colorMoral = @"color";
@@ -62,7 +62,7 @@
     enthusiasmDilemma = [NSNumber numberWithFloat:1.0];
     dilemmaText = @"MoralText";
     
-    testMoral = [coreData insert:Moral.class];
+    testMoral = [testModelManager create:Moral.class];
     
     testMoral.imageNameMoral = imageNameMoral;
     testMoral.colorMoral = colorMoral;
@@ -74,7 +74,7 @@
     testMoral.nameMoral = nameMoral;
     testMoral.definitionMoral = definitionMoral;
     
-    testDilemma = [coreData insert:Dilemma.class];
+    testDilemma = [testModelManager create:Dilemma.class];
     testDilemma.rewardADilemma = rewardADilemma;
     testDilemma.choiceB = choiceB;
     testDilemma.moodDilemma = moodDilemma;
@@ -86,7 +86,7 @@
     testDilemma.enthusiasmDilemma = enthusiasmDilemma;
     testDilemma.dilemmaText = dilemmaText;
     
-    testDilemma2 = [coreData insert:Dilemma.class];
+    testDilemma2 = [testModelManager create:Dilemma.class];
     testDilemma2.rewardADilemma = rewardADilemma;
     testDilemma2.choiceB = choiceB;
     testDilemma2.moodDilemma = moodDilemma;
@@ -103,15 +103,15 @@
 - (void)testMoralCanBeCreated {
     
     //testUserCollectable are created in setup    
-    STAssertNoThrow([coreData save], @"Moral can't be created.");
+    STAssertNoThrow([testModelManager saveContext], @"Moral can't be created.");
     
 }
 
 - (void)testMoralAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"Moral can't be created for Accessor test.");
+    STAssertNoThrow([testModelManager saveContext], @"Moral can't be created for Accessor test.");
     
-    NSArray *morals = [coreData fetch:Moral.class];
+    NSArray *morals = [testModelManager readAll:Moral.class];
     
     STAssertEquals(morals.count, (NSUInteger) 1, @"There should only be 1 Moral in the context.");
     Moral *retrieved = [morals objectAtIndex: 0];
@@ -129,14 +129,14 @@
 
 - (void)testMoralReferentialIntegrity {
     
-    STAssertNoThrow([coreData save], @"Moral/Dilemma can't be created for RI test");
+    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI test");
 
     testMoral.dillemmaA = [NSSet setWithObject:testDilemma];
     testMoral.dillemmaB = [NSSet setWithObject:testDilemma2];
     
-    STAssertNoThrow([coreData save], @"Moral/Dilemma relationships can't be created for RI test");
+    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI test");
             
-    NSArray *morals = [coreData fetch:Moral.class];
+    NSArray *morals = [testModelManager readAll:Moral.class];
     
     Moral *retrieved = [morals objectAtIndex: 0];
     STAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
@@ -145,12 +145,12 @@
 }
 
 - (void)testMoralReferentialIntegrityUpdate {
-    STAssertNoThrow([coreData save], @"Moral/Dilemma can't be created for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI Update test");
     
     testMoral.dillemmaA = [NSSet setWithObject:testDilemma];
     testMoral.dillemmaB = [NSSet setWithObject:testDilemma2];
     
-    STAssertNoThrow([coreData save], @"Moral/Dilemma relationships can't be created for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI Update test");
         
     NSString *newDilemmaName1 = @"New dilemma name 1";
     testDilemma.nameDilemma = newDilemmaName1;
@@ -158,9 +158,9 @@
     NSString *newDilemmaName2 = @"New dilemma name 2";
     testDilemma2.nameDilemma = newDilemmaName2;
     
-    STAssertNoThrow([coreData save], @"Dilemma can't be updated for RI Update test");
+    STAssertNoThrow([testModelManager saveContext], @"Dilemma can't be updated for RI Update test");
     
-    NSArray *morals = [coreData fetch:Moral.class];
+    NSArray *morals = [testModelManager readAll:Moral.class];
     
     Moral *retrieved = [morals objectAtIndex: 0];
     STAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
@@ -169,41 +169,41 @@
 }
 
 - (void)testMoralDeletion {
-    STAssertNoThrow([coreData save], @"Moral can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"Moral can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testMoral], @"Moral can't be deleted");
+    STAssertNoThrow([testModelManager delete:testMoral], @"Moral can't be deleted");
     
-    NSArray *morals = [coreData fetch:Moral.class];
+    NSArray *morals = [testModelManager readAll:Moral.class];
     
     STAssertEquals(morals.count, (NSUInteger) 0, @"Moral is still present after delete");
     
 }
 
 - (void)testMoralReferentialIntegrityDelete {
-    STAssertNoThrow([coreData save], @"Moral/Dilemma can't be created for RI Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI Delete test");
     
     testMoral.dillemmaA = [NSSet setWithObject:testDilemma];
     testMoral.dillemmaB = [NSSet setWithObject:testDilemma2];
     
-    STAssertNoThrow([coreData save], @"Moral/Dilemma relationships can't be created for RI Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI Delete test");
     
-    STAssertNoThrow([coreData delete:testMoral], @"Moral can't be deleted");
+    STAssertNoThrow([testModelManager delete:testMoral], @"Moral can't be deleted");
     
-    NSArray *dilemmas = [coreData fetch:Dilemma.class];
+    NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     
     STAssertEquals(dilemmas.count, (NSUInteger) 0, @"Both Dilemmas should have been cascade deleted");    
     
 }
 
 - (void)testMoralWithoutRequiredAttributes {
-    Dilemma *testMoralBad = [coreData insert:Moral.class];
+    Dilemma *testMoralBad = [testModelManager create:Moral.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testMoralBad.class];
     
-    STAssertThrows([coreData save], errorMessage);
+    STAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 - (void)testMoralDefaultValues {
-    Moral *testMoralDefault = [coreData insert:Moral.class];
+    Moral *testMoralDefault = [testModelManager create:Moral.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testMoralDefault.class];
     
     NSString *defaultLinkMoral = @"defaultLinkMoral";
@@ -211,13 +211,13 @@
     testMoralDefault.linkMoral = defaultLinkMoral;
     testMoralDefault.colorMoral = @"colorMoral";
     
-    STAssertNoThrow([coreData save], errorMessage);
+    STAssertNoThrow([testModelManager saveContext], errorMessage);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"linkMoral == %@", defaultLinkMoral];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(Moral.class)];
     request.predicate = searchPredicate;
-    NSArray *userChoices = [[coreData managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *userChoices = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
     
     Moral *retrieved = [userChoices objectAtIndex: 0];
     STAssertEqualObjects(retrieved.shortDescriptionMoral, @"Virtue", @"shortDescriptionMoral default value failed.");

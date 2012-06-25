@@ -261,6 +261,8 @@
 		5E47705B13453F0600EE3EDD /* ref-williamwallace-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705613453F0600EE3EDD /* ref-williamwallace-sm.png */; };
 		5E47705C13453F0600EE3EDD /* ref-williamwallace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */; };
 		5E480861137E4E2500C1E0CF /* Moral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E480860137E4E2500C1E0CF /* Moral.m */; };
+		5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
+		5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E498ACA131C941000A13D11 /* acc-bottom-beard-braidblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */; };
 		5E498ACB131C941000A13D11 /* acc-bottom-beard-braidblonde.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */; };
 		5E498ACC131C941000A13D11 /* acc-bottom-beard-braidbrown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */; };
@@ -1412,7 +1414,6 @@
 		5EBC9AD613524007001ACD7A /* ref-you.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9AD413524007001ACD7A /* ref-you.jpg */; };
 		5EBC9ADC1352A42E001ACD7A /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */; };
 		5EBC9ADF1352A4CD001ACD7A /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */; };
-		5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */; };
 		5EC246D312711DF100421807 /* card-addiction.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246BF12711DF100421807 /* card-addiction.png */; };
 		5EC246D412711DF100421807 /* card-caprice.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C012711DF100421807 /* card-caprice.png */; };
 		5EC246D512711DF100421807 /* card-idolatry.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C112711DF100421807 /* card-idolatry.png */; };
@@ -1954,6 +1955,8 @@
 		5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-williamwallace.jpg"; path = "Resources/images/reference/ref-williamwallace.jpg"; sourceTree = "<group>"; };
 		5E48085F137E4E2500C1E0CF /* Moral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moral.h; sourceTree = "<group>"; };
 		5E480860137E4E2500C1E0CF /* Moral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moral.m; sourceTree = "<group>"; };
+		5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAssetDAO.h; sourceTree = "<group>"; };
+		5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAssetDAO.m; sourceTree = "<group>"; };
 		5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblack.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblack.png"; sourceTree = "<group>"; };
 		5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblonde.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblonde.png"; sourceTree = "<group>"; };
 		5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidbrown.png"; path = "Resources/images/accessories/acc-bottom-beard-braidbrown.png"; sourceTree = "<group>"; };
@@ -3101,8 +3104,6 @@
 		5EBC9AD91352A42B001ACD7A /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IntroView.xib; path = Resources/IntroView.xib; sourceTree = "<group>"; };
-		5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCoreDataStack.h; path = Model/TestCoreDataStack.h; sourceTree = "<group>"; };
-		5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCoreDataStack.m; path = Model/TestCoreDataStack.m; sourceTree = "<group>"; };
 		5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceBelief.m; sourceTree = "<group>"; };
 		5EC246BF12711DF100421807 /* card-addiction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-addiction.png"; path = "Resources/images/interface/cards/card-addiction.png"; sourceTree = "<group>"; };
 		5EC246C012711DF100421807 /* card-caprice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-caprice.png"; path = "Resources/images/interface/cards/card-caprice.png"; sourceTree = "<group>"; };
@@ -5123,8 +5124,6 @@
 			children = (
 				5E57613F1595975600E14606 /* DAO */,
 				5EBED2FE1548D5EC00AFE44D /* Generated */,
-				5EBED2F71548D28000AFE44D /* TestCoreDataStack.h */,
-				5EBED2F81548D28000AFE44D /* TestCoreDataStack.m */,
 				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
 				5EA26D7215843DB600CDA802 /* TestModelManager.m */,
 				5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */,
@@ -5383,6 +5382,8 @@
 		5EFC5A0B15940F3300E11A71 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */,
+				5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */,
 				5EFC5A0C15940F5000E11A71 /* MoralDAO.h */,
 				5EFC5A0D15940F5000E11A71 /* MoralDAO.m */,
 			);
@@ -7134,6 +7135,7 @@
 				5E266039156B2827007DF236 /* ConscienceBubbleFactory.m in Sources */,
 				5EA26D661584351500CDA802 /* ModelManager.m in Sources */,
 				5EFC5A0E15940F5000E11A71 /* MoralDAO.m in Sources */,
+				5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7157,7 +7159,6 @@
 				5E99C5B613C542F5001F5CB8 /* TestConscienceObjectView.m in Sources */,
 				5EB0C33A13F2529F0093FCA6 /* TestGraphView.m in Sources */,
 				5EB0C33B13F2533B0093FCA6 /* GraphView.m in Sources */,
-				5EBED2FA1548D28000AFE44D /* TestCoreDataStack.m in Sources */,
 				5E2F5DC81548E14A007DED2A /* ReferenceBelief.m in Sources */,
 				5E2F5DC91548E195007DED2A /* ReferenceReport.m in Sources */,
 				5E2F5DCA1548E195007DED2A /* ReferenceText.m in Sources */,
@@ -7227,6 +7228,7 @@
 				5EFC5A0F15940F5000E11A71 /* MoralDAO.m in Sources */,
 				5E5761411595975600E14606 /* TestMoralDAO.m in Sources */,
 				5EB2FEDD1596849600CAF1DD /* MoraLifeBaseUnitTest.m in Sources */,
+				5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

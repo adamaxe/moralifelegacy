@@ -50,7 +50,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-		//Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
+		//Create appDelegate and reference NSUserDefaults for Conscience and serialized state retention
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
 		

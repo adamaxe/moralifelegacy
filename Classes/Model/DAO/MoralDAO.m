@@ -1,158 +1,153 @@
 #import "MoralDAO.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "Moral.h"
 
-@interface MoralDAO () {
-    MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSManagedObjectContext *context;		/**< Core Data context */	
-}
+@interface MoralDAO ()
 
-- (Moral *)findMoral:(NSString *)moralName;
-- (NSArray *)listMorals;
+- (Moral *)findPersistedObject:(NSString *)key;
+- (NSArray *)listPersistedObjects;
 
-@property (nonatomic, retain) NSString *currentMoralType;
-@property (nonatomic, retain) NSArray *morals;
-@property (nonatomic, retain) NSMutableArray *moralNames;
-@property (nonatomic, retain) NSMutableArray *moralImages;
-@property (nonatomic, retain) NSMutableArray *moralDetails;
-@property (nonatomic, retain) NSMutableArray *moralDisplayNames;
+@property (nonatomic, retain) NSString *currentType;
+@property (nonatomic, retain) NSManagedObjectContext *context;
+@property (nonatomic, retain) NSArray *persistedObjects;
+@property (nonatomic, retain) NSMutableArray *returnedNames;
+@property (nonatomic, retain) NSMutableArray *returnedImageNames;
+@property (nonatomic, retain) NSMutableArray *returnedDetails;
+@property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
 
-- (void)processMorals;
-- (NSArray *)retrieveMorals;
+- (NSArray *)retrievePersistedObjects;
+- (void)processObjects;
 
 @end
 
 @implementation MoralDAO 
 
-@synthesize currentMoralType;
-@synthesize morals;
-@synthesize moralNames, moralImages, moralDetails, moralDisplayNames;
+@synthesize currentType = _currentType;
+@synthesize context = _context;
+@synthesize persistedObjects = _persistedObjects;
+@synthesize returnedNames = _returnedNames;
+@synthesize returnedImageNames = _returnedImageNames;
+@synthesize returnedDetails = _returnedDetails;
+@synthesize returnedDisplayNames = _returnedDisplayNames;
 
-- (id) init {
-    
-    return [self initWithMoralType:nil];
+- (id)init {    
+    return [self initWithType:@"all"];
 }
 
-- (id) initWithMoralType:(NSString *)moralType {
-    self = [super init];
-    if (self) {
-        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        context = [appDelegate.moralModelManager managedObjectContext];
+- (id)initWithType:(NSString *)type {
+    
+    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    return [self initWithType:type andModelManager: [appDelegate moralModelManager]];
+}
 
-        moralNames = [[NSMutableArray alloc] init];
-        moralImages = [[NSMutableArray alloc] init];
-        moralDisplayNames = [[NSMutableArray alloc] init];
-        moralDetails = [[NSMutableArray alloc] init];
+- (id)initWithType:(NSString *)type andModelManager:(ModelManager *)moralModelManager {
+
+    self = [super init];
+
+    if (self) {
+        _context = [[moralModelManager managedObjectContext] retain];
         
-        if (moralType) {
-            currentMoralType = [[NSString alloc] initWithFormat:moralType];
+        if (type) {
+            _currentType = [[NSString alloc] initWithFormat:type];
         } else {
-            currentMoralType = [[NSString alloc] initWithFormat:@"all"];
+            _currentType = [[NSString alloc] initWithFormat:@"all"];
         }
+        
+        _returnedNames =  [[NSMutableArray alloc] init];
+        
+        _returnedImageNames = [[NSMutableArray alloc] init];
+
+        _returnedDisplayNames = [[NSMutableArray alloc] init];
+        
+        _returnedDetails = [[NSMutableArray alloc] init];
+        
+        _persistedObjects = [[NSArray alloc] initWithArray:[self retrievePersistedObjects]];
+        
+        [self processObjects];
                 
     }
     
     return self;
 }
 
-- (NSString *)findMoralColor:(NSString *)moralName {
-    return [self findMoral:moralName].colorMoral;
+- (NSString *)readColor:(NSString *)key {
+    return [self findPersistedObject:key].colorMoral;
 }
 
-- (NSString *)findMoralDefinition:(NSString *)moralName {
-    return [self findMoral:moralName].definitionMoral;
+- (NSString *)readDefinition:(NSString *)key {
+    return [self findPersistedObject:key].definitionMoral;
 }
 
-- (NSString *)findMoralLongDescription:(NSString *)moralName {
-    return [self findMoral:moralName].longDescriptionMoral;
+- (NSString *)readLongDescription:(NSString *)key {
+    return [self findPersistedObject:key].longDescriptionMoral;
 }
 
-- (NSString *)findMoralDisplayName:(NSString *)moralName {
-    return [self findMoral:moralName].displayNameMoral;
+- (NSString *)readDisplayName:(NSString *)key {
+    return [self findPersistedObject:key].displayNameMoral;
 }
 
-- (NSString *)findMoralImageName:(NSString *)moralName {
-    return [self findMoral:moralName].imageNameMoral;    
+- (NSString *)readImageName:(NSString *)key {
+    return [self findPersistedObject:key].imageNameMoral;    
 }
 
-- (NSArray *)listAllMoralNames {
-    if (morals.count == 0) {
-        [self processMorals];
-    }
-    return moralNames;
+- (NSArray *)readAllNames {
+    return self.returnedNames;
 }
 
-- (NSArray *)listAllMoralDisplayNames {
-    if (morals.count == 0) {
-        [self processMorals];
-    }
-    
-    return moralDisplayNames;
+- (NSArray *)readAllDisplayNames {    
+    return self.returnedDisplayNames;
 }
 
-- (NSArray *)listAllMoralImages {
-    if (morals.count == 0) {
-        [self processMorals];
-    }
-    
-    return moralImages;
+- (NSArray *)readAllImageNames {    
+    return self.returnedImageNames;
 }
 
-- (NSArray *)listAllMoralDetails {
-    if (morals.count == 0) {
-        [self processMorals];
-    }
-    
-    return moralDetails;
+- (NSArray *)readAllDetails {
+    return self.returnedDetails;
 }
 
 #pragma mark -
 #pragma mark Private API
-- (Moral *)findMoral:(NSString *)moralName {
-    if (morals.count == 0) {
-        [self processMorals];
-    }
+- (Moral *)findPersistedObject:(NSString *)key {    
+    NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
     
-    NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", moralName];
-    
-    NSArray *objects = [morals filteredArrayUsingPredicate:findPred];
-    
-    return [objects objectAtIndex:0];
-    
-}
-
-- (NSArray *)listMorals {
-    if (morals.count == 0) {
-        [self processMorals];
-    }    
-    
-    return [self retrieveMorals];
-}
-
-- (void)processMorals {
-    
-    morals = [self retrieveMorals];
-    
-    for (Moral *match in morals){
-        [moralNames addObject:[match nameMoral]];
-        [moralImages addObject:[match imageNameMoral]];
-        [moralDisplayNames addObject:[match displayNameMoral]];
-        [moralDetails addObject:[match longDescriptionMoral]];			
+    NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
+    if (objects.count > 0) {
+        return [objects objectAtIndex:0];
+    } else {
+        return nil;
     }
     
 }
 
-- (NSArray *)retrieveMorals {
+- (NSArray *)listPersistedObjects {
+    
+    return self.persistedObjects;
+}
+
+- (void)processObjects {
+        
+    for (Moral *match in self.persistedObjects){
+        [self.returnedNames addObject:[match nameMoral]];
+        [self.returnedImageNames addObject:[match imageNameMoral]];
+        [self.returnedDisplayNames addObject:[match displayNameMoral]];
+        [self.returnedDetails addObject:[match longDescriptionMoral]];			
+    }
+    
+}
+
+- (NSArray *)retrievePersistedObjects {
     //Begin CoreData Retrieval			
 	NSError *outError;
 	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
-		
 
-    if (![currentMoralType isEqualToString:@"all"]) {
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", currentMoralType];
+    if (![self.currentType isEqualToString:@"all"]) {
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", self.currentType];
         [request setPredicate:pred];
     }
 	
@@ -161,7 +156,7 @@
 	[request setSortDescriptors:sortDescriptors];
 	[sortDescriptor release];
 	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [self.context executeFetchRequest:request error:&outError];
     	
 	[request release];
     
@@ -170,13 +165,12 @@
 }
 
 -(void)dealloc {
-    
-    [currentMoralType release];
-    [moralNames release];
-    [moralDisplayNames release];
-    [moralDetails release];
-    [moralImages release];
-    
+    [_currentType release];
+    [_context release];
+    [_returnedDetails release];
+    [_returnedDisplayNames release];
+    [_returnedImageNames release];
+    [_returnedNames release];
     [super dealloc];
 }
 

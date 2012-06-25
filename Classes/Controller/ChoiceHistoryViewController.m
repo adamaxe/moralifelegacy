@@ -287,8 +287,8 @@
 				
             MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
             
-            [icons addObject:[currentMoralDAO findMoralImageName:[matches choiceMoral]]];
-            [detailText appendString:[currentMoralDAO findMoralDisplayName:[matches choiceMoral]]];
+            [icons addObject:[currentMoralDAO readImageName:[matches choiceMoral]]];
+            [detailText appendString:[currentMoralDAO readDisplayName:[matches choiceMoral]]];
             
             [currentMoralDAO release];
             
@@ -366,9 +366,9 @@
         
         MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
         
-        [prefs setObject:[currentMoralDAO findMoralDisplayName:[match choiceMoral]] forKey:@"moralName"];
+        [prefs setObject:[currentMoralDAO readDisplayName:[match choiceMoral]] forKey:@"moralName"];
         [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-        [prefs setObject:[currentMoralDAO findMoralImageName:[match choiceMoral]] forKey:@"moralImage"];
+        [prefs setObject:[currentMoralDAO readImageName:[match choiceMoral]] forKey:@"moralImage"];
 		
         [currentMoralDAO release];
 	}

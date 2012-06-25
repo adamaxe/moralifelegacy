@@ -5,15 +5,11 @@
  */
 #import "ModelManager.h"
 
-@interface ModelManager () {
- 
-@private	
-	NSManagedObjectModel	*managedObjectModel;
-	NSManagedObjectContext	*managedObjectContext;
-	NSPersistentStoreCoordinator	*persistentStoreCoordinator;
-    
-}
+@interface ModelManager () 
 
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
 @property (nonatomic, retain) NSBundle *currentBundle;
 @property (nonatomic, retain) NSString *storeType;
 
@@ -21,34 +17,34 @@
 
 @implementation ModelManager
 
-@synthesize managedObjectModel;
-@synthesize managedObjectContext;
-@synthesize persistentStoreCoordinator;
-@synthesize currentBundle;
-@synthesize storeType;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize currentBundle = _currentBundle;
+@synthesize storeType = _storeType;
 
 #pragma mark -
 #pragma mark Core Data stack
 
 - (id)init {
     
-    return [self initWithBundle:[NSBundle mainBundle] andIsPeristentStoreType:YES];
+    return [self initWithInMemoryStore:NO];
 }
 
-- (id)initWithBundle:(NSBundle *)bundle andIsPeristentStoreType:(BOOL)isPersistent {
-
+- (id)initWithInMemoryStore:(BOOL)isTransient {
+    
     self = [super init];
     
     if (self) {
-        currentBundle = [bundle retain];
-        if (isPersistent) {
-            storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
+        if (isTransient) {
+            _currentBundle = [NSBundle bundleForClass:self.class];
+            _storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
         } else {
-            storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
+            _currentBundle = [NSBundle mainBundle];
+            _storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
         }
-
-        NSManagedObjectContext *context = [self managedObjectContext];
-        managedObjectContext = context;
+        
+        _managedObjectContext = [self managedObjectContext];
     }
     
     return self;
@@ -60,16 +56,16 @@
  */
 - (NSManagedObjectContext *)managedObjectContext {
     
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    return managedObjectContext;
+    return _managedObjectContext;
 }
 
 
@@ -79,8 +75,8 @@
  */
 - (NSManagedObjectModel *)managedObjectModel {
     
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
     }
 	
 	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
@@ -92,12 +88,12 @@
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
 	
-	managedObjectModel = [NSManagedObjectModel modelByMergingModels:[NSArray arrayWithObjects:modelReadWrite, modelReadOnly, nil]];
+	_managedObjectModel = [NSManagedObjectModel modelByMergingModels:[NSArray arrayWithObjects:modelReadWrite, modelReadOnly, nil]];
 	
 	[modelReadOnly release];
 	[modelReadWrite release];
-		
-	return managedObjectModel;
+    
+	return _managedObjectModel;
 }
 
 
@@ -108,8 +104,8 @@
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
     }
     
 	//Retrieve readwrite Documents directory
@@ -176,26 +172,34 @@
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
 	
     error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-	if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
-
+	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
+        
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 	
-	if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURLReadWrite options:options error:&error]) {
+	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURLReadWrite options:options error:&error]) {
         
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     } 
     
-    return persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
-- (NSArray *)fetch: (Class) fetchClass {
+#pragma mark -
+#pragma mark public API
+
+- (id)create: (Class) insertedClass {
+    
+    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
+}
+
+- (NSArray *)readAll: (Class) requestedClass {
     NSError *error = nil;
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(fetchClass)];
+    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
     NSArray *results;
     
@@ -214,11 +218,30 @@
     return results;
 }
 
-
-- (id)insert: (Class) insertedClass {
+- (id)read: (Class) requestedClass withKey: (id) classKey andValue:(id) keyValue {    NSError *error = nil;
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
-    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%@ == %@", classKey, keyValue];
+	[request setPredicate:pred];
+	[pred release];
+    
+    NSArray *results;
+    
+    @try {
+        results = [self.managedObjectContext executeFetchRequest: request error: &error];
+    }
+    @catch (NSException *exception) {
+        @throw(exception);
+    }    
+    
+    if (error) {
+        NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data fetch failed: %@\n\n", [error description]];
+        [NSException raise:@"CoreDataFetchError" format:errorMessage];
+    }
+    
+    return [results objectAtIndex:0];
 }
+
 
 - (void)delete: (id) object {
     
@@ -252,24 +275,14 @@
         if (error) {
             NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data save failed: %@\n\n", [error description]];
             [NSException raise:@"CoreDataSaveError" format:errorMessage];
-
+            
         }
-                
-//        if ([saveManagedObjectContext hasChanges] && ![saveManagedObjectContext save:&error]) {
-//            /*
-//             Replace this implementation with code to handle the error appropriately.
-//             
-//             abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development. If it is not possible to recover from the error, display an alert panel that instructs the user to quit the application by pressing the Home button.
-//             */
-//            NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-//            abort();
-//        } 
+        
     }
 } 
 
 -(void)dealloc {
-    [currentBundle release];
-    [storeType release];
+    [_storeType release];
     
     [super dealloc];
 }

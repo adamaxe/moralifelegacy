@@ -1,12 +1,9 @@
-@class Moral, ModelManager;
+@class ConscienceAsset;
 
-@interface MoralDAO : NSObject
+@interface ConscienceAssetDAO : NSObject
 
-- (id)initWithType:(NSString *)type;
-- (id)initWithType:(NSString *)type andModelManager:(ModelManager *)moralModelManager;
+- (id)initWithKey:(NSString *)key;
 
-- (NSString *)readColor:(NSString *)key;
-- (NSString *)readDefinition:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;
 - (NSString *)readImageName:(NSString *)key;

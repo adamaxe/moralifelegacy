@@ -1,8 +1,8 @@
-#import "TestCoreDataStack.h"
+#import "ModelManager.h"
 #import "ConscienceAsset.h"
 
 @interface TestConscienceAsset: SenTestCase {
-    TestCoreDataStack *coreData;
+    ModelManager *testModelManager;
     ConscienceAsset *testAsset;
 
     NSNumber *costAsset;
@@ -24,7 +24,7 @@
 @implementation TestConscienceAsset
 
 - (void)setUp {
-    coreData = [[TestCoreDataStack alloc] initWithManagedObjectModel:@"SystemData"];
+    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
     costAsset = [NSNumber numberWithFloat:1.0];
     moralValueAsset = [NSNumber numberWithFloat:2.0];
@@ -38,7 +38,7 @@
     displayName = @"display name";
     imageName = @"image name";
     
-    testAsset = [coreData insert:ConscienceAsset.class];
+    testAsset = [testModelManager create:ConscienceAsset.class];
 
     testAsset.costAsset = costAsset;
     testAsset.moralValueAsset = moralValueAsset;
@@ -57,15 +57,15 @@
 - (void)testConscienceAssetCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([coreData save], @"ConscienceAsset can't be created.");
+    STAssertNoThrow([testModelManager saveContext], @"ConscienceAsset can't be created.");
         
 }
 
 - (void)testConscienceAssetAccessorsAreFunctional {
     
-    STAssertNoThrow([coreData save], @"ConscienceAsset can't be created for Accessor test.");
+    STAssertNoThrow([testModelManager saveContext], @"ConscienceAsset can't be created for Accessor test.");
     
-    NSArray *assets = [coreData fetch:ConscienceAsset.class];
+    NSArray *assets = [testModelManager readAll:ConscienceAsset.class];
     
     STAssertEquals(assets.count, (NSUInteger) 1, @"There should only be 1 ConscienceAsset in the context.");
     ConscienceAsset *retrieved = [assets objectAtIndex: 0];
@@ -84,21 +84,21 @@
 }
 
 - (void)testConscienceAssetDeletion {
-    STAssertNoThrow([coreData save], @"ConscienceAsset/Belief/Text can't be created for Delete test");
+    STAssertNoThrow([testModelManager saveContext], @"ConscienceAsset/Belief/Text can't be created for Delete test");
     
-    STAssertNoThrow([coreData delete:testAsset], @"ConscienceAsset can't be deleted");
+    STAssertNoThrow([testModelManager delete:testAsset], @"ConscienceAsset can't be deleted");
     
-    NSArray *assets = [coreData fetch:ConscienceAsset.class];
+    NSArray *assets = [testModelManager readAll:ConscienceAsset.class];
     
     STAssertEquals(assets.count, (NSUInteger) 0, @"ConscienceAsset is still present after delete");
     
 }
 
 - (void)testConscienceAssetWithoutRequiredAttributes {
-    ConscienceAsset *testConscienceAssetBad = [coreData insert:ConscienceAsset.class];
+    ConscienceAsset *testConscienceAssetBad = [testModelManager create:ConscienceAsset.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testConscienceAssetBad.class];
     
-    STAssertThrows([coreData save], errorMessage);
+    STAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 @end
