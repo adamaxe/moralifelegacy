@@ -44,7 +44,6 @@
     nameMoral3 = @"Virtue Name3";
     moralTypeAll = @"all";
     
-    
     imageNameMoral = @"imageName";
     colorMoral = @"color";
     displayNameMoral = @"displayName";
@@ -91,39 +90,39 @@
     testMoral3.definitionMoral = definitionMoral;
 
     [testModelManager saveContext];
+    
+    testingSubject = [[MoralDAO alloc] initWithType:moralTypeAll andInMemory:YES];
 }
 
 - (void)testMoralDAOAllTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithType:moralTypeAll andInMemory:YES];        
-    STAssertNotNil(testingSubject, @"MoralDAO All type can't be created.");
-    [testingSubject release];
+    MoralDAO *testingSubjectAll = [[MoralDAO alloc] initWithType:moralTypeAll andInMemory:YES]; 
+
+    STAssertNotNil(testingSubjectAll, @"MoralDAO All type can't be created.");
+    [testingSubjectAll release];
     
 }
 
 - (void)testMoralDAOVirtueTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithType:moralTypeVirtue andInMemory:YES];
+    MoralDAO *testingSubjectVirtue = [[MoralDAO alloc] initWithType:moralTypeVirtue andInMemory:YES];
     
-    STAssertNotNil(testingSubject, @"MoralDAO Virtue type can't be created.");
-    [testingSubject release];
+    STAssertNotNil(testingSubjectVirtue, @"MoralDAO Virtue type can't be created.");
+    [testingSubjectVirtue release];
     
 }
 
 - (void)testMoralDAOViceTypeCanBeCreated {
     
-    testingSubject = [[MoralDAO alloc] initWithType:moralTypeVice andInMemory:YES];
+    MoralDAO *testingSubjectVice = [[MoralDAO alloc] initWithType:moralTypeVice andInMemory:YES];
     
-    STAssertNotNil(testingSubject, @"MoralDAO Vice can't be created.");
-    [testingSubject release];
+    STAssertNotNil(testingSubjectVice, @"MoralDAO Vice can't be created.");
+    [testingSubjectVice release];
     
 }
 
-- (void)testMoralDAOAccessorsAreFunctional {
-        
-    NSArray *morals = [testModelManager readAll:Moral.class];
-    
-    STAssertEquals(morals.count, (NSUInteger) 3, @"There should be 3 Morals in the context.");
+- (void)testMoralDAOColor {
+    STAssertEquals([testingSubject readColor:nameMoral1], colorMoral, @"Color couldn't be set/read.");
 }
 
 @end

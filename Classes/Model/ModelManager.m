@@ -5,15 +5,11 @@
  */
 #import "ModelManager.h"
 
-@interface ModelManager () {
-    
-@private	
-	NSManagedObjectModel	*managedObjectModel;
-	NSManagedObjectContext	*managedObjectContext;
-	NSPersistentStoreCoordinator	*persistentStoreCoordinator;
-    
-}
+@interface ModelManager () 
 
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain) NSPersistentStoreCoordinator	*persistentStoreCoordinator;
 @property (nonatomic, retain) NSBundle *currentBundle;
 @property (nonatomic, retain) NSString *storeType;
 
@@ -21,11 +17,11 @@
 
 @implementation ModelManager
 
-@synthesize managedObjectModel;
-@synthesize managedObjectContext;
-@synthesize persistentStoreCoordinator;
-@synthesize currentBundle;
-@synthesize storeType;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+@synthesize currentBundle = _currentBundle;
+@synthesize storeType = _storeType;
 
 #pragma mark -
 #pragma mark Core Data stack
@@ -40,15 +36,15 @@
     self = [super init];
     
     if (self) {
-        self.currentBundle = [NSBundle bundleForClass:self.class];
+        _currentBundle = [NSBundle bundleForClass:self.class];
         if (isTransient) {
-            storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
+            _storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
         } else {
-            storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
+            _storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
         }
         
         NSManagedObjectContext *context = [self managedObjectContext];
-        managedObjectContext = context;
+        _managedObjectContext = context;
     }
     
     return self;
@@ -60,16 +56,16 @@
  */
 - (NSManagedObjectContext *)managedObjectContext {
     
-    if (managedObjectContext != nil) {
-        return managedObjectContext;
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
     }
     
     NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
     if (coordinator != nil) {
-        managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
     }
-    return managedObjectContext;
+    return _managedObjectContext;
 }
 
 
@@ -79,8 +75,8 @@
  */
 - (NSManagedObjectModel *)managedObjectModel {
     
-    if (managedObjectModel != nil) {
-        return managedObjectModel;
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
     }
 	
 	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
@@ -92,12 +88,12 @@
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
 	
-	managedObjectModel = [NSManagedObjectModel modelByMergingModels:[NSArray arrayWithObjects:modelReadWrite, modelReadOnly, nil]];
+	_managedObjectModel = [NSManagedObjectModel modelByMergingModels:[NSArray arrayWithObjects:modelReadWrite, modelReadOnly, nil]];
 	
 	[modelReadOnly release];
 	[modelReadWrite release];
     
-	return managedObjectModel;
+	return _managedObjectModel;
 }
 
 
@@ -108,8 +104,8 @@
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
-    if (persistentStoreCoordinator != nil) {
-        return persistentStoreCoordinator;
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
     }
     
 	//Retrieve readwrite Documents directory
@@ -176,21 +172,21 @@
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
 	
     error = nil;
-    persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-	if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
+	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
         
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     }
 	
-	if (![persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURLReadWrite options:options error:&error]) {
+	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURLReadWrite options:options error:&error]) {
         
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
     } 
     
-    return persistentStoreCoordinator;
+    return _persistentStoreCoordinator;
 }
 
 #pragma mark -
@@ -286,7 +282,7 @@
 } 
 
 -(void)dealloc {
-    [storeType release];
+    [_storeType release];
     
     [super dealloc];
 }

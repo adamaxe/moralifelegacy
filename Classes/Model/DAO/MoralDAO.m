@@ -2,15 +2,13 @@
 #import "ModelManager.h"
 #import "Moral.h"
 
-@interface MoralDAO () {
-	NSManagedObjectContext *context;		/**< Core Data context */	
-}
+@interface MoralDAO ()
 
 - (Moral *)findPersistedObject:(NSString *)key;
 - (NSArray *)listPersistedObjects;
 
-@property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSString *currentType;
+@property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSArray *persistedObjects;
 @property (nonatomic, retain) NSMutableArray *returnedNames;
 @property (nonatomic, retain) NSMutableArray *returnedImageNames;
@@ -24,9 +22,13 @@
 
 @implementation MoralDAO 
 
-@synthesize currentKey, currentType;
-@synthesize persistedObjects;
-@synthesize returnedNames, returnedImageNames, returnedDetails, returnedDisplayNames;
+@synthesize currentType = _currentType;
+@synthesize context = _context;
+@synthesize persistedObjects = _persistedObjects;
+@synthesize returnedNames = _returnedNames;
+@synthesize returnedImageNames = _returnedImageNames;
+@synthesize returnedDetails = _returnedDetails;
+@synthesize returnedDisplayNames = _returnedDisplayNames;
 
 - (id)init {    
     return [self initWithType:@"all"];
@@ -39,44 +41,28 @@
 
 - (id)initWithType:(NSString *)type andInMemory:(BOOL)isTransient {
 
-
     self = [super init];
 
     if (self) {
         ModelManager *moralModelManager = [[ModelManager alloc] initWithInMemoryStore:isTransient];
-        context = [moralModelManager managedObjectContext];
+        _context = [[moralModelManager managedObjectContext] retain];
         [moralModelManager release];
-
-        NSString *requestedType;
         
         if (type) {
-            requestedType = [[NSString alloc] initWithFormat:type];
+            _currentType = [[NSString alloc] initWithFormat:type];
         } else {
-            requestedType = [[NSString alloc] initWithFormat:@"all"];
+            _currentType = [[NSString alloc] initWithFormat:@"all"];
         }
         
-        self.currentType = requestedType;
-        [requestedType release];
+        _returnedNames =  [[NSMutableArray alloc] init];
+        
+        _returnedImageNames = [[NSMutableArray alloc] init];
 
-        NSMutableArray *names = [[NSMutableArray alloc] init];
-        self.returnedNames = names;
-        [names release];
+        _returnedDisplayNames = [[NSMutableArray alloc] init];
         
-        NSMutableArray *imageNames = [[NSMutableArray alloc] init];
-        self.returnedImageNames = imageNames;
-        [imageNames release];
-
-        NSMutableArray *displayNames = [[NSMutableArray alloc] init];
-        self.returnedDisplayNames = displayNames;
-        [displayNames release];
+        _returnedDetails = [[NSMutableArray alloc] init];
         
-        NSMutableArray *details = [[NSMutableArray alloc] init];        
-        self.returnedDetails = details;
-        [details release];
-        
-        NSArray *objects = [[NSArray alloc] initWithArray:[self retrievePersistedObjects]];        
-        self.persistedObjects = objects;
-        [objects release];
+        _persistedObjects = [[NSArray alloc] initWithArray:[self retrievePersistedObjects]];
         
         [self processObjects];
                 
@@ -127,8 +113,11 @@
     NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
     
     NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
-    
-    return [objects objectAtIndex:0];
+    if (objects.count > 0) {
+        return [objects objectAtIndex:0];
+    } else {
+        return nil;
+    }
     
 }
 
@@ -152,7 +141,7 @@
     //Begin CoreData Retrieval			
 	NSError *outError;
 	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
 
@@ -166,12 +155,22 @@
 	[request setSortDescriptors:sortDescriptors];
 	[sortDescriptor release];
 	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [self.context executeFetchRequest:request error:&outError];
     	
 	[request release];
     
     return objects;
 
+}
+
+-(void)dealloc {
+    [_currentType release];
+    [_context release];
+    [_returnedDetails release];
+    [_returnedDisplayNames release];
+    [_returnedImageNames release];
+    [_returnedNames release];
+    [super dealloc];
 }
 
 @end

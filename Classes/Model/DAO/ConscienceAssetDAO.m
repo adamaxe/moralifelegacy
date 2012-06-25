@@ -31,8 +31,6 @@
     return [self initWithKey:nil];
 }
 
-
-
 - (id)initWithKey:(NSString *)key {
     return [self initWithKey:key andInMemory:NO];
 }
@@ -114,8 +112,8 @@
 }
 
 #pragma mark -
-- (Moral *)findPersistedObject:(NSString *)key {
 #pragma mark Private API
+- (ConscienceAsset *)findPersistedObject:(NSString *)key {
     if (self.persistedObjects.count == 0) {
         [self processObjects];
     }
@@ -124,7 +122,11 @@
     
     NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
     
-    return [objects objectAtIndex:0];
+    if (objects.count > 0) {
+        return [objects objectAtIndex:0];
+    } else {
+        return nil;
+    }
     
 }
 
