@@ -8,59 +8,139 @@
  @file
  */
 
-#import <SenTestingKit/SenTestingKit.h>
-
-#define USE_APPLICATION_UNIT_TEST 0
-
-@class ModelManager;
+#import "ModelManager.h"
+#import "Moral.h"
 
 @interface TestModelManager : SenTestCase {
     
     ModelManager *testingSubject;
+        
+    Moral *testMoral1;
+    Moral *testMoral2;
+    Moral *testMoral3;
+    
+    NSString *moralTypeVirtue;
+    NSString *nameMoral1;
+    NSString *moralTypeVice;
+    NSString *nameMoral2;
+    NSString *moralTypeVirtueExtra;
+    NSString *nameMoral3;
+    NSString *moralTypeAll;
+    
+    NSString *imageName;
+    NSString *color;
+    NSString *displayName;
+    NSString *longDescription;
+    NSString *component;
+    NSString *link;
+    NSString *definition;
     
 }
 
 @end
 
-#import "ModelManager.h"
-
 @implementation TestModelManager
 
-- (void)setUp{
+- (void)setUp {
     
-    [super setUp];
+    testingSubject = [[ModelManager alloc] initWithInMemoryStore:YES];    
     
-    testingSubject = [[ModelManager alloc] init];
+    moralTypeVirtue = @"Virtue";
+    nameMoral1 = @"Virtue Name1";
+    moralTypeVice = @"Vice";
+    nameMoral2 = @"Vice Name2";
+    moralTypeVirtueExtra = @"Virtue";
+    nameMoral3 = @"Virtue Name3";
+    moralTypeAll = @"all";
+    
+    imageName = @"imageName";
+    color = @"color";
+    displayName = @"displayName";
+    longDescription = @"longDescription";
+    component = @"component";
+    link = @"link";
+    definition = @"definition"; 
+    
+    testMoral1 = [testingSubject create:Moral.class];
+    testMoral2 = [testingSubject create:Moral.class];
+    testMoral3 = [testingSubject create:Moral.class];
+    
+    testMoral1.shortDescriptionMoral = moralTypeVirtue;
+    testMoral1.nameMoral = nameMoral1;
+    
+    testMoral2.shortDescriptionMoral = moralTypeVice;
+    testMoral2.nameMoral = nameMoral2;
+    
+    testMoral3.shortDescriptionMoral = moralTypeVirtueExtra;
+    testMoral3.nameMoral = nameMoral3;
+    
+    testMoral1.imageNameMoral = imageName;
+    testMoral1.colorMoral = color;
+    testMoral1.displayNameMoral = displayName;
+    testMoral1.longDescriptionMoral = longDescription;
+    testMoral1.component = component;
+    testMoral1.linkMoral = link;
+    testMoral1.definitionMoral = definition;
+    
+    testMoral2.imageNameMoral = imageName;
+    testMoral2.colorMoral = color;
+    testMoral2.displayNameMoral = displayName;
+    testMoral2.longDescriptionMoral = longDescription;
+    testMoral2.component = component;
+    testMoral2.linkMoral = link;
+    testMoral2.definitionMoral = definition;
+    
+    testMoral3.imageNameMoral = imageName;
+    testMoral3.colorMoral = color;
+    testMoral3.displayNameMoral = displayName;
+    testMoral3.longDescriptionMoral = longDescription;
+    testMoral3.component = component;
+    testMoral3.linkMoral = link;
+    testMoral3.definitionMoral = definition;
+    
+    [testingSubject saveContext];
+}
+
+- (void)testModelManagerCanBeCreated {
+        
+    ModelManager *testingSubjectCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
+
+    STAssertNotNil(testingSubjectCreate, @"ModelManager can't be created.");
+    
+    [testingSubjectCreate release];
     
 }
 
-- (void)tearDown{
+- (void)testNSManagedObjectCanBeCreated {
     
-	//Tear-down code here.
-	[testingSubject release];
+    testMoral1 = [testingSubject create:Moral.class];
+    testMoral1.shortDescriptionMoral = moralTypeVirtue;
+    testMoral1.nameMoral = nameMoral1;
+    testMoral1.imageNameMoral = imageName;
+    testMoral1.colorMoral = color;
+    testMoral1.displayNameMoral = displayName;
+    testMoral1.longDescriptionMoral = longDescription;
+    testMoral1.component = component;
+    testMoral1.linkMoral = link;
+    testMoral1.definitionMoral = definition;
     
-	[super tearDown];
-    
+    STAssertNoThrow([testingSubject saveContext], @"NSManagedObject can't be created.");
 }
 
-//TODO: Cannot test ModelManager until Main Bundle issue for Unit Test Target is resolved
-
-///**
-// Ensure that the ModelManager was able to init.
-// */
-//- (void)testModelManagerExists{
-//    
-//    STAssertNotNil(testingSubject, @"The ModelManager was not init'ed.");
-//}
+//- (void)testNSManagedObjectCanBeFetched {
+//        
+//    Moral *retrievedMoral = [testingSubject read:testMoral1.class withKey:@"nameMoral" andValue:nameMoral1];
+//    STAssertNotNil(retrievedMoral, @"NSManagedObject can't be created.");
+//    STAssertEqualObjects([retrievedMoral nameMoral], nameMoral1, @"Retrieved name incorrect.");
 //
-///**
-// Ensure that the ModelManager was able to save.
-// */
-//- (void)testModelManagerCanSave{
-//    
-//    STAssertNoThrow([testingSubject saveContext], @"The ModelManager was not able to save.");
 //}
 
+//- (void)testNSManagedObjectCanBeDeleted {
+//    [testingSubject delete:testMoral3];
+//    
+//    Moral *retrievedMoral = [testingSubject read:testMoral1.class withKey:@"nameMoral" andValue:nameMoral3];
+//    STAssertNil(retrievedMoral, @"NSManagedObject can't be deleted.");    
+//}
 
 @end
 

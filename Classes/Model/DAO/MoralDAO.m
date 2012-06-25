@@ -10,7 +10,7 @@
 
 @property (nonatomic, retain) NSString *currentType;
 @property (nonatomic, retain) NSManagedObjectContext *context;
-@property (nonatomic, retain) NSArray *persistedObjects;
+@property (nonatomic, retain) NSMutableArray *persistedObjects;
 @property (nonatomic, retain) NSMutableArray *returnedNames;
 @property (nonatomic, retain) NSMutableArray *returnedImageNames;
 @property (nonatomic, retain) NSMutableArray *returnedDetails;
@@ -63,10 +63,9 @@
         
         _returnedDetails = [[NSMutableArray alloc] init];
         
-        _persistedObjects = [[NSArray alloc] initWithArray:[self retrievePersistedObjects]];
+        _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
         [self processObjects];
-                
     }
     
     return self;
@@ -93,24 +92,31 @@
 }
 
 - (NSArray *)readAllNames {
+    [self refreshData];
     return self.returnedNames;
 }
 
 - (NSArray *)readAllDisplayNames {    
+    [self refreshData];
     return self.returnedDisplayNames;
 }
 
 - (NSArray *)readAllImageNames {    
+    [self refreshData];
     return self.returnedImageNames;
 }
 
 - (NSArray *)readAllDetails {
+    [self refreshData];
     return self.returnedDetails;
 }
 
 #pragma mark -
 #pragma mark Private API
-- (Moral *)findPersistedObject:(NSString *)key {    
+- (Moral *)findPersistedObject:(NSString *)key {  
+    
+
+    
     NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
     
     NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
@@ -122,6 +128,13 @@
     
 }
 
+- (void)refreshData {
+    [self.persistedObjects removeAllObjects];
+    [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
+    
+    [self processObjects];
+}
+
 - (NSArray *)listPersistedObjects {
     
     return self.persistedObjects;
@@ -129,6 +142,11 @@
 
 - (void)processObjects {
         
+    [self.returnedNames removeAllObjects];
+    [self.returnedImageNames removeAllObjects];
+    [self.returnedDisplayNames removeAllObjects];
+    [self.returnedDetails removeAllObjects];
+    
     for (Moral *match in self.persistedObjects){
         [self.returnedNames addObject:[match nameMoral]];
         [self.returnedImageNames addObject:[match imageNameMoral]];
@@ -171,6 +189,7 @@
     [_returnedDisplayNames release];
     [_returnedImageNames release];
     [_returnedNames release];
+    [_persistedObjects release];
     [super dealloc];
 }
 
