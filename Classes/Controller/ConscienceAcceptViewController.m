@@ -11,7 +11,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #import "ConscienceView.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
-#import "ConscienceAsset.h"
+#import "ConscienceAssetDAO.h"
 #import "ConscienceBody.h"
 #import "ConscienceView.h"
 #import "ConscienceMind.h"
@@ -118,7 +118,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	}
 
 	// current ConscienceAsset under review for purchase
-	ConscienceAsset *assetReview;
 	NSString *assetFileName;
     
     [insufficientEthicalsLabel setHidden:TRUE];
@@ -127,58 +126,32 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[self retrieveCurrentFunds];
 	[currentFundsLabel setText:[NSString stringWithFormat:@"%dε", currentFunds]];
     
-	/** @todo extract and make function */
-	//Retrieve ConscienceAsset from SystemData
-	NSError *outError;
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:context];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-	
-	//Find requested ConscienceAsset from User input
-	NSPredicate *pred;
-	pred = [NSPredicate predicateWithFormat:@"nameReference like %@", assetSelection];
-	[request setPredicate:pred];
-		
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-        assetFileName = [[NSString alloc] initWithString:@"acc-nothing"];
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:assetSelection];
+    
+    //Set UI labels
+    [accessoryNameLabel setText:[currentAssetDAO readDisplayName:@""]];
+    [accessoryDescriptionLabel setText:[currentAssetDAO readShortDescription:@""]];        
+    assetCost = [currentAssetDAO readCost:@""];
+    
+    //If ConscienceAsset is already owned, change verbiage of UI
+    if (isOwned) {
+        [accessoryCostLabel setText:@"Owned!"];
+        [[buyButton titleLabel] setText:@"Use"];
+    } else {
+        [accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %dε", assetCost]];
+        [[buyButton titleLabel] setText:@"Buy"];
+    }
         
-	} else {
-		
-		//Retrieve ConscienceAsset
-		assetReview = [objects objectAtIndex:0];
-                
-		//Set UI labels
-		[accessoryNameLabel setText:[assetReview displayNameReference]];
-		[accessoryDescriptionLabel setText:[assetReview shortDescriptionReference]];        
-		assetCost = [[assetReview costAsset] intValue];
-        
-		//If ConscienceAsset is already owned, change verbiage of UI
-		if (isOwned) {
-			[accessoryCostLabel setText:@"Owned!"];
-			[[buyButton titleLabel] setText:@"Use"];
-		} else {
-            	[accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %dε", assetCost]];
-	            [[buyButton titleLabel] setText:@"Buy"];
-		}
-        
-		//Set UI image of Moral
-		[moralImageView setImage:[UIImage imageNamed:[[assetReview relatedMoral] imageNameMoral]]];
+    //Set UI image of Moral
+    [moralImageView setImage:[UIImage imageNamed:[currentAssetDAO readMoralImageName:@""]]];
 
-        assetFileName = [[NSString alloc] initWithString:[assetReview imageNameReference]];
-
-	}
-	
-	[request release];
-	//End CoreData Retrieval
+    assetFileName = [[NSString alloc] initWithString:[currentAssetDAO readImageName:@""]];
 	
 	//Save image name for when ConscienceAsset is no longer retained
 	/** @todo determine if Conscience update can be refactored */
 	currentFeature = [[NSString alloc] initWithString:assetFileName];
     [assetFileName release];
+    [currentAssetDAO release];                
     
     //Add requested ConscienceAsset to duplicate ConscienceView for review
 	switch (accessorySlot) {

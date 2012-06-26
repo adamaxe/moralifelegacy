@@ -115,8 +115,6 @@
 #pragma mark Private API
 - (Moral *)findPersistedObject:(NSString *)key {  
     
-
-    
     NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
     
     NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
