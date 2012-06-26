@@ -2,6 +2,9 @@
 
 @interface ConscienceAssetDAO : NSObject
 
+@property (nonatomic, assign) NSArray *sort;
+@property (nonatomic, assign) NSArray *predicate;
+
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 

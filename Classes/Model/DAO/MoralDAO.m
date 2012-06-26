@@ -6,7 +6,6 @@
 @interface MoralDAO ()
 
 - (Moral *)findPersistedObject:(NSString *)key;
-- (NSArray *)listPersistedObjects;
 
 @property (nonatomic, retain) NSString *currentType;
 @property (nonatomic, retain) NSManagedObjectContext *context;
@@ -115,6 +114,8 @@
 #pragma mark Private API
 - (Moral *)findPersistedObject:(NSString *)key {  
     
+    [self refreshData];
+    
     NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
     
     NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
@@ -133,11 +134,6 @@
     [self processObjects];
 }
 
-- (NSArray *)listPersistedObjects {
-    
-    return self.persistedObjects;
-}
-
 - (void)processObjects {
         
     [self.returnedNames removeAllObjects];
@@ -154,8 +150,7 @@
     
 }
 
-- (NSArray *)retrievePersistedObjects {
-    //Begin CoreData Retrieval			
+- (NSArray *)retrievePersistedObjects {	
 	NSError *outError;
 	
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:self.context];

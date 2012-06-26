@@ -7,7 +7,6 @@
 @interface ConscienceAssetDAO () 
 
 - (ConscienceAsset *)findPersistedObject:(NSString *)key;
-- (NSArray *)listPersistedObjects;
 
 @property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSManagedObjectContext *context;
@@ -23,6 +22,9 @@
 @end
 
 @implementation ConscienceAssetDAO 
+
+@synthesize sort = _sort;
+@synthesize predicate = _predicate;
 
 @synthesize currentKey = _currentKey;
 @synthesize context = _context;
@@ -49,6 +51,9 @@
     if (self) {
 
         _context = [[moralModelManager managedObjectContext] retain];
+        
+        _sort = [[NSSortDescriptor alloc] init];
+        _predicate = [[NSPredicate alloc] init];
                 
         if (key) {
             _currentKey = [[NSString alloc] initWithFormat:key];
@@ -121,6 +126,9 @@
 #pragma mark -
 #pragma mark Private API
 - (ConscienceAsset *)findPersistedObject:(NSString *)key {
+    
+    [self refreshData];
+    
     NSPredicate *findPred;
     NSArray *objects;
     
@@ -145,11 +153,6 @@
     [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
     
     [self processObjects];
-}
-
-
-- (NSArray *)listPersistedObjects {
-    return [self retrievePersistedObjects];
 }
 
 - (void)processObjects {
@@ -196,6 +199,8 @@
 }
 
 -(void)dealloc {
+    [_predicate release];
+    [_sort release];
     [_currentKey release];
     [_context release];
     [_returnedDetails release];
