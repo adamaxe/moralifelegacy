@@ -239,7 +239,11 @@
         [NSException raise:@"CoreDataFetchError" format:errorMessage];
     }
     
-    return [results objectAtIndex:0];
+    if ([results count] > 0) {
+        return [results objectAtIndex:0];
+    } else {
+        return nil;
+    }
 }
 
 

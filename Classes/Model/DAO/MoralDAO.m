@@ -6,11 +6,10 @@
 @interface MoralDAO ()
 
 - (Moral *)findPersistedObject:(NSString *)key;
-- (NSArray *)listPersistedObjects;
 
 @property (nonatomic, retain) NSString *currentType;
 @property (nonatomic, retain) NSManagedObjectContext *context;
-@property (nonatomic, retain) NSArray *persistedObjects;
+@property (nonatomic, retain) NSMutableArray *persistedObjects;
 @property (nonatomic, retain) NSMutableArray *returnedNames;
 @property (nonatomic, retain) NSMutableArray *returnedImageNames;
 @property (nonatomic, retain) NSMutableArray *returnedDetails;
@@ -22,6 +21,9 @@
 @end
 
 @implementation MoralDAO 
+
+@synthesize sorts = _sorts;
+@synthesize predicates = _predicates;
 
 @synthesize currentType = _currentType;
 @synthesize context = _context;
@@ -49,6 +51,9 @@
     if (self) {
         _context = [[moralModelManager managedObjectContext] retain];
         
+        _sorts = [[NSArray alloc] init];
+        _predicates = [[NSSet alloc] init];
+
         if (type) {
             _currentType = [[NSString alloc] initWithFormat:type];
         } else {
@@ -63,10 +68,9 @@
         
         _returnedDetails = [[NSMutableArray alloc] init];
         
-        _persistedObjects = [[NSArray alloc] initWithArray:[self retrievePersistedObjects]];
+        _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
         [self processObjects];
-                
     }
     
     return self;
@@ -93,24 +97,31 @@
 }
 
 - (NSArray *)readAllNames {
+    [self refreshData];
     return self.returnedNames;
 }
 
 - (NSArray *)readAllDisplayNames {    
+    [self refreshData];
     return self.returnedDisplayNames;
 }
 
 - (NSArray *)readAllImageNames {    
+    [self refreshData];
     return self.returnedImageNames;
 }
 
 - (NSArray *)readAllDetails {
+    [self refreshData];
     return self.returnedDetails;
 }
 
 #pragma mark -
 #pragma mark Private API
-- (Moral *)findPersistedObject:(NSString *)key {    
+- (Moral *)findPersistedObject:(NSString *)key {  
+        
+    [self refreshData];
+    
     NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
     
     NSArray *objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
@@ -122,13 +133,20 @@
     
 }
 
-- (NSArray *)listPersistedObjects {
+- (void)refreshData {
+    [self.persistedObjects removeAllObjects];
+    [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
     
-    return self.persistedObjects;
+    [self processObjects];
 }
 
 - (void)processObjects {
         
+    [self.returnedNames removeAllObjects];
+    [self.returnedImageNames removeAllObjects];
+    [self.returnedDisplayNames removeAllObjects];
+    [self.returnedDetails removeAllObjects];
+    
     for (Moral *match in self.persistedObjects){
         [self.returnedNames addObject:[match nameMoral]];
         [self.returnedImageNames addObject:[match imageNameMoral]];
@@ -138,8 +156,7 @@
     
 }
 
-- (NSArray *)retrievePersistedObjects {
-    //Begin CoreData Retrieval			
+- (NSArray *)retrievePersistedObjects {	
 	NSError *outError;
 	
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:self.context];
@@ -165,12 +182,15 @@
 }
 
 -(void)dealloc {
+    [_predicates release];
+    [_sorts release];
     [_currentType release];
     [_context release];
     [_returnedDetails release];
     [_returnedDisplayNames release];
     [_returnedImageNames release];
     [_returnedNames release];
+    [_persistedObjects release];
     [super dealloc];
 }
 

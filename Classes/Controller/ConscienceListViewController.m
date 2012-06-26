@@ -225,73 +225,60 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
 	
 	[request setEntity:entityAssetDesc];
 	
-	NSMutableString *value;
-	BOOL isCompound = FALSE;
+    NSMutableArray *predicate = [[NSMutableArray alloc] init];
 
 	//Determine which type of ConscienceAsset is requested	
 	switch (accessorySlot) {
 		case 0:
-			value = [NSMutableString stringWithString:@"top"];
+			[predicate addObject:@"top"];
 			break;
 		case 1:
-			value = [NSMutableString stringWithString:@"primary"];
-			isCompound = TRUE;
+			[predicate addObject:@"primary"];
+            [predicate addObject:@"side"];
 			break;
 		case 2:
-			value = [NSMutableString stringWithString:@"bottom"];
+			[predicate addObject:@"bottom"];
 			break;
 		case 3:
-			value = [NSMutableString stringWithString:@"secondary"];
-			isCompound = TRUE;
+			[predicate addObject:@"secondary"];
+            [predicate addObject:@"side"];
 			break;
 		case 4:
-			value = [NSMutableString stringWithString:@"eye"];
+			[predicate addObject:@"eye"];
 			break;
 		case 5:
-			value = [NSMutableString stringWithString:@"face"];
+			[predicate addObject:@"face"];
 			break;
 		case 6:
-			value = [NSMutableString stringWithString:@"mouth"];
+			[predicate addObject:@"mouth"];
 			break;
 		case 7:
-			value = [NSMutableString stringWithString:@"eyecolor"];
+			[predicate addObject:@"eyecolor"];
 			break;
 		case 8:
-			value = [NSMutableString stringWithString:@"browcolor"];
+			[predicate addObject:@"browcolor"];
 			break;
 		case 9:
-			value = [NSMutableString stringWithString:@"bubblecolor"];
+			[predicate addObject:@"bubblecolor"];
 			break;	
 		case 10:
-			value = [NSMutableString stringWithString:@"bubbletype"];
+			[predicate addObject:@"bubbletype"];
 			break;            
 		default:
-			value = [NSMutableString stringWithString:@""];
 			break;
 	}
-	
-	NSPredicate *pred;
-	
-	//Determine if compound predicate is needed for primary/secondary and side types
-	if (isCompound) {
-		pred = [NSPredicate predicateWithFormat:@"(orientationAsset like %@) OR (orientationAsset like 'side')", value];
-        
-	}else {
 		
-		pred = [NSPredicate predicateWithFormat:@"orientationAsset like %@", value];
-        
-	}
-	
-	[request setPredicate:pred];
+	[request setPredicate:[NSPredicate predicateWithFormat:@"orientationAsset in %@", predicate]];
+    [predicate release];
     
+    NSArray *objects = [context executeFetchRequest:request error:&outError];    
+
 	//Sort by type and then display name
 	NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 	NSSortDescriptor* sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"displayNameReference" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, sortDescriptor2, nil] autorelease];
-	[request setSortDescriptors:sortDescriptors];
     
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-
+    objects = [objects sortedArrayUsingDescriptors:sortDescriptors];
 	//Create raw result sets
 	choices = [[NSMutableArray alloc] initWithCapacity:[objects count]];
 	choiceImages = [[NSMutableArray alloc] initWithCapacity:[objects count]];

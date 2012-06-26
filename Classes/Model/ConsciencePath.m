@@ -9,7 +9,8 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 
 @implementation ConsciencePath
 
-@synthesize pathInstructions, pathPoints;
+@synthesize pathInstructions = _pathInstructions;
+@synthesize pathPoints = _pathPoints;
 @synthesize pathID, pathFillColor, pathStrokeColor, pathGradient;
 @synthesize pathStrokeWidth, pathFillOpacity, pathStrokeMiterLimit, pathStrokeOpacity;
 
@@ -27,8 +28,8 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 		[self setPathStrokeMiterLimit:kDefault0Float];
 		[self setPathStrokeOpacity:kDefault0Float];
 
-		pathPoints = [[NSMutableArray alloc] init];
-		pathInstructions = [[NSMutableArray alloc] init];		
+		_pathPoints = [[NSMutableArray alloc] init];
+		_pathInstructions = [[NSMutableArray alloc] init];		
     }
     return self;
 }
@@ -55,8 +56,8 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     
-	[encoder encodeObject:pathInstructions forKey:@"pathInstructions"];
-	[encoder encodeObject:pathPoints forKey:@"pathPoints"];
+	[encoder encodeObject:self.pathInstructions forKey:@"pathInstructions"];
+	[encoder encodeObject:self.pathPoints forKey:@"pathPoints"];
 	[encoder encodeObject:pathFillColor forKey:@"pathFillColor"];
 	[encoder encodeObject:pathStrokeColor forKey:@"pathStrokeColor"];    
 	[encoder encodeObject:pathID forKey:@"pathID"];
@@ -103,7 +104,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
             NSArray *points = [element componentsSeparatedByString: @","];
             
             for (int i = 0; i < [points count]; i++) {
-                [pathPoints addObject:[points objectAtIndex:i]];
+                [self.pathPoints addObject:[points objectAtIndex:i]];
                 pointCount++;
             }
             
@@ -149,7 +150,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 			//M=0, L=1, C=2, Q=3, A=4
 
             NSString *finalInstruction = [[NSString alloc] initWithString:previousInstruction];
-			[pathInstructions addObject:finalInstruction];
+			[self.pathInstructions addObject:finalInstruction];
             [finalInstruction release];
 				
 			//Reset counter for next instruction
@@ -223,8 +224,8 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 
 - (void) dealloc {
 
-	[pathInstructions release];pathInstructions = nil;
-	[pathPoints release];pathPoints = nil;
+	[_pathInstructions release];_pathInstructions = nil;
+	[_pathPoints release];_pathPoints = nil;
 	[pathID release];
 	[pathGradient release];
 	[pathFillColor release];
