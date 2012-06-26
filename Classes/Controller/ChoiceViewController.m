@@ -47,7 +47,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 	StructuredTextField *activeField;					/** temporary overloaded text field for determining active field */
 	
-	NSArray *severityLabelDescriptions;				/** list of localized severity descriptions */
+	NSMutableArray *severityLabelDescriptions;				/** list of localized severity descriptions */
 	
 	BOOL isVirtue;							/** determine if screen shown is virtue or vice */
 	BOOL isChoiceFinished;						/** determine if choice is complete */
@@ -140,6 +140,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     [[hideKeyboardButton titleLabel] setShadowOffset:CGSizeMake(0, -1)];
     
     [self.view addSubview: hideKeyboardButton];
+    
+    severityLabelDescriptions = [[NSMutableArray alloc] init];    
         
 	//User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
@@ -930,11 +932,12 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     
     //Populate severity arrays for descriptions to reflect good or bad choice
     //Localized string are keyed to accept the isVirtue BOOL as an int (Virtue = 1, Vice = 0)
-    severityLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]), @"Label for Severity Level 1"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%db", isVirtue]), @"Label for Severity Level 2"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dc", isVirtue]), @"Label for Severity Level 3"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]), @"Label for Severity Level 4"), 
-                                 NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%de", isVirtue]), @"Label for Severity Level 5"), nil];    
+    [severityLabelDescriptions removeAllObjects];
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]), @"Label for Severity Level 1")]; 
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%db", isVirtue]), @"Label for Severity Level 2")];
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dc", isVirtue]), @"Label for Severity Level 3")];
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]), @"Label for Severity Level 4")];
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%de", isVirtue]), @"Label for Severity Level 5")];    
 
 	[choiceTextField setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield")];
     

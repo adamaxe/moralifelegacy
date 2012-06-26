@@ -22,6 +22,9 @@
 
 @implementation MoralDAO 
 
+@synthesize sorts = _sorts;
+@synthesize predicates = _predicates;
+
 @synthesize currentType = _currentType;
 @synthesize context = _context;
 @synthesize persistedObjects = _persistedObjects;
@@ -48,6 +51,9 @@
     if (self) {
         _context = [[moralModelManager managedObjectContext] retain];
         
+        _sorts = [[NSArray alloc] init];
+        _predicates = [[NSSet alloc] init];
+
         if (type) {
             _currentType = [[NSString alloc] initWithFormat:type];
         } else {
@@ -113,7 +119,7 @@
 #pragma mark -
 #pragma mark Private API
 - (Moral *)findPersistedObject:(NSString *)key {  
-    
+        
     [self refreshData];
     
     NSPredicate *findPred = [NSPredicate predicateWithFormat:@"SELF.nameMoral == %@", key];
@@ -176,6 +182,8 @@
 }
 
 -(void)dealloc {
+    [_predicates release];
+    [_sorts release];
     [_currentType release];
     [_context release];
     [_returnedDetails release];

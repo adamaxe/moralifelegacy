@@ -28,7 +28,7 @@ Implementation:  We are parsing the svg's of the animatable facial features.  Ea
 
 @implementation XMLParser 
 
-@synthesize currentConscienceBody;
+@synthesize currentConscienceBody = _currentConscienceBody;
 @synthesize currentConscienceLayer = _currentConscienceLayer;
 
 #pragma mark -
@@ -133,29 +133,29 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 	if([elementName isEqualToString:@"g"]){
 		//Determine which ConscienceLayer path belongs
 		if (browFoundBool) {
-			[currentConscienceBody.browLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.browLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (bagsFoundBool) {
-			[currentConscienceBody.bagsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.bagsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (eyeFoundBool) {
-			[currentConscienceBody.eyeLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.eyeLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (lashesFoundBool) {
-			[currentConscienceBody.lashesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.lashesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (lidFoundBool) {
-			[currentConscienceBody.lidLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.lidLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (socketFoundBool) {
-			[currentConscienceBody.socketLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.socketLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (dimplesFoundBool) {
-			[currentConscienceBody.dimplesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.dimplesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (lipsFoundBool) {
-			[currentConscienceBody.lipsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.lipsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (teethFoundBool) {
-			[currentConscienceBody.teethLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.teethLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (tongueFoundBool) {
-			[currentConscienceBody.tongueLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.tongueLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (symbolFoundBool) {
-			[currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		} else if (positionFoundBool) {
-			[currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			[self.currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
 		}
 		
 	}
@@ -163,7 +163,7 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 	
 	if([elementName isEqualToString:@"linearGradient"]) {
 			//Gradient has been found
-			[currentConscienceBody.gradientLayers setObject: currentConscienceGradient forKey:currentConscienceGradient.gradientID];
+			[self.currentConscienceBody.gradientLayers setObject: currentConscienceGradient forKey:currentConscienceGradient.gradientID];
 			[currentConscienceGradient release];
 	}
 	
@@ -182,7 +182,8 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 
 - (void) dealloc {
     [pool drain];
-    [currentConscienceBody release];
+    [_currentConscienceBody release];
+    [_currentConscienceLayer release];
 	[super dealloc];
 }
 

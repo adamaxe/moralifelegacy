@@ -271,8 +271,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
 	[request setPredicate:[NSPredicate predicateWithFormat:@"orientationAsset in %@", predicate]];
     [predicate release];
     
-    
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+    NSArray *objects = [context executeFetchRequest:request error:&outError];    
 
 	//Sort by type and then display name
 	NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];

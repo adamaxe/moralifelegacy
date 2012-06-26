@@ -8,7 +8,9 @@ Implementation:  NSMutableArray of ConsciencePaths.
 
 @implementation ConscienceLayer
 
-@synthesize consciencePaths, layerID;
+//@synthesize consciencePaths, layerID;
+@synthesize consciencePaths = _consciencePaths;
+@synthesize layerID;
 @synthesize currentFillColor, currentStrokeColor;
 @synthesize offsetX, offsetY;
 
@@ -16,7 +18,7 @@ Implementation:  NSMutableArray of ConsciencePaths.
     self = [super init];
     if (self) {    
         //In case of first time run, or User does not supply configuration, default gradient
-        consciencePaths = [[NSMutableArray alloc] init];
+        _consciencePaths = [[NSMutableArray alloc] init];
 
         [self setCurrentFillColor:kPathColor];
         [self setCurrentStrokeColor:kPathColor];
@@ -47,7 +49,7 @@ Implementation:  NSMutableArray of ConsciencePaths.
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     
-	[encoder encodeObject:consciencePaths forKey:@"consciencePaths"];
+	[encoder encodeObject:self.consciencePaths forKey:@"consciencePaths"];
 	[encoder encodeObject:layerID forKey:@"layerID"];
 	[encoder encodeObject:currentFillColor forKey:@"currentFillColor"];
 	[encoder encodeObject:currentStrokeColor forKey:@"currentStrokeColor"];    
@@ -58,8 +60,8 @@ Implementation:  NSMutableArray of ConsciencePaths.
 
 - (void) dealloc {
 
-    [consciencePaths removeAllObjects];
-	[consciencePaths release];consciencePaths = nil;
+    [_consciencePaths removeAllObjects];
+	[_consciencePaths release];_consciencePaths = nil;
 	[layerID release];
 	[currentFillColor release];
 	[currentStrokeColor release];

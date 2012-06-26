@@ -23,8 +23,8 @@
 
 @implementation ConscienceAssetDAO 
 
-@synthesize sort = _sort;
-@synthesize predicate = _predicate;
+@synthesize sorts = _sorts;
+@synthesize predicates = _predicates;
 
 @synthesize currentKey = _currentKey;
 @synthesize context = _context;
@@ -52,8 +52,8 @@
 
         _context = [[moralModelManager managedObjectContext] retain];
         
-        _sort = [[NSSortDescriptor alloc] init];
-        _predicate = [[NSPredicate alloc] init];
+        _sorts = [[NSArray alloc] init];
+        _predicates = [[NSSet alloc] init];
                 
         if (key) {
             _currentKey = [[NSString alloc] initWithFormat:key];
@@ -199,8 +199,8 @@
 }
 
 -(void)dealloc {
-    [_predicate release];
-    [_sort release];
+    [_predicates release];
+    [_sorts release];
     [_currentKey release];
     [_context release];
     [_returnedDetails release];
