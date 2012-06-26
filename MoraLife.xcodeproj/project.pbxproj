@@ -260,6 +260,7 @@
 		5E47705A13453F0600EE3EDD /* ref-jackierobinson.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705513453F0600EE3EDD /* ref-jackierobinson.jpg */; };
 		5E47705B13453F0600EE3EDD /* ref-williamwallace-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705613453F0600EE3EDD /* ref-williamwallace-sm.png */; };
 		5E47705C13453F0600EE3EDD /* ref-williamwallace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */; };
+		5E4804C015992B7D00E27E88 /* TestConscienceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4804BF15992B7D00E27E88 /* TestConscienceDAO.m */; };
 		5E480861137E4E2500C1E0CF /* Moral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E480860137E4E2500C1E0CF /* Moral.m */; };
 		5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
@@ -1953,6 +1954,7 @@
 		5E47705513453F0600EE3EDD /* ref-jackierobinson.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-jackierobinson.jpg"; path = "Resources/images/reference/ref-jackierobinson.jpg"; sourceTree = "<group>"; };
 		5E47705613453F0600EE3EDD /* ref-williamwallace-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-williamwallace-sm.png"; path = "Resources/images/reference/ref-williamwallace-sm.png"; sourceTree = "<group>"; };
 		5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-williamwallace.jpg"; path = "Resources/images/reference/ref-williamwallace.jpg"; sourceTree = "<group>"; };
+		5E4804BF15992B7D00E27E88 /* TestConscienceDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConscienceDAO.m; sourceTree = "<group>"; };
 		5E48085F137E4E2500C1E0CF /* Moral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moral.h; sourceTree = "<group>"; };
 		5E480860137E4E2500C1E0CF /* Moral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moral.m; sourceTree = "<group>"; };
 		5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAssetDAO.h; sourceTree = "<group>"; };
@@ -4374,6 +4376,7 @@
 			isa = PBXGroup;
 			children = (
 				5E5761401595975600E14606 /* TestMoralDAO.m */,
+				5E4804BF15992B7D00E27E88 /* TestConscienceDAO.m */,
 			);
 			name = DAO;
 			path = Model/DAO;
@@ -7229,6 +7232,7 @@
 				5E5761411595975600E14606 /* TestMoralDAO.m in Sources */,
 				5EB2FEDD1596849600CAF1DD /* MoraLifeBaseUnitTest.m in Sources */,
 				5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
+				5E4804C015992B7D00E27E88 /* TestConscienceDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

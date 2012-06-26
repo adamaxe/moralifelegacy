@@ -113,34 +113,55 @@
 
 - (void)testNSManagedObjectCanBeCreated {
     
-    testMoral1 = [testingSubject create:Moral.class];
-    testMoral1.shortDescriptionMoral = moralTypeVirtue;
-    testMoral1.nameMoral = nameMoral1;
-    testMoral1.imageNameMoral = imageName;
-    testMoral1.colorMoral = color;
-    testMoral1.displayNameMoral = displayName;
-    testMoral1.longDescriptionMoral = longDescription;
-    testMoral1.component = component;
-    testMoral1.linkMoral = link;
-    testMoral1.definitionMoral = definition;
+    Moral *testMoral4 = [testingSubject create:Moral.class];
+    testMoral4.shortDescriptionMoral = moralTypeVirtue;
+    testMoral4.nameMoral = @"nameMoral4";
+    testMoral4.imageNameMoral = imageName;
+    testMoral4.colorMoral = color;
+    testMoral4.displayNameMoral = displayName;
+    testMoral4.longDescriptionMoral = longDescription;
+    testMoral4.component = component;
+    testMoral4.linkMoral = link;
+    testMoral4.definitionMoral = definition;
     
-    STAssertNoThrow([testingSubject saveContext], @"NSManagedObject can't be created.");
+    STAssertNoThrow([testingSubject saveContext], @"Object can't be created.");
+
+    NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
+        
+    STAssertTrue([retrievedMorals containsObject:testMoral4], @"Created Object is not in the returned array.");
+
 }
 
-//- (void)testNSManagedObjectCanBeFetched {
-//        
-//    Moral *retrievedMoral = [testingSubject read:testMoral1.class withKey:@"nameMoral" andValue:nameMoral1];
-//    STAssertNotNil(retrievedMoral, @"NSManagedObject can't be created.");
-//    STAssertEqualObjects([retrievedMoral nameMoral], nameMoral1, @"Retrieved name incorrect.");
-//
-//}
+- (void)testAllNSManagedObjectsCanBeRead {
+        
+    NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
 
-//- (void)testNSManagedObjectCanBeDeleted {
-//    [testingSubject delete:testMoral3];
-//    
-//    Moral *retrievedMoral = [testingSubject read:testMoral1.class withKey:@"nameMoral" andValue:nameMoral3];
-//    STAssertNil(retrievedMoral, @"NSManagedObject can't be deleted.");    
-//}
+    STAssertNotNil(retrievedMorals, @"Objects can't be read.");
+    
+    int count = [retrievedMorals count];
+    STAssertEquals(count, 3, @"The amount of NSManagedObjects is wrong.");
+}
+
+- (void)testAllReturnedNSManagedObjectsAreCorrect {
+    
+    NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
+    
+    STAssertNotNil(retrievedMorals, @"Objects can't be read.");
+    
+    STAssertTrue([retrievedMorals containsObject:testMoral1], @"1st Object is not in the returned array.");
+    STAssertTrue([retrievedMorals containsObject:testMoral2], @"2nd Object is not in the returned array.");
+    STAssertTrue([retrievedMorals containsObject:testMoral3], @"3rd Object not in the returned array.");
+    
+}
+
+- (void)testNSManagedObjectCanBeDeleted {
+    [testingSubject delete:testMoral3];
+    [testingSubject saveContext];
+    
+    NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
+    STAssertFalse([retrievedMorals containsObject:testMoral3], @"Object was not deleted.");
+
+}
 
 @end
 
