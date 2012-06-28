@@ -240,7 +240,7 @@
     
     [testModelManager saveContext];
     
-    NSArray *details = [testingSubject readAllDetails];
+    NSArray *details = [testingSubject readAllLongDescriptions];
 
     STAssertTrue([details containsObject:longDescription], @"1st longDescription couldn't be read.");
     STAssertTrue([details containsObject:longDescription2], @"2nd longDescription couldn't be read.");

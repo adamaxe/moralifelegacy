@@ -15,6 +15,7 @@ User can filter list by only things that are affordable to currentFunds.
 #import "UserCollectable.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
+#import "ConscienceAssetDAO.h"
 
 @interface ConscienceListViewController () <ViewControllerLocalization> {
     
@@ -24,11 +25,11 @@ User can filter list by only things that are affordable to currentFunds.
     
 	NSMutableArray *searchedData;			/**< array for matched data from User search */
     
-	NSMutableArray *choices;			/**< unfiltered list of assets */
-	NSMutableArray *choiceIDs;			/**< unfiltered list of asset pkeys */
-	NSMutableArray *choiceCosts;			/**< unfiltered list of asset costs */
-	NSMutableArray *choiceSubtitles;		/**< unfiltered list of asset descriptions */
-	NSMutableArray *choiceImages;			/**< unfiltered list of asset images */
+	NSArray *choices;			/**< unfiltered list of assets */
+	NSArray *choiceIDs;			/**< unfiltered list of asset pkeys */
+	NSArray *choiceCosts;			/**< unfiltered list of asset costs */
+	NSArray *choiceSubtitles;		/**< unfiltered list of asset descriptions */
+	NSArray *choiceImages;			/**< unfiltered list of asset images */
 	
 	NSMutableArray *dataSource;             /**< array for filtering raw data without having to re-query */
 	NSMutableArray *tableData;              /**< array for filtering data displayed in table populated from dataSource */
@@ -216,101 +217,77 @@ Implementation: Pop UIViewController from stack
 Implementation: Retrieve all available ConscienceAssets, and then populate a working set of data containers upon which to filter.
  */
 - (void) retrieveAllSelections{
-
-	//Begin CoreData Retrieval	
-	NSError *outError;
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:context];
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	
-	[request setEntity:entityAssetDesc];
-	
-    NSMutableArray *predicate = [[NSMutableArray alloc] init];
-
+    
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] init];
+    
+    NSMutableArray *predicateArguments = [[NSMutableArray alloc] init];
+    
 	//Determine which type of ConscienceAsset is requested	
 	switch (accessorySlot) {
 		case 0:
-			[predicate addObject:@"top"];
+			[predicateArguments addObject:@"top"];
 			break;
 		case 1:
-			[predicate addObject:@"primary"];
-            [predicate addObject:@"side"];
+			[predicateArguments addObject:@"primary"];
+            [predicateArguments addObject:@"side"];
 			break;
 		case 2:
-			[predicate addObject:@"bottom"];
+			[predicateArguments addObject:@"bottom"];
 			break;
 		case 3:
-			[predicate addObject:@"secondary"];
-            [predicate addObject:@"side"];
+			[predicateArguments addObject:@"secondary"];
+            [predicateArguments addObject:@"side"];
 			break;
 		case 4:
-			[predicate addObject:@"eye"];
+			[predicateArguments addObject:@"eye"];
 			break;
 		case 5:
-			[predicate addObject:@"face"];
+			[predicateArguments addObject:@"face"];
 			break;
 		case 6:
-			[predicate addObject:@"mouth"];
+			[predicateArguments addObject:@"mouth"];
 			break;
 		case 7:
-			[predicate addObject:@"eyecolor"];
+			[predicateArguments addObject:@"eyecolor"];
 			break;
 		case 8:
-			[predicate addObject:@"browcolor"];
+			[predicateArguments addObject:@"browcolor"];
 			break;
 		case 9:
-			[predicate addObject:@"bubblecolor"];
+			[predicateArguments addObject:@"bubblecolor"];
 			break;	
 		case 10:
-			[predicate addObject:@"bubbletype"];
+			[predicateArguments addObject:@"bubbletype"];
 			break;            
 		default:
 			break;
 	}
-		
-	[request setPredicate:[NSPredicate predicateWithFormat:@"orientationAsset in %@", predicate]];
-    [predicate release];
     
-    NSArray *objects = [context executeFetchRequest:request error:&outError];    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientationAsset in %@", predicateArguments];
+    [predicateArguments release];
 
-	//Sort by type and then display name
+    NSArray *predicateArray = [[NSArray alloc] initWithObjects:predicate, nil];
+    
 	NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 	NSSortDescriptor* sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"displayNameReference" ascending:YES];
-	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, sortDescriptor2, nil] autorelease];
-    
-    objects = [objects sortedArrayUsingDescriptors:sortDescriptors];
-	//Create raw result sets
-	choices = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-	choiceImages = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-	choiceSubtitles = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-	choiceIDs = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-	choiceCosts = [[NSMutableArray alloc] initWithCapacity:[objects count]];
-    
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
-		for (ConscienceAsset *matches in objects){
-            
-			[choiceIDs addObject:[matches nameReference]];
-			[choices addObject:[matches displayNameReference]];
-			[choiceImages addObject:[matches imageNameReference]];
-			[choiceCosts addObject:[matches costAsset]];
-            
-			//Determine if item is already owned, display owned, or cost if unowned
-			//@todo localize
-			if ([appDelegate.userCollection containsObject:[matches nameReference]]){
-				[choiceSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", [matches shortDescriptionReference]]];
-			} else {
-				[choiceSubtitles addObject:[NSString stringWithFormat:@"%dε - %@", [[matches costAsset] intValue], [matches shortDescriptionReference]]];
-			}
-			
-		}
-	}
-	
-	[sortDescriptor1 release];
+	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor1, sortDescriptor2, nil];
+    [sortDescriptor1 release];
 	[sortDescriptor2 release];
-	[request release];
+    
+	[currentAssetDAO setPredicates:predicateArray];
+    [currentAssetDAO setSorts:sortDescriptors];
+    
+    [predicateArray release];
+    [sortDescriptors release];
+    
+    choiceIDs = [[NSArray alloc] initWithArray:[currentAssetDAO readAllNames]];			
+	choiceImages = [[NSArray alloc] initWithArray:[currentAssetDAO readAllImageNames]];			
+	choiceCosts = [[NSArray alloc] initWithArray:[currentAssetDAO readAllCosts]];
+	choices = [[NSArray alloc] initWithArray:[currentAssetDAO readAllDisplayNames]];
+    choiceSubtitles = [[NSArray alloc] initWithArray:[currentAssetDAO readAllSubtitles]];
+    
+    [currentAssetDAO release];
+
 	//End CoreData Retrieval
 	
 	//Populate searchable data sets with raw results

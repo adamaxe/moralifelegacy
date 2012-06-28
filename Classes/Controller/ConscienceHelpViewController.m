@@ -53,7 +53,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 @implementation ConscienceHelpViewController
 
-@synthesize viewControllerClassName;
+@synthesize viewControllerClassName = _viewControllerClassName;
 @synthesize helpTitles, helpTexts;
 @synthesize helpVersion;
 @synthesize isConscienceOnScreen;
@@ -64,7 +64,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        viewControllerClassName = nil;
+        _viewControllerClassName = [[NSString alloc] init];
     }
     
     return self;
@@ -88,7 +88,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	
 	[super viewWillAppear:animated];
     
-    if (self.viewControllerClassName) {
+    if (![self.viewControllerClassName isEqualToString:@""]) {
 
         NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
         NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
@@ -412,6 +412,7 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 
 
 - (void)dealloc {
+    [_viewControllerClassName release];
     [helpTitles release];
     [helpTexts release];
 

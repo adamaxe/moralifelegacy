@@ -13,8 +13,11 @@
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 @property (nonatomic, retain) NSMutableArray *returnedNames;
 @property (nonatomic, retain) NSMutableArray *returnedImageNames;
-@property (nonatomic, retain) NSMutableArray *returnedDetails;
+@property (nonatomic, retain) NSMutableArray *returnedShortDescriptions;
+@property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
 @property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
+@property (nonatomic, retain) NSMutableArray *returnedCosts;
+@property (nonatomic, retain) NSMutableArray *returnedSubtitles;
 
 - (NSArray *)retrievePersistedObjects;
 - (void)processObjects;
@@ -31,8 +34,12 @@
 @synthesize persistedObjects = _persistedObjects;
 @synthesize returnedNames = _returnedNames;
 @synthesize returnedImageNames = _returnedImageNames;
-@synthesize returnedDetails = _returnedDetails;
+@synthesize returnedShortDescriptions = _returnedShortDescriptions;
+@synthesize returnedLongDescriptions = _returnedLongDescriptions;
 @synthesize returnedDisplayNames = _returnedDisplayNames;
+@synthesize returnedCosts = _returnedCosts;
+@synthesize returnedSubtitles = _returnedSubtitles;
+
 
 - (id) init {
     return [self initWithKey:nil];
@@ -53,7 +60,7 @@
         _context = [[moralModelManager managedObjectContext] retain];
         
         _sorts = [[NSArray alloc] init];
-        _predicates = [[NSSet alloc] init];
+        _predicates = [[NSArray alloc] init];
                 
         if (key) {
             _currentKey = [[NSString alloc] initWithFormat:key];
@@ -62,13 +69,13 @@
         }
                 
         _returnedNames =  [[NSMutableArray alloc] init];
-        
         _returnedImageNames = [[NSMutableArray alloc] init];
-        
         _returnedDisplayNames = [[NSMutableArray alloc] init];
-        
-        _returnedDetails = [[NSMutableArray alloc] init];
-        
+        _returnedLongDescriptions = [[NSMutableArray alloc] init];
+        _returnedShortDescriptions = [[NSMutableArray alloc] init];
+        _returnedCosts = [[NSMutableArray alloc] init];
+        _returnedSubtitles = [[NSMutableArray alloc] init];
+
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
         [self processObjects];
@@ -77,10 +84,6 @@
     
     return self;
     
-}
-
-- (int)readCost:(NSString *)key {
-    return [[self findPersistedObject:key].costAsset intValue];
 }
 
 - (NSString *)readShortDescription:(NSString *)key {
@@ -103,6 +106,10 @@
     return [[[self findPersistedObject:key] relatedMoral] imageNameMoral];    
 }
 
+- (NSNumber *)readCost:(NSString *)key {
+    return [[self findPersistedObject:key] costAsset];    
+}
+
 - (NSArray *)readAllNames {
     [self refreshData];    
     return self.returnedNames;
@@ -118,9 +125,24 @@
     return self.returnedImageNames;
 }
 
-- (NSArray *)readAllDetails {
+- (NSArray *)readAllShortDescriptions {
     [self refreshData];    
-    return self.returnedDetails;
+    return self.returnedShortDescriptions;
+}
+
+- (NSArray *)readAllLongDescriptions {
+    [self refreshData];    
+    return self.returnedLongDescriptions;
+}
+
+- (NSArray *)readAllCosts {
+    [self refreshData];    
+    return self.returnedCosts;
+}
+
+- (NSArray *)readAllSubtitles {
+    [self refreshData];    
+    return self.returnedSubtitles;
 }
 
 #pragma mark -
@@ -160,13 +182,28 @@
     [self.returnedNames removeAllObjects];
     [self.returnedImageNames removeAllObjects];
     [self.returnedDisplayNames removeAllObjects];
-    [self.returnedDetails removeAllObjects];    
-        
+    [self.returnedShortDescriptions removeAllObjects];    
+    [self.returnedLongDescriptions removeAllObjects];    
+    [self.returnedCosts removeAllObjects];  
+    [self.returnedSubtitles removeAllObjects];    
+    
+    
     for (ConscienceAsset *match in self.persistedObjects){
         [self.returnedNames addObject:[match nameReference]];
         [self.returnedImageNames addObject:[match imageNameReference]];
         [self.returnedDisplayNames addObject:[match displayNameReference]];
-        [self.returnedDetails addObject:[match longDescriptionReference]];			
+        [self.returnedCosts addObject:[match costAsset]];
+		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
+        [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
+
+        MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        if ([appDelegate.userCollection containsObject:[match nameReference]]){
+            [self.returnedSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", [match shortDescriptionReference]]];
+        } else {
+            [self.returnedSubtitles addObject:[NSString stringWithFormat:@"%dε - %@", [[match costAsset] intValue], [match shortDescriptionReference]]];
+        }
+
     }
     
 }
@@ -178,18 +215,30 @@
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
-
+    
+    NSMutableArray *currentPredicates = [[NSMutableArray alloc] initWithArray:self.predicates];
+    
     if (![self.currentKey isEqualToString:@""]) {
 
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameReference == %@", self.currentKey];
-        [request setPredicate:pred];
+        [currentPredicates addObject:pred];
     }
-	
-	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameReference" ascending:YES];
-	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptor release];
-	
+    
+    NSPredicate *currentPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:currentPredicates];
+    [request setPredicate:currentPredicate];
+
+    [currentPredicates release];
+
+	if (self.sorts.count > 0) {
+        [request setSortDescriptors:self.sorts];
+    } else {
+        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameReference" ascending:YES];
+        NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+        [request setSortDescriptors:sortDescriptors];
+        [sortDescriptor release];
+        [sortDescriptors release];
+    }
+    
 	NSArray *objects = [self.context executeFetchRequest:request error:&outError];
     	
 	[request release];
@@ -203,10 +252,13 @@
     [_sorts release];
     [_currentKey release];
     [_context release];
-    [_returnedDetails release];
+    [_returnedShortDescriptions release];
+    [_returnedLongDescriptions release];
+    [_returnedSubtitles release];
     [_returnedDisplayNames release];
     [_returnedImageNames release];
     [_returnedNames release];
+    [_returnedCosts release];
     [_persistedObjects release];
     [super dealloc];
 }
