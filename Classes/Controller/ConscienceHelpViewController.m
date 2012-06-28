@@ -88,7 +88,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	
 	[super viewWillAppear:animated];
     
-    if (self.viewControllerClassName) {
+    if (![self.viewControllerClassName isEqualToString:@""]) {
 
         NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
         NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
