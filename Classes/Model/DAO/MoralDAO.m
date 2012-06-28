@@ -12,7 +12,7 @@
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 @property (nonatomic, retain) NSMutableArray *returnedNames;
 @property (nonatomic, retain) NSMutableArray *returnedImageNames;
-@property (nonatomic, retain) NSMutableArray *returnedDetails;
+@property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
 @property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
 
 - (NSArray *)retrievePersistedObjects;
@@ -30,7 +30,7 @@
 @synthesize persistedObjects = _persistedObjects;
 @synthesize returnedNames = _returnedNames;
 @synthesize returnedImageNames = _returnedImageNames;
-@synthesize returnedDetails = _returnedDetails;
+@synthesize returnedLongDescriptions = _returnedDetails;
 @synthesize returnedDisplayNames = _returnedDisplayNames;
 
 - (id)init {    
@@ -52,7 +52,7 @@
         _context = [[moralModelManager managedObjectContext] retain];
         
         _sorts = [[NSArray alloc] init];
-        _predicates = [[NSSet alloc] init];
+        _predicates = [[NSArray alloc] init];
 
         if (type) {
             _currentType = [[NSString alloc] initWithFormat:type];
@@ -61,13 +61,9 @@
         }
         
         _returnedNames =  [[NSMutableArray alloc] init];
-        
         _returnedImageNames = [[NSMutableArray alloc] init];
-
         _returnedDisplayNames = [[NSMutableArray alloc] init];
-        
         _returnedDetails = [[NSMutableArray alloc] init];
-        
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
         [self processObjects];
@@ -111,9 +107,9 @@
     return self.returnedImageNames;
 }
 
-- (NSArray *)readAllDetails {
+- (NSArray *)readAllLongDescriptions {
     [self refreshData];
-    return self.returnedDetails;
+    return self.returnedLongDescriptions;
 }
 
 #pragma mark -
@@ -145,13 +141,13 @@
     [self.returnedNames removeAllObjects];
     [self.returnedImageNames removeAllObjects];
     [self.returnedDisplayNames removeAllObjects];
-    [self.returnedDetails removeAllObjects];
+    [self.returnedLongDescriptions removeAllObjects];
     
     for (Moral *match in self.persistedObjects){
         [self.returnedNames addObject:[match nameMoral]];
         [self.returnedImageNames addObject:[match imageNameMoral]];
         [self.returnedDisplayNames addObject:[match displayNameMoral]];
-        [self.returnedDetails addObject:[match longDescriptionMoral]];			
+        [self.returnedLongDescriptions addObject:[match longDescriptionMoral]];			
     }
     
 }

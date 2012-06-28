@@ -131,7 +131,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
     //Set UI labels
     [accessoryNameLabel setText:[currentAssetDAO readDisplayName:@""]];
     [accessoryDescriptionLabel setText:[currentAssetDAO readShortDescription:@""]];        
-    assetCost = [currentAssetDAO readCost:@""];
+    assetCost = [[currentAssetDAO readCost:@""] intValue];
     
     //If ConscienceAsset is already owned, change verbiage of UI
     if (isOwned) {

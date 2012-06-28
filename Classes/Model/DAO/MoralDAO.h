@@ -3,7 +3,7 @@
 @interface MoralDAO : NSObject
 
 @property (nonatomic, retain) NSArray *sorts;
-@property (nonatomic, retain) NSSet *predicates;
+@property (nonatomic, retain) NSArray *predicates;
 
 - (id)initWithType:(NSString *)type;
 - (id)initWithType:(NSString *)type andModelManager:(ModelManager *)moralModelManager;
@@ -17,6 +17,6 @@
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
 - (NSArray *)readAllImageNames;
-- (NSArray *)readAllDetails;
+- (NSArray *)readAllLongDescriptions;
 
 @end
