@@ -1,4 +1,4 @@
-@class ConscienceAsset, ModelManager;
+@class ModelManager;
 
 @interface ConscienceAssetDAO : NSObject
 

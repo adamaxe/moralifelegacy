@@ -1400,6 +1400,8 @@
 		5EB76149123EE9860063C15A /* ReportPieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB76148123EE9860063C15A /* ReportPieView.xib */; };
 		5EB7D36513861EAA0050DD1A /* sur-sheetmusicbass-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7D36413861EAA0050DD1A /* sur-sheetmusicbass-sm.png */; };
 		5EB7D36713861EB60050DD1A /* sur-sheetmusicbass.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EB7D36613861EB60050DD1A /* sur-sheetmusicbass.png */; };
+		5EB832FB159D49CD002A3417 /* ReferenceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB832FA159D49CD002A3417 /* ReferenceAssetDAO.m */; };
+		5EB832FC159D49CD002A3417 /* ReferenceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB832FA159D49CD002A3417 /* ReferenceAssetDAO.m */; };
 		5EB9BE9212FD1FEC00584F67 /* ConscienceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9BE8D12FD1FEB00584F67 /* ConscienceHelpView.xib */; };
 		5EB9BE9312FD1FEC00584F67 /* LuckListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9BE8E12FD1FEB00584F67 /* LuckListView.xib */; };
 		5EB9BE9412FD1FEC00584F67 /* LuckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9BE8F12FD1FEB00584F67 /* LuckView.xib */; };
@@ -3085,6 +3087,8 @@
 		5EB76148123EE9860063C15A /* ReportPieView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReportPieView.xib; path = Resources/ReportPieView.xib; sourceTree = "<group>"; };
 		5EB7D36413861EAA0050DD1A /* sur-sheetmusicbass-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-sheetmusicbass-sm.png"; sourceTree = "<group>"; };
 		5EB7D36613861EB60050DD1A /* sur-sheetmusicbass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-sheetmusicbass.png"; sourceTree = "<group>"; };
+		5EB832F9159D49CD002A3417 /* ReferenceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceAssetDAO.h; sourceTree = "<group>"; };
+		5EB832FA159D49CD002A3417 /* ReferenceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceAssetDAO.m; sourceTree = "<group>"; };
 		5EB9BE8D12FD1FEB00584F67 /* ConscienceHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConscienceHelpView.xib; path = Resources/ConscienceHelpView.xib; sourceTree = "<group>"; };
 		5EB9BE8E12FD1FEB00584F67 /* LuckListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LuckListView.xib; path = Resources/LuckListView.xib; sourceTree = "<group>"; };
 		5EB9BE8F12FD1FEB00584F67 /* LuckView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LuckView.xib; path = Resources/LuckView.xib; sourceTree = "<group>"; };
@@ -5389,6 +5393,8 @@
 				5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */,
 				5EFC5A0C15940F5000E11A71 /* MoralDAO.h */,
 				5EFC5A0D15940F5000E11A71 /* MoralDAO.m */,
+				5EB832F9159D49CD002A3417 /* ReferenceAssetDAO.h */,
+				5EB832FA159D49CD002A3417 /* ReferenceAssetDAO.m */,
 			);
 			name = DAO;
 			path = Model/DAO;
@@ -7139,6 +7145,7 @@
 				5EA26D661584351500CDA802 /* ModelManager.m in Sources */,
 				5EFC5A0E15940F5000E11A71 /* MoralDAO.m in Sources */,
 				5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
+				5EB832FB159D49CD002A3417 /* ReferenceAssetDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7233,6 +7240,7 @@
 				5EB2FEDD1596849600CAF1DD /* MoraLifeBaseUnitTest.m in Sources */,
 				5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
 				5E4804C015992B7D00E27E88 /* TestConscienceDAO.m in Sources */,
+				5EB832FC159D49CD002A3417 /* ReferenceAssetDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

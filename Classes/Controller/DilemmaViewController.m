@@ -22,7 +22,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "UserDilemma.h"
 #import "UserCollectable.h"
 #import "ReferencePerson.h"
-#import "ReferenceAsset.h"
+#import "ReferenceAssetDAO.h"
 #import "UserChoice.h"
 #import "UserCharacter.h"
 #import "ViewControllerLocalization.h"
@@ -598,19 +598,14 @@ Calculate changes to User's ethicals.  Limit to 999.
 		//ConscienceAsset rewarded, process, use small moralRewardImage
 		[ethicalRewardLabel setAlpha:0];
         
-		NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceAsset" inManagedObjectContext:context];
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		[request setEntity:entityAssetDesc];
+        ReferenceAssetDAO *currentReferenceDAO = [[ReferenceAssetDAO alloc] initWithKey:selectedReward];
         
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameReference == %@", selectedReward];
-		[request setPredicate:pred];
+		[moralSelectedRewardLabel setText:[NSString stringWithString:[currentReferenceDAO readDisplayName:@""]]];
         
-		NSArray *objects = [context executeFetchRequest:request error:&outError];
-		ReferenceAsset *currentAssetReward = [objects objectAtIndex:0];
-		[moralSelectedRewardLabel setText:[NSString stringWithString:[currentAssetReward displayNameReference]]];
+		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentReferenceDAO readDisplayName:@""]]]];
         
-		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentAssetReward imageNameReference]]]];
-        
+        [currentReferenceDAO release];
+                
 		UserCollectable *currentUserCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
         
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
@@ -620,7 +615,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[context assignObject:currentUserCollectable toPersistentStore:readWriteStore];
         
 		[appDelegate.userCollection addObject:selectedReward];
-		[request release];
 	}
     
 	//Reward ethicals
