@@ -569,8 +569,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 		//ReferencePerson rewarded, process, use large moralRewardImage
 		[ethicalRewardLabel setAlpha:0];
         
-        
-        
         ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:selectedReward];
         
         [moralSelectedRewardLabel setText:[NSString stringWithString:[currentPersonDAO readImageName:@""]]];

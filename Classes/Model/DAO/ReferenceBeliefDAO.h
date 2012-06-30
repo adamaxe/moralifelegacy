@@ -1,4 +1,4 @@
-@class ModelManager;
+@class ModelManager, ReferencePersonDAO;
 
 @interface ReferenceBeliefDAO : NSObject
 
@@ -13,6 +13,8 @@
 - (NSString *)readDisplayName:(NSString *)key;
 - (NSString *)readImageName:(NSString *)key;
 - (NSString *)readLink:(NSString *)key;
+- (NSString *)readLink:(NSString *)key;
+- (ReferencePersonDAO *)readPerson:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
@@ -20,5 +22,6 @@
 - (NSArray *)readAllLongDescriptions;
 - (NSArray *)readAllShortDescriptions;
 - (NSArray *)readAllLinks;
+- (NSArray *)readAllPeople;
 
 @end

@@ -2,6 +2,8 @@
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ReferenceBelief.h"
+#import "ReferencePerson.h"
+#import "ReferencePersonDAO.h"
 
 @interface ReferenceBeliefDAO () 
 
@@ -16,6 +18,8 @@
 @property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
 @property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
 @property (nonatomic, retain) NSMutableArray *returnedLinks;
+@property (nonatomic, retain) NSMutableArray *returnedPeople;
+
 
 - (NSArray *)retrievePersistedObjects;
 - (void)processObjects;
@@ -36,6 +40,8 @@
 @synthesize returnedLongDescriptions = _returnedLongDescriptions;
 @synthesize returnedDisplayNames = _returnedDisplayNames;
 @synthesize returnedLinks = _returnedLinks;
+@synthesize returnedPeople = _returnedPeople;
+
 
 - (id) init {
     return [self initWithKey:nil];
@@ -70,7 +76,8 @@
         _returnedLongDescriptions = [[NSMutableArray alloc] init];
         _returnedShortDescriptions = [[NSMutableArray alloc] init];
         _returnedLinks = [[NSMutableArray alloc] init];
-
+        _returnedPeople = [[NSMutableArray alloc] init];
+        
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
         [self processObjects];
@@ -101,6 +108,14 @@
     return [[self findPersistedObject:key] linkReference];    
 }
 
+- (ReferencePersonDAO *)readPerson:(NSString *)key {
+    
+    ReferencePersonDAO *currentPersonDAO = [[[ReferencePersonDAO alloc] initWithKey:[[[self findPersistedObject:key] figurehead] nameReference]] autorelease];
+        
+    return currentPersonDAO;    
+}
+
+
 - (NSArray *)readAllNames {
     [self refreshData];    
     return self.returnedNames;
@@ -130,6 +145,12 @@
     [self refreshData];    
     return self.returnedLinks;
 }
+
+- (NSArray *)readAllPeople {
+    [self refreshData];    
+    return self.returnedPeople;
+}
+
 
 #pragma mark -
 #pragma mark Private API
@@ -171,7 +192,7 @@
     [self.returnedShortDescriptions removeAllObjects];    
     [self.returnedLongDescriptions removeAllObjects];    
     [self.returnedLinks removeAllObjects];  
-    
+    [self.returnedPeople removeAllObjects];  
     
     for (ReferenceBelief *match in self.persistedObjects){
         [self.returnedNames addObject:[match nameReference]];
@@ -181,6 +202,10 @@
 		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
         [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
 
+        ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:[[match figurehead] nameReference]];
+
+        [self.returnedPeople addObject:currentPersonDAO];
+        [currentPersonDAO release];
     }
     
 }
