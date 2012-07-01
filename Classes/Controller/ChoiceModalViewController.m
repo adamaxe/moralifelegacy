@@ -163,15 +163,17 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
  */
 - (void) retrieveAllSelections {
 	
-	NSString *value;
-	
+	NSPredicate *pred;
+    
 	if (isVirtue) {
-		value = [NSString stringWithString:@"Virtue"];
+        pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Virtue"];
 	}else {
-		value = [NSString stringWithString:@"Vice"];
+        pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Vice"];
 	}
     
-    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithType:value];
+//    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithType:value];
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+    currentMoralDAO.predicates = [NSArray arrayWithObject:pred];
     
     moralNames = [[NSArray alloc] initWithArray:[currentMoralDAO readAllNames]];			
 	moralImages = [[NSArray alloc] initWithArray:[currentMoralDAO readAllImageNames]];			

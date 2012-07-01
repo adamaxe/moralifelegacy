@@ -18,7 +18,7 @@
 @property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
 @property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
 @property (nonatomic, retain) NSMutableArray *returnedLinks;
-@property (nonatomic, retain) NSMutableArray *returnedPeople;
+@property (nonatomic, retain) NSMutableArray *returnedPeopleKeys;
 
 
 - (NSArray *)retrievePersistedObjects;
@@ -40,7 +40,7 @@
 @synthesize returnedLongDescriptions = _returnedLongDescriptions;
 @synthesize returnedDisplayNames = _returnedDisplayNames;
 @synthesize returnedLinks = _returnedLinks;
-@synthesize returnedPeople = _returnedPeople;
+@synthesize returnedPeopleKeys = _returnedPeopleKeys;
 
 
 - (id) init {
@@ -76,7 +76,7 @@
         _returnedLongDescriptions = [[NSMutableArray alloc] init];
         _returnedShortDescriptions = [[NSMutableArray alloc] init];
         _returnedLinks = [[NSMutableArray alloc] init];
-        _returnedPeople = [[NSMutableArray alloc] init];
+        _returnedPeopleKeys = [[NSMutableArray alloc] init];
         
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
@@ -108,11 +108,9 @@
     return [[self findPersistedObject:key] linkReference];    
 }
 
-- (ReferencePersonDAO *)readPerson:(NSString *)key {
-    
-    ReferencePersonDAO *currentPersonDAO = [[[ReferencePersonDAO alloc] initWithKey:[[[self findPersistedObject:key] figurehead] nameReference]] autorelease];
+- (NSString *)readPersonKey:(NSString *)key {
         
-    return currentPersonDAO;    
+    return [[[self findPersistedObject:key] figurehead] nameReference];    
 }
 
 
@@ -146,9 +144,9 @@
     return self.returnedLinks;
 }
 
-- (NSArray *)readAllPeople {
+- (NSArray *)readAllPeopleKeys {
     [self refreshData];    
-    return self.returnedPeople;
+    return self.returnedPeopleKeys;
 }
 
 
@@ -192,7 +190,7 @@
     [self.returnedShortDescriptions removeAllObjects];    
     [self.returnedLongDescriptions removeAllObjects];    
     [self.returnedLinks removeAllObjects];  
-    [self.returnedPeople removeAllObjects];  
+    [self.returnedPeopleKeys removeAllObjects];  
     
     for (ReferenceBelief *match in self.persistedObjects){
         [self.returnedNames addObject:[match nameReference]];
@@ -201,11 +199,7 @@
         [self.returnedLinks addObject:[match linkReference]];
 		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
         [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
-
-        ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:[[match figurehead] nameReference]];
-
-        [self.returnedPeople addObject:currentPersonDAO];
-        [currentPersonDAO release];
+        [self.returnedPeopleKeys addObject:[[match figurehead] nameReference]];
     }
     
 }
@@ -260,6 +254,7 @@
     [_returnedImageNames release];
     [_returnedNames release];
     [_returnedLinks release];
+    [_returnedPeopleKeys release];
     [_persistedObjects release];
     [super dealloc];
 }

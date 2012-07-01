@@ -1,6 +1,6 @@
 @class ModelManager;
 
-@interface MoralDAO : NSObject
+@interface ReferenceTextDAO : NSObject
 
 @property (nonatomic, retain) NSArray *sorts;
 @property (nonatomic, retain) NSArray *predicates;
@@ -8,23 +8,19 @@
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
-- (id)initWithType:(NSString *)type;
-- (id)initWithType:(NSString *)type andModelManager:(ModelManager *)moralModelManager;
-
-- (NSString *)readColor:(NSString *)key;
-- (NSString *)readDefinition:(NSString *)key;
-- (NSString *)readDisplayName:(NSString *)key;
-- (NSString *)readSubtitle:(NSString *)key;
 - (NSString *)readShortDescription:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
+- (NSString *)readDisplayName:(NSString *)key;
 - (NSString *)readImageName:(NSString *)key;
+- (NSString *)readLink:(NSString *)key;
+- (NSString *)readQuote:(NSString *)key;
 
 - (NSArray *)readAllNames;
-- (NSArray *)readAllDefinitions;
 - (NSArray *)readAllDisplayNames;
-- (NSArray *)readAllSubtitles;
-- (NSArray *)readAllShortDescriptions;
-- (NSArray *)readAllLongDescriptions;
 - (NSArray *)readAllImageNames;
+- (NSArray *)readAllLongDescriptions;
+- (NSArray *)readAllShortDescriptions;
+- (NSArray *)readAllLinks;
+- (NSArray *)readAllQuotes;
 
 @end

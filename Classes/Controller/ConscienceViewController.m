@@ -817,7 +817,6 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
             [reportValues setValue:[NSNumber numberWithFloat:currentValue] forKey:[match choiceMoral]];
         }
         
-        
         NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
         NSArray* reversedPercentages = [[sortedPercentages reverseObjectEnumerator] allObjects];
         

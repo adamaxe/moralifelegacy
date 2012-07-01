@@ -7,19 +7,26 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferenceListViewController.h"
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
-#import "ReferenceAsset.h"
-#import "ReferenceBelief.h"
-#import "ReferencePerson.h"
-#import "ReferenceReport.h"
-#import "ReferenceText.h"
-#import "Moral.h"
+//#import "ReferenceAsset.h"
+//#import "ReferenceBelief.h"
+//#import "ReferencePerson.h"
+//#import "ReferenceReport.h"
+//#import "ReferenceText.h"
+//#import "Moral.h"
+#import "ConscienceAssetDAO.h"
+#import "ReferenceAssetDAO.h"
+#import "ReferenceBeliefDAO.h"
+#import "ReferencePersonDAO.h"
+#import "ReferenceTextDAO.h"
+#import "MoralDAO.h"
+
 
 @interface ReferenceListViewController () {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
 	NSManagedObjectContext *context;		/**< Core Data context */
-	NSEntityDescription *entityAssetDesc;	/**< select for request */
+//	NSEntityDescription *entityAssetDesc;	/**< select for request */
 	
 	NSMutableArray *references;			/**< text to appear as row name */
 	NSMutableArray *referenceKeys;		/**< text to key on DB */
@@ -83,31 +90,6 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	referencesTableView.dataSource = self;
     
     [self setTitle:@"List"];
-
-	//Populate subsequent list controller with appropriate choice
-	switch (referenceType){
-		case 0:
-			entityAssetDesc = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:context];
-			break;
-		case 1:
-			entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceBelief" inManagedObjectContext:context];
-			break;
-		case 2:
-			entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceText" inManagedObjectContext:context];
-			break;
-		case 3:
-			entityAssetDesc = [NSEntityDescription entityForName:@"ReferencePerson" inManagedObjectContext:context];
-			break;
-		case 4:
-			entityAssetDesc = [NSEntityDescription entityForName:@"Moral" inManagedObjectContext:context];
-			break;
-		case 5:
-			entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceReport" inManagedObjectContext:context];
-			break;
-		default:
-			entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceAccessory" inManagedObjectContext:context];			
-			break;
-	}
 	
 	references = [[NSMutableArray alloc] init];			
 	icons = [[NSMutableArray alloc] init];			
@@ -115,8 +97,8 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	referenceKeys = [[NSMutableArray alloc] init];
 	
 	dataSource = [[NSMutableArray alloc] init];
-	searchedData = [[NSMutableArray alloc]init];
-	tableData = [[NSMutableArray alloc]init];
+	searchedData = [[NSMutableArray alloc] init];
+	tableData = [[NSMutableArray alloc] init];
 	tableDataImages = [[NSMutableArray alloc] init];
 	tableDataKeys = [[NSMutableArray alloc] init];
 	tableDataDetails = [[NSMutableArray alloc] init];
@@ -182,76 +164,73 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	[tableDataKeys removeAllObjects];
 	[tableDataDetails removeAllObjects];
 	
-	//Begin CoreData Retrieval
-	NSError *outError;
-	
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-	
-    //Determine sort order
-    if (referenceType != 4) {
-        NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"displayNameReference" ascending:YES];
-        NSSortDescriptor* sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
-        
-        NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, sortDescriptor2, nil] autorelease];
-        [request setSortDescriptors:sortDescriptors];
-        [sortDescriptor1 release];
-        [sortDescriptor2 release];
-    } else {
-        
-        NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"displayNameMoral" ascending:YES];
-        
-        NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, nil] autorelease];
-        [request setSortDescriptors:sortDescriptors];
-        [sortDescriptor1 release];
-        
-    }
-
-	
-	/** @bug leaks complaint */
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
-        if (referenceType != 4) {
-            for (ReferenceAsset *matches in objects){
-
-                //Is the asset owned
-                if([appDelegate.userCollection containsObject:[matches nameReference]]){
-
-                    [references addObject:[matches displayNameReference]];
-                    [icons addObject:[matches imageNameReference]];
-                    [details addObject:[matches shortDescriptionReference]];
-                    [referenceKeys addObject:[matches nameReference]];		
-                }
-                
-            }
-        } else {
-
-            for (Moral *matches in objects){
-                
-                if([appDelegate.userCollection containsObject:[matches nameMoral]]){
-
-                    [references addObject:[matches displayNameMoral]];
-                    [icons addObject:[matches imageNameMoral]];
-                    [details addObject:[NSString stringWithFormat:@"%@: %@", [matches shortDescriptionMoral], [matches longDescriptionMoral]]];
-                    [referenceKeys addObject:[matches nameMoral]];			
-                }
-            }
-            			
-		}
-		
+    id currentDAO;
+    	
+    //Populate subsequent list controller with appropriate choice
+	switch (referenceType){
+		case 0:
+			currentDAO = [[ConscienceAssetDAO alloc] init];
+			break;
+		case 1:
+			currentDAO = [[ReferenceBeliefDAO alloc] init];
+			break;
+		case 2:
+			currentDAO = [[ReferenceTextDAO alloc] init];
+			break;
+		case 3:
+			currentDAO = [[ReferencePersonDAO alloc] init];
+			break;
+		case 4:
+			currentDAO = [[MoralDAO alloc] init];
+			break;
+		default:
+			currentDAO = [[ReferenceAssetDAO alloc] init];
+			break;
 	}
-	
-	[request release];
-	
-	[dataSource addObjectsFromArray:references];
-	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:icons];
-	[tableDataKeys addObjectsFromArray:referenceKeys];
-	[tableDataDetails addObjectsFromArray:details];
+    
+    if (referenceType != 4) {
+        NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
+        
+        NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, nil] autorelease];
+        [sortDescriptor1 release];
+        [currentDAO setSorts:sortDescriptors];
+    } 
+        
+    [references setArray:[currentDAO readAllDisplayNames]];
+    [icons setArray:[currentDAO readAllImageNames]];
+    [referenceKeys setArray:[currentDAO readAllNames]];
+    
+    if (referenceType != 4) {
+        [details setArray:[currentDAO readAllShortDescriptions]];
+    } else {
+        [details setArray:[currentDAO readAllSubtitles]];
+    }
+			
+    [currentDAO release];
+
+    
+    for (int i = 0; i < referenceKeys.count; i++) {
+
+        if([appDelegate.userCollection containsObject:[referenceKeys objectAtIndex:i]]){
+
+            [dataSource addObject:[references objectAtIndex:i]];
+            [tableData addObject:[references objectAtIndex:i]];
+            [tableDataImages addObject:[icons objectAtIndex:i]];
+            [tableDataKeys addObject:[referenceKeys objectAtIndex:i]];
+            [tableDataDetails addObject:[details objectAtIndex:i]];
+        }
+    }
+    
+    [references setArray:dataSource];
+    [referenceKeys setArray:tableDataKeys];
+    [icons setArray:tableDataImages];
+    [details setArray:tableDataDetails];
+
+//	[dataSource addObjectsFromArray:references];
+//	[tableData addObjectsFromArray:dataSource];
+//	[tableDataImages addObjectsFromArray:icons];
+//	[tableDataKeys addObjectsFromArray:referenceKeys];
+//	[tableDataDetails addObjectsFromArray:details];
 	
 	[referencesTableView reloadData];
 	
@@ -327,7 +306,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	searchBar.showsCancelButton = YES;
 	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 	// flush the previous search content
-	//[tableData removeAllObjects];
+//    [tableData removeAllObjects];
 }
 - (void)searchBarTextDidEndEditing:(UISearchBar *)searchBar
 {

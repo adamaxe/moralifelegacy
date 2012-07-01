@@ -14,7 +14,7 @@
 - (NSString *)readImageName:(NSString *)key;
 - (NSString *)readLink:(NSString *)key;
 - (NSString *)readLink:(NSString *)key;
-- (ReferencePersonDAO *)readPerson:(NSString *)key;
+- (NSString *)readPersonKey:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
@@ -22,6 +22,6 @@
 - (NSArray *)readAllLongDescriptions;
 - (NSArray *)readAllShortDescriptions;
 - (NSArray *)readAllLinks;
-- (NSArray *)readAllPeople;
+- (NSArray *)readAllPeopleKeys;
 
 @end
