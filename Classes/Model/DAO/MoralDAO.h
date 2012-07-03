@@ -18,6 +18,7 @@
 - (NSString *)readShortDescription:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readImageName:(NSString *)key;
+- (NSString *)readLink:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDefinitions;
@@ -26,5 +27,6 @@
 - (NSArray *)readAllShortDescriptions;
 - (NSArray *)readAllLongDescriptions;
 - (NSArray *)readAllImageNames;
+- (NSArray *)readAllLinks;
 
 @end

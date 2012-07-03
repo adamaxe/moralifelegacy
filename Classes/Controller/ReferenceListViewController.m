@@ -7,14 +7,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferenceListViewController.h"
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
-//#import "ReferenceAsset.h"
-//#import "ReferenceBelief.h"
-//#import "ReferencePerson.h"
-//#import "ReferenceReport.h"
-//#import "ReferenceText.h"
-//#import "Moral.h"
 #import "ConscienceAssetDAO.h"
-#import "ReferenceAssetDAO.h"
 #import "ReferenceBeliefDAO.h"
 #import "ReferencePersonDAO.h"
 #import "ReferenceTextDAO.h"
@@ -25,8 +18,6 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
-//	NSEntityDescription *entityAssetDesc;	/**< select for request */
 	
 	NSMutableArray *references;			/**< text to appear as row name */
 	NSMutableArray *referenceKeys;		/**< text to key on DB */
@@ -78,9 +69,8 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
+	//appDelegate needed to retrieve User ownership, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager managedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	referenceSearchBar.barStyle = UIBarStyleBlack;
@@ -221,17 +211,12 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
         }
     }
     
+    //Must set original arrays with filtered values for searching
     [references setArray:dataSource];
     [referenceKeys setArray:tableDataKeys];
     [icons setArray:tableDataImages];
     [details setArray:tableDataDetails];
 
-//	[dataSource addObjectsFromArray:references];
-//	[tableData addObjectsFromArray:dataSource];
-//	[tableDataImages addObjectsFromArray:icons];
-//	[tableDataKeys addObjectsFromArray:referenceKeys];
-//	[tableDataDetails addObjectsFromArray:details];
-	
 	[referencesTableView reloadData];
 	
 }

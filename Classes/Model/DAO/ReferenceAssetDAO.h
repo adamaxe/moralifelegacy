@@ -13,6 +13,9 @@
 - (NSString *)readDisplayName:(NSString *)key;
 - (NSString *)readImageName:(NSString *)key;
 - (NSString *)readLink:(NSString *)key;
+- (NSNumber *)readOriginYear:(NSString *)key;
+- (NSString *)readMoralImageName:(NSString *)key;
+- (NSString *)readOriginLocation:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
@@ -20,5 +23,8 @@
 - (NSArray *)readAllLongDescriptions;
 - (NSArray *)readAllShortDescriptions;
 - (NSArray *)readAllLinks;
+- (NSArray *)readAllOriginYears;
+- (NSArray *)readAllOriginLocations;
+
 
 @end
