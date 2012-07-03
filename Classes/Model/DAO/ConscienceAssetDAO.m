@@ -17,6 +17,8 @@
 @property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
 @property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
 @property (nonatomic, retain) NSMutableArray *returnedCosts;
+@property (nonatomic, retain) NSMutableArray *returnedOrientations;
+@property (nonatomic, retain) NSMutableArray *returnedMoralValues;
 @property (nonatomic, retain) NSMutableArray *returnedSubtitles;
 
 - (NSArray *)retrievePersistedObjects;
@@ -38,8 +40,9 @@
 @synthesize returnedLongDescriptions = _returnedLongDescriptions;
 @synthesize returnedDisplayNames = _returnedDisplayNames;
 @synthesize returnedCosts = _returnedCosts;
+@synthesize returnedOrientations = _returnedOrientations;
+@synthesize returnedMoralValues = _returnedMoralValues;
 @synthesize returnedSubtitles = _returnedSubtitles;
-
 
 - (id) init {
     return [self initWithKey:nil];
@@ -74,6 +77,8 @@
         _returnedLongDescriptions = [[NSMutableArray alloc] init];
         _returnedShortDescriptions = [[NSMutableArray alloc] init];
         _returnedCosts = [[NSMutableArray alloc] init];
+        _returnedOrientations = [[NSMutableArray alloc] init];
+        _returnedMoralValues = [[NSMutableArray alloc] init];        
         _returnedSubtitles = [[NSMutableArray alloc] init];
 
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
@@ -110,6 +115,14 @@
     return [[self findPersistedObject:key] costAsset];    
 }
 
+- (NSNumber *)readMoralValue:(NSString *)key {
+    return [[self findPersistedObject:key] moralValueAsset];    
+}
+
+- (NSString *)readOrientation:(NSString *)key {
+    return [[self findPersistedObject:key] orientationAsset];    
+}
+
 - (NSArray *)readAllNames {
     [self refreshData];    
     return self.returnedNames;
@@ -138,6 +151,16 @@
 - (NSArray *)readAllCosts {
     [self refreshData];    
     return self.returnedCosts;
+}
+
+- (NSArray *)readAllOrientations {
+    [self refreshData];    
+    return self.returnedOrientations;
+}
+
+- (NSArray *)readAllMoralValues {
+    [self refreshData];    
+    return self.returnedMoralValues;
 }
 
 - (NSArray *)readAllSubtitles {
@@ -185,6 +208,8 @@
     [self.returnedShortDescriptions removeAllObjects];    
     [self.returnedLongDescriptions removeAllObjects];    
     [self.returnedCosts removeAllObjects];  
+    [self.returnedOrientations removeAllObjects];  
+    [self.returnedMoralValues removeAllObjects];  
     [self.returnedSubtitles removeAllObjects];    
     
     for (ConscienceAsset *match in self.persistedObjects){
@@ -194,7 +219,9 @@
         [self.returnedCosts addObject:[match costAsset]];
 		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
         [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
-
+        [self.returnedOrientations addObject:[match orientationAsset]];
+        [self.returnedMoralValues addObject:[match moralValueAsset]];
+        
         MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
         if ([appDelegate.userCollection containsObject:[match nameReference]]){
@@ -258,6 +285,8 @@
     [_returnedImageNames release];
     [_returnedNames release];
     [_returnedCosts release];
+    [_returnedOrientations release];
+    [_returnedMoralValues release];
     [_persistedObjects release];
     [super dealloc];
 }

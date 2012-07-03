@@ -14,6 +14,8 @@
 - (NSString *)readImageName:(NSString *)key;
 - (NSString *)readMoralImageName:(NSString *)key;
 - (NSNumber *)readCost:(NSString *)key;
+- (NSString *)readOrientation:(NSString *)key;
+- (NSNumber *)readMoralValue:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
@@ -21,6 +23,8 @@
 - (NSArray *)readAllLongDescriptions;
 - (NSArray *)readAllShortDescriptions;
 - (NSArray *)readAllCosts;
+- (NSArray *)readAllOrientations;
+- (NSArray *)readAllMoralValues;
 - (NSArray *)readAllSubtitles;
 
 @end

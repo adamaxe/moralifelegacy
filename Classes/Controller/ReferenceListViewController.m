@@ -8,6 +8,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceAssetDAO.h"
+#import "ReferenceAssetDAO.h"
 #import "ReferenceBeliefDAO.h"
 #import "ReferencePersonDAO.h"
 #import "ReferenceTextDAO.h"

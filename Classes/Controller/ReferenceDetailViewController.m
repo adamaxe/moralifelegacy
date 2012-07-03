@@ -8,6 +8,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "ConscienceAssetDAO.h"
+#import "ReferenceAssetDAO.h"
 #import "ReferencePersonDAO.h"
 #import "ReferenceBeliefDAO.h"
 #import "MoralDAO.h"
