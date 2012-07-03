@@ -18,6 +18,7 @@
 @property (nonatomic, retain) NSMutableArray *returnedLinks;
 @property (nonatomic, retain) NSMutableArray *returnedOriginYears;
 @property (nonatomic, retain) NSMutableArray *returnedOriginLocations;
+@property (nonatomic, retain) NSMutableArray *returnedMoralKeys;
 
 @end
 
@@ -38,6 +39,8 @@
 @synthesize returnedLinks = _returnedLinks;
 @synthesize returnedOriginYears = _returnedOriginYears;
 @synthesize returnedOriginLocations = _returnedOriginLocations;
+@synthesize returnedMoralKeys = _returnedMoralKeys;
+
 
 - (id) init {
     return [self initWithKey:nil];
@@ -75,6 +78,7 @@
         _returnedLinks = [[NSMutableArray alloc] init];
         _returnedOriginYears = [[NSMutableArray alloc] init];
         _returnedOriginLocations = [[NSMutableArray alloc] init];
+        _returnedMoralKeys = [[NSMutableArray alloc] init];
         
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
@@ -118,6 +122,12 @@
     return [[self findPersistedObject:key] originLocation];    
 }
 
+- (NSString *)readMoralKey:(NSString *)key {
+    
+    return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
+}
+
+
 - (NSArray *)readAllNames {
     [self refreshData];    
     return self.returnedNames;
@@ -157,6 +167,12 @@
     [self refreshData];    
     return self.returnedOriginLocations;
 }
+
+- (NSArray *)readAllMoralKeys {
+    [self refreshData];    
+    return self.returnedMoralKeys;
+}
+
 
 - (id)findPersistedObject:(NSString *)key {
     
@@ -198,6 +214,7 @@
     [self.returnedLinks removeAllObjects];  
     [self.returnedOriginYears removeAllObjects];      
     [self.returnedOriginLocations removeAllObjects];      
+    [self.returnedMoralKeys removeAllObjects];      
     
     for (id match in self.persistedObjects){
         [self.returnedNames addObject:[match nameReference]];
@@ -207,7 +224,10 @@
 		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
         [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
         [self.returnedOriginYears addObject:[match originYear]];
-        [self.returnedOriginLocations addObject:[match originLocation]];
+        if ([match originLocation]) {
+            [self.returnedOriginLocations addObject:[match originLocation]];
+        }
+        [self.returnedMoralKeys addObject:[[match relatedMoral] nameMoral]];
         
     }
     
@@ -266,6 +286,7 @@
     [_returnedLinks release];
     [_returnedOriginYears release];
     [_returnedOriginLocations release];
+    [_returnedMoralKeys release];
     [_persistedObjects release];
     [super dealloc];
 }

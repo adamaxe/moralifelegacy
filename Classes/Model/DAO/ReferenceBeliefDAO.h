@@ -15,6 +15,7 @@
 - (NSString *)readLink:(NSString *)key;
 - (NSString *)readLink:(NSString *)key;
 - (NSString *)readPersonKey:(NSString *)key;
+- (NSString *)readMoralKey:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;

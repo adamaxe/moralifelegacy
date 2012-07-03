@@ -16,6 +16,7 @@
 - (NSNumber *)readOriginYear:(NSString *)key;
 - (NSString *)readMoralImageName:(NSString *)key;
 - (NSString *)readOriginLocation:(NSString *)key;
+- (NSString *)readMoralKey:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
@@ -25,6 +26,6 @@
 - (NSArray *)readAllLinks;
 - (NSArray *)readAllOriginYears;
 - (NSArray *)readAllOriginLocations;
-
+- (NSArray *)readAllMoralKeys;
 
 @end

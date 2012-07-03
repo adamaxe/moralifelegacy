@@ -123,6 +123,11 @@
     return [[self findPersistedObject:key] orientationAsset];    
 }
 
+- (NSString *)readMoralKey:(NSString *)key {
+    
+    return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
+}
+
 - (NSArray *)readAllNames {
     [self refreshData];    
     return self.returnedNames;

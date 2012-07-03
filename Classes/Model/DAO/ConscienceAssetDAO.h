@@ -16,6 +16,7 @@
 - (NSNumber *)readCost:(NSString *)key;
 - (NSString *)readOrientation:(NSString *)key;
 - (NSNumber *)readMoralValue:(NSString *)key;
+- (NSString *)readMoralKey:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;

@@ -4,6 +4,7 @@
 #import "ReferenceBelief.h"
 #import "ReferencePerson.h"
 #import "ReferencePersonDAO.h"
+#import "Moral.h"
 
 @interface ReferenceBeliefDAO () 
 
@@ -112,6 +113,12 @@
         
     return [[[self findPersistedObject:key] figurehead] nameReference];    
 }
+
+- (NSString *)readMoralKey:(NSString *)key {
+    
+    return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
+}
+
 
 
 - (NSArray *)readAllNames {

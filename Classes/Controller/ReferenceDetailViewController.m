@@ -411,24 +411,27 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
          referenceQuote = [[NSString alloc] initWithString:@""];
      }
      
-     
-//     if ([currentDAO respondsToSelector:@selector(readMo)]) {
-//         Moral *relatedMoral = [[referenceObjects objectAtIndex:0] relatedMoral];
-//         if (relatedMoral != nil) {
-//             referenceMoral = [[NSString alloc] initWithString:[relatedMoral imageNameMoral]];
-//             
-//             if ([referenceOrigin isEqualToString:@""]) {
-//                 [referenceOrigin release];
-//                 referenceOrigin = [[NSString alloc] initWithFormat:@"+%d %@", [[[referenceObjects objectAtIndex:0] moralValueAsset] intValue], [relatedMoral displayNameMoral]];
-//             }
-//             
-//         } else {
-//             referenceMoral = [[NSString alloc] initWithString:@""];
-//         }
-//         
-//     }else {
-//         referenceMoral = [[NSString alloc] initWithString:@""];
-//     }
+
+     if ([currentDAO respondsToSelector:@selector(readMoralKey:)]) {
+         MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[currentDAO readMoralKey:@""]];
+                                   
+         if (currentMoralDAO) {
+             referenceMoral = [[NSString alloc] initWithString:[currentMoralDAO readImageName:@""]];
+             
+             if (![currentDAO isKindOfClass:ReferencePersonDAO.class]) {
+
+                 [referenceOrigin release];
+                 referenceOrigin = [[NSString alloc] initWithFormat:@"+%d %@", [[currentDAO readMoralValue:@""] intValue], [currentMoralDAO readDisplayName:@""]];
+             }
+             
+         } else {
+             referenceMoral = [[NSString alloc] initWithString:@""];
+         }
+         
+         [currentMoralDAO release];
+     } else {
+         referenceMoral = [[NSString alloc] initWithString:@""];
+     }
      		
      [currentDAO release];
 }

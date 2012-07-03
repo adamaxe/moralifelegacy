@@ -2,6 +2,7 @@
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ReferencePerson.h"
+#import "Moral.h"
 
 @interface ReferencePersonDAO () 
 
@@ -112,10 +113,18 @@
     return [[self findPersistedObject:key] quotePerson];    
 }
 
+- (NSNumber *)readOriginYear:(NSString *)key {
+    return [[self findPersistedObject:key] originYear];    
+}
+
 - (NSNumber *)readDeathYear:(NSString *)key {
     return [[self findPersistedObject:key] deathYearPerson];    
 }
 
+- (NSString *)readMoralKey:(NSString *)key {
+    
+    return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
+}
 
 - (NSArray *)readAllNames {
     [self refreshData];    

@@ -14,6 +14,7 @@
 - (NSString *)readImageName:(NSString *)key;
 - (NSString *)readLink:(NSString *)key;
 - (NSString *)readQuote:(NSString *)key;
+- (NSString *)readMoralKey:(NSString *)key;
 
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
