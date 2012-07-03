@@ -1,6 +1,6 @@
 @class ModelManager;
 
-@interface ConscienceAssetDAO : NSObject
+@interface ReferenceTextDAO : NSObject
 
 @property (nonatomic, retain) NSArray *sorts;
 @property (nonatomic, retain) NSArray *predicates;
@@ -12,10 +12,8 @@
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;
 - (NSString *)readImageName:(NSString *)key;
-- (NSString *)readMoralImageName:(NSString *)key;
-- (NSNumber *)readCost:(NSString *)key;
-- (NSString *)readOrientation:(NSString *)key;
-- (NSNumber *)readMoralValue:(NSString *)key;
+- (NSString *)readLink:(NSString *)key;
+- (NSString *)readQuote:(NSString *)key;
 - (NSString *)readMoralKey:(NSString *)key;
 
 - (NSArray *)readAllNames;
@@ -23,9 +21,7 @@
 - (NSArray *)readAllImageNames;
 - (NSArray *)readAllLongDescriptions;
 - (NSArray *)readAllShortDescriptions;
-- (NSArray *)readAllCosts;
-- (NSArray *)readAllOrientations;
-- (NSArray *)readAllMoralValues;
-- (NSArray *)readAllSubtitles;
+- (NSArray *)readAllLinks;
+- (NSArray *)readAllQuotes;
 
 @end

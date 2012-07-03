@@ -1,12 +1,14 @@
-#import "ConscienceAssetDAO.h"
+#import "ReferenceBeliefDAO.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ConscienceAsset.h"
+#import "ReferenceBelief.h"
+#import "ReferencePerson.h"
+#import "ReferencePersonDAO.h"
 #import "Moral.h"
 
-@interface ConscienceAssetDAO () 
+@interface ReferenceBeliefDAO () 
 
-- (ConscienceAsset *)findPersistedObject:(NSString *)key;
+- (ReferenceBelief *)findPersistedObject:(NSString *)key;
 
 @property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSManagedObjectContext *context;
@@ -16,17 +18,16 @@
 @property (nonatomic, retain) NSMutableArray *returnedShortDescriptions;
 @property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
 @property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
-@property (nonatomic, retain) NSMutableArray *returnedCosts;
-@property (nonatomic, retain) NSMutableArray *returnedOrientations;
-@property (nonatomic, retain) NSMutableArray *returnedMoralValues;
-@property (nonatomic, retain) NSMutableArray *returnedSubtitles;
+@property (nonatomic, retain) NSMutableArray *returnedLinks;
+@property (nonatomic, retain) NSMutableArray *returnedPeopleKeys;
+
 
 - (NSArray *)retrievePersistedObjects;
 - (void)processObjects;
 
 @end
 
-@implementation ConscienceAssetDAO 
+@implementation ReferenceBeliefDAO 
 
 @synthesize sorts = _sorts;
 @synthesize predicates = _predicates;
@@ -39,10 +40,9 @@
 @synthesize returnedShortDescriptions = _returnedShortDescriptions;
 @synthesize returnedLongDescriptions = _returnedLongDescriptions;
 @synthesize returnedDisplayNames = _returnedDisplayNames;
-@synthesize returnedCosts = _returnedCosts;
-@synthesize returnedOrientations = _returnedOrientations;
-@synthesize returnedMoralValues = _returnedMoralValues;
-@synthesize returnedSubtitles = _returnedSubtitles;
+@synthesize returnedLinks = _returnedLinks;
+@synthesize returnedPeopleKeys = _returnedPeopleKeys;
+
 
 - (id) init {
     return [self initWithKey:nil];
@@ -76,11 +76,9 @@
         _returnedDisplayNames = [[NSMutableArray alloc] init];
         _returnedLongDescriptions = [[NSMutableArray alloc] init];
         _returnedShortDescriptions = [[NSMutableArray alloc] init];
-        _returnedCosts = [[NSMutableArray alloc] init];
-        _returnedOrientations = [[NSMutableArray alloc] init];
-        _returnedMoralValues = [[NSMutableArray alloc] init];        
-        _returnedSubtitles = [[NSMutableArray alloc] init];
-
+        _returnedLinks = [[NSMutableArray alloc] init];
+        _returnedPeopleKeys = [[NSMutableArray alloc] init];
+        
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
         [self processObjects];
@@ -107,26 +105,21 @@
     return [self findPersistedObject:key].imageNameReference;    
 }
 
-- (NSString *)readMoralImageName:(NSString *)key {
-    return [[[self findPersistedObject:key] relatedMoral] imageNameMoral];    
+- (NSString *)readLink:(NSString *)key {
+    return [[self findPersistedObject:key] linkReference];    
 }
 
-- (NSNumber *)readCost:(NSString *)key {
-    return [[self findPersistedObject:key] costAsset];    
-}
-
-- (NSNumber *)readMoralValue:(NSString *)key {
-    return [[self findPersistedObject:key] moralValueAsset];    
-}
-
-- (NSString *)readOrientation:(NSString *)key {
-    return [[self findPersistedObject:key] orientationAsset];    
+- (NSString *)readPersonKey:(NSString *)key {
+        
+    return [[[self findPersistedObject:key] figurehead] nameReference];    
 }
 
 - (NSString *)readMoralKey:(NSString *)key {
     
     return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
 }
+
+
 
 - (NSArray *)readAllNames {
     [self refreshData];    
@@ -153,29 +146,20 @@
     return self.returnedLongDescriptions;
 }
 
-- (NSArray *)readAllCosts {
+- (NSArray *)readAllLinks {
     [self refreshData];    
-    return self.returnedCosts;
+    return self.returnedLinks;
 }
 
-- (NSArray *)readAllOrientations {
+- (NSArray *)readAllPeopleKeys {
     [self refreshData];    
-    return self.returnedOrientations;
+    return self.returnedPeopleKeys;
 }
 
-- (NSArray *)readAllMoralValues {
-    [self refreshData];    
-    return self.returnedMoralValues;
-}
-
-- (NSArray *)readAllSubtitles {
-    [self refreshData];    
-    return self.returnedSubtitles;
-}
 
 #pragma mark -
 #pragma mark Private API
-- (ConscienceAsset *)findPersistedObject:(NSString *)key {
+- (ReferenceBelief *)findPersistedObject:(NSString *)key {
     
     [self refreshData];
     
@@ -212,29 +196,17 @@
     [self.returnedDisplayNames removeAllObjects];
     [self.returnedShortDescriptions removeAllObjects];    
     [self.returnedLongDescriptions removeAllObjects];    
-    [self.returnedCosts removeAllObjects];  
-    [self.returnedOrientations removeAllObjects];  
-    [self.returnedMoralValues removeAllObjects];  
-    [self.returnedSubtitles removeAllObjects];    
+    [self.returnedLinks removeAllObjects];  
+    [self.returnedPeopleKeys removeAllObjects];  
     
-    for (ConscienceAsset *match in self.persistedObjects){
+    for (ReferenceBelief *match in self.persistedObjects){
         [self.returnedNames addObject:[match nameReference]];
         [self.returnedImageNames addObject:[match imageNameReference]];
         [self.returnedDisplayNames addObject:[match displayNameReference]];
-        [self.returnedCosts addObject:[match costAsset]];
+        [self.returnedLinks addObject:[match linkReference]];
 		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
         [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
-        [self.returnedOrientations addObject:[match orientationAsset]];
-        [self.returnedMoralValues addObject:[match moralValueAsset]];
-        
-        MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-        if ([appDelegate.userCollection containsObject:[match nameReference]]){
-            [self.returnedSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", [match shortDescriptionReference]]];
-        } else {
-            [self.returnedSubtitles addObject:[NSString stringWithFormat:@"%dε - %@", [[match costAsset] intValue], [match shortDescriptionReference]]];
-        }
-
+        [self.returnedPeopleKeys addObject:[[match figurehead] nameReference]];
     }
     
 }
@@ -243,7 +215,7 @@
     //Begin CoreData Retrieval			
 	NSError *outError;
 	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ConscienceAsset" inManagedObjectContext:self.context];
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceBelief" inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
@@ -285,13 +257,11 @@
     [_context release];
     [_returnedShortDescriptions release];
     [_returnedLongDescriptions release];
-    [_returnedSubtitles release];
     [_returnedDisplayNames release];
     [_returnedImageNames release];
     [_returnedNames release];
-    [_returnedCosts release];
-    [_returnedOrientations release];
-    [_returnedMoralValues release];
+    [_returnedLinks release];
+    [_returnedPeopleKeys release];
     [_persistedObjects release];
     [super dealloc];
 }

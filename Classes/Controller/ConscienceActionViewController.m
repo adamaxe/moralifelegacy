@@ -23,8 +23,8 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "Moral.h"
 #import "UserDilemma.h"
 #import "UserCollectable.h"
-#import "ReferencePerson.h"
-#import "ReferenceAsset.h"
+#import "ReferencePersonDAO.h"
+#import "ReferenceAssetDAO.h"
 #import "UserChoice.h"
 #import "UserCharacter.h"
 #import "ViewControllerLocalization.h"
@@ -580,19 +580,14 @@ Calculate changes to User's ethicals.  Limit to 999.
 		//Reward is Referenceperson, do not show Ethical label
 		[ethicalRewardLabel setAlpha:0];
         
-		NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ReferencePerson" inManagedObjectContext:context];
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		[request setEntity:entityAssetDesc];
+        ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:selectedReward];
         
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameReference == %@", selectedReward];
-		[request setPredicate:pred];
+        [moralSelectedRewardLabel setText:[NSString stringWithString:[currentPersonDAO readDisplayName:@""]]];
         
-		NSArray *objects = [context executeFetchRequest:request error:&outError];
-		ReferencePerson *currentPersonReward = [objects objectAtIndex:0];
-		[moralSelectedRewardLabel setText:[NSString stringWithString:[currentPersonReward displayNameReference]]];
+		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", [currentPersonDAO readImageName:@""]]]];
 
-		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", [currentPersonReward imageNameReference]]]];
-        
+        [currentPersonDAO release];
+                
 		UserCollectable *currentUserCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
         
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
@@ -602,25 +597,19 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[context assignObject:currentUserCollectable toPersistentStore:readWriteStore];
         
 		[appDelegate.userCollection addObject:selectedReward];
-		[request release];
         
 	} else if ([selectedReward rangeOfString:@"asse-"].location != NSNotFound) {
 
 		//Reward is ConscienceAsset, do not show Ethical label
 		[ethicalRewardLabel setAlpha:0];
         
-		NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceAsset" inManagedObjectContext:context];
-		NSFetchRequest *request = [[NSFetchRequest alloc] init];
-		[request setEntity:entityAssetDesc];
+        ReferenceAssetDAO *currentReferenceDAO = [[ReferenceAssetDAO alloc] initWithKey:selectedReward];
         
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameReference == %@", selectedReward];
-		[request setPredicate:pred];
+		[moralSelectedRewardLabel setText:[NSString stringWithString:[currentReferenceDAO readDisplayName:@""]]];
         
-		NSArray *objects = [context executeFetchRequest:request error:&outError];
-		ReferenceAsset *currentAssetReward = [objects objectAtIndex:0];
-		[moralSelectedRewardLabel setText:[NSString stringWithString:[currentAssetReward displayNameReference]]];
-
-		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentAssetReward imageNameReference]]]];
+		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentReferenceDAO readImageName:@""]]]];
+        
+        [currentReferenceDAO release];
         
 		UserCollectable *currentUserCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
         
@@ -631,7 +620,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[context assignObject:currentUserCollectable toPersistentStore:readWriteStore];
         
 		[appDelegate.userCollection addObject:selectedReward];
-		[request release];
 	}
     
 	//Update User's ethicals
