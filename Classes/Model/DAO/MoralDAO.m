@@ -124,6 +124,10 @@
     return self;
 }
 
+- (Moral *)read:(NSString *)key {
+    return [self findPersistedObject:key];
+}
+
 - (NSString *)readColor:(NSString *)key {
     return [self findPersistedObject:key].colorMoral;
 }
@@ -197,6 +201,10 @@
 - (NSArray *)readAllLinks {
     [self refreshData];
     return self.returnedLongDescriptions;
+}
+
+- (NSArray *)readAll {
+    return self.persistedObjects;
 }
 
 #pragma mark -

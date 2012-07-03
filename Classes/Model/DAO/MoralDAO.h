@@ -20,6 +20,7 @@
 - (NSString *)readImageName:(NSString *)key;
 - (NSString *)readLink:(NSString *)key;
 
+- (NSArray *)readAll;
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDefinitions;
 - (NSArray *)readAllDisplayNames;
