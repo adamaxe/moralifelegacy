@@ -357,11 +357,11 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
     referenceName = [[NSString alloc] initWithString:[currentDAO readDisplayName:@""]];
     referencePicture = [[NSString alloc] initWithString:[currentDAO readImageName:@""]];
     referenceShortDescription = [[NSString alloc] initWithString:[currentDAO readShortDescription:@""]];
-    referenceDeathDate = [[NSMutableString alloc] initWithString:@"0"];
-    referenceOrigin =  [[NSString alloc] init];
-    referenceOrientation = [[NSString alloc] initWithString:@""];
-    referenceMoral = [[NSString alloc] initWithString:@""];
-    referenceQuote = [[NSString alloc] initWithString:@""];
+//    referenceDeathDate = [[NSMutableString alloc] initWithString:@"0"];
+//    referenceOrigin =  [[NSString alloc] init];
+//    referenceOrientation = [[NSString alloc] initWithString:@""];
+//    referenceMoral = [[NSString alloc] initWithString:@""];
+//    referenceQuote = [[NSString alloc] initWithString:@""];
 
      if ([currentDAO respondsToSelector:@selector(readSubtitle:)]) {
          referenceLongDescription = [[NSString alloc] initWithString:[currentDAO readSubtitle:@""]];

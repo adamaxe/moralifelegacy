@@ -309,6 +309,7 @@
     [_predicates release];
     [_sorts release];
     [_currentType release];
+    [_currentKey release];
     [_context release];
     [_returnedDefinitions release];
     [_returnedSubtitles release];
