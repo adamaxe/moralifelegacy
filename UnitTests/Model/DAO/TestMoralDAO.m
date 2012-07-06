@@ -91,7 +91,8 @@
 
     [testModelManager saveContext];
     
-    testingSubject = [[MoralDAO alloc] initWithType:moralTypeAll andModelManager:testModelManager];
+    testingSubject = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
+
 }
 
 - (void)testMoralDAOAllTypeCanBeCreated {
@@ -126,8 +127,8 @@
 
 - (void)testMoralDAOAllTypeContainsVirtuesAndVices {
     
-    MoralDAO *testingSubjectAll = [[MoralDAO alloc] initWithType:moralTypeAll andModelManager:testModelManager]; 
-
+    MoralDAO *testingSubjectAll = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
+        
     STAssertTrue([[testingSubjectAll readAllNames] containsObject:nameMoral1], @"MoralDAO All not populated with virtue 1.");
     STAssertTrue([[testingSubjectAll readAllNames] containsObject:nameMoral2], @"MoralDAO All not populated with vices.");
     STAssertTrue([[testingSubjectAll readAllNames] containsObject:nameMoral3], @"MoralDAO All not populated with virtue 2.");
@@ -138,7 +139,11 @@
 
 - (void)testMoralDAOVirtueTypeContainsOnlyVirtues {
     
-    MoralDAO *testingSubjectVirtue = [[MoralDAO alloc] initWithType:moralTypeVirtue andModelManager:testModelManager];
+    MoralDAO *testingSubjectVirtue = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
+    
+    NSPredicate *virtuePred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Virtue"];
+    testingSubjectVirtue.predicates = [NSArray arrayWithObject:virtuePred];
+    
     
     STAssertTrue([[testingSubjectVirtue readAllNames] containsObject:nameMoral1], @"MoralDAO Virtue not populated with virtue 1.");
     STAssertFalse([[testingSubjectVirtue readAllNames] containsObject:nameMoral2], @"MoralDAO Virtue populated with vices.");
@@ -150,7 +155,11 @@
 
 - (void)testMoralDAOViceTypedContainsOnlyVice {
     
-    MoralDAO *testingSubjectVice = [[MoralDAO alloc] initWithType:moralTypeVice andModelManager:testModelManager];
+    MoralDAO *testingSubjectVice = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
+    
+    NSPredicate *vicePred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Vice"];
+    testingSubjectVice.predicates = [NSArray arrayWithObject:vicePred];
+
     
     STAssertTrue([[testingSubjectVice readAllNames] containsObject:nameMoral2], @"MoralDAO Vice not populated with vices.");
     STAssertFalse([[testingSubjectVice readAllNames] containsObject:nameMoral1], @"MoralDAO Vice populated with virtues.");

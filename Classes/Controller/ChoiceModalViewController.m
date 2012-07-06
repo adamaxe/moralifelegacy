@@ -22,10 +22,10 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 	//Raw data of all available morals
 	NSMutableArray *searchedData;			/**< array for matched data from User search */
-	NSMutableArray *moralNames;			/**< array for Moral pkey */
-	NSMutableArray *moralDisplayNames;		/**< array for Moral name */
-	NSMutableArray *moralImages;			/**< array for Moral Image */
-	NSMutableArray *moralDetails;		/**< array for Moral synonyms */
+	NSArray *moralNames;			/**< array for Moral pkey */
+	NSArray *moralDisplayNames;		/**< array for Moral name */
+	NSArray *moralImages;			/**< array for Moral Image */
+	NSArray *moralDetails;		/**< array for Moral synonyms */
     
 	//Data for filtering/searching sourced from raw data
 	NSMutableArray *dataSource;				/**< array for storing of Choices populated from previous view*/
@@ -177,25 +177,25 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
     MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
     currentMoralDAO.predicates = [NSArray arrayWithObject:pred];
     
-    NSArray *morals = [currentMoralDAO readAll];
+//    NSArray *morals = [currentMoralDAO readAll];
     
     
-//    moralNames = [[NSArray alloc] initWithArray:[currentMoralDAO readAllNames]];			
-//	moralImages = [[NSArray alloc] initWithArray:[currentMoralDAO readAllImageNames]];			
-//	moralDetails = [[NSArray alloc] initWithArray:[currentMoralDAO readAllLongDescriptions]];
-//	moralDisplayNames = [[NSArray alloc] initWithArray:[currentMoralDAO readAllDisplayNames]];
+    moralNames = [[NSArray alloc] initWithArray:[currentMoralDAO readAllNames]];			
+	moralImages = [[NSArray alloc] initWithArray:[currentMoralDAO readAllImageNames]];			
+	moralDetails = [[NSArray alloc] initWithArray:[currentMoralDAO readAllLongDescriptions]];
+	moralDisplayNames = [[NSArray alloc] initWithArray:[currentMoralDAO readAllDisplayNames]];
 
-    moralNames = [[NSMutableArray alloc] initWithCapacity:[morals count]];			
-	moralImages = [[NSMutableArray alloc] initWithCapacity:[morals count]];			
-	moralDetails = [[NSMutableArray alloc] initWithCapacity:[morals count]];
-	moralDisplayNames = [[NSMutableArray alloc] initWithCapacity:[morals count]];
-
-    for (Moral *moral in morals) {
-        [moralNames addObject:[moral nameMoral]];
-        [moralImages addObject:[moral imageNameMoral]];
-        [moralDetails addObject:[moral longDescriptionMoral]];        
-        [moralDisplayNames addObject:[moral displayNameMoral]];        
-    }
+//    moralNames = [[NSMutableArray alloc] initWithCapacity:[morals count]];			
+//	moralImages = [[NSMutableArray alloc] initWithCapacity:[morals count]];			
+//	moralDetails = [[NSMutableArray alloc] initWithCapacity:[morals count]];
+//	moralDisplayNames = [[NSMutableArray alloc] initWithCapacity:[morals count]];
+//
+//    for (Moral *moral in morals) {
+//        [moralNames addObject:[moral nameMoral]];
+//        [moralImages addObject:[moral imageNameMoral]];
+//        [moralDetails addObject:[moral longDescriptionMoral]];        
+//        [moralDisplayNames addObject:[moral displayNameMoral]];        
+//    }
     
     [currentMoralDAO release];
     
