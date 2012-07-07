@@ -12,7 +12,13 @@
 
 @interface ModelManager : NSObject 
 
+extern NSString* const kMLCoreDataReadOnlyModelName;
+extern NSString* const kMLCoreDataReadWriteModelName;
+extern NSString* const kMLCoreDataPersistentStoreType;
+extern NSString* const kMLCoreDataModelExtension;
+
 @property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, retain, readonly) NSManagedObjectContext *readWriteManagedObjectContext;
 
 - (id)initWithInMemoryStore:(BOOL)isTransient;
 

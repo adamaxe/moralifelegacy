@@ -10,6 +10,7 @@
 
 #import "ChoiceHistoryViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ChoiceViewController.h"
 #import "ConscienceView.h"
 #import "UserChoice.h"
@@ -77,7 +78,7 @@
     
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager managedObjectContext];
+	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Set default listing and sort order
