@@ -8,6 +8,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
 #import "ChoiceListViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ChoiceViewController.h"
 #import "UserChoice.h"
 #import "MoralDAO.h"
@@ -82,7 +83,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
     
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager managedObjectContext];
+	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Set default listing and sort order

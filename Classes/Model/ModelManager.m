@@ -1,6 +1,10 @@
 /**
  Moralife Model Manager Implementation.  This class is the interface to Core Data and the entire persistence stack.
  
+ MoraLife's ORM and Seed Data is complex.  Therefore, it is not advisable to use a single NSPersistentStoreCoordinator with configurations for the 2 store types.
+ Migration is complicated by the fact that auto-migration is not smart enough to determine a mapping model on a single store of a merged model.
+ Two complete CoreData stacks are constructed, then, in order to be able to update UserData and SystemData without having to make a mapping model for each version.
+ 
  @class ModelManager ModelManager.h
  */
 #import "ModelManager.h"
@@ -111,12 +115,8 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 		
 	NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData" ofType:@"momd"];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
-	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
-	
-    _managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly]; 
-	
-	[modelReadOnly release];
-    
+	_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
+	    
 	return _managedObjectModel;
 }
 
@@ -133,12 +133,12 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
     _readWriteManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
-	
+    	
 	return _readWriteManagedObjectModel;
 }
 
 /**
- Returns the managed object model for the application.
+ Returns the legacy, merged managed object model for the application.  This is needed for legacy migration.
  If the model doesn't already exist, it is created from the application's model.
  */
 - (NSManagedObjectModel *)mergedManagedObjectModel {
@@ -162,88 +162,106 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 /**
  Returns the persistent store coordinator for the application.
  If the coordinator doesn't already exist, it is created and the application's store added to it.
- Additionally, if the pre-populated DB hasn't been moved to Documents, this occurs.
+ Also, if the pre-populated DB hasn't been moved to Library/Caches, this occurs.
+ Otherwise, if the pre-populated DB was found in Documents, the store is migrated to the new non-merged Model.
+ Lastly, the non-merged Model-based store is moved to Library/Caches to keep it from iCloud/Backup
+ 
  */
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     
+    //Determine if store coordinator is instantiated already
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
+        
+    //Retrieve legacy readwrite store from Documents directory if it exists
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
     
-	//Retrieve readwrite Documents directory
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	//Create pre-loaded SQLite db location
-	NSString *preloadData =  [documentsDirectory stringByAppendingPathComponent:@"SystemData.sqlite"];
-	NSURL *storeURL = [NSURL fileURLWithPath:preloadData];
+    //Create pre-loaded, legacy SQLite db location
+    NSString *preloadLegacyData =  [documentsDirectory stringByAppendingPathComponent:@"SystemData.sqlite"];
+    NSURL *storeLegacyURL = [NSURL fileURLWithPath:preloadLegacyData];
     
+    //Create the pre-loaded, correcdt SQLite db location in Library/Caches
     NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     NSString *cacheDirectory = [cachePaths objectAtIndex:0];
+    
     //Create pre-loaded SQLite db location
     NSString *preloadCacheData =  [cacheDirectory stringByAppendingPathComponent:@"SystemData.sqlite"];
     NSURL *storeCacheURL = [NSURL fileURLWithPath:preloadCacheData];
 
-    
 	//Create filemanager to manipulate filesystem
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
-	//Determine if pre-loaded SQLite db exists
-	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadData];
+	//Determine if pre-loaded SQLite db exists in the correct, Library/Caches path
+	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadCacheData];
     NSError *error = nil;
-    
+
     NSString *defaultStorePath = [self.currentBundle pathForResource:@"SystemData" ofType:@"sqlite"];
     
-    
-	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
-	if (!isSQLiteFilePresent) {
+	//Determine status of persistent store
+	if (isSQLiteFilePresent) {
                 
-		//Ensure that pre-loaded SQLite db exists in bundle before copy
-		if (defaultStorePath) {
-            
-			[fileManager copyItemAtPath:defaultStorePath toPath:preloadData error:&error];
-            
-			NSLog(@"Unresolved error %@", error);
-        }
-        
-    } else {
-        
+        //Copy pre-loaded SQLite db from bundle to Caches if it is bundle version is newer
+        //This means that data was updated with the newer app version
         error = nil;
         
         NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:defaultStorePath error:&error];
         NSDate *defaultFileDate =[dictionary objectForKey:NSFileModificationDate];
-        dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:preloadData error:&error];
+        dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:preloadCacheData error:&error];
         NSDate *preloadFileDate =[dictionary objectForKey:NSFileModificationDate];
         
-        
+        //Check to see if older data was found in cache, replace with newer version
         if ([defaultFileDate compare:preloadFileDate] == NSOrderedDescending) {
-            NSLog(@"file overridden");
-            [fileManager removeItemAtPath:preloadData error:&error];
-            [fileManager copyItemAtPath:defaultStorePath toPath:preloadData  error:&error];
+            [fileManager removeItemAtPath:preloadCacheData error:&error];
+            [fileManager copyItemAtPath:defaultStorePath toPath:preloadCacheData  error:&error];
+        }
+        
+    } else {
+
+        //DB was not found in Library/Caches.  This means it could be in Documents (legacy) or only in the bundle (first load).
+        if(preloadLegacyData) {
+            //DB was found in legacy location (Documents), move it to caches, remove legacy
+            [fileManager removeItemAtPath:preloadLegacyData error:&error];
+            
+			NSLog(@"Error with copying legacy ReadWrite store from Documents Directory %@", error);
+            
+        }
+        
+        if (defaultStorePath) {
+            //Ensure that pre-loaded SQLite db exists in bundle before copy
+			[fileManager copyItemAtPath:defaultStorePath toPath:preloadCacheData error:&error];
+            
+			NSLog(@"Error with copying ReadWrite store from bundle %@", error);
         }
         
     }
     
-    // Create one coordinator that just migrates, but isn't used.
-    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                             [NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption,
-                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption,
-                             nil];
+	//handle db upgrade for auto migration for minor schema changes
+	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
     error = nil;    
     
-    NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeURL error:&error];
+    //Older model design utilized a merged model.  This needs to be corrected.
+    //Determine if migration is necessary by checking to see if current Model is comaptible with current store metadata
+    NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeCacheURL error:&error];
     BOOL isMigrationRequired = ![[self managedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    
+    //Determine if legacy, merged model is capable of migrating the store
     BOOL isMergedModelAcceptible = [[self mergedManagedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
 
+    //If both a migration is necessary and the legacy, merged model can migrate the current store.
     if (isMigrationRequired && isMergedModelAcceptible) {
-        
-        [self migrateStore:storeURL toMigratedStore:storeCacheURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
+        [fileManager removeItemAtPath:preloadCacheData error:&error];
+                
+        [self migrateStore:storeLegacyURL toMigratedStore:storeCacheURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
         
     }
     
+    //Otherwise, simply load the store with automatic migration
     error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
     
-	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
+	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeCacheURL options:options error:&error]) {
         
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();
@@ -263,22 +281,26 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
         return _readWritePersistentStoreCoordinator;
     }
     
-	//Retrieve readwrite Documents directory
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	//Create pre-loaded SQLite db location
-	NSString *preloadDataReadWrite =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
-	NSURL *storeURLReadWrite = [NSURL fileURLWithPath:preloadDataReadWrite];
+    //Retrieve legacy readwrite store from Documents directory
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    //Create pre-loaded SQLite db location
+    NSString *preloadData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
+    NSURL *storeURL = [NSURL fileURLWithPath:preloadData];
+    
+    //Create pre-loaded SQLite db location
+    NSString *preloadTempData =  [documentsDirectory stringByAppendingPathComponent:@"UserDataTemp.sqlite"];
+    NSURL *storeTempURL = [NSURL fileURLWithPath:preloadTempData];
     
 	//Create filemanager to manipulate filesystem
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
 	//Determine if pre-loaded SQLite db exists
-	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadDataReadWrite];
+	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadData];
     NSError *error = nil;
     
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
-	if (!isSQLiteFilePresent) {
+	if (isSQLiteFilePresent) {
         
         NSString *defaultStorePathWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"sqlite"];
         
@@ -286,21 +308,42 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 		if (defaultStorePathWrite) {
 			error = nil;
             
-			[fileManager copyItemAtPath:defaultStorePathWrite toPath:preloadDataReadWrite error:&error];
+			[fileManager copyItemAtPath:defaultStorePathWrite toPath:preloadData error:&error];
             
 			NSLog(@"Unresolved error %@", error);
 		}  
         
-    }     
+    } else {
+        
+    }
     
 	//handle db upgrade for auto migration for minor schema changes
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
-	
+    
+    //Older model design utilized a merged model.  This needs to be corrected.
+    //Determine if migration is necessary by checking to see if current Model is comaptible with current store metadata
+    NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeURL error:&error];
+    BOOL isMigrationRequired = ![[self readWriteManagedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    
+    //Determine if legacy, merged model is capable of migrating the store
+    BOOL isMergedModelAcceptible = [[self mergedManagedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    
+    //If both a migration is necessary and the legacy, merged model can migrate the current store.
+    if (isMigrationRequired && isMergedModelAcceptible) {
+        
+        //UserData might contain user entry, so it must not be simply overridden.
+        //It must be migrated to a temporary location, the legacy must be deleted, and then migrated store moved into place
+        [self migrateStore:storeURL toMigratedStore:storeTempURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self readWriteManagedObjectModel] error:&error];
+        [fileManager removeItemAtPath:preloadData error:&error];
+        [fileManager copyItemAtPath:preloadTempData toPath:preloadData error:&error];
+        [fileManager removeItemAtPath:preloadTempData error:&error];
+
+    }    
+    
     error = nil;
     _readWritePersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self readWriteManagedObjectModel]];
-    
-	
-	if (![_readWritePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURLReadWrite options:options error:&error]) {
+  	
+	if (![_readWritePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
         
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
         abort();

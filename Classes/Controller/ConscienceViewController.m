@@ -7,6 +7,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 
 #import "ConscienceViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceView.h"
 #import "ConscienceModalViewController.h"
 #import <QuartzCore/QuartzCore.h>
@@ -118,7 +119,7 @@ static int thoughtVersion = 0;
 		//Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
-        context = [appDelegate.moralModelManager managedObjectContext];
+        context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];
