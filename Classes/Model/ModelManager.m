@@ -9,10 +9,10 @@
  */
 #import "ModelManager.h"
 
-NSString* const kMLCoreDataReadOnlyModelName = @"SystemData";
-NSString* const kMLCoreDataReadWriteModelName = @"UserData";
-NSString* const kMLCoreDataModelExtension = @"momd";
-NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
+NSString* const kMLReadOnlyModelName = @"SystemData";
+NSString* const kMLReadWriteModelName = @"UserData";
+NSString* const kMLDataModelExtension = @"momd";
+NSString* const kMLStoreType = @"sqlite";
 
 @interface ModelManager () 
 
@@ -113,7 +113,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
         return _managedObjectModel;
     }
     
-	NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData" ofType:@"momd"];
+	NSString *pathReadOnly = [self.currentBundle pathForResource:kMLReadOnlyModelName ofType:kMLDataModelExtension];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
     
@@ -130,7 +130,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
         return _readWriteManagedObjectModel;
     }
 	
-	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
+	NSString *pathReadWrite = [self.currentBundle pathForResource:kMLReadWriteModelName ofType:kMLDataModelExtension];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
     _readWriteManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
     
@@ -143,12 +143,12 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
  */
 - (NSManagedObjectModel *)mergedManagedObjectModel {
     
-	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
+	NSString *pathReadWrite = [self.currentBundle pathForResource:kMLReadWriteModelName ofType:kMLDataModelExtension];
     //	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData2" ofType:@"mom"];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
     NSManagedObjectModel *modelReadWrite = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
 	
-    NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData" ofType:@"momd"];
+    NSString *pathReadOnly = [self.currentBundle pathForResource:kMLReadOnlyModelName ofType:kMLDataModelExtension];
     //    NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData2" ofType:@"mom"];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];
@@ -181,7 +181,9 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     NSString *documentsDirectory = [paths objectAtIndex:0];
     
     //Create pre-loaded, legacy SQLite db location
-    NSString *preloadLegacyData =  [documentsDirectory stringByAppendingPathComponent:@"SystemData.sqlite"];
+    NSString *readOnlyStore = [NSString stringWithFormat:@"%@.%@", kMLReadOnlyModelName, kMLStoreType];
+    NSString *readOnlyStoreTemp = [NSString stringWithFormat:@"%@Temp.%@", kMLReadOnlyModelName, kMLStoreType];
+    NSString *preloadLegacyData =  [documentsDirectory stringByAppendingPathComponent:readOnlyStore];
     NSURL *storeLegacyURL = [NSURL fileURLWithPath:preloadLegacyData];
     
     //Create the pre-loaded, correcdt SQLite db location in Library/Caches
@@ -189,8 +191,8 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     NSString *cacheDirectory = [cachePaths objectAtIndex:0];
     
     //Create pre-loaded SQLite db location
-    NSString *preloadCacheData =  [cacheDirectory stringByAppendingPathComponent:@"SystemData.sqlite"];
-    NSString *preloadCacheDataTemp =  [cacheDirectory stringByAppendingPathComponent:@"SystemDataTemp.sqlite"];
+    NSString *preloadCacheData =  [cacheDirectory stringByAppendingPathComponent:readOnlyStore];
+    NSString *preloadCacheDataTemp =  [cacheDirectory stringByAppendingPathComponent:readOnlyStoreTemp];
     
     NSURL *storeCacheURL = [NSURL fileURLWithPath:preloadCacheData];
     NSURL *storeCacheURLTemp = [NSURL fileURLWithPath:preloadCacheDataTemp];
@@ -203,7 +205,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadCacheData];
     NSError *error = nil;
     
-    NSString *defaultStorePath = [self.currentBundle pathForResource:@"SystemData" ofType:@"sqlite"];
+    NSString *defaultStorePath = [self.currentBundle pathForResource:kMLReadOnlyModelName ofType:kMLStoreType];
     
 	//Determine status of persistent store
 	if (isSQLiteFilePresent) {
@@ -321,11 +323,13 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
     //Create pre-loaded SQLite db location
-    NSString *preloadData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
+    NSString *readWriteStore = [NSString stringWithFormat:@"%@.%@", kMLReadWriteModelName, kMLStoreType];
+    NSString *readWriteStoreTemp = [NSString stringWithFormat:@"%@Temp.%@", kMLReadWriteModelName, kMLStoreType];
+    NSString *preloadData =  [documentsDirectory stringByAppendingPathComponent:readWriteStore];
     NSURL *storeURL = [NSURL fileURLWithPath:preloadData];
     
     //Create pre-loaded SQLite db location
-    NSString *preloadTempData =  [documentsDirectory stringByAppendingPathComponent:@"UserDataTemp.sqlite"];
+    NSString *preloadTempData =  [documentsDirectory stringByAppendingPathComponent:readWriteStoreTemp];
     NSURL *storeTempURL = [NSURL fileURLWithPath:preloadTempData];
     
 	//Create filemanager to manipulate filesystem
@@ -338,7 +342,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
 	if (!isSQLiteFilePresent) {
         
-        NSString *defaultStorePathWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"sqlite"];
+        NSString *defaultStorePathWrite = [self.currentBundle pathForResource:kMLReadWriteModelName ofType:kMLStoreType];
         
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePathWrite) {
