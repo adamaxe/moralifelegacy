@@ -85,6 +85,10 @@
     
 }
 
+- (ReferenceText *)read:(NSString *)key {
+    return [self findPersistedObject:key];
+}
+
 - (NSString *)readShortDescription:(NSString *)key {
     return [self findPersistedObject:key].shortDescriptionReference;
 }

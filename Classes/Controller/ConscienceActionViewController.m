@@ -19,7 +19,7 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "ConscienceDeckViewController.h"
 #import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
-#import "Dilemma.h"
+#import "DilemmaDAO.h"
 #import "Character.h"
 #import "Moral.h"
 #import "UserDilemma.h"
@@ -342,21 +342,11 @@ Construct antagonist Conscience
 		[prefs removeObjectForKey:@"dilemmaKey"];
 	}
     
-	NSEntityDescription *entityDilemmaDesc = [NSEntityDescription entityForName:@"Dilemma" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityDilemmaDesc];
+    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] initWithKey:restoreDilemmaKey];
+    currentDilemma = [currentDilemmaDAO read:@""];
     
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma == %@", restoreDilemmaKey];
-    
-	[request setPredicate:pred];
-    
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-    
-	if ([objects count] == 0) {
-		NSLog(@"No dilemma matches");
-	} else {
-        
-		currentDilemma = [objects objectAtIndex:0];
+	if (currentDilemma) {
+
         [dilemmaName setString:[currentDilemma nameDilemma]];
         [moralAName setString:[[currentDilemma moralChoiceA] nameMoral]];
         [moralADescription setString:[[currentDilemma moralChoiceA] shortDescriptionMoral]];
@@ -480,7 +470,7 @@ Construct antagonist Conscience
         
 	}
 	
-	[request release];
+    [currentDilemmaDAO release];
 }
 
 /**
@@ -593,10 +583,11 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[ethicalRewardLabel setAlpha:0];
         
         ReferenceAssetDAO *currentReferenceDAO = [[ReferenceAssetDAO alloc] initWithKey:selectedReward];
+        ReferenceAsset *currentReference = [currentReferenceDAO read:@""];
         
-		[moralSelectedRewardLabel setText:[NSString stringWithString:[currentReferenceDAO readDisplayName:@""]]];
+		[moralSelectedRewardLabel setText:[NSString stringWithString:currentReference.displayNameReference]];
         
-		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentReferenceDAO readImageName:@""]]]];
+		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentReference.imageNameReference]]];
         
         [currentReferenceDAO release];
         

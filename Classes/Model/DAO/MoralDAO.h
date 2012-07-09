@@ -1,3 +1,5 @@
+#import "Moral.h"
+
 @class ModelManager;
 
 @interface MoralDAO : NSObject
@@ -11,6 +13,7 @@
 - (id)initWithType:(NSString *)type;
 - (id)initWithType:(NSString *)type andModelManager:(ModelManager *)moralModelManager;
 
+- (Moral *)read:(NSString *)key;
 - (NSString *)readColor:(NSString *)key;
 - (NSString *)readDefinition:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;

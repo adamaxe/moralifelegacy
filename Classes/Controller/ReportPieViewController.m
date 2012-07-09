@@ -255,12 +255,13 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
 	            [reportValues setValue:[NSNumber numberWithFloat:currentValue] forKey:[match choiceMoral]];
 
             NSString *value = [match choiceMoral];            
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
+            Moral *currentMoral = [currentMoralDAO read:@""];
             
-            NSString *moralDisplayName = [[NSString alloc] initWithString:[currentMoralDAO readDisplayName:value]];
+            NSString *moralDisplayName = [[NSString alloc] initWithString:currentMoral.displayNameMoral];
             NSString *moralName = [[NSString alloc] initWithString:value];
-            NSString *moralImageName = [[NSString alloc] initWithString:[currentMoralDAO readImageName:value]];
-            NSString *moralColor = [[NSString alloc] initWithString:[currentMoralDAO readColor:value]];            
+            NSString *moralImageName = [[NSString alloc] initWithString:currentMoral.imageNameMoral];
+            NSString *moralColor = [[NSString alloc] initWithString:currentMoral.colorMoral];            
             
             [currentMoralDAO release];
             

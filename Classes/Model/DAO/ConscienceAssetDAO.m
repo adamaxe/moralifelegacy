@@ -1,8 +1,6 @@
 #import "ConscienceAssetDAO.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ConscienceAsset.h"
-#import "Moral.h"
 
 @interface ConscienceAssetDAO () 
 
@@ -91,6 +89,10 @@
     
 }
 
+- (ConscienceAsset *)read:(NSString *)key {
+    return [self findPersistedObject:key];
+}
+
 - (NSString *)readShortDescription:(NSString *)key {
     return [self findPersistedObject:key].shortDescriptionReference;
 }
@@ -171,6 +173,11 @@
 - (NSArray *)readAllSubtitles {
     [self refreshData];    
     return self.returnedSubtitles;
+}
+
+- (NSArray *)readAll {
+    [self refreshData];    
+    return self.persistedObjects;
 }
 
 #pragma mark -

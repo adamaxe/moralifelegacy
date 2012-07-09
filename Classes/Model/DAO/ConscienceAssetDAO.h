@@ -1,3 +1,5 @@
+#import "ConscienceAsset.h"
+#import "Moral.h"
 @class ModelManager;
 
 @interface ConscienceAssetDAO : NSObject
@@ -8,6 +10,7 @@
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+- (ConscienceAsset *)read:(NSString *)key;
 - (NSString *)readShortDescription:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;
@@ -27,5 +30,6 @@
 - (NSArray *)readAllOrientations;
 - (NSArray *)readAllMoralValues;
 - (NSArray *)readAllSubtitles;
+- (NSArray *)readAll;
 
 @end

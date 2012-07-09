@@ -10,7 +10,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "ModelManager.h"
 #import "ConscienceView.h"
 #import "DilemmaViewController.h"
-#import "Dilemma.h"
+#import "DilemmaDAO.h"
 #import "UserDilemma.h"
 #import "Moral.h"
 #import "UserCollectable.h"
@@ -481,53 +481,47 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 		dilemmaCampaign = 0;
 	}
     
-	//Begin CoreData Retrieval			
-	NSError *outError;
-	
 	//Retrieve all available Dilemmas, sort by name, limit to currently requested Campaign
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Dilemma" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-    
-	//NSPredicate *pred = [NSPredicate predicateWithFormat:@"campaign == %d", dilemmaCampaign];
+    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] init];
+
 	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
 	[dilemmaPredicate release];
 
 	if (dilemmaCampaign > 0) {
-		[request setPredicate:pred];
+		[currentDilemmaDAO setPredicates:[NSArray arrayWithObject:pred]];
 	}
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameDilemma" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
-	[request setSortDescriptors:sortDescriptors];
+	[currentDilemmaDAO setSorts:sortDescriptors];
 	[sortDescriptor release];
 	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [currentDilemmaDAO readAll];
     
 	if ([objects count] == 0) {
 		NSLog(@"No matches");
 	} else {
 		
         //Add dilemmas to list, concatenate two morals together for detail text
-		for (Dilemma *matches in objects){
+		for (Dilemma *match in objects){
             
-			[choiceNames addObject:[matches nameDilemma]];
-			[choiceImages addObject:[matches surrounding]];
-			[choiceDisplayNames addObject:[matches displayNameDilemma]];
+			[choiceNames addObject:[match nameDilemma]];
+			[choiceImages addObject:[match surrounding]];
+			[choiceDisplayNames addObject:[match displayNameDilemma]];
             
             NSString *dilemmaDescription;
             
-            if ([[[matches moralChoiceA] nameMoral] isEqualToString:[[matches moralChoiceB] nameMoral]]) {
-                dilemmaDescription = [[NSString alloc] initWithString:[[matches moralChoiceA] displayNameMoral]];
+            if ([[[match moralChoiceA] nameMoral] isEqualToString:[[match moralChoiceB] nameMoral]]) {
+                dilemmaDescription = [[NSString alloc] initWithString:[[match moralChoiceA] displayNameMoral]];
                 isDilemma = FALSE;
             } else {
-                dilemmaDescription = [[NSString alloc] initWithFormat:@"%@ vs. %@", [[matches moralChoiceA] displayNameMoral], [[matches moralChoiceB] displayNameMoral]];
+                dilemmaDescription = [[NSString alloc] initWithFormat:@"%@ vs. %@", [[match moralChoiceA] displayNameMoral], [[match moralChoiceB] displayNameMoral]];
                 isDilemma = TRUE;
             }
 
-            [moralNames setValue:[[matches moralChoiceA] displayNameMoral] forKey:[[matches moralChoiceA] nameMoral]];
-            [moralNames setValue:[[matches moralChoiceB] displayNameMoral] forKey:[[matches moralChoiceB] nameMoral]];
+            [moralNames setValue:[[match moralChoiceA] displayNameMoral] forKey:[[match moralChoiceA] nameMoral]];
+            [moralNames setValue:[[match moralChoiceB] displayNameMoral] forKey:[[match moralChoiceB] nameMoral]];
             [choiceTypes addObject:[NSNumber numberWithBool:isDilemma]];
 			[choiceDetails addObject:dilemmaDescription];			
             [dilemmaDescription release];
@@ -535,7 +529,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 		}
 	}
 	
-	[request release];
+	[currentDilemmaDAO release];
     
 	[self loadUserData];
 	//End CoreData Retrieval

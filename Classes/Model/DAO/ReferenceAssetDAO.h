@@ -1,3 +1,5 @@
+#import "ReferenceAsset.h"
+
 @class ModelManager;
 
 @interface ReferenceAssetDAO : NSObject
@@ -8,6 +10,7 @@
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+- (ReferenceAsset *)read:(NSString *)key;
 - (NSString *)readShortDescription:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;
@@ -27,5 +30,6 @@
 - (NSArray *)readAllOriginYears;
 - (NSArray *)readAllOriginLocations;
 - (NSArray *)readAllMoralKeys;
+- (NSArray *)readAll;
 
 @end

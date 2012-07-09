@@ -90,6 +90,10 @@
     
 }
 
+- (ReferenceAsset *)read:(NSString *)key {
+    return [self findPersistedObject:key];
+}
+
 - (NSString *)readShortDescription:(NSString *)key {
     return [[self findPersistedObject:key] shortDescriptionReference];
 }
@@ -171,6 +175,11 @@
 - (NSArray *)readAllMoralKeys {
     [self refreshData];    
     return self.returnedMoralKeys;
+}
+
+- (NSArray *)readAll {
+    [self refreshData];    
+    return self.persistedObjects;
 }
 
 

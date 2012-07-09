@@ -1,3 +1,5 @@
+#import "ReferenceText.h"
+
 @class ModelManager;
 
 @interface ReferenceTextDAO : NSObject
@@ -8,6 +10,7 @@
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+- (ReferenceText *)read:(NSString *)key;
 - (NSString *)readShortDescription:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;

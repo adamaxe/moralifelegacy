@@ -17,7 +17,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "ConscienceDeckViewController.h"
 #import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
-#import "Dilemma.h"
+#import "DilemmaDAO.h"
 #import "Character.h"
 #import "Moral.h"
 #import "UserDilemma.h"
@@ -342,9 +342,7 @@ Construct antagonist Conscience
 @todo refactor into multiple functions
  */
 -(void) loadDilemma{
-    
-	NSError *outError;
-    
+        
 	NSString *restoreDilemmaKey = [prefs objectForKey:@"dilemmaKey"];
     
 	/** @todo determine no dilemma case */
@@ -353,22 +351,11 @@ Construct antagonist Conscience
 	}
 
 	//Retrieve Dilemma
-	NSEntityDescription *entityDilemmaDesc = [NSEntityDescription entityForName:@"Dilemma" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityDilemmaDesc];
+    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] initWithKey:restoreDilemmaKey];
+    currentDilemma = [currentDilemmaDAO read:@""];
     
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma == %@", restoreDilemmaKey];
-    
-	[request setPredicate:pred];
-    
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-
-	if ([objects count] == 0) {
-		NSLog(@"No dilemma matches");
-	} else {
-    
+	if (currentDilemma) {    
 		//Populate relevante dilemma information
-		currentDilemma = [objects objectAtIndex:0];
         [dilemmaName setString:[currentDilemma nameDilemma]];
         [moralAName setString:[[currentDilemma moralChoiceA] nameMoral]];
         [moralBName setString:[[currentDilemma moralChoiceB] nameMoral]];
@@ -412,27 +399,29 @@ Construct antagonist Conscience
         ConscienceAccessories *antagonistConscienceAccessories = [[ConscienceAccessories alloc] init];
         ConscienceMind *antagonistConscienceMind = [[ConscienceMind alloc] init];        
         
+        Character *character = [currentDilemma antagonist];
+        
 		//Create antagonist Conscience
-		antagonistConscienceBody.eyeColor = [[currentDilemma antagonist] eyeColor];
-		antagonistConscienceBody.browColor = [[currentDilemma antagonist] browColor];
-		antagonistConscienceBody.bubbleColor = [[currentDilemma antagonist] bubbleColor];
-		antagonistConscienceBody.age = [[[currentDilemma antagonist] ageCharacter] intValue];
-		antagonistConscienceBody.bubbleType = [[[currentDilemma antagonist] bubbleType] intValue];
-		antagonistConscienceBody.symbolName = [[currentDilemma antagonist] faceCharacter];
-		antagonistConscienceBody.eyeName = [[currentDilemma antagonist] eyeCharacter];
-		antagonistConscienceBody.mouthName = [[currentDilemma antagonist] mouthCharacter];
+		antagonistConscienceBody.eyeColor = [character eyeColor];
+		antagonistConscienceBody.browColor = [character browColor];
+		antagonistConscienceBody.bubbleColor = [character bubbleColor];
+		antagonistConscienceBody.age = [[character ageCharacter] intValue];
+		antagonistConscienceBody.bubbleType = [[character bubbleType] intValue];
+		antagonistConscienceBody.symbolName = [character faceCharacter];
+		antagonistConscienceBody.eyeName = [character eyeCharacter];
+		antagonistConscienceBody.mouthName = [character mouthCharacter];
 
-        if (![[[currentDilemma antagonist] accessoryPrimaryCharacter] isEqualToString:@""]) {
-            antagonistConscienceAccessories.primaryAccessory = [[currentDilemma antagonist] accessoryPrimaryCharacter];
+        if (![[character accessoryPrimaryCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.primaryAccessory = [character accessoryPrimaryCharacter];
         }
-        if (![[[currentDilemma antagonist] accessorySecondaryCharacter] isEqualToString:@""]) {
-            antagonistConscienceAccessories.secondaryAccessory = [[currentDilemma antagonist] accessorySecondaryCharacter];
+        if (![[character accessorySecondaryCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.secondaryAccessory = [character accessorySecondaryCharacter];
         }
-        if (![[[currentDilemma antagonist] accessoryTopCharacter] isEqualToString:@""]) {
-            antagonistConscienceAccessories.topAccessory = [[currentDilemma antagonist] accessoryTopCharacter];
+        if (![[character accessoryTopCharacter] isEqualToString:@""]) {
+            antagonistConscienceAccessories.topAccessory = [character accessoryTopCharacter];
         }
-        if (![[[currentDilemma antagonist] accessoryBottomCharacter] isEqualToString:@""]) {            
-            antagonistConscienceAccessories.bottomAccessory = [[currentDilemma antagonist] accessoryBottomCharacter];
+        if (![[character accessoryBottomCharacter] isEqualToString:@""]) {            
+            antagonistConscienceAccessories.bottomAccessory = [character accessoryBottomCharacter];
         }
         
 		[antagonistConscienceMind setMood:[[currentDilemma moodDilemma] floatValue]];
@@ -459,7 +448,7 @@ Construct antagonist Conscience
         [antagonistConscienceMind release];
 	}
     
-	[request release];
+    [currentDilemmaDAO release];
 }
 
 /**
@@ -594,10 +583,11 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[ethicalRewardLabel setAlpha:0];
         
         ReferenceAssetDAO *currentReferenceDAO = [[ReferenceAssetDAO alloc] initWithKey:selectedReward];
+        ReferenceAsset *currentReference = [currentReferenceDAO read:@""];
         
-		[moralSelectedRewardLabel setText:[NSString stringWithString:[currentReferenceDAO readDisplayName:@""]]];
+		[moralSelectedRewardLabel setText:[NSString stringWithString:currentReference.displayNameReference]];
         
-		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentReferenceDAO readImageName:@""]]]];
+		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentReference.imageNameReference]]];
         
         [currentReferenceDAO release];
                 

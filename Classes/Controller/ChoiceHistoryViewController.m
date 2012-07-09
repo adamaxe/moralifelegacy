@@ -285,11 +285,15 @@
 			NSMutableString *detailText = [[NSMutableString alloc] init];
             
 			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
+			NSString *value = [matches choiceMoral];
 				
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
-            
-            [icons addObject:[currentMoralDAO readImageName:[matches choiceMoral]]];
-            [detailText appendString:[currentMoralDAO readDisplayName:[matches choiceMoral]]];
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
+
+			Moral *currentMoral = [currentMoralDAO read:@""];
+							
+            //Display image and moral name
+            [icons addObject:[currentMoral imageNameMoral]];
+            [detailText appendString:[currentMoral displayNameMoral]];
             
             [currentMoralDAO release];
             
@@ -365,11 +369,13 @@
 		[prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
 		
         
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
         
-        [prefs setObject:[currentMoralDAO readDisplayName:[match choiceMoral]] forKey:@"moralName"];
+        Moral *currentMoral = [currentMoralDAO read:@""];
+
+        [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
         [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-        [prefs setObject:[currentMoralDAO readImageName:[match choiceMoral]] forKey:@"moralImage"];
+        [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
 		
         [currentMoralDAO release];
 	}

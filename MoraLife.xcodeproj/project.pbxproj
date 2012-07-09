@@ -39,6 +39,10 @@
 		5E0B223A139AC27A002A8664 /* icon-rank.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2239139AC27A002A8664 /* icon-rank.png */; };
 		5E0DFA5B120BA66B00F77D70 /* ConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */; };
 		5E0EFCAB130F7DFB00009BB6 /* con-zodiac-scorpio-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */; };
+		5E12074D15AB9564006A0F8C /* DilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E12074C15AB9564006A0F8C /* DilemmaDAO.m */; };
+		5E12074E15AB9564006A0F8C /* DilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E12074C15AB9564006A0F8C /* DilemmaDAO.m */; };
+		5E12075215AB9C21006A0F8C /* CharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E12075115AB9C20006A0F8C /* CharacterDAO.m */; };
+		5E12075315AB9C21006A0F8C /* CharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E12075115AB9C20006A0F8C /* CharacterDAO.m */; };
 		5E15BE1112A5ED3100B99258 /* card-obscenity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E15BE0512A5ED3100B99258 /* card-obscenity.png */; };
 		5E15BE1212A5ED3100B99258 /* card-insensitivity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E15BE0612A5ED3100B99258 /* card-insensitivity.png */; };
 		5E15BE1312A5ED3100B99258 /* card-selfishness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E15BE0712A5ED3100B99258 /* card-selfishness.png */; };
@@ -1756,6 +1760,10 @@
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
 		5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScreenAnimations.h; path = Common/MenuScreenAnimations.h; sourceTree = "<group>"; };
 		5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-zodiac-scorpio-sm.png"; path = "Resources/images/conscience/icons/con-zodiac-scorpio-sm.png"; sourceTree = "<group>"; };
+		5E12074B15AB9564006A0F8C /* DilemmaDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DilemmaDAO.h; sourceTree = "<group>"; };
+		5E12074C15AB9564006A0F8C /* DilemmaDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DilemmaDAO.m; sourceTree = "<group>"; };
+		5E12075015AB9C20006A0F8C /* CharacterDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterDAO.h; sourceTree = "<group>"; };
+		5E12075115AB9C20006A0F8C /* CharacterDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CharacterDAO.m; sourceTree = "<group>"; };
 		5E15BE0512A5ED3100B99258 /* card-obscenity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-obscenity.png"; path = "Resources/images/interface/cards/card-obscenity.png"; sourceTree = "<group>"; };
 		5E15BE0612A5ED3100B99258 /* card-insensitivity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-insensitivity.png"; path = "Resources/images/interface/cards/card-insensitivity.png"; sourceTree = "<group>"; };
 		5E15BE0712A5ED3100B99258 /* card-selfishness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-selfishness.png"; path = "Resources/images/interface/cards/card-selfishness.png"; sourceTree = "<group>"; };
@@ -5401,8 +5409,12 @@
 		5EFC5A0B15940F3300E11A71 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				5E12075015AB9C20006A0F8C /* CharacterDAO.h */,
+				5E12075115AB9C20006A0F8C /* CharacterDAO.m */,
 				5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */,
 				5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */,
+				5E12074B15AB9564006A0F8C /* DilemmaDAO.h */,
+				5E12074C15AB9564006A0F8C /* DilemmaDAO.m */,
 				5EFC5A0C15940F5000E11A71 /* MoralDAO.h */,
 				5EFC5A0D15940F5000E11A71 /* MoralDAO.m */,
 				5EB832F9159D49CD002A3417 /* ReferenceAssetDAO.h */,
@@ -7167,6 +7179,8 @@
 				5EB83300159D566B002A3417 /* ReferencePersonDAO.m in Sources */,
 				5EB83304159E94FB002A3417 /* ReferenceBeliefDAO.m in Sources */,
 				5EB83308159F6256002A3417 /* ReferenceTextDAO.m in Sources */,
+				5E12074D15AB9564006A0F8C /* DilemmaDAO.m in Sources */,
+				5E12075215AB9C21006A0F8C /* CharacterDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7265,6 +7279,8 @@
 				5EB83301159D566B002A3417 /* ReferencePersonDAO.m in Sources */,
 				5EB83305159E94FB002A3417 /* ReferenceBeliefDAO.m in Sources */,
 				5EB83309159F6256002A3417 /* ReferenceTextDAO.m in Sources */,
+				5E12074E15AB9564006A0F8C /* DilemmaDAO.m in Sources */,
+				5E12075315AB9C21006A0F8C /* CharacterDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

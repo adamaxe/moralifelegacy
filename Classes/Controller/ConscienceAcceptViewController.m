@@ -128,11 +128,12 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[currentFundsLabel setText:[NSString stringWithFormat:@"%dε", currentFunds]];
     
     ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:assetSelection];
+    ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
     
     //Set UI labels
-    [accessoryNameLabel setText:[currentAssetDAO readDisplayName:@""]];
-    [accessoryDescriptionLabel setText:[currentAssetDAO readShortDescription:@""]];        
-    assetCost = [[currentAssetDAO readCost:@""] intValue];
+    [accessoryNameLabel setText:currentAsset.displayNameReference];
+    [accessoryDescriptionLabel setText:currentAsset.shortDescriptionReference];        
+    assetCost = [currentAsset.costAsset intValue];
     
     //If ConscienceAsset is already owned, change verbiage of UI
     if (isOwned) {
@@ -144,9 +145,9 @@ User can return to the previous screen:  return to ConscienceListViewController 
     }
         
     //Set UI image of Moral
-    [moralImageView setImage:[UIImage imageNamed:[currentAssetDAO readMoralImageName:@""]]];
+    [moralImageView setImage:[UIImage imageNamed:currentAsset.relatedMoral.imageNameMoral]];
 
-    assetFileName = [[NSString alloc] initWithString:[currentAssetDAO readImageName:@""]];
+    assetFileName = [[NSString alloc] initWithString:currentAsset.imageNameReference];
 	
 	//Save image name for when ConscienceAsset is no longer retained
 	/** @todo determine if Conscience update can be refactored */

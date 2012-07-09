@@ -1,7 +1,6 @@
 #import "MoralDAO.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "Moral.h"
 
 @interface MoralDAO ()
 
@@ -204,6 +203,7 @@
 }
 
 - (NSArray *)readAll {
+    [self refreshData];    
     return self.persistedObjects;
 }
 

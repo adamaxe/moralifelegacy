@@ -499,8 +499,6 @@ static int thoughtVersion = 0;
     
         [self showConscienceModal];
     }
-
-    
 	
 }
 - (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
@@ -823,10 +821,11 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
         NSString *value = [reversedPercentages objectAtIndex:0];
 
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
+        Moral *currentMoral = [currentMoralDAO read:@""];
 
-        [moralDisplayName setString:[currentMoralDAO readDisplayName:value]];
-        [moralImageName setString:[currentMoralDAO readImageName:value]];
+        [moralDisplayName setString:currentMoral.displayNameMoral];
+        [moralImageName setString:currentMoral.imageNameMoral];
                 
         [currentMoralDAO release];
         
@@ -889,9 +888,10 @@ Change the Rank picture and description.
         
         NSString *value = [[objects objectAtIndex:0] collectableName];
         ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:value];
+        ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
         
-        [rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", [currentAssetDAO readImageName:value]]]];
-        [highestRankName setString:[currentAssetDAO readDisplayName:value]];
+        [rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentAsset.imageNameReference]]];
+        [highestRankName setString:currentAsset.displayNameReference];
         
         [currentAssetDAO release];
                         

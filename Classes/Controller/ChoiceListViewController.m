@@ -282,10 +282,12 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 
             
             NSString *value = [matches choiceMoral];            
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
             
-            [icons addObject:[currentMoralDAO readImageName:value]];
-            [detailText appendString:[currentMoralDAO readDisplayName:value]];
+            Moral *currentMoral = [currentMoralDAO read:@""];
+            
+            [icons addObject:currentMoral.imageNameMoral];
+            [detailText appendString:currentMoral.displayNameMoral ];
             
             [currentMoralDAO release];
 
@@ -363,9 +365,11 @@ Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceVie
         NSString *value = [match choiceMoral];            
         MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
         
-        [prefs setObject:[currentMoralDAO readDisplayName:value] forKey:@"moralName"];
+        Moral *currentMoral = [currentMoralDAO read:@""];
+        
+        [prefs setObject:currentMoral.displayNameMoral forKey:@"moralName"];
         [prefs setObject:value forKey:@"moralKey"];
-        [prefs setObject:[currentMoralDAO readImageName:value] forKey:@"moralImage"];
+        [prefs setObject:currentMoral.imageNameMoral forKey:@"moralImage"];
                 
         [currentMoralDAO release];        
         

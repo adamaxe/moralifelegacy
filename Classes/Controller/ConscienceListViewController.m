@@ -26,11 +26,11 @@ User can filter list by only things that are affordable to currentFunds.
     
 	NSMutableArray *searchedData;			/**< array for matched data from User search */
     
-	NSArray *choices;			/**< unfiltered list of assets */
-	NSArray *choiceIDs;			/**< unfiltered list of asset pkeys */
-	NSArray *choiceCosts;			/**< unfiltered list of asset costs */
-	NSArray *choiceSubtitles;		/**< unfiltered list of asset descriptions */
-	NSArray *choiceImages;			/**< unfiltered list of asset images */
+	NSMutableArray *choices;			/**< unfiltered list of assets */
+	NSMutableArray *choiceIDs;			/**< unfiltered list of asset pkeys */
+	NSMutableArray *choiceCosts;			/**< unfiltered list of asset costs */
+	NSMutableArray *choiceSubtitles;		/**< unfiltered list of asset descriptions */
+	NSMutableArray *choiceImages;			/**< unfiltered list of asset images */
 	
 	NSMutableArray *dataSource;             /**< array for filtering raw data without having to re-query */
 	NSMutableArray *tableData;              /**< array for filtering data displayed in table populated from dataSource */
@@ -281,11 +281,33 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
     [predicateArray release];
     [sortDescriptors release];
     
-    choiceIDs = [[NSArray alloc] initWithArray:[currentAssetDAO readAllNames]];			
-	choiceImages = [[NSArray alloc] initWithArray:[currentAssetDAO readAllImageNames]];			
-	choiceCosts = [[NSArray alloc] initWithArray:[currentAssetDAO readAllCosts]];
-	choices = [[NSArray alloc] initWithArray:[currentAssetDAO readAllDisplayNames]];
-    choiceSubtitles = [[NSArray alloc] initWithArray:[currentAssetDAO readAllSubtitles]];
+    NSArray *assets = [currentAssetDAO readAll];
+    int numberOfAssets = [assets count];
+    
+	//Create raw result sets
+	choices = [[NSMutableArray alloc] initWithCapacity:numberOfAssets];
+	choiceImages = [[NSMutableArray alloc] initWithCapacity:numberOfAssets];
+	choiceSubtitles = [[NSMutableArray alloc] initWithCapacity:numberOfAssets];
+	choiceIDs = [[NSMutableArray alloc] initWithCapacity:numberOfAssets];
+	choiceCosts = [[NSMutableArray alloc] initWithCapacity:numberOfAssets];
+    
+    
+    for (ConscienceAsset *match in assets){
+        
+        [choiceIDs addObject:match.nameReference];
+        [choices addObject:match.displayNameReference];
+        [choiceImages addObject:match.imageNameReference];
+        [choiceCosts addObject:match.costAsset];
+        
+        //Determine if item is already owned, display owned, or cost if unowned
+        //@todo localize
+        if ([appDelegate.userCollection containsObject:match.nameReference]){
+            [choiceSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", match.shortDescriptionReference]];
+        } else {
+            [choiceSubtitles addObject:[NSString stringWithFormat:@"%dε - %@", [match.costAsset intValue], match.shortDescriptionReference]];
+        }
+        
+    }
     
     [currentAssetDAO release];
 

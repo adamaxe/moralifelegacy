@@ -394,10 +394,11 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         NSMutableArray *titles = [[NSMutableArray alloc] init];
         NSMutableArray *texts = [[NSMutableArray alloc] init];        
         
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralKey];
+        Moral *currentMoral = [currentMoralDAO read:@""];
         
-        [titles addObject:[currentMoralDAO readDisplayName:moralKey]];
-        [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", [currentMoralDAO readDefinition:moralKey], [currentMoralDAO readLongDescription:moralKey]]];
+        [titles addObject:currentMoral.displayNameMoral];
+        [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", currentMoral.definitionMoral, currentMoral.longDescriptionMoral]];
 
         [currentMoralDAO release];
 
