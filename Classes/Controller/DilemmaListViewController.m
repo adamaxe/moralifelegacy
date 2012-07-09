@@ -7,6 +7,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 
 #import "DilemmaListViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceView.h"
 #import "DilemmaViewController.h"
 #import "Dilemma.h"
@@ -92,7 +93,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate.moralModelManager managedObjectContext];
+	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
     
 	//Setup permanent holders, table does not key on these, it keys on tabledata which is affected by searchbar
 	//tabledatas are reloaded from these master arrays

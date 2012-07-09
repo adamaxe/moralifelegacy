@@ -14,6 +14,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 */
 
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceViewController.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
@@ -25,7 +26,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "UserCharacter.h"
 #import "ConscienceMind.h"
 #import "UserCollectable.h"
-#import "ModelManager.h"
 
 @interface MoraLifeAppDelegate () {
     
@@ -35,6 +35,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	UINavigationController *navController1; /**< UINavController for first screen, Home */
 	UINavigationController *navController2; /**< UINavController for second screen, Choices */
 	UINavigationController *navController3; /**< UINavController for third screen, Reference */
+    
+    NSManagedObjectContext *context;
     	
 }
 
@@ -125,6 +127,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     isCurrentIOS = (&UIApplicationDidEnterBackgroundNotification != NULL);
     
     moralModelManager = [[ModelManager alloc] init];
+    
+	context = [self.moralModelManager readWriteManagedObjectContext];
 
     //Call method to create base Conscience.    
     [self createConscience];
@@ -265,13 +269,13 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 - (void)configureConscience{
     
     //Retrieve ConscienceBody attributes completed by User
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:moralModelManager.managedObjectContext];
+    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
     // Execute the fetch
     NSError *error = nil;
-    NSArray *objects = [moralModelManager.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
     
 	if ([objects count] == 0) {
 		
@@ -318,13 +322,13 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 - (void)configureCollection{
         
     //Retrieve  assets already earned by user
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:moralModelManager.managedObjectContext];
+    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
     // Execute the fetch
     NSError *error = nil;
-    NSArray *objects = [moralModelManager.managedObjectContext executeFetchRequest:request error:&error];
+    NSArray *objects = [context executeFetchRequest:request error:&error];
     
 	if ([objects count] == 0) {
 		

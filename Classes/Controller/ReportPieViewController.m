@@ -10,6 +10,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "MoralDAO.h"
 #import "ConscienceView.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
 
@@ -66,7 +67,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     //appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager managedObjectContext];
+	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
         
     isGood = TRUE;

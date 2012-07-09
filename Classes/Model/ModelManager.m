@@ -188,8 +188,12 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     
     //Create pre-loaded SQLite db location
     NSString *preloadCacheData =  [cacheDirectory stringByAppendingPathComponent:@"SystemData.sqlite"];
+    NSString *preloadCacheDataTemp =  [cacheDirectory stringByAppendingPathComponent:@"SystemDataTemp.sqlite"];
+    
     NSURL *storeCacheURL = [NSURL fileURLWithPath:preloadCacheData];
+    NSURL *storeCacheURLTemp = [NSURL fileURLWithPath:preloadCacheDataTemp];
 
+    
 	//Create filemanager to manipulate filesystem
 	NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -219,20 +223,28 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
         
     } else {
 
+        BOOL isPreloadLegacyDataPresent = [fileManager fileExistsAtPath:preloadLegacyData];
+        
         //DB was not found in Library/Caches.  This means it could be in Documents (legacy) or only in the bundle (first load).
-        if(preloadLegacyData) {
+        if(isPreloadLegacyDataPresent) {
             //DB was found in legacy location (Documents), move it to caches, remove legacy
             [fileManager removeItemAtPath:preloadLegacyData error:&error];
             
-			NSLog(@"Error with copying legacy ReadWrite store from Documents Directory %@", error);
+            if (error) {                
+                NSLog(@"Error with copying legacy ReadOnly store from Documents Directory %@", error);
+            }
             
         }
         
-        if (defaultStorePath) {
+        BOOL isDefaultStoreDataPresent = [fileManager fileExistsAtPath:defaultStorePath];        
+        
+        if (isDefaultStoreDataPresent) {
             //Ensure that pre-loaded SQLite db exists in bundle before copy
 			[fileManager copyItemAtPath:defaultStorePath toPath:preloadCacheData error:&error];
             
-			NSLog(@"Error with copying ReadWrite store from bundle %@", error);
+            if (error) {                
+                NSLog(@"Error with copying ReadOnly store from bundle %@", error);
+            }
         }
         
     }
@@ -251,9 +263,43 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 
     //If both a migration is necessary and the legacy, merged model can migrate the current store.
     if (isMigrationRequired && isMergedModelAcceptible) {
-        [fileManager removeItemAtPath:preloadCacheData error:&error];
+
+        BOOL isDocumentsVersionPresent = [fileManager fileExistsAtPath:preloadLegacyData];
+        BOOL isCacheVersionPresent = [fileManager fileExistsAtPath:preloadCacheData];
+
+        if (isDocumentsVersionPresent) {
+
+            [fileManager removeItemAtPath:preloadCacheData error:&error];
+            
+            [self migrateStore:storeLegacyURL toMigratedStore:storeCacheURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
+        } else {
+
+            if (isCacheVersionPresent) {
                 
-        [self migrateStore:storeLegacyURL toMigratedStore:storeCacheURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
+                error = nil;
+                [self migrateStore:storeCacheURL toMigratedStore:storeCacheURLTemp withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
+                
+                if (error) {
+                    NSLog(@"Error with migrating cache store: %@", error);
+                }
+                
+                error = nil;
+                [fileManager removeItemAtPath:preloadCacheData error:&error];
+                NSLog(@"Error with removing old cache file: %@", error);
+
+                error = nil;
+                [fileManager copyItemAtPath:preloadCacheDataTemp toPath:preloadCacheData error:&error];
+                
+                NSLog(@"Error with copying cache file: %@", error);
+                error = nil;
+                [fileManager removeItemAtPath:preloadCacheDataTemp error:&error];
+                NSLog(@"Error with removing temp file: %@", error);
+
+            } 
+            
+            
+        }
+        
         
     }
     
@@ -263,7 +309,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     
 	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeCacheURL options:options error:&error]) {
         
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Error with adding ReadOnly store to coordinator %@, %@", error, [error userInfo]);
         abort();
     }
     
@@ -300,7 +346,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     NSError *error = nil;
     
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
-	if (isSQLiteFilePresent) {
+	if (!isSQLiteFilePresent) {
         
         NSString *defaultStorePathWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"sqlite"];
         
@@ -310,12 +356,10 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
             
 			[fileManager copyItemAtPath:defaultStorePathWrite toPath:preloadData error:&error];
             
-			NSLog(@"Unresolved error %@", error);
+			NSLog(@"Error with copying ReadWrite default store %@", error);
 		}  
         
-    } else {
-        
-    }
+    } 
     
 	//handle db upgrade for auto migration for minor schema changes
 	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
@@ -345,7 +389,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
   	
 	if (![_readWritePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
         
-        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        NSLog(@"Error with adding ReadWrite store to coordinatorr %@, %@", error, [error userInfo]);
         abort();
     } 
     

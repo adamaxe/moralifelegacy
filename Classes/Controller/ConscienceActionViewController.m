@@ -10,6 +10,7 @@ Implementation:  UIViewController changes state of UI depending upon which stage
  */
 
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceMind.h"
@@ -108,7 +109,7 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
-		context = [appDelegate.moralModelManager managedObjectContext];
+		context = [appDelegate.moralModelManager readWriteManagedObjectContext];
                 
 		//Setup default values
 		reward1 = [[NSMutableString alloc] init];
@@ -491,15 +492,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 @todo refactor into multiple functions
  */
 -(void)commitDilemma{
-    
-    //Retrieve readwrite Documents directory
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *userData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
-    NSURL *storeURL = [NSURL fileURLWithPath:userData];
-    
-    id readWriteStore = [[context persistentStoreCoordinator] persistentStoreForURL:storeURL];
-    
+        
     NSError *outError = nil;
     
     //Construct Unique Primary Key from dtstamp to millisecond
@@ -559,9 +552,7 @@ Calculate changes to User's ethicals.  Limit to 999.
         [currentUserCollectable setCollectableKey:dilemmaKey];
         [currentUserCollectable setCollectableName:moralKey];
         [currentUserCollectable setCollectableValue:[NSNumber numberWithFloat:1.0]];
-        
-        [context assignObject:currentUserCollectable toPersistentStore:readWriteStore];
-        
+                
         [appDelegate.userCollection addObject:moralKey];
         
     }
@@ -593,9 +584,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
 		[currentUserCollectable setCollectableName:selectedReward];
-        
-		[context assignObject:currentUserCollectable toPersistentStore:readWriteStore];
-        
+                
 		[appDelegate.userCollection addObject:selectedReward];
         
 	} else if ([selectedReward rangeOfString:@"asse-"].location != NSNotFound) {
@@ -616,9 +605,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
 		[currentUserCollectable setCollectableName:selectedReward];
-        
-		[context assignObject:currentUserCollectable toPersistentStore:readWriteStore];
-        
+                
 		[appDelegate.userCollection addObject:selectedReward];
 	}
     
@@ -660,7 +647,6 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	[selectedReward release];
     
-	[context assignObject:dilemmaChoice toPersistentStore:readWriteStore];
 	[context save:&outError];
     
 	if (outError != nil) {
@@ -672,7 +658,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 	UserChoice *currentUserChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserChoice" inManagedObjectContext:context];
     
 	[currentUserChoice setEntryCreationDate:[NSDate date]];
-	[context assignObject:currentUserChoice toPersistentStore:readWriteStore];
     
 	NSMutableString *moralType = [[NSMutableString alloc] initWithString:moralADescription];
         

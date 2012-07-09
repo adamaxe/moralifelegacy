@@ -7,6 +7,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceAssetDAO.h"
 #import "ReferenceAssetDAO.h"
 #import "ReferencePersonDAO.h"
@@ -87,7 +88,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 	[super viewDidLoad];
 
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager managedObjectContext];
+	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];		
     
 	if ([self.title length] == 0) {

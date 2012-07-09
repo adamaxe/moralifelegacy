@@ -9,6 +9,7 @@ User can filter list by only things that are affordable to currentFunds.
 
 #import "ConscienceListViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceView.h"
 #import "ConscienceAcceptViewController.h"
 #import "ConscienceAsset.h"
@@ -80,7 +81,7 @@ User can filter list by only things that are affordable to currentFunds.
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate.moralModelManager managedObjectContext];
+	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
     
 	//Create search bar
 	accessorySearchBar.barStyle = UIBarStyleBlack;

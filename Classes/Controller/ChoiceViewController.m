@@ -8,6 +8,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
 #import "ChoiceViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceMind.h"
 #import "ChoiceDetailViewController.h"
 #import "ChoiceModalViewController.h"
@@ -100,7 +101,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	//and to get Core Data Context and prefs to save state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate.moralModelManager managedObjectContext];
+	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
     
     choiceKey = [[NSMutableString alloc] init];
     
@@ -684,15 +685,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     } else {
         choiceWeightFilledFields++;
     }
-    
-    //Retrieve readwrite Documents directory
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *userData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
-    NSURL *storeURL = [NSURL fileURLWithPath:userData];
-	
-    id readWriteStore = [[context persistentStoreCoordinator] persistentStoreForURL:storeURL];
-	
+    	
     NSError *outError = nil;
 	
     //Construct Unique Primary Key from dtstamp to millisecond
@@ -728,7 +721,6 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         currentUserChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserChoice" inManagedObjectContext:context];
         
         [currentUserChoice setEntryCreationDate:[NSDate date]];
-        [context assignObject:currentUserChoice toPersistentStore:readWriteStore];
         
         //Setup a transient expression for Conscience in response to entry
         //UserDefault will be picked up by ConscienceViewController
@@ -805,9 +797,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             [currentUserCollectable setCollectableKey:choiceKey];
             [currentUserCollectable setCollectableName:moralKey];
             [currentUserCollectable setCollectableValue:[NSNumber numberWithFloat:1.0]];
-            
-            [context assignObject:currentUserCollectable toPersistentStore:readWriteStore];
-            
+                        
             [appDelegate.userCollection addObject:moralKey];
 
         }

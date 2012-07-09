@@ -8,6 +8,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 
 #import "ConscienceAcceptViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceView.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
@@ -91,7 +92,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
-		context = [appDelegate.moralModelManager managedObjectContext];
+		context = [appDelegate.moralModelManager readWriteManagedObjectContext];
         
         resetFeature = [[NSMutableString alloc] init];
         
@@ -462,13 +463,6 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 -(void)processCollection{
     
 	NSError *outError;
-	//Retrieve readwrite Documents directory
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
-	NSString *userData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
-	NSURL *storeURL = [NSURL fileURLWithPath:userData];
-    
-	id readWriteStore = [[context persistentStoreCoordinator] persistentStoreForURL:storeURL];
     
 	//Construct Unique Primary Key from dtstamp to millisecond
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -485,9 +479,6 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 	[currentUserAssetCollectable setCollectableCreationDate:[NSDate date]];
 	[currentUserAssetCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, assetSelection]];
 	[currentUserAssetCollectable setCollectableName:assetSelection];
-
-	//Store ConscienceAsset as a UserCollectable into UserData
-	[context assignObject:currentUserAssetCollectable toPersistentStore:readWriteStore];
     
 	//Check to see if ConscienceAsset has already been collected
 	if (!isOwned){

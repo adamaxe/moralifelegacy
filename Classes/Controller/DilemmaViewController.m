@@ -8,6 +8,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 
 #import "DilemmaViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceMind.h"
@@ -126,7 +127,7 @@ kViewReward
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
-		context = [appDelegate.moralModelManager managedObjectContext];
+		context = [appDelegate.moralModelManager readWriteManagedObjectContext];
         
 		//Setup default values
         reward1 = [[NSMutableString alloc] init];
