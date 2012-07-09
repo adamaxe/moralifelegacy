@@ -61,7 +61,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
         
         _managedObjectContext = [self managedObjectContext];
         _readWriteManagedObjectContext = [self readWriteManagedObjectContext];
-
+        
     }
     
     return self;
@@ -112,11 +112,11 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     if (_managedObjectModel != nil) {
         return _managedObjectModel;
     }
-		
+    
 	NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData" ofType:@"momd"];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
-	    
+    
 	return _managedObjectModel;
 }
 
@@ -133,7 +133,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
     _readWriteManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
-    	
+    
 	return _readWriteManagedObjectModel;
 }
 
@@ -142,12 +142,14 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
  If the model doesn't already exist, it is created from the application's model.
  */
 - (NSManagedObjectModel *)mergedManagedObjectModel {
-    	
+    
 	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData" ofType:@"momd"];
+    //	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData2" ofType:@"mom"];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
     NSManagedObjectModel *modelReadWrite = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
 	
     NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData" ofType:@"momd"];
+    //    NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData2" ofType:@"mom"];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];
     
@@ -155,7 +157,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 	
 	[modelReadOnly release];
 	[modelReadWrite release];
-
+    
 	return [mergedModel autorelease];
 }
 
@@ -173,7 +175,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-        
+    
     //Retrieve legacy readwrite store from Documents directory if it exists
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = [paths objectAtIndex:0];
@@ -192,7 +194,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     
     NSURL *storeCacheURL = [NSURL fileURLWithPath:preloadCacheData];
     NSURL *storeCacheURLTemp = [NSURL fileURLWithPath:preloadCacheDataTemp];
-
+    
     
 	//Create filemanager to manipulate filesystem
 	NSFileManager *fileManager = [NSFileManager defaultManager];
@@ -200,12 +202,12 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
 	//Determine if pre-loaded SQLite db exists in the correct, Library/Caches path
 	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadCacheData];
     NSError *error = nil;
-
+    
     NSString *defaultStorePath = [self.currentBundle pathForResource:@"SystemData" ofType:@"sqlite"];
     
 	//Determine status of persistent store
 	if (isSQLiteFilePresent) {
-                
+        
         //Copy pre-loaded SQLite db from bundle to Caches if it is bundle version is newer
         //This means that data was updated with the newer app version
         error = nil;
@@ -222,7 +224,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
         }
         
     } else {
-
+        
         BOOL isPreloadLegacyDataPresent = [fileManager fileExistsAtPath:preloadLegacyData];
         
         //DB was not found in Library/Caches.  This means it could be in Documents (legacy) or only in the bundle (first load).
@@ -256,51 +258,39 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     //Older model design utilized a merged model.  This needs to be corrected.
     //Determine if migration is necessary by checking to see if current Model is comaptible with current store metadata
     NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeCacheURL error:&error];
-    BOOL isMigrationRequired = ![[self managedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
     
-    //Determine if legacy, merged model is capable of migrating the store
-    BOOL isMergedModelAcceptible = [[self mergedManagedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
-
+    BOOL isMigrationRequired = ![[self managedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];;
+    BOOL isMergedModelAcceptible;
+    
+    if (isMigrationRequired) {
+        
+        //Determine if legacy, merged model is capable of migrating the store
+        isMergedModelAcceptible = [[self mergedManagedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    }
+    
     //If both a migration is necessary and the legacy, merged model can migrate the current store.
     if (isMigrationRequired && isMergedModelAcceptible) {
-
+        
         BOOL isDocumentsVersionPresent = [fileManager fileExistsAtPath:preloadLegacyData];
         BOOL isCacheVersionPresent = [fileManager fileExistsAtPath:preloadCacheData];
-
+        
         if (isDocumentsVersionPresent) {
-
+            
             [fileManager removeItemAtPath:preloadCacheData error:&error];
             
             [self migrateStore:storeLegacyURL toMigratedStore:storeCacheURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
         } else {
-
+            
             if (isCacheVersionPresent) {
                 
                 error = nil;
                 [self migrateStore:storeCacheURL toMigratedStore:storeCacheURLTemp withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
                 
-                if (error) {
-                    NSLog(@"Error with migrating cache store: %@", error);
-                }
-                
-                error = nil;
                 [fileManager removeItemAtPath:preloadCacheData error:&error];
-                NSLog(@"Error with removing old cache file: %@", error);
-
-                error = nil;
                 [fileManager copyItemAtPath:preloadCacheDataTemp toPath:preloadCacheData error:&error];
-                
-                NSLog(@"Error with copying cache file: %@", error);
-                error = nil;
                 [fileManager removeItemAtPath:preloadCacheDataTemp error:&error];
-                NSLog(@"Error with removing temp file: %@", error);
-
             } 
-            
-            
         }
-        
-        
     }
     
     //Otherwise, simply load the store with automatic migration
@@ -381,7 +371,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
         [fileManager removeItemAtPath:preloadData error:&error];
         [fileManager copyItemAtPath:preloadTempData toPath:preloadData error:&error];
         [fileManager removeItemAtPath:preloadTempData error:&error];
-
+        
     }    
     
     error = nil;
@@ -401,7 +391,7 @@ NSString* const kMLCoreDataPersistentStoreType = @"sqlite";
     
     // Try to get an inferred mapping model.
     NSMappingModel *mappingModel = [NSMappingModel inferredMappingModelForSourceModel:sourceModel
-                                      destinationModel:destinationModel error:outError];
+                                                                     destinationModel:destinationModel error:outError];
     
     // If Core Data cannot create an inferred mapping model, return NO.
     if (!mappingModel) {
