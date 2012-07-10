@@ -4,12 +4,11 @@
 
 @interface DilemmaDAO ()
 
-- (Dilemma *)findPersistedObject:(NSString *)key;
-
 @property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 
+- (Dilemma *)findPersistedObject:(NSString *)key;
 - (NSArray *)retrievePersistedObjects;
 
 @end

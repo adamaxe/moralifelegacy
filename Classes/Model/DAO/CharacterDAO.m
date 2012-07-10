@@ -4,12 +4,11 @@
 
 @interface CharacterDAO ()
 
-- (Dilemma *)findPersistedObject:(NSString *)key;
-
 @property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 
+- (Character *)findPersistedObject:(NSString *)key;
 - (NSArray *)retrievePersistedObjects;
 
 @end
@@ -57,7 +56,7 @@
     return self;
 }
 
-- (Dilemma *)read:(NSString *)key {
+- (Character *)read:(NSString *)key {
     return [self findPersistedObject:key];
 }
 

@@ -11,25 +11,6 @@
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
 - (ConscienceAsset *)read:(NSString *)key;
-- (NSString *)readShortDescription:(NSString *)key;
-- (NSString *)readLongDescription:(NSString *)key;
-- (NSString *)readDisplayName:(NSString *)key;
-- (NSString *)readImageName:(NSString *)key;
-- (NSString *)readMoralImageName:(NSString *)key;
-- (NSNumber *)readCost:(NSString *)key;
-- (NSString *)readOrientation:(NSString *)key;
-- (NSNumber *)readMoralValue:(NSString *)key;
-- (NSString *)readMoralKey:(NSString *)key;
-
-- (NSArray *)readAllNames;
-- (NSArray *)readAllDisplayNames;
-- (NSArray *)readAllImageNames;
-- (NSArray *)readAllLongDescriptions;
-- (NSArray *)readAllShortDescriptions;
-- (NSArray *)readAllCosts;
-- (NSArray *)readAllOrientations;
-- (NSArray *)readAllMoralValues;
-- (NSArray *)readAllSubtitles;
 - (NSArray *)readAll;
 
 @end

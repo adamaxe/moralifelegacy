@@ -12,22 +12,6 @@
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
 - (ReferenceBelief *)read:(NSString *)key;
-- (NSString *)readShortDescription:(NSString *)key;
-- (NSString *)readLongDescription:(NSString *)key;
-- (NSString *)readDisplayName:(NSString *)key;
-- (NSString *)readImageName:(NSString *)key;
-- (NSString *)readLink:(NSString *)key;
-- (NSString *)readLink:(NSString *)key;
-- (NSString *)readPersonKey:(NSString *)key;
-- (NSString *)readMoralKey:(NSString *)key;
-
-- (NSArray *)readAllNames;
-- (NSArray *)readAllDisplayNames;
-- (NSArray *)readAllImageNames;
-- (NSArray *)readAllLongDescriptions;
-- (NSArray *)readAllShortDescriptions;
-- (NSArray *)readAllLinks;
-- (NSArray *)readAllPeopleKeys;
 - (NSArray *)readAll;
 
 @end

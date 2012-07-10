@@ -11,21 +11,6 @@
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
 - (ReferenceText *)read:(NSString *)key;
-- (NSString *)readShortDescription:(NSString *)key;
-- (NSString *)readLongDescription:(NSString *)key;
-- (NSString *)readDisplayName:(NSString *)key;
-- (NSString *)readImageName:(NSString *)key;
-- (NSString *)readLink:(NSString *)key;
-- (NSString *)readQuote:(NSString *)key;
-- (NSString *)readMoralKey:(NSString *)key;
-
 - (NSArray *)readAll;
-- (NSArray *)readAllNames;
-- (NSArray *)readAllDisplayNames;
-- (NSArray *)readAllImageNames;
-- (NSArray *)readAllLongDescriptions;
-- (NSArray *)readAllShortDescriptions;
-- (NSArray *)readAllLinks;
-- (NSArray *)readAllQuotes;
 
 @end

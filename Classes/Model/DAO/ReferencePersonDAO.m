@@ -5,23 +5,12 @@
 
 @interface ReferencePersonDAO () 
 
-- (ReferencePerson *)findPersistedObject:(NSString *)key;
-
 @property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
-@property (nonatomic, retain) NSMutableArray *returnedNames;
-@property (nonatomic, retain) NSMutableArray *returnedImageNames;
-@property (nonatomic, retain) NSMutableArray *returnedShortDescriptions;
-@property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
-@property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
-@property (nonatomic, retain) NSMutableArray *returnedLinks;
-@property (nonatomic, retain) NSMutableArray *returnedQuotes;
-@property (nonatomic, retain) NSMutableArray *returnedDeathYears;
 
-
+- (ReferencePerson *)findPersistedObject:(NSString *)key;
 - (NSArray *)retrievePersistedObjects;
-- (void)processObjects;
 
 @end
 
@@ -33,14 +22,6 @@
 @synthesize currentKey = _currentKey;
 @synthesize context = _context;
 @synthesize persistedObjects = _persistedObjects;
-@synthesize returnedNames = _returnedNames;
-@synthesize returnedImageNames = _returnedImageNames;
-@synthesize returnedShortDescriptions = _returnedShortDescriptions;
-@synthesize returnedLongDescriptions = _returnedLongDescriptions;
-@synthesize returnedDisplayNames = _returnedDisplayNames;
-@synthesize returnedLinks = _returnedLinks;
-@synthesize returnedQuotes = _returnedQuotes;
-@synthesize returnedDeathYears = _returnedDeathYears;
 
 - (id) init {
     return [self initWithKey:nil];
@@ -69,19 +50,8 @@
             _currentKey = [[NSString alloc] initWithFormat:@""];
         }
                 
-        _returnedNames =  [[NSMutableArray alloc] init];
-        _returnedImageNames = [[NSMutableArray alloc] init];
-        _returnedDisplayNames = [[NSMutableArray alloc] init];
-        _returnedLongDescriptions = [[NSMutableArray alloc] init];
-        _returnedShortDescriptions = [[NSMutableArray alloc] init];
-        _returnedLinks = [[NSMutableArray alloc] init];
-        _returnedQuotes = [[NSMutableArray alloc] init];
-        _returnedDeathYears = [[NSMutableArray alloc] init];
-
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
         
-        [self processObjects];
-
     }
     
     return self;
@@ -92,86 +62,9 @@
     return [self findPersistedObject:key];
 }
 
-- (NSString *)readShortDescription:(NSString *)key {
-    return [self findPersistedObject:key].shortDescriptionReference;
-}
-
-- (NSString *)readLongDescription:(NSString *)key {
-    return [self findPersistedObject:key].longDescriptionReference;
-}
-
-- (NSString *)readDisplayName:(NSString *)key {
-    return [self findPersistedObject:key].displayNameReference;
-}
-
-- (NSString *)readImageName:(NSString *)key {
-    return [self findPersistedObject:key].imageNameReference;    
-}
-
-- (NSString *)readLink:(NSString *)key {
-    return [[self findPersistedObject:key] linkReference];    
-}
-
-- (NSString *)readQuote:(NSString *)key {
-    return [[self findPersistedObject:key] quotePerson];    
-}
-
-- (NSNumber *)readOriginYear:(NSString *)key {
-    return [[self findPersistedObject:key] originYear];    
-}
-
-- (NSNumber *)readDeathYear:(NSString *)key {
-    return [[self findPersistedObject:key] deathYearPerson];    
-}
-
-- (NSString *)readMoralKey:(NSString *)key {
-    
-    return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
-}
-
 - (NSArray *)readAll {
     [self refreshData];    
     return self.persistedObjects;
-}
-
-- (NSArray *)readAllNames {
-    [self refreshData];    
-    return self.returnedNames;
-}
-
-- (NSArray *)readAllDisplayNames { 
-    [self refreshData];    
-    return self.returnedDisplayNames;
-}
-
-- (NSArray *)readAllImageNames {
-    [self refreshData];    
-    return self.returnedImageNames;
-}
-
-- (NSArray *)readAllShortDescriptions {
-    [self refreshData];    
-    return self.returnedShortDescriptions;
-}
-
-- (NSArray *)readAllLongDescriptions {
-    [self refreshData];    
-    return self.returnedLongDescriptions;
-}
-
-- (NSArray *)readAllLinks {
-    [self refreshData];    
-    return self.returnedLinks;
-}
-
-- (NSArray *)readAllQuotes {
-    [self refreshData];    
-    return self.returnedQuotes;
-}
-
-- (NSArray *)readAllDeathYears {
-    [self refreshData];    
-    return self.returnedDeathYears;
 }
 
 #pragma mark -
@@ -202,33 +95,6 @@
 - (void)refreshData {
     [self.persistedObjects removeAllObjects];
     [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
-    
-    [self processObjects];
-}
-
-- (void)processObjects {
-    
-    [self.returnedNames removeAllObjects];
-    [self.returnedImageNames removeAllObjects];
-    [self.returnedDisplayNames removeAllObjects];
-    [self.returnedShortDescriptions removeAllObjects];    
-    [self.returnedLongDescriptions removeAllObjects];    
-    [self.returnedLinks removeAllObjects];  
-    [self.returnedQuotes removeAllObjects];      
-    [self.returnedDeathYears removeAllObjects];      
-    
-    for (ReferencePerson *match in self.persistedObjects){
-        [self.returnedNames addObject:[match nameReference]];
-        [self.returnedImageNames addObject:[match imageNameReference]];
-        [self.returnedDisplayNames addObject:[match displayNameReference]];
-        [self.returnedLinks addObject:[match linkReference]];
-		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
-        [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
-        [self.returnedQuotes addObject:[match quotePerson]];
-        [self.returnedDeathYears addObject:[match deathYearPerson]];
-
-    }
-    
 }
 
 - (NSArray *)retrievePersistedObjects {
@@ -275,14 +141,6 @@
     [_sorts release];
     [_currentKey release];
     [_context release];
-    [_returnedShortDescriptions release];
-    [_returnedLongDescriptions release];
-    [_returnedDisplayNames release];
-    [_returnedImageNames release];
-    [_returnedNames release];
-    [_returnedLinks release];
-    [_returnedQuotes release];
-    [_returnedDeathYears release];
     [_persistedObjects release];
     [super dealloc];
 }

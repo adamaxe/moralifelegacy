@@ -1,5 +1,4 @@
 #import "ModelManager.h"
-#import "Moral.h"
 #import "MoralDAO.h"
 
 @interface TestMoralDAO: SenTestCase {

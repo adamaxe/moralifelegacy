@@ -1,24 +1,14 @@
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ReferenceAssetDAO.h"
-#import "ReferenceAsset.h"
-#import "Moral.h"
 
 @interface ReferenceAssetDAO ()
 
 @property (nonatomic, retain) NSString *currentKey;
-@property (nonatomic, retain) NSMutableString *currentType;
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 @property (nonatomic, retain) NSManagedObjectContext *context;
-@property (nonatomic, retain) NSMutableArray *returnedNames;
-@property (nonatomic, retain) NSMutableArray *returnedImageNames;
-@property (nonatomic, retain) NSMutableArray *returnedShortDescriptions;
-@property (nonatomic, retain) NSMutableArray *returnedLongDescriptions;
-@property (nonatomic, retain) NSMutableArray *returnedDisplayNames;
-@property (nonatomic, retain) NSMutableArray *returnedLinks;
-@property (nonatomic, retain) NSMutableArray *returnedOriginYears;
-@property (nonatomic, retain) NSMutableArray *returnedOriginLocations;
-@property (nonatomic, retain) NSMutableArray *returnedMoralKeys;
+
+- (NSArray *)retrievePersistedObjects;
 
 @end
 
@@ -27,20 +17,9 @@
 @synthesize sorts = _sorts;
 @synthesize predicates = _predicates;
 
-@synthesize currentType = _currentType;
 @synthesize persistedObjects = _persistedObjects;
 @synthesize currentKey = _currentKey;
 @synthesize context = _context;
-@synthesize returnedNames = _returnedNames;
-@synthesize returnedImageNames = _returnedImageNames;
-@synthesize returnedShortDescriptions = _returnedShortDescriptions;
-@synthesize returnedLongDescriptions = _returnedLongDescriptions;
-@synthesize returnedDisplayNames = _returnedDisplayNames;
-@synthesize returnedLinks = _returnedLinks;
-@synthesize returnedOriginYears = _returnedOriginYears;
-@synthesize returnedOriginLocations = _returnedOriginLocations;
-@synthesize returnedMoralKeys = _returnedMoralKeys;
-
 
 - (id) init {
     return [self initWithKey:nil];
@@ -68,22 +47,8 @@
         } else {
             _currentKey = [[NSString alloc] initWithFormat:@""];
         }
-                
-        _currentType = [[NSMutableString alloc] initWithString:@"ReferenceAsset"];
-        _returnedNames =  [[NSMutableArray alloc] init];
-        _returnedImageNames = [[NSMutableArray alloc] init];
-        _returnedDisplayNames = [[NSMutableArray alloc] init];
-        _returnedLongDescriptions = [[NSMutableArray alloc] init];
-        _returnedShortDescriptions = [[NSMutableArray alloc] init];
-        _returnedLinks = [[NSMutableArray alloc] init];
-        _returnedOriginYears = [[NSMutableArray alloc] init];
-        _returnedOriginLocations = [[NSMutableArray alloc] init];
-        _returnedMoralKeys = [[NSMutableArray alloc] init];
-        
+                        
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
-        
-        [self processObjects];
-
     }
     
     return self;
@@ -92,89 +57,6 @@
 
 - (ReferenceAsset *)read:(NSString *)key {
     return [self findPersistedObject:key];
-}
-
-- (NSString *)readShortDescription:(NSString *)key {
-    return [[self findPersistedObject:key] shortDescriptionReference];
-}
-
-- (NSString *)readLongDescription:(NSString *)key {
-    return [[self findPersistedObject:key] longDescriptionReference];
-}
-
-- (NSString *)readDisplayName:(NSString *)key {
-    return [[self findPersistedObject:key] displayNameReference];
-}
-
-- (NSString *)readImageName:(NSString *)key {
-    return [[self findPersistedObject:key] imageNameReference];    
-}
-
-- (NSString *)readMoralImageName:(NSString *)key {
-    return [[[self findPersistedObject:key] relatedMoral] imageNameMoral];    
-}
-
-- (NSString *)readLink:(NSString *)key {
-    return [[self findPersistedObject:key] linkReference];    
-}
-
-- (NSNumber *)readOriginYear:(NSString *)key {
-    return [[self findPersistedObject:key] originYear];    
-}
-
-- (NSString *)readOriginLocation:(NSString *)key {
-    return [[self findPersistedObject:key] originLocation];    
-}
-
-- (NSString *)readMoralKey:(NSString *)key {
-    
-    return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
-}
-
-
-- (NSArray *)readAllNames {
-    [self refreshData];    
-    return self.returnedNames;
-}
-
-- (NSArray *)readAllDisplayNames { 
-    [self refreshData];    
-    return self.returnedDisplayNames;
-}
-
-- (NSArray *)readAllImageNames {
-    [self refreshData];    
-    return self.returnedImageNames;
-}
-
-- (NSArray *)readAllShortDescriptions {
-    [self refreshData];    
-    return self.returnedShortDescriptions;
-}
-
-- (NSArray *)readAllLongDescriptions {
-    [self refreshData];    
-    return self.returnedLongDescriptions;
-}
-
-- (NSArray *)readAllLinks {
-    [self refreshData];    
-    return self.returnedLinks;
-}
-
-- (NSArray *)readAllOriginYears {
-    [self refreshData];    
-    return self.returnedOriginYears;
-}
-
-- (NSArray *)readAllOriginLocations {
-    [self refreshData];    
-    return self.returnedOriginLocations;
-}
-
-- (NSArray *)readAllMoralKeys {
-    [self refreshData];    
-    return self.returnedMoralKeys;
 }
 
 - (NSArray *)readAll {
@@ -209,44 +91,13 @@
 - (void)refreshData {
     [self.persistedObjects removeAllObjects];
     [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
-    
-    [self processObjects];
-}
-
-- (void)processObjects {
-    
-    [self.returnedNames removeAllObjects];
-    [self.returnedImageNames removeAllObjects];
-    [self.returnedDisplayNames removeAllObjects];
-    [self.returnedShortDescriptions removeAllObjects];    
-    [self.returnedLongDescriptions removeAllObjects];    
-    [self.returnedLinks removeAllObjects];  
-    [self.returnedOriginYears removeAllObjects];      
-    [self.returnedOriginLocations removeAllObjects];      
-    [self.returnedMoralKeys removeAllObjects];      
-    
-    for (id match in self.persistedObjects){
-        [self.returnedNames addObject:[match nameReference]];
-        [self.returnedImageNames addObject:[match imageNameReference]];
-        [self.returnedDisplayNames addObject:[match displayNameReference]];
-        [self.returnedLinks addObject:[match linkReference]];
-		[self.returnedShortDescriptions addObject:[match shortDescriptionReference]];
-        [self.returnedLongDescriptions addObject:[match longDescriptionReference]];
-        [self.returnedOriginYears addObject:[match originYear]];
-        if ([match originLocation]) {
-            [self.returnedOriginLocations addObject:[match originLocation]];
-        }
-        [self.returnedMoralKeys addObject:[[match relatedMoral] nameMoral]];
-        
-    }
-    
 }
 
 - (NSArray *)retrievePersistedObjects {
     //Begin CoreData Retrieval			
 	NSError *outError;
 	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:_currentType inManagedObjectContext:self.context];
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"ReferenceAsset" inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
@@ -287,15 +138,6 @@
     [_sorts release];
     [_currentKey release];
     [_context release];
-    [_returnedShortDescriptions release];
-    [_returnedLongDescriptions release];
-    [_returnedDisplayNames release];
-    [_returnedImageNames release];
-    [_returnedNames release];
-    [_returnedLinks release];
-    [_returnedOriginYears release];
-    [_returnedOriginLocations release];
-    [_returnedMoralKeys release];
     [_persistedObjects release];
     [super dealloc];
 }
