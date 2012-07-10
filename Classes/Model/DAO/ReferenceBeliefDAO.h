@@ -1,4 +1,7 @@
-@class ModelManager, ReferencePersonDAO;
+#import "ReferenceBelief.h"
+#import "ReferencePerson.h"
+
+@class ModelManager;
 
 @interface ReferenceBeliefDAO : NSObject
 
@@ -8,6 +11,7 @@
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+- (ReferenceBelief *)read:(NSString *)key;
 - (NSString *)readShortDescription:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;
@@ -24,5 +28,6 @@
 - (NSArray *)readAllShortDescriptions;
 - (NSArray *)readAllLinks;
 - (NSArray *)readAllPeopleKeys;
+- (NSArray *)readAll;
 
 @end

@@ -1,7 +1,6 @@
 #import "ReferenceTextDAO.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ReferenceText.h"
 #import "Moral.h"
 
 @interface ReferenceTextDAO () 
@@ -116,6 +115,11 @@
 - (NSString *)readMoralKey:(NSString *)key {
     
     return [[[self findPersistedObject:key] relatedMoral] nameMoral];    
+}
+
+- (NSArray *)readAll {
+    [self refreshData];    
+    return self.persistedObjects;
 }
 
 - (NSArray *)readAllNames {

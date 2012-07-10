@@ -1,8 +1,6 @@
 #import "ReferenceBeliefDAO.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ReferenceBelief.h"
-#import "ReferencePerson.h"
 #import "ReferencePersonDAO.h"
 #import "Moral.h"
 
@@ -89,6 +87,10 @@
     
 }
 
+- (ReferenceBelief *)read:(NSString *)key {
+    return [self findPersistedObject:key];
+}
+
 - (NSString *)readShortDescription:(NSString *)key {
     return [self findPersistedObject:key].shortDescriptionReference;
 }
@@ -156,6 +158,10 @@
     return self.returnedPeopleKeys;
 }
 
+- (NSArray *)readAll {
+    [self refreshData];    
+    return self.persistedObjects;
+}
 
 #pragma mark -
 #pragma mark Private API

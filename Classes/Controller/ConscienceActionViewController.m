@@ -563,9 +563,11 @@ Calculate changes to User's ethicals.  Limit to 999.
         
         ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:selectedReward];
         
-        [moralSelectedRewardLabel setText:[NSString stringWithString:[currentPersonDAO readDisplayName:@""]]];
+        ReferencePerson *currentPerson = [currentPersonDAO read:@""];
         
-		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", [currentPersonDAO readImageName:@""]]]];
+        [moralSelectedRewardLabel setText:[NSString stringWithString:currentPerson.displayNameReference]];
+        
+		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentPerson.imageNameReference]]];
 
         [currentPersonDAO release];
                 

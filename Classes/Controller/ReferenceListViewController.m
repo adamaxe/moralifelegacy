@@ -187,16 +187,41 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
         [currentDAO setSorts:sortDescriptors];
     } 
         
-    [references setArray:[currentDAO readAllDisplayNames]];
-    [icons setArray:[currentDAO readAllImageNames]];
-    [referenceKeys setArray:[currentDAO readAllNames]];
     
-    if (referenceType != 4) {
-        [details setArray:[currentDAO readAllShortDescriptions]];
-    } else {
-        [details setArray:[currentDAO readAllSubtitles]];
+	/** @bug leaks complaint */
+	NSArray *objects = [currentDAO readAll];
+	
+	if ([objects count] > 0) {
+		
+        if (referenceType != 4) {
+            for (ReferenceAsset *matches in objects){
+                
+                //Is the asset owned
+                if([appDelegate.userCollection containsObject:[matches nameReference]]){
+                    
+                    [references addObject:[matches displayNameReference]];
+                    [icons addObject:[matches imageNameReference]];
+                    [details addObject:[matches shortDescriptionReference]];
+                    [referenceKeys addObject:[matches nameReference]];		
+                }
+                
+            }
+        } else {
+            
+            for (Moral *matches in objects){
+                
+                if([appDelegate.userCollection containsObject:[matches nameMoral]]){
+                    
+                    [references addObject:[matches displayNameMoral]];
+                    [icons addObject:[matches imageNameMoral]];
+                    [details addObject:[NSString stringWithFormat:@"%@: %@", [matches shortDescriptionMoral], [matches longDescriptionMoral]]];
+                    [referenceKeys addObject:[matches nameMoral]];			
+                }
+            }
+            
+		}
     }
-			
+    
     [currentDAO release];
 
     

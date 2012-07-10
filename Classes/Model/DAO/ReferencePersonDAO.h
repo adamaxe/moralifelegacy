@@ -1,3 +1,5 @@
+#import "ReferencePerson.h"
+
 @class ModelManager;
 
 @interface ReferencePersonDAO : NSObject
@@ -8,6 +10,7 @@
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+- (ReferencePerson *)read:(NSString *)key;
 - (NSString *)readShortDescription:(NSString *)key;
 - (NSString *)readLongDescription:(NSString *)key;
 - (NSString *)readDisplayName:(NSString *)key;
@@ -18,6 +21,7 @@
 - (NSNumber *)readDeathYear:(NSString *)key;
 - (NSString *)readMoralKey:(NSString *)key;
 
+- (NSArray *)readAll;
 - (NSArray *)readAllNames;
 - (NSArray *)readAllDisplayNames;
 - (NSArray *)readAllImageNames;
