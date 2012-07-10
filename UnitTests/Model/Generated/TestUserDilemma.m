@@ -75,7 +75,7 @@
 - (void)testUserDilemmaDeletion {
     STAssertNoThrow([testModelManager saveContext], @"UserDilemma can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testUserDilemma], @"UserDilemma can't be deleted");
+    STAssertNoThrow([testModelManager deleteReadWrite:testUserDilemma], @"UserDilemma can't be deleted");
     
     NSArray *userDilemmas = [testModelManager readAll:UserDilemma.class];
     
@@ -103,7 +103,7 @@
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserDilemma.class)];
     request.predicate = searchPredicate;
-    NSArray *userDilemmas = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *userDilemmas = [[testModelManager readWriteManagedObjectContext] executeFetchRequest:request error:&error];
 
     UserDilemma *retrieved = [userDilemmas objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");

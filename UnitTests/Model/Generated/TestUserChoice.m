@@ -110,7 +110,7 @@
 - (void)testUserChoiceDeletion {
     STAssertNoThrow([testModelManager saveContext], @"UserChoice can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testChoice], @"UserChoice can't be deleted");
+    STAssertNoThrow([testModelManager deleteReadWrite:testChoice], @"UserChoice can't be deleted");
     
     NSArray *userChoices = [testModelManager readAll:UserChoice.class];
     
@@ -138,8 +138,9 @@
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserChoice.class)];
     request.predicate = searchPredicate;
-    NSArray *userChoices = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
-
+    NSArray *userChoices = [[testModelManager readWriteManagedObjectContext] executeFetchRequest:request error:&error];
+//    NSArray *userChoices = [testModelManager read:UserChoice.class withKey:@"entryKey" andValue:@"0"];
+    
     UserChoice *retrieved = [userChoices objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
     STAssertEqualObjects(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");

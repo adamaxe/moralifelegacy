@@ -79,7 +79,7 @@
 - (void)testUserLuckDeletion {
     STAssertNoThrow([testModelManager saveContext], @"UserLuck can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testUserLuck], @"UserLuck can't be deleted");
+    STAssertNoThrow([testModelManager deleteReadWrite:testUserLuck], @"UserLuck can't be deleted");
     
     NSArray *UserLucks = [testModelManager readAll:UserLuck.class];
     
@@ -108,7 +108,7 @@
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserLuck.class)];
     request.predicate = searchPredicate;
-    NSArray *userLucks = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
+    NSArray *userLucks = [[testModelManager readWriteManagedObjectContext] executeFetchRequest:request error:&error];
 
     UserLuck *retrieved = [userLucks objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");

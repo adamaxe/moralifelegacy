@@ -23,7 +23,6 @@
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
-
     costAsset = [[NSNumber alloc]initWithFloat:1.0];
     moralValueAsset = [[NSNumber alloc]initWithFloat:2.0];    
     
@@ -42,7 +41,6 @@
     testConscienceAsset3.costAsset = costAsset;
     testConscienceAsset3.orientationAsset = orientationAsset;
     testConscienceAsset3.moralValueAsset = moralValueAsset;
-
 
     [testModelManager saveContext];
     

@@ -26,6 +26,7 @@ extern NSString* const kMLCoreDataModelExtension;
 - (NSArray *)readAll: (Class) requestedClass;
 - (id)read: (Class) requestedClass withKey: (id) classKey andValue:(id) keyValue;
 - (void)delete: (id) object;
+- (void)deleteReadWrite: (id) object;
 /**
  Save the current Core Data context for whenever a modify is needed.
  */

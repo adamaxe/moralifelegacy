@@ -59,7 +59,7 @@
 - (void)testUserCollectableDeletion {
     STAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testUserCollectable], @"UserCollectable can't be deleted");
+    STAssertNoThrow([testModelManager deleteReadWrite:testUserCollectable], @"UserCollectable can't be deleted");
     
     NSArray *collectables = [testModelManager readAll:UserCollectable.class];
     

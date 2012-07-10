@@ -106,7 +106,7 @@
 - (void)testUserCharacterDeletion {
     STAssertNoThrow([testModelManager saveContext], @"UserCharacter can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testUserCharacter], @"UserCharacter can't be deleted");
+    STAssertNoThrow([testModelManager deleteReadWrite:testUserCharacter], @"UserCharacter can't be deleted");
     
     NSArray *characters = [testModelManager readAll:UserCharacter.class];
     

@@ -423,17 +423,26 @@ NSString* const kMLStoreType = @"sqlite";
 
 - (id)create: (Class) insertedClass {
     
-    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
+    if ([NSStringFromClass(insertedClass) rangeOfString:@"User"].location == NSNotFound) {        
+        return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
+    } else {
+        return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.readWriteManagedObjectContext];        
+    }
+
 }
 
 - (NSArray *)readAll: (Class) requestedClass {
     NSError *error = nil;
-    NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
     NSArray *results;
     
     @try {
-        results = [self.managedObjectContext executeFetchRequest: fetch error: &error];
+        if ([NSStringFromClass(requestedClass) rangeOfString:@"User"].location == NSNotFound) {        
+            results = [self.managedObjectContext executeFetchRequest:request error: &error];
+        } else {
+            results = [self.readWriteManagedObjectContext executeFetchRequest:request error: &error];
+        }        
     }
     @catch (NSException *exception) {
         @throw(exception);
@@ -447,7 +456,8 @@ NSString* const kMLStoreType = @"sqlite";
     return results;
 }
 
-- (id)read: (Class) requestedClass withKey: (id) classKey andValue:(id) keyValue {    NSError *error = nil;
+- (id)read: (Class) requestedClass withKey: (id) classKey andValue:(id) keyValue {    
+    NSError *error = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"%@ == %@", classKey, keyValue];
@@ -457,7 +467,12 @@ NSString* const kMLStoreType = @"sqlite";
     NSArray *results;
     
     @try {
-        results = [self.managedObjectContext executeFetchRequest: request error: &error];
+        if ([NSStringFromClass(requestedClass) rangeOfString:@"User"].location == NSNotFound) {        
+            results = [self.managedObjectContext executeFetchRequest:request error: &error];
+        } else {
+            results = [self.readWriteManagedObjectContext executeFetchRequest:request error: &error];
+        }        
+
     }
     @catch (NSException *exception) {
         @throw(exception);
@@ -480,6 +495,20 @@ NSString* const kMLStoreType = @"sqlite";
     
     @try {
         [self.managedObjectContext deleteObject: object];
+
+        [self saveContext];
+    }
+    @catch (NSException *exception) {
+        @throw(exception); 
+    }    
+    
+}
+
+- (void)deleteReadWrite: (id) object {
+    
+    @try {
+        [self.readWriteManagedObjectContext deleteObject: object];
+        
         [self saveContext];
     }
     @catch (NSException *exception) {
@@ -491,48 +520,41 @@ NSString* const kMLStoreType = @"sqlite";
 - (void)saveContext {
     
     NSError *error = nil;
-	NSManagedObjectContext *saveManagedObjectContext = self.managedObjectContext;
-	NSManagedObjectContext *saveReadWriteManagedObjectContext = self.readWriteManagedObjectContext;
     
-    if (saveManagedObjectContext != nil) {
-        
-        @try {
-            if ([saveManagedObjectContext hasChanges]) {
-                [self.managedObjectContext save: &error];
-            }
+    @try {
+        if ([self.managedObjectContext hasChanges]) {
+            [self.managedObjectContext save: &error];
         }
-        @catch (NSException *exception) {
-            @throw(exception); 
-            abort();
-        }    
-        
-        if (error) {
-            NSString *errorMessage = [NSString stringWithFormat:@"Core Data Read Only save failed: %@\n\n", [error description]];
-            [NSException raise:@"CoreDataSaveError" format:errorMessage];
-            
-        }
+    }
+    @catch (NSException *exception) {
+        @throw(exception); 
+        abort();
+    }    
+    
+    if (error) {
+        NSString *errorMessage = [NSString stringWithFormat:@"Core Data Read Only save failed: %@\n\n", [error description]];
+        [NSException raise:@"CoreDataSaveError" format:errorMessage];
         
     }
     
-    if (saveReadWriteManagedObjectContext != nil) {
-        
-        @try {
-            if ([saveReadWriteManagedObjectContext hasChanges]) {
-                [self.readWriteManagedObjectContext save: &error];
-            }
+
+    
+    @try {
+        if ([self.readWriteManagedObjectContext hasChanges]) {
+            [self.readWriteManagedObjectContext save: &error];
         }
-        @catch (NSException *exception) {
-            @throw(exception); 
-            abort();
-        }    
-        
-        if (error) {
-            NSString *errorMessage = [NSString stringWithFormat:@"Core Data Read Write save failed: %@\n\n", [error description]];
-            [NSException raise:@"CoreDataSaveError" format:errorMessage];
-            
-        }
-        
+    }
+    @catch (NSException *exception) {
+        @throw(exception); 
+        abort();
     }    
+    
+    if (error) {
+        NSString *errorMessage = [NSString stringWithFormat:@"Core Data Read Write save failed: %@\n\n", [error description]];
+        [NSException raise:@"CoreDataSaveError" format:errorMessage];
+        
+    }
+    
 } 
 
 -(void)dealloc {
