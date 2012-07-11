@@ -1,19 +1,19 @@
-#import "CharacterDAO.h"
+#import "UserCharacterDAO.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 
-@interface CharacterDAO ()
+@interface UserCharacterDAO ()
 
 @property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 
-- (Character *)findPersistedObject:(NSString *)key;
+- (UserCharacter *)findPersistedObject:(NSString *)key;
 - (NSArray *)retrievePersistedObjects;
 
 @end
 
-@implementation CharacterDAO 
+@implementation UserCharacterDAO 
 
 @synthesize sorts = _sorts;
 @synthesize predicates = _predicates;
@@ -38,7 +38,7 @@
     self = [super init];
     
     if (self) {
-        _context = [[moralModelManager managedObjectContext] retain];
+        _context = [[moralModelManager readWriteManagedObjectContext] retain];
         
         _sorts = [[NSArray alloc] init];
         _predicates = [[NSArray alloc] init];
@@ -56,7 +56,7 @@
     return self;
 }
 
-- (Character *)read:(NSString *)key {
+- (UserCharacter *)read:(NSString *)key {
     return [self findPersistedObject:key];
 }
 
@@ -65,9 +65,21 @@
     return self.persistedObjects;
 }
 
+- (BOOL)update {
+    NSError *error = nil;
+    
+    if ([_context hasChanges]) {
+        [_context save:&error];
+    }
+    
+    [_context reset];
+
+    return error ? TRUE : FALSE;
+}
+
 #pragma mark -
 #pragma mark Private API
-- (Character *)findPersistedObject:(NSString *)key {  
+- (UserCharacter *)findPersistedObject:(NSString *)key {  
         
     [self refreshData];
     
@@ -75,7 +87,7 @@
     NSArray *objects;
     
     if (![key isEqualToString:@""]) {
-        findPred = [NSPredicate predicateWithFormat:@"nameCharacter == %@", key];
+        findPred = [NSPredicate predicateWithFormat:@"characterName == %@", key];
         objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
     } else {
         objects = self.persistedObjects;
@@ -98,7 +110,7 @@
 - (NSArray *)retrievePersistedObjects {	
 	NSError *outError;
 	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Character" inManagedObjectContext:self.context];
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
@@ -106,7 +118,7 @@
     
     if (![self.currentKey isEqualToString:@""]) {
         
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameCharacter == %@", self.currentKey];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"characterName == %@", self.currentKey];
         [currentPredicates addObject:pred];
     }
     
@@ -118,7 +130,7 @@
 	if (self.sorts.count > 0) {
         [request setSortDescriptors:self.sorts];
     } else {
-        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayNameCharacter" ascending:YES];
+        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"characterName" ascending:YES];
         NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
         [request setSortDescriptors:sortDescriptors];
         [sortDescriptor release];

@@ -14,11 +14,11 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "ChoiceModalViewController.h"
 #import "StructuredTextField.h"
 #import "MoralDAO.h"
+#import "UserCharacterDAO.h"
 #import "UserChoice.h"
 #import "ConscienceHelpViewController.h"
 #import "ReferenceDetailViewController.h"
 #import "UserCollectable.h"
-#import "UserCharacter.h"
 #import "ChoiceHistoryViewController.h"
 #import "ViewControllerLocalization.h"
 
@@ -748,17 +748,15 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             appDelegate.userConscienceMind.enthusiasm = newEnthusiasm;        
         }
         
-        NSEntityDescription *entityMindDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:context];
-        NSFetchRequest *requestCharacter = [[NSFetchRequest alloc] init];
-        [requestCharacter setEntity:entityMindDesc];
-        
-        NSArray *objects = [context executeFetchRequest:requestCharacter error:&outError];
-        UserCharacter *currentUserCharacter = [objects objectAtIndex:0];
+        UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+        UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
         [currentUserCharacter setCharacterMood:[NSNumber numberWithFloat:newMood]];    
         [currentUserCharacter setCharacterEnthusiasm:[NSNumber numberWithFloat:newEnthusiasm]];    
         
-        [requestCharacter release];
+        [currentUserCharacterDAO update];
+        
+        [currentUserCharacterDAO release];
         
         //See if moral has been rewarded before
         //Cannot assume that first instance of UserChoice implies no previous reward

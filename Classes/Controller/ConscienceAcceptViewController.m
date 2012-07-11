@@ -13,10 +13,10 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
 #import "ConscienceAssetDAO.h"
+#import "UserCharacterDAO.h"
 #import "ConscienceBody.h"
 #import "ConscienceView.h"
 #import "ConscienceMind.h"
-#import "UserCharacter.h"
 #import "Moral.h"
 #import "UserCollectable.h"
 #import "ViewControllerLocalization.h"
@@ -391,18 +391,10 @@ Implementation: Commits the ConscienceAsset to persistence framework.
  */
 -(void)saveConscience{
 	
-    NSError *outError = nil;
-
 	//Retrieve User's UserCharacter		
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+    UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	UserCharacter *currentUserCharacter = [objects objectAtIndex:0];
-        
-	[request release];
-    
 	//Assign current ConscienceAsset to UserCharacter
 	switch (accessorySlot) {
 		case 0:[currentUserCharacter setCharacterAccessoryTop:currentFeature];break;
@@ -447,15 +439,9 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     [currentUserCharacter setCharacterMood:[NSNumber numberWithFloat:newMood]];    
     [currentUserCharacter setCharacterEnthusiasm:[NSNumber numberWithFloat:newEnthusiasm]];
 
+    [currentUserCharacterDAO update];
     
-	[context save:&outError];
-	
-	if (outError != nil) {
-		NSLog(@"save error:%@", outError);
-	}
-	
-	[context reset];
-
+    [currentUserCharacterDAO release];
 }
 
 /**

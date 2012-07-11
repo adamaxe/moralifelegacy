@@ -23,7 +23,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "ConscienceBuilder.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
-#import "UserCharacter.h"
+#import "UserCharacterDAO.h"
 #import "ConscienceMind.h"
 #import "UserCollectable.h"
 
@@ -267,50 +267,31 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  Implementation: Retrieve User-customizations to Monitor from Core Data.  Then build physical traits (eyes/mouth/face/mind).
  */
 - (void)configureConscience{
-    
-    //Retrieve ConscienceBody attributes completed by User
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-    
-    // Execute the fetch
-    NSError *error = nil;
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    
-	if ([objects count] == 0) {
-		
-        //User has not completed a single choice
-        //populate array to prevent npe
-        NSLog(@"No matches");
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+    UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
-	} else {
-        
-        //Populate User Conscience
-        UserCharacter* match = [objects objectAtIndex:0];
+    //Populate User Conscience
+    userConscienceBody.eyeName = [currentUserCharacter characterEye];
+    userConscienceBody.mouthName = [currentUserCharacter characterMouth];
+    userConscienceBody.symbolName = [currentUserCharacter characterFace];
 
-        userConscienceBody.eyeName = [match characterEye];
-        userConscienceBody.mouthName = [match characterMouth];
-        userConscienceBody.symbolName = [match characterFace];
-
-        userConscienceBody.eyeColor = [match characterEyeColor];
-        userConscienceBody.browColor = [match characterBrowColor];
-        userConscienceBody.bubbleColor = [match characterBubbleColor];
-        userConscienceBody.bubbleType = [[match characterBubbleType] intValue];
-        
-        userConscienceBody.age = [[match characterAge] intValue];
-        userConscienceBody.size = [[match characterSize] floatValue];
-        
-        userConscienceAccessories.primaryAccessory = [match characterAccessoryPrimary];
-        userConscienceAccessories.secondaryAccessory = [match characterAccessorySecondary];
-        userConscienceAccessories.topAccessory = [match characterAccessoryTop];
-        userConscienceAccessories.bottomAccessory = [match characterAccessoryBottom];
-        
-        userConscienceMind.mood = [[match characterMood] floatValue];
-        userConscienceMind.enthusiasm = [[match characterEnthusiasm] floatValue];
-
-    }
+    userConscienceBody.eyeColor = [currentUserCharacter characterEyeColor];
+    userConscienceBody.browColor = [currentUserCharacter characterBrowColor];
+    userConscienceBody.bubbleColor = [currentUserCharacter characterBubbleColor];
+    userConscienceBody.bubbleType = [[currentUserCharacter characterBubbleType] intValue];
     
-    [request release];
+    userConscienceBody.age = [[currentUserCharacter characterAge] intValue];
+    userConscienceBody.size = [[currentUserCharacter characterSize] floatValue];
+    
+    userConscienceAccessories.primaryAccessory = [currentUserCharacter characterAccessoryPrimary];
+    userConscienceAccessories.secondaryAccessory = [currentUserCharacter characterAccessorySecondary];
+    userConscienceAccessories.topAccessory = [currentUserCharacter characterAccessoryTop];
+    userConscienceAccessories.bottomAccessory = [currentUserCharacter characterAccessoryBottom];
+    
+    userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
+    userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
+
+    [currentUserCharacterDAO release];  
 
 	//Call utility class to parse svg data for feature building    
 	[ConscienceBuilder buildConscience:userConscienceBody];

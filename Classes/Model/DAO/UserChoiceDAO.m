@@ -1,19 +1,19 @@
-#import "CharacterDAO.h"
+#import "UserChoiceDAO.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 
-@interface CharacterDAO ()
+@interface UserChoiceDAO () 
 
 @property (nonatomic, retain) NSString *currentKey;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 
-- (Character *)findPersistedObject:(NSString *)key;
+- (UserChoice *)findPersistedObject:(NSString *)key;
 - (NSArray *)retrievePersistedObjects;
 
 @end
 
-@implementation CharacterDAO 
+@implementation UserChoiceDAO 
 
 @synthesize sorts = _sorts;
 @synthesize predicates = _predicates;
@@ -22,15 +22,14 @@
 @synthesize context = _context;
 @synthesize persistedObjects = _persistedObjects;
 
-- (id)init {    
+- (id) init {
     return [self initWithKey:nil];
 }
 
 - (id)initWithKey:(NSString *)key {
-    
     MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    return [self initWithKey:key andModelManager: [appDelegate moralModelManager]];
+    return [self initWithKey:key andModelManager:[appDelegate moralModelManager]];
 }
 
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
@@ -38,25 +37,26 @@
     self = [super init];
     
     if (self) {
-        _context = [[moralModelManager managedObjectContext] retain];
+
+        _context = [[moralModelManager readWriteManagedObjectContext] retain];
         
         _sorts = [[NSArray alloc] init];
         _predicates = [[NSArray alloc] init];
-        
+                
         if (key) {
             _currentKey = [[NSString alloc] initWithFormat:key];
         } else {
             _currentKey = [[NSString alloc] initWithFormat:@""];
         }
-        
+                
         _persistedObjects = [[NSMutableArray alloc] initWithArray:[self retrievePersistedObjects]];
-        
     }
     
     return self;
+    
 }
 
-- (Character *)read:(NSString *)key {
+- (UserChoice *)read:(NSString *)key {
     return [self findPersistedObject:key];
 }
 
@@ -67,20 +67,21 @@
 
 #pragma mark -
 #pragma mark Private API
-- (Character *)findPersistedObject:(NSString *)key {  
-        
+- (UserChoice *)findPersistedObject:(NSString *)key {
+    
     [self refreshData];
     
     NSPredicate *findPred;
     NSArray *objects;
     
     if (![key isEqualToString:@""]) {
-        findPred = [NSPredicate predicateWithFormat:@"nameCharacter == %@", key];
+        findPred = [NSPredicate predicateWithFormat:@"entryKey == %@", key];
+    
         objects = [self.persistedObjects filteredArrayUsingPredicate:findPred];
     } else {
         objects = self.persistedObjects;
     }
-
+    
     if (objects.count > 0) {
         return [objects objectAtIndex:0];
     } else {
@@ -92,39 +93,39 @@
 - (void)refreshData {
     [self.persistedObjects removeAllObjects];
     [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
-    
 }
 
-- (NSArray *)retrievePersistedObjects {	
+- (NSArray *)retrievePersistedObjects {
+    //Begin CoreData Retrieval			
 	NSError *outError;
 	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"Character" inManagedObjectContext:self.context];
+	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
     
     NSMutableArray *currentPredicates = [[NSMutableArray alloc] initWithArray:self.predicates];
     
     if (![self.currentKey isEqualToString:@""]) {
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameCharacter == %@", self.currentKey];
+
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", self.currentKey];
         [currentPredicates addObject:pred];
     }
     
     NSPredicate *currentPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:currentPredicates];
     [request setPredicate:currentPredicate];
-    
-    [currentPredicates release];    
-    
+
+    [currentPredicates release];
+
 	if (self.sorts.count > 0) {
         [request setSortDescriptors:self.sorts];
     } else {
-        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"displayNameCharacter" ascending:YES];
+        NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryKey" ascending:YES];
         NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
         [request setSortDescriptors:sortDescriptors];
         [sortDescriptor release];
         [sortDescriptors release];
-    }    
-    	
+    }
+    
 	NSArray *objects = [self.context executeFetchRequest:request error:&outError];
     	
 	[request release];

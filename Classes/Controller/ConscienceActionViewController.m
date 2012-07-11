@@ -26,8 +26,8 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "UserCollectable.h"
 #import "ReferencePersonDAO.h"
 #import "ReferenceAssetDAO.h"
+#import "UserCharacterDAO.h"
 #import "UserChoice.h"
-#import "UserCharacter.h"
 #import "ViewControllerLocalization.h"
 
 @interface ConscienceActionViewController () <ViewControllerLocalization> {
@@ -702,25 +702,17 @@ Calculate changes to User's ethicals.  Limit to 999.
         appDelegate.userConscienceMind.enthusiasm = newEnthusiasm;        
     }
     
-    NSEntityDescription *entityMindDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:context];
-    NSFetchRequest *requestCharacter = [[NSFetchRequest alloc] init];
-    [requestCharacter setEntity:entityMindDesc];
-    
-    NSArray *objectCharacter = [context executeFetchRequest:requestCharacter error:&outError];
-    UserCharacter *currentUserCharacter = [objectCharacter objectAtIndex:0];
-    
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+    UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
     [currentUserCharacter setCharacterMood:[NSNumber numberWithFloat:newMood]];    
     [currentUserCharacter setCharacterEnthusiasm:[NSNumber numberWithFloat:newEnthusiasm]];   
     
-    [context save:&outError];
+    [currentUserCharacterDAO update];
     
-	if (outError != nil) {
-		NSLog(@"save error:%@", outError);
-	}
+    [currentUserCharacterDAO release];  
+    
     [moralKey release];
-    [requestCharacter release];
     
-	[context reset];
 }
 
 #pragma mark -

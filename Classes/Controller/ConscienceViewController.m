@@ -17,7 +17,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UserCollectable.h"
 #import "MoralDAO.h"
 #import "IntroViewController.h"
-#import "UserCharacter.h"
+#import "UserCharacterDAO.h"
 #import "ConscienceAssetDAO.h"
 #import "ViewControllerLocalization.h"
 
@@ -541,24 +541,14 @@ static int thoughtVersion = 0;
 
 -(void) endMovementReaction {
     
-    NSError *outError;
-    NSEntityDescription *entityMindDesc = [NSEntityDescription entityForName:@"UserCharacter" inManagedObjectContext:context];
-    NSFetchRequest *requestCharacter = [[NSFetchRequest alloc] init];
-    [requestCharacter setEntity:entityMindDesc];
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+    UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
+    appDelegate.userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
+    appDelegate.userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
     
-    NSArray *objectCharacter = [context executeFetchRequest:requestCharacter error:&outError];
+    [currentUserCharacterDAO update];
     
-    if ([objectCharacter count] == 0) {
-        NSLog(@"No objects");
-        
-    } else {
-        UserCharacter *currentUserCharacter = [objectCharacter objectAtIndex:0];
-        
-        appDelegate.userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
-        appDelegate.userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
-    }
-    
-    [requestCharacter release];
+    [currentUserCharacterDAO release];  
     
 }
 

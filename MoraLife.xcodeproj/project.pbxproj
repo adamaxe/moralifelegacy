@@ -1434,6 +1434,10 @@
 		5EC246D712711DF100421807 /* cardtop-user.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C312711DF100421807 /* cardtop-user.png */; };
 		5EC31C2013134DB1000223C3 /* cardback-reference@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC31C1F13134DB1000223C3 /* cardback-reference@2x.png */; };
 		5EC31C22131350F2000223C3 /* cardback-reference.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC31C21131350F2000223C3 /* cardback-reference.png */; };
+		5EC6462F15AD1269008E5CE3 /* UserChoiceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6462E15AD1268008E5CE3 /* UserChoiceDAO.m */; };
+		5EC6463015AD1269008E5CE3 /* UserChoiceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6462E15AD1268008E5CE3 /* UserChoiceDAO.m */; };
+		5EC6463415AD1355008E5CE3 /* UserCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6463315AD1354008E5CE3 /* UserCharacterDAO.m */; };
+		5EC6463515AD1355008E5CE3 /* UserCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC6463315AD1354008E5CE3 /* UserCharacterDAO.m */; };
 		5EC91DE6124D91A1000FB490 /* con-bassclef-nose-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC91DE5124D91A1000FB490 /* con-bassclef-nose-sm.png */; };
 		5EC990A112D4190200F5F245 /* card-confidence.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9909412D4190200F5F245 /* card-confidence.png */; };
 		5EC990A212D4190200F5F245 /* card-courage.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC9909512D4190200F5F245 /* card-courage.png */; };
@@ -3146,6 +3150,10 @@
 		5EC55447157748FF004BF692 /* choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoraldisplay.js; sourceTree = "<group>"; };
 		5EC55448157748FF004BF692 /* choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralentry.js; sourceTree = "<group>"; };
 		5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoraldisplay.js; sourceTree = "<group>"; };
+		5EC6462D15AD1268008E5CE3 /* UserChoiceDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserChoiceDAO.h; sourceTree = "<group>"; };
+		5EC6462E15AD1268008E5CE3 /* UserChoiceDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserChoiceDAO.m; sourceTree = "<group>"; };
+		5EC6463215AD1354008E5CE3 /* UserCharacterDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCharacterDAO.h; sourceTree = "<group>"; };
+		5EC6463315AD1354008E5CE3 /* UserCharacterDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCharacterDAO.m; sourceTree = "<group>"; };
 		5EC91DE5124D91A1000FB490 /* con-bassclef-nose-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-bassclef-nose-sm.png"; path = "Resources/images/conscience/icons/con-bassclef-nose-sm.png"; sourceTree = "<group>"; };
 		5EC9909412D4190200F5F245 /* card-confidence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-confidence.png"; path = "Resources/images/interface/cards/card-confidence.png"; sourceTree = "<group>"; };
 		5EC9909512D4190200F5F245 /* card-courage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-courage.png"; path = "Resources/images/interface/cards/card-courage.png"; sourceTree = "<group>"; };
@@ -5425,6 +5433,10 @@
 				5EB832FF159D566B002A3417 /* ReferencePersonDAO.m */,
 				5EB83306159F6255002A3417 /* ReferenceTextDAO.h */,
 				5EB83307159F6255002A3417 /* ReferenceTextDAO.m */,
+				5EC6463215AD1354008E5CE3 /* UserCharacterDAO.h */,
+				5EC6463315AD1354008E5CE3 /* UserCharacterDAO.m */,
+				5EC6462D15AD1268008E5CE3 /* UserChoiceDAO.h */,
+				5EC6462E15AD1268008E5CE3 /* UserChoiceDAO.m */,
 			);
 			name = DAO;
 			path = Model/DAO;
@@ -7181,6 +7193,8 @@
 				5EB83308159F6256002A3417 /* ReferenceTextDAO.m in Sources */,
 				5E12074D15AB9564006A0F8C /* DilemmaDAO.m in Sources */,
 				5E12075215AB9C21006A0F8C /* CharacterDAO.m in Sources */,
+				5EC6462F15AD1269008E5CE3 /* UserChoiceDAO.m in Sources */,
+				5EC6463415AD1355008E5CE3 /* UserCharacterDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7281,6 +7295,8 @@
 				5EB83309159F6256002A3417 /* ReferenceTextDAO.m in Sources */,
 				5E12074E15AB9564006A0F8C /* DilemmaDAO.m in Sources */,
 				5E12075315AB9C21006A0F8C /* CharacterDAO.m in Sources */,
+				5EC6463015AD1269008E5CE3 /* UserChoiceDAO.m in Sources */,
+				5EC6463515AD1355008E5CE3 /* UserCharacterDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
