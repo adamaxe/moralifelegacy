@@ -11,7 +11,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "ConscienceView.h"
 #import "DilemmaViewController.h"
 #import "DilemmaDAO.h"
-#import "UserDilemma.h"
+#import "UserDilemmaDAO.h"
 #import "Moral.h"
 #import "UserCollectable.h"
 #import "ConscienceActionViewController.h"
@@ -551,49 +551,39 @@ Implementation: Load User data to determine which Dilemmas have already been com
 - (void) loadUserData {
 	[userChoices removeAllObjects];
     
-	//Retrieve list of Dilemmas already completed by User, sort by dilemma name (stored in entryShortDescription)
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserDilemma" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] init];
     
     NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey contains[cd] %@", dilemmaPredicate];
 	[dilemmaPredicate release];
     
-    [request setPredicate:pred];
+    currentUserDilemmaDAO.predicates = [NSArray arrayWithObject:pred];
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
-	[request setSortDescriptors:sortDescriptors];
+
+    currentUserDilemmaDAO.sorts = sortDescriptors;
 	[sortDescriptor release];
     
-	//We don't need entire UserDilemma ManagedObject, we only need short/longdescriptions
-	//entryShortDescription = dilemmaName, entryLongDescription = moralName that was chosen
-	[request setResultType:NSDictionaryResultType];
-	[request setPropertiesToFetch:[NSArray arrayWithObjects:@"entryShortDescription", @"entryLongDescription", nil]];
-    
-	// Execute the fetch
-	NSError *error = nil;
-	NSArray *objects = [context executeFetchRequest:request error:&error];
+    NSArray *objects = [currentUserDilemmaDAO readAll];
     
 	if ([objects count] == 0) {
 		
         //User has not completed a single choice
         //populate array to prevent npe
-        NSLog(@"No matches");
         [userChoices setValue:@"" forKey:@"noUserEntries"];
         
 	} else {
         
 		//Populate dictionary with dilemmaName (key) and moral that was chosen
-		for(NSDictionary* match in objects) {
-			[userChoices setValue:[match objectForKey:@"entryLongDescription"] forKey:[match objectForKey:@"entryShortDescription"]];
+		for(UserDilemma * match in objects) {
+			[userChoices setValue:match.entryLongDescription forKey:match.entryShortDescription];
             
 		}
         
 	}
 	
-	[request release];
+	[currentUserDilemmaDAO release];
     
 }
 
@@ -604,73 +594,54 @@ Implementation: Determine what effects to rollback from an already completed dil
 	
 	//Begin CoreData Retrieval			
 	NSError *outError = nil;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserDilemma" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-	
+    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] initWithKey:@""];
+    
 	if (choiceKey != nil) {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryShortDescription == %@", choiceKey];
-		[request setPredicate:pred];
-	}
+        currentUserDilemmaDAO.predicates = [NSArray arrayWithObject:pred];
+    }
 	
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryCreationDate" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
-	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptor release];
-	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
-		UserDilemma *match = [objects objectAtIndex:0];
+    currentUserDilemmaDAO.sorts = sortDescriptors;    
+    [sortDescriptor release];
+    UserDilemma *match = [currentUserDilemmaDAO read:@""];
+    
+    NSString *moralKey = [match entryLongDescription];
+    
+    //See if moral has been rewarded before
+    //Cannot assume that first instance of UserDilemma implies no previous reward
+    if ([appDelegate.userCollection containsObject:moralKey]) {
         
-        NSString *moralKey = [match entryLongDescription];
-		
-        //See if moral has been rewarded before
-        //Cannot assume that first instance of UserDilemma implies no previous reward
-        if ([appDelegate.userCollection containsObject:moralKey]) {
+        NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
+        NSFetchRequest *request = [[NSFetchRequest alloc] init];
+        [request setEntity:entityAssetDesc];
+        
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", moralKey];
+        [request setPredicate:pred];
+        
+        NSArray *objects = [context executeFetchRequest:request error:&outError];
+        UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
+        
+        //Increase the moral's value
+        float moralDecrease = [[currentUserCollectable collectableValue] floatValue];
+        
+        if (moralDecrease <= 1.0) {
+            [context deleteObject:currentUserCollectable];
             
-            NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:entityAssetDesc];
-            
-            NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", moralKey];
-            [request setPredicate:pred];
-            
-            NSArray *objects = [context executeFetchRequest:request error:&outError];
-            UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
-            
-            //Increase the moral's value
-            float moralDecrease = [[currentUserCollectable collectableValue] floatValue];
-
-            if (moralDecrease <= 1.0) {
-                [context deleteObject:currentUserCollectable];
-                
-            } else {
-                moralDecrease -= 1.0;
-                [currentUserCollectable setValue:[NSNumber numberWithFloat:moralDecrease] forKey:@"collectableValue"];
-            }
-                        
-            [request release];
-            
-            
+        } else {
+            moralDecrease -= 1.0;
+            [currentUserCollectable setValue:[NSNumber numberWithFloat:moralDecrease] forKey:@"collectableValue"];
         }
         
-		[context deleteObject:match];		
-		
-	}
-	
-	[context save:&outError];
-	[context reset];
+        [request release];
+        
+        
+    }
     
-	if (outError != nil) {
-		NSLog(@"save:%@", outError);
-	}
+    [currentUserDilemmaDAO delete:match];		
 	
-	[request release];
+	[currentUserDilemmaDAO release];
 	
 }
 
