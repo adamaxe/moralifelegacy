@@ -76,22 +76,22 @@
         [_context save:&error];
     }
     
-    [_context reset];
-
     return error ? TRUE : FALSE;
 }
 
 - (BOOL)delete:(UserDilemma *)dilemma {
     NSError *error = nil;
     
-    [_context delete:dilemma];
+    if (dilemma) {
+        [_context delete:dilemma];
+    } else {
+        [_context delete:[self findPersistedObject:self.currentKey]];
+    }  
     
     if ([_context hasChanges]) {
         [_context save:&error];
     }
-    
-    [_context reset];
-    
+        
     return error ? TRUE : FALSE;
     
 }

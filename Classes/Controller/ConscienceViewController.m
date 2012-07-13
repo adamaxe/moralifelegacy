@@ -13,7 +13,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import <QuartzCore/QuartzCore.h>
 #import "ConscienceMind.h"
 #import "CoreData/CoreData.h"
-#import "UserChoice.h"
+#import "UserChoiceDAO.h"
 #import "UserCollectable.h"
 #import "MoralDAO.h"
 #import "IntroViewController.h"
@@ -750,29 +750,22 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
  */
 - (void) retrieveBiggestChoice:(BOOL) isVirtue{
     
-	//Begin CoreData Retrieval			
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
+    NSPredicate *pred;
     
     if (isVirtue) {
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"choiceWeight > %d", 0];
-        [request setPredicate:pred];
-        
+        pred = [NSPredicate predicateWithFormat:@"choiceWeight > %d", 0];
     } else {
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"choiceWeight < %d", 0];
-        [request setPredicate:pred];
-        
-        
+        pred = [NSPredicate predicateWithFormat:@"choiceWeight < %d", 0];
     }
+    
+	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];    
     
     NSMutableString *moralDisplayName = [NSMutableString stringWithString:@"unknown"];
     NSMutableString *moralImageName = [NSMutableString stringWithString:@"card-doubt"];
 
     
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [currentUserChoiceDAO readAll];
     NSMutableDictionary *reportValues = [[NSMutableDictionary alloc] initWithCapacity:[objects count]];
     
 	if ([objects count] == 0) {
@@ -780,10 +773,8 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
         if (isVirtue) {
             [virtueImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
-            //            [virtueButton setEnabled:FALSE];
         } else {
             [viceImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
-            //            [viceButton setEnabled:FALSE];                    
         }
         
 	} else {
@@ -834,7 +825,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
 	}
 	
-	[request release];
+	[currentUserChoiceDAO release];
     [reportValues release];
 	
 }

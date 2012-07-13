@@ -56,6 +56,10 @@
     return self;
 }
 
+- (UserCharacter *)create {
+    return [NSEntityDescription insertNewObjectForEntityForName:@"UserCharacter" inManagedObjectContext:self.context];   
+}
+
 - (UserCharacter *)read:(NSString *)key {
     return [self findPersistedObject:key];
 }
@@ -72,9 +76,24 @@
         [_context save:&error];
     }
     
-    [_context reset];
-
     return error ? TRUE : FALSE;
+}
+
+- (BOOL)delete:(UserCharacter *)character {
+    NSError *error = nil;
+    
+    if (character) {
+        [_context delete:character];
+    } else {
+        [_context delete:[self findPersistedObject:self.currentKey]];
+    }     
+    
+    if ([_context hasChanges]) {
+        [_context save:&error];
+    }
+        
+    return error ? TRUE : FALSE;
+    
 }
 
 #pragma mark -

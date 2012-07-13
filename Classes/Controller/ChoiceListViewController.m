@@ -10,7 +10,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ChoiceViewController.h"
-#import "UserChoice.h"
+#import "UserChoiceDAO.h"
 #import "MoralDAO.h"
 #import "ViewControllerLocalization.h"
 
@@ -236,20 +236,15 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	[tableDataKeys removeAllObjects];
 	[tableDataDetails removeAllObjects];
 	[tableDataColorBools removeAllObjects];
-	
-	//Begin CoreData Retrieval			
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
 
 	//Ensure that Choices created during Morathology sessions are not displayed here
 	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
 	//@see DilemmaViewController
 	NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"NOT entryKey contains[cd] %@", predicateParam];
-	[request setPredicate:pred];
+	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
 	[predicateParam release];
 
 	NSSortDescriptor* sortDescriptor;
@@ -258,15 +253,13 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:choiceSortDescriptor ascending:isAscending];
     
     NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
+	currentUserChoiceDAO.sorts = sortDescriptors;
 	[sortDescriptor release];
     [sortDescriptors release];
 	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [currentUserChoiceDAO readAll];
 	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
+	if ([objects count] > 0) {
 		
 		//Build raw data list to be filtered by second data container set
 		for (UserChoice *matches in objects){
@@ -312,7 +305,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 		}
 	}
 	
-	[request release];
+	[currentUserChoiceDAO release];
 	
 	//Populate datasource arrays for filtering
 	[dataSource addObjectsFromArray:choices];
@@ -331,51 +324,39 @@ Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceVie
  */
 - (void) retrieveChoice:(NSString *) choiceKey {
 	
-	//Begin CoreData Retrieval			
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
 	
 	if (choiceKey != nil) {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-		[request setPredicate:pred];
+        currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
 	}
-	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
 		
-		UserChoice *match = [objects objectAtIndex:0];
+    UserChoice *match = [currentUserChoiceDAO read:@""];
+    
+    //Set state retention for eventual call to ChoiceViewController to pick up
+    [prefs setObject:[match entryKey] forKey:@"entryKey"];
+    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
+    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
+    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
+    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
+    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
+    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
+    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
+    
+    NSString *value = [match choiceMoral];            
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
+    
+    Moral *currentMoral = [currentMoralDAO read:@""];
+    
+    [prefs setObject:currentMoral.displayNameMoral forKey:@"moralName"];
+    [prefs setObject:value forKey:@"moralKey"];
+    [prefs setObject:currentMoral.imageNameMoral forKey:@"moralImage"];
+            
+    [currentMoralDAO release];        
         
-		//Set state retention for eventual call to ChoiceViewController to pick up
-		[prefs setObject:[match entryKey] forKey:@"entryKey"];
-		[prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-		[prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
-		[prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-		[prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
-		[prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
-		[prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-		[prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-		[prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
-		
-        NSString *value = [match choiceMoral];            
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
-        
-        Moral *currentMoral = [currentMoralDAO read:@""];
-        
-        [prefs setObject:currentMoral.displayNameMoral forKey:@"moralName"];
-        [prefs setObject:value forKey:@"moralKey"];
-        [prefs setObject:currentMoral.imageNameMoral forKey:@"moralImage"];
-                
-        [currentMoralDAO release];        
-        
-	}
 	
-	[request release];
+	[currentUserChoiceDAO release];
 
 }
 
@@ -385,38 +366,16 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
  */
 - (void) deleteChoice:(NSString *) choiceKey {
 	
-	//Begin CoreData Retrieval			
-	NSError *outError = nil;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
 	
 	if (choiceKey != nil) {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-		[request setPredicate:pred];
+        currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
 	}
 	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-
-		//Once NSManagedObject is found, delete it
-		UserChoice *match = [objects objectAtIndex:0];
-		[context deleteObject:match];		
-		
-	}
-	
-	[context save:&outError];
-	[context reset];
-    
-	if (outError != nil) {
-		NSLog(@"save:%@", outError);
-	}
-	
-	[request release];
+    [currentUserChoiceDAO delete:nil];
+    		
+	[currentUserChoiceDAO release];
 	
 }
 

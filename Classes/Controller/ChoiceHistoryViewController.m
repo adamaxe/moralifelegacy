@@ -13,7 +13,7 @@
 #import "ModelManager.h"
 #import "ChoiceViewController.h"
 #import "ConscienceView.h"
-#import "UserChoice.h"
+#import "UserChoiceDAO.h"
 #import "MoralDAO.h"
 #import "ViewControllerLocalization.h"
 
@@ -242,38 +242,30 @@
 	[tableDataDetails removeAllObjects];
 	[tableDataColorBools removeAllObjects];
 	
-	//Begin CoreData Retrieval			
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
     
     NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
 
 	//Ensure that Choices created during Morathology sessions are not displayed here
 	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
 	//@see DilemmaViewController
-	NSPredicate *typePred = [NSPredicate predicateWithFormat:@"entryIsGood == %@ AND NOT entryKey contains[cd] %@", [NSNumber numberWithBool: isVirtue], predicateParam];
-	[request setPredicate:typePred];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@ AND NOT entryKey contains[cd] %@", [NSNumber numberWithBool: isVirtue], predicateParam];
+	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
 	[predicateParam release];
     
 	NSSortDescriptor* sortDescriptor;
     
-	//choiceSortDescriptor and isAscending are set throughout class    
 	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:choiceSortDescriptor ascending:isAscending];
     
     NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
+	currentUserChoiceDAO.sorts = sortDescriptors;
 	[sortDescriptor release];
     [sortDescriptors release];
 	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [currentUserChoiceDAO readAll];
 	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
+	if ([objects count] > 0) {
+
 		//Build raw data list to be filtered by second data container set
 		for (UserChoice *matches in objects){
             
@@ -318,7 +310,7 @@
 		}
 	}
 	
-	[request release];
+	[currentUserChoiceDAO release];
 	
 	//Populate datasource arrays for filtering
 	[dataSource addObjectsFromArray:choices];
@@ -337,58 +329,44 @@
  */
 - (void) retrieveChoice:(NSString *) choiceKey {
 	
-	//Begin CoreData Retrieval			
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
 	
 	if (choiceKey != nil) {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-		[request setPredicate:pred];
-	}
-	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
-		UserChoice *match = [objects objectAtIndex:0];
-        
-		//Set state retention for eventual call to ChoiceViewController to pick up
+        currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
+    }
+	        
+    UserChoice *match = [currentUserChoiceDAO read:@""];
+    
+    //Set state retention for eventual call to ChoiceViewController to pick up
 //		[prefs setObject:[match entryKey] forKey:@"entryKey"];
-		[prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-		[prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
-		[prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-		[prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
-		[prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
-		[prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-		[prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-		[prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
-		
-        
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
-        
-        Moral *currentMoral = [currentMoralDAO read:@""];
+    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
+    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
+    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
+    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
+    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
+    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
+    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
+    
+    
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
+    
+    Moral *currentMoral = [currentMoralDAO read:@""];
 
-        [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
-        [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-        [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
-		
-        [currentMoralDAO release];
-	}
+    [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
+    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+    [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
+    
+    [currentMoralDAO release];
 	
-	[request release];
+	[currentUserChoiceDAO release];
     
     id placeHolder = nil;
     
     [self dismissChoiceModal:placeHolder];
 
-    
 }
-
 
 #pragma mark -
 #pragma mark Table view data source

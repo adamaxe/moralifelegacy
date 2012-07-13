@@ -6,7 +6,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 #import "ReportPieViewController.h"
 #import "GraphView.h"
-#import "UserChoice.h"
+#import "UserChoiceDAO.h"
 #import "MoralDAO.h"
 #import "ConscienceView.h"
 #import "MoraLifeAppDelegate.h"
@@ -214,23 +214,15 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
 	[reportNames removeAllObjects];
 	[moralNames removeAllObjects];
     
-	//Begin CoreData Retrieval
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
     
 	//Retrieve virtue or vice
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@", [NSNumber numberWithBool:isGood]];
-	[request setPredicate:pred];
+	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
 	
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [currentUserChoiceDAO readAll];
     
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-
-	} else {
+	if ([objects count] > 0) {
         
 		float currentValue = 0.0;
         
@@ -296,7 +288,7 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
 		
 	}
 	
-	[request release];
+	[currentUserChoiceDAO release];
 	
 }
 

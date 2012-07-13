@@ -56,6 +56,10 @@
     
 }
 
+- (UserChoice *)create {
+    return [NSEntityDescription insertNewObjectForEntityForName:@"UserChoice" inManagedObjectContext:self.context];   
+}
+
 - (UserChoice *)read:(NSString *)key {
     return [self findPersistedObject:key];
 }
@@ -63,6 +67,33 @@
 - (NSArray *)readAll {
     [self refreshData];    
     return self.persistedObjects;
+}
+
+- (BOOL)update {
+    NSError *error = nil;
+    
+    if ([_context hasChanges]) {
+        [_context save:&error];
+    }
+    
+    return error ? TRUE : FALSE;
+}
+
+- (BOOL)delete:(UserChoice *)choice {
+    NSError *error = nil;
+    
+    if (choice) {
+        [_context delete:choice];
+    } else {
+        [_context delete:[self findPersistedObject:self.currentKey]];
+    }
+    
+    if ([_context hasChanges]) {
+        [_context save:&error];
+    }
+    
+    return error ? TRUE : FALSE;
+    
 }
 
 #pragma mark -
