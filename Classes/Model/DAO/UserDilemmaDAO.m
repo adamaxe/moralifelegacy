@@ -56,6 +56,10 @@
     return self;
 }
 
+- (UserDilemma *)create {
+    return [NSEntityDescription insertNewObjectForEntityForName:@"UserDilemma" inManagedObjectContext:self.context];   
+}
+
 - (UserDilemma *)read:(NSString *)key {
     return [self findPersistedObject:key];
 }

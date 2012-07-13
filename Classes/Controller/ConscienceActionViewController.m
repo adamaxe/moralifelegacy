@@ -22,7 +22,7 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "DilemmaDAO.h"
 #import "Character.h"
 #import "Moral.h"
-#import "UserDilemma.h"
+#import "UserDilemmaDAO.h"
 #import "UserCollectable.h"
 #import "ReferencePersonDAO.h"
 #import "ReferenceAssetDAO.h"
@@ -494,16 +494,21 @@ Calculate changes to User's ethicals.  Limit to 999.
     [dateFormatter release];
     
     NSString *dilemmaKey = [NSString stringWithFormat:@"%@%@", currentDTS, dilemmaName];
-    UserDilemma *dilemmaChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserDilemma" inManagedObjectContext:context];
+    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] init];
     
-    [dilemmaChoice setEntryShortDescription:dilemmaName];
-    [dilemmaChoice setEntryCreationDate:[NSDate date]];
-    [dilemmaChoice setEntryKey:dilemmaKey];
+    UserDilemma *currentUserDilemma = [currentUserDilemmaDAO create];
+    
+    [currentUserDilemma setEntryShortDescription:dilemmaName];
+    [currentUserDilemma setEntryCreationDate:[NSDate date]];
+    [currentUserDilemma setEntryKey:dilemmaKey];
     NSString *moralKey = [[NSString alloc] initWithString:moralAName];
         
-    [dilemmaChoice setEntryLongDescription:moralKey];
+    [currentUserDilemma setEntryLongDescription:moralKey];
     
-    [dilemmaChoice setEntryIsGood:[NSNumber numberWithBool:TRUE]];
+    [currentUserDilemma setEntryIsGood:[NSNumber numberWithBool:TRUE]];
+    
+    [currentUserDilemmaDAO update];
+    [currentUserDilemmaDAO release];
     
     //See if moral has been rewarded before
     //Cannot assume that first instance of UserChoice implies no previous reward

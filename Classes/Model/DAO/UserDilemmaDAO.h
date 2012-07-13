@@ -10,9 +10,10 @@
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+- (UserDilemma *)create;
 - (UserDilemma *)read:(NSString *)key;
 - (NSArray *)readAll;
-- (BOOL) update;
+- (BOOL)update;
 - (BOOL)delete:(UserDilemma *)dilemma;
 
 @end

@@ -20,7 +20,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "DilemmaDAO.h"
 #import "Character.h"
 #import "Moral.h"
-#import "UserDilemma.h"
+#import "UserDilemmaDAO.h"
 #import "UserCollectable.h"
 #import "ReferencePersonDAO.h"
 #import "ReferenceAssetDAO.h"
@@ -480,11 +480,17 @@ Calculate changes to User's ethicals.  Limit to 999.
     [dateFormatter release];
         
     NSString *dilemmaKey = [NSString stringWithFormat:@"%@%@", currentDTS, dilemmaName];
-    UserDilemma *dilemmaChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserDilemma" inManagedObjectContext:context];
     
-    [dilemmaChoice setEntryShortDescription:dilemmaName];
-    [dilemmaChoice setEntryCreationDate:[NSDate date]];
-    [dilemmaChoice setEntryKey:dilemmaKey];
+    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] init];
+    
+    UserDilemma *currentUserDilemma = [currentUserDilemmaDAO create];
+    
+    [currentUserDilemmaDAO release];
+    
+    [currentUserDilemma setEntryShortDescription:dilemmaName];
+    [currentUserDilemma setEntryCreationDate:[NSDate date]];
+    [currentUserDilemma setEntryKey:dilemmaKey];
+    
     NSString *moralKey;
     
     if (isChoiceA) {
@@ -493,9 +499,9 @@ Calculate changes to User's ethicals.  Limit to 999.
         moralKey = [[NSString alloc] initWithString:moralBName];       
     }
     
-    [dilemmaChoice setEntryLongDescription:moralKey];
+    [currentUserDilemma setEntryLongDescription:moralKey];
     
-    [dilemmaChoice setEntryIsGood:[NSNumber numberWithBool:isChoiceA]];
+    [currentUserDilemma setEntryIsGood:[NSNumber numberWithBool:isChoiceA]];
     
     //See if moral has been rewarded before
     //Cannot assume that first instance of UserChoice implies no previous reward
@@ -635,7 +641,7 @@ Calculate changes to User's ethicals.  Limit to 999.
         
 	[selectedReward release];
     
-	[context assignObject:dilemmaChoice toPersistentStore:readWriteStore];
+    [currentUserDilemmaDAO update];
 	[context save:&outError];
     
 	if (outError != nil) {
