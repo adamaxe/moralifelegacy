@@ -735,7 +735,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
  */
 - (void) retrieveBiggestChoice:(BOOL) isVirtue{
     
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
     NSPredicate *pred;
     
     if (isVirtue) {
@@ -748,7 +748,6 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
     
     NSMutableString *moralDisplayName = [NSMutableString stringWithString:@"unknown"];
     NSMutableString *moralImageName = [NSMutableString stringWithString:@"card-doubt"];
-
     
 	NSArray *objects = [currentUserChoiceDAO readAll];
     NSMutableDictionary *reportValues = [[NSMutableDictionary alloc] initWithCapacity:[objects count]];
@@ -787,11 +786,13 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
         NSString *value = [reversedPercentages objectAtIndex:0];
 
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
-        Moral *currentMoral = [currentMoralDAO read:@""];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+        Moral *currentMoral = [currentMoralDAO read:value];
 
-        [moralDisplayName setString:currentMoral.displayNameMoral];
-        [moralImageName setString:currentMoral.imageNameMoral];
+        if (currentMoral) {
+            [moralDisplayName setString:currentMoral.displayNameMoral];
+            [moralImageName setString:currentMoral.imageNameMoral];            
+        }
                 
         [currentMoralDAO release];
         
@@ -822,7 +823,7 @@ Change the Rank picture and description.
 - (void) retrieveHighestRank {
     
 	//Begin CoreData Retrieval to find all Ranks in possession.
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
     
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName contains[cd] %@", @"asse-rank"];
 	currentUserCollectableDAO.predicates = [NSArray arrayWithObject:pred];
@@ -847,11 +848,13 @@ Change the Rank picture and description.
 	if ([objects count] > 0) {
         
         NSString *value = [[objects objectAtIndex:0] collectableName];
-        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:value];
-        ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
+        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] init];
+        ConscienceAsset *currentAsset = [currentAssetDAO read:value];
         
-        [rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentAsset.imageNameReference]]];
-        [highestRankName setString:currentAsset.displayNameReference];
+        if (currentAsset) {
+            [rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentAsset.imageNameReference]]];
+            [highestRankName setString:currentAsset.displayNameReference];
+        }
         
         [currentAssetDAO release];
                         

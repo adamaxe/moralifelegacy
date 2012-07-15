@@ -279,9 +279,9 @@
 			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
 			NSString *value = [matches choiceMoral];
 				
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
 
-			Moral *currentMoral = [currentMoralDAO read:@""];
+			Moral *currentMoral = [currentMoralDAO read:value];
 							
             //Display image and moral name
             [icons addObject:[currentMoral imageNameMoral]];
@@ -329,14 +329,9 @@
  */
 - (void) retrieveChoice:(NSString *) choiceKey {
 	
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-	
-	if (choiceKey != nil) {
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-        currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
-    }
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
 	        
-    UserChoice *match = [currentUserChoiceDAO read:@""];
+    UserChoice *match = [currentUserChoiceDAO read:choiceKey];
     
     //Set state retention for eventual call to ChoiceViewController to pick up
 //		[prefs setObject:[match entryKey] forKey:@"entryKey"];

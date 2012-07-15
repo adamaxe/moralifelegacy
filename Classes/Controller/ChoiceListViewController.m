@@ -275,12 +275,12 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 
             
             NSString *value = [matches choiceMoral];            
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
             
-            Moral *currentMoral = [currentMoralDAO read:@""];
+            Moral *currentMoral = [currentMoralDAO read:value];
             
             [icons addObject:currentMoral.imageNameMoral];
-            [detailText appendString:currentMoral.displayNameMoral ];
+            [detailText appendString:currentMoral.displayNameMoral];
             
             [currentMoralDAO release];
 

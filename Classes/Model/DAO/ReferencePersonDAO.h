@@ -1,18 +1,11 @@
+#import "BaseDAO.h"
 #import "ReferencePerson.h"
 
-@class ModelManager;
-
-@interface ReferencePersonDAO : NSObject
-
-@property (nonatomic, retain) NSArray *sorts;
-@property (nonatomic, retain) NSArray *predicates;
+@interface ReferencePersonDAO : BaseDAO
 
 - (id)initWithKey:(NSString *)key;
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
 - (ReferencePerson *)read:(NSString *)key;
-- (NSArray *)readAll;
-
-- (int)count;
 
 @end
