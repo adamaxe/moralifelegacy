@@ -25,7 +25,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "ReferencePersonDAO.h"
 #import "ReferenceAssetDAO.h"
 #import "UserCharacterDAO.h"
-#import "UserChoice.h"
+#import "UserChoiceDAO.h"
 #import "ViewControllerLocalization.h"
 
 enum viewToAnimate{
@@ -650,8 +650,10 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	//Create a User Choice so that User's Moral report is affected
 	//Prefix with dile- on a User prohibited field to ensure that entry is never shown on ConscienceListViewController
-	UserChoice *currentUserChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserChoice" inManagedObjectContext:context];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
     
+
+	UserChoice *currentUserChoice = [currentUserChoiceDAO create];    
 	[currentUserChoice setEntryCreationDate:[NSDate date]];
 	[context assignObject:currentUserChoice toPersistentStore:readWriteStore];
     
@@ -691,6 +693,9 @@ Calculate changes to User's ethicals.  Limit to 999.
 	} else {
 		[currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:-0.2]];  
 	}
+    
+    [currentUserChoiceDAO update];
+    [currentUserChoiceDAO release];
     
     /** @todo refactor into ConscienceMind
      */

@@ -13,4 +13,6 @@
 - (ReferenceAsset *)read:(NSString *)key;
 - (NSArray *)readAll;
 
+- (int)count;
+
 @end

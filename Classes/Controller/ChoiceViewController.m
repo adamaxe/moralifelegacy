@@ -15,7 +15,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "StructuredTextField.h"
 #import "MoralDAO.h"
 #import "UserCharacterDAO.h"
-#import "UserChoice.h"
+#import "UserChoiceDAO.h"
 #import "ConscienceHelpViewController.h"
 #import "ReferenceDetailViewController.h"
 #import "UserCollectable.h"
@@ -716,10 +716,13 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     float choiceCalculatedWeight = 0;
     choiceCalculatedWeight = (choiceWeightFilledFields/2 + severityConversion) * choiceInfluence;
     
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:choiceKey];
+
+    
     //Save the choice record to CoreData
     //Affect Conscience too
     if (isNewChoice) {
-        currentUserChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserChoice" inManagedObjectContext:context];
+        currentUserChoice = [currentUserChoiceDAO create];
         
         [currentUserChoice setEntryCreationDate:[NSDate date]];
         
@@ -803,21 +806,9 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         [self increaseEthicals];
         
-    }else {
+    }else {        
+        currentUserChoice = [currentUserChoiceDAO read:@""];
         
-        NSError *outError;
-        
-        NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityAssetDesc];
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-        [request setPredicate:pred];
-        
-        NSArray *objects = [context executeFetchRequest:request error:&outError];
-        currentUserChoice = [objects objectAtIndex:0];
-        
-        [request release];
     }
 	
     [currentUserChoice setEntryShortDescription:choiceTextField.text];
@@ -832,13 +823,9 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     [currentUserChoice setChoiceConsequences:choiceConsequences];
     [currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:choiceCalculatedWeight]];    
 	
-    [context save:&outError];
+    [currentUserChoiceDAO update];
 	
-    if (outError != nil) {
-        NSLog(@"save error:%@", outError);
-    }
-	
-    [context reset];
+    [currentUserChoiceDAO release];
     
     //invalidate rest of session
     [self cancelChoice:placeHolderID];

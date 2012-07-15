@@ -16,4 +16,6 @@
 - (BOOL)update;
 - (BOOL)delete:(UserDilemma *)dilemma;
 
+- (int)count;
+
 @end

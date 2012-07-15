@@ -64,6 +64,11 @@
     return self.persistedObjects;
 }
 
+- (int)count {
+    [self refreshData];
+    return self.persistedObjects.count;
+}
+
 #pragma mark -
 #pragma mark Private API
 - (Moral *)findPersistedObject:(NSString *)key {  

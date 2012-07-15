@@ -16,4 +16,6 @@
 - (BOOL) update;
 - (BOOL)delete:(UserCharacter *)character;
 
+- (int)count;
+
 @end

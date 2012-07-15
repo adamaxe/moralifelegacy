@@ -27,7 +27,7 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "ReferencePersonDAO.h"
 #import "ReferenceAssetDAO.h"
 #import "UserCharacterDAO.h"
-#import "UserChoice.h"
+#import "UserChoiceDAO.h"
 #import "ViewControllerLocalization.h"
 
 @interface ConscienceActionViewController () <ViewControllerLocalization> {
@@ -332,9 +332,7 @@ Construct antagonist Conscience
 @todo refactor into multiple functions
  */
 -(void) loadDilemma{
-    
-	NSError *outError;
-    
+        
 	NSString *restoreDilemmaKey = [prefs objectForKey:@"dilemmaKey"];
     
 	/** @todo determine no dilemma case */
@@ -378,26 +376,22 @@ Construct antagonist Conscience
 		if(keyIsMoral) {
 
 			//Determine if User has requirement to pass
-			NSEntityDescription *entityUserChoiceDesc = [NSEntityDescription entityForName:@"UserChoice" inManagedObjectContext:context];
-			NSFetchRequest *userChoiceRequest = [[NSFetchRequest alloc] init];
-			[userChoiceRequest setEntity:entityUserChoiceDesc];
-			[userChoiceRequest setIncludesSubentities:NO];
+            
+            UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
 
 			NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
 			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, predicateParam];
 			[predicateParam release];
     
-			[userChoiceRequest setPredicate:userChoicePred];
-    
-			NSUInteger count = [context countForFetchRequest:userChoiceRequest error: &outError];
-   
-			if (count == 0) {
+			[currentUserChoiceDAO setPredicates:[NSArray arrayWithObject:userChoicePred]];
+       
+			if ([currentUserChoiceDAO count] == 0) {
 				isRequirementOwned = FALSE;
 			} else {
 				isRequirementOwned = TRUE;
 			}
-
-			[userChoiceRequest release];
+            
+            [currentUserChoiceDAO release];
 
 		} else {
 		
@@ -653,7 +647,9 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	//Create a User Choice so that User's Moral report is affected
 	//Prefix with dile- on a User prohibited field to ensure that entry is never shown on ConscienceListViewController
-	UserChoice *currentUserChoice = [NSEntityDescription insertNewObjectForEntityForName:@"UserChoice" inManagedObjectContext:context];
+    
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
+	UserChoice *currentUserChoice = [currentUserChoiceDAO create];
     
 	[currentUserChoice setEntryCreationDate:[NSDate date]];
     
@@ -685,6 +681,8 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:-0.2]];  
 	}
     
+    [currentUserChoiceDAO update];
+    [currentUserChoiceDAO release];
     
     /** @todo refactor into ConscienceMind
      */
