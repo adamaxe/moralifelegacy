@@ -18,7 +18,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "UserChoiceDAO.h"
 #import "ConscienceHelpViewController.h"
 #import "ReferenceDetailViewController.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 #import "ChoiceHistoryViewController.h"
 #import "ViewControllerLocalization.h"
 
@@ -686,9 +686,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     } else {
         choiceWeightFilledFields++;
     }
-    	
-    NSError *outError = nil;
-	
+
     //Construct Unique Primary Key from dtstamp to millisecond
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];	
@@ -765,16 +763,11 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         //Cannot assume that first instance of UserChoice implies no previous reward
         if ([appDelegate.userCollection containsObject:moralKey]) {
             
-            NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-            NSFetchRequest *request = [[NSFetchRequest alloc] init];
-            [request setEntity:entityAssetDesc];
-            
-            NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", moralKey];
-            [request setPredicate:pred];
-            
-            NSArray *objects = [context executeFetchRequest:request error:&outError];
-            UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
+            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:moralKey];
+
+            UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
                         
+            [currentUserCollectableDAO release];
             //Increase the moral's value
             float moralIncrease = [[currentUserCollectable collectableValue] floatValue];
             
@@ -784,16 +777,14 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
                moralIncrease += 1.0;
             }
             
-            
             [currentUserCollectable setValue:[NSNumber numberWithFloat:moralIncrease] forKey:@"collectableValue"];
             
-            [request release];
-            
-            
         } else {
+            
+            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
          
             //Create a new moral reward
-            UserCollectable *currentUserCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
+            UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
             
             [currentUserCollectable setCollectableCreationDate:[NSDate date]];
             [currentUserCollectable setCollectableKey:choiceKey];
@@ -801,6 +792,9 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             [currentUserCollectable setCollectableValue:[NSNumber numberWithFloat:1.0]];
                         
             [appDelegate.userCollection addObject:moralKey];
+            
+            [currentUserCollectableDAO update];
+            [currentUserCollectableDAO release];
 
         }
         
@@ -837,21 +831,11 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
  */
 -(void)increaseEthicals{
     
-    NSError *outError;
-    
-    //Retrieve User's ethicals
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityAssetDesc];
-    
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals];
-    [request setPredicate:pred];
-    
-    NSArray *objects = [context executeFetchRequest:request error:&outError];
-    [request release];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
     
     //Update User's ethicals
-    UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
+    UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
+    [currentUserCollectableDAO release];
     
     int ethicals = [[currentUserCollectable collectableValue] intValue];
     

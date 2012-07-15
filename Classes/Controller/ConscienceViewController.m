@@ -14,7 +14,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "ConscienceMind.h"
 #import "CoreData/CoreData.h"
 #import "UserChoiceDAO.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 #import "MoralDAO.h"
 #import "IntroViewController.h"
 #import "UserCharacterDAO.h"
@@ -658,31 +658,16 @@ Implementation:  Determine time of day, and which thought should be displayed.  
         mood = @"Bad";
     }
     
-    NSError *outError;
     
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityAssetDesc];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals];
-    [request setPredicate:pred];
-    
-    NSArray *objects = [context executeFetchRequest:request error:&outError];
+    UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     int ethicals = 0;
+    //Increase the moral's value
+    ethicals = [[currentUserCollectable collectableValue] intValue];		
     
-    if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
-        UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
-        
-        //Increase the moral's value
-        ethicals = [[currentUserCollectable collectableValue] intValue];		
-		
-	}
-    
-    [request release];
+    [currentUserCollectableDAO release];
         
     NSString *welcomeTextName =[[NSString alloc] initWithFormat:@"%@Welcome%@%@",NSStringFromClass([self class]), timeOfDay, mood ];
     NSString *welcomeText = [[NSString alloc] initWithString:NSLocalizedString(welcomeTextName,@"Welcome Text")];
@@ -837,28 +822,22 @@ Change the Rank picture and description.
 - (void) retrieveHighestRank {
     
 	//Begin CoreData Retrieval to find all Ranks in possession.
-	NSError *outError;
-	
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
     
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName contains[cd] %@", @"asse-rank"];
-	[request setPredicate:pred];
+	currentUserCollectableDAO.predicates = [NSArray arrayWithObject:pred];
     
 	NSSortDescriptor* sortDescriptor;
     
 	//sort by collectablename as all ranks are alphabetically/numerically sorted by collectableName
-//	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"collectableCreationDate" ascending:TRUE];
 	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"collectableName" ascending:FALSE];
     
-    
 	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
-	[request setSortDescriptors:sortDescriptors];
+	currentUserCollectableDAO.sorts = sortDescriptors;
 	[sortDescriptor release];
 	[sortDescriptors release];    
     
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
+	NSArray *objects = [currentUserCollectableDAO readAll];
 
 	//In case of no granted Ranks, setup the default User
 	[rankImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
@@ -878,7 +857,7 @@ Change the Rank picture and description.
                         
 	}
 	
-	[request release];
+	[currentUserCollectableDAO release];
     
 }
 

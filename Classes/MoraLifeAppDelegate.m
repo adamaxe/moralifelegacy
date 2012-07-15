@@ -25,7 +25,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "ReferenceViewController.h"
 #import "UserCharacterDAO.h"
 #import "ConscienceMind.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 
 @interface MoraLifeAppDelegate () {
     
@@ -303,30 +303,16 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 - (void)configureCollection{
         
     //Retrieve  assets already earned by user
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-    
-    // Execute the fetch
-    NSError *error = nil;
-    NSArray *objects = [context executeFetchRequest:request error:&error];
-    
-	if ([objects count] == 0) {
-		
-        //User has not completed a single choice
-        //populate array to prevent npe
-        NSLog(@"No matches");
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
+
+    NSArray *objects = [currentUserCollectableDAO readAll];
+    //Populate dictionary with dilemmaName (key) and moral that was chosen
+    for (UserCollectable *match in objects) {
         
-	} else {
-        
-        //Populate dictionary with dilemmaName (key) and moral that was chosen
-        for (UserCollectable *match in objects) {
-            
-            [userCollection addObject:[match collectableName]];
-        }
+        [userCollection addObject:[match collectableName]];
     }
-    
-    [request release];
+                
+    [currentUserCollectableDAO release];
     
 }
 

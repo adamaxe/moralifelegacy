@@ -13,7 +13,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "DilemmaDAO.h"
 #import "UserDilemmaDAO.h"
 #import "Moral.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 #import "ConscienceActionViewController.h"
 #import "ConscienceHelpViewController.h"
 
@@ -593,7 +593,6 @@ Implementation: Determine what effects to rollback from an already completed dil
 - (void) deleteChoice:(NSString *) choiceKey {
 	
 	//Begin CoreData Retrieval			
-	NSError *outError = nil;
     UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] initWithKey:@""];
     
 	if (choiceKey != nil) {
@@ -613,15 +612,10 @@ Implementation: Determine what effects to rollback from an already completed dil
     //Cannot assume that first instance of UserDilemma implies no previous reward
     if ([appDelegate.userCollection containsObject:moralKey]) {
         
-        NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityAssetDesc];
         
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", moralKey];
-        [request setPredicate:pred];
-        
-        NSArray *objects = [context executeFetchRequest:request error:&outError];
-        UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
+        UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:moralKey];
+
+        UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
         
         //Increase the moral's value
         float moralDecrease = [[currentUserCollectable collectableValue] floatValue];
@@ -634,8 +628,7 @@ Implementation: Determine what effects to rollback from an already completed dil
             [currentUserCollectable setValue:[NSNumber numberWithFloat:moralDecrease] forKey:@"collectableValue"];
         }
         
-        [request release];
-        
+        [currentUserCollectableDAO release];        
         
     }
     

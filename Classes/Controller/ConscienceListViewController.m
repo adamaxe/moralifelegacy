@@ -13,7 +13,7 @@ User can filter list by only things that are affordable to currentFunds.
 #import "ConscienceView.h"
 #import "ConscienceAcceptViewController.h"
 #import "ConscienceAsset.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
 #import "ConscienceAssetDAO.h"
@@ -329,28 +329,14 @@ Implementation: Retrieve User's current ethicals from UserData
  */
 -(void)retrieveCurrentFunds{
     
-    NSError *outError;
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
+            
+    UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityAssetDesc];
-    
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals];
-    [request setPredicate:pred];
-    
-    NSArray *objects = [context executeFetchRequest:request error:&outError];
-    [request release];
-    
-    if ([objects count] == 0) {
-        NSLog(@"No items");
-        currentFunds = 0;
-    } else {
-    
-        UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
-    
-        //Set current ethicals for UIViewController
-        currentFunds = [[currentUserCollectable collectableValue] intValue];
-    }
+    //Set current ethicals for UIViewController
+    currentFunds = [[currentUserCollectable collectableValue] intValue];
+        
+    [currentUserCollectableDAO release];
 
 }
 

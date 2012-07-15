@@ -23,7 +23,7 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "Character.h"
 #import "Moral.h"
 #import "UserDilemmaDAO.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 #import "ReferencePersonDAO.h"
 #import "ReferenceAssetDAO.h"
 #import "UserCharacterDAO.h"
@@ -476,9 +476,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 @todo refactor into multiple functions
  */
 -(void)commitDilemma{
-        
-    NSError *outError = nil;
-    
     //Construct Unique Primary Key from dtstamp to millisecond
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];	
@@ -504,19 +501,12 @@ Calculate changes to User's ethicals.  Limit to 999.
     [currentUserDilemmaDAO update];
     [currentUserDilemmaDAO release];
     
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
     //See if moral has been rewarded before
     //Cannot assume that first instance of UserChoice implies no previous reward
     if ([appDelegate.userCollection containsObject:moralKey]) {
         
-        NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-        NSFetchRequest *request = [[NSFetchRequest alloc] init];
-        [request setEntity:entityAssetDesc];
-        
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", moralKey];
-        [request setPredicate:pred];
-        
-        NSArray *objects = [context executeFetchRequest:request error:&outError];
-        UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
+        UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:moralKey];
         
         //Increase the moral's value
         float moralIncrease = [[currentUserCollectable collectableValue] floatValue];
@@ -529,13 +519,11 @@ Calculate changes to User's ethicals.  Limit to 999.
         
         [currentUserCollectable setValue:[NSNumber numberWithFloat:moralIncrease] forKey:@"collectableValue"];
         
-        [request release];
-        
-        
     } else {
         
         //Create a new moral reward
-        UserCollectable *currentUserCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
+        
+        UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
         [currentUserCollectable setCollectableCreationDate:[NSDate date]];
         [currentUserCollectable setCollectableKey:dilemmaKey];
@@ -543,6 +531,8 @@ Calculate changes to User's ethicals.  Limit to 999.
         [currentUserCollectable setCollectableValue:[NSNumber numberWithFloat:1.0]];
                 
         [appDelegate.userCollection addObject:moralKey];
+        
+        [currentUserCollectableDAO update];
         
     }
     
@@ -570,7 +560,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 
         [currentPersonDAO release];
                 
-		UserCollectable *currentUserCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
+		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
@@ -592,7 +582,7 @@ Calculate changes to User's ethicals.  Limit to 999.
         
         [currentReferenceDAO release];
         
-		UserCollectable *currentUserCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
+		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
@@ -602,17 +592,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	}
     
 	//Update User's ethicals
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-    
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals];
-	[request setPredicate:pred];
-    
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	[request release];
-    
-	UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
+	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:kCollectableEthicals];;
     
 	//Increase the moral's value
 	int ethicalIncrease = [[currentUserCollectable collectableValue] intValue];
@@ -639,12 +619,9 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	[selectedReward release];
     
-	[context save:&outError];
-    
-	if (outError != nil) {
-		NSLog(@"save error:%@", outError);
-	}	
-    
+
+    [currentUserCollectableDAO update];
+    [currentUserCollectableDAO release];
 	//Create a User Choice so that User's Moral report is affected
 	//Prefix with dile- on a User prohibited field to ensure that entry is never shown on ConscienceListViewController
     

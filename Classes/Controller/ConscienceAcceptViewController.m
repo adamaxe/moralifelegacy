@@ -18,7 +18,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #import "ConscienceView.h"
 #import "ConscienceMind.h"
 #import "Moral.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 #import "ViewControllerLocalization.h"
 
 @interface ConscienceAcceptViewController () <ViewControllerLocalization> {
@@ -366,23 +366,16 @@ Implementation: Internal function to retrieve how many ethicals User currently h
  */
 -(void)retrieveCurrentFunds{
     
-    NSError *outError;
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityAssetDesc];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals];
-    [request setPredicate:pred];
-    
-    NSArray *objects = [context executeFetchRequest:request error:&outError];
-    [request release];
-    
-    UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
-    
+    UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
+
     //Increase the moral's value
     int ethicals = [[currentUserCollectable collectableValue] intValue];
     
     currentFunds = ethicals;
+    
+    [currentUserCollectableDAO release];
     
 }
 
@@ -448,9 +441,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
 Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from ethicals and add ConscienceAsset as a collectable.  
  */
 -(void)processCollection{
-    
-	NSError *outError;
-    
+        
 	//Construct Unique Primary Key from dtstamp to millisecond
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 	[dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];	
@@ -461,9 +452,13 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
     
 	//Create a new UserCollectable
 	//It has already been determined to not exist in MoraLifeAppDelegate::userCollection, no need to test
-	UserCollectable *currentUserAssetCollectable = [NSEntityDescription insertNewObjectForEntityForName:@"UserCollectable" inManagedObjectContext:context];
+
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
     
-	[currentUserAssetCollectable setCollectableCreationDate:[NSDate date]];
+    //Create a new moral reward
+    UserCollectable *currentUserAssetCollectable = [currentUserCollectableDAO create];
+	
+    [currentUserAssetCollectable setCollectableCreationDate:[NSDate date]];
 	[currentUserAssetCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, assetSelection]];
 	[currentUserAssetCollectable setCollectableName:assetSelection];
     
@@ -473,18 +468,9 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 	}
     
 	//Retrieve User's ethicals
-	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
-    
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals];
-	[request setPredicate:pred];
-    
-	NSArray *objects = [context executeFetchRequest:request error:&outError];
-	[request release];
     
     //Update User's ethicals
-	UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
+	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:kCollectableEthicals];;
     
 	int ethicals = [[currentUserCollectable collectableValue] intValue];
     
@@ -497,8 +483,8 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 	//Save User's new ethicals    
 	[currentUserCollectable setValue:[NSNumber numberWithInt:ethicals] forKey:@"collectableValue"];
         
-	[context save:&outError];
-
+    [currentUserCollectableDAO update];
+    [currentUserCollectableDAO release];
 }
 
 #pragma mark -

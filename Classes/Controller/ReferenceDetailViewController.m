@@ -15,7 +15,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 #import "MoralDAO.h"
 #import "ReferenceTextDAO.h"
 #import "ConscienceHelpViewController.h"
-#import "UserCollectable.h"
+#import "UserCollectableDAO.h"
 
 @interface ReferenceDetailViewController () {
     
@@ -287,28 +287,13 @@ Implementation: Find value of reference from UserCollection in case of Morals
  */
 -(void)retrieveCollection {
     
-    NSError *outError;
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:referenceKey];
     
-    NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:@"UserCollectable" inManagedObjectContext:context];
-    NSFetchRequest *request = [[NSFetchRequest alloc] init];
-    [request setEntity:entityAssetDesc];
+    UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName == %@", referenceKey];
-    [request setPredicate:pred];
-    
-    NSArray *objects = [context executeFetchRequest:request error:&outError];
-    
-    if ([objects count] == 0) {
-        NSLog(@"No collection");
-    } else {
+    [cardNumberLabel setText:[NSString stringWithFormat:@"%d", [[currentUserCollectable collectableValue] intValue]]];
 
-        UserCollectable *currentUserCollectable = [objects objectAtIndex:0];
-        
-        [cardNumberLabel setText:[NSString stringWithFormat:@"%d", [[currentUserCollectable collectableValue] intValue]]];
-
-    }
-
-    [request release];
+    [currentUserCollectableDAO release];
 }
 
 /**
