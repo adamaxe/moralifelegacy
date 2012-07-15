@@ -460,17 +460,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 @todo refactor into multiple functions
  */
 -(void)commitDilemma{
-    
-    //Retrieve readwrite Documents directory
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *userData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
-    NSURL *storeURL = [NSURL fileURLWithPath:userData];
-    
-    id readWriteStore = [[context persistentStoreCoordinator] persistentStoreForURL:storeURL];
-    
-    NSError *outError = nil;
-    
+            
     //Construct Unique Primary Key from dtstamp to millisecond
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];	
@@ -560,7 +550,7 @@ Calculate changes to User's ethicals.  Limit to 999.
         
         [currentPersonDAO release];
 
-		UserCollectable *currentUserCollectable = [currentUserCollectableDao create];
+		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
@@ -624,7 +614,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 
 	UserChoice *currentUserChoice = [currentUserChoiceDAO create];    
 	[currentUserChoice setEntryCreationDate:[NSDate date]];
-	[context assignObject:currentUserChoice toPersistentStore:readWriteStore];
     
 	NSMutableString *moralType = [[NSMutableString alloc] initWithString:@""];
     
