@@ -3204,6 +3204,7 @@
 		5ED8E901125D366A0089668A /* card-serenity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-serenity.png"; path = "Resources/images/interface/cards/card-serenity.png"; sourceTree = "<group>"; };
 		5ED8E903125D366A0089668A /* card-trust.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-trust.png"; path = "Resources/images/interface/cards/card-trust.png"; sourceTree = "<group>"; };
 		5EDA59921252E58A00F4C49D /* thoughtbubble-black.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-black.png"; path = "Resources/images/interface/thoughtbubble-black.png"; sourceTree = "<group>"; };
+		5EDB8BD515B5178E00F5290D /* UserData2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UserData2.xcdatamodel; sourceTree = "<group>"; };
 		5EDF024E11E9959B004D1347 /* Icon-114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-114.png"; sourceTree = "<group>"; };
 		5EDF026D11EA0D35004D1347 /* Icon-29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-29.png"; sourceTree = "<group>"; };
 		5EDF026E11EA0D35004D1347 /* Icon-57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-57.png"; sourceTree = "<group>"; };
@@ -7612,9 +7613,10 @@
 		5E340D5412F1E9FF004CDEE9 /* UserData.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				5EDB8BD515B5178E00F5290D /* UserData2.xcdatamodel */,
 				5E340D3612F1E540004CDEE9 /* UserData.xcdatamodel */,
 			);
-			currentVersion = 5E340D3612F1E540004CDEE9 /* UserData.xcdatamodel */;
+			currentVersion = 5EDB8BD515B5178E00F5290D /* UserData2.xcdatamodel */;
 			name = UserData.xcdatamodeld;
 			path = Model/UserData.xcdatamodeld;
 			sourceTree = "<group>";

@@ -180,7 +180,7 @@ Implementation: change the influence value and update the influence Label
 
 		//Change slider description to current localized value.	
 		[influenceLabel setText:(NSString *)[influenceLabelDescriptions objectAtIndex:influenceAsInt-1]];
-        [influenceSlider setValue:influenceAsInt];
+//        [influenceSlider setValue:influenceAsInt];
 	}
 	
 }
