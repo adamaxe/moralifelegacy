@@ -27,10 +27,6 @@
     
 }
 
-- (ReferenceAsset *)create {
-    return (ReferenceAsset *)[self createObject];
-}
-
 - (ReferenceAsset *)read:(NSString *)key {
     return (ReferenceAsset *)[self readObject:key];
 }

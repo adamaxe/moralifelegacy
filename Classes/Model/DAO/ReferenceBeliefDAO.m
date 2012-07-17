@@ -27,10 +27,6 @@
     
 }
 
-- (ReferenceBelief *)create {
-    return (ReferenceBelief *)[self createObject];
-}
-
 - (ReferenceBelief *)read:(NSString *)key {
     return (ReferenceBelief *)[self readObject:key];
 }

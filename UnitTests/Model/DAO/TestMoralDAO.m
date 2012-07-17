@@ -123,6 +123,47 @@
     
 }
 
+- (void)testMoralDAORead {
+        
+    Moral *testMoral = [testingSubject read:nameMoral1];
+    STAssertEqualObjects(testMoral, testMoral1, @"MoralDAO All not populated with virtue 1.");    
+}
+
+- (void)testMoralDAOCreateFailsCorrectly {
+    
+    id testMoral = [testingSubject createObject];
+    STAssertNil(testMoral, @"MoralDAO was able to create incorrectly.");    
+}
+
+- (void)testMoralDAOUpdateFailsCorrectly {
+    
+    BOOL isUpdateSuccessful = [testingSubject update];
+    STAssertFalse(isUpdateSuccessful, @"MoralDAO was able to update incorrectly.");    
+}
+
+- (void)testMoralDAODeleteFailsCorrectly {
+    
+    Moral *testDeleteMoral = [testModelManager create:Moral.class]; 
+    NSString *nameMoralDelete = @"deletedMoral";
+    testDeleteMoral.shortDescriptionMoral = moralTypeVirtue;
+    testDeleteMoral.nameMoral = nameMoralDelete;
+    testDeleteMoral.imageNameMoral = imageName;
+    testDeleteMoral.colorMoral = color;
+    testDeleteMoral.displayNameMoral = displayName;
+    testDeleteMoral.longDescriptionMoral = longDescription;
+    testDeleteMoral.component = component;
+    testDeleteMoral.linkMoral = link;
+    testDeleteMoral.definitionMoral = definition;
+
+    [testModelManager saveContext];
+    
+    BOOL isDeleteSuccessful = [testingSubject delete:testDeleteMoral];
+    STAssertFalse(isDeleteSuccessful, @"MoralDAO was able to delete incorrectly.");
+    
+    Moral *testDeletedMoralVerify = [testingSubject read:nameMoralDelete];
+    STAssertEqualObjects(testDeleteMoral, testDeletedMoralVerify, @"Moral was deleted incorrectly.");
+    
+}
 
 - (void)testMoralDAOAllTypeContainsVirtuesAndVices {
     
@@ -183,5 +224,6 @@
     [testingEmptySubject release];
     
 }
+
 
 @end

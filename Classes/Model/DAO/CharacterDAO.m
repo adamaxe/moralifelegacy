@@ -27,10 +27,6 @@
     
 }
 
-- (Character *)create {
-    return (Character *)[self createObject];
-}
-
 - (Character *)read:(NSString *)key {
     return (Character *)[self readObject:key];
 }

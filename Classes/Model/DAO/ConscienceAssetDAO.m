@@ -27,10 +27,6 @@
     
 }
 
-- (ConscienceAsset *)create {
-    return (ConscienceAsset *)[self createObject];
-}
-
 - (ConscienceAsset *)read:(NSString *)key {
     return (ConscienceAsset *)[self readObject:key];
 }

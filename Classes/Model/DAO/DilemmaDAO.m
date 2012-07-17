@@ -27,10 +27,6 @@
     
 }
 
-- (Dilemma *)create {
-    return (Dilemma *)[self createObject];
-}
-
 - (Dilemma *)read:(NSString *)key {
     return (Dilemma *)[self readObject:key];
 }

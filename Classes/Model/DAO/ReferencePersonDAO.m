@@ -27,10 +27,6 @@
     
 }
 
-- (ReferencePerson *)create {
-    return (ReferencePerson *)[self createObject];
-}
-
 - (ReferencePerson *)read:(NSString *)key {
     return (ReferencePerson *)[self readObject:key];
 }

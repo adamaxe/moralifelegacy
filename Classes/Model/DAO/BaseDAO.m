@@ -4,6 +4,7 @@
 @interface BaseDAO () 
 
 @property (nonatomic, retain) NSString *currentKey;
+@property (nonatomic, retain) NSString *classType;
 @property (nonatomic, retain) NSManagedObjectContext *context;
 @property (nonatomic, retain) NSMutableArray *persistedObjects;
 
@@ -21,6 +22,7 @@ NSString* const kContextReadWrite = @"readWrite";
 @synthesize predicates = _predicates;
 
 @synthesize currentKey = _currentKey;
+@synthesize classType = _classType;
 @synthesize predicateDefaultName = _predicateDefaultName;
 @synthesize sortDefaultName = _sortDefaultName;
 @synthesize managedObjectClassName = _managedObjectClassName;
@@ -45,6 +47,7 @@ NSString* const kContextReadWrite = @"readWrite";
             _context = [[moralModelManager managedObjectContext] retain];            
         }
         
+        _classType = [[NSString alloc] initWithString:classType];
         _sorts = [[NSArray alloc] init];
         _predicates = [[NSArray alloc] init];
         _predicateDefaultName = [[NSMutableString alloc] initWithString:@""];
@@ -66,7 +69,11 @@ NSString* const kContextReadWrite = @"readWrite";
 }
 
 - (id)createObject {
-    return [NSEntityDescription insertNewObjectForEntityForName:self.managedObjectClassName inManagedObjectContext:self.context];   
+    if ([_classType isEqualToString:kContextReadWrite]) {
+        return [NSEntityDescription insertNewObjectForEntityForName:self.managedObjectClassName inManagedObjectContext:self.context];   
+    } else {
+        return nil;
+    }
 }
 
 - (NSManagedObject *)readObject:(NSString *)key {
@@ -79,30 +86,49 @@ NSString* const kContextReadWrite = @"readWrite";
 }
 
 - (BOOL)update {
-    NSError *error = nil;
     
-    if ([_context hasChanges]) {
-        [_context save:&error];
+    BOOL isUpdateSuccessful = FALSE;
+    
+    if ([_classType isEqualToString:kContextReadWrite]) {
+
+        NSError *error = nil;
+        
+        if ([_context hasChanges]) {
+            [_context save:&error];
+        }
+        
+        isUpdateSuccessful = error ? TRUE : FALSE;
+    } else {
+        isUpdateSuccessful = FALSE;
     }
     
-    return error ? TRUE : FALSE;
+    return isUpdateSuccessful;
 }
 
 - (BOOL)delete:(NSManagedObject *)objectToDelete {
-    NSError *error = nil;
+
+    BOOL isDeleteSuccessful = FALSE;
     
-    if (objectToDelete) {
-        [_context delete:objectToDelete];
+    if ([_classType isEqualToString:kContextReadWrite]) {
+
+        NSError *error = nil;
+        
+        if (objectToDelete) {
+            [_context delete:objectToDelete];
+        } else {
+            [_context delete:[self findPersistedObject:self.currentKey]];
+        }
+        
+        if ([_context hasChanges]) {
+            [_context save:&error];
+        }
+        
+        isDeleteSuccessful = error ? TRUE : FALSE;
     } else {
-        [_context delete:[self findPersistedObject:self.currentKey]];
+        isDeleteSuccessful = FALSE;
     }
     
-    if ([_context hasChanges]) {
-        [_context save:&error];
-    }
-    
-    return error ? TRUE : FALSE;
-    
+    return isDeleteSuccessful;
 }
 
 - (int)count {
@@ -183,6 +209,7 @@ NSString* const kContextReadWrite = @"readWrite";
     [_predicates release];
     [_sorts release];
     [_currentKey release];
+    [_classType release];
     [_predicateDefaultName release];
     [_sortDefaultName release];
     [_managedObjectClassName release];

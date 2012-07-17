@@ -27,10 +27,6 @@
     
 }
 
-- (Moral *)create {
-    return (Moral *)[self createObject];
-}
-
 - (Moral *)read:(NSString *)key {
     return (Moral *)[self readObject:key];
 }
