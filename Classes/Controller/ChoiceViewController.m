@@ -656,7 +656,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     int choiceWeightFilledFields = 1;
     
     NSString *choiceJustification = [prefs objectForKey:@"choiceJustification"];
-    int choiceInfluence = [prefs integerForKey:@"choiceInfluence"];
+    float choiceInfluence = [prefs floatForKey:@"choiceInfluence"];
     NSString *choiceConsequences = [prefs objectForKey:@"choiceConsequence"];
     NSString *choiceLongDescription = descriptionTextView.text;
     
@@ -812,7 +812,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     [currentUserChoice setEntryKey:choiceKey];
     [currentUserChoice setChoiceMoral:moralKey];
     [currentUserChoice setChoiceJustification:choiceJustification];
-    [currentUserChoice setChoiceInfluence:[NSNumber numberWithInt:choiceInfluence]];
+    [currentUserChoice setChoiceInfluence:[NSNumber numberWithFloat:choiceInfluence]];
     [currentUserChoice setEntryIsGood:[NSNumber numberWithBool:isVirtue]];
     [currentUserChoice setChoiceConsequences:choiceConsequences];
     [currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:choiceCalculatedWeight]];    
