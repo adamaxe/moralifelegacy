@@ -144,13 +144,19 @@ NSString* const kMLStoreType = @"sqlite";
 - (NSManagedObjectModel *)mergedManagedObjectModel {
     
 	NSString *pathReadWrite = [self.currentBundle pathForResource:kMLReadWriteModelName ofType:kMLDataModelExtension];
-    //	NSString *pathReadWrite = [self.currentBundle pathForResource:@"UserData2" ofType:@"mom"];
-	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
+    NSBundle *bundleReadWrite = [NSBundle bundleWithPath:pathReadWrite];
+    NSString *pathOriginalReadWriteMOM = [bundleReadWrite pathForResource:@"UserData" ofType:@"mom"];
+
+//	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
+	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathOriginalReadWriteMOM];
     NSManagedObjectModel *modelReadWrite = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
 	
     NSString *pathReadOnly = [self.currentBundle pathForResource:kMLReadOnlyModelName ofType:kMLDataModelExtension];
-    //    NSString *pathReadOnly = [self.currentBundle pathForResource:@"SystemData2" ofType:@"mom"];
-	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
+    NSBundle *bundleReadOnly = [NSBundle bundleWithPath:pathReadOnly];
+    NSString *pathOriginalReadOnlyMOM = [bundleReadOnly pathForResource:@"SystemData2" ofType:@"mom"];
+
+//    NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
+	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathOriginalReadOnlyMOM];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];
     
     NSManagedObjectModel *mergedModel = [[NSManagedObjectModel modelByMergingModels:[NSArray arrayWithObjects:modelReadWrite, modelReadOnly, nil]] retain];
