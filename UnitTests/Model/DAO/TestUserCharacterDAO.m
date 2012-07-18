@@ -12,16 +12,16 @@
     NSString *nameCharacter1;
     NSString *nameCharacter2;
     
-    NSString * characterFace;
-    NSString * characterEye;
-    NSString * characterMouth;
-    NSNumber * characterEnthusiasm;
-    NSNumber * characterMood;
-    NSString * characterEyeColor;
-    NSString * characterBrowColor;
-    NSString * characterBubbleColor;
-    NSDecimalNumber * characterSize;
-    NSNumber * characterBubbleType;
+    NSString *characterFace;
+    NSString *characterEye;
+    NSString *characterMouth;
+    NSNumber *characterEnthusiasm;
+    NSNumber *characterMood;
+    NSString *characterEyeColor;
+    NSString *characterBrowColor;
+    NSString *characterBubbleColor;
+    NSDecimalNumber *characterSize;
+    NSNumber *characterBubbleType;
     
 }
 
@@ -129,14 +129,14 @@
     STAssertTrue([allCharacters containsObject:testCharacter2], @"UserCharacterDAO All not populated with Character 2.");
 }
 
-- (void)testUserCharacterDAOCanBeDeleted {
-        
-    BOOL isDeleteSuccessful = [testingSubject delete:testCharacter2];
-    STAssertTrue(isDeleteSuccessful, @"UserCharacterDAO wasn't able to delete.");
-    
-    UserCharacter *testDeletedCharacterVerify = [testingSubject read:nameCharacter2];
-    STAssertNil(testDeletedCharacterVerify, @"UserCharacter was deleted incorrectly.");
-    
-}
+//- (void)testUserCharacterDAOCanBeDeleted {
+//        
+//    BOOL isDeleteSuccessful = [testingSubject delete:testCharacter2];
+//    STAssertTrue(isDeleteSuccessful, @"UserCharacterDAO wasn't able to delete.");
+//    
+//    UserCharacter *testDeletedCharacterVerify = [testingSubject read:nameCharacter2];
+//    STAssertNil(testDeletedCharacterVerify, @"UserCharacter was deleted incorrectly.");
+//    
+//}
 
 @end

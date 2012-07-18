@@ -941,6 +941,7 @@
 		5E5761411595975600E14606 /* TestMoralDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5761401595975600E14606 /* TestMoralDAO.m */; };
 		5E5811DC12C2EBE2008605C9 /* SystemData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E5811DB12C2EBE2008605C9 /* SystemData.xcdatamodeld */; };
 		5E5A92FE15B6648C009F13ED /* TestUserCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */; };
+		5E5A930115B67031009F13ED /* TestUserCollectableDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */; };
 		5E5B9DDD135FD9A80043420F /* ref-isaacnewton-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */; };
 		5E5B9DDE135FD9A80043420F /* ref-isaacnewton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */; };
 		5E5B9DE1135FE9880043420F /* moralifelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDF135FE9880043420F /* moralifelogo.png */; };
@@ -2667,6 +2668,7 @@
 		5E5761401595975600E14606 /* TestMoralDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMoralDAO.m; sourceTree = "<group>"; };
 		5E5811E012C2EBE2008605C9 /* SystemData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SystemData.xcdatamodel; sourceTree = "<group>"; };
 		5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCharacterDAO.m; sourceTree = "<group>"; };
+		5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCollectableDAO.m; sourceTree = "<group>"; };
 		5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-isaacnewton-sm.png"; path = "Resources/images/reference/ref-isaacnewton-sm.png"; sourceTree = "<group>"; };
 		5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-isaacnewton.jpg"; path = "Resources/images/reference/ref-isaacnewton.jpg"; sourceTree = "<group>"; };
 		5E5B9DDF135FE9880043420F /* moralifelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moralifelogo.png; path = Resources/images/interface/moralifelogo.png; sourceTree = "<group>"; };
@@ -4443,6 +4445,7 @@
 				5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */,
 				5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */,
 				5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */,
+				5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */,
 			);
 			name = DAO;
 			path = Model/DAO;
@@ -7350,6 +7353,7 @@
 				5E61F5A315B652CC00B759F6 /* TestDilemmaDAO.m in Sources */,
 				5E61F5A515B6575400B759F6 /* TestCharacterDAO.m in Sources */,
 				5E5A92FE15B6648C009F13ED /* TestUserCharacterDAO.m in Sources */,
+				5E5A930115B67031009F13ED /* TestUserCollectableDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
