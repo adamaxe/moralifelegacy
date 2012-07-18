@@ -73,17 +73,17 @@
 - (void)testReferencePersonDAORead {
     
     ReferencePerson *testAsset = [testingSubject read:nameAsset1];
-    STAssertEqualObjects(testAsset, testReferencePerson1, @"ReferencePersonDAO not populated with asset 1."); 
+    STAssertEqualObjects(testAsset, testReferencePerson1, @"ReferencePersonDAO not populated with person 1."); 
     
     testAsset = [testingSubject read:nameAsset2];
-    STAssertEqualObjects(testAsset, testReferencePerson2, @"ReferencePersonDAO not populated with asset 2."); 
+    STAssertEqualObjects(testAsset, testReferencePerson2, @"ReferencePersonDAO not populated with person 2."); 
 }
 
 - (void)testReferencePersonDAOReadAll {
         
     NSArray *allAssets = [testingSubject readAll];
-    STAssertTrue([allAssets containsObject:testReferencePerson1], @"ReferencePersonDAO All not populated with asset 1.");
-    STAssertTrue([allAssets containsObject:testReferencePerson2], @"ReferencePersonDAO All not populated with asset 2.");
+    STAssertTrue([allAssets containsObject:testReferencePerson1], @"ReferencePersonDAO All not populated with person 1.");
+    STAssertTrue([allAssets containsObject:testReferencePerson2], @"ReferencePersonDAO All not populated with person 2.");
     
 }
 

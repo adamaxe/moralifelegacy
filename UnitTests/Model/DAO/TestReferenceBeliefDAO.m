@@ -77,17 +77,17 @@
 - (void)testReferenceBeliefDAORead {
     
     ReferenceBelief *testAsset = [testingSubject read:nameAsset1];
-    STAssertEqualObjects(testAsset, testReferenceBelief1, @"ReferenceBeliefDAO not populated with asset 1."); 
+    STAssertEqualObjects(testAsset, testReferenceBelief1, @"ReferenceBeliefDAO not populated with belief 1."); 
     
     testAsset = [testingSubject read:nameAsset2];
-    STAssertEqualObjects(testAsset, testReferenceBelief2, @"ReferenceBeliefDAO not populated with asset 2."); 
+    STAssertEqualObjects(testAsset, testReferenceBelief2, @"ReferenceBeliefDAO not populated with belief 2."); 
 }
 
 - (void)testReferenceBeliefDAOReadAll {
         
     NSArray *allAssets = [testingSubject readAll];
-    STAssertTrue([allAssets containsObject:testReferenceBelief1], @"ReferenceBeliefDAO All not populated with asset 1.");
-    STAssertTrue([allAssets containsObject:testReferenceBelief2], @"ReferenceBeliefDAO All not populated with asset 2.");
+    STAssertTrue([allAssets containsObject:testReferenceBelief1], @"ReferenceBeliefDAO All not populated with belief 1.");
+    STAssertTrue([allAssets containsObject:testReferenceBelief2], @"ReferenceBeliefDAO All not populated with belief 2.");
     
 }
 

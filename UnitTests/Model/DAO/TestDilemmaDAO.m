@@ -70,7 +70,7 @@
 - (void)testDilemmaDAORead {
         
     Dilemma *testDilemma = [testingSubject read:nameDilemma1];
-    STAssertEqualObjects(testDilemma, testDilemma1, @"DilemmaDAO All not populated with virtue 1.");    
+    STAssertEqualObjects(testDilemma, testDilemma1, @"DilemmaDAO All not populated with dilemma 1.");    
 }
 
 - (void)testDilemmaDAOCreateFailsCorrectly {

@@ -73,17 +73,17 @@
 - (void)testReferenceTextDAORead {
     
     ReferenceText *testAsset = [testingSubject read:nameAsset1];
-    STAssertEqualObjects(testAsset, testReferenceText1, @"ReferenceTextDAO not populated with asset 1."); 
+    STAssertEqualObjects(testAsset, testReferenceText1, @"ReferenceTextDAO not populated with text 1."); 
     
     testAsset = [testingSubject read:nameAsset2];
-    STAssertEqualObjects(testAsset, testReferenceText2, @"ReferenceTextDAO not populated with asset 2."); 
+    STAssertEqualObjects(testAsset, testReferenceText2, @"ReferenceTextDAO not populated with text 2."); 
 }
 
 - (void)testReferenceTextDAOReadAll {
         
     NSArray *allAssets = [testingSubject readAll];
-    STAssertTrue([allAssets containsObject:testReferenceText1], @"ReferenceTextDAO All not populated with asset 1.");
-    STAssertTrue([allAssets containsObject:testReferenceText2], @"ReferenceTextDAO All not populated with asset 2.");
+    STAssertTrue([allAssets containsObject:testReferenceText1], @"ReferenceTextDAO All not populated with text 1.");
+    STAssertTrue([allAssets containsObject:testReferenceText2], @"ReferenceTextDAO All not populated with text 2.");
     
 }
 

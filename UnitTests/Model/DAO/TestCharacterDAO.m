@@ -82,7 +82,7 @@
 - (void)testCharacterDAORead {
         
     Character *testCharacter = [testingSubject read:nameCharacter1];
-    STAssertEqualObjects(testCharacter, testCharacter1, @"CharacterDAO All not populated with virtue 1.");    
+    STAssertEqualObjects(testCharacter, testCharacter1, @"CharacterDAO All not populated with character 1.");    
 }
 
 - (void)testCharacterDAOCreateFailsCorrectly {
