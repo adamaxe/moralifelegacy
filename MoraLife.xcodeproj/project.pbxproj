@@ -264,7 +264,7 @@
 		5E47705A13453F0600EE3EDD /* ref-jackierobinson.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705513453F0600EE3EDD /* ref-jackierobinson.jpg */; };
 		5E47705B13453F0600EE3EDD /* ref-williamwallace-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705613453F0600EE3EDD /* ref-williamwallace-sm.png */; };
 		5E47705C13453F0600EE3EDD /* ref-williamwallace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */; };
-		5E4804C015992B7D00E27E88 /* TestConscienceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4804BF15992B7D00E27E88 /* TestConscienceDAO.m */; };
+		5E4804C015992B7D00E27E88 /* TestConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */; };
 		5E480861137E4E2500C1E0CF /* Moral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E480860137E4E2500C1E0CF /* Moral.m */; };
 		5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
@@ -953,6 +953,10 @@
 		5E5D9FF71318CEF9007A96BA /* card-selflessness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D9FF01318CEF9007A96BA /* card-selflessness.png */; };
 		5E5D9FF81318CEF9007A96BA /* card-weakness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5D9FF11318CEF9007A96BA /* card-weakness.png */; };
 		5E5DB58612FD97DC007F85FA /* ConscienceAcceptViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5DB58512FD97DC007F85FA /* ConscienceAcceptViewController.m */; };
+		5E61F59B15B64A9D00B759F6 /* TestReferenceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59A15B64A9D00B759F6 /* TestReferenceAssetDAO.m */; };
+		5E61F59D15B64B9C00B759F6 /* TestReferenceTextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */; };
+		5E61F59F15B64C1700B759F6 /* TestReferenceBeliefDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */; };
+		5E61F5A115B64C9300B759F6 /* TestReferencePersonDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */; };
 		5E64FEC7132899FD005AFF13 /* acc-sec-weapon-tonfa.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E64FEC5132899FD005AFF13 /* acc-sec-weapon-tonfa.png */; };
 		5E64FEC8132899FD005AFF13 /* acc-top-hair-tallblonde.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E64FEC6132899FD005AFF13 /* acc-top-hair-tallblonde.png */; };
 		5E64FECC13289A24005AFF13 /* acc-sec-weapon-tonfa-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E64FEC913289A24005AFF13 /* acc-sec-weapon-tonfa-sm.png */; };
@@ -1980,7 +1984,7 @@
 		5E47705513453F0600EE3EDD /* ref-jackierobinson.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-jackierobinson.jpg"; path = "Resources/images/reference/ref-jackierobinson.jpg"; sourceTree = "<group>"; };
 		5E47705613453F0600EE3EDD /* ref-williamwallace-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-williamwallace-sm.png"; path = "Resources/images/reference/ref-williamwallace-sm.png"; sourceTree = "<group>"; };
 		5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-williamwallace.jpg"; path = "Resources/images/reference/ref-williamwallace.jpg"; sourceTree = "<group>"; };
-		5E4804BF15992B7D00E27E88 /* TestConscienceDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConscienceDAO.m; sourceTree = "<group>"; };
+		5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConscienceAssetDAO.m; sourceTree = "<group>"; };
 		5E48085F137E4E2500C1E0CF /* Moral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moral.h; sourceTree = "<group>"; };
 		5E480860137E4E2500C1E0CF /* Moral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moral.m; sourceTree = "<group>"; };
 		5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAssetDAO.h; sourceTree = "<group>"; };
@@ -2673,6 +2677,10 @@
 		5E5D9FF11318CEF9007A96BA /* card-weakness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-weakness.png"; path = "Resources/images/interface/cards/card-weakness.png"; sourceTree = "<group>"; };
 		5E5DB58412FD97DC007F85FA /* ConscienceAcceptViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAcceptViewController.h; sourceTree = "<group>"; };
 		5E5DB58512FD97DC007F85FA /* ConscienceAcceptViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAcceptViewController.m; sourceTree = "<group>"; };
+		5E61F59A15B64A9D00B759F6 /* TestReferenceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceAssetDAO.m; sourceTree = "<group>"; };
+		5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceTextDAO.m; sourceTree = "<group>"; };
+		5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceBeliefDAO.m; sourceTree = "<group>"; };
+		5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferencePersonDAO.m; sourceTree = "<group>"; };
 		5E64FEC5132899FD005AFF13 /* acc-sec-weapon-tonfa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-sec-weapon-tonfa.png"; path = "Resources/images/accessories/acc-sec-weapon-tonfa.png"; sourceTree = "<group>"; };
 		5E64FEC6132899FD005AFF13 /* acc-top-hair-tallblonde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-top-hair-tallblonde.png"; path = "Resources/images/accessories/acc-top-hair-tallblonde.png"; sourceTree = "<group>"; };
 		5E64FEC913289A24005AFF13 /* acc-sec-weapon-tonfa-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-sec-weapon-tonfa-sm.png"; sourceTree = "<group>"; };
@@ -4420,8 +4428,12 @@
 		5E57613F1595975600E14606 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */,
 				5E5761401595975600E14606 /* TestMoralDAO.m */,
-				5E4804BF15992B7D00E27E88 /* TestConscienceDAO.m */,
+				5E61F59A15B64A9D00B759F6 /* TestReferenceAssetDAO.m */,
+				5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */,
+				5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */,
+				5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */,
 			);
 			name = DAO;
 			path = Model/DAO;
@@ -7310,7 +7322,7 @@
 				5E5761411595975600E14606 /* TestMoralDAO.m in Sources */,
 				5EB2FEDD1596849600CAF1DD /* MoraLifeBaseUnitTest.m in Sources */,
 				5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */,
-				5E4804C015992B7D00E27E88 /* TestConscienceDAO.m in Sources */,
+				5E4804C015992B7D00E27E88 /* TestConscienceAssetDAO.m in Sources */,
 				5EB832FC159D49CD002A3417 /* ReferenceAssetDAO.m in Sources */,
 				5EB83301159D566B002A3417 /* ReferencePersonDAO.m in Sources */,
 				5EB83305159E94FB002A3417 /* ReferenceBeliefDAO.m in Sources */,
@@ -7322,6 +7334,10 @@
 				5EC6463915AD23D0008E5CE3 /* UserDilemmaDAO.m in Sources */,
 				5EC6463D15B260FD008E5CE3 /* UserCollectableDAO.m in Sources */,
 				5EC6464515B31F58008E5CE3 /* BaseDAO.m in Sources */,
+				5E61F59B15B64A9D00B759F6 /* TestReferenceAssetDAO.m in Sources */,
+				5E61F59D15B64B9C00B759F6 /* TestReferenceTextDAO.m in Sources */,
+				5E61F59F15B64C1700B759F6 /* TestReferenceBeliefDAO.m in Sources */,
+				5E61F5A115B64C9300B759F6 /* TestReferencePersonDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
