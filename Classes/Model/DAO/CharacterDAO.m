@@ -19,7 +19,7 @@
     
     if (self) {
         [self.predicateDefaultName setString:@"nameCharacter"];
-        [self.sortDefaultName setString:@"displayNameCharacter"];
+        [self.sortDefaultName setString:@"nameCharacter"];
         [self.managedObjectClassName setString:@"Character"];
     }
     

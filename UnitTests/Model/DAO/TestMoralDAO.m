@@ -10,13 +10,13 @@
     Moral *testMoral2;
     Moral *testMoral3;
     
-    NSString *moralTypeVirtue;
     NSString *nameMoral1;
-    NSString *moralTypeVice;
     NSString *nameMoral2;
-    NSString *moralTypeVirtueExtra;
     NSString *nameMoral3;
     
+    NSString *moralTypeVirtue;
+    NSString *moralTypeVice;
+    NSString *moralTypeVirtueExtra;
     NSString *imageName;
     NSString *color;
     NSString *displayName;
@@ -34,13 +34,13 @@
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
-    moralTypeVirtue = @"Virtue";
     nameMoral1 = @"Virtue Name1";
-    moralTypeVice = @"Vice";
     nameMoral2 = @"Vice Name2";
-    moralTypeVirtueExtra = @"Virtue";
     nameMoral3 = @"Virtue Name3";
     
+    moralTypeVirtue = @"Virtue";
+    moralTypeVice = @"Vice";
+    moralTypeVirtueExtra = @"Virtue";
     imageName = @"imageName";
     color = @"color";
     displayName = @"displayName";

@@ -957,6 +957,8 @@
 		5E61F59D15B64B9C00B759F6 /* TestReferenceTextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */; };
 		5E61F59F15B64C1700B759F6 /* TestReferenceBeliefDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */; };
 		5E61F5A115B64C9300B759F6 /* TestReferencePersonDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */; };
+		5E61F5A315B652CC00B759F6 /* TestDilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A215B652CC00B759F6 /* TestDilemmaDAO.m */; };
+		5E61F5A515B6575400B759F6 /* TestCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A415B6575400B759F6 /* TestCharacterDAO.m */; };
 		5E64FEC7132899FD005AFF13 /* acc-sec-weapon-tonfa.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E64FEC5132899FD005AFF13 /* acc-sec-weapon-tonfa.png */; };
 		5E64FEC8132899FD005AFF13 /* acc-top-hair-tallblonde.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E64FEC6132899FD005AFF13 /* acc-top-hair-tallblonde.png */; };
 		5E64FECC13289A24005AFF13 /* acc-sec-weapon-tonfa-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E64FEC913289A24005AFF13 /* acc-sec-weapon-tonfa-sm.png */; };
@@ -2681,6 +2683,8 @@
 		5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceTextDAO.m; sourceTree = "<group>"; };
 		5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceBeliefDAO.m; sourceTree = "<group>"; };
 		5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferencePersonDAO.m; sourceTree = "<group>"; };
+		5E61F5A215B652CC00B759F6 /* TestDilemmaDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDilemmaDAO.m; sourceTree = "<group>"; };
+		5E61F5A415B6575400B759F6 /* TestCharacterDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCharacterDAO.m; sourceTree = "<group>"; };
 		5E64FEC5132899FD005AFF13 /* acc-sec-weapon-tonfa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-sec-weapon-tonfa.png"; path = "Resources/images/accessories/acc-sec-weapon-tonfa.png"; sourceTree = "<group>"; };
 		5E64FEC6132899FD005AFF13 /* acc-top-hair-tallblonde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-top-hair-tallblonde.png"; path = "Resources/images/accessories/acc-top-hair-tallblonde.png"; sourceTree = "<group>"; };
 		5E64FEC913289A24005AFF13 /* acc-sec-weapon-tonfa-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-sec-weapon-tonfa-sm.png"; sourceTree = "<group>"; };
@@ -4428,7 +4432,9 @@
 		5E57613F1595975600E14606 /* DAO */ = {
 			isa = PBXGroup;
 			children = (
+				5E61F5A415B6575400B759F6 /* TestCharacterDAO.m */,
 				5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */,
+				5E61F5A215B652CC00B759F6 /* TestDilemmaDAO.m */,
 				5E5761401595975600E14606 /* TestMoralDAO.m */,
 				5E61F59A15B64A9D00B759F6 /* TestReferenceAssetDAO.m */,
 				5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */,
@@ -7338,6 +7344,8 @@
 				5E61F59D15B64B9C00B759F6 /* TestReferenceTextDAO.m in Sources */,
 				5E61F59F15B64C1700B759F6 /* TestReferenceBeliefDAO.m in Sources */,
 				5E61F5A115B64C9300B759F6 /* TestReferencePersonDAO.m in Sources */,
+				5E61F5A315B652CC00B759F6 /* TestDilemmaDAO.m in Sources */,
+				5E61F5A515B6575400B759F6 /* TestCharacterDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

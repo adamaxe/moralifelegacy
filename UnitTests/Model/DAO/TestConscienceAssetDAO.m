@@ -12,7 +12,6 @@
     
     NSString *nameAsset1;
     NSString *nameAsset2;
-    NSString *nameAsset3;
     
     NSNumber *costAsset;
     NSString *orientationAsset;
@@ -34,10 +33,9 @@
 
     nameAsset1 = @"Asset1";
     nameAsset2 = @"Asset2";
-    nameAsset3 = @"Asset3";    
     
-    costAsset = [[NSNumber alloc]initWithFloat:1.0];
-    moralValueAsset = [[NSNumber alloc]initWithFloat:2.0]; 
+    costAsset = [NSNumber numberWithFloat:1.0];
+    moralValueAsset = [NSNumber numberWithFloat:2.0]; 
     orientationAsset = @"left";
     shortDescription = @"short description";
     originYear = [NSNumber numberWithInt:2010];
