@@ -5,12 +5,12 @@
     ModelManager *testModelManager;
     UserDilemma *testUserDilemma;
 
-    NSString * entryShortDescription;
-    NSNumber * entryIsGood;
-    NSString * entryKey;
-    NSString * entryLongDescription;
-    NSNumber * entrySeverity;
-    NSDate * entryCreationDate;
+    NSString *entryShortDescription;
+    NSNumber *entryIsGood;
+    NSString *entryKey;
+    NSString *entryLongDescription;
+    NSNumber *entrySeverity;
+    NSDate *entryCreationDate;
 
 }
 

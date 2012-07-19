@@ -5,10 +5,10 @@
     ModelManager *testModelManager;
     UserCollectable *testUserCollectable;
     
-    NSDate * collectableCreationDate;
-    NSString * collectableName;
-    NSString * collectableKey;
-    NSNumber * collectableValue;
+    NSDate *collectableCreationDate;
+    NSString *collectableName;
+    NSString *collectableKey;
+    NSNumber *collectableValue;
     
 }
 

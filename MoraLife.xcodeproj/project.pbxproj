@@ -942,6 +942,8 @@
 		5E5811DC12C2EBE2008605C9 /* SystemData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5E5811DB12C2EBE2008605C9 /* SystemData.xcdatamodeld */; };
 		5E5A92FE15B6648C009F13ED /* TestUserCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */; };
 		5E5A930115B67031009F13ED /* TestUserCollectableDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */; };
+		5E5A930315B787DB009F13ED /* TestUserDilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930215B787DB009F13ED /* TestUserDilemmaDAO.m */; };
+		5E5A930515B78AED009F13ED /* TestUserChoiceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930415B78AED009F13ED /* TestUserChoiceDAO.m */; };
 		5E5B9DDD135FD9A80043420F /* ref-isaacnewton-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */; };
 		5E5B9DDE135FD9A80043420F /* ref-isaacnewton.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */; };
 		5E5B9DE1135FE9880043420F /* moralifelogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5B9DDF135FE9880043420F /* moralifelogo.png */; };
@@ -2669,6 +2671,8 @@
 		5E5811E012C2EBE2008605C9 /* SystemData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SystemData.xcdatamodel; sourceTree = "<group>"; };
 		5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCharacterDAO.m; sourceTree = "<group>"; };
 		5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCollectableDAO.m; sourceTree = "<group>"; };
+		5E5A930215B787DB009F13ED /* TestUserDilemmaDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserDilemmaDAO.m; sourceTree = "<group>"; };
+		5E5A930415B78AED009F13ED /* TestUserChoiceDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserChoiceDAO.m; sourceTree = "<group>"; };
 		5E5B9DDB135FD9A80043420F /* ref-isaacnewton-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-isaacnewton-sm.png"; path = "Resources/images/reference/ref-isaacnewton-sm.png"; sourceTree = "<group>"; };
 		5E5B9DDC135FD9A80043420F /* ref-isaacnewton.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-isaacnewton.jpg"; path = "Resources/images/reference/ref-isaacnewton.jpg"; sourceTree = "<group>"; };
 		5E5B9DDF135FE9880043420F /* moralifelogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = moralifelogo.png; path = Resources/images/interface/moralifelogo.png; sourceTree = "<group>"; };
@@ -4445,7 +4449,9 @@
 				5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */,
 				5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */,
 				5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */,
+				5E5A930415B78AED009F13ED /* TestUserChoiceDAO.m */,
 				5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */,
+				5E5A930215B787DB009F13ED /* TestUserDilemmaDAO.m */,
 			);
 			name = DAO;
 			path = Model/DAO;
@@ -5242,18 +5248,18 @@
 		5EBED2FE1548D5EC00AFE44D /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				5E1ACE2515523E2800DBDE6E /* TestUserLuck.m */,
-				5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */,
-				5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */,
-				5E1ACE1F1551AC9A00DBDE6E /* TestMoral.m */,
-				5E071E641550CBE9009A5357 /* TestDilemma.m */,
 				5EA108DE154F8EE8008A7936 /* TestCharacter.m */,
-				5EA108DA154E3234008A7936 /* TestUserCollectable.m */,
-				5EA108DC154F8848008A7936 /* TestUserCharacter.m */,
 				5E7FC824154E17E50051D494 /* TestConscienceAsset.m */,
+				5E071E641550CBE9009A5357 /* TestDilemma.m */,
+				5E1ACE1F1551AC9A00DBDE6E /* TestMoral.m */,
+				5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */,
 				5E7FC822154E0FB60051D494 /* TestReferencePerson.m */,
 				5E7FC820154DDFF80051D494 /* TestReferenceText.m */,
-				5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */,
+				5EA108DC154F8848008A7936 /* TestUserCharacter.m */,
+				5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */,
+				5EA108DA154E3234008A7936 /* TestUserCollectable.m */,
+				5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */,
+				5E1ACE2515523E2800DBDE6E /* TestUserLuck.m */,
 			);
 			name = Generated;
 			path = Model/Generated;
@@ -7354,6 +7360,8 @@
 				5E61F5A515B6575400B759F6 /* TestCharacterDAO.m in Sources */,
 				5E5A92FE15B6648C009F13ED /* TestUserCharacterDAO.m in Sources */,
 				5E5A930115B67031009F13ED /* TestUserCollectableDAO.m in Sources */,
+				5E5A930315B787DB009F13ED /* TestUserDilemmaDAO.m in Sources */,
+				5E5A930515B78AED009F13ED /* TestUserChoiceDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

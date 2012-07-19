@@ -5,22 +5,22 @@
     ModelManager *testModelManager;
     UserCharacter *testUserCharacter;
     
-    NSString * characterAccessoryPrimary;
-    NSString * characterAccessorySecondary;
-    NSString * characterAccessoryTop;
-    NSString * characterAccessoryBottom;
-    NSString * characterFace;
-    NSString * characterName;
-    NSString * characterEye;
-    NSString * characterMouth;
-    NSNumber * characterEnthusiasm;
-    NSNumber * characterAge;
-    NSNumber * characterMood;
-    NSString * characterEyeColor;
-    NSString * characterBrowColor;
-    NSString * characterBubbleColor;
-    NSNumber * characterSize;
-    NSNumber * characterBubbleType;    
+    NSString *characterAccessoryPrimary;
+    NSString *characterAccessorySecondary;
+    NSString *characterAccessoryTop;
+    NSString *characterAccessoryBottom;
+    NSString *characterFace;
+    NSString *characterName;
+    NSString *characterEye;
+    NSString *characterMouth;
+    NSNumber *characterEnthusiasm;
+    NSNumber *characterAge;
+    NSNumber *characterMood;
+    NSString *characterEyeColor;
+    NSString *characterBrowColor;
+    NSString *characterBubbleColor;
+    NSNumber *characterSize;
+    NSNumber *characterBubbleType;    
 }
 
 @end

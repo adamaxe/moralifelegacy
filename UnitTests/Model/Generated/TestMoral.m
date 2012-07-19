@@ -9,27 +9,27 @@
     Dilemma *testDilemma;
     Dilemma *testDilemma2;
     
-    NSString * imageNameMoral;
-    NSString * colorMoral;
-    NSString * displayNameMoral;
-    NSString * longDescriptionMoral;
-    NSString * component;
-    NSString * shortDescriptionMoral;
-    NSString * linkMoral;
-    NSString * nameMoral;
-    NSString * definitionMoral;
+    NSString *imageNameMoral;
+    NSString *colorMoral;
+    NSString *displayNameMoral;
+    NSString *longDescriptionMoral;
+    NSString *component;
+    NSString *shortDescriptionMoral;
+    NSString *linkMoral;
+    NSString *nameMoral;
+    NSString *definitionMoral;
     
-    NSString * rewardADilemma;
-    NSString * choiceB;
-    NSNumber * moodDilemma;
-    NSString * displayNameDilemma;
-    NSString * surrounding;
-    NSString * nameDilemma;
-    NSString * nameDilemma2;    
-    NSString * rewardBDilemma;
-    NSString * choiceA;
-    NSNumber * enthusiasmDilemma;
-    NSString * dilemmaText;
+    NSString *rewardADilemma;
+    NSString *choiceB;
+    NSNumber *moodDilemma;
+    NSString *displayNameDilemma;
+    NSString *surrounding;
+    NSString *nameDilemma;
+    NSString *nameDilemma2;    
+    NSString *rewardBDilemma;
+    NSString *choiceA;
+    NSNumber *enthusiasmDilemma;
+    NSString *dilemmaText;
 
 }
 

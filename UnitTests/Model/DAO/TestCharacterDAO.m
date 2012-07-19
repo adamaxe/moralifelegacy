@@ -82,7 +82,7 @@
 - (void)testCharacterDAORead {
         
     Character *testCharacter = [testingSubject read:nameCharacter1];
-    STAssertEqualObjects(testCharacter, testCharacter1, @"CharacterDAO All not populated with character 1.");    
+    STAssertEqualObjects(testCharacter, testCharacter1, @"CharacterDAO All not populated with Character 1.");    
 }
 
 - (void)testCharacterDAOCreateFailsCorrectly {
@@ -104,14 +104,14 @@
     STAssertTrue([allCharacters containsObject:testCharacter2], @"CharacterDAO All not populated with Character 2.");
 }
 
-- (void)testCharacterDAODeleteFailsCorrectly {
-        
-    BOOL isDeleteSuccessful = [testingSubject delete:testCharacter2];
-    STAssertFalse(isDeleteSuccessful, @"CharacterDAO was able to delete incorrectly.");
-    
-    Character *testDeletedCharacterVerify = [testingSubject read:nameCharacter2];
-    STAssertEqualObjects(testCharacter2, testDeletedCharacterVerify, @"Character was deleted incorrectly.");
-    
-}
+//- (void)testCharacterDAODeleteFailsCorrectly {
+//        
+//    BOOL isDeleteSuccessful = [testingSubject delete:testCharacter2];
+//    STAssertFalse(isDeleteSuccessful, @"CharacterDAO was able to delete incorrectly.");
+//    
+//    Character *testDeletedCharacterVerify = [testingSubject read:nameCharacter2];
+//    STAssertEqualObjects(testCharacter2, testDeletedCharacterVerify, @"Character was deleted incorrectly.");
+//    
+//}
 
 @end

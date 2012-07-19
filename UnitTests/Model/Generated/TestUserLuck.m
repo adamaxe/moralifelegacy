@@ -5,14 +5,14 @@
     ModelManager *testModelManager;
     UserLuck *testUserLuck;
 
-    NSString * entryShortDescription;
-    NSNumber * entryIsGood;
-    NSString * entryKey;
-    NSString * entryLongDescription;
-    NSNumber * entrySeverity;
-    NSDate * entryCreationDate;
+    NSString *entryShortDescription;
+    NSNumber *entryIsGood;
+    NSString *entryKey;
+    NSString *entryLongDescription;
+    NSNumber *entrySeverity;
+    NSDate *entryCreationDate;
     
-    NSDate * entryModificationDate;
+    NSDate *entryModificationDate;
 
 }
 

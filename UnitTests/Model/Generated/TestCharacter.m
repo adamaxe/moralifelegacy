@@ -7,22 +7,22 @@
     Character *testCharacter;
     Dilemma *testDilemma;
     
-    NSString * characterAccessoryPrimary;
-    NSString * characterAccessorySecondary;
-    NSString * characterAccessoryTop;
-    NSString * characterAccessoryBottom;
-    NSString * characterFace;
-    NSString * characterName;
-    NSString * characterEye;
-    NSString * characterMouth;
-    NSNumber * characterEnthusiasm;
-    NSNumber * characterAge;
-    NSNumber * characterMood;
-    NSString * characterEyeColor;
-    NSString * characterBrowColor;
-    NSString * characterBubbleColor;
-    NSDecimalNumber * characterSize;
-    NSNumber * characterBubbleType;
+    NSString *characterAccessoryPrimary;
+    NSString *characterAccessorySecondary;
+    NSString *characterAccessoryTop;
+    NSString *characterAccessoryBottom;
+    NSString *characterFace;
+    NSString *characterName;
+    NSString *characterEye;
+    NSString *characterMouth;
+    NSNumber *characterEnthusiasm;
+    NSNumber *characterAge;
+    NSNumber *characterMood;
+    NSString *characterEyeColor;
+    NSString *characterBrowColor;
+    NSString *characterBubbleColor;
+    NSDecimalNumber *characterSize;
+    NSNumber *characterBubbleType;
 
 }
 

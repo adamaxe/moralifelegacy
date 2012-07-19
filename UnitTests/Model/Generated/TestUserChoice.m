@@ -5,19 +5,19 @@
     ModelManager *testModelManager;
     UserChoice *testChoice;
 
-    NSString * entryShortDescription;
-    NSNumber * entryIsGood;
-    NSString * entryKey;
-    NSString * entryLongDescription;
-    NSNumber * entrySeverity;
-    NSDate * entryCreationDate;
+    NSString *entryShortDescription;
+    NSNumber *entryIsGood;
+    NSString *entryKey;
+    NSString *entryLongDescription;
+    NSNumber *entrySeverity;
+    NSDate *entryCreationDate;
     
-    NSDate * entryModificationDate;
-    NSNumber * choiceInfluence;
-    NSString * choiceConsequences;
-    NSString * choiceJustification;
-    NSString * choiceMoral;
-    NSNumber * choiceWeight;
+    NSDate *entryModificationDate;
+    NSNumber *choiceInfluence;
+    NSString *choiceConsequences;
+    NSString *choiceJustification;
+    NSString *choiceMoral;
+    NSNumber *choiceWeight;
 
 }
 
