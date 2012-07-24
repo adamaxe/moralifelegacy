@@ -13,8 +13,6 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "ConscienceAccessories.h"
 #import "ConscienceMind.h"
 #import "ConscienceView.h"
-#import "ConscienceActionViewController.h"
-#import "ConscienceDeckViewController.h"
 #import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
 #import "DilemmaDAO.h"

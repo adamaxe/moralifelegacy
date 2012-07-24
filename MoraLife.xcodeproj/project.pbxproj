@@ -972,6 +972,8 @@
 		5E6858E912727E0D0080386B /* DilemmaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6858E612727E0D0080386B /* DilemmaView.xib */; };
 		5E6ABF8D126D48AD0045FC4F /* interface-selectionbox-vertical.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6ABF85126D48AD0045FC4F /* interface-selectionbox-vertical.png */; };
 		5E6ABF8E126D48AD0045FC4F /* interface-selectionbox-horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6ABF86126D48AD0045FC4F /* interface-selectionbox-horizontal.png */; };
+		5E6BA4F515B920290008825D /* systemTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E6BA4F215B920290008825D /* systemTests.sh */; };
+		5E6BA4F615B920290008825D /* systemTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E6BA4F215B920290008825D /* systemTests.sh */; };
 		5E70EEE411C31BEB0010FBD7 /* pictureframe-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */; };
 		5E7191D412206AEF000A3508 /* UINavigationBar-Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */; };
 		5E7378C3122A1F18004301D3 /* con-crescent-nose.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7378C1122A1F18004301D3 /* con-crescent-nose.svg */; };
@@ -2702,6 +2704,7 @@
 		5E6858E612727E0D0080386B /* DilemmaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = DilemmaView.xib; path = Resources/DilemmaView.xib; sourceTree = "<group>"; };
 		5E6ABF85126D48AD0045FC4F /* interface-selectionbox-vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-selectionbox-vertical.png"; path = "Resources/images/interface/interface-selectionbox-vertical.png"; sourceTree = "<group>"; };
 		5E6ABF86126D48AD0045FC4F /* interface-selectionbox-horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-selectionbox-horizontal.png"; path = "Resources/images/interface/interface-selectionbox-horizontal.png"; sourceTree = "<group>"; };
+		5E6BA4F215B920290008825D /* systemTests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = systemTests.sh; sourceTree = "<group>"; };
 		5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pictureframe-landscape.png"; path = "Resources/images/interface/pictureframe-landscape.png"; sourceTree = "<group>"; };
 		5E7191CF12206AEF000A3508 /* UINavigationBar-Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar-Transparent.h"; path = "View/UINavigationBar-Transparent.h"; sourceTree = "<group>"; };
 		5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar-Transparent.m"; path = "View/UINavigationBar-Transparent.m"; sourceTree = "<group>"; };
@@ -3171,7 +3174,6 @@
 		5EC5543A15774064004BF692 /* uiajsinclude.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = uiajsinclude.js; sourceTree = "<group>"; };
 		5EC5543B15774064004BF692 /* uiautomationstyle.xslt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = uiautomationstyle.xslt; sourceTree = "<group>"; };
 		5EC5543C15774064004BF692 /* mainnavigation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mainnavigation.js; sourceTree = "<group>"; };
-		5EC5543D15774064004BF692 /* runTests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = runTests.sh; sourceTree = "<group>"; };
 		5EC55446157748FF004BF692 /* choicemoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralcancel.js; sourceTree = "<group>"; };
 		5EC55447157748FF004BF692 /* choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoraldisplay.js; sourceTree = "<group>"; };
 		5EC55448157748FF004BF692 /* choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralentry.js; sourceTree = "<group>"; };
@@ -5281,7 +5283,7 @@
 				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
 				5EC55448157748FF004BF692 /* choicemoralentry.js */,
 				5EBBDC781582E9D700355FDE /* choicemoralverify.js */,
-				5EC5543D15774064004BF692 /* runTests.sh */,
+				5E6BA4F215B920290008825D /* systemTests.sh */,
 			);
 			path = SystemTests;
 			sourceTree = "<group>";
@@ -7137,6 +7139,7 @@
 				5E2D0C091405284500CB3032 /* bubble-type13-sm.png in Resources */,
 				5E2D0C0A1405284500CB3032 /* bubble-type14-sm.png in Resources */,
 				5E1C81551573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */,
+				5E6BA4F515B920290008825D /* systemTests.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7148,6 +7151,7 @@
 				5EE9A92014FC90A500DD428A /* ConscienceHelpView.xib in Resources */,
 				5EFBBF0A1569DB59004FA197 /* MainWindow.xib in Resources */,
 				5E1C81561573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */,
+				5E6BA4F615B920290008825D /* systemTests.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
