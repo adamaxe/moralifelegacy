@@ -1297,6 +1297,7 @@
 		5EA01A2A1346C872001E8581 /* ref-meerabai.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A241346C872001E8581 /* ref-meerabai.jpg */; };
 		5EA01A2B1346C872001E8581 /* ref-tiradentes-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A251346C872001E8581 /* ref-tiradentes-sm.png */; };
 		5EA01A2C1346C872001E8581 /* ref-tiradentes.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EA01A261346C872001E8581 /* ref-tiradentes.jpg */; };
+		5EA15CF015C0DD5A004EDDCA /* libSystem.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5EA1D225130E38A200BA81D6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
@@ -3028,6 +3029,7 @@
 		5EA108DA154E3234008A7936 /* TestUserCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCollectable.m; sourceTree = "<group>"; };
 		5EA108DC154F8848008A7936 /* TestUserCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCharacter.m; sourceTree = "<group>"; };
 		5EA108DE154F8EE8008A7936 /* TestCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCharacter.m; sourceTree = "<group>"; };
+		5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
 		5EA1D224130E38A200BA81D6 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA1D22A130E38A200BA81D6 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		5EA1D22C130E38A200BA81D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -3500,6 +3502,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EA15CF015C0DD5A004EDDCA /* libSystem.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -3548,6 +3551,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
