@@ -55,9 +55,9 @@ NSString* const kContextReadWrite = @"readWrite";
         _managedObjectClassName = [[NSMutableString alloc] initWithString:@""];        
         
         if (key) {
-            _currentKey = [[NSString alloc] initWithFormat:key];
+            _currentKey = [[NSString alloc] initWithString:key];
         } else {
-            _currentKey = [[NSString alloc] initWithFormat:@""];
+            _currentKey = [[NSString alloc] initWithString:@""];
         }
                 
         _persistedObjects = [[NSMutableArray alloc] init];

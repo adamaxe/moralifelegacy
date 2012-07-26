@@ -543,7 +543,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//@todo localize reward
 	if ([selectedReward rangeOfString:kCollectableEthicals].location != NSNotFound) {
 		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:kCollectableEthicals]];
-		[moralSelectedRewardLabel setText:[NSString stringWithString:@"Have some Ethicals!"]];
+		[moralSelectedRewardLabel setText:@"Have some Ethicals!"];
         
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
 
@@ -597,7 +597,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//Increase the moral's value
 	int ethicalIncrease = [[currentUserCollectable collectableValue] intValue];
     
-	[moralRewardLabel setText:[NSString stringWithString:@"+1"]];
+	[moralRewardLabel setText:@"+1"];
 
 	//If reward was NOFAIL, add 5 ethicals
 	if([selectedReward isEqualToString:@""]){

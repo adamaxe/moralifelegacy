@@ -326,7 +326,7 @@ static int thoughtVersion = 0;
     
     UINavigationController *modalNavController1 = [[UINavigationController alloc] init];
 	
-	NSString *modalNavTitle1 = [NSString stringWithString:@"Customization"];
+	NSString *modalNavTitle1 = @"Customization";
 	
 	modalNavController1.tabBarItem.title = modalNavTitle1;
 	[modalNavController1 setNavigationBarHidden:YES];
@@ -682,7 +682,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
         case 1:{
             
             if (ethicals == 0) {
-                [thoughtSpecialized appendFormat:@"You have no ethicals left.\n\nEarn some in Morathology by tapping the Rank Button!", ethicals];
+                [thoughtSpecialized appendString:@"You have no ethicals left.\n\nEarn some in Morathology by tapping the Rank Button!"];
             } else {
                 [thoughtSpecialized appendFormat:@"You have %dε in the bank.\n\nTap the Rank Button to spend them in the Commissary!", ethicals];
             }

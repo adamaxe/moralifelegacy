@@ -533,7 +533,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	if ([selectedReward rangeOfString:kCollectableEthicals].location != NSNotFound) {
 		//Ethicals are rewarded, process
 		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:kCollectableEthicals]];
-		[moralSelectedRewardLabel setText:[NSString stringWithString:@"Have some Ethicals!"]];        
+		[moralSelectedRewardLabel setText:@"Have some Ethicals!"];
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
         
 		//ReferencePerson rewarded, process, use large moralRewardImage
@@ -585,7 +585,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//Increase the moral's value
 	int ethicalIncrease = [[currentUserCollectable collectableValue] intValue];
 
-	[moralRewardLabel setText:[NSString stringWithString:@"+1"]];
+	[moralRewardLabel setText:@"+1"];
     //append epsilon to score
 	[ethicalRewardLabel setText:[NSString stringWithFormat:@"+%dε", [selectedReward intValue]]];
     
@@ -688,7 +688,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 - (void) animateViewDetail: (int) viewToAnimateIndex atBeginning: (BOOL) isBeginning {
     
     int animationType = arc4random()%4;
-    CGAffineTransform viewAnimationTransform;
+    CGAffineTransform viewAnimationTransform = CGAffineTransformIdentity;
     
     switch (animationType) {
         case 0:{

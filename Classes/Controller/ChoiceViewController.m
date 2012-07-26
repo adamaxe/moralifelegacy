@@ -904,7 +904,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 	[moralButton setTitle:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button") forState:UIControlStateNormal];
 	moralButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dHint", isVirtue]), @"Hint for Moral Button");
 	moralButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button");
-	[descriptionTextView setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenDescription", isVirtue]), @"Label for Description Textview")];
+	[descriptionTextView setText:NSLocalizedString(@"ChoiceScreenDescription", @"Label for Description Textview")];
     
     [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateNormal];
     [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateHighlighted];    

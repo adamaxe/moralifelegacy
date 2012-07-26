@@ -455,8 +455,8 @@ NSString* const kMLStoreType = @"sqlite";
     }    
     
     if (error) {
-        NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data fetch failed: %@\n\n", [error description]];
-        [NSException raise:@"CoreDataFetchError" format:errorMessage];
+        NSString *errorMessage = @"Test Core Data fetch failed: %@\n\n";
+        [NSException raise:@"CoreDataFetchError" format:errorMessage, [error description]];
     }
     
     return results;
@@ -485,8 +485,8 @@ NSString* const kMLStoreType = @"sqlite";
     }    
     
     if (error) {
-        NSString *errorMessage = [NSString stringWithFormat:@"Test Core Data fetch failed: %@\n\n", [error description]];
-        [NSException raise:@"CoreDataFetchError" format:errorMessage];
+        NSString *errorMessage = @"Test Core Data fetch failed: %@\n\n";
+        [NSException raise:@"CoreDataFetchError" format:errorMessage, [error description]];
     }
     
     if ([results count] > 0) {
@@ -538,8 +538,8 @@ NSString* const kMLStoreType = @"sqlite";
     }    
     
     if (error) {
-        NSString *errorMessage = [NSString stringWithFormat:@"Core Data Read Only save failed: %@\n\n", [error description]];
-        [NSException raise:@"CoreDataSaveError" format:errorMessage];
+        NSString *errorMessage = @"Core Data Read Only save failed: %@\n\n";
+        [NSException raise:@"CoreDataSaveError" format:errorMessage, [error description]];
         
     }
     
@@ -556,8 +556,8 @@ NSString* const kMLStoreType = @"sqlite";
     }    
     
     if (error) {
-        NSString *errorMessage = [NSString stringWithFormat:@"Core Data Read Write save failed: %@\n\n", [error description]];
-        [NSException raise:@"CoreDataSaveError" format:errorMessage];
+        NSString *errorMessage = @"Core Data Read Write save failed: %@\n\n";
+        [NSException raise:@"CoreDataSaveError" format:errorMessage, [error description]];
         
     }
     

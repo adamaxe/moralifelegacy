@@ -401,7 +401,7 @@ expressionIndex determined by ViewController
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 6;
 
-	NSString *layerID = [NSString stringWithString:@"4layerEyeball"];
+	NSString *layerID = @"4layerEyeball";
 	NSValue *val;
 	//boolean to mark if change is requested for both eyes
 	bool isRecursive = NO;

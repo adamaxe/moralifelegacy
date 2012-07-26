@@ -107,9 +107,9 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 	
 	//Change Title of screen to reflect good or bad luck
 	[self setTitle:NSLocalizedString(([NSString stringWithFormat:@"LuckScreen%dTitle", isGood]), @"Title for Luck screen")];
-	severityLabel.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel1Hint", isGood]), @"Hint for Severity Label");
-	severitySlider.accessibilityHint =  NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverity1Hint", isGood]), @"Hint for Severity Slider");
-	severitySlider.accessibilityLabel =  NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverity1Label", isGood]), @"Label for Severity Slider");		
+	severityLabel.accessibilityHint = NSLocalizedString(@"LuckScreenSeverityLabel1Hint", @"Hint for Severity Label");
+	severitySlider.accessibilityHint =  NSLocalizedString(@"LuckScreenSeverity1Hint", @"Hint for Severity Slider");
+	severitySlider.accessibilityLabel =  NSLocalizedString(@"LuckScreenSeverity1Label", @"Label for Severity Slider");		
 	
 	//Populate severity arrays for descriptions to reflect good or bad luck
 	luckSeverityLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%da", isGood]), @"Label for Severity Level 1"), 
