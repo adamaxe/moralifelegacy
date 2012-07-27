@@ -249,8 +249,8 @@
 	//Ensure that Choices created during Morathology sessions are not displayed here
 	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
 	//@see DilemmaViewController
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@ AND NOT entryKey contains[cd] %@", [NSNumber numberWithBool: isVirtue], predicateParam];
-	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@ AND NOT entryKey contains[cd] %@", @(isVirtue), predicateParam];
+	currentUserChoiceDAO.predicates = @[pred];
 	[predicateParam release];
     
 	NSSortDescriptor* sortDescriptor;
@@ -271,7 +271,7 @@
             
 			[choices addObject:[matches entryShortDescription]];
 		 	[choiceKeys addObject:[matches entryKey]];
-			[choicesAreGood addObject:[NSNumber numberWithBool:[[matches entryIsGood] boolValue]]];
+			[choicesAreGood addObject:@([[matches entryIsGood] boolValue])];
             
 			//Detailed text is name of Moral, Weight, Date, Long Description
 			NSMutableString *detailText = [[NSMutableString alloc] init];

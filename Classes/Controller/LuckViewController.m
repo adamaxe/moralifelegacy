@@ -467,7 +467,7 @@ Implementation: Compile all of the relevant data from fields.  Calculate changes
 	} 
         
 	[currentUserLuck setEntryLongDescription:luckLongDescription];
-	[currentUserLuck setEntrySeverity:[NSNumber numberWithFloat:severityConversion]];
+	[currentUserLuck setEntrySeverity:@(severityConversion)];
 
 	if (isNewLuck) {
 		[currentUserLuck setEntryCreationDate:[NSDate date]];
@@ -475,7 +475,7 @@ Implementation: Compile all of the relevant data from fields.  Calculate changes
 
 	[currentUserLuck setEntryModificationDate:[NSDate date]];
 	[currentUserLuck setEntryKey:luckKey];
-	[currentUserLuck setEntryIsGood:[NSNumber numberWithBool:isGood]];
+	[currentUserLuck setEntryIsGood:@(isGood)];
        
 	if (isNewLuck) {
 		[context assignObject:currentUserLuck toPersistentStore:readWriteStore];

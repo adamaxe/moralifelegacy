@@ -32,10 +32,10 @@
     nameDilemma2 = @"nameDilemma2";        
     
     choiceB = @"choiceB";
-    moodDilemma  = [NSNumber numberWithFloat:1.0];
+    moodDilemma  = @1.0f;
     displayNameDilemma = @"displayNameDilemma";
     choiceA = @"choiceA";
-    enthusiasmDilemma = [NSNumber numberWithFloat:1.0];
+    enthusiasmDilemma = @1.0f;
     dilemmaText = @"dilemmaText";
         
     testDilemma1 = [testModelManager create:Dilemma.class];

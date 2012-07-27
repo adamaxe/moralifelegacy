@@ -690,8 +690,8 @@ Implementation:  Determine time of day, and which thought should be displayed.  
         }
         case 2:{
             
-            int moodIndex = [[NSNumber numberWithFloat:appDelegate.userConscienceMind.mood] intValue];
-            int enthusiasmIndex = [[NSNumber numberWithFloat:appDelegate.userConscienceMind.enthusiasm] intValue];
+            int moodIndex = [@(appDelegate.userConscienceMind.mood) intValue];
+            int enthusiasmIndex = [@(appDelegate.userConscienceMind.enthusiasm) intValue];
 
             [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", [conscienceMood objectAtIndex:moodIndex/10], [conscienceEnthusiasm objectAtIndex:enthusiasmIndex/10]];
             
@@ -744,7 +744,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         pred = [NSPredicate predicateWithFormat:@"choiceWeight < %d", 0];
     }
     
-	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];    
+	currentUserChoiceDAO.predicates = @[pred];    
     
     NSMutableString *moralDisplayName = [NSMutableString stringWithString:@"unknown"];
     NSMutableString *moralImageName = [NSMutableString stringWithString:@"card-doubt"];
@@ -778,7 +778,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
             
             currentValue += fabsf([[match choiceWeight] floatValue]);
             
-            [reportValues setValue:[NSNumber numberWithFloat:currentValue] forKey:[match choiceMoral]];
+            [reportValues setValue:@(currentValue) forKey:[match choiceMoral]];
         }
         
         NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
@@ -826,7 +826,7 @@ Change the Rank picture and description.
     UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
     
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName contains[cd] %@", @"asse-rank"];
-	currentUserCollectableDAO.predicates = [NSArray arrayWithObject:pred];
+	currentUserCollectableDAO.predicates = @[pred];
     
 	NSSortDescriptor* sortDescriptor;
     

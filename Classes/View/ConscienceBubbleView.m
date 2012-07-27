@@ -12,9 +12,6 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 #import "ConscienceBubbleFactory.h"
 
 @implementation ConscienceBubbleView
-@synthesize bubbleType;
-@synthesize bubbleGlowWidth, bubbleGlowDuration;
-@synthesize bubbleColor;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -27,10 +24,10 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 		self.multipleTouchEnabled = YES;
 
 		//Set default pulse, line width and black glow
-		[self setBubbleGlowDuration:kBubbleDuration];
-		[self setBubbleGlowWidth:kBubbleWidth];
-		[self setBubbleColor:kBubbleColor];
-		[self setBubbleType:kBubbleType];
+		_bubbleGlowDuration = kBubbleDuration;
+		_bubbleGlowWidth = kBubbleWidth;
+		_bubbleColor = kBubbleColor;
+		_bubbleType = kBubbleType;
 	}
 
 	return self;
@@ -46,7 +43,7 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 	//e.g. #FFFFFFFF = 1,1,1,1
 
 	//Convert String to Hex values
-	NSScanner *fillColorScanner = [NSScanner scannerWithString:bubbleColor];
+	NSScanner *fillColorScanner = [NSScanner scannerWithString:_bubbleColor];
 
 	unsigned fillColorInt;
 
@@ -74,7 +71,7 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 	CGContextSaveGState(context);
 	
 	//Set black outline and white background
-	CGContextSetLineWidth(context, bubbleGlowWidth);
+	CGContextSetLineWidth(context, _bubbleGlowWidth);
 	
 	//Outline black, slightly transparent
 	CGContextSetRGBStrokeColor(context, 0,0,0,0.6);
@@ -91,8 +88,8 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 
     //outerpath is shape enclosing Conscience
     //dynamicPath is the accent promoting 3d nature of Conscience
-    CGMutablePathRef outerPath = [ConscienceBubbleFactory bubbleSurfaceWithType:bubbleType];
-    CGMutablePathRef dynamicPath = [ConscienceBubbleFactory bubbleAccentWithType:bubbleType];
+    CGMutablePathRef outerPath = [ConscienceBubbleFactory bubbleSurfaceWithType:_bubbleType];
+    CGMutablePathRef dynamicPath = [ConscienceBubbleFactory bubbleAccentWithType:_bubbleType];
         
 	CGContextAddPath(context, outerPath);
 	CGContextFillPath(context);    
@@ -137,9 +134,9 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
     [bubbleAnimationLayer setPath:outerPath];
         
 	CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-	opacityAnimation.duration = bubbleGlowDuration;
-	opacityAnimation.fromValue = [NSNumber numberWithFloat:0.8];
-	opacityAnimation.toValue = [NSNumber numberWithFloat:0.2];
+	opacityAnimation.duration = _bubbleGlowDuration;
+	opacityAnimation.fromValue = @0.8f;
+	opacityAnimation.toValue = @0.2f;
 	opacityAnimation.autoreverses = YES;
 	opacityAnimation.delegate = self;
 	opacityAnimation.repeatCount = INFINITY;
@@ -151,7 +148,7 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 	self.layer.sublayers = nil;
 
     //Determine which bubbleType to display
-    switch (bubbleType%3) {
+    switch (_bubbleType%3) {
         case 0: self.transform = CGAffineTransformMakeScale(1.0f, 1.0f);break;
         case 1: self.transform = CGAffineTransformMakeScale(0.9f, 1.05f);break;
         case 2: self.transform = CGAffineTransformMakeScale(1.05f, 0.9f);break;
@@ -166,7 +163,7 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 #pragma mark Memory management
 
 - (void)dealloc {
-    [bubbleColor release];
+    [_bubbleColor release];
     [super dealloc];
 }
 

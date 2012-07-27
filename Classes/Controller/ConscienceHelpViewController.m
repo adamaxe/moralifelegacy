@@ -53,11 +53,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 @implementation ConscienceHelpViewController
 
-@synthesize viewControllerClassName = _viewControllerClassName;
-@synthesize helpTitles, helpTexts;
-@synthesize helpVersion;
-@synthesize isConscienceOnScreen;
-
 #pragma mark -
 #pragma mark ViewController lifecycle
 
@@ -94,8 +89,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
         
         for (int i = 0; i < 6; i++) {
-            [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d",self.viewControllerClassName, helpVersion, i+1]];
-            [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d",self.viewControllerClassName, helpVersion, i+1]];
+            [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", _viewControllerClassName, _helpVersion, i+1]];
+            [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", _viewControllerClassName, _helpVersion, i+1]];
         }
         
         NSMutableArray *helpAllTitles = [[NSMutableArray alloc] init];
@@ -116,8 +111,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
             [tempTitle release];
         }
         
-        helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
-        helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
+        _helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
+        _helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
         
         [helpTitleNames release];
         [helpTextNames release];
@@ -130,7 +125,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	NSArray *viewsArray = [[NSArray alloc] initWithObjects:screen1View, screen2View, screen3View, screen4View, screen5View, screen6View, nil];
 	int counter = 0;
     
-	for (NSString *helpTextIterate in helpTitles) {
+	for (NSString *helpTextIterate in _helpTitles) {
         
 		//Create content dynamically and iterate through possible screens
 		CGRect labelFrame = CGRectMake(38, 37, 240, 35);
@@ -150,7 +145,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		CGRect textViewFrame = CGRectMake(40, 80, 240, 258);
 		UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
 		[textView setTextAlignment:UITextAlignmentCenter];
-		[textView setText:[helpTexts objectAtIndex:counter]];
+		[textView setText:[_helpTexts objectAtIndex:counter]];
 		[textView setTextColor:[UIColor grayColor]];
 		[textView setFont:[UIFont systemFontOfSize:18.0]];
 		[textView flashScrollIndicators];
@@ -183,7 +178,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
 
 	//Determine if Conscience is already on screen
-	if (!isConscienceOnScreen) {
+	if (!_isConscienceOnScreen) {
 		appDelegate.userConscienceView.center = centerPoint;
 	}
    	
@@ -307,7 +302,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
 		previousButton.tag = buttonFactor;
 	}
     
-    int screenMaximum = [helpTitles count];
+    int screenMaximum = [_helpTitles count];
 	
 	//Animate button that User should use
 	if (screenVersion >= screenMaximum){
@@ -352,7 +347,7 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 //	thoughtModalArea.alpha = 0;
 
 	//If Conscience wasn't on screen, place it offscreen, otherwise place it centrally.
-	if (!isConscienceOnScreen) {
+	if (!_isConscienceOnScreen) {
 		appDelegate.userConscienceView.center = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
         appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	} else {
@@ -413,8 +408,8 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 
 - (void)dealloc {
     [_viewControllerClassName release];
-    [helpTitles release];
-    [helpTexts release];
+    [_helpTitles release];
+    [_helpTexts release];
 
     [super dealloc];
 

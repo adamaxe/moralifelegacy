@@ -242,10 +242,10 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (void) refreshButtons{
 
     //Determine which set of four buttons will be animated
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
+	[self buttonAnimate:@(arc4random()%6)];
+	[self buttonAnimate:@(arc4random()%6)];
+	[self buttonAnimate:@(arc4random()%6)];
+	[self buttonAnimate:@(arc4random()%6)];
 }
 
 /**

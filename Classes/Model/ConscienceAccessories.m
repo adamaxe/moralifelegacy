@@ -9,18 +9,16 @@ It can be utilizied for both the User ConscienceView and the Antagonist Conscien
 
 @implementation ConscienceAccessories
 
-@synthesize primaryAccessory, secondaryAccessory, topAccessory, bottomAccessory;
-
 - (id)init
 {
     self = [super init];
     if (self) {
 		
         //In case of first time run, or User does not supply configuration, default Conscience
-        [self setPrimaryAccessory:kPrimaryAccessoryFileNameResource];
-        [self setSecondaryAccessory:kSecondaryAccessoryFileNameResource];
-        [self setTopAccessory:kTopAccessoryFileNameResource];
-        [self setBottomAccessory:kBottomAccessoryFileNameResource];
+        _primaryAccessory = kPrimaryAccessoryFileNameResource ;
+        _secondaryAccessory = kSecondaryAccessoryFileNameResource;
+        _topAccessory = kTopAccessoryFileNameResource;
+        _bottomAccessory = kBottomAccessoryFileNameResource;
 
     }
 
@@ -29,10 +27,10 @@ It can be utilizied for both the User ConscienceView and the Antagonist Conscien
 
 - (void) dealloc {
 
-	[primaryAccessory release];
-	[secondaryAccessory release];
-	[topAccessory release];
-	[bottomAccessory release];
+	[_primaryAccessory release];
+	[_secondaryAccessory release];
+	[_topAccessory release];
+	[_bottomAccessory release];
 	[super dealloc];
 }
 

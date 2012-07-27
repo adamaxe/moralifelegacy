@@ -79,9 +79,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
 
 @implementation ConscienceAcceptViewController
 
-@synthesize assetSelection;
-@synthesize accessorySlot;
-
 #pragma mark -
 #pragma mark ViewController lifecycle
 
@@ -114,7 +111,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	*/
 
 	//Set ownership boolean
-	if ([appDelegate.userCollection containsObject:assetSelection]){
+	if ([appDelegate.userCollection containsObject:_assetSelection]){
 		isOwned = TRUE;
 	}
 
@@ -127,7 +124,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[self retrieveCurrentFunds];
 	[currentFundsLabel setText:[NSString stringWithFormat:@"%dε", currentFunds]];
     
-    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:assetSelection];
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:_assetSelection];
     ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
     
     //Set UI labels
@@ -156,7 +153,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
     [currentAssetDAO release];                
     
     //Add requested ConscienceAsset to duplicate ConscienceView for review
-	switch (accessorySlot) {
+	switch (_accessorySlot) {
 		case 0:{[resetFeature setString:appDelegate.userConscienceAccessories.topAccessory];appDelegate.userConscienceAccessories.topAccessory = currentFeature;}break;
 		case 1:{[resetFeature setString:appDelegate.userConscienceAccessories.primaryAccessory];appDelegate.userConscienceAccessories.primaryAccessory = currentFeature;}break;
 		case 2:{[resetFeature setString:appDelegate.userConscienceAccessories.bottomAccessory];appDelegate.userConscienceAccessories.bottomAccessory = currentFeature;}break;
@@ -177,7 +174,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		default: break;
 	}
 	
-    if ((accessorySlot > 3) && (accessorySlot < 7)) {
+    if ((_accessorySlot > 3) && (_accessorySlot < 7)) {
         [ConscienceBuilder buildConscience:appDelegate.userConscienceBody];
 
     }
@@ -294,7 +291,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             
 //            [appDelegate.userConscienceView stopTimers];
 
-            switch (accessorySlot) {
+            switch (_accessorySlot) {
                 case 0:appDelegate.userConscienceAccessories.topAccessory = resetFeature;break;
                 case 1:appDelegate.userConscienceAccessories.primaryAccessory = resetFeature;break;
                 case 2:appDelegate.userConscienceAccessories.bottomAccessory = resetFeature;break;
@@ -309,7 +306,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
                 default: break;
             }
             
-            if ((accessorySlot > 3) && (accessorySlot < 7)) {
+            if ((_accessorySlot > 3) && (_accessorySlot < 7)) {
                 [ConscienceBuilder buildConscience:appDelegate.userConscienceBody];
                 
             }
@@ -389,7 +386,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
 	//Assign current ConscienceAsset to UserCharacter
-	switch (accessorySlot) {
+	switch (_accessorySlot) {
 		case 0:[currentUserCharacter setCharacterAccessoryTop:currentFeature];break;
 		case 1:[currentUserCharacter setCharacterAccessoryPrimary:currentFeature];break;
 		case 2:[currentUserCharacter setCharacterAccessoryBottom:currentFeature];break;
@@ -400,7 +397,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
 		case 7:[currentUserCharacter setCharacterEyeColor:currentFeature];break;
 		case 8:[currentUserCharacter setCharacterBrowColor:currentFeature];break;
 		case 9:[currentUserCharacter setCharacterBubbleColor:currentFeature];break;
-		case 10:[currentUserCharacter setCharacterBubbleType:[NSNumber numberWithInt:[currentFeature intValue]]];break;
+		case 10:[currentUserCharacter setCharacterBubbleType:@([currentFeature intValue])];break;
 		default: break;
 	}
     
@@ -429,8 +426,8 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     //UserDefault will be picked up by ConscienceViewController
     [prefs setFloat:(85) forKey:@"transientMind"];
     
-    [currentUserCharacter setCharacterMood:[NSNumber numberWithFloat:newMood]];    
-    [currentUserCharacter setCharacterEnthusiasm:[NSNumber numberWithFloat:newEnthusiasm]];
+    [currentUserCharacter setCharacterMood:@(newMood)];    
+    [currentUserCharacter setCharacterEnthusiasm:@(newEnthusiasm)];
 
     [currentUserCharacterDAO update];
     
@@ -459,12 +456,12 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
     UserCollectable *currentUserAssetCollectable = [currentUserCollectableDAO create];
 	
     [currentUserAssetCollectable setCollectableCreationDate:[NSDate date]];
-	[currentUserAssetCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, assetSelection]];
-	[currentUserAssetCollectable setCollectableName:assetSelection];
+	[currentUserAssetCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, _assetSelection]];
+	[currentUserAssetCollectable setCollectableName:_assetSelection];
     
 	//Check to see if ConscienceAsset has already been collected
 	if (!isOwned){
-		[appDelegate.userCollection addObject:assetSelection];
+		[appDelegate.userCollection addObject:_assetSelection];
 	}
     
 	//Retrieve User's ethicals
@@ -481,7 +478,7 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 	}
     
 	//Save User's new ethicals    
-	[currentUserCollectable setValue:[NSNumber numberWithInt:ethicals] forKey:@"collectableValue"];
+	[currentUserCollectable setValue:@(ethicals) forKey:@"collectableValue"];
         
     [currentUserCollectableDAO update];
     [currentUserCollectableDAO release];
@@ -526,7 +523,7 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 
 	[currentFeature release];
     [resetFeature release];
-	[assetSelection release];
+	[_assetSelection release];
     [previousButton release];
 	[super dealloc];
 

@@ -91,8 +91,8 @@
 	NSMutableArray *pathPoints = [[NSMutableArray alloc] initWithCapacity:1];
 	NSMutableArray *pathInstructions = [[NSMutableArray alloc] initWithCapacity:1];
 
-	[pathPoints addObject:[NSNumber numberWithFloat:1.0]];
-	[pathInstructions addObject:[NSNumber numberWithInt:1]];
+	[pathPoints addObject:@1.0f];
+	[pathInstructions addObject:@1];
 
 	NSString *testFillColor = @"FFFFFF";
 	NSString *testStrokeColor = @"FF00FF";

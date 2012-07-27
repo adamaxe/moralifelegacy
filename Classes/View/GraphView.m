@@ -8,8 +8,6 @@ Implementation: Take data and draw a pie chart.  Iterate through all values in a
 
 @implementation GraphView
 
-@synthesize pieValues, pieColors;
-
 const float kDefaultPieDegrees = 360;
 
 #pragma mark -
@@ -21,8 +19,8 @@ const float kDefaultPieDegrees = 360;
         
 		//Ensure that background color is transparent
 		self.backgroundColor = [UIColor clearColor];
-        pieValues = [[NSArray alloc] initWithObjects:[NSNumber numberWithFloat:kDefaultPieDegrees], nil];
-        pieColors = [[NSArray alloc] initWithObjects:[UIColor redColor], nil];
+        _pieValues = [[NSArray alloc] initWithObjects:@(kDefaultPieDegrees), nil];
+        _pieColors = [[NSArray alloc] initWithObjects:[UIColor redColor], nil];
         
 	}
     
@@ -69,7 +67,7 @@ const float kDefaultPieDegrees = 360;
 	CGContextSetShadow(context, shadowOffset, 5);
     
 	//Ensure pieValues got propogated
-	if ([pieValues count] > 0) {
+	if ([_pieValues count] > 0) {
         
 		//Drawing each slice of the pie by hand with Core Graphics
 		//The operation will be:
@@ -87,10 +85,10 @@ const float kDefaultPieDegrees = 360;
 		//Array contains the number of degrees the value takes in the pie
 		//Must add these to each subsequent slice, 
 		//Otherwise, slice will be continually drawn over itself
-		for (int i = 0; i < [pieValues count]; i++) {
+		for (int i = 0; i < [_pieValues count]; i++) {
             
 			//Array is composed of NSNumbers that must be casted back down to floats
-			arcPointNext += [[pieValues objectAtIndex:i] floatValue];
+			arcPointNext += [[_pieValues objectAtIndex:i] floatValue];
 			CGContextMoveToPoint(context, x, y);
             
 			//Core Graphics Arc functions take radians as arguments
@@ -102,7 +100,7 @@ const float kDefaultPieDegrees = 360;
 			CGContextAddArc(context, x, y, width/2.5, arcPointRadians, arcPointNextRadians, 0);
             
 			//Fill slice with appropriate color
-			CGContextSetFillColor(context, CGColorGetComponents([[pieColors objectAtIndex:i] CGColor]));	            
+			CGContextSetFillColor(context, CGColorGetComponents([[_pieColors objectAtIndex:i] CGColor]));
 			CGContextClosePath(context);
 			CGContextFillPath(context);
 			CGContextStrokePath(context);
@@ -122,8 +120,8 @@ const float kDefaultPieDegrees = 360;
 - (void)dealloc {
     
 	//Clean up synthesized properties
-	[pieValues release];
-	[pieColors release];
+	[_pieValues release];
+	[_pieColors release];
     
 	[super dealloc];
     

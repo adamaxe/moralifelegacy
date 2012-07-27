@@ -29,18 +29,18 @@
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
     entryShortDescription = @"entryShortDescription";
-    entryIsGood = [NSNumber numberWithInt:1];
+    entryIsGood = @1;
     entryKey = @"entryKey";
     entryLongDescription = @"entryLongDescription";
-    entrySeverity =[NSNumber numberWithFloat:5];
+    entrySeverity =@5.0f;
     entryCreationDate = [NSDate date];
 
     entryModificationDate = [NSDate date];
-    choiceInfluence = [NSNumber numberWithInt:2];
+    choiceInfluence = @2;
     choiceConsequences = @"choiceConsequences";
     choiceJustification = @"choiceJustification";
     choiceMoral = @"choiceMoral";
-    choiceWeight = [NSNumber numberWithFloat:5];    
+    choiceWeight = @5.0f;    
     
     testChoice = [testModelManager create:UserChoice.class];
     
@@ -69,16 +69,16 @@
 
 - (void)testUserChoiceValidatesAttributes {
     
-    testChoice.choiceInfluence = [NSNumber numberWithInt:0];    
+    testChoice.choiceInfluence = @0;    
     STAssertThrows([testModelManager saveContext], @"choiceInfluence lower bound validation failed.");
     
-    testChoice.choiceInfluence = [NSNumber numberWithInt:6];    
+    testChoice.choiceInfluence = @6;    
     STAssertThrows([testModelManager saveContext], @"choiceInfluence upper bound validation failed.");
     
-    testChoice.entrySeverity = [NSNumber numberWithInt:-6];    
+    testChoice.entrySeverity = @-6;    
     STAssertThrows([testModelManager saveContext], @"entrySeverity lower bound validation failed.");
     
-    testChoice.entrySeverity = [NSNumber numberWithInt:6];    
+    testChoice.entrySeverity = @6;    
     STAssertThrows([testModelManager saveContext], @"entrySeverity upper bound validation failed.");
     
 }
@@ -143,12 +143,12 @@
     
     UserChoice *retrieved = [userChoices objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
-    STAssertEqualObjects(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");
+    STAssertEqualObjects(retrieved.entryIsGood, @1, @"entryIsGood default value failed.");
     STAssertEqualObjects(retrieved.entryKey, @"0", @"entryKey default value failed.");
     STAssertEqualObjects(retrieved.entryLongDescription, @"0", @"entryLongDescription default value failed.");
-    STAssertEqualObjects(retrieved.entrySeverity, [NSNumber numberWithInt:0], @"entrySeverity default value failed.");
+    STAssertEqualObjects(retrieved.entrySeverity, @0, @"entrySeverity default value failed.");
     
-    STAssertEqualObjects(retrieved.choiceInfluence, [NSNumber numberWithInt:1], @"choiceInfluence default value failed.");
+    STAssertEqualObjects(retrieved.choiceInfluence, @1, @"choiceInfluence default value failed.");
     STAssertEqualObjects(retrieved.choiceConsequences, @"0", @"choiceConsequences default value failed.");
     STAssertEqualObjects(retrieved.choiceJustification, @"0", @"choiceJustification default value failed.");
     STAssertEqualObjects(retrieved.choiceMoral, @"NA", @"choiceMoral default value failed.");

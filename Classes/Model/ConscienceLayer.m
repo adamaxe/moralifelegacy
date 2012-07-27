@@ -8,23 +8,17 @@ Implementation:  NSMutableArray of ConsciencePaths.
 
 @implementation ConscienceLayer
 
-//@synthesize consciencePaths, layerID;
-@synthesize consciencePaths = _consciencePaths;
-@synthesize layerID;
-@synthesize currentFillColor, currentStrokeColor;
-@synthesize offsetX, offsetY;
-
 - (id)init{
     self = [super init];
     if (self) {    
         //In case of first time run, or User does not supply configuration, default gradient
         _consciencePaths = [[NSMutableArray alloc] init];
 
-        [self setCurrentFillColor:kPathColor];
-        [self setCurrentStrokeColor:kPathColor];
-        [self setLayerID:@""];
-        offsetX = kDefault0Float;
-        offsetY = kDefault0Float;
+        _currentFillColor = kPathColor;
+        _currentStrokeColor = kPathColor;
+        _layerID = @"";
+        _offsetX = kDefault0Float;
+        _offsetY = kDefault0Float;
     }
     
 	return self;
@@ -49,12 +43,12 @@ Implementation:  NSMutableArray of ConsciencePaths.
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     
-	[encoder encodeObject:self.consciencePaths forKey:@"consciencePaths"];
-	[encoder encodeObject:layerID forKey:@"layerID"];
-	[encoder encodeObject:currentFillColor forKey:@"currentFillColor"];
-	[encoder encodeObject:currentStrokeColor forKey:@"currentStrokeColor"];    
-	[encoder encodeFloat:offsetX forKey:@"offsetX"];
-    [encoder encodeFloat:offsetY forKey:@"offsetY"];
+	[encoder encodeObject:_consciencePaths forKey:@"consciencePaths"];
+	[encoder encodeObject:_layerID forKey:@"layerID"];
+	[encoder encodeObject:_currentFillColor forKey:@"currentFillColor"];
+	[encoder encodeObject:_currentStrokeColor forKey:@"currentStrokeColor"];
+	[encoder encodeFloat:_offsetX forKey:@"offsetX"];
+    [encoder encodeFloat:_offsetY forKey:@"offsetY"];
 
 }
 
@@ -62,9 +56,9 @@ Implementation:  NSMutableArray of ConsciencePaths.
 
     [_consciencePaths removeAllObjects];
 	[_consciencePaths release];_consciencePaths = nil;
-	[layerID release];
-	[currentFillColor release];
-	[currentStrokeColor release];
+	[_layerID release];
+	[_currentFillColor release];
+	[_currentStrokeColor release];
 
     [super dealloc];
 

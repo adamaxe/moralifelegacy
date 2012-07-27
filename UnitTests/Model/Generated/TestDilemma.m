@@ -60,13 +60,13 @@
     
     rewardADilemma = @"dilemma reward";
     choiceB = @"choiceB";
-    moodDilemma  = [NSNumber numberWithFloat:1.0];
+    moodDilemma  = @1.0f;
     displayNameDilemma = @"displayNameDilemma";
     surrounding = @"surrounding";
     nameDilemma = @"nameDilemma";
     rewardBDilemma = @"rewardBDilemma";
     choiceA = @"choiceA";
-    enthusiasmDilemma = [NSNumber numberWithFloat:1.0];
+    enthusiasmDilemma = @1.0f;
     dilemmaText = @"dilemmaText";
     
     testDilemma = [testModelManager create:Dilemma.class];
@@ -89,13 +89,13 @@
     characterName = @"name";
     characterEye = @"eye";
     characterMouth = @"mouth";
-    characterAge = [NSNumber numberWithFloat:1.0];
-    characterMood = [NSNumber numberWithFloat:1.0];
+    characterAge = @1.0f;
+    characterMood = @1.0f;
     characterEyeColor = @"eyeColor";
     characterBrowColor = @"browColor";
     characterBubbleColor = @"bubbleColor";
     characterSize = [NSDecimalNumber decimalNumberWithString:@"1.0"];
-    characterBubbleType = [NSNumber numberWithFloat:1.0];
+    characterBubbleType = @1.0f;
     
     testCharacter = [testModelManager create:Character.class];
     

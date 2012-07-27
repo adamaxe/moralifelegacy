@@ -383,7 +383,7 @@ Construct antagonist Conscience
 			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, predicateParam];
 			[predicateParam release];
     
-			[currentUserChoiceDAO setPredicates:[NSArray arrayWithObject:userChoicePred]];
+			[currentUserChoiceDAO setPredicates:@[userChoicePred]];
        
 			if ([currentUserChoiceDAO count] == 0) {
 				isRequirementOwned = FALSE;
@@ -496,7 +496,7 @@ Calculate changes to User's ethicals.  Limit to 999.
         
     [currentUserDilemma setEntryLongDescription:moralKey];
     
-    [currentUserDilemma setEntryIsGood:[NSNumber numberWithBool:TRUE]];
+    [currentUserDilemma setEntryIsGood:@TRUE];
     
     [currentUserDilemmaDAO update];
     [currentUserDilemmaDAO release];
@@ -517,7 +517,7 @@ Calculate changes to User's ethicals.  Limit to 999.
             moralIncrease += 1.0;
         }
         
-        [currentUserCollectable setValue:[NSNumber numberWithFloat:moralIncrease] forKey:@"collectableValue"];
+        [currentUserCollectable setValue:@(moralIncrease) forKey:@"collectableValue"];
         
     } else {
         
@@ -528,7 +528,7 @@ Calculate changes to User's ethicals.  Limit to 999.
         [currentUserCollectable setCollectableCreationDate:[NSDate date]];
         [currentUserCollectable setCollectableKey:dilemmaKey];
         [currentUserCollectable setCollectableName:moralKey];
-        [currentUserCollectable setCollectableValue:[NSNumber numberWithFloat:1.0]];
+        [currentUserCollectable setCollectableValue:@1.0f];
                 
         [appDelegate.userCollection addObject:moralKey];
         
@@ -615,7 +615,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		ethicalIncrease += [selectedReward intValue];
 	}
     
-	[currentUserCollectable setValue:[NSNumber numberWithInt:ethicalIncrease] forKey:@"collectableValue"];
+	[currentUserCollectable setValue:@(ethicalIncrease) forKey:@"collectableValue"];
     
 	[selectedReward release];
     
@@ -643,19 +643,19 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//Commit UserChoice    
 	[currentUserChoice setEntryShortDescription:dilemmaName];
 	[currentUserChoice setEntryLongDescription:@""];
-	[currentUserChoice setEntrySeverity:[NSNumber numberWithFloat:1]];
+	[currentUserChoice setEntrySeverity:@1.0f];
 	[currentUserChoice setEntryModificationDate:[NSDate date]];
 	[currentUserChoice setEntryKey:dilemmaKey];
 	[currentUserChoice setChoiceMoral:moralKey];
 	[currentUserChoice setChoiceJustification:@""];
-	[currentUserChoice setChoiceInfluence:[NSNumber numberWithInt:1]];
-	[currentUserChoice setEntryIsGood:[NSNumber numberWithBool:isGood]];
+	[currentUserChoice setChoiceInfluence:@1];
+	[currentUserChoice setEntryIsGood:@(isGood)];
 	[currentUserChoice setChoiceConsequences:@""];
     
 	if (isGood) {
-		[currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:0.2]];  
+		[currentUserChoice setChoiceWeight:@0.2f];  
 	} else {
-		[currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:-0.2]];  
+		[currentUserChoice setChoiceWeight:@-0.2f];  
 	}
     
     [currentUserChoiceDAO update];
@@ -684,8 +684,8 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
-    [currentUserCharacter setCharacterMood:[NSNumber numberWithFloat:newMood]];    
-    [currentUserCharacter setCharacterEnthusiasm:[NSNumber numberWithFloat:newEnthusiasm]];   
+    [currentUserCharacter setCharacterMood:@(newMood)];    
+    [currentUserCharacter setCharacterEnthusiasm:@(newEnthusiasm)];   
     
     [currentUserCharacterDAO update];
     

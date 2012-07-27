@@ -9,11 +9,6 @@ Implementation:  Facial Features Gradient Data.  Object to be populated with the
 
 @implementation ConscienceGradient
 
-@synthesize gradientID;
-@synthesize locationsCount, componentsCount;
-@synthesize gradientPoints;
-@synthesize pointsCount;
-
 - (id)init
 {
     self = [super init];
@@ -21,19 +16,19 @@ Implementation:  Facial Features Gradient Data.  Object to be populated with the
     if (self) {
         
         //In case of first time run, or User does not supply configuration, default gradient
-        [self setGradientID:@""];
-        [self setLocationsCount:2];    
-        [self setComponentsCount:locationsCount * 4];
-        [self setPointsCount:2];
-		gradientPoints = [[NSMutableArray alloc] init];
+        _gradientID = @"";
+        _locationsCount = 2;
+        _componentsCount = _locationsCount * 4;
+        _pointsCount = 2;
+		_gradientPoints = [[NSMutableArray alloc] init];
 
     }
     return self;
 }
 
 - (void) dealloc {
-	[gradientID release];
-	[gradientPoints release];
+	[_gradientID release];
+	[_gradientPoints release];
 	[super dealloc];
 }
 

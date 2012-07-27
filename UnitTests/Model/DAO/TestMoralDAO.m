@@ -104,7 +104,7 @@
     
     MoralDAO *testingSubjectVirtue = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", moralTypeVirtue];
-    testingSubjectVirtue.predicates = [NSArray arrayWithObject:pred];
+    testingSubjectVirtue.predicates = @[pred];
 
     STAssertNotNil(testingSubjectVirtue, @"MoralDAO Virtue type can't be created.");
     
@@ -116,7 +116,7 @@
     
     MoralDAO *testingSubjectVice = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", moralTypeVice];
-    testingSubjectVice.predicates = [NSArray arrayWithObject:pred];
+    testingSubjectVice.predicates = @[pred];
     
     STAssertNotNil(testingSubjectVice, @"MoralDAO Vice can't be created.");
     [testingSubjectVice release];
@@ -158,7 +158,7 @@
     
     MoralDAO *testingSubjectVirtue = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
     NSPredicate *virtuePred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Virtue"];
-    testingSubjectVirtue.predicates = [NSArray arrayWithObject:virtuePred];
+    testingSubjectVirtue.predicates = @[virtuePred];
     
     NSArray *allMorals = [testingSubjectVirtue readAll];
 
@@ -175,7 +175,7 @@
     MoralDAO *testingSubjectVice = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
     
     NSPredicate *vicePred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Vice"];
-    testingSubjectVice.predicates = [NSArray arrayWithObject:vicePred];
+    testingSubjectVice.predicates = @[vicePred];
 
     NSArray *allMorals = [testingSubjectVice readAll];
     

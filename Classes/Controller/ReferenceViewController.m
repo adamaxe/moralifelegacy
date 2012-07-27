@@ -40,8 +40,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 @implementation ReferenceViewController
 
-@synthesize buttonTimer = _buttonTimer;
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -150,10 +148,10 @@ Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visual
  */
 - (void) refreshButtons{
 	
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
-	[self buttonAnimate:[NSNumber numberWithInt:arc4random()%6]];
+	[self buttonAnimate:@(arc4random()%6)];
+	[self buttonAnimate:@(arc4random()%6)];
+	[self buttonAnimate:@(arc4random()%6)];
+	[self buttonAnimate:@(arc4random()%6)];
 }
 
 /**

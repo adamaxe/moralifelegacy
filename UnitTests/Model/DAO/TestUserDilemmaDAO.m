@@ -32,9 +32,9 @@
     keyDilemma2 = @"nameDilemma2";        
     
     entryShortDescription = @"entryShortDescription";
-    entryIsGood = [NSNumber numberWithInt:1];
+    entryIsGood = @1;
     entryLongDescription = @"entryLongDescription";
-    entrySeverity =[NSNumber numberWithFloat:5];
+    entrySeverity =@5.0f;
     entryCreationDate = [NSDate date];
         
     testUserDilemma1 = [testModelManager create:UserDilemma.class];

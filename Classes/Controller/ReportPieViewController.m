@@ -217,8 +217,8 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
     UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
     
 	//Retrieve virtue or vice
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@", [NSNumber numberWithBool:isGood]];
-	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
+	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@", @(isGood)];
+	currentUserChoiceDAO.predicates = @[pred];
 	
 	NSArray *objects = [currentUserChoiceDAO readAll];
     
@@ -244,7 +244,7 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
 	            runningTotal += fabsf([[match choiceWeight] floatValue]);
       	      currentValue += fabsf([[match choiceWeight] floatValue]);
 
-	            [reportValues setValue:[NSNumber numberWithFloat:currentValue] forKey:[match choiceMoral]];
+	            [reportValues setValue:@(currentValue) forKey:[match choiceMoral]];
 
             NSString *value = [match choiceMoral];            
             MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
@@ -340,7 +340,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
       	moralPercentage = ([[reportValues valueForKey:moralInstance] floatValue]/runningTotal);
 
 		//Convert percentage to degrees
-		[pieValues addObject:[NSNumber numberWithFloat:(moralPercentage * 360)]];
+		[pieValues addObject:@(moralPercentage * 360)];
 
 		//Add report names for relation to table
 		[reportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", [moralDisplayNames objectForKey:moralInstance], moralPercentage * 100]];

@@ -24,10 +24,10 @@
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     
     entryShortDescription = @"entryShortDescription";
-    entryIsGood = [NSNumber numberWithInt:1];
+    entryIsGood = @1;
     entryKey = @"entryKey";
     entryLongDescription = @"entryLongDescription";
-    entrySeverity =[NSNumber numberWithFloat:5];
+    entrySeverity =@5.0f;
     entryCreationDate = [NSDate date];
     
     testUserLuck = [testModelManager create:UserLuck.class];
@@ -52,10 +52,10 @@
 
 - (void)testUserLuckValidatesAttributes {
         
-    testUserLuck.entrySeverity = [NSNumber numberWithInt:-6];    
+    testUserLuck.entrySeverity = @-6;    
     STAssertThrows([testModelManager saveContext], @"entrySeverity lower bound validation failed.");
     
-    testUserLuck.entrySeverity = [NSNumber numberWithInt:6];    
+    testUserLuck.entrySeverity = @6;    
     STAssertThrows([testModelManager saveContext], @"entrySeverity upper bound validation failed.");
     
 }
@@ -113,10 +113,10 @@
     UserLuck *retrieved = [userLucks objectAtIndex: 0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
 //    STAssertEquals(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");
-    STAssertEqualObjects(retrieved.entryIsGood, [NSNumber numberWithInt:1], @"entryIsGood default value failed.");
+    STAssertEqualObjects(retrieved.entryIsGood, @1, @"entryIsGood default value failed.");
     STAssertEqualObjects(retrieved.entryKey, @"0", @"entryKey default value failed.");
     STAssertEqualObjects(retrieved.entryLongDescription, @"0", @"entryLongDescription default value failed.");
-    STAssertEqualObjects(retrieved.entrySeverity, [NSNumber numberWithInt:0], @"entrySeverity default value failed.");
+    STAssertEqualObjects(retrieved.entrySeverity, @0, @"entrySeverity default value failed.");
     
 }
 

@@ -52,8 +52,6 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 
 @implementation ReferenceListViewController
 
-@synthesize referenceType;
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -62,7 +60,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 
 		//Setup default values
-		referenceType = 0;
+		_referenceType = 0;
     }
     return self;
 }
@@ -102,11 +100,11 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	[self retrieveAllReferences];
     
     //User may be returning from DilemmaView and will expect search filtered list
-	NSString *searchString = [prefs objectForKey:[NSString stringWithFormat:@"searchText%d", referenceType]];	
+	NSString *searchString = [prefs objectForKey:[NSString stringWithFormat:@"searchText%d", _referenceType]];	
 	
 	if (searchString != nil) {
 		
-		[prefs removeObjectForKey:[NSString stringWithFormat:@"searchText%d", referenceType]];
+		[prefs removeObjectForKey:[NSString stringWithFormat:@"searchText%d", _referenceType]];
 		[self filterResults:searchString];
         [referenceSearchBar setText:searchString];
 		
@@ -129,7 +127,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	
     //If user has filtered list, we must retain this upon return to this view
 	if (referenceSearchBar.text != nil && ![referenceSearchBar.text isEqualToString:@""]) {
-		[prefs setObject:referenceSearchBar.text forKey:[NSString stringWithFormat:@"searchText%d", referenceType]];
+		[prefs setObject:referenceSearchBar.text forKey:[NSString stringWithFormat:@"searchText%d", _referenceType]];
 		
 	}
 	
@@ -158,7 +156,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     id currentDAO;
     	
     //Populate subsequent list controller with appropriate choice
-	switch (referenceType){
+	switch (_referenceType){
 		case 0:
 			currentDAO = [[ConscienceAssetDAO alloc] init];
 			break;
@@ -179,7 +177,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 			break;
 	}
     
-    if (referenceType != 4) {
+    if (_referenceType != 4) {
         NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
         
         NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, nil] autorelease];
@@ -193,7 +191,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	if ([objects count] > 0) {
 		
-        if (referenceType != 4) {
+        if (_referenceType != 4) {
             for (ReferenceAsset *matches in objects){
                 
                 //Is the asset owned
@@ -282,7 +280,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[tableDataImages objectAtIndex:indexPath.row]];	
 
-    if (referenceType != 4) {
+    if (_referenceType != 4) {
         [rowImageName appendString:@"-sm"];
     }
     
@@ -302,7 +300,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] init];
 	
-	[prefs setInteger:referenceType forKey:@"referenceType"];
+	[prefs setInteger:_referenceType forKey:@"referenceType"];
 	[prefs setObject:[tableDataKeys objectAtIndex:indexPath.row] forKey:@"referenceKey"];
     
 	[self.navigationController pushViewController:detailViewCont animated:YES];

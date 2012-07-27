@@ -29,7 +29,7 @@
     
     quote = @"quote";
     shortDescriptionReference = @"shortDescriptionReference";
-    originYear = [NSNumber numberWithInt:2010];
+    originYear = @2010;
     nameReference = @"nameReference";
     longDescriptionReference = @"longDescriptionReference";
     linkReference = @"http://www.teamaxe.org";    

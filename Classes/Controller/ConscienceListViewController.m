@@ -66,7 +66,6 @@ User can filter list by only things that are affordable to currentFunds.
 @end
 
 @implementation ConscienceListViewController
-@synthesize accessorySlot;
 
 #pragma mark - 
 #pragma mark View lifecycle
@@ -224,7 +223,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
     NSMutableArray *predicateArguments = [[NSMutableArray alloc] init];
     
 	//Determine which type of ConscienceAsset is requested	
-	switch (accessorySlot) {
+	switch (_accessorySlot) {
 		case 0:
 			[predicateArguments addObject:@"top"];
 			break;
@@ -559,7 +558,7 @@ Implementation: Retrieve User's current ethicals from UserData
 
 	//Alert following ConscienceAcceptViewController to type and key of requested ConscienceAsset
 	[conscienceAcceptCont setAssetSelection:selectedRow];
-	[conscienceAcceptCont setAccessorySlot:accessorySlot];
+	[conscienceAcceptCont setAccessorySlot:_accessorySlot];
 		
 	[self.navigationController pushViewController:conscienceAcceptCont animated:NO];
 	[conscienceAcceptCont release];

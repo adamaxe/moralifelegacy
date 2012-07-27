@@ -34,11 +34,11 @@
     nameAsset1 = @"Asset1";
     nameAsset2 = @"Asset2";
     
-    costAsset = [NSNumber numberWithFloat:1.0];
-    moralValueAsset = [NSNumber numberWithFloat:2.0]; 
+    costAsset = @1.0f;
+    moralValueAsset = @2.0f; 
     orientationAsset = @"left";
     shortDescription = @"short description";
-    originYear = [NSNumber numberWithInt:2010];
+    originYear = @2010;
     longDescription = @"long description";
     link = @"http://www.teamaxe.org";    
     displayName = @"display name";

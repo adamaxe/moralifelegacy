@@ -10,9 +10,6 @@ Data derived from User's actions
 
 @implementation ConscienceMind
 
-@synthesize enthusiasmMemories, moodMemories;
-@synthesize enthusiasm, mood;
-
 - (id)init
 {
     self = [super init];
@@ -20,8 +17,8 @@ Data derived from User's actions
         //In case of first time run, or User does not supply configuration, default gradient        
         [self setEnthusiasm:kConscienceEnthusiasm];
         [self setMood:kConscienceMood];
-		enthusiasmMemories = [[NSMutableDictionary alloc] init];
-		moodMemories = [[NSMutableDictionary alloc] init];
+		_enthusiasmMemories = [[NSMutableDictionary alloc] init];
+		_moodMemories = [[NSMutableDictionary alloc] init];
     }
 
     return self;
@@ -72,8 +69,8 @@ Implemenation:  Determine prior state of mind for enthusiasm.  Retrieve top of D
 
 - (void) dealloc {
 
-	[enthusiasmMemories release];
-	[moodMemories release];
+	[_enthusiasmMemories release];
+	[_moodMemories release];
 	[super dealloc];
 }
 

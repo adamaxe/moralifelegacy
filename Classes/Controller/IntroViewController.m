@@ -93,8 +93,6 @@ the application.
 
 @implementation IntroViewController
 
-@synthesize thoughtChangeTimer = _thoughtChangeTimer;
-
 #pragma mark -
 #pragma mark ViewController lifecycle
 
@@ -170,10 +168,10 @@ the application.
         [self stopIntro];
     }
     
-    if(self.thoughtChangeTimer != nil)
+    if(_thoughtChangeTimer != nil)
     {
-//        [self.thoughtChangeTimer invalidate];
-        self.thoughtChangeTimer = nil;
+//        [_thoughtChangeTimer invalidate];
+        _thoughtChangeTimer = nil;
     }
     
 }
@@ -235,7 +233,7 @@ the application.
         [UIView commitAnimations];
         [appDelegate.userConscienceView setNeedsDisplay];
                 
-        self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(startIntro) userInfo:nil repeats:NO];
+        _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(startIntro) userInfo:nil repeats:NO];
     }
 
 	[prefs removeObjectForKey:@"introStateRestore"];
@@ -247,8 +245,8 @@ the application.
  */
 -(void)stopIntro {
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = nil;
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = nil;
         
     [prefs setInteger:messageState forKey:@"introStateRestore"];
     
@@ -278,7 +276,7 @@ the application.
     [appDelegate.userConscienceView setNeedsDisplay];
     messageState = 0;
     
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText) userInfo:nil repeats:NO];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText) userInfo:nil repeats:NO];
     
 }
 
@@ -300,8 +298,8 @@ the application.
     
     messageState = 1;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(switchText0) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(switchText0) userInfo:nil repeats:NO];
     
 }
 
@@ -320,8 +318,8 @@ the application.
     
     messageState = 2;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText1) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText1) userInfo:nil repeats:NO];
     
 }
 
@@ -351,8 +349,8 @@ the application.
     
     messageState = 2;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText2) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText2) userInfo:nil repeats:NO];
     
 }
 
@@ -364,8 +362,8 @@ the application.
         
     messageState = 2;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText3) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText3) userInfo:nil repeats:NO];
     
 }
 
@@ -384,8 +382,8 @@ the application.
 
     messageState = 3;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText4) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText4) userInfo:nil repeats:NO];
     
 }
 
@@ -422,8 +420,8 @@ the application.
     
     messageState = 4; 
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText5) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText5) userInfo:nil repeats:NO];
     
 }
 
@@ -442,8 +440,8 @@ the application.
    
     messageState = 5;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText6) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(switchText6) userInfo:nil repeats:NO];
     
 }
 
@@ -480,8 +478,8 @@ the application.
     
     messageState = 6;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText7) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText7) userInfo:nil repeats:NO];
     
 }
 
@@ -510,8 +508,8 @@ the application.
     
     messageState = 7;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText8) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText8) userInfo:nil repeats:NO];
     
 }
 
@@ -530,8 +528,8 @@ the application.
     
     messageState = 8;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText9) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText9) userInfo:nil repeats:NO];
     
 }
 
@@ -550,8 +548,8 @@ the application.
     
     messageState = 9;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText10) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText10) userInfo:nil repeats:NO];
     
 }
 
@@ -579,8 +577,8 @@ the application.
     
     messageState = 10;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText11) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText11) userInfo:nil repeats:NO];
     
 }
 
@@ -606,8 +604,8 @@ the application.
     
     messageState = 11;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText12) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText12) userInfo:nil repeats:NO];
     
 }
 
@@ -632,8 +630,8 @@ the application.
     
     messageState = 12;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText13) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText13) userInfo:nil repeats:NO];
     
 }
 
@@ -658,8 +656,8 @@ the application.
         
     messageState = 13;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText14) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText14) userInfo:nil repeats:NO];
     
 }
 
@@ -685,8 +683,8 @@ the application.
     
     messageState = 14;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText15) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText15) userInfo:nil repeats:NO];
     
 }
 
@@ -708,8 +706,8 @@ the application.
 
     messageState = 15;
     
-    [self.thoughtChangeTimer invalidate];
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText16) userInfo:nil repeats:NO];
+    [_thoughtChangeTimer invalidate];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:8 target:self selector:@selector(switchText16) userInfo:nil repeats:NO];
     
 }
 
@@ -742,7 +740,7 @@ the application.
     
     messageState = 16;
     
-    [self.thoughtChangeTimer invalidate];
+    [_thoughtChangeTimer invalidate];
 
     
 }
@@ -915,10 +913,10 @@ Implementation:  Return conscience to view
     appDelegate.userConscienceMind.enthusiasm = 60;
 
     messageState = -1;
-    if (self.thoughtChangeTimer) {
-        [self.thoughtChangeTimer invalidate];
+    if (_thoughtChangeTimer) {
+        [_thoughtChangeTimer invalidate];
     }
-    self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
+    _thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(dismissIntroModal) userInfo:nil repeats:NO];
     
 }
 
@@ -1145,7 +1143,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    self.thoughtChangeTimer = nil;
+    _thoughtChangeTimer = nil;
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }

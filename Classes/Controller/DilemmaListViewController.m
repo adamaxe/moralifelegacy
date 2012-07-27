@@ -489,7 +489,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[dilemmaPredicate release];
 
 	if (dilemmaCampaign > 0) {
-		[currentDilemmaDAO setPredicates:[NSArray arrayWithObject:pred]];
+		[currentDilemmaDAO setPredicates:@[pred]];
 	}
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameDilemma" ascending:YES];
@@ -522,7 +522,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 
             [moralNames setValue:[[match moralChoiceA] displayNameMoral] forKey:[[match moralChoiceA] nameMoral]];
             [moralNames setValue:[[match moralChoiceB] displayNameMoral] forKey:[[match moralChoiceB] nameMoral]];
-            [choiceTypes addObject:[NSNumber numberWithBool:isDilemma]];
+            [choiceTypes addObject:@(isDilemma)];
 			[choiceDetails addObject:dilemmaDescription];			
             [dilemmaDescription release];
 			
@@ -557,7 +557,7 @@ Implementation: Load User data to determine which Dilemmas have already been com
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey contains[cd] %@", dilemmaPredicate];
 	[dilemmaPredicate release];
     
-    currentUserDilemmaDAO.predicates = [NSArray arrayWithObject:pred];
+    currentUserDilemmaDAO.predicates = @[pred];
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
 	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
@@ -597,7 +597,7 @@ Implementation: Determine what effects to rollback from an already completed dil
     
 	if (choiceKey != nil) {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryShortDescription == %@", choiceKey];
-        currentUserDilemmaDAO.predicates = [NSArray arrayWithObject:pred];
+        currentUserDilemmaDAO.predicates = @[pred];
     }
 	
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryCreationDate" ascending:YES];
@@ -625,7 +625,7 @@ Implementation: Determine what effects to rollback from an already completed dil
             
         } else {
             moralDecrease -= 1.0;
-            [currentUserCollectable setValue:[NSNumber numberWithFloat:moralDecrease] forKey:@"collectableValue"];
+            [currentUserCollectable setValue:@(moralDecrease) forKey:@"collectableValue"];
         }
         
         [currentUserCollectableDAO release];        

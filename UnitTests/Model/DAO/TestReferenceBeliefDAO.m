@@ -36,7 +36,7 @@
     
     type = @"type";
     shortDescription = @"short description";
-    originYear = [NSNumber numberWithInt:2010];
+    originYear = @2010;
     longDescription = @"long description";
     link = @"http://www.teamaxe.org";    
     displayName = @"display name";

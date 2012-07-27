@@ -52,14 +52,14 @@
     
     rewardADilemma = @"rewardADilemma";
     choiceB = @"choiceB";
-    moodDilemma  = [NSNumber numberWithFloat:1.0];
+    moodDilemma  = @1.0f;
     displayNameDilemma = @"displayNameDilemma";
     surrounding = @"surrounding";
     nameDilemma = @"nameDilemma";
     nameDilemma2 = @"nameDilemma2";
     rewardBDilemma = @"rewardBDilemma";
     choiceA = @"choiceA";
-    enthusiasmDilemma = [NSNumber numberWithFloat:1.0];
+    enthusiasmDilemma = @1.0f;
     dilemmaText = @"MoralText";
     
     testMoral = [testModelManager create:Moral.class];

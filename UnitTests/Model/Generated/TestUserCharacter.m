@@ -38,14 +38,14 @@
     characterName = @"name";
     characterEye = @"eye";
     characterMouth = @"mouth";
-    characterEnthusiasm = [NSNumber numberWithFloat:1.0];
-    characterAge = [NSNumber numberWithFloat:1.0];
-    characterMood = [NSNumber numberWithFloat:1.0];
+    characterEnthusiasm = @1.0f;
+    characterAge = @1.0f;
+    characterMood = @1.0f;
     characterEyeColor = @"eyeColor";
     characterBrowColor = @"browColor";
     characterBubbleColor = @"bubbleColor";
-    characterSize = [NSNumber numberWithFloat:1.0];
-    characterBubbleType = [NSNumber numberWithFloat:1.0];
+    characterSize = @1.0f;
+    characterBubbleType = @1.0f;
     
     testUserCharacter = [testModelManager create:UserCharacter.class];
     

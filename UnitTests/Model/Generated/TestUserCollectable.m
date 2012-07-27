@@ -23,7 +23,7 @@
     collectableCreationDate = [NSDate date];
     collectableName = @"collectable name";
     collectableKey = @"collectable key";
-    collectableValue = [NSNumber numberWithFloat:1.0];
+    collectableValue = @1.0f;
     
     testUserCollectable = [testModelManager create:UserCollectable.class];
     

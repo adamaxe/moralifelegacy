@@ -8,8 +8,6 @@ Implementation: An image wrapper is used for accessories as to simplify the setu
 
 @implementation AccessoryObjectView
 
-@synthesize accessoryFilename;
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -32,11 +30,11 @@ Implementation: An image wrapper is used for accessories as to simplify the setu
 
 - (void)drawRect:(CGRect)rect {
     
-    if ([accessoryFilename isEqualToString:@""]) {
+    if ([_accessoryFilename isEqualToString:@""]) {
         [self setAccessoryFilename:kAccessoryFileNameResource];
     }
     
-    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[self accessoryFilename] ofType:@"png"]];
+    UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:_accessoryFilename ofType:@"png"]];
     [image drawInRect:rect];
     [image release];
     
@@ -46,7 +44,7 @@ Implementation: An image wrapper is used for accessories as to simplify the setu
 #pragma mark Memory management
 
 - (void)dealloc {
-	[accessoryFilename release];
+	[_accessoryFilename release];
 	[super dealloc];
 }
 

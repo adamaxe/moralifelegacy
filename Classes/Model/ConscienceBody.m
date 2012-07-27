@@ -9,41 +9,34 @@ Implementation:  Each NSMutableDictionary holds the CoreGraphics drawing instruc
 
 @implementation ConscienceBody
 
-@synthesize browLayers, bagsLayers, eyeLayers, lidLayers, lashesLayers, socketLayers;
-@synthesize lipsLayers, teethLayers, dimplesLayers, tongueLayers, gradientLayers;
-@synthesize symbolLayers;
-@synthesize eyeName, mouthName, symbolName, eyeColor, browColor, bubbleColor;
-@synthesize age, bubbleType;
-@synthesize size;
-
 - (id)init
 {
     self = [super init];
     if (self) {
         //In case of first time run, or User does not supply configuration, default gradient
-		browLayers = [[NSMutableDictionary alloc] init];
-		bagsLayers = [[NSMutableDictionary alloc] init];
-		eyeLayers = [[NSMutableDictionary alloc] init];		
-		lidLayers = [[NSMutableDictionary alloc] init];		
-		lashesLayers = [[NSMutableDictionary alloc] init];		
-		socketLayers = [[NSMutableDictionary alloc] init];		
-		lipsLayers = [[NSMutableDictionary alloc] init];
-		dimplesLayers = [[NSMutableDictionary alloc] init];
-		teethLayers = [[NSMutableDictionary alloc] init];
-		tongueLayers = [[NSMutableDictionary alloc] init];
-		symbolLayers = [[NSMutableDictionary alloc] init];
-		gradientLayers = [[NSMutableDictionary alloc] init];
+		_browLayers = [[NSMutableDictionary alloc] init];
+		_bagsLayers = [[NSMutableDictionary alloc] init];
+		_eyeLayers = [[NSMutableDictionary alloc] init];
+		_lidLayers = [[NSMutableDictionary alloc] init];
+		_lashesLayers = [[NSMutableDictionary alloc] init];
+        _socketLayers = [[NSMutableDictionary alloc] init];
+		_lipsLayers = [[NSMutableDictionary alloc] init];
+		_dimplesLayers = [[NSMutableDictionary alloc] init];
+		_teethLayers = [[NSMutableDictionary alloc] init];
+		_tongueLayers = [[NSMutableDictionary alloc] init];
+		_symbolLayers = [[NSMutableDictionary alloc] init];
+		_gradientLayers = [[NSMutableDictionary alloc] init];
 		
         //In case of first time run, or User does not supply configuration, default Conscience
-        [self setEyeName:kEyeFileNameResource];
-        [self setMouthName:kMouthFileNameResource];
-        [self setSymbolName:kSymbolFileNameResource];
-        [self setEyeColor:kEyeColor];
-        [self setBrowColor:kBrowColor];
-        [self setBubbleColor:kBubbleColor];
-        [self setAge:kConscienceAge];
-        [self setSize:kConscienceSize];
-        [self setBubbleType:kBubbleType];
+        _eyeName = kEyeFileNameResource;
+        _mouthName = kMouthFileNameResource;
+        _symbolName = kSymbolFileNameResource;
+        _eyeColor = kEyeColor;
+        _browColor = kBrowColor;
+        _bubbleColor = kBubbleColor;
+        _age = kConscienceAge;
+        _size = kConscienceSize;
+        _bubbleType = kBubbleType;
         
     }
 
@@ -105,24 +98,24 @@ Implementation:  Each NSMutableDictionary holds the CoreGraphics drawing instruc
 
 - (void) dealloc {
 
-	[browLayers release];
-	[bagsLayers release];
-	[eyeLayers release];
-	[lidLayers release];
-	[lashesLayers release];	
-	[socketLayers release];	
-	[lipsLayers release];
-	[dimplesLayers release];
-	[teethLayers release];
-	[tongueLayers release];
-	[symbolLayers release];
-	[gradientLayers release];
-	[eyeName release];
-	[mouthName release];
-	[symbolName release];
-	[eyeColor release];
-	[browColor release];
-	[bubbleColor release];
+	[_browLayers release];
+	[_bagsLayers release];
+	[_eyeLayers release];
+	[_lidLayers release];
+	[_lashesLayers release];
+	[_socketLayers release];
+	[_lipsLayers release];
+	[_dimplesLayers release];
+	[_teethLayers release];
+	[_tongueLayers release];
+	[_symbolLayers release];
+	[_gradientLayers release];
+	[_eyeName release];
+	[_mouthName release];
+	[_symbolName release];
+	[_eyeColor release];
+	[_browColor release];
+	[_bubbleColor release];
 	[super dealloc];
 }
 

@@ -36,14 +36,14 @@
     keyChoice2 = @"nameChoice2";        
     
     entryShortDescription = @"entryShortDescription";
-    entryIsGood = [NSNumber numberWithInt:1];
+    entryIsGood = @1;
     entryLongDescription = @"entryLongDescription";
-    entrySeverity =[NSNumber numberWithFloat:5];
+    entrySeverity =@5.0f;
     entryCreationDate = [NSDate date];
     
     entryModificationDate = [NSDate date];
     choiceMoral = @"choiceMoral";
-    choiceWeight = [NSNumber numberWithFloat:5];        
+    choiceWeight = @5.0f;        
         
     testUserChoice1 = [testModelManager create:UserChoice.class];
     testUserChoice2 = [testModelManager create:UserChoice.class];

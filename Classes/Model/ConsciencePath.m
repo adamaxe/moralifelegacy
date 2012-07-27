@@ -9,24 +9,19 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 
 @implementation ConsciencePath
 
-@synthesize pathInstructions = _pathInstructions;
-@synthesize pathPoints = _pathPoints;
-@synthesize pathID, pathFillColor, pathStrokeColor, pathGradient;
-@synthesize pathStrokeWidth, pathFillOpacity, pathStrokeMiterLimit, pathStrokeOpacity;
-
 - (id)init
 {
     self = [super init];
 	if (self) {
 		//In case of first time run, or User does not supply configuration, default gradient
-		[self setPathFillColor:kPathColor];
-		[self setPathStrokeColor:kPathColor];
-		[self setPathID:@"none"];
-		[self setPathGradient:@""];
-		[self setPathStrokeWidth:kDefault0Float];
-		[self setPathFillOpacity:kDefault0Float];
-		[self setPathStrokeMiterLimit:kDefault0Float];
-		[self setPathStrokeOpacity:kDefault0Float];
+		_pathFillColor = kPathColor;
+		_pathStrokeColor = kPathColor;
+		_pathID = @"none";
+		_pathGradient = @"";
+		_pathStrokeWidth = kDefault0Float;
+        _pathFillOpacity = kDefault0Float;
+		_pathStrokeMiterLimit = kDefault0Float;
+		_pathStrokeOpacity = kDefault0Float;
 
 		_pathPoints = [[NSMutableArray alloc] init];
 		_pathInstructions = [[NSMutableArray alloc] init];		
@@ -56,16 +51,16 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 
 - (void)encodeWithCoder:(NSCoder *)encoder {
     
-	[encoder encodeObject:self.pathInstructions forKey:@"pathInstructions"];
-	[encoder encodeObject:self.pathPoints forKey:@"pathPoints"];
-	[encoder encodeObject:pathFillColor forKey:@"pathFillColor"];
-	[encoder encodeObject:pathStrokeColor forKey:@"pathStrokeColor"];    
-	[encoder encodeObject:pathID forKey:@"pathID"];
-	[encoder encodeObject:pathGradient forKey:@"pathGradient"];    
-	[encoder encodeFloat:pathStrokeWidth forKey:@"pathStrokeWidth"];
-    [encoder encodeFloat:pathFillOpacity forKey:@"pathFillOpacity"];
-	[encoder encodeFloat:pathStrokeOpacity forKey:@"pathStrokeOpacity"];
-    [encoder encodeFloat:pathStrokeMiterLimit forKey:@"pathStrokeMiterLimit"];
+	[encoder encodeObject:_pathInstructions forKey:@"pathInstructions"];
+	[encoder encodeObject:_pathPoints forKey:@"pathPoints"];
+	[encoder encodeObject:_pathFillColor forKey:@"pathFillColor"];
+	[encoder encodeObject:_pathStrokeColor forKey:@"pathStrokeColor"];
+	[encoder encodeObject:_pathID forKey:@"pathID"];
+	[encoder encodeObject:_pathGradient forKey:@"pathGradient"];
+	[encoder encodeFloat:_pathStrokeWidth forKey:@"pathStrokeWidth"];
+    [encoder encodeFloat:_pathFillOpacity forKey:@"pathFillOpacity"];
+	[encoder encodeFloat:_pathStrokeOpacity forKey:@"pathStrokeOpacity"];
+    [encoder encodeFloat:_pathStrokeMiterLimit forKey:@"pathStrokeMiterLimit"];
     
 }
 
@@ -226,10 +221,10 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 
 	[_pathInstructions release];_pathInstructions = nil;
 	[_pathPoints release];_pathPoints = nil;
-	[pathID release];
-	[pathGradient release];
-	[pathFillColor release];
-	[pathStrokeColor release];
+	[_pathID release];
+	[_pathGradient release];
+	[_pathFillColor release];
+	[_pathStrokeColor release];
 	[super dealloc];
 
 }

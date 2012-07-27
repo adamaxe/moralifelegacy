@@ -61,13 +61,6 @@ static int numberOfShakes = 8;
 static float durationOfShake = 0.5f;
 static float vigourOfShake = 0.05f;
 
-@synthesize currentConscienceBody;
-@synthesize currentConscienceAccessories;
-@synthesize currentConscienceMind;
-@synthesize conscienceBubbleView;
-@synthesize directionFacing;
-@synthesize isExpressionForced;
-
 #pragma mark -
 #pragma mark View lifecycle
 
@@ -110,7 +103,7 @@ withMind: (ConscienceMind *) argMind{
         appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
 		//Setup initial views
-		directionFacing = kDirectionFacingLeft;
+		_directionFacing = kDirectionFacingLeft;
 		self.contentMode = UIViewContentModeScaleAspectFit;
 		self.multipleTouchEnabled = TRUE;
 		self.backgroundColor = [UIColor clearColor];
@@ -119,62 +112,62 @@ withMind: (ConscienceMind *) argMind{
 		//Allocate actual Conscience features
 		//set tag number for each view so they can be changed with reinitialization
 		//configuration is done in setNeedsDisplay		
-		conscienceBubbleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-		conscienceBubbleView.tag = kBubbleViewTag;
-		conscienceBubbleView.multipleTouchEnabled = TRUE;
+		_conscienceBubbleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
+		_conscienceBubbleView.tag = kBubbleViewTag;
+		_conscienceBubbleView.multipleTouchEnabled = TRUE;
         
 		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
 		animatedBubbleView.tag = kAnimatedBubbleViewTag;
-		[conscienceBubbleView insertSubview:animatedBubbleView atIndex:0];
+		[_conscienceBubbleView insertSubview:animatedBubbleView atIndex:0];
 		[animatedBubbleView release];		
 		
 		accessoryPrimaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(160, 25, kSideAccessoryWidth, kSideAccessoryHeight)]; 
 		accessoryPrimaryView.tag = kPrimaryAccessoryViewTag;
 		
-		[conscienceBubbleView addSubview:accessoryPrimaryView];
+		[_conscienceBubbleView addSubview:accessoryPrimaryView];
 		[accessoryPrimaryView release];
 		
 		accessorySecondaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(-20, 25, kSideAccessoryWidth, kSideAccessoryHeight)]; 
 		accessorySecondaryView.tag = kSecondaryAccessoryViewTag;
-		[conscienceBubbleView addSubview:accessorySecondaryView];
+		[_conscienceBubbleView addSubview:accessorySecondaryView];
 		[accessorySecondaryView release];
 		
 		accessoryTopView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(12, -10, kTopBottomAccessoryWidth, kTopBottomAccessoryHeight)]; 
 		accessoryTopView.tag = kTopAccessoryViewTag;		
-		[conscienceBubbleView addSubview:accessoryTopView];
+		[_conscienceBubbleView addSubview:accessoryTopView];
 		[accessoryTopView release];
 		
 		accessoryBottomView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(20, 165, kTopBottomAccessoryWidth, kTopBottomAccessoryHeight)]; 
 		accessoryBottomView.tag = kBottomAccessoryViewTag;		
-		[conscienceBubbleView addSubview:accessoryBottomView];
+		[_conscienceBubbleView addSubview:accessoryBottomView];
 		[accessoryBottomView release];		
 		
 		conscienceEyeRightView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kEyeWidth, kEyeHeight)];
 		conscienceEyeRightView.tag = kEyeRightViewTag;
-		[conscienceBubbleView addSubview:conscienceEyeRightView];
+		[_conscienceBubbleView addSubview:conscienceEyeRightView];
 		[conscienceEyeRightView release];
 		
 		conscienceEyeLeftView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kEyeWidth, kEyeHeight)];
 		conscienceEyeLeftView.tag = kEyeLeftViewTag;
 		conscienceEyeLeftView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
-		[conscienceBubbleView addSubview:conscienceEyeLeftView];
+		[_conscienceBubbleView addSubview:conscienceEyeLeftView];
 		[conscienceEyeLeftView release];		
         
 		conscienceMouthView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kMouthWidth, kMouthHeight)];
 		conscienceMouthView.tag = kMouthViewTag;
-		[conscienceBubbleView addSubview:conscienceMouthView];
+		[_conscienceBubbleView addSubview:conscienceMouthView];
 		[conscienceMouthView release];	
 		
 		conscienceSymbolView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
 		conscienceSymbolView.tag = kSymbolViewTag;
         
-		[conscienceBubbleView addSubview:conscienceSymbolView];
+		[_conscienceBubbleView addSubview:conscienceSymbolView];
 		[conscienceSymbolView release];
         
 		
-		[self addSubview: conscienceBubbleView];
+		[self addSubview: _conscienceBubbleView];
 		
-		[conscienceBubbleView release];
+		[_conscienceBubbleView release];
         
     }
 	
@@ -194,24 +187,24 @@ Views are called by tags which are set in initWithFrame by constants
 	[self changeBubble];	
 
     //Display accessories chosen by User or System for Antagonists
-	accessoryPrimaryView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kPrimaryAccessoryViewTag];
-	accessoryPrimaryView.accessoryFilename = currentConscienceAccessories.primaryAccessory;
+	accessoryPrimaryView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kPrimaryAccessoryViewTag];
+	accessoryPrimaryView.accessoryFilename = _currentConscienceAccessories.primaryAccessory;
     
 	[accessoryPrimaryView setNeedsDisplay];
 	
-	accessorySecondaryView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kSecondaryAccessoryViewTag];
-	accessorySecondaryView.accessoryFilename = currentConscienceAccessories.secondaryAccessory;
+	accessorySecondaryView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kSecondaryAccessoryViewTag];
+	accessorySecondaryView.accessoryFilename = _currentConscienceAccessories.secondaryAccessory;
 	[accessorySecondaryView setNeedsDisplay];
 	
-	accessoryTopView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kTopAccessoryViewTag];
-	accessoryTopView.accessoryFilename = currentConscienceAccessories.topAccessory;
+	accessoryTopView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kTopAccessoryViewTag];
+	accessoryTopView.accessoryFilename = _currentConscienceAccessories.topAccessory;
 	[accessoryTopView setNeedsDisplay];
 	
-	accessoryBottomView = (AccessoryObjectView *)[conscienceBubbleView viewWithTag:kBottomAccessoryViewTag];
-	accessoryBottomView.accessoryFilename = currentConscienceAccessories.bottomAccessory;
+	accessoryBottomView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kBottomAccessoryViewTag];
+	accessoryBottomView.accessoryFilename = _currentConscienceAccessories.bottomAccessory;
 	[accessoryBottomView setNeedsDisplay];
 	
-	animatedBubbleView = (ConscienceBubbleView *) [conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
+	animatedBubbleView = (ConscienceBubbleView *) [_conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
 	[animatedBubbleView setNeedsDisplay];	
 
     
@@ -231,24 +224,24 @@ Views are called by tags which are set in initWithFrame by constants
 	//currentConscienceBody layers are pulled for each eye feature
 	//then set into view in specific order to account for layer draw order
 	//order is determined by leading number in setObject:forKey:
-	ConscienceLayer *insertLayer = [currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisLeft"];
-	insertLayer.currentFillColor = currentConscienceBody.eyeColor;
+	ConscienceLayer *insertLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisLeft"];
+	insertLayer.currentFillColor = _currentConscienceBody.eyeColor;
     
 	[conscienceEyeLeftView.totalLayers setObject:insertLayer forKey:@"4layerEyeball"];
-	insertLayer = [currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
-	insertLayer.currentFillColor = currentConscienceBody.browColor;
+	insertLayer = [_currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
+	insertLayer.currentFillColor = _currentConscienceBody.browColor;
     
 	[conscienceEyeLeftView.totalLayers setObject:insertLayer forKey:@"2layerBrow"];
 	
 	//Rest of Eye layers are without color
-	[conscienceEyeLeftView.totalLayers setObject:[currentConscienceBody.lidLayers objectForKey:@"layerLidNormal"] forKey:@"6layerLid"];
-	[conscienceEyeLeftView.totalLayers setObject:[currentConscienceBody.socketLayers objectForKey:@"layerSocketBottom"] forKey:@"5layerSocketBottom"];
-	[conscienceEyeLeftView.totalLayers setObject:[currentConscienceBody.socketLayers objectForKey:@"layerSocketTop"] forKey:@"7layerSocketTop"];
-	[conscienceEyeLeftView.totalLayers setObject:[currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
+	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.lidLayers objectForKey:@"layerLidNormal"] forKey:@"6layerLid"];
+	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketBottom"] forKey:@"5layerSocketBottom"];
+	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketTop"] forKey:@"7layerSocketTop"];
+	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
     
 	NSMutableString *ageLayer = [[NSMutableString alloc] initWithString:@"layerBags"];
     
-	switch (currentConscienceBody.age) {
+	switch (_currentConscienceBody.age) {
 		case 0: [ageLayer appendString:@"Normal"]; break;
 		case 1: [ageLayer appendString:@"Old"]; break;            
 		case 2: [ageLayer appendString:@"Older"]; break;            
@@ -256,8 +249,8 @@ Views are called by tags which are set in initWithFrame by constants
 		default: [ageLayer appendString:@"Normal"]; break;
 	}
     
-	[conscienceEyeLeftView.totalLayers setObject:[currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
-	[conscienceEyeLeftView.totalGradients addEntriesFromDictionary:currentConscienceBody.gradientLayers];
+	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
+	[conscienceEyeLeftView.totalGradients addEntriesFromDictionary:_currentConscienceBody.gradientLayers];
 	
 	//Request ConscienceObject view update
 	[conscienceEyeLeftView setNeedsDisplay];
@@ -265,39 +258,39 @@ Views are called by tags which are set in initWithFrame by constants
 	//Repeat work for right eye
 	//Both cannot be done simultaneously to account for expression differences between eyes
 	//such as wink/blink, raise eyebrow, one lid, etc.
-	insertLayer = [currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisRight"];
-	insertLayer.currentFillColor = currentConscienceBody.eyeColor;
+	insertLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisRight"];
+	insertLayer.currentFillColor = _currentConscienceBody.eyeColor;
 	[conscienceEyeRightView.totalLayers setObject:insertLayer forKey:@"4layerEyeball"];
-	insertLayer = [currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
-	insertLayer.currentFillColor = currentConscienceBody.browColor;
+	insertLayer = [_currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
+	insertLayer.currentFillColor = _currentConscienceBody.browColor;
     
 	[conscienceEyeRightView.totalLayers setObject:insertLayer forKey:@"2layerBrow"];
     
-	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.lidLayers objectForKey:@"layerLidNormal"] forKey:@"6layerLid"];	
-	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.socketLayers objectForKey:@"layerSocketBottom"] forKey:@"5layerSocketBottom"];
-	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.socketLayers objectForKey:@"layerSocketTop"] forKey:@"7layerSocketTop"];
-	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
-	[conscienceEyeRightView.totalLayers setObject:[currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
+	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.lidLayers objectForKey:@"layerLidNormal"] forKey:@"6layerLid"];
+	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketBottom"] forKey:@"5layerSocketBottom"];
+	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketTop"] forKey:@"7layerSocketTop"];
+	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
+	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
 	[ageLayer release];
     
-	[conscienceEyeRightView.totalGradients addEntriesFromDictionary:currentConscienceBody.gradientLayers];
+	[conscienceEyeRightView.totalGradients addEntriesFromDictionary:_currentConscienceBody.gradientLayers];
 	[conscienceEyeRightView setNeedsDisplay];	
 	
 	//Set Symbol layer, Symbol is actually composed of a single layer for the graphic
 	//Position layer is included to set the positioning of the eyes/mouth for each symbol
-	[conscienceSymbolView.totalLayers setObject:[currentConscienceBody.symbolLayers objectForKey:@"layerSymbol"] forKey:@"layerSymbol"];
+	[conscienceSymbolView.totalLayers setObject:[_currentConscienceBody.symbolLayers objectForKey:@"layerSymbol"] forKey:@"layerSymbol"];
 	[conscienceSymbolView setNeedsDisplay];
     
 	//Set Mouth layer, Mouth is actually composed of separate layers to allow for animation
-	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.dimplesLayers objectForKey:@"layerDimplesHappy"] forKey:@"layerDimples"];
-	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.lipsLayers objectForKey:@"layerLipsNormal"] forKey:@"layerLips"];				
-	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.teethLayers objectForKey:@"layerTeethNormal"] forKey:@"layerTeeth"];
-	[conscienceMouthView.totalLayers setObject:[currentConscienceBody.tongueLayers objectForKey:@"layerTongueNormal"] forKey:@"layerTongue"];
-	[conscienceMouthView.totalGradients addEntriesFromDictionary:currentConscienceBody.gradientLayers];
+	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.dimplesLayers objectForKey:@"layerDimplesHappy"] forKey:@"layerDimples"];
+	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.lipsLayers objectForKey:@"layerLipsNormal"] forKey:@"layerLips"];
+	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.teethLayers objectForKey:@"layerTeethNormal"] forKey:@"layerTeeth"];
+	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.tongueLayers objectForKey:@"layerTongueNormal"] forKey:@"layerTongue"];
+	[conscienceMouthView.totalGradients addEntriesFromDictionary:_currentConscienceBody.gradientLayers];
     
 	//Positioning of Eyes/Mouth/Symbol actually housed in symbol SVG file
 	//Position is a single path in SVG where each point represents a facial feature location		
-	ConscienceLayer *positionLayer = (ConscienceLayer *)[currentConscienceBody.symbolLayers objectForKey:@"layerPosition"];
+	ConscienceLayer *positionLayer = (ConscienceLayer *)[_currentConscienceBody.symbolLayers objectForKey:@"layerPosition"];
 	ConsciencePath *positionPath = (ConsciencePath *)[[positionLayer consciencePaths] objectAtIndex:0];
 	
 	CGPoint p = CGPointMake([[positionPath.pathPoints objectAtIndex:0] floatValue], [[positionPath.pathPoints objectAtIndex:1] floatValue]);
@@ -307,7 +300,7 @@ Views are called by tags which are set in initWithFrame by constants
 	p = CGPointMake([[positionPath.pathPoints objectAtIndex:4] floatValue], [[positionPath.pathPoints objectAtIndex:5] floatValue]);
 	conscienceMouthView.center = p;
         
-	isExpressionForced = FALSE;
+	_isExpressionForced = FALSE;
     
 }
 
@@ -330,10 +323,10 @@ eyeState determined by ViewController
 
 	//Select the Eye to respond
 	if (eyeNumber == kEyeLeftIndex) {
-		conscienceEyeView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kEyeLeftViewTag];
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeLeftViewTag];
 	
 	} else if (eyeNumber == kEyeRightIndex ) {
-		conscienceEyeView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kEyeRightViewTag];
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeRightViewTag];
 
 	} else if (eyeNumber == kEyeBothIndex) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
@@ -362,22 +355,22 @@ eyeState determined by ViewController
 			ConscienceLayer *currentLayer;
             
             if (eyeNumber == kEyeLeftIndex) {
-                currentLayer = [currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisLeft"];
+                currentLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisLeft"];
 			}else {
-                currentLayer = [currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisRight"];
+                currentLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisRight"];
 			}
             
-			currentLayer.currentFillColor = currentConscienceBody.eyeColor;
+			currentLayer.currentFillColor = _currentConscienceBody.eyeColor;
 			
 			[conscienceEyeView.totalLayers setObject:currentLayer forKey:@"4layerEyeball"];
 			[conscienceEyeView setNeedsDisplay];
 			
-			[conscienceEyeView.totalLayers setObject:[currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
+			[conscienceEyeView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
 			[conscienceEyeView setNeedsDisplay];
 		
 		}else {
 			//Close the eye
-			[conscienceEyeView.totalLayers setObject:[currentConscienceBody.lashesLayers objectForKey:@"layerLashesDown"] forKey:@"9layerLashes"];
+			[conscienceEyeView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesDown"] forKey:@"9layerLashes"];
 			[conscienceEyeView setNeedsDisplay];
 
 		}
@@ -462,10 +455,10 @@ expression determined by Conscience Mood/Enthusiasm
 	
 	//Select the Eye to respond
 	if (eyeNumber == kEyeLeftIndex) {
-		conscienceEyeView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kEyeLeftViewTag];
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeLeftViewTag];
 		
 	}else if (eyeNumber == kEyeRightIndex ) {
-		conscienceEyeView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kEyeRightViewTag];
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeRightViewTag];
 		
 	}else if (eyeNumber == kEyeBothIndex) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
@@ -487,8 +480,8 @@ expression determined by Conscience Mood/Enthusiasm
 	//Otherwise change lid layer
 	if (!isRecursive) {
 		//Ensure correct brow color is passed
-		ConscienceLayer *currentLayer = [currentConscienceBody.browLayers objectForKey:expression];
-		currentLayer.currentFillColor = currentConscienceBody.browColor;			
+		ConscienceLayer *currentLayer = [_currentConscienceBody.browLayers objectForKey:expression];
+		currentLayer.currentFillColor = _currentConscienceBody.browColor;
 		[conscienceEyeView.totalLayers setObject:currentLayer forKey:@"2layerBrow"];
 		[conscienceEyeView setNeedsDisplay];
 			
@@ -511,10 +504,10 @@ expression determined by Conscience Mood/Enthusiasm
 	
 	//Select the Eye to respond
 	if (eyeNumber == kEyeLeftIndex) {
-		conscienceEyeView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kEyeLeftViewTag];
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeLeftViewTag];
 		
 	}else if (eyeNumber == kEyeRightIndex ) {
-		conscienceEyeView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kEyeRightViewTag];
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeRightViewTag];
 		
 	}else if (eyeNumber == kEyeBothIndex) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
@@ -536,7 +529,7 @@ expression determined by Conscience Mood/Enthusiasm
 	//If both/random eyes have been requested, recursion is active, cancel work
 	//Otherwise change lid layer
 	if (!isRecursive) {
-		[conscienceEyeView.totalLayers setObject:[currentConscienceBody.lidLayers objectForKey:expression] forKey:@"6layerLid"];
+		[conscienceEyeView.totalLayers setObject:[_currentConscienceBody.lidLayers objectForKey:expression] forKey:@"6layerLid"];
 		[conscienceEyeView setNeedsDisplay];
 
 	}
@@ -556,10 +549,10 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */	
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 
 	//Change Dimples Layer	
-	[conscienceNewMouthView.totalLayers setObject:[currentConscienceBody.dimplesLayers objectForKey:expression] forKey:@"layerDimples"];		
+	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.dimplesLayers objectForKey:expression] forKey:@"layerDimples"];
 	
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -574,10 +567,10 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */	
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 
 	//Change lips Layer	
-	[conscienceNewMouthView.totalLayers setObject:[currentConscienceBody.lipsLayers objectForKey:expression] forKey:@"layerLips"];		
+	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.lipsLayers objectForKey:expression] forKey:@"layerLips"];
 
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -593,10 +586,10 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */	
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 	
 	//Change teeth Layer
-	[conscienceNewMouthView.totalLayers setObject:[currentConscienceBody.teethLayers objectForKey:expression] forKey:@"layerTeeth"];		
+	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.teethLayers objectForKey:expression] forKey:@"layerTeeth"];
 	
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -612,10 +605,10 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 
 	//Set Tongue Layer	
-	[conscienceNewMouthView.totalLayers setObject:[currentConscienceBody.tongueLayers objectForKey:expression] forKey:@"layerTongue"];
+	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.tongueLayers objectForKey:expression] forKey:@"layerTongue"];
 	
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -629,12 +622,12 @@ Color determined by User.  Animation determined by Conscience Mood/Enthusiasm
 - (void) changeBubble{
 
 	//User is allowed selection of colors for Bubble
-	animatedBubbleView = (ConscienceBubbleView *)[conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
-	animatedBubbleView.bubbleColor = currentConscienceBody.bubbleColor;
-	animatedBubbleView.bubbleType = currentConscienceBody.bubbleType;    
+	animatedBubbleView = (ConscienceBubbleView *)[_conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
+	animatedBubbleView.bubbleColor = _currentConscienceBody.bubbleColor;
+	animatedBubbleView.bubbleType = _currentConscienceBody.bubbleType;
 
     //Glow duration is inverse of Conscience enthusiasm, enthusiastic = shorter duration
-    CGFloat glowDuration = 1/(((currentConscienceMind.enthusiasm*2)/100) + 1);
+    CGFloat glowDuration = 1/(((_currentConscienceMind.enthusiasm*2)/100) + 1);
     animatedBubbleView.bubbleGlowDuration = glowDuration;
 
 	//Request bubble update
@@ -651,12 +644,12 @@ Implementation: Determine Conscience direction facing.  Reverse Conscience if ne
 - (void)removeConscienceInvisibility{
 	
 	//Determine which way Conscience is facing
-	if (directionFacing == kDirectionFacingLeft) {
-		directionFacing = kDirectionFacingRight;
+	if (_directionFacing == kDirectionFacingLeft) {
+		_directionFacing = kDirectionFacingRight;
 		self.transform = CGAffineTransformIdentity;
 		self.transform = CGAffineTransformMakeScale(1.0, 1.0);		
 	}else{
-		directionFacing = kDirectionFacingLeft;
+		_directionFacing = kDirectionFacingLeft;
 		self.transform = CGAffineTransformIdentity;
 		self.transform = CGAffineTransformMakeScale(-1.0, 1.0);		
 	}
@@ -688,7 +681,7 @@ Implementation: Determine if Conscience is awake.  Set timers to change eye and 
 - (void) setTimers{
 	
     //Put Conscience to sleep if enthusiasm is 0
-    if (currentConscienceMind.enthusiasm > 0) {
+    if (_currentConscienceMind.enthusiasm > 0) {
 
         //Restart Conscience movement after User has moved it
         [self timedEyeChanges];
@@ -737,8 +730,8 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
  */
 - (void) timedMouthExpressionChanges{
 	
-    CGFloat conscienceMood = currentConscienceMind.mood;
-    CGFloat conscienceEnthusiasm = currentConscienceMind.enthusiasm;
+    CGFloat conscienceMood = _currentConscienceMind.mood;
+    CGFloat conscienceEnthusiasm = _currentConscienceMind.enthusiasm;
 
     int randomIndex = 16 * (conscienceMood/100);
     
@@ -766,12 +759,12 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	int teethIndex = 2;
 	int tongueIndex = 3;	
 	
-	if ((randomSwitch < 1) || isExpressionForced) {
+	if ((randomSwitch < 1) || _isExpressionForced) {
 
 		[self changeLipsExpressions:[lipsExpressions objectAtIndex:randomIndex]];
 	}
 
-	isExpressionForced = FALSE;
+	_isExpressionForced = FALSE;
 	
 	if(randomSwitch < 1){
         
@@ -828,8 +821,8 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	//Generate random float range between 0.1 and 
 	float blinkDuration = 0.1 + (float)randomInterval/100;
 		    
-    CGFloat conscienceEnthusiasm = currentConscienceMind.enthusiasm;
-    CGFloat conscienceMood = currentConscienceMind.mood;
+    CGFloat conscienceEnthusiasm = _currentConscienceMind.enthusiasm;
+    CGFloat conscienceMood = _currentConscienceMind.mood;
 
 	if(conscienceMood < 0) {
 	
@@ -876,7 +869,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
     /** @todo lessen confused frequency */
     eyeNumber = kEyeBothIndex;
 	
-    if ((randomSwitch < 1) || isExpressionForced){	
+    if ((randomSwitch < 1) || _isExpressionForced){
         int randomBrow = 0; 
 
         if (conscienceEnthusiasm > 60) {
@@ -900,7 +893,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
     
     eyeNumber = kEyeBothIndex;
         
-	if ((randomSwitch == 2) || isExpressionForced) {
+	if ((randomSwitch == 2) || _isExpressionForced) {
             
         int randomLid = 0;
         
@@ -943,7 +936,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 
     }
         	
-	isExpressionForced = FALSE;
+	_isExpressionForced = FALSE;
 	[self changeEyeDirection:randomDirection forEye:kEyeBothIndex];
 	
 }
@@ -1004,10 +997,10 @@ Release init'ed objects, deallocate super.
     [eyeLeftPositions release];
     [eyeRightPositions release]; 
 	
-	[conscienceBubbleView release];
-	[currentConscienceBody release];
-	[currentConscienceAccessories release];
-	[currentConscienceMind release];   
+	[_conscienceBubbleView release];
+	[_currentConscienceBody release];
+	[_currentConscienceAccessories release];
+	[_currentConscienceMind release];
     
     [super dealloc];
     

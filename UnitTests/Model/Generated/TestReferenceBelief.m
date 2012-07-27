@@ -29,7 +29,7 @@
     
     typeBelief = @"typeBelief";
     shortDescriptionReference = @"short description";
-    originYear = [NSNumber numberWithInt:2010];
+    originYear = @2010;
     nameReference = @"name";
     longDescriptionReference = @"long description";
     linkReference = @"http://www.teamaxe.org";    

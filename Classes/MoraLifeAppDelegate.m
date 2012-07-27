@@ -61,15 +61,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 @implementation MoraLifeAppDelegate
 
-@synthesize window;
-@synthesize userConscienceBody;
-@synthesize userConscienceAccessories;
-@synthesize userConscienceView;
-@synthesize userConscienceMind;
-@synthesize userCollection;
-@synthesize isCurrentIOS;
-@synthesize moralModelManager;
-
 #pragma mark -
 #pragma mark AppDelegate lifecycle
 
@@ -87,7 +78,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
     
-    [moralModelManager saveContext];
+    [_moralModelManager saveContext];
 }
 
 
@@ -104,7 +95,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
      Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
      */
     
-    [userConscienceView setNeedsDisplay];
+    [_userConscienceView setNeedsDisplay];
     
 }
 
@@ -113,7 +104,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  applicationWillTerminate: saves changes in the application's managed object context before the application terminates.
  */
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [moralModelManager saveContext];
+    [_moralModelManager saveContext];
 }
 
 
@@ -124,9 +115,9 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  */
 - (void)applicationDidFinishLaunching:(UIApplication *)application { 
 	
-    isCurrentIOS = (&UIApplicationDidEnterBackgroundNotification != NULL);
+    _isCurrentIOS = (&UIApplicationDidEnterBackgroundNotification != NULL);
     
-    moralModelManager = [[ModelManager alloc] init];
+    _moralModelManager = [[ModelManager alloc] init];
     
 	context = [self.moralModelManager readWriteManagedObjectContext];
 
@@ -180,7 +171,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	CGFloat cgf = 0.8;
 	
     // Override point for customization after application launch
-	[mainMenuTabBarCont setViewControllers:[NSArray arrayWithObjects:navController1, navController2, navController3, nil]];
+	[mainMenuTabBarCont setViewControllers:@[navController1, navController2, navController3]];
 	mainMenuTabBarCont.title = NSLocalizedString(@"PrimaryMenuTitle",@"Label for Primary Tab Menu");
 	mainMenuTabBarCont.accessibilityHint = NSLocalizedString(@"PrimaryMenuHint",@"Hint for Primary Tab Menu");
 	mainMenuTabBarCont.accessibilityLabel = NSLocalizedString(@"PrimaryMenuLabel",@"Label for Primary Tab Menu");
@@ -193,8 +184,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 		
 	application.applicationSupportsShakeToEdit = YES;
     
-	[window addSubview:mainMenuTabBarCont.view];
-	[window makeKeyAndVisible];
+	[_window addSubview:mainMenuTabBarCont.view];
+	[_window makeKeyAndVisible];
 	
 } 
 
@@ -218,23 +209,23 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  */
 - (void) createConscience{
     
-    if (!userConscienceBody) {
-        userConscienceBody = [[ConscienceBody alloc] init];
+    if (!_userConscienceBody) {
+        _userConscienceBody = [[ConscienceBody alloc] init];
         
     }
     
-    if (!userConscienceAccessories) {
-        userConscienceAccessories = [[ConscienceAccessories alloc] init];
+    if (!_userConscienceAccessories) {
+        _userConscienceAccessories = [[ConscienceAccessories alloc] init];
         
     }
     
-    if (!userConscienceMind) {
-        userConscienceMind = [[ConscienceMind alloc] init];
+    if (!_userConscienceMind) {
+        _userConscienceMind = [[ConscienceMind alloc] init];
         
     }
     
-    if (!userCollection) {
-        userCollection = [[NSMutableArray alloc] init];
+    if (!_userCollection) {
+        _userCollection = [[NSMutableArray alloc] init];
         
     }
 	    
@@ -243,11 +234,11 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     [self configureCollection];    
 	
 	//Create physcial, viewable Conscience from constructs    
-    if (!userConscienceView) {
-        userConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(20, 130, 200, 200) withBody:userConscienceBody withAccessories:userConscienceAccessories withMind:userConscienceMind];
+    if (!_userConscienceView) {
+        _userConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(20, 130, 200, 200) withBody:_userConscienceBody withAccessories:_userConscienceAccessories withMind:_userConscienceMind];
         
-        userConscienceView.tag = kConscienceViewTag;
-        userConscienceView.multipleTouchEnabled = TRUE; 
+        _userConscienceView.tag = kConscienceViewTag;
+        _userConscienceView.multipleTouchEnabled = TRUE;
     }
     
 }
@@ -257,10 +248,10 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  */
 - (void) destroyConscience{
     
-	[userConscienceBody release];
-	[userConscienceAccessories release];
-    [userConscienceMind release];
-	[userConscienceView release];
+	[_userConscienceBody release];
+	[_userConscienceAccessories release];
+    [_userConscienceMind release];
+	[_userConscienceView release];
 }
 
 /**
@@ -271,30 +262,30 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
     //Populate User Conscience
-    userConscienceBody.eyeName = [currentUserCharacter characterEye];
-    userConscienceBody.mouthName = [currentUserCharacter characterMouth];
-    userConscienceBody.symbolName = [currentUserCharacter characterFace];
+    _userConscienceBody.eyeName = [currentUserCharacter characterEye];
+    _userConscienceBody.mouthName = [currentUserCharacter characterMouth];
+    _userConscienceBody.symbolName = [currentUserCharacter characterFace];
 
-    userConscienceBody.eyeColor = [currentUserCharacter characterEyeColor];
-    userConscienceBody.browColor = [currentUserCharacter characterBrowColor];
-    userConscienceBody.bubbleColor = [currentUserCharacter characterBubbleColor];
-    userConscienceBody.bubbleType = [[currentUserCharacter characterBubbleType] intValue];
+    _userConscienceBody.eyeColor = [currentUserCharacter characterEyeColor];
+    _userConscienceBody.browColor = [currentUserCharacter characterBrowColor];
+    _userConscienceBody.bubbleColor = [currentUserCharacter characterBubbleColor];
+    _userConscienceBody.bubbleType = [[currentUserCharacter characterBubbleType] intValue];
     
-    userConscienceBody.age = [[currentUserCharacter characterAge] intValue];
-    userConscienceBody.size = [[currentUserCharacter characterSize] floatValue];
+    _userConscienceBody.age = [[currentUserCharacter characterAge] intValue];
+    _userConscienceBody.size = [[currentUserCharacter characterSize] floatValue];
     
-    userConscienceAccessories.primaryAccessory = [currentUserCharacter characterAccessoryPrimary];
-    userConscienceAccessories.secondaryAccessory = [currentUserCharacter characterAccessorySecondary];
-    userConscienceAccessories.topAccessory = [currentUserCharacter characterAccessoryTop];
-    userConscienceAccessories.bottomAccessory = [currentUserCharacter characterAccessoryBottom];
+    _userConscienceAccessories.primaryAccessory = [currentUserCharacter characterAccessoryPrimary];
+    _userConscienceAccessories.secondaryAccessory = [currentUserCharacter characterAccessorySecondary];
+    _userConscienceAccessories.topAccessory = [currentUserCharacter characterAccessoryTop];
+    _userConscienceAccessories.bottomAccessory = [currentUserCharacter characterAccessoryBottom];
     
-    userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
-    userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
+    _userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
+    _userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
 
     [currentUserCharacterDAO release];  
 
 	//Call utility class to parse svg data for feature building    
-	[ConscienceBuilder buildConscience:userConscienceBody];
+	[ConscienceBuilder buildConscience:_userConscienceBody];
 }
 
 /**
@@ -309,7 +300,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     //Populate dictionary with dilemmaName (key) and moral that was chosen
     for (UserCollectable *match in objects) {
         
-        [userCollection addObject:[match collectableName]];
+        [_userCollection addObject:[match collectableName]];
     }
                 
     [currentUserCollectableDAO release];
@@ -336,11 +327,11 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	/** @todo revisit memory management for ARC migration */    
 	
 	[mainMenuTabBarCont release];
-	[userConscienceBody release];
-	[userConscienceAccessories release];
-    [userConscienceMind release];
-	[userConscienceView release];
-    [userCollection release];
+	[_userConscienceBody release];
+	[_userConscienceAccessories release];
+    [_userConscienceMind release];
+	[_userConscienceView release];
+    [_userCollection release];
     [window release];
     [super dealloc];
 }

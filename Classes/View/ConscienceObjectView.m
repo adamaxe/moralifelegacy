@@ -14,21 +14,17 @@ ConscienceObjectView draws via Core Graphics these points when provided the draw
 
 @implementation ConscienceObjectView
 
-@synthesize totalGradients, totalLayers;
-@synthesize conscienceBackgroundColor;
-@synthesize dynamicPath;
-
 #pragma mark -
 #pragma mark View lifecycle
 
 - (id)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		//By default, each ConscienceObject must be transparent
-		conscienceBackgroundColor = [UIColor clearColor];
-		self.backgroundColor = conscienceBackgroundColor;
+		_conscienceBackgroundColor = [UIColor clearColor];
+		self.backgroundColor = _conscienceBackgroundColor;
 		self.multipleTouchEnabled = TRUE;
-		totalLayers = [[NSMutableDictionary alloc] init];
-		totalGradients = [[NSMutableDictionary alloc] init];
+		_totalLayers = [[NSMutableDictionary alloc] init];
+		_totalGradients = [[NSMutableDictionary alloc] init];
 		
 	}
     return self;
@@ -44,16 +40,16 @@ Must override drawRect because custom drawing from a vector source is required
 	NSString *fillColor;
 	bool isReoriented = FALSE;
 	
-	if (conscienceBackgroundColor != nil){
+	if (_conscienceBackgroundColor != nil){
 		self.backgroundColor = [UIColor clearColor];
 	}else {
-		self.backgroundColor = conscienceBackgroundColor;
+		self.backgroundColor = _conscienceBackgroundColor;
 	}
 
 	//Determine draw order
 	//Layers prefixed with int to ease draw order
 	//e.g. Iris must draw before lid to be obscured by lid
-	NSArray *layerKeys = [totalLayers allKeys];
+	NSArray *layerKeys = [_totalLayers allKeys];
 	NSArray *sortedKeys = [layerKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	
 	//Iterated through layers, drawing each.
@@ -61,7 +57,7 @@ Must override drawRect because custom drawing from a vector source is required
 	ConscienceLayer *currentLayer;
 	
 	for (int i=0; i<[sortedKeys count]; i++) {
-		currentLayer = (ConscienceLayer *)[totalLayers objectForKey:[sortedKeys objectAtIndex:i]];
+		currentLayer = (ConscienceLayer *)[_totalLayers objectForKey:[sortedKeys objectAtIndex:i]];
 
 		if (currentLayer != nil) {
 			CGContextRef context = UIGraphicsGetCurrentContext();
@@ -72,7 +68,7 @@ Must override drawRect because custom drawing from a vector source is required
 			//pathInstructions is array of instruction arrays
 			//pathPoints is array of point arrays	
 			for (ConsciencePath *currentPath in currentLayer.consciencePaths) {
-                dynamicPath = CGPathCreateMutable();
+                _dynamicPath = CGPathCreateMutable();
 
 				//Determine if image from path should be reoriented
 				//Set bool after first iteration to prevent cummulative translations
@@ -87,14 +83,14 @@ Must override drawRect because custom drawing from a vector source is required
 				NSMutableArray *pathPoints = [[NSMutableArray alloc] initWithArray:currentPath.pathPoints];
 				
 				//Create the path
-				[self createPathFromPoints:pathPoints WithInstructions:pathInstructions ForPath:dynamicPath];
+				[self createPathFromPoints:pathPoints WithInstructions:pathInstructions ForPath:_dynamicPath];
 
 				[pathInstructions release];
 				[pathPoints release];
                 
 				//Color the path
 				//Convert hex from data to CGPathColor format
-				CGContextAddPath(context, dynamicPath);
+				CGContextAddPath(context, _dynamicPath);
 				
 				//Check to see if fill color is a reference to gradient
 				//If true, do not fill the path, shade it instead
@@ -108,7 +104,7 @@ Must override drawRect because custom drawing from a vector source is required
 					NSString *gradientSubstring = (NSString *)[currentPath.pathFillColor substringFromIndex:5];
 					gradientSubstring = [gradientSubstring substringToIndex:[gradientSubstring length]-1];
 					
-					ConscienceGradient *gradientElement = [totalGradients objectForKey:gradientSubstring];
+					ConscienceGradient *gradientElement = [_totalGradients objectForKey:gradientSubstring];
 					CGContextClip(context);
 					CGColorSpaceRef conscienceColorSpace = CGColorSpaceCreateDeviceRGB();
 					
@@ -146,7 +142,7 @@ Must override drawRect because custom drawing from a vector source is required
 				CGContextFillPath(context);
 				
 				//Stroke the path
-				CGContextAddPath(context, dynamicPath);
+				CGContextAddPath(context, _dynamicPath);
 				NSScanner *strokeColorScanner = [NSScanner scannerWithString:currentPath.pathStrokeColor];
 				
                 unsigned strokeColor;
@@ -161,8 +157,8 @@ Must override drawRect because custom drawing from a vector source is required
 				
 				CGContextStrokePath(context);
                 //Close path
-                CGPathCloseSubpath(dynamicPath);
-				CGPathRelease(dynamicPath);
+                CGPathCloseSubpath(_dynamicPath);
+				CGPathRelease(_dynamicPath);
 
 			}
 
@@ -229,9 +225,9 @@ Points must be absolute.
 
 - (void)dealloc {
     
-	[conscienceBackgroundColor release];
-	[totalGradients release];
-	[totalLayers release];
+	[_conscienceBackgroundColor release];
+	[_totalGradients release];
+	[_totalLayers release];
     
     [super dealloc];
 

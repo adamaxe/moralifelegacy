@@ -28,9 +28,6 @@ Implementation:  We are parsing the svg's of the animatable facial features.  Ea
 
 @implementation XMLParser 
 
-@synthesize currentConscienceBody = _currentConscienceBody;
-@synthesize currentConscienceLayer = _currentConscienceLayer;
-
 #pragma mark -
 #pragma mark View lifecycle
 

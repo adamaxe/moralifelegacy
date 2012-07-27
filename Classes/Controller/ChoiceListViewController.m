@@ -244,7 +244,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	//@see DilemmaViewController
 	NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"NOT entryKey contains[cd] %@", predicateParam];
-	currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
+	currentUserChoiceDAO.predicates = @[pred];
 	[predicateParam release];
 
 	NSSortDescriptor* sortDescriptor;
@@ -266,7 +266,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
                         
 			[choices addObject:[matches entryShortDescription]];
 		 	[choiceKeys addObject:[matches entryKey]];
-			[choicesAreGood addObject:[NSNumber numberWithBool:[[matches entryIsGood] boolValue]]];
+			[choicesAreGood addObject:@([[matches entryIsGood] boolValue])];
             
 			//Detailed text is name of Moral, Weight, Date, Long Description
 			NSMutableString *detailText = [[NSMutableString alloc] init];
@@ -328,7 +328,7 @@ Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceVie
 	
 	if (choiceKey != nil) {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-        currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
+        currentUserChoiceDAO.predicates = @[pred];
 	}
 		
     UserChoice *match = [currentUserChoiceDAO read:@""];
@@ -370,7 +370,7 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 	
 	if (choiceKey != nil) {
 		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-        currentUserChoiceDAO.predicates = [NSArray arrayWithObject:pred];
+        currentUserChoiceDAO.predicates = @[pred];
 	}
 	
     [currentUserChoiceDAO delete:nil];

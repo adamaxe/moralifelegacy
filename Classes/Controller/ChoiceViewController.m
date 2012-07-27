@@ -752,8 +752,8 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
         UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
-        [currentUserCharacter setCharacterMood:[NSNumber numberWithFloat:newMood]];    
-        [currentUserCharacter setCharacterEnthusiasm:[NSNumber numberWithFloat:newEnthusiasm]];    
+        [currentUserCharacter setCharacterMood:@(newMood)];    
+        [currentUserCharacter setCharacterEnthusiasm:@(newEnthusiasm)];    
         
         [currentUserCharacterDAO update];
         
@@ -777,7 +777,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
                moralIncrease += 1.0;
             }
             
-            [currentUserCollectable setValue:[NSNumber numberWithFloat:moralIncrease] forKey:@"collectableValue"];
+            [currentUserCollectable setValue:@(moralIncrease) forKey:@"collectableValue"];
             
         } else {
             
@@ -789,7 +789,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             [currentUserCollectable setCollectableCreationDate:[NSDate date]];
             [currentUserCollectable setCollectableKey:choiceKey];
             [currentUserCollectable setCollectableName:moralKey];
-            [currentUserCollectable setCollectableValue:[NSNumber numberWithFloat:1.0]];
+            [currentUserCollectable setCollectableValue:@1.0f];
                         
             [appDelegate.userCollection addObject:moralKey];
             
@@ -807,15 +807,15 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
 	
     [currentUserChoice setEntryShortDescription:choiceTextField.text];
     [currentUserChoice setEntryLongDescription:choiceLongDescription];
-    [currentUserChoice setEntrySeverity:[NSNumber numberWithFloat:severityConversion]];
+    [currentUserChoice setEntrySeverity:@(severityConversion)];
     [currentUserChoice setEntryModificationDate:[NSDate date]];
     [currentUserChoice setEntryKey:choiceKey];
     [currentUserChoice setChoiceMoral:moralKey];
     [currentUserChoice setChoiceJustification:choiceJustification];
-    [currentUserChoice setChoiceInfluence:[NSNumber numberWithFloat:choiceInfluence]];
-    [currentUserChoice setEntryIsGood:[NSNumber numberWithBool:isVirtue]];
+    [currentUserChoice setChoiceInfluence:@(choiceInfluence)];
+    [currentUserChoice setEntryIsGood:@(isVirtue)];
     [currentUserChoice setChoiceConsequences:choiceConsequences];
-    [currentUserChoice setChoiceWeight:[NSNumber numberWithFloat:choiceCalculatedWeight]];    
+    [currentUserChoice setChoiceWeight:@(choiceCalculatedWeight)];    
 	
     [currentUserChoiceDAO update];
 	
@@ -846,7 +846,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     }
     
     //Save User's new ethicals    
-    [currentUserCollectable setValue:[NSNumber numberWithInt:ethicals] forKey:@"collectableValue"];
+    [currentUserCollectable setValue:@(ethicals) forKey:@"collectableValue"];
     
 }
 

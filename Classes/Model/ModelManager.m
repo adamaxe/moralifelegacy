@@ -29,15 +29,6 @@ NSString* const kMLStoreType = @"sqlite";
 
 @implementation ModelManager
 
-@synthesize managedObjectModel = _managedObjectModel;
-@synthesize readWriteManagedObjectModel = _readWriteManagedObjectModel;
-@synthesize managedObjectContext = _managedObjectContext;
-@synthesize readWriteManagedObjectContext = _readWriteManagedObjectContext;
-@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
-@synthesize readWritePersistentStoreCoordinator = _readWritePersistentStoreCoordinator;
-@synthesize currentBundle = _currentBundle;
-@synthesize storeType = _storeType;
-
 #pragma mark -
 #pragma mark Core Data stack
 
@@ -159,7 +150,7 @@ NSString* const kMLStoreType = @"sqlite";
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathOriginalReadOnlyMOM];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];
     
-    NSManagedObjectModel *mergedModel = [[NSManagedObjectModel modelByMergingModels:[NSArray arrayWithObjects:modelReadWrite, modelReadOnly, nil]] retain];
+    NSManagedObjectModel *mergedModel = [[NSManagedObjectModel modelByMergingModels:@[modelReadWrite, modelReadOnly]] retain];
 	
 	[modelReadOnly release];
 	[modelReadWrite release];
@@ -260,7 +251,7 @@ NSString* const kMLStoreType = @"sqlite";
     }
     
 	//handle db upgrade for auto migration for minor schema changes
-	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+	NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @(YES), NSInferMappingModelAutomaticallyOption: @(YES)};
     error = nil;    
     
     //Older model design utilized a merged model.  This needs to be corrected.
@@ -362,7 +353,7 @@ NSString* const kMLStoreType = @"sqlite";
     } 
     
 	//handle db upgrade for auto migration for minor schema changes
-	NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+	NSDictionary *options = @{NSMigratePersistentStoresAutomaticallyOption: @(YES), NSInferMappingModelAutomaticallyOption: @(YES)};
     
     //Older model design utilized a merged model.  This needs to be corrected.
     //Determine if migration is necessary by checking to see if current Model is comaptible with current store metadata

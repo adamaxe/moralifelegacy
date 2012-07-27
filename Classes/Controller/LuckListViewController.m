@@ -287,7 +287,7 @@ Implementation: Retrieve all User entered Lucks, and then populate a working set
             }
 
 			[details addObject:detailText];	
-            [lucksAreGood addObject:[NSNumber numberWithBool:[[matches entryIsGood] boolValue]]];
+            [lucksAreGood addObject:@([[matches entryIsGood] boolValue])];
 
             [detailText release];
             

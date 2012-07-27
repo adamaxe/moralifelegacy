@@ -18,17 +18,6 @@
 NSString* const kContextReadOnly = @"readOnly";
 NSString* const kContextReadWrite = @"readWrite";
 
-@synthesize sorts = _sorts;
-@synthesize predicates = _predicates;
-
-@synthesize currentKey = _currentKey;
-@synthesize classType = _classType;
-@synthesize predicateDefaultName = _predicateDefaultName;
-@synthesize sortDefaultName = _sortDefaultName;
-@synthesize managedObjectClassName = _managedObjectClassName;
-@synthesize context = _context;
-@synthesize persistedObjects = _persistedObjects;
-
 - (id) init {
     MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
