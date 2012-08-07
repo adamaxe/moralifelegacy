@@ -13,7 +13,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 @interface ReferenceViewController () <MenuScreenAnimations, ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
 	IBOutlet UIButton *peopleLabelButton;		/**< label for People button */
@@ -47,7 +46,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		
 		//Array to hold button names for random animations
-//		buttonNames = [[NSArray alloc] initWithObjects:@"accessories", @"beliefs", @"books", @"people", @"places", @"reports", nil];
 		buttonNames = [[NSArray alloc] initWithObjects:@"accessories", @"beliefs", @"books", @"people", @"choicegood", @"reports", nil];
         
     }
@@ -57,9 +55,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
     [super viewDidLoad];	
 
-	//Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
-
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
     
     [self localizeUI];    

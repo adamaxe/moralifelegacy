@@ -1,15 +1,21 @@
+/**
+ Implementation:  Present a GraphView of piechart type with accompanying data descriptors.
+
+ @class BaseDAO BaseDAO.h
+ */
+
 #import "BaseDAO.h"
 #import "MoraLifeAppDelegate.h"
 
 @interface BaseDAO () 
 
-@property (nonatomic, retain) NSString *currentKey;
-@property (nonatomic, retain) NSString *classType;
-@property (nonatomic, retain) NSManagedObjectContext *context;
-@property (nonatomic, retain) NSMutableArray *persistedObjects;
+@property (nonatomic, retain) NSString *currentKey;             /**< current NSPredicate filter */
+@property (nonatomic, retain) NSString *classType;              /**< current NSManagedObject type */
+@property (nonatomic, retain) NSManagedObjectContext *context;  /**< injected context */
+@property (nonatomic, retain) NSMutableArray *persistedObjects; /**< current NSManagedObjects under control */
 
-- (NSManagedObject *)findPersistedObject:(NSString *)key;
-- (NSArray *)retrievePersistedObjects;
+- (NSManagedObject *)findPersistedObject:(NSString *)key;       /**< retrieve requested NSManagedObject from temp array */
+- (NSArray *)retrievePersistedObjects;                          /**< retrieve NSManagedObject from persisted store */
 
 @end
 
@@ -18,6 +24,9 @@
 NSString* const kContextReadOnly = @"readOnly";
 NSString* const kContextReadWrite = @"readWrite";
 
+/**
+ Implementation: In case of base init is called, forward call to default constructor to utilize rw context
+ */
 - (id) init {
     MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
@@ -27,6 +36,9 @@ NSString* const kContextReadWrite = @"readWrite";
 #pragma mark -
 #pragma mark Public API
 
+/**
+ Implementation: Default constructor.  Setup correct context type, instantiate ivars/props
+ */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType {
     
     self = [super init];
