@@ -9,10 +9,10 @@
  */
 #import "ModelManager.h"
 
-NSString* const kMLReadOnlyModelName = @"SystemData";
-NSString* const kMLReadWriteModelName = @"UserData";
-NSString* const kMLDataModelExtension = @"momd";
-NSString* const kMLStoreType = @"sqlite";
+#define kMLReadOnlyModelName @"SystemData"
+#define kMLReadWriteModelName @"UserData"
+#define kMLDataModelExtension @"momd"
+#define kMLStoreType @"sqlite"
 
 @interface ModelManager () 
 
@@ -77,7 +77,7 @@ NSString* const kMLStoreType = @"sqlite";
 }
 
 /**
- Returns the managed object context for the application.
+ Returns the read/write managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
 - (NSManagedObjectContext *)readWriteManagedObjectContext {
@@ -112,7 +112,7 @@ NSString* const kMLStoreType = @"sqlite";
 }
 
 /**
- Returns the managed object model for the application.
+ Returns the read/write managed object model for the application.
  If the model doesn't already exist, it is created from the application's model.
  */
 - (NSManagedObjectModel *)readWriteManagedObjectModel {
@@ -138,7 +138,6 @@ NSString* const kMLStoreType = @"sqlite";
     NSBundle *bundleReadWrite = [NSBundle bundleWithPath:pathReadWrite];
     NSString *pathOriginalReadWriteMOM = [bundleReadWrite pathForResource:@"UserData" ofType:@"mom"];
 
-//	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathOriginalReadWriteMOM];
     NSManagedObjectModel *modelReadWrite = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
 	
@@ -146,7 +145,6 @@ NSString* const kMLStoreType = @"sqlite";
     NSBundle *bundleReadOnly = [NSBundle bundleWithPath:pathReadOnly];
     NSString *pathOriginalReadOnlyMOM = [bundleReadOnly pathForResource:@"SystemData2" ofType:@"mom"];
 
-//    NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathOriginalReadOnlyMOM];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];
     
@@ -418,7 +416,7 @@ NSString* const kMLStoreType = @"sqlite";
 #pragma mark -
 #pragma mark public API
 
-- (id)create: (Class) insertedClass {
+- (id)create:(Class) insertedClass {
     
     if ([NSStringFromClass(insertedClass) rangeOfString:@"User"].location == NSNotFound) {        
         return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(insertedClass) inManagedObjectContext:self.managedObjectContext];
@@ -428,7 +426,7 @@ NSString* const kMLStoreType = @"sqlite";
 
 }
 
-- (NSArray *)readAll: (Class) requestedClass {
+- (NSArray *)readAll:(Class) requestedClass {
     NSError *error = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
@@ -453,7 +451,7 @@ NSString* const kMLStoreType = @"sqlite";
     return results;
 }
 
-- (id)read: (Class) requestedClass withKey: (id) classKey andValue:(id) keyValue {    
+- (id)read:(Class) requestedClass withKey:(id) classKey andValue:(id) keyValue {    
     NSError *error = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
@@ -488,7 +486,7 @@ NSString* const kMLStoreType = @"sqlite";
 }
 
 
-- (void)delete: (id) object {
+- (void)delete:(id) object {
     
     @try {
         [self.managedObjectContext deleteObject: object];
@@ -501,7 +499,7 @@ NSString* const kMLStoreType = @"sqlite";
     
 }
 
-- (void)deleteReadWrite: (id) object {
+- (void)deleteReadWrite:(id) object {
     
     @try {
         [self.readWriteManagedObjectContext deleteObject: object];
@@ -531,11 +529,8 @@ NSString* const kMLStoreType = @"sqlite";
     if (error) {
         NSString *errorMessage = @"Core Data Read Only save failed: %@\n\n";
         [NSException raise:@"CoreDataSaveError" format:errorMessage, [error description]];
-        
     }
-    
 
-    
     @try {
         if ([self.readWriteManagedObjectContext hasChanges]) {
             [self.readWriteManagedObjectContext save: &error];
@@ -549,9 +544,7 @@ NSString* const kMLStoreType = @"sqlite";
     if (error) {
         NSString *errorMessage = @"Core Data Read Write save failed: %@\n\n";
         [NSException raise:@"CoreDataSaveError" format:errorMessage, [error description]];
-        
     }
-    
 } 
 
 -(void)dealloc {

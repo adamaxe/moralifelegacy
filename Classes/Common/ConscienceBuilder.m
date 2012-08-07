@@ -79,9 +79,9 @@ Implementation: Parse the XML document and feed the ConscienceBody based upon re
 	
 	//Set delegate
 	[xmlParser setDelegate:parser];
-	[xmlParser setShouldProcessNamespaces:NO]; // We don't care about namespaces
-	[xmlParser setShouldReportNamespacePrefixes:NO]; //
-	[xmlParser setShouldResolveExternalEntities:NO]; // We just want data, no other stuff
+	[xmlParser setShouldProcessNamespaces:NO];
+	[xmlParser setShouldReportNamespacePrefixes:NO];
+	[xmlParser setShouldResolveExternalEntities:NO];
 	
 	//Start parsing the XML file.
 	BOOL success = [xmlParser parse];

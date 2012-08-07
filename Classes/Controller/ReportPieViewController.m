@@ -18,7 +18,6 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
     
 	NSMutableDictionary *reportValues;		/**< */
 	NSMutableDictionary *moralDisplayNames;	/**< names to be displayed on list */
@@ -51,7 +50,6 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
  Retrieve all User entered Morals
  */
 - (void) retrieveChoices;
-//- (void) generatePieColors;
 
 /**
  Convert UserData into graphable data, create a GraphView
@@ -67,7 +65,6 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     //appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
         
     isGood = TRUE;
@@ -227,64 +224,57 @@ Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build
 		float currentValue = 0.0;
         
 		//Iterate through every UserChoice combining each entry
-		for (UserChoice *match in objects){
+		for (UserChoice *userChoiceMatch in objects){
             
-			NSNumber *choiceWeightTemp = [reportValues objectForKey:[match choiceMoral]];
+			NSNumber *choiceWeightTemp = [reportValues objectForKey:[userChoiceMatch choiceMoral]];
       
-			//See if a Choice has already been entered for particular Moral      
-            	if (choiceWeightTemp != nil) {
-            	   	currentValue = [choiceWeightTemp floatValue];
-            	} else {
-	                	currentValue = 0.0;
-            	}
-//            	currentValue = [[reportValues objectForKey:[match choiceMoral]] floatValue];
+			//See if a Choice has already been entered for particular Moral
+            if (choiceWeightTemp != nil) {
+                currentValue = [choiceWeightTemp floatValue];
+            } else {
+                currentValue = 0.0;
+            }
 
 			//Keep running of absolute value of Morals for percentage calculation
 			//Vices are stored as negative
-	            runningTotal += fabsf([[match choiceWeight] floatValue]);
-      	      currentValue += fabsf([[match choiceWeight] floatValue]);
+            runningTotal += fabsf([[userChoiceMatch choiceWeight] floatValue]);
+            currentValue += fabsf([[userChoiceMatch choiceWeight] floatValue]);
 
-	            [reportValues setValue:@(currentValue) forKey:[match choiceMoral]];
+            [reportValues setValue:@(currentValue) forKey:[userChoiceMatch choiceMoral]];
 
-            NSString *value = [match choiceMoral];            
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
+            NSString *moralName = [userChoiceMatch choiceMoral];
+            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralName];
             Moral *currentMoral = [currentMoralDAO read:@""];
-            
-            NSString *moralDisplayName = [[NSString alloc] initWithString:currentMoral.displayNameMoral];
-            NSString *moralName = [[NSString alloc] initWithString:value];
-            NSString *moralImageName = [[NSString alloc] initWithString:currentMoral.imageNameMoral];
-            NSString *moralColor = [[NSString alloc] initWithString:currentMoral.colorMoral];            
-            
-            [currentMoralDAO release];
-            
+
+            [moralDisplayNames setValue:currentMoral.displayNameMoral forKey:moralName];
+            [moralImageNames setValue:currentMoral.imageNameMoral forKey:moralName];
+
+            NSString *moralColor = [[NSString alloc] initWithString:currentMoral.colorMoral];
+
             //Moral color stored as hex, must convert to CGColorRef
             NSScanner *fillColorScanner = [[NSScanner alloc] initWithString:moralColor];
-            
+
             unsigned fillColorInt;
-            
-            [fillColorScanner scanHexInt:&fillColorInt]; 
-            
+
+            [fillColorScanner scanHexInt:&fillColorInt];
+
             //Bitshift each position to get 1-255 value
             //Divide value by 255 to get CGColorRef compatible value
             CGFloat red   = ((fillColorInt & 0xFF0000) >> 16) / 255.0f;
             CGFloat green = ((fillColorInt & 0x00FF00) >>  8) / 255.0f;
             CGFloat blue  =  (fillColorInt & 0x0000FF) / 255.0f;
-            
+
             UIColor *moralColorTemp = [[UIColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
-            
-            [moralDisplayNames setValue:moralDisplayName forKey:moralName];
-            [moralImageNames setValue:moralImageName forKey:moralName];
+
             [moralColors setValue:moralColorTemp forKey:moralName];
-            
+
+            [currentMoralDAO release];
             [moralColorTemp release];
             [fillColorScanner release];
             
-            [moralDisplayName release];
-            [moralName release];
-            [moralImageName release];
             [moralColor release];
 
-	        }
+        }
 		
 	}
 	
@@ -473,16 +463,12 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
     [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (void)dealloc {

@@ -52,8 +52,7 @@ Must override drawRect because custom drawing from a vector source is required
 	NSArray *layerKeys = [_totalLayers allKeys];
 	NSArray *sortedKeys = [layerKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 	
-	//Iterated through layers, drawing each.
-	//for (ConscienceLayer *layerElement in [totalLayers allValues]){
+	//Iterate through layers, drawing each.
 	ConscienceLayer *currentLayer;
 	
 	for (int i=0; i<[sortedKeys count]; i++) {
@@ -120,9 +119,8 @@ Must override drawRect because custom drawing from a vector source is required
 					CGColorSpaceRelease(conscienceColorSpace);
 					CGGradientRelease(conscienceGradient);
                     fillColor = @"000000";
-
-					
 				}
+                
 				/** @todo convert to function */
 				//Convert RGB color to CGColor
 				NSScanner *fillColorScanner = [NSScanner scannerWithString:fillColor];

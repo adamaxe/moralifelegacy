@@ -918,9 +918,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
-	NSLog(@"about to fail");
-    
-    // Release any cached data, images, etc that aren't in use.
+
 }
 
 - (void)viewDidUnload {

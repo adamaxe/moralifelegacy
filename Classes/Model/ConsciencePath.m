@@ -70,7 +70,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
  */
 - (void) convertToConsciencePath:(NSString *) pathData WithStyle:(NSString *) styleData{
 	
-    //SVG possesses path irritating "simplification" such that repeated instructions are omitted
+    //SVG possesses path simplification such that repeated instructions are omitted
 	//in various scenarios, and these repeated instructions do not even need to be contiguous.
 	//We must preserve the previous instruction in this case, so that we can add it
 	//in the event of a repeated instruction
@@ -85,7 +85,6 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 	Tokenize path data.
 	Path must be tokenized twice.  Once for instructions/coordinates.  Twice for X/Y components.
 	 */
-
 	for (NSString *element in [pathData componentsSeparatedByString:@" "]) {        
     
         NSCharacterSet *characterSet = [NSCharacterSet letterCharacterSet];
@@ -110,7 +109,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 			}
             
 		}else {		
-			//Determine irritating SVG path "simplification"
+			//Determine SVG path "simplification"
 			//M=0, L=1, C=2, Q=3, A=4
 			if ([element isEqualToString:@"M"]) {
 				currentPointLimit = 2;

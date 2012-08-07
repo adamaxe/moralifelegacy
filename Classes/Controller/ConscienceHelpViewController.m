@@ -119,8 +119,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         [helpAllTitles release];
         [helpAllTexts release];
     }
-        
-    
+
 	//Create NSArray of help screens.  Populate them programattically
 	NSArray *viewsArray = [[NSArray alloc] initWithObjects:screen1View, screen2View, screen3View, screen4View, screen5View, screen6View, nil];
 	int counter = 0;
@@ -163,8 +162,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     
     
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
-
-//	thoughtModalArea.alpha = 0;
 	
 	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
 	
@@ -231,7 +228,8 @@ Implementation: Hide or show a screen depending upon which page the User current
 Show reward views once User has completed dilemma and refuse access to previous screen versions.
  */
 -(void)changeScreen:(int) screenVersion {
-	
+
+    //TODO: Refactor screenViews to dynamic builds
 	UIView *viewSelection;
 	int buttonFactor = 0;
 	

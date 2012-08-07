@@ -1,3 +1,12 @@
+/**
+BaseDAO Superclass.  This class handles the interaction with the model.
+ 
+ @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @class BaseDAO
+ @date 06/09/2012
+ @file
+ */
+
 #import "ModelManager.h"
 
 @interface BaseDAO : NSObject

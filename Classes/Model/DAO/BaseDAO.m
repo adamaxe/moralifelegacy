@@ -24,6 +24,9 @@ NSString* const kContextReadWrite = @"readWrite";
     return [self initWithKey:nil andModelManager:[appDelegate moralModelManager] andClassType:kContextReadWrite];
 }
 
+#pragma mark -
+#pragma mark Public API
+
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType {
     
     self = [super init];
@@ -156,7 +159,7 @@ NSString* const kContextReadWrite = @"readWrite";
 }
 
 - (NSArray *)retrievePersistedObjects {
-    //Begin CoreData Retrieval			
+
 	NSError *outError;
 	
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:self.managedObjectClassName inManagedObjectContext:self.context];
