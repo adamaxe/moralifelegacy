@@ -23,14 +23,38 @@ Provides access to backing data store while obscuring details of stack.  Provide
 - (id)initWithInMemoryStore:(BOOL)isTransient;
 
 /**
- Provides ability to create an instance of a persisted managed object
+ Provides ability to create an instance of a persisted NSManagedObject
  @param insertedClass Class to be persisted
- @return id instance of class requestsed
+ @return id instance of class requested
  */
 - (id)create: (Class) insertedClass;
+
+/**
+ Provides ability to read all NSManagedObject of the requested type
+ @param requestedClass Class to be retrieved
+ @return NSArray array of instances of class requested
+ */
 - (NSArray *)readAll: (Class) requestedClass;
+
+/**
+ Provides ability to read a single NSManagedObject of the requested type and pkey
+ @param requestedClass Class to be retrieved
+ @param classKey id for fetchrequest key
+ @param keyValue id for fetchrequest value
+ @return id instance of class requested
+ */
 - (id)read: (Class) requestedClass withKey: (id) classKey andValue:(id) keyValue;
+
+/**
+ Provides ability to delete a single NSManagedObject instance from ReadOnly store
+ @param object id to be deleted
+ */
 - (void)delete: (id) object;
+
+/**
+ Provides ability to delete a single NSManagedObject instance from ReadWrite store
+ @param object id to be deleted
+ */
 - (void)deleteReadWrite: (id) object;
 
 /**

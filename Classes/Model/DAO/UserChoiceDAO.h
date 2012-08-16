@@ -1,3 +1,12 @@
+/**
+ UserChoice DAO subclass.  Readwrite MoraLife UserChoice that represents a User's action.
+
+ @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @class UserChoiceDAO
+ @date 08/16/2012
+ @file
+ */
+
 #import "BaseDAO.h"
 #import "UserChoice.h"
 

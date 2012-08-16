@@ -1,3 +1,9 @@
+/**
+ Implementation:  Read only interface to Character(s)
+
+ @class CharacterDAO CharacterDAO.h
+ */
+
 #import "CharacterDAO.h"
 #import "MoraLifeAppDelegate.h"
 
@@ -12,6 +18,7 @@
     
     return [self initWithKey:key andModelManager:[appDelegate moralModelManager]];
 }
+
 
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
     

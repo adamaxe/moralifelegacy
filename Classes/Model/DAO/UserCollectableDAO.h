@@ -1,3 +1,12 @@
+/**
+ UserCollectable DAO subclass.  Readwrite MoraLife UserCollectable that can be won/bought through Morathology or Commissary.
+
+ @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @class UserCollectableDAO
+ @date 08/16/2012
+ @file
+ */
+
 #import "BaseDAO.h"
 #import "UserCollectable.h"
 

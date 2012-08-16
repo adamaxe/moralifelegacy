@@ -37,7 +37,7 @@ NSString* const kContextReadWrite = @"readWrite";
 #pragma mark Public API
 
 /**
- Implementation: Default constructor.  Setup correct context type, instantiate ivars/props
+ Implementation: Default constructor.  Setup correct context type, instantiate ivars/props.  Dependency injection for the model manager allows for testing of all the DAOs
  */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType {
     
@@ -72,6 +72,9 @@ NSString* const kContextReadWrite = @"readWrite";
     
 }
 
+/**
+ Implementation: Insert an NSManagedObject into the ReadWrite store, otherwise, cancel the create
+ */
 - (id)createObject {
     if ([_classType isEqualToString:kContextReadWrite]) {
         return [NSEntityDescription insertNewObjectForEntityForName:self.managedObjectClassName inManagedObjectContext:self.context];   
@@ -170,6 +173,9 @@ NSString* const kContextReadWrite = @"readWrite";
     [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
 }
 
+/**
+ Implementation: Retrieve the current objects based upon the current predicate, object type and requested sort order
+ */
 - (NSArray *)retrievePersistedObjects {
 
 	NSError *outError;
