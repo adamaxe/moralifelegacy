@@ -83,15 +83,24 @@ NSString* const kContextReadWrite = @"readWrite";
     }
 }
 
+/**
+ Implementation: Read a single NSManagedObject from either Store based upon the key
+ */
 - (NSManagedObject *)readObject:(NSString *)key {
     return [self findPersistedObject:key];
 }
 
+/**
+ Implementation: Read all NSManagedObjects from either Store based upon the Class
+ */
 - (NSArray *)readAll {
     [self refreshData];    
     return self.persistedObjects;
 }
 
+/**
+ Implementation: Update the current, single NSManagedObject from the readWrite Store, otherwise fail
+ */
 - (BOOL)update {
     
     BOOL isUpdateSuccessful = FALSE;
@@ -112,6 +121,9 @@ NSString* const kContextReadWrite = @"readWrite";
     return isUpdateSuccessful;
 }
 
+/**
+ Implementation: Delete a single NSManagedObject from the readWrite Store, otherwise fail
+ */
 - (BOOL)delete:(NSManagedObject *)objectToDelete {
 
     BOOL isDeleteSuccessful = FALSE;
@@ -138,6 +150,9 @@ NSString* const kContextReadWrite = @"readWrite";
     return isDeleteSuccessful;
 }
 
+/**
+ Implementation: Count of current NSManagedObjects known to the DAO
+ */
 - (int)count {
     [self refreshData];
     return self.persistedObjects.count;
@@ -145,6 +160,10 @@ NSString* const kContextReadWrite = @"readWrite";
 
 #pragma mark -
 #pragma mark Private API
+
+/**
+ Implementation: Locate the requested NSManagedObject using a default predicate
+ */
 - (NSManagedObject *)findPersistedObject:(NSString *)key {
     
     [self refreshData];
@@ -168,6 +187,9 @@ NSString* const kContextReadWrite = @"readWrite";
     
 }
 
+/**
+ Implementation: Reload the NSManagedObjects known to DAO
+ */
 - (void)refreshData {
     [self.persistedObjects removeAllObjects];
     [self.persistedObjects addObjectsFromArray:[self retrievePersistedObjects]];
@@ -179,13 +201,14 @@ NSString* const kContextReadWrite = @"readWrite";
 - (NSArray *)retrievePersistedObjects {
 
 	NSError *outError;
-	
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:self.managedObjectClassName inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
 	[request setEntity:entityAssetDesc];
-    
+
+    //Get the default predicate
     NSMutableArray *currentPredicates = [[NSMutableArray alloc] initWithArray:self.predicates];
-    
+
+    //Determine if client requests a specific NSManagedObject
     if (![self.currentKey isEqualToString:@""]) {
 
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@", self.predicateDefaultName, self.currentKey];
@@ -197,6 +220,7 @@ NSString* const kContextReadWrite = @"readWrite";
 
     [currentPredicates release];
 
+    //Determine if client requests a specific sort order
 	if (self.sorts.count > 0) {
         [request setSortDescriptors:self.sorts];
     } else {

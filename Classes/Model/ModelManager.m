@@ -16,14 +16,14 @@
 
 @interface ModelManager () 
 
-@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;
-@property (nonatomic, retain) NSManagedObjectModel *readWriteManagedObjectModel;
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain) NSManagedObjectContext *readWriteManagedObjectContext;
-@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-@property (nonatomic, retain) NSPersistentStoreCoordinator *readWritePersistentStoreCoordinator;
-@property (nonatomic, retain) NSBundle *currentBundle;
-@property (nonatomic, retain) NSString *storeType;
+@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;             /**< readOnly NSManagedObjectModel */
+@property (nonatomic, retain) NSManagedObjectModel *readWriteManagedObjectModel;    /**< readWrite NSManagedObjectModel */
+@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;             /**< readOnly NSManagedObjectContext */
+@property (nonatomic, retain) NSManagedObjectContext *readWriteManagedObjectContext;    /**< readWrite NSManagedObjectContext */
+@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;             /**< readOnly NSPersistentStoreCoordinator */
+@property (nonatomic, retain) NSPersistentStoreCoordinator *readWritePersistentStoreCoordinator;    /**< readWrite NSManagedObjectContext */
+@property (nonatomic, retain) NSBundle *currentBundle;                                  /**< Bundle in which to look for the store */
+@property (nonatomic, retain) NSString *storeType;                                      /**< Store type of in-memory or sqlite */
 
 @end
 
@@ -32,11 +32,17 @@
 #pragma mark -
 #pragma mark Core Data stack
 
+/**
+If in-memory store type omitted, then sqlite is assumed
+ */
 - (id)init {
     
     return [self initWithInMemoryStore:NO];
 }
 
+/**
+Allows for testing of the Core Data stack by setting up either the real, sqlite persistent store or an in-memory version
+ */
 - (id)initWithInMemoryStore:(BOOL)isTransient {
     
     self = [super init];
@@ -59,7 +65,7 @@
 }
 
 /**
- Returns the managed object context for the application.
+ Returns the readonly managed object context for the application.
  If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
  */
 - (NSManagedObjectContext *)managedObjectContext {
@@ -95,7 +101,7 @@
 }
 
 /**
- Returns the managed object model for the application.
+ Returns the readonly managed object model for the application.
  If the model doesn't already exist, it is created from the application's model.
  */
 - (NSManagedObjectModel *)managedObjectModel {
@@ -385,7 +391,9 @@
     return _readWritePersistentStoreCoordinator;
 }
 
-
+/**
+Performs a migration from the legacy store with a merged model to the new store
+ */
 - (BOOL)migrateStore:(NSURL *)storeURL toMigratedStore:(NSURL *)destinationStoreURL withModel:(NSManagedObjectModel *) sourceModel andDestinationModel:(NSManagedObjectModel *)destinationModel error:(NSError **)outError {
     
     // Try to get an inferred mapping model.
@@ -416,6 +424,11 @@
 #pragma mark -
 #pragma mark public API
 
+/**
+Create a single NSManagedObject of the type Class.
+ Determine which store in which to create the Class.  All NSManagedObjects prefixed with User are assigned to the readWrite store.
+ */
+
 - (id)create:(Class) insertedClass {
     
     if ([NSStringFromClass(insertedClass) rangeOfString:@"User"].location == NSNotFound) {        
@@ -426,6 +439,10 @@
 
 }
 
+/**
+ Read all NSManagedObjects for the requested Class
+ Determine which store to read from based upon class.  All NSManagedObjects prefixed with User are assigned to the readWrite store
+ */
 - (NSArray *)readAll:(Class) requestedClass {
     NSError *error = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
@@ -451,6 +468,10 @@
     return results;
 }
 
+/**
+Read a single NSManagedObject
+ Determine which store to read from based upon class.  All NSManagedObjects prefixed with User are assigned to the readWrite store
+ */
 - (id)read:(Class) requestedClass withKey:(id) classKey andValue:(id) keyValue {    
     NSError *error = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
@@ -485,7 +506,9 @@
     }
 }
 
-
+/**
+ Delete an NSManagedObjectContext from the readOnly store
+ */
 - (void)delete:(id) object {
     
     @try {
@@ -499,6 +522,9 @@
     
 }
 
+/**
+Delete an NSManagedObjectContext from the readWrite store
+ */
 - (void)deleteReadWrite:(id) object {
     
     @try {
@@ -512,6 +538,9 @@
     
 }
 
+/**
+Save the current NSManagedObjectContext.  Allows for testing of the Core Data stack by throwing exceptions on save fails
+ */
 - (void)saveContext {
     
     NSError *error = nil;
