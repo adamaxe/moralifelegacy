@@ -9,6 +9,7 @@
  @file
  */
 
+@class ModelManager;
 @interface ReportPieModel : NSObject
 
 @property (nonatomic, assign) BOOL isGood;		/**< is current view for Virtues or Vices */
@@ -21,5 +22,11 @@
 @property (nonatomic, readonly, retain) NSMutableArray *pieColors;      /**< color assigned to moral for name/pie slice */
 @property (nonatomic, readonly, retain) NSMutableDictionary *moralImageNames;   /**< moral icon */
 
+/**
+Builds model with dependency injection
+ @param modelManager ModelManager for either production or testing
+ @return id ReportPieModel
+ */
+- (id)initWithModelManager:(ModelManager *) modelManager;
 
 @end

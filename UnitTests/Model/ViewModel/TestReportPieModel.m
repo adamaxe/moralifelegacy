@@ -9,32 +9,35 @@
  */
 
 #import "ReportPieModel.h"
+#import "ModelManager.h"
 
 @interface TestReportPieModel : SenTestCase {
     
     ReportPieModel *testingSubject;
-        
+    ModelManager *testModelManager;
+
 }
 
 @end
 
 @implementation TestReportPieModel
 
-//- (void)setUp {
-//    
-//    testingSubject = [[ReportPieModel alloc] init];
-//    
-//}
-//
-//- (void)testReportPieModelCanBeCreated {
-//        
-//    ReportPieModel *testingSubjectCreate = [[ReportPieModel alloc] init];
-//
-//    STAssertNotNil(testingSubjectCreate, @"ReportPieModel can't be created.");
-//    
-//    [testingSubjectCreate release];
-//    
-//}
+- (void)setUp {
+    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
+
+    testingSubject = [[ReportPieModel alloc] initWithModelManager:testModelManager];
+    
+}
+
+- (void)testReportPieModelCanBeCreated {
+        
+    ReportPieModel *testingSubjectCreate = [[ReportPieModel alloc] initWithModelManager:testModelManager];
+
+    STAssertNotNil(testingSubjectCreate, @"ReportPieModel can't be created.");
+    
+    [testingSubjectCreate release];
+    
+}
 
 @end
 

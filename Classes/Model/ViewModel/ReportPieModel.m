@@ -4,12 +4,16 @@
  @class ReportPieModel ReportPieModel.h
  */
 
+#import "MoraLifeAppDelegate.h"
 #import "ReportPieModel.h"
+#import "ModelManager.h"
 #import "UserChoiceDAO.h"
 #import "MoralDAO.h"
-#import "ModelManager.h"
 
 @interface ReportPieModel () {
+
+    UserChoiceDAO *currentUserChoiceDAO;    /**< current User Choices*/
+    MoralDAO *currentMoralDAO;              /**< retrieve morals User has utilized */
 
 	NSMutableDictionary *reportValues;		/**< Each moral assignment calculation to be aggregated*/
 	NSMutableDictionary *moralDisplayNames;	/**< display names from SystemData to be displayed on list */
@@ -40,6 +44,13 @@
 @implementation ReportPieModel
 
 - (id)init {
+    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
+    return [self initWithModelManager:[appDelegate moralModelManager]];
+}
+
+- (id)initWithModelManager:(ModelManager *) modelManager {
+
     self = [super init];
     if (self) {
         _isGood = TRUE;
@@ -54,10 +65,15 @@
         reportValues = [[NSMutableDictionary alloc] init];
         moralDisplayNames = [[NSMutableDictionary alloc] init];
         moralColors = [[NSMutableDictionary alloc] init];
+
+        currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:modelManager];
+        currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:modelManager];
+
     }
 
     [self generateGraphData];
     return self;
+
 }
 
 #pragma mark -
@@ -105,8 +121,6 @@
 	[self.reportNames removeAllObjects];
 	[self.moralNames removeAllObjects];
 
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-
 	//Retrieve virtue or vice
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@", @(self.isGood)];
 	currentUserChoiceDAO.predicates = @[pred];
@@ -137,8 +151,7 @@
             [reportValues setValue:@(currentValue) forKey:[userChoiceMatch choiceMoral]];
 
             NSString *moralName = [userChoiceMatch choiceMoral];
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralName];
-            Moral *currentMoral = [currentMoralDAO read:@""];
+            Moral *currentMoral = [currentMoralDAO read:moralName];
 
             [moralDisplayNames setValue:currentMoral.displayNameMoral forKey:moralName];
             [self.moralImageNames setValue:currentMoral.imageNameMoral forKey:moralName];
@@ -162,7 +175,6 @@
 
             [moralColors setValue:moralColorTemp forKey:moralName];
 
-            [currentMoralDAO release];
             [moralColorTemp release];
             [fillColorScanner release];
 
@@ -171,8 +183,6 @@
         }
 
 	}
-
-	[currentUserChoiceDAO release];
 
 }
 
@@ -259,6 +269,8 @@
     [_pieColors release];
     [_pieValues release];
     [_moralImageNames release];
+    [currentUserChoiceDAO release];
+    [currentMoralDAO release];
     [reportValues release];
     [moralDisplayNames release];
     [moralColors release];
