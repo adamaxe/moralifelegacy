@@ -34,7 +34,8 @@ var virtueSeveritySliderValue = (virtueSeverity * 100) + "%";
 var moralDescription = "Moral test description 1\n\nLine 2";
 var moralJustification = "Moral Justification test 1";
 var moralConsequence = "Moral Consequence test 1";
-var moralInfluence = 0.05;
+//var moralInfluence = 0.05;
+var moralInfluence = Math.floor(2/5);
 var moralInfluenceSliderValue = (moralInfluence * 100) + "%";
 
 var moralChoiceCancel = "Moral Choice Cancel 1";
@@ -43,7 +44,8 @@ var virtueSeveritySliderValueCancel = (virtueSeverityCancel * 100) + "%";
 var moralDescriptionCancel = "Moral test description 1\nCancel\nLine 2";
 var moralJustificationCancel = "Moral Justification Cancel 1";
 var moralConsequenceCancel = "Moral Consequence Cancel 1";
-var moralInfluenceCancel = 0.25;
+//var moralInfluenceCancel = 0.25;
+var moralInfluenceCancel = Math.floor(3/5);
 var moralInfluenceSliderValueCancel = (moralInfluenceCancel * 100) + "%";
 
 var immoralName = "Test immoral 1";
@@ -54,6 +56,7 @@ var immoralDescription = "Moral test description 1\n\nLine 2";
 var immoralJustification = "Immoral Justification test 1";
 var immoralConsequence = "Immoral Consequence test 1";
 var immoralInfluence = 0.20;
+//var immoralInfluence = Math.floor(4/5);
 var immoralInfluenceSliderValue = (immoralInfluence * 100) + "%";
 
 var immoralChoiceCancel = "Immoral Choice Cancel 1";
@@ -62,5 +65,6 @@ var viceSeveritySliderValueCancel = (viceSeverityCancel * 100) + "%";
 var immoralDescriptionCancel = "Immoral test description 1\nCancel\nLine 2";
 var immoralJustificationCancel = "Immoral Justification Cancel 1";
 var immoralConsequenceCancel = "Immoral Consequence Cancel 1";
-var immoralInfluenceCancel = 0.24;
+//var immoralInfluenceCancel = 0.24;
+var immoralInfluenceCancel = Math.floor(1/5);
 var immoralInfluenceSliderValueCancel = (immoralInfluenceCancel * 100) + "%";
