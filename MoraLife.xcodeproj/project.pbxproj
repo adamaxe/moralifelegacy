@@ -1284,6 +1284,9 @@
 		5E9CCE51124991C200A18428 /* con-glasses-round.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CCE4D124991C200A18428 /* con-glasses-round.svg */; };
 		5E9CCE52124991C200A18428 /* con-glasses-square.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CCE4E124991C200A18428 /* con-glasses-square.svg */; };
 		5E9CCE53124991C200A18428 /* con-science-binary.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CCE4F124991C200A18428 /* con-science-binary.svg */; };
+		5E9D259015DDF35D0097A5F0 /* ReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */; };
+		5E9D259115DDF35D0097A5F0 /* ReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */; };
+		5E9D259415DDF3AD0097A5F0 /* TestReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */; };
 		5E9DCD1B12824213001D926E /* con-crescent-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD1812824213001D926E /* con-crescent-sm.png */; };
 		5E9DCD3712824239001D926E /* card-cowardice.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD1F12824239001D926E /* card-cowardice.png */; };
 		5E9DCD3812824239001D926E /* card-immorality.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E9DCD2012824239001D926E /* card-immorality.png */; };
@@ -3012,6 +3015,9 @@
 		5E9CCE4D124991C200A18428 /* con-glasses-round.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-glasses-round.svg"; path = "Resources/images/conscience/con-glasses-round.svg"; sourceTree = "<group>"; };
 		5E9CCE4E124991C200A18428 /* con-glasses-square.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-glasses-square.svg"; path = "Resources/images/conscience/con-glasses-square.svg"; sourceTree = "<group>"; };
 		5E9CCE4F124991C200A18428 /* con-science-binary.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-binary.svg"; path = "Resources/images/conscience/con-science-binary.svg"; sourceTree = "<group>"; };
+		5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportPieModel.h; sourceTree = "<group>"; };
+		5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportPieModel.m; sourceTree = "<group>"; };
+		5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReportPieModel.m; sourceTree = "<group>"; };
 		5E9DCD1812824213001D926E /* con-crescent-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-crescent-sm.png"; path = "Resources/images/conscience/icons/con-crescent-sm.png"; sourceTree = "<group>"; };
 		5E9DCD1F12824239001D926E /* card-cowardice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-cowardice.png"; path = "Resources/images/interface/cards/card-cowardice.png"; sourceTree = "<group>"; };
 		5E9DCD2012824239001D926E /* card-immorality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-immorality.png"; path = "Resources/images/interface/cards/card-immorality.png"; sourceTree = "<group>"; };
@@ -4614,11 +4620,12 @@
 			isa = PBXGroup;
 			children = (
 				5EFC5A0B15940F3300E11A71 /* DAO */,
+				5EFED8DF1310E22D00F8EB0B /* Generated */,
+				5E9D258D15DDF35D0097A5F0 /* ViewModel */,
 				5EA26D641584351500CDA802 /* ModelManager.h */,
 				5EA26D651584351500CDA802 /* ModelManager.m */,
 				5E8FBE09138A136200173584 /* SystemData.sqlite */,
 				5E8FBE0A138A136200173584 /* UserData.sqlite */,
-				5EFED8DF1310E22D00F8EB0B /* Generated */,
 				5EF57BEE1218DE770053B97B /* ConscienceAccessories.h */,
 				5EF57BEF1218DE770053B97B /* ConscienceAccessories.m */,
 				5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */,
@@ -5208,6 +5215,7 @@
 			children = (
 				5E57613F1595975600E14606 /* DAO */,
 				5EBED2FE1548D5EC00AFE44D /* Generated */,
+				5E9D259215DDF3AD0097A5F0 /* ViewModel */,
 				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
 				5EA26D7215843DB600CDA802 /* TestModelManager.m */,
 				5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */,
@@ -5226,6 +5234,25 @@
 				5E99C5A613C542DC001F5CB8 /* TestConscienceHelpViewController.m */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		5E9D258D15DDF35D0097A5F0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */,
+				5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */,
+			);
+			name = ViewModel;
+			path = Model/ViewModel;
+			sourceTree = "<group>";
+		};
+		5E9D259215DDF3AD0097A5F0 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */,
+			);
+			name = ViewModel;
+			path = Model/ViewModel;
 			sourceTree = "<group>";
 		};
 		5EA1D228130E38A200BA81D6 /* UnitTests */ = {
@@ -7255,6 +7282,7 @@
 				5EC6463815AD23D0008E5CE3 /* UserDilemmaDAO.m in Sources */,
 				5EC6463C15B260FD008E5CE3 /* UserCollectableDAO.m in Sources */,
 				5EC6464415B31F58008E5CE3 /* BaseDAO.m in Sources */,
+				5E9D259015DDF35D0097A5F0 /* ReportPieModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7370,6 +7398,8 @@
 				5E5A930115B67031009F13ED /* TestUserCollectableDAO.m in Sources */,
 				5E5A930315B787DB009F13ED /* TestUserDilemmaDAO.m in Sources */,
 				5E5A930515B78AED009F13ED /* TestUserChoiceDAO.m in Sources */,
+				5E9D259115DDF35D0097A5F0 /* ReportPieModel.m in Sources */,
+				5E9D259415DDF3AD0097A5F0 /* TestReportPieModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

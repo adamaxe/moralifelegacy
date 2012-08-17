@@ -12,9 +12,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "ViewControllerLocalization.h"
 
 @interface ReferenceViewController () <MenuScreenAnimations, ViewControllerLocalization> {
-    
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-    
+        
 	IBOutlet UIButton *peopleLabelButton;		/**< label for People button */
 	IBOutlet UIButton *placesLabelButton;		/**< label for Places button */
 	IBOutlet UIButton *booksLabelButton;		/**< label for Books button */
@@ -53,10 +51,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 }
 
 - (void)viewDidLoad {
-    [super viewDidLoad];	
-
-	prefs = [NSUserDefaults standardUserDefaults];
-    
+    [super viewDidLoad];
     [self localizeUI];    
 
 }
@@ -85,6 +80,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 -(void)showInitialHelpScreen {
     
     //If this is the first time that the app, then show the intro
+
+	NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+
     NSObject *firstReferenceCheck = [prefs objectForKey:@"firstReference"];
     
     if (firstReferenceCheck == nil) {

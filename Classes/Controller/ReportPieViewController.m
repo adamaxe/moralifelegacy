@@ -13,29 +13,13 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "ModelManager.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
+#import "ReportPieModel.h"
 
 @interface ReportPieViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-    
-	NSMutableDictionary *reportValues;		/**< */
-	NSMutableDictionary *moralDisplayNames;	/**< names to be displayed on list */
-	NSMutableDictionary *moralImageNames;	/**< image file names for Moral */
-	NSMutableDictionary *moralColors;		/**< text color associated with Moral */
-    
-	NSString *reportName;				/**< label for name of the report */
-	float runningTotal;				/**< total of Moral Weight for calculation purposes */
+
 	IBOutlet UIView *thoughtModalArea;
-    
-	NSMutableArray *pieColors;		/**< all Moral colors in order */
-	NSMutableArray *pieValues;		/**< all degrees of circle in order */
-	NSMutableArray *reportNames;		
-	NSMutableArray *moralNames;
-    
-	BOOL isGood;		/**< is current view for Virtues or Vices */
-	BOOL isAscending;		/**< current order type */
-	BOOL isAlphabetical;	/**< current sort type */
 	
 	IBOutlet UIImageView *moralType;		/**< image to depict current status of view (Virtue/Vice) */
 	IBOutlet UIButton *moralTypeButton;		/**< button to switch between Virtue/Vice */
@@ -46,10 +30,11 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     IBOutlet UILabel *moralTypeLabel;       /**< is report virtue or vice */
 }
 
-/**
- Retrieve all User entered Morals
- */
-- (void) retrieveChoices;
+@property (nonatomic, retain) ReportPieModel *reportPieModel;
+@property (nonatomic, assign) BOOL isGood;		/**< is current view for Virtues or Vices */
+@property (nonatomic, assign) BOOL isAscending;		/**< current order type */
+@property (nonatomic, assign) BOOL isAlphabetical;	/**< current sort type */
+
 
 /**
  Convert UserData into graphable data, create a GraphView
@@ -60,25 +45,25 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 @implementation ReportPieViewController
 
+- (id)initWithModel:(ReportPieModel *)reportPieModel {
+    self = [super init];
+
+    if (self) {
+        _reportPieModel = [reportPieModel retain];
+        _isGood = TRUE;
+        _isAlphabetical = FALSE;
+        _isAscending = FALSE;
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //appDelegate needed to retrieve CoreData Context, prefs used to save form state
+    //appDelegate needed to place Conscience on screen
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	prefs = [NSUserDefaults standardUserDefaults];
         
-    isGood = TRUE;
-    isAlphabetical = FALSE;
-    isAscending = FALSE;
-            
-    reportValues = [[NSMutableDictionary alloc] init];
-    moralDisplayNames = [[NSMutableDictionary alloc] init];
-    moralImageNames = [[NSMutableDictionary alloc] init];
-    moralColors = [[NSMutableDictionary alloc] init];
-    pieValues = [[NSMutableArray alloc] init];
-    pieColors = [[NSMutableArray alloc] init];
-    reportNames = [[NSMutableArray alloc] init];
-    moralNames = [[NSMutableArray alloc] init];
     
     [self generateGraph];
     
@@ -107,6 +92,33 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 }
 
 #pragma mark -
+#pragma mark Overloaded Setters
+
+/* Whenever this isGood is changed from UI, model is informed of change */
+- (void) setIsGood:(BOOL) isGood {
+    if (_isGood != isGood) {
+        _isGood = isGood;
+        self.reportPieModel.isGood = isGood;
+    }
+}
+
+/* Whenever this isAlphabetical is changed from UI, model is informed of change */
+- (void) setIsAlphabetical:(BOOL) isAlphabetical {
+    if (_isAlphabetical != isAlphabetical) {
+        _isAlphabetical = isAlphabetical;
+        self.reportPieModel.isAlphabetical = isAlphabetical;
+    }
+}
+
+/* Whenever this isAscending is changed from UI, model is informed of change */
+- (void) setIsAscending:(BOOL)isAscending {
+    if (_isAscending != isAscending) {
+        _isAscending = isAscending;
+        self.reportPieModel.isAscending = isAscending;
+    }
+}
+
+#pragma mark -
 #pragma mark UI Interaction
 
 /**
@@ -115,6 +127,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 -(void)showInitialHelpScreen {
     
     //If this is the first time that the app, then show the intro
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
     NSObject *firstPieCheck = [prefs objectForKey:@"firstPie"];
     
     if (firstPieCheck == nil) {
@@ -145,32 +158,32 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
         
         switch (choiceIndex) {
             case 0:{    
-                if (isGood) {
-                    isGood = FALSE;
+                if (self.isGood) {
+                    self.isGood = FALSE;
                     [moralType setImage:[UIImage imageNamed:@"acc-pri-weapon-trident-sm.png"]];
                     [moralTypeLabel setText:@"Vice"];
                 } else {
-                    isGood = TRUE;
+                    self.isGood = TRUE;
                     [moralType setImage:[UIImage imageNamed:@"acc-top-halo-sm.png"]];
                     [moralTypeLabel setText:@"Virtue"];                
                 }
             } break;
             case 1:{    
-                if (isAlphabetical) {
-                    isAlphabetical = FALSE;
+                if (self.isAlphabetical) {
+                    self.isAlphabetical = FALSE;
                     [moralSortButton setTitle:@"%" forState: UIControlStateNormal];
                 } else {
-                    isAlphabetical = TRUE;
+                    self.isAlphabetical = TRUE;
                     [moralSortButton setTitle:@"A" forState: UIControlStateNormal];
                 }
             }
                 break;
             case 2:{    
-                if (isAscending) {
-                    isAscending = FALSE;
+                if (self.isAscending) {
+                    self.isAscending = FALSE;
                     [moralOrderButton setTitle:@"Des" forState: UIControlStateNormal];
                 } else {
-                    isAscending = TRUE;
+                    self.isAscending = TRUE;
                     [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
                     
                 }
@@ -194,175 +207,20 @@ Implementation: Pop UIViewController from navigation stack
 	
 }
 
-#pragma mark -
-#pragma mark Data Manipulation
-
-/**
-Implementation: Retrieve all UserChoice entries, retrieve Morals for each, build color for each Moral
- */
-- (void) retrieveChoices{
-	
-	//Reset data    
- 	[reportValues removeAllObjects];
-	[moralDisplayNames removeAllObjects];
-	[moralImageNames removeAllObjects];
-	[pieColors removeAllObjects];
-	[pieValues removeAllObjects];
-	[reportNames removeAllObjects];
-	[moralNames removeAllObjects];
-    
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-    
-	//Retrieve virtue or vice
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@", @(isGood)];
-	currentUserChoiceDAO.predicates = @[pred];
-	
-	NSArray *objects = [currentUserChoiceDAO readAll];
-    
-	if ([objects count] > 0) {
-        
-		float currentValue = 0.0;
-        
-		//Iterate through every UserChoice combining each entry
-		for (UserChoice *userChoiceMatch in objects){
-            
-			NSNumber *choiceWeightTemp = [reportValues objectForKey:[userChoiceMatch choiceMoral]];
-      
-			//See if a Choice has already been entered for particular Moral
-            if (choiceWeightTemp != nil) {
-                currentValue = [choiceWeightTemp floatValue];
-            } else {
-                currentValue = 0.0;
-            }
-
-			//Keep running of absolute value of Morals for percentage calculation
-			//Vices are stored as negative
-            runningTotal += fabsf([[userChoiceMatch choiceWeight] floatValue]);
-            currentValue += fabsf([[userChoiceMatch choiceWeight] floatValue]);
-
-            [reportValues setValue:@(currentValue) forKey:[userChoiceMatch choiceMoral]];
-
-            NSString *moralName = [userChoiceMatch choiceMoral];
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralName];
-            Moral *currentMoral = [currentMoralDAO read:@""];
-
-            [moralDisplayNames setValue:currentMoral.displayNameMoral forKey:moralName];
-            [moralImageNames setValue:currentMoral.imageNameMoral forKey:moralName];
-
-            NSString *moralColor = [[NSString alloc] initWithString:currentMoral.colorMoral];
-
-            //Moral color stored as hex, must convert to CGColorRef
-            NSScanner *fillColorScanner = [[NSScanner alloc] initWithString:moralColor];
-
-            unsigned fillColorInt;
-
-            [fillColorScanner scanHexInt:&fillColorInt];
-
-            //Bitshift each position to get 1-255 value
-            //Divide value by 255 to get CGColorRef compatible value
-            CGFloat red   = ((fillColorInt & 0xFF0000) >> 16) / 255.0f;
-            CGFloat green = ((fillColorInt & 0x00FF00) >>  8) / 255.0f;
-            CGFloat blue  =  (fillColorInt & 0x0000FF) / 255.0f;
-
-            UIColor *moralColorTemp = [[UIColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
-
-            [moralColors setValue:moralColorTemp forKey:moralName];
-
-            [currentMoralDAO release];
-            [moralColorTemp release];
-            [fillColorScanner release];
-            
-            [moralColor release];
-
-        }
-		
-	}
-	
-	[currentUserChoiceDAO release];
-	
-}
-
 /**
 Implementation:  Transform UserData entries of all Virtues/Vices into summation of weights for each Moral.
 Sum each summation of Moral into total of Virtue/Vice, then calculate percentage of each entry as percentage of whole
 Convert percentage to degrees out of 360.  Send values and colors to GraphView
 @todo needs to be optimized.  Don't generate sorted and reversed keys without need.  Check for empty first.
  */
-- (void) generateGraph {
-	//Reset running total before getting Choices
-	runningTotal = 0.0;
-    
-	//Get all choices
-	[self retrieveChoices];
-	    
-	float moralPercentage = 0.0;
-    
-	//Create raw, sorted and reversed versions of the keys for sorting/ordering options
-	NSArray *reportKeys = [reportValues allKeys];
-	NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
-	NSArray* reversedPercentages = [[sortedPercentages reverseObjectEnumerator] allObjects];
-
-	NSArray *sortedKeys = [reportKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-	NSArray *reversedKeys = [[sortedKeys reverseObjectEnumerator] allObjects];
-
-	NSArray *iteratorArray;
-    
-	//Determine sorting and ordering
-	if (isAlphabetical) {
-        
-		if (isAscending) {
-	            iteratorArray = reversedKeys;
-      	} else {
-			iteratorArray = sortedKeys;
-		}
-	} else {
-		if (isAscending) {
-            	iteratorArray = sortedPercentages;
-      	} else {
-	            iteratorArray = reversedPercentages;
-		}
-	}
-    
-	//Iterate through every User selection
-	for (NSString *moralInstance in iteratorArray) {
-
-		//Determine percentage of each entry in regards to every entry
-      	moralPercentage = ([[reportValues valueForKey:moralInstance] floatValue]/runningTotal);
-
-		//Convert percentage to degrees
-		[pieValues addObject:@(moralPercentage * 360)];
-
-		//Add report names for relation to table
-		[reportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", [moralDisplayNames objectForKey:moralInstance], moralPercentage * 100]];
-        
-		[pieColors addObject:[moralColors objectForKey:moralInstance]];
-
-		//Don't add Moral if it already exists in the display list        
-		if (![moralNames containsObject:moralInstance]) {
-			[moralNames addObject:moralInstance];
-		}
-
-	}
-    
-	//Account for no User entries
-	if ([iteratorArray count] == 0) {
-
-		if (isGood) {
-			[reportNames addObject:@"No Moral Entries!"];
-		} else {
-			[reportNames addObject:@"No Immoral Entries!"];
-		}
-        
-		[pieColors addObject:[UIColor redColor]];
-	}
-    
+- (void) generateGraph {    
 
 	//Create blank pie chart
 	GraphView *graph = [[GraphView alloc] initWithFrame:CGRectMake(0.0, 0.0, 240, 240)];
 
 	//Populate Graph with entries    
-	[graph setPieValues:pieValues];
-	[graph setPieColors:pieColors];
+	[graph setPieValues:self.reportPieModel.pieValues];
+	[graph setPieColors:self.reportPieModel.pieColors];
 
 	//Add new graph to view
 	[thoughtModalArea addSubview:graph];
@@ -385,7 +243,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [reportNames count];
+    return [self.reportPieModel.reportNames count];
 
 }
 
@@ -402,9 +260,9 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 		
     }
 	
-	[[cell textLabel] setText:[reportNames objectAtIndex:indexPath.row]];
+	[[cell textLabel] setText:[self.reportPieModel.reportNames objectAtIndex:indexPath.row]];
     
-    [[cell textLabel] setTextColor:[pieColors objectAtIndex:indexPath.row]];
+    [[cell textLabel] setTextColor:[self.reportPieModel.pieColors objectAtIndex:indexPath.row]];
     [[cell textLabel] setShadowColor:[UIColor lightGrayColor]];
     [[cell textLabel] setShadowOffset:CGSizeMake(1, 1)];
 
@@ -412,9 +270,9 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     [[cell textLabel] setNumberOfLines:1];
     [[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
     
-    if ([moralNames count] > 0) {
+    if ([self.reportPieModel.moralNames count] > 0) {
         
-        NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[moralImageNames objectForKey:[moralNames objectAtIndex:indexPath.row]]];
+        NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[self.reportPieModel.moralImageNames objectForKey:[self.reportPieModel.moralNames objectAtIndex:indexPath.row]]];
         [rowImageName appendString:@".png"];
         [[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
         [rowImageName release];
@@ -438,7 +296,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     
     NSString *titleName =[[NSString alloc] initWithFormat:@"%@",NSStringFromClass([self class])];
     
-    [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, isGood]), @"Title For View Controller")];
+    [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, self.isGood]), @"Title For View Controller")];
     [moralTypeLabel setText:@"Virtue"];                
     [titleName release];
     
@@ -472,20 +330,9 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 }
 
 - (void)dealloc {
-
-    [reportValues release];
-    [moralDisplayNames release];
-    [moralImageNames release];
-    [moralColors release];
-    [pieColors release];
-    [pieValues release];
-    [reportNames release];
-    [moralNames release];
-    
+    [_reportPieModel release];
     [previousButton release];
     [super dealloc];
-
-
 }
 
 

@@ -17,6 +17,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ConscienceAsset.h"
 #import "ConscienceHelpViewController.h"
 #import "ReportPieViewController.h"
+#import "ReportPieModel.h"
 
 @interface ConscienceModalViewController () {
     
@@ -411,7 +412,9 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 
 		switch (controllerID) {
 			case 2:{
-				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] init];
+                ReportPieModel *reportPieModel = [[ReportPieModel alloc] init];
+				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel];
+                [reportPieModel release];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
 				[self.navigationController pushViewController:reportPieViewCont animated:NO];

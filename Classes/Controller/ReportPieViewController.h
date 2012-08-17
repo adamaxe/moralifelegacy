@@ -9,7 +9,11 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 @file
  */
 
+@class ReportPieModel;
+
 @interface ReportPieViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> 
+
+- (id)initWithModel:(ReportPieModel *)reportPieModel;
 
 /**
 Accepts User input to graph display type (sort/order/virtue/vice)  
