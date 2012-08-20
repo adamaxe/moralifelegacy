@@ -9,6 +9,7 @@
 #import "ModelManager.h"
 #import "UserChoiceDAO.h"
 #import "MoralDAO.h"
+#import "UIColor+Utility.h"
 
 @interface ReportPieModel () {
 
@@ -158,25 +159,8 @@
 
             NSString *moralColor = [[NSString alloc] initWithString:currentMoral.colorMoral];
 
-            //Moral color stored as hex, must convert to CGColorRef
-            NSScanner *fillColorScanner = [[NSScanner alloc] initWithString:moralColor];
-
-            unsigned fillColorInt;
-
-            [fillColorScanner scanHexInt:&fillColorInt];
-
-            //Bitshift each position to get 1-255 value
-            //Divide value by 255 to get CGColorRef compatible value
-            CGFloat red   = ((fillColorInt & 0xFF0000) >> 16) / 255.0f;
-            CGFloat green = ((fillColorInt & 0x00FF00) >>  8) / 255.0f;
-            CGFloat blue  =  (fillColorInt & 0x0000FF) / 255.0f;
-
-            UIColor *moralColorTemp = [[UIColor alloc] initWithRed:red green:green blue:blue alpha:1.0];
-
+            UIColor *moralColorTemp = [UIColor colorWithHexString:moralColor];
             [moralColors setValue:moralColorTemp forKey:moralName];
-
-            [moralColorTemp release];
-            [fillColorScanner release];
 
             [moralColor release];
 

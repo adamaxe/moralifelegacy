@@ -1361,6 +1361,8 @@
 		5EAA21221307451000C1DB02 /* DilemmaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA21211307451000C1DB02 /* DilemmaViewController.m */; };
 		5EAA21261307498200C1DB02 /* DilemmaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA21241307498200C1DB02 /* DilemmaListViewController.m */; };
 		5EAA2129130749D700C1DB02 /* DilemmaListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EAA2128130749D700C1DB02 /* DilemmaListView.xib */; };
+		5EAA72EE15E19FA500656390 /* UIColor+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA72ED15E19FA500656390 /* UIColor+Utility.m */; };
+		5EAA72EF15E19FA500656390 /* UIColor+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA72ED15E19FA500656390 /* UIColor+Utility.m */; };
 		5EAC469A13A3354700074374 /* sur-class-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469813A3354700074374 /* sur-class-sm.png */; };
 		5EAC469B13A3354700074374 /* sur-classchalk-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469913A3354700074374 /* sur-classchalk-sm.png */; };
 		5EAC469E13A3355900074374 /* sur-class.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469C13A3355900074374 /* sur-class.png */; };
@@ -3106,6 +3108,8 @@
 		5EAA21231307498200C1DB02 /* DilemmaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DilemmaListViewController.h; sourceTree = "<group>"; };
 		5EAA21241307498200C1DB02 /* DilemmaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DilemmaListViewController.m; sourceTree = "<group>"; };
 		5EAA2128130749D700C1DB02 /* DilemmaListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DilemmaListView.xib; path = Resources/DilemmaListView.xib; sourceTree = "<group>"; };
+		5EAA72EC15E19FA500656390 /* UIColor+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Utility.h"; path = "Common/UIColor+Utility.h"; sourceTree = "<group>"; };
+		5EAA72ED15E19FA500656390 /* UIColor+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Utility.m"; path = "Common/UIColor+Utility.m"; sourceTree = "<group>"; };
 		5EAC469813A3354700074374 /* sur-class-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class-sm.png"; sourceTree = "<group>"; };
 		5EAC469913A3354700074374 /* sur-classchalk-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-classchalk-sm.png"; sourceTree = "<group>"; };
 		5EAC469C13A3355900074374 /* sur-class.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class.png"; sourceTree = "<group>"; };
@@ -3642,14 +3646,16 @@
 		5E02EC6211FE663900F159B4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5EE7FD0B12E8B22200ABDBEC /* ConscienceBuilder.h */,
+				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
 				5E3E8802122609B600F2708A /* Constants.h */,
 				5E3E8803122609B600F2708A /* Constants.m */,
 				5E3E8804122609B600F2708A /* XMLParser.h */,
 				5E3E8805122609B600F2708A /* XMLParser.m */,
-				5EE7FD0B12E8B22200ABDBEC /* ConscienceBuilder.h */,
-				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
 				5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */,
 				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
+				5EAA72EC15E19FA500656390 /* UIColor+Utility.h */,
+				5EAA72ED15E19FA500656390 /* UIColor+Utility.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -7283,6 +7289,7 @@
 				5EC6463C15B260FD008E5CE3 /* UserCollectableDAO.m in Sources */,
 				5EC6464415B31F58008E5CE3 /* BaseDAO.m in Sources */,
 				5E9D259015DDF35D0097A5F0 /* ReportPieModel.m in Sources */,
+				5EAA72EE15E19FA500656390 /* UIColor+Utility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7400,6 +7407,7 @@
 				5E5A930515B78AED009F13ED /* TestUserChoiceDAO.m in Sources */,
 				5E9D259115DDF35D0097A5F0 /* ReportPieModel.m in Sources */,
 				5E9D259415DDF3AD0097A5F0 /* TestReportPieModel.m in Sources */,
+				5EAA72EF15E19FA500656390 /* UIColor+Utility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

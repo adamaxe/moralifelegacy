@@ -10,6 +10,7 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 #import <QuartzCore/QuartzCore.h>
 #import "ConscienceBubbleView.h"
 #import "ConscienceBubbleFactory.h"
+#import "UIColor+Utility.h"
 
 @implementation ConscienceBubbleView
 
@@ -36,36 +37,15 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 - (void)drawRect:(CGRect)rect {
 	//Create graphics context
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	
-	/** @todo convert to function */
-	//Convert hex color to CG compatible values
-	//i.e. #RRGGBBAA = R, G, B, A
-	//e.g. #FFFFFFFF = 1,1,1,1
-
-	//Convert String to Hex values
-	NSScanner *fillColorScanner = [NSScanner scannerWithString:_bubbleColor];
-
-	unsigned fillColorInt;
-
-	[fillColorScanner scanHexInt:&fillColorInt]; 
-
-	//Bitshift each position to get 1-255 value
-	//Divide value by 255 to get CGColorRef compatible value
-	CGFloat red   = ((fillColorInt & 0xFF0000) >> 16) / 255.0f;
-	CGFloat green = ((fillColorInt & 0x00FF00) >>  8) / 255.0f;
-	CGFloat blue  =  (fillColorInt & 0x0000FF) / 255.0f;
 
 	//Shadow offset set to 0,0 to mimic a glow around Conscience
 	CGSize shadowOffset = CGSizeMake (0,  0);
 
 	//Create shadow witout offset
-	CGFloat colorValues[4] = {red,green,blue,1}; 	
-	CGColorRef bubbleColorCG;
-	CGColorRef shadowColor;	
-	CGColorSpaceRef colorSpace;
+	CGColorRef bubbleColorCG = [UIColor colorWithHexString:_bubbleColor].CGColor;
+	CGColorRef shadowColor;
+	CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
 	
-	colorSpace = CGColorSpaceCreateDeviceRGB ();
-	bubbleColorCG = CGColorCreate (colorSpace, colorValues);
 	CGContextSetShadowWithColor (context, shadowOffset, 5, bubbleColorCG);
 	
 	CGContextSaveGState(context);
@@ -117,7 +97,6 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 	CGContextFillPath(context);
     	
 	//Release objects
-	CGColorRelease (bubbleColorCG);
 	CGColorSpaceRelease (colorSpace);
 	
 	//Restore context before animation

@@ -11,6 +11,7 @@ ConscienceObjectView draws via Core Graphics these points when provided the draw
 #import "ConscienceLayer.h"
 #import "ConsciencePath.h"
 #import "ConscienceGradient.h"
+#import "UIColor+Utility.h"
 
 @implementation ConscienceObjectView
 
@@ -120,40 +121,23 @@ Must override drawRect because custom drawing from a vector source is required
 					CGGradientRelease(conscienceGradient);
                     fillColor = @"000000";
 				}
-                
-				/** @todo convert to function */
-				//Convert RGB color to CGColor
-				NSScanner *fillColorScanner = [NSScanner scannerWithString:fillColor];
 
-				unsigned fillColorInt;
-				
-				[fillColorScanner scanHexInt:&fillColorInt]; 
-				
-				CGFloat red   = ((fillColorInt & 0xFF0000) >> 16) / 255.0f;
-				CGFloat green = ((fillColorInt & 0x00FF00) >>  8) / 255.0f;
-				CGFloat blue  =  (fillColorInt & 0x0000FF) / 255.0f;
-				
-				CGFloat dynamicFillColor[4]    = {red,green,blue,currentPath.pathFillOpacity}; 
-				
-				CGContextSetFillColor (context,dynamicFillColor);
-				
+                UIColor *fillColorUIColor = [UIColor colorWithHexString:fillColor alpha:currentPath.pathFillOpacity];
+                CGContextSetFillColorWithColor(context, fillColorUIColor.CGColor);
+
+
 				CGContextFillPath(context);
-				
+
 				//Stroke the path
 				CGContextAddPath(context, _dynamicPath);
-				NSScanner *strokeColorScanner = [NSScanner scannerWithString:currentPath.pathStrokeColor];
-				
-                unsigned strokeColor;
-				[strokeColorScanner scanHexInt:&strokeColor]; 
-				red   = ((strokeColor & 0xFF0000) >> 16) / 255.0f;
-				green = ((strokeColor & 0x00FF00) >>  8) / 255.0f;
-				blue  =  (strokeColor & 0x0000FF) / 255.0f;		
-				
-				CGFloat dynamicStrokeColor[4] = {red,green,blue,currentPath.pathStrokeOpacity};
+
+                UIColor *strokeColorUIColor = [UIColor colorWithHexString:currentPath.pathStrokeColor alpha:currentPath.pathStrokeOpacity];
+
 				CGContextSetLineWidth(context, currentPath.pathStrokeWidth);
-				CGContextSetStrokeColor(context, dynamicStrokeColor);
-				
+                CGContextSetStrokeColorWithColor(context, strokeColorUIColor.CGColor);
+
 				CGContextStrokePath(context);
+
                 //Close path
                 CGPathCloseSubpath(_dynamicPath);
 				CGPathRelease(_dynamicPath);
