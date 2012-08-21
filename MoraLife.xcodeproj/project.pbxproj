@@ -1284,6 +1284,7 @@
 		5E9CCE51124991C200A18428 /* con-glasses-round.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CCE4D124991C200A18428 /* con-glasses-round.svg */; };
 		5E9CCE52124991C200A18428 /* con-glasses-square.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CCE4E124991C200A18428 /* con-glasses-square.svg */; };
 		5E9CCE53124991C200A18428 /* con-science-binary.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E9CCE4F124991C200A18428 /* con-science-binary.svg */; };
+		5E9D161B15E31E9A003AC018 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9D161315E31E9A003AC018 /* libOCMock.a */; };
 		5E9D259015DDF35D0097A5F0 /* ReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */; };
 		5E9D259115DDF35D0097A5F0 /* ReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */; };
 		5E9D259415DDF3AD0097A5F0 /* TestReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */; };
@@ -3017,6 +3018,13 @@
 		5E9CCE4D124991C200A18428 /* con-glasses-round.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-glasses-round.svg"; path = "Resources/images/conscience/con-glasses-round.svg"; sourceTree = "<group>"; };
 		5E9CCE4E124991C200A18428 /* con-glasses-square.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-glasses-square.svg"; path = "Resources/images/conscience/con-glasses-square.svg"; sourceTree = "<group>"; };
 		5E9CCE4F124991C200A18428 /* con-science-binary.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-science-binary.svg"; path = "Resources/images/conscience/con-science-binary.svg"; sourceTree = "<group>"; };
+		5E9D161315E31E9A003AC018 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libOCMock.a; sourceTree = "<group>"; };
+		5E9D161515E31E9A003AC018 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		5E9D161615E31E9A003AC018 /* OCMArg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		5E9D161715E31E9A003AC018 /* OCMConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		5E9D161815E31E9A003AC018 /* OCMock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		5E9D161915E31E9A003AC018 /* OCMockObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		5E9D161A15E31E9A003AC018 /* OCMockRecorder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportPieModel.h; sourceTree = "<group>"; };
 		5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportPieModel.m; sourceTree = "<group>"; };
 		5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReportPieModel.m; sourceTree = "<group>"; };
@@ -3530,6 +3538,7 @@
 				5EA1D225130E38A200BA81D6 /* UIKit.framework in Frameworks */,
 				5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */,
 				5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */,
+				5E9D161B15E31E9A003AC018 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5242,6 +5251,28 @@
 			name = Controller;
 			sourceTree = "<group>";
 		};
+		5E9D161215E31E9A003AC018 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				5E9D161315E31E9A003AC018 /* libOCMock.a */,
+				5E9D161415E31E9A003AC018 /* OCMock */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		5E9D161415E31E9A003AC018 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				5E9D161515E31E9A003AC018 /* NSNotificationCenter+OCMAdditions.h */,
+				5E9D161615E31E9A003AC018 /* OCMArg.h */,
+				5E9D161715E31E9A003AC018 /* OCMConstraint.h */,
+				5E9D161815E31E9A003AC018 /* OCMock.h */,
+				5E9D161915E31E9A003AC018 /* OCMockObject.h */,
+				5E9D161A15E31E9A003AC018 /* OCMockRecorder.h */,
+			);
+			path = OCMock;
+			sourceTree = "<group>";
+		};
 		5E9D258D15DDF35D0097A5F0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -5267,6 +5298,7 @@
 				5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */,
 				5E99C5A113C542B0001F5CB8 /* Controller */,
 				5E99C5A013C542AC001F5CB8 /* Model */,
+				5E9D161215E31E9A003AC018 /* Libraries */,
 				5E99C59F13C5429E001F5CB8 /* View */,
 				5EA1D229130E38A200BA81D6 /* Supporting Files */,
 				5EB2FEDC1596849600CAF1DD /* MoraLifeBaseUnitTest.m */,
@@ -7516,7 +7548,7 @@
 		5E9FEA80138E09AC00AB6645 /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				CURRENT_PROJECT_VERSION = 1.2.3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7530,11 +7562,18 @@
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/UnitTests/Libraries";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Libraries\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-force_load",
+					"$(SRCROOT)/UnitTests/Libraries/libOCMock.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
@@ -7546,7 +7585,7 @@
 		5EA1D233130E38A200BA81D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CURRENT_PROJECT_VERSION = 1.2.3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -7561,11 +7600,18 @@
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/UnitTests/Libraries";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Libraries\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-force_load",
+					"$(SRCROOT)/UnitTests/Libraries/libOCMock.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
@@ -7578,7 +7624,7 @@
 		5EA1D234130E38A200BA81D6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CODE_SIGN_IDENTITY = "";
 				CURRENT_PROJECT_VERSION = 1.2.3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -7592,11 +7638,18 @@
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/UnitTests/Libraries";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Libraries\"",
+				);
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
+					"-force_load",
+					"$(SRCROOT)/UnitTests/Libraries/libOCMock.a",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;

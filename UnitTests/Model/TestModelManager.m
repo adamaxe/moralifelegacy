@@ -26,15 +26,7 @@
     NSString *moralTypeVirtueExtra;
     NSString *nameMoral3;
     NSString *moralTypeAll;
-    
-    NSString *imageName;
-    NSString *color;
-    NSString *displayName;
-    NSString *longDescription;
-    NSString *component;
-    NSString *link;
-    NSString *definition;
-    
+
 }
 
 @end
@@ -43,8 +35,8 @@
 
 - (void)setUp {
     
-    testingSubject = [[ModelManager alloc] initWithInMemoryStore:YES];    
-    
+    testingSubject = [[ModelManager alloc] initWithInMemoryStore:YES];
+
     moralTypeVirtue = @"Virtue";
     nameMoral1 = @"Virtue Name1";
     moralTypeVice = @"Vice";
@@ -52,51 +44,10 @@
     moralTypeVirtueExtra = @"Virtue";
     nameMoral3 = @"Virtue Name3";
     moralTypeAll = @"all";
-    
-    imageName = @"imageName";
-    color = @"color";
-    displayName = @"displayName";
-    longDescription = @"longDescription";
-    component = @"component";
-    link = @"link";
-    definition = @"definition"; 
-    
-    testMoral1 = [testingSubject create:Moral.class];
-    testMoral2 = [testingSubject create:Moral.class];
-    testMoral3 = [testingSubject create:Moral.class];
-    
-    testMoral1.shortDescriptionMoral = moralTypeVirtue;
-    testMoral1.nameMoral = nameMoral1;
-    
-    testMoral2.shortDescriptionMoral = moralTypeVice;
-    testMoral2.nameMoral = nameMoral2;
-    
-    testMoral3.shortDescriptionMoral = moralTypeVirtueExtra;
-    testMoral3.nameMoral = nameMoral3;
-    
-    testMoral1.imageNameMoral = imageName;
-    testMoral1.colorMoral = color;
-    testMoral1.displayNameMoral = displayName;
-    testMoral1.longDescriptionMoral = longDescription;
-    testMoral1.component = component;
-    testMoral1.linkMoral = link;
-    testMoral1.definitionMoral = definition;
-    
-    testMoral2.imageNameMoral = imageName;
-    testMoral2.colorMoral = color;
-    testMoral2.displayNameMoral = displayName;
-    testMoral2.longDescriptionMoral = longDescription;
-    testMoral2.component = component;
-    testMoral2.linkMoral = link;
-    testMoral2.definitionMoral = definition;
-    
-    testMoral3.imageNameMoral = imageName;
-    testMoral3.colorMoral = color;
-    testMoral3.displayNameMoral = displayName;
-    testMoral3.longDescriptionMoral = longDescription;
-    testMoral3.component = component;
-    testMoral3.linkMoral = link;
-    testMoral3.definitionMoral = definition;
+
+    testMoral1 = [self createMoralWithName:nameMoral1 withType:moralTypeVirtue];
+    testMoral2 = [self createMoralWithName:nameMoral2 withType:moralTypeVice];
+    testMoral3 = [self createMoralWithName:nameMoral3 withType:moralTypeAll];
     
     [testingSubject saveContext];
 }
@@ -112,18 +63,9 @@
 }
 
 - (void)testNSManagedObjectCanBeCreated {
-    
-    Moral *testMoral4 = [testingSubject create:Moral.class];
-    testMoral4.shortDescriptionMoral = moralTypeVirtue;
-    testMoral4.nameMoral = @"nameMoral4";
-    testMoral4.imageNameMoral = imageName;
-    testMoral4.colorMoral = color;
-    testMoral4.displayNameMoral = displayName;
-    testMoral4.longDescriptionMoral = longDescription;
-    testMoral4.component = component;
-    testMoral4.linkMoral = link;
-    testMoral4.definitionMoral = definition;
-    
+
+    Moral *testMoral4 = [self createMoralWithName:@"nameMoral4" withType:moralTypeVirtue];
+
     STAssertNoThrow([testingSubject saveContext], @"Object can't be created.");
 
     NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
@@ -161,6 +103,35 @@
     NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
     STAssertFalse([retrievedMorals containsObject:testMoral3], @"Object was not deleted.");
 
+}
+
+- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type {
+
+    NSString *imageName = @"imageName";
+    NSString *color = @"color";
+    NSString *displayName = @"displayName";
+    NSString *longDescription = @"longDescription";
+    NSString *component = @"component";
+    NSString *link = @"link";
+    NSString *definition = @"definition";
+
+    Moral *moral1 = [testingSubject create:Moral.class];
+
+    moral1.shortDescriptionMoral = type;
+    moral1.nameMoral = moralName;
+
+    moral1.imageNameMoral = imageName;
+    moral1.colorMoral = color;
+    moral1.displayNameMoral = displayName;
+    moral1.longDescriptionMoral = longDescription;
+    moral1.component = component;
+    moral1.linkMoral = link;
+    moral1.definitionMoral = definition;
+
+    [testingSubject saveContext];
+
+    return moral1;
+    
 }
 
 @end

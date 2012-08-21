@@ -159,8 +159,7 @@
 
             NSString *moralColor = [[NSString alloc] initWithString:currentMoral.colorMoral];
 
-            UIColor *moralColorTemp = [UIColor colorWithHexString:moralColor];
-            [moralColors setValue:moralColorTemp forKey:moralName];
+            [moralColors setValue:[UIColor colorWithHexString:moralColor] forKey:moralName];
 
             [moralColor release];
 

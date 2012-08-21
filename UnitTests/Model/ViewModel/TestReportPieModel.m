@@ -10,13 +10,18 @@
 
 #import "ReportPieModel.h"
 #import "ModelManager.h"
+#import "Moral.h"
 
 @interface TestReportPieModel : SenTestCase {
     
     ReportPieModel *testingSubject;
     ModelManager *testModelManager;
-    
 
+    Moral *virtue1;
+    Moral *virtue2;
+    Moral *vice1;
+    Moral *vice2;
+    Moral *vice3;
 }
 
 @end
@@ -26,72 +31,68 @@
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
 
-//    nameMoral1 = @"Virtue Name1";
-//    nameMoral2 = @"Vice Name2";
-//    nameMoral3 = @"Virtue Name3";
-//
-//    moralTypeVirtue = @"Virtue";
-//    moralTypeVice = @"Vice";
-//    moralTypeVirtueExtra = @"Virtue";
-//    imageName = @"imageName";
-//    color = @"color";
-//    displayName = @"displayName";
-//    longDescription = @"longDescription";
-//    component = @"component";
-//    link = @"link";
-//    definition = @"definition";
-//
-//    testMoral1 = [testModelManager create:Moral.class];
-//    testMoral2 = [testModelManager create:Moral.class];
-//    testMoral3 = [testModelManager create:Moral.class];
-//
-//    testMoral1.shortDescriptionMoral = moralTypeVirtue;
-//    testMoral1.nameMoral = nameMoral1;
-//
-//    testMoral2.shortDescriptionMoral = moralTypeVice;
-//    testMoral2.nameMoral = nameMoral2;
-//
-//    testMoral3.shortDescriptionMoral = moralTypeVirtueExtra;
-//    testMoral3.nameMoral = nameMoral3;
-//
-//    testMoral1.imageNameMoral = imageName;
-//    testMoral1.colorMoral = color;
-//    testMoral1.displayNameMoral = displayName;
-//    testMoral1.longDescriptionMoral = longDescription;
-//    testMoral1.component = component;
-//    testMoral1.linkMoral = link;
-//    testMoral1.definitionMoral = definition;
-//
-//    testMoral2.imageNameMoral = imageName;
-//    testMoral2.colorMoral = color;
-//    testMoral2.displayNameMoral = displayName;
-//    testMoral2.longDescriptionMoral = longDescription;
-//    testMoral2.component = component;
-//    testMoral2.linkMoral = link;
-//    testMoral2.definitionMoral = definition;
-//
-//    testMoral3.imageNameMoral = imageName;
-//    testMoral3.colorMoral = color;
-//    testMoral3.displayNameMoral = displayName;
-//    testMoral3.longDescriptionMoral = longDescription;
-//    testMoral3.component = component;
-//    testMoral3.linkMoral = link;
-//    testMoral3.definitionMoral = definition;
+    virtue1 = [self createMoralWithName:@"Virtue1" withType:@"Virtue"];
+    virtue2 = [self createMoralWithName:@"Virtue2" withType:@"Virtue"];
+    vice1 = [self createMoralWithName:@"Vice1" withType:@"Vice"];
+    vice2 = [self createMoralWithName:@"Vice2" withType:@"Vice"];
+    vice3 = [self createMoralWithName:@"Vice3" withType:@"Vice"];
 
     [testModelManager saveContext];
-
 
     testingSubject = [[ReportPieModel alloc] initWithModelManager:testModelManager];
 
 }
 
 - (void)testReportPieModelCanBeCreated {
-        
+
     ReportPieModel *testingSubjectCreate = [[ReportPieModel alloc] initWithModelManager:testModelManager];
 
     STAssertNotNil(testingSubjectCreate, @"ReportPieModel can't be created.");
-    
+
+    STAssertTrue(testingSubjectCreate.isGood, @"ReportPieModel isn't good by default");
+
     [testingSubjectCreate release];
+    
+}
+
+- (void)testReportPieModelDefaultValuesAreSetCorrectly {
+
+    STAssertTrue(testingSubject.isGood, @"ReportPieModel isn't good by default");
+    STAssertFalse(testingSubject.isAlphabetical, @"ReportPieModel is alpha incorrectly by default");
+    STAssertFalse(testingSubject.isAscending, @"ReportPieModel is ascending incorrectly by default");
+
+}
+
+//- (void)testWhenNoUserVirtuesArePresentReportIsEmpty {
+//
+//}
+
+- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type {
+
+    NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
+    NSString *color = @"#FF00FF";
+    NSString *displayName = @"displayName";
+    NSString *longDescription = @"longDescription";
+    NSString *component = @"component";
+    NSString *link = @"link";
+    NSString *definition = @"definition";
+
+    Moral *testMoral1 = [testModelManager create:Moral.class];
+
+    testMoral1.shortDescriptionMoral = type;
+    testMoral1.nameMoral = moralName;
+
+    testMoral1.imageNameMoral = imageName;
+    testMoral1.colorMoral = color;
+    testMoral1.displayNameMoral = displayName;
+    testMoral1.longDescriptionMoral = longDescription;
+    testMoral1.component = component;
+    testMoral1.linkMoral = link;
+    testMoral1.definitionMoral = definition;
+
+    [testModelManager saveContext];
+
+    return testMoral1;
     
 }
 
