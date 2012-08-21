@@ -63,9 +63,20 @@
 
 }
 
-//- (void)testWhenNoUserVirtuesArePresentReportIsEmpty {
-//
-//}
+- (void)testWhenNoUserVirtuesArePresentReportIsEmpty {
+
+    STAssertEqualObjects([testingSubject.reportNames objectAtIndex:0], @"No Moral Entries!", @"Empty Virtue name is incorrect");
+
+}
+
+- (void)testWhenNoUserVicesArePresentReportIsEmpty {
+
+    testingSubject.isGood = FALSE;
+    
+    STAssertEqualObjects([testingSubject.reportNames objectAtIndex:0], @"No Immoral Entries!", @"Empty Vice name is incorrect");
+    
+}
+
 
 - (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type {
 
