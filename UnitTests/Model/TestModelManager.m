@@ -107,26 +107,18 @@
 
 - (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type {
 
-    NSString *imageName = @"imageName";
-    NSString *color = @"color";
-    NSString *displayName = @"displayName";
-    NSString *longDescription = @"longDescription";
-    NSString *component = @"component";
-    NSString *link = @"link";
-    NSString *definition = @"definition";
-
     Moral *moral1 = [testingSubject create:Moral.class];
 
     moral1.shortDescriptionMoral = type;
     moral1.nameMoral = moralName;
 
-    moral1.imageNameMoral = imageName;
-    moral1.colorMoral = color;
-    moral1.displayNameMoral = displayName;
-    moral1.longDescriptionMoral = longDescription;
-    moral1.component = component;
-    moral1.linkMoral = link;
-    moral1.definitionMoral = definition;
+    moral1.imageNameMoral =  @"imageName";
+    moral1.colorMoral = @"#FF00FF";
+    moral1.displayNameMoral = @"displayName";
+    moral1.longDescriptionMoral = @"longDescription";
+    moral1.component = @"component";
+    moral1.linkMoral = @"link";
+    moral1.definitionMoral = @"definition";
 
     [testingSubject saveContext];
 

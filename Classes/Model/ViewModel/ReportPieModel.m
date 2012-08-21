@@ -210,39 +210,41 @@
 		}
 	}
 
-	//Iterate through every User selection
-	for (NSString *moralInstance in iteratorArray) {
+    //Account for no User entries
+    if ([iteratorArray count] == 0) {
 
-		//Determine percentage of each entry in regards to every entry
-      	moralPercentage = ([[reportValues valueForKey:moralInstance] floatValue]/runningTotal);
+        if (self.isGood) {
+            [self.reportNames addObject:@"No Moral Entries!"];
+        } else {
+            [self.reportNames addObject:@"No Immoral Entries!"];
+        }
 
-		//Convert percentage to degrees
-		[self.pieValues addObject:@(moralPercentage * 360)];
+        [self.pieColors addObject:[UIColor redColor]];
+    } else {
 
-		//Add report names for relation to table
-		[self.reportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", [moralDisplayNames objectForKey:moralInstance], moralPercentage * 100]];
+        //Iterate through every User selection
+        for (NSString *moralInstance in iteratorArray) {
 
-		[self.pieColors addObject:[moralColors objectForKey:moralInstance]];
+            //Determine percentage of each entry in regards to every entry
+            moralPercentage = ([[reportValues valueForKey:moralInstance] floatValue]/runningTotal);
 
-		//Don't add Moral if it already exists in the display list
-		if (![self.moralNames containsObject:moralInstance]) {
-			[self.moralNames addObject:moralInstance];
-		}
+            //Convert percentage to degrees
+            [self.pieValues addObject:@(moralPercentage * 360)];
 
-	}
+            //Add report names for relation to table
+            [self.reportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", [moralDisplayNames objectForKey:moralInstance], moralPercentage * 100]];
 
-	//Account for no User entries
-	if ([iteratorArray count] == 0) {
+            [self.pieColors addObject:[moralColors objectForKey:moralInstance]];
 
-		if (self.isGood) {
-			[self.reportNames addObject:@"No Moral Entries!"];
-		} else {
-			[self.reportNames addObject:@"No Immoral Entries!"];
-		}
+            //Don't add Moral if it already exists in the display list
+            if (![self.moralNames containsObject:moralInstance]) {
+                [self.moralNames addObject:moralInstance];
+            }
+            
+        }
+    }
 
-		[self.pieColors addObject:[UIColor redColor]];
-	}
-    
+
 }
 
 - (void)dealloc {
