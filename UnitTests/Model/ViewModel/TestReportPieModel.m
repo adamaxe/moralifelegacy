@@ -160,27 +160,7 @@
     NSArray *expectedMorals = @[virtue2Name, virtue1Name];
     NSArray *expectedValues = @[@(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
 
-
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
-
-        NSString *moralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(moralName, [expectedMorals objectAtIndex:i], @"Moral Names are not in correct ascending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct ascending order");
-//        Moral *moral = [self readMoralWithName:moralName];
-//        UIColor *color = [UIColor colorWithHexString:moral.colorMoral];
-//        STAssertTrue([color isEqual:[testingSubject.pieColors objectAtIndex:i]],  @"Moral Colors are not in correct ascending order");
-
-
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct ascending order");
-    }
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
 
 }
 
@@ -195,22 +175,7 @@
     NSArray *expectedMorals = @[virtue1Name, virtue2Name];
     NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0)];
 
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
-
-        NSString *moralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(moralName, [expectedMorals objectAtIndex:i], @"Moral Names are not in correct descending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct descending order");
-
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct descending order");
-    }
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
     
 }
 
@@ -225,22 +190,8 @@
     NSArray *expectedMorals = @[virtue1Name, virtue2Name];
     NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0)];
 
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
 
-        NSString *moralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(moralName, [expectedMorals objectAtIndex:i], @"Moral Names are not in correct ascending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct ascending order");
-
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct ascending order");
-    }
 
 }
 
@@ -255,22 +206,7 @@
     NSArray *expectedMorals = @[virtue2Name, virtue1Name];
     NSArray *expectedValues = @[@(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
 
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
-
-        NSString *moralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(moralName, [expectedMorals objectAtIndex:i], @"Moral Names are not in correct descending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct descending order");
-
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct descending order");
-    }
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
     
 }
 
@@ -286,22 +222,7 @@
     NSArray *expectedValues = @[@(vice3Weight/total * 360.0), @(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
 
 
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
-
-        NSString *immoralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(immoralName, [expectedMorals objectAtIndex:i], @"Immoral Names are not in correct ascending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", immoralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:immoralName], imageName, @"Immoral Image Names are not in correct ascending order");
-
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Immoral Values are not in correct ascending order");
-    }
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
     
 }
 
@@ -316,21 +237,7 @@
     NSArray *expectedMorals = @[vice1Name, vice2Name, vice3Name];
     NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0), @(vice3Weight/total * 360.0)];
     
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
-
-        NSString *immoralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(immoralName, [expectedMorals objectAtIndex:i], @"Immoral Names are not in correct descending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", immoralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:immoralName], imageName, @"Immoral Image Names are not in correct descending order");
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Immoral Values are not in correct descending order");
-    }
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
     
 }
 
@@ -345,20 +252,7 @@
     NSArray *expectedMorals = @[vice1Name, vice2Name, vice3Name];
     NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0), @(vice3Weight/total * 360.0)];
 
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
-        NSString *immoralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(immoralName, [expectedMorals objectAtIndex:i], @"Immoral Names are not in correct ascending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", immoralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:immoralName], imageName, @"Immoral Image Names are not in correct ascending order");
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Immoral Values are not in correct ascending order");
-    }
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
 
 }
 
@@ -373,22 +267,7 @@
     NSArray *expectedMorals = @[vice3Name, vice2Name, vice1Name];
     NSArray *expectedValues = @[@(vice3Weight/total * 360.0), @(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
 
-    for (int i = 0; i < testingSubject.moralNames.count; i++) {
-
-        NSString *immoralName = [testingSubject.moralNames objectAtIndex:i];
-
-        STAssertEqualObjects(immoralName, [expectedMorals objectAtIndex:i], @"Immoral Names are not in correct descending order");
-
-        NSString *imageName = [NSString stringWithFormat:@"%@imageName", immoralName];
-
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:immoralName], imageName, @"Immoral Image Names are not in correct descending order");
-
-    }
-
-    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Immoral Values are not in correct descending order");
-    }
+    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
     
 }
 
@@ -435,6 +314,28 @@
 
     return testChoice1;
     
+}
+
+- (void)assertCorrectOrder:(NSArray *)expectedMorals expectedValues:(NSArray *)expectedValues {
+    for (int i = 0; i < testingSubject.moralNames.count; i++) {
+
+        NSString *moralName = [testingSubject.moralNames objectAtIndex:i];
+
+        STAssertEqualObjects(moralName, [expectedMorals objectAtIndex:i], @"Moral Names are not in correct order");
+
+        NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
+
+        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct order");
+
+//        Moral *moral = [self readMoralWithName:moralName];
+//        UIColor *color = [UIColor colorWithHexString:moral.colorMoral];
+//        STAssertTrue([color isEqual:[testingSubject.pieColors objectAtIndex:i]],  @"Moral Colors are not in correct ascending order");
+    }
+
+    for (int i = 0; i < testingSubject.pieValues.count; i++) {
+
+        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct order");
+    }
 }
 
 @end
