@@ -316,7 +316,7 @@
     
 }
 
-- (void)assertCorrectOrder:(NSArray *)expectedMorals expectedValues:(NSArray *)expectedValues {
+- (void)assertCorrectOrder:(NSArray *)expectedMorals expectedValues:(NSArray *)expectedValues{
     for (int i = 0; i < testingSubject.moralNames.count; i++) {
 
         NSString *moralName = [testingSubject.moralNames objectAtIndex:i];

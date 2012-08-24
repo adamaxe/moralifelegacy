@@ -977,6 +977,7 @@
 		5E70EEE411C31BEB0010FBD7 /* pictureframe-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */; };
 		5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */; };
 		5E7180C215E70D4200250935 /* ChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */; };
+		5E7180C615E71AEA00250935 /* TestChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C515E71AEA00250935 /* TestChoiceHistoryModel.m */; };
 		5E7191D412206AEF000A3508 /* UINavigationBar-Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */; };
 		5E7378C3122A1F18004301D3 /* con-crescent-nose.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7378C1122A1F18004301D3 /* con-crescent-nose.svg */; };
 		5E73B1B1125969460039A577 /* cardback.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73B199125969460039A577 /* cardback.png */; };
@@ -2717,6 +2718,7 @@
 		5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pictureframe-landscape.png"; path = "Resources/images/interface/pictureframe-landscape.png"; sourceTree = "<group>"; };
 		5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHistoryModel.h; sourceTree = "<group>"; };
 		5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryModel.m; sourceTree = "<group>"; };
+		5E7180C515E71AEA00250935 /* TestChoiceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChoiceHistoryModel.m; sourceTree = "<group>"; };
 		5E7191CF12206AEF000A3508 /* UINavigationBar-Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar-Transparent.h"; path = "View/UINavigationBar-Transparent.h"; sourceTree = "<group>"; };
 		5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar-Transparent.m"; path = "View/UINavigationBar-Transparent.m"; sourceTree = "<group>"; };
 		5E7378C1122A1F18004301D3 /* con-crescent-nose.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-crescent-nose.svg"; path = "Resources/images/conscience/con-crescent-nose.svg"; sourceTree = "<group>"; };
@@ -5292,6 +5294,7 @@
 		5E9D259215DDF3AD0097A5F0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5E7180C515E71AEA00250935 /* TestChoiceHistoryModel.m */,
 				5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */,
 			);
 			name = ViewModel;
@@ -7448,6 +7451,7 @@
 				5E9D259415DDF3AD0097A5F0 /* TestReportPieModel.m in Sources */,
 				5EAA72EF15E19FA500656390 /* UIColor+Utility.m in Sources */,
 				5E7180C215E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
+				5E7180C615E71AEA00250935 /* TestChoiceHistoryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
