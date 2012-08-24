@@ -20,6 +20,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "ReferenceDetailViewController.h"
 #import "UserCollectableDAO.h"
 #import "ChoiceHistoryViewController.h"
+#import "ChoiceHistoryModel.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceViewController () <ViewControllerLocalization> {
@@ -364,8 +365,10 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// Create the root view controller for the navigation controller
 	// The new view controller configures a Cancel and Done button for the
 	// navigation bar.
-	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] init];
-    
+    ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel];
+    [choiceHistoryModel release];
+
 	[moralReferenceButton setAlpha:0];
 	[moralImageView setAlpha:0];
     

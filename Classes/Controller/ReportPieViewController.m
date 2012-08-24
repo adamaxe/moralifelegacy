@@ -6,11 +6,8 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 #import "ReportPieViewController.h"
 #import "GraphView.h"
-#import "UserChoiceDAO.h"
-#import "MoralDAO.h"
 #import "ConscienceView.h"
 #import "MoraLifeAppDelegate.h"
-#import "ModelManager.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
 #import "ReportPieModel.h"

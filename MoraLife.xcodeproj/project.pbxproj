@@ -975,6 +975,8 @@
 		5E6BA4F515B920290008825D /* systemTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E6BA4F215B920290008825D /* systemTests.sh */; };
 		5E6BA4F615B920290008825D /* systemTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E6BA4F215B920290008825D /* systemTests.sh */; };
 		5E70EEE411C31BEB0010FBD7 /* pictureframe-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */; };
+		5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */; };
+		5E7180C215E70D4200250935 /* ChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */; };
 		5E7191D412206AEF000A3508 /* UINavigationBar-Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */; };
 		5E7378C3122A1F18004301D3 /* con-crescent-nose.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7378C1122A1F18004301D3 /* con-crescent-nose.svg */; };
 		5E73B1B1125969460039A577 /* cardback.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73B199125969460039A577 /* cardback.png */; };
@@ -2713,6 +2715,8 @@
 		5E6ABF86126D48AD0045FC4F /* interface-selectionbox-horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-selectionbox-horizontal.png"; path = "Resources/images/interface/interface-selectionbox-horizontal.png"; sourceTree = "<group>"; };
 		5E6BA4F215B920290008825D /* systemTests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = systemTests.sh; sourceTree = "<group>"; };
 		5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pictureframe-landscape.png"; path = "Resources/images/interface/pictureframe-landscape.png"; sourceTree = "<group>"; };
+		5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHistoryModel.h; sourceTree = "<group>"; };
+		5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryModel.m; sourceTree = "<group>"; };
 		5E7191CF12206AEF000A3508 /* UINavigationBar-Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar-Transparent.h"; path = "View/UINavigationBar-Transparent.h"; sourceTree = "<group>"; };
 		5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar-Transparent.m"; path = "View/UINavigationBar-Transparent.m"; sourceTree = "<group>"; };
 		5E7378C1122A1F18004301D3 /* con-crescent-nose.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-crescent-nose.svg"; path = "Resources/images/conscience/con-crescent-nose.svg"; sourceTree = "<group>"; };
@@ -5278,6 +5282,8 @@
 			children = (
 				5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */,
 				5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */,
+				5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */,
+				5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */,
 			);
 			name = ViewModel;
 			path = Model/ViewModel;
@@ -7322,6 +7328,7 @@
 				5EC6464415B31F58008E5CE3 /* BaseDAO.m in Sources */,
 				5E9D259015DDF35D0097A5F0 /* ReportPieModel.m in Sources */,
 				5EAA72EE15E19FA500656390 /* UIColor+Utility.m in Sources */,
+				5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7440,6 +7447,7 @@
 				5E9D259115DDF35D0097A5F0 /* ReportPieModel.m in Sources */,
 				5E9D259415DDF3AD0097A5F0 /* TestReportPieModel.m in Sources */,
 				5EAA72EF15E19FA500656390 /* UIColor+Utility.m in Sources */,
+				5E7180C215E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

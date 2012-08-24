@@ -10,26 +10,16 @@
 
 #import "ChoiceHistoryViewController.h"
 #import "MoraLifeAppDelegate.h"
-#import "ModelManager.h"
 #import "ChoiceViewController.h"
 #import "ConscienceView.h"
-#import "UserChoiceDAO.h"
-#import "MoralDAO.h"
+#import "ChoiceHistoryModel.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceHistoryViewController () <ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
-    
-	//Raw data of all entered choices
-	NSMutableArray *choices;			/**< Array of User-entered choice titles */
-	NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
-	NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
-	NSMutableArray *details;			/**< Array of User-entered details */
-	NSMutableArray *icons;				/**< Array of associated images */
-    
+
 	//Data for filtering/searching sourced from raw data
 	NSMutableArray *dataSource;			/**< array for storing of Choices populated from previous view*/
 	NSMutableArray *tableData;			/**< array for stored data displayed in table populated from dataSource */
@@ -44,10 +34,12 @@
     IBOutlet UIView *thoughtArea;			/**< area in which thought bubble appears */
 	IBOutlet UIButton *previousButton;		/**< return to previous page */    
     
-	NSMutableString *choiceSortDescriptor;	/**< sort descriptor for filtering Core Data */
-	BOOL isAscending;					/**< is data ascending or descending order */
-    BOOL isVirtue;
 }
+
+@property (nonatomic, retain) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
+@property (nonatomic, assign) BOOL isGood;		/**< is current view for Virtues or Vices */
+@property (nonatomic, assign) BOOL isAscending;		/**< current order type */
+
 
 /**
  Retrieve all User entered Choices
@@ -73,18 +65,26 @@
 #pragma mark -
 #pragma mark View lifecycle
 
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel {
+    self = [super init];
+
+    if (self) {
+        _choiceHistoryModel = [choiceHistoryModel retain];
+        _isGood = TRUE;
+        _isAscending = FALSE;
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
     
-	//Set default listing and sort order
-	isAscending = FALSE;
-	choiceSortDescriptor = [[NSMutableString alloc] initWithString:kChoiceListSortDate];
-    
+	//Set default listing and sort order    
 	choiceSearchBar.barStyle = UIBarStyleBlack;
 	choiceSearchBar.delegate = self;
 	choiceSearchBar.showsCancelButton = NO;
@@ -102,19 +102,12 @@
 	NSObject *boolCheck = [prefs objectForKey:@"entryIsGood"];
 	
 	if (boolCheck != nil) {
-		isVirtue = [prefs boolForKey:@"entryIsGood"];
+		self.isGood = [prefs boolForKey:@"entryIsGood"];
 		
 	}else {
-		isVirtue = TRUE;
+		self.isGood = TRUE;
 	}
-    
-	//Initialize raw data containers
-	choices = [[NSMutableArray alloc] init];			
-	icons = [[NSMutableArray alloc] init];			
-	details = [[NSMutableArray alloc] init];
-	choiceKeys = [[NSMutableArray alloc] init];
-	choicesAreGood = [[NSMutableArray alloc] init];
-    
+        
 	//Initialize filtered data containers
 	dataSource = [[NSMutableArray alloc] init];
 	tableData = [[NSMutableArray alloc] init];
@@ -184,6 +177,25 @@
 }
 
 #pragma mark -
+#pragma mark Overloaded Setters
+
+/* Whenever this isGood is changed from UI, model is informed of change */
+- (void) setIsGood:(BOOL) isGood {
+    if (_isGood != isGood) {
+        _isGood = isGood;
+        self.choiceHistoryModel.isGood = isGood;
+    }
+}
+
+/* Whenever this isAscending is changed from UI, model is informed of change */
+- (void) setIsAscending:(BOOL)isAscending {
+    if (_isAscending != isAscending) {
+        _isAscending = isAscending;
+        self.choiceHistoryModel.isAscending = isAscending;
+    }
+}
+
+#pragma mark -
 #pragma mark UI Interaction
 
 /**
@@ -229,96 +241,20 @@
 - (void) retrieveAllChoices {
 	
 	//Clear all datasets
-	[choices removeAllObjects];
-	[choiceKeys removeAllObjects];
-	[choicesAreGood removeAllObjects];
-	[icons removeAllObjects];
-	[details removeAllObjects];
-	
 	[dataSource removeAllObjects];
 	[tableData removeAllObjects];
 	[tableDataImages removeAllObjects];
 	[tableDataKeys removeAllObjects];
 	[tableDataDetails removeAllObjects];
 	[tableDataColorBools removeAllObjects];
-	
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-    
-    NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
-
-	//Ensure that Choices created during Morathology sessions are not displayed here
-	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
-	//@see DilemmaViewController
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@ AND NOT entryKey contains[cd] %@", @(isVirtue), predicateParam];
-	currentUserChoiceDAO.predicates = @[pred];
-	[predicateParam release];
-    
-	NSSortDescriptor* sortDescriptor;
-    
-	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:choiceSortDescriptor ascending:isAscending];
-    
-    NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
-	currentUserChoiceDAO.sorts = sortDescriptors;
-	[sortDescriptor release];
-    [sortDescriptors release];
-	
-	NSArray *objects = [currentUserChoiceDAO readAll];
-	
-	if ([objects count] > 0) {
-
-		//Build raw data list to be filtered by second data container set
-		for (UserChoice *matches in objects){
-            
-			[choices addObject:[matches entryShortDescription]];
-		 	[choiceKeys addObject:[matches entryKey]];
-			[choicesAreGood addObject:@([[matches entryIsGood] boolValue])];
-            
-			//Detailed text is name of Moral, Weight, Date, Long Description
-			NSMutableString *detailText = [[NSMutableString alloc] init];
-            
-			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
-			NSString *value = [matches choiceMoral];
-				
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
-
-			Moral *currentMoral = [currentMoralDAO read:value];
-							
-            //Display image and moral name
-            [icons addObject:[currentMoral imageNameMoral]];
-            [detailText appendString:[currentMoral displayNameMoral]];
-            
-            [currentMoralDAO release];
-            
-			//Display date last modified for sorting
-            NSDate *modificationDate = [matches entryModificationDate];
-            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"MM-dd"];
-            
-            [detailText appendFormat:@" %@", [dateFormat stringFromDate:modificationDate]];
-            
-            [dateFormat release];
-            
-			//If longDescription is empty, do not show colon separating
-            if (![[matches entryLongDescription] isEqualToString:@""]) {
-                [detailText appendFormat:@": %@", [matches entryLongDescription]];
-            }
-            
-			//Populate details array with constructed detail
-            [details addObject:detailText];
-			[detailText release];
-            
-		}
-	}
-	
-	[currentUserChoiceDAO release];
-	
+		
 	//Populate datasource arrays for filtering
-	[dataSource addObjectsFromArray:choices];
+	[dataSource addObjectsFromArray:self.choiceHistoryModel.choices];
 	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:icons];
-	[tableDataKeys addObjectsFromArray:choiceKeys];
-	[tableDataDetails addObjectsFromArray:details];
-	[tableDataColorBools addObjectsFromArray:choicesAreGood];
+	[tableDataImages addObjectsFromArray:self.choiceHistoryModel.icons];
+	[tableDataKeys addObjectsFromArray:self.choiceHistoryModel.choiceKeys];
+	[tableDataDetails addObjectsFromArray:self.choiceHistoryModel.details];
+	[tableDataColorBools addObjectsFromArray:self.choiceHistoryModel.choicesAreGood];
     
 	[choicesTableView reloadData];
 	
@@ -328,39 +264,39 @@
  Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceViewController to read
  */
 - (void) retrieveChoice:(NSString *) choiceKey {
-	
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
-	        
-    UserChoice *match = [currentUserChoiceDAO read:choiceKey];
-    
-    //Set state retention for eventual call to ChoiceViewController to pick up
-//		[prefs setObject:[match entryKey] forKey:@"entryKey"];
-    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
-    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
-    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
-    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
-    
-    
-    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
-    
-    Moral *currentMoral = [currentMoralDAO read:@""];
-
-    [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
-    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-    [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
-    
-    [currentMoralDAO release];
-	
-	[currentUserChoiceDAO release];
-    
-    id placeHolder = nil;
-    
-    [self dismissChoiceModal:placeHolder];
-
+//
+//    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
+//	        
+//    UserChoice *match = [currentUserChoiceDAO read:choiceKey];
+//    
+//    //Set state retention for eventual call to ChoiceViewController to pick up
+////		[prefs setObject:[match entryKey] forKey:@"entryKey"];
+//    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
+//    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
+//    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
+//    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
+//    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
+//    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
+//    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+//    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
+//    
+//    
+//    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
+//    
+//    Moral *currentMoral = [currentMoralDAO read:@""];
+//
+//    [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
+//    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+//    [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
+//    
+//    [currentMoralDAO release];
+//	
+//	[currentUserChoiceDAO release];
+//    
+//    id placeHolder = nil;
+//    
+//    [self dismissChoiceModal:placeHolder];
+//
 }
 
 #pragma mark -
@@ -477,8 +413,8 @@
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeMorals = [[[icons objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+		NSRange searchRangeDetails = [[[self.choiceHistoryModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+		NSRange searchRangeMorals = [[[self.choiceHistoryModel.icons objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 		
 		//A match was found in row name, details or moral
 		if(searchRange.location != NSNotFound)
@@ -496,11 +432,11 @@
 			//{
 			
 			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:[choices objectAtIndex:counter]];
-			[tableDataImages addObject:[icons objectAtIndex:counter]];
-			[tableDataDetails addObject:[details objectAtIndex:counter]];
-			[tableDataKeys addObject:[choiceKeys objectAtIndex:counter]];
-            [tableDataColorBools addObject:[choicesAreGood objectAtIndex:counter]];
+			[tableData addObject:[self.choiceHistoryModel.choices objectAtIndex:counter]];
+			[tableDataImages addObject:[self.choiceHistoryModel.icons objectAtIndex:counter]];
+			[tableDataDetails addObject:[self.choiceHistoryModel.details objectAtIndex:counter]];
+			[tableDataKeys addObject:[self.choiceHistoryModel.choiceKeys objectAtIndex:counter]];
+            [tableDataColorBools addObject:[self.choiceHistoryModel.choicesAreGood objectAtIndex:counter]];
             
 			//}
 		}
@@ -532,10 +468,10 @@
     
     
 	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:icons];
-	[tableDataDetails addObjectsFromArray:details];
-	[tableDataKeys addObjectsFromArray:choiceKeys];
-	[tableDataColorBools addObjectsFromArray:choicesAreGood];
+	[tableDataImages addObjectsFromArray:self.choiceHistoryModel.icons];
+	[tableDataDetails addObjectsFromArray:self.choiceHistoryModel.details];
+	[tableDataKeys addObjectsFromArray:self.choiceHistoryModel.choiceKeys];
+	[tableDataColorBools addObjectsFromArray:self.choiceHistoryModel.choicesAreGood];
     
     
 	@try{
@@ -590,13 +526,9 @@
 	[tableDataDetails release];
 	[tableDataKeys release];
 	[dataSource release];	
-	[choices release], choices = nil;
-	[choiceKeys release], choiceKeys = nil;
-	[details release], details = nil;
-	[icons release], icons = nil;
-	[choicesAreGood release], choicesAreGood = nil;
-	[choiceSortDescriptor release];
-    
+
+    [_choiceHistoryModel release];
+
 	[super dealloc];
 }
 

@@ -13,6 +13,11 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 
 @interface ReportPieViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> 
 
+/**
+ Dependency injection constructor to pass model
+ @param reportPieModel ReportPieModel handling business logic
+ @return id instance of ReportPieViewController
+ */
 - (id)initWithModel:(ReportPieModel *)reportPieModel;
 
 /**

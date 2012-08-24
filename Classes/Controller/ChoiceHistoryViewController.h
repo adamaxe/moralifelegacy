@@ -11,7 +11,16 @@
  @file
  */
 
+@class ChoiceHistoryModel;
+
 @interface ChoiceHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> 
+
+/**
+ Dependency injection constructor to pass model
+ @param choiceHistoryModel ChoiceHistoryModel handling business logic
+ @return id instance of ChoiceHistoryModel
+ */
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel;
 
 /**
  Accepts User Input to remove modal screen
