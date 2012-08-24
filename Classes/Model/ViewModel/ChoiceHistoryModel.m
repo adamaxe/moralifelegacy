@@ -12,6 +12,11 @@
 @property (nonatomic, readwrite, retain) NSMutableArray *details;			/**< Array of User-entered details */
 @property (nonatomic, readwrite, retain) NSMutableArray *icons;				/**< Array of associated images */
 
+/**
+ Retrieve all User entered Choices
+ */
+- (void) retrieveAllChoices;
+
 @end
 
 @implementation ChoiceHistoryModel
@@ -145,6 +150,43 @@
 
 	[currentUserChoiceDAO release];
 }
+
+/**
+ Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceViewController to read
+ */
+- (void) retrieveChoice:(NSString *) choiceKey {
+
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
+
+    UserChoice *match = [currentUserChoiceDAO read:choiceKey];
+
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+
+    //Set state retention for eventual call to ChoiceViewController to pick up
+//		[prefs setObject:[match entryKey] forKey:@"entryKey"];
+    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
+    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];
+    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
+    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];
+    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];
+    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
+    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
+
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
+
+    Moral *currentMoral = [currentMoralDAO read:@""];
+
+    [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
+    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
+    [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
+
+    [currentMoralDAO release];
+
+	[currentUserChoiceDAO release];
+
+}
+
 
 -(void)dealloc {
 

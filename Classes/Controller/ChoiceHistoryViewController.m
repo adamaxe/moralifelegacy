@@ -37,20 +37,6 @@
 }
 
 @property (nonatomic, retain) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
-@property (nonatomic, assign) BOOL isGood;		/**< is current view for Virtues or Vices */
-@property (nonatomic, assign) BOOL isAscending;		/**< current order type */
-
-
-/**
- Retrieve all User entered Choices
- */
-- (void) retrieveAllChoices;
-
-/**
- Retrieve choice for selection
- @param choiceKey NSString of requested pkey
- */
-- (void) retrieveChoice:(NSString *) choiceKey;
 
 /**
  Filter the list based on User search string
@@ -70,8 +56,6 @@
 
     if (self) {
         _choiceHistoryModel = [choiceHistoryModel retain];
-        _isGood = TRUE;
-        _isAscending = FALSE;
     }
 
     return self;
@@ -102,10 +86,10 @@
 	NSObject *boolCheck = [prefs objectForKey:@"entryIsGood"];
 	
 	if (boolCheck != nil) {
-		self.isGood = [prefs boolForKey:@"entryIsGood"];
+		self.choiceHistoryModel.isGood = [prefs boolForKey:@"entryIsGood"];
 		
 	}else {
-		self.isGood = TRUE;
+		self.choiceHistoryModel.isGood = TRUE;
 	}
         
 	//Initialize filtered data containers
@@ -177,25 +161,6 @@
 }
 
 #pragma mark -
-#pragma mark Overloaded Setters
-
-/* Whenever this isGood is changed from UI, model is informed of change */
-- (void) setIsGood:(BOOL) isGood {
-    if (_isGood != isGood) {
-        _isGood = isGood;
-        self.choiceHistoryModel.isGood = isGood;
-    }
-}
-
-/* Whenever this isAscending is changed from UI, model is informed of change */
-- (void) setIsAscending:(BOOL)isAscending {
-    if (_isAscending != isAscending) {
-        _isAscending = isAscending;
-        self.choiceHistoryModel.isAscending = isAscending;
-    }
-}
-
-#pragma mark -
 #pragma mark UI Interaction
 
 /**
@@ -258,45 +223,6 @@
     
 	[choicesTableView reloadData];
 	
-}
-
-/**
- Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceViewController to read
- */
-- (void) retrieveChoice:(NSString *) choiceKey {
-//
-//    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
-//	        
-//    UserChoice *match = [currentUserChoiceDAO read:choiceKey];
-//    
-//    //Set state retention for eventual call to ChoiceViewController to pick up
-////		[prefs setObject:[match entryKey] forKey:@"entryKey"];
-//    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-//    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
-//    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-//    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
-//    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
-//    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-//    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-//    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
-//    
-//    
-//    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
-//    
-//    Moral *currentMoral = [currentMoralDAO read:@""];
-//
-//    [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
-//    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-//    [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
-//    
-//    [currentMoralDAO release];
-//	
-//	[currentUserChoiceDAO release];
-//    
-//    id placeHolder = nil;
-//    
-//    [self dismissChoiceModal:placeHolder];
-//
 }
 
 #pragma mark -
@@ -365,7 +291,12 @@
 	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
     
 	//Get selected row and commit to NSUserDefaults    
-	[self retrieveChoice:selectedRow];
+	[self.choiceHistoryModel retrieveChoice:selectedRow];
+
+    id placeHolder = nil;
+
+    [self dismissChoiceModal:placeHolder];
+
 	[selectedRow release];
 	
 }

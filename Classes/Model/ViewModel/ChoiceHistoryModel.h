@@ -24,6 +24,18 @@
 @property (nonatomic, readonly, retain) NSMutableArray *details;			/**< Array of User-entered details */
 @property (nonatomic, readonly, retain) NSMutableArray *icons;				/**< Array of associated images */
 
+
+/**
+ Builds model with dependency injection
+ @param modelManager ModelManager for either production or testing
+ @return id ChoiceHistoryModel
+ */
 - (id)initWithModelManager:(ModelManager *) modelManager;
+
+/**
+ Retrieve choice for copying into new choice
+ @param choiceKey NSString of requested pkey
+ */
+- (void) retrieveChoice:(NSString *) choiceKey;
 
 @end
