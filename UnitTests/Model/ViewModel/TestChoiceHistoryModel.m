@@ -99,18 +99,18 @@
     choiceImmoral2Name = @"choiceImmoral2Name";
     choiceImmoral3Name = @"choiceImmoral3Name";
 
-    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue"];
-    virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue"];
-    vice1 = [self createMoralWithName:vice1Name withType:@"Vice"];
-    vice2 = [self createMoralWithName:vice2Name withType:@"Vice"];
-    vice3 = [self createMoralWithName:vice3Name withType:@"Vice"];
+    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
+    virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
+    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
+    vice2 = [self createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
+    vice3 = [self createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
 
-    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andWeight:virtue1Weight andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long];
-    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andWeight:virtue2Weight andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long];
+    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andWeight:virtue1Weight andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andWeight:virtue2Weight andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
 
-    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andWeight:vice1Weight andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long];
-    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andWeight:vice2Weight andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long];
-    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andWeight:vice3Weight andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long];
+    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andWeight:vice1Weight andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
+    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andWeight:vice2Weight andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
+    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andWeight:vice3Weight andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
 
     [testModelManager saveContext];
 
@@ -210,22 +210,15 @@
 
     ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
 
+    /**< @TODO: Determine issue with sending a real choice to be parsed */
+//    NSString *dilemmaName = @"testName";
+    NSString *dilemmaName = @"dile-test";
+
+    UserChoice *choiceDilemma = [self createUserEntryWithName:dilemmaName withMoral:virtue1 andWeight:virtue1Weight andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManagerCreate];
+
+    STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
+
     ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate];
-
-    NSString *dilemmaName = @"test";
-
-    UserChoice *choiceDilemma = [testModelManagerCreate create:UserChoice.class];
-
-    choiceDilemma.entryShortDescription = @"dilemmaShort";
-    choiceDilemma.entryLongDescription = @"dilemmaLong";
-    choiceDilemma.choiceMoral = virtue1Name;
-    choiceDilemma.entryCreationDate = [NSDate date];
-    choiceDilemma.entryKey = [NSString stringWithFormat:@"%@key", dilemmaName];
-    choiceDilemma.entryIsGood = @1;
-    choiceDilemma.choiceWeight = @(1.0);
-    choiceDilemma.entryModificationDate = [NSDate date];
-
-    [testModelManagerCreate saveContext];
 
 
     STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
@@ -238,15 +231,15 @@
     [testModelManagerCreate release];
 }
 
-- (Moral *)readMoralWithName:(NSString *)moralName {
+- (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
     return [testModelManager read:Moral.class withKey:@"nameMoral" andValue:moralName];
 }
 
-- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type {
+- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
 
     NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
 
-    Moral *testMoral1 = [testModelManager create:Moral.class];
+    Moral *testMoral1 = [modelManager create:Moral.class];
 
     testMoral1.shortDescriptionMoral = type;
     testMoral1.nameMoral = moralName;
@@ -259,15 +252,15 @@
     testMoral1.linkMoral = @"link";
     testMoral1.definitionMoral = @"definition";
 
-    [testModelManager saveContext];
+    [modelManager saveContext];
 
     return testMoral1;
     
 }
 
-- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andWeight:(CGFloat) weight andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong{
+- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andWeight:(CGFloat) weight andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
 
-    UserChoice *testChoice1 = [testModelManager create:UserChoice.class];
+    UserChoice *testChoice1 = [modelManager create:UserChoice.class];
 
     testChoice1.entryShortDescription = moralChoiceShort;
     testChoice1.entryLongDescription = moralChoiceLong;
@@ -278,7 +271,7 @@
     testChoice1.choiceWeight = @(weight);
     testChoice1.entryModificationDate = [NSDate date];
 
-    [testModelManager saveContext];
+    [modelManager saveContext];
 
     return testChoice1;
     
@@ -293,6 +286,7 @@
         STAssertEqualObjects([testingSubject.choicesAreGood objectAtIndex:i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
         STAssertEqualObjects([testingSubject.choiceKeys objectAtIndex:i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
 
+        /**< @TODO: figure out why moral creation crashes */
 //        Moral *expectedMoral = [self readMoralWithName:expectedUserChoice.choiceMoral];
 
 //        STAssertEqualObjects([testingSubject.icons objectAtIndex:i], expectedMoral.imageNameMoral, @"Choice moral icon are not in correct order");
