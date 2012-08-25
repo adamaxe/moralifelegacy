@@ -145,143 +145,98 @@
 
 }
 
-//- (void)testWhenNoUserVirtuesArePresentReportIsEmpty {
-//
-//    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
-//
-//    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate];
-//
-//    STAssertEqualObjects([testingSubjectCreate.reportNames objectAtIndex:0], @"No Moral Entries!", @"Empty Virtue name is incorrect");
-//
-//    [testingSubjectCreate release];
-//    [testModelManagerCreate release];
-//
-//}
-//
-//- (void)testWhenNoUserVicesArePresentReportIsEmpty {
-//    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
-//
-//    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate];
-//
-//    testingSubjectCreate.isGood = FALSE;
-//    
-//    STAssertEqualObjects([testingSubjectCreate.reportNames objectAtIndex:0], @"No Immoral Entries!", @"Empty Vice name is incorrect");
-//    
-//}
-//
-//- (void)testWhenAlphabeticAscendingVirtuesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = TRUE;
-//    testingSubject.isAscending = TRUE;
-//
-//    CGFloat total = virtue1Weight + virtue2Weight;
-//
-//    NSArray *expectedMorals = @[virtue2Name, virtue1Name];
-//    NSArray *expectedValues = @[@(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
-//
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//
-//}
-//
-//- (void)testWhenAlphabeticDescendingVirtuesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = TRUE;
-//    testingSubject.isAscending = FALSE;
-//
-//    CGFloat total = virtue1Weight + virtue2Weight;
-//
-//    NSArray *expectedMorals = @[virtue1Name, virtue2Name];
-//    NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0)];
-//
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//    
-//}
-//
-//- (void)testWhenNumericAscendingVirtuesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = TRUE;
-//    testingSubject.isAscending = TRUE;
-//
-//    CGFloat total = virtue1Weight + virtue2Weight;
-//
-//    NSArray *expectedMorals = @[virtue1Name, virtue2Name];
-//    NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0)];
-//
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//
-//
-//}
-//
-//- (void)testWhenNumericDescendingVirtuesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = TRUE;
-//    testingSubject.isAscending = FALSE;
-//
-//    CGFloat total = virtue1Weight + virtue2Weight;
-//
-//    NSArray *expectedMorals = @[virtue2Name, virtue1Name];
-//    NSArray *expectedValues = @[@(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
-//
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//    
-//}
-//
-//- (void)testWhenAlphabeticAscendingVicesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = FALSE;
-//    testingSubject.isAscending = TRUE;
-//
-//    CGFloat total = vice3Weight + vice2Weight + vice1Weight;
-//
-//    NSArray *expectedMorals = @[vice3Name, vice2Name, vice1Name];
-//    NSArray *expectedValues = @[@(vice3Weight/total * 360.0), @(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
-//
-//
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//    
-//}
-//
-//- (void)testWhenAlphabeticDescendingVicesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = FALSE;
-//    testingSubject.isAscending = FALSE;
-//
-//    CGFloat total = vice1Weight + vice2Weight + vice3Weight;
-//
-//    NSArray *expectedMorals = @[vice1Name, vice2Name, vice3Name];
-//    NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0), @(vice3Weight/total * 360.0)];
-//    
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//    
-//}
-//
-//- (void)testWhenNumericAscendingVicesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = FALSE;
-//    testingSubject.isAscending = TRUE;
-//
-//    CGFloat total = vice1Weight + vice2Weight + vice3Weight;
-//
-//    NSArray *expectedMorals = @[vice1Name, vice2Name, vice3Name];
-//    NSArray *expectedValues = @[@(virtue1Weight/total *360.0), @(virtue2Weight/total * 360.0), @(vice3Weight/total * 360.0)];
-//
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//
-//}
-//
-//- (void)testWhenNumericDescendingVicesAreRequestedReportisCorrect {
-//
-//    testingSubject.isGood = FALSE;
-//    testingSubject.isAscending = FALSE;
-//
-//    CGFloat total = vice3Weight + vice2Weight + vice1Weight;
-//
-//    NSArray *expectedMorals = @[vice3Name, vice2Name, vice1Name];
-//    NSArray *expectedValues = @[@(vice3Weight/total * 360.0), @(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
-//
-//    [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-//    
-//}
+- (void)testWhenNoUserChoicesArePresentHistoryIsEmpty {
+
+    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
+
+    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate];
+
+    STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
+
+    [testingSubjectCreate release];
+    [testModelManagerCreate release];
+
+}
+
+- (void)testWhenAscendingMoralChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.isGood = TRUE;
+    testingSubject.isAscending = TRUE;
+
+    NSArray *expectedChoices = @[choiceMoral1, choiceMoral2];
+
+    [self assertCorrectOrder:expectedChoices];
+
+}
+
+- (void)testWhenDescendingMoralChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.isGood = TRUE;
+    testingSubject.isAscending = FALSE;
+
+    NSArray *expectedChoices = @[choiceMoral2, choiceMoral1];
+
+    [self assertCorrectOrder:expectedChoices];
+    
+}
+
+- (void)testWhenAscendingImmoralChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.isGood = FALSE;
+    testingSubject.isAscending = TRUE;
+
+    NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3];
+
+    [self assertCorrectOrder:expectedChoices];
+
+}
+
+- (void)testWhenDescendingImmoralChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.isGood = FALSE;
+    testingSubject.isAscending = FALSE;
+
+    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1];
+
+    [self assertCorrectOrder:expectedChoices];
+    
+}
+
+- (void)testThatDilemmaAnswersAreNotReturnedInResults {
+
+    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
+
+    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate];
+
+    NSString *dilemmaName = @"test";
+
+    UserChoice *choiceDilemma = [testModelManagerCreate create:UserChoice.class];
+
+    choiceDilemma.entryShortDescription = @"dilemmaShort";
+    choiceDilemma.entryLongDescription = @"dilemmaLong";
+    choiceDilemma.choiceMoral = virtue1Name;
+    choiceDilemma.entryCreationDate = [NSDate date];
+    choiceDilemma.entryKey = [NSString stringWithFormat:@"%@key", dilemmaName];
+    choiceDilemma.entryIsGood = @1;
+    choiceDilemma.choiceWeight = @(1.0);
+    choiceDilemma.entryModificationDate = [NSDate date];
+
+    [testModelManagerCreate saveContext];
+
+
+    STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
+
+    [testingSubjectCreate release];
+    [testModelManagerCreate release];
+}
 
 - (Moral *)readMoralWithName:(NSString *)moralName {
     return [testModelManager read:Moral.class withKey:@"nameMoral" andValue:moralName];
@@ -329,27 +284,28 @@
     
 }
 
-//- (void)assertCorrectOrder:(NSArray *)expectedMorals expectedValues:(NSArray *)expectedValues {
-//    for (int i = 0; i < testingSubject.moralNames.count; i++) {
+- (void)assertCorrectOrder:(NSArray *)expectedChoices {
+
+    for (int i = 0; i < testingSubject.choices.count; i++) {
+
+        UserChoice *expectedUserChoice = [expectedChoices objectAtIndex:i];
+        STAssertEqualObjects([testingSubject.choices objectAtIndex:i], expectedUserChoice.entryShortDescription, @"Choice shortDescriptions are not in correct order");
+        STAssertEqualObjects([testingSubject.choicesAreGood objectAtIndex:i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
+        STAssertEqualObjects([testingSubject.choiceKeys objectAtIndex:i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
+
+//        Moral *expectedMoral = [self readMoralWithName:expectedUserChoice.choiceMoral];
+
+//        STAssertEqualObjects([testingSubject.icons objectAtIndex:i], expectedMoral.imageNameMoral, @"Choice moral icon are not in correct order");
+
+
+//        STAssertEqualObjects([testingSubject.choicesAreGood objectAtIndex:i], [expectedGoodness objectAtIndex:i], @"Choices are not in correct order");
+
+//    for (int i = 0; i < testingSubject.choiceKeys.count; i++) {
 //
-//        NSString *moralName = [testingSubject.moralNames objectAtIndex:i];
-//
-//        STAssertEqualObjects(moralName, [expectedMorals objectAtIndex:i], @"Moral Names are not in correct order");
-//
-//        NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
-//
-//        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct order");
-//
-////        Moral *moral = [self readMoralWithName:moralName];
-////        UIColor *color = [UIColor colorWithHexString:moral.colorMoral];
-////        STAssertTrue([color isEqual:[testingSubject.pieColors objectAtIndex:i]],  @"Moral Colors are not in correct ascending order");
-//    }
-//
-//    for (int i = 0; i < testingSubject.pieValues.count; i++) {
-//
-//        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct order");
-//    }
-//}
+//        NSString *test = [testingSubject.choiceKeys objectAtIndex:i];
+//        STAssertEqualObjects([testingSubject.choiceKeys objectAtIndex:i], [NSString stringWithFormat:@"%@key", [expectedValues objectAtIndex:i]],  @"Choice Keys are not in correct order");
+    }
+}
 
 @end
 

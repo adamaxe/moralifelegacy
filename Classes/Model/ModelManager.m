@@ -476,7 +476,7 @@ Read a single NSManagedObject
     NSError *error = nil;
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%@ == %@", classKey, keyValue];
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@", classKey, keyValue];
 	[request setPredicate:pred];
 	[pred release];
     
