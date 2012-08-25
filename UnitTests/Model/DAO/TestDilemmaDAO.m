@@ -63,6 +63,16 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+    [testingSubject release];
+
+	[super tearDown];
+    
+}
+
 - (void)testDilemmaDAOAllTypeCanBeCreated {
     STAssertNotNil(testingSubject, @"DilemmaDAO All type can't be created.");
 }

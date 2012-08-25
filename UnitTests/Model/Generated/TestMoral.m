@@ -100,6 +100,15 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+
+	[super tearDown];
+    
+}
+
 - (void)testMoralCanBeCreated {
     
     //testUserCollectable are created in setup    

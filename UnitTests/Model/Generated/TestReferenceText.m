@@ -67,6 +67,15 @@
     
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+
+	[super tearDown];
+    
+}
+
 - (void)testTextCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    

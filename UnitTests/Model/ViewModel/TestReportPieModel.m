@@ -107,6 +107,16 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+    [testModelManager release];
+	[testingSubject release];
+
+	[super tearDown];
+
+}
+
 - (void)testReportPieModelCanBeCreated {
 
     ReportPieModel *testingSubjectCreate = [[ReportPieModel alloc] initWithModelManager:testModelManager];
@@ -337,6 +347,8 @@
         STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct order");
     }
 }
+
+
 
 @end
 

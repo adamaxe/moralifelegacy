@@ -75,6 +75,16 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+    [testingSubject release];
+
+	[super tearDown];
+    
+}
+
 - (void)testCharacterDAOAllTypeCanBeCreated {
     STAssertNotNil(testingSubject, @"CharacterDAO All type can't be created.");
 }

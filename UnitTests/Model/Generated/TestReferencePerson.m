@@ -68,6 +68,15 @@
     testBelief.imageNameReference = imageName;
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+
+	[super tearDown];
+    
+}
+
 - (void)testPersonCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    

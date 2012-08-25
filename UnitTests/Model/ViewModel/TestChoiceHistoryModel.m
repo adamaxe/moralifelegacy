@@ -36,6 +36,12 @@
     NSString *immoralChoice2Short;
     NSString *immoralChoice3Short;
 
+    NSString *moralChoice1Long;
+    NSString *moralChoice2Long;
+    NSString *immoralChoice1Long;
+    NSString *immoralChoice2Long;
+    NSString *immoralChoice3Long;
+
     UserChoice *choiceMoral1;
     UserChoice *choiceMoral2;
     UserChoice *choiceImmoral1;
@@ -81,6 +87,12 @@
     immoralChoice2Short = @"immoralChoice2Short";
     immoralChoice3Short = @"immoralChoice3Short";
 
+    moralChoice1Long = @"moralChoice1Long";
+    moralChoice2Long = @"moralChoice2Long";
+    immoralChoice1Long = @"immoralChoice1Long";
+    immoralChoice2Long = @"immoralChoice2Long";
+    immoralChoice3Long = @"immoralChoice3Long";
+
     choiceMoral1Name = @"choiceMoral1Name";
     choiceMoral2Name = @"choiceMoral2Name";
     choiceImmoral1Name = @"choiceImmoral1Name";
@@ -93,37 +105,46 @@
     vice2 = [self createMoralWithName:vice2Name withType:@"Vice"];
     vice3 = [self createMoralWithName:vice3Name withType:@"Vice"];
 
-    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andWeight:virtue1Weight];
-    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andWeight:virtue2Weight];
+    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andWeight:virtue1Weight andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long];
+    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andWeight:virtue2Weight andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long];
 
-    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andWeight:vice1Weight];
-    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andWeight:vice2Weight];
-    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andWeight:vice3Weight];
-
+    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andWeight:vice1Weight andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long];
+    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andWeight:vice2Weight andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long];
+    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andWeight:vice3Weight andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long];
 
     [testModelManager saveContext];
 
     testingSubject = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager];
 
 }
-//
-//- (void)testReportPieModelCanBeCreated {
-//
-//    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager];
-//
-//    STAssertNotNil(testingSubjectCreate, @"ReportPieModel can't be created.");
-//
-//    [testingSubjectCreate release];
-//    
-//}
-//
-//- (void)testReportPieModelDefaultValuesAreSetCorrectly {
-//
-//    STAssertTrue(testingSubject.isGood, @"ReportPieModel isn't good by default");
-//    STAssertFalse(testingSubject.isAscending, @"ReportPieModel is ascending incorrectly by default");
-//
-//}
-//
+
+- (void)tearDown{
+
+	//Tear-down code here.
+    [testModelManager release];
+	[testingSubject release];
+
+	[super tearDown];
+
+}
+
+- (void)testChoiceHistoryModelCanBeCreated {
+
+    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager];
+
+    STAssertNotNil(testingSubjectCreate, @"ChoiceHistoryModel can't be created.");
+
+    [testingSubjectCreate release];
+    
+}
+
+- (void)testChoiceHistoryModelDefaultValuesAreSetCorrectly {
+
+    STAssertTrue(testingSubject.isGood, @"ChoiceHistoryModel isn't good by default");
+    STAssertFalse(testingSubject.isAscending, @"ChoiceHistoryModel is ascending incorrectly by default");
+
+}
+
 //- (void)testWhenNoUserVirtuesArePresentReportIsEmpty {
 //
 //    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
@@ -289,11 +310,12 @@
     
 }
 
-- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andWeight:(CGFloat) weight{
+- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andWeight:(CGFloat) weight andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong{
 
     UserChoice *testChoice1 = [testModelManager create:UserChoice.class];
 
-    testChoice1.entryShortDescription = @"shortDescription";
+    testChoice1.entryShortDescription = moralChoiceShort;
+    testChoice1.entryLongDescription = moralChoiceLong;
     testChoice1.choiceMoral = moral.nameMoral;
     testChoice1.entryCreationDate = [NSDate date];
     testChoice1.entryKey = [NSString stringWithFormat:@"%@key", entryName];

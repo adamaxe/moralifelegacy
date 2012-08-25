@@ -33,6 +33,15 @@
     testUserCollectable.collectableValue = collectableValue;
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+
+	[super tearDown];
+    
+}
+
 - (void)testUserCollectableCanBeCreated {
     
     //testUserCollectable are created in setup    

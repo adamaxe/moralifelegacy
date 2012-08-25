@@ -149,6 +149,14 @@
     testMoral2.nameMoral = nameMoral2;
     testMoral2.definitionMoral = definitionMoral;
 
+}
+
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+
+	[super tearDown];
     
 }
 

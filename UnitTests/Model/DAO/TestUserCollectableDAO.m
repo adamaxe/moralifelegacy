@@ -49,6 +49,16 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+    [testingSubject release];
+
+	[super tearDown];
+    
+}
+
 - (void)testUserCollectableDAOAllTypeCanBeCreated {
     STAssertNotNil(testingSubject, @"UserCollectableDAO All type can't be created.");
 }

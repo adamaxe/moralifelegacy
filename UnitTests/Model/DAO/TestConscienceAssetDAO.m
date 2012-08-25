@@ -75,6 +75,16 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+    [testingSubject release];
+
+	[super tearDown];
+    
+}
+
 - (void)testConscienceDAOAllTypeCanBeCreated {
     
     STAssertNotNil(testingSubject, @"ConscienceDAO can't be created.");

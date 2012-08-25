@@ -92,12 +92,20 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+    [testingSubject release];
+
+	[super tearDown];
+    
+}
+
 - (void)testMoralDAOAllTypeCanBeCreated {
         
     STAssertNotNil(testingSubject, @"MoralDAO All type can't be created.");
-    
-    [testingSubject release];
-    
+        
 }
 
 - (void)testMoralDAOVirtueTypeCanBeCreated {

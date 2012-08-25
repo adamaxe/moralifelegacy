@@ -40,7 +40,15 @@
     testUserLuck.entryCreationDate = entryCreationDate;
     testUserLuck.entryModificationDate = entryCreationDate;
 
-        
+}
+
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+
+	[super tearDown];
+    
 }
 
 - (void)testUserLuckCanBeCreated {

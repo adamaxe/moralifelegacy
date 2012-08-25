@@ -4,7 +4,11 @@
 #import "UserChoiceDAO.h"
 #import "MoralDAO.h"
 
-@interface ChoiceHistoryModel ()
+@interface ChoiceHistoryModel () {
+    UserChoiceDAO *currentUserChoiceDAO;    /**< current User Choices*/
+    MoralDAO *currentMoralDAO;              /**< retrieve morals User has utilized */
+
+}
 
 @property (nonatomic, readwrite, retain) NSMutableArray *choices;			/**< Array of User-entered choice titles */
 @property (nonatomic, readwrite, retain) NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
@@ -40,6 +44,9 @@
         _choiceKeys = [[NSMutableArray alloc] init];
         _details = [[NSMutableArray alloc] init];
         _icons = [[NSMutableArray alloc] init];
+
+        currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:modelManager];
+        currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:modelManager];
 
     }
 
@@ -80,8 +87,6 @@
 	[self.icons removeAllObjects];
 	[self.details removeAllObjects];
 
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-
     NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
 
 	//Ensure that Choices created during Morathology sessions are not displayed here
@@ -117,15 +122,11 @@
 			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
 			NSString *value = [matches choiceMoral];
 
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
-
 			Moral *currentMoral = [currentMoralDAO read:value];
 
             //Display image and moral name
             [self.icons addObject:[currentMoral imageNameMoral]];
             [detailText appendString:[currentMoral displayNameMoral]];
-
-            [currentMoralDAO release];
 
 			//Display date last modified for sorting
             NSDate *modificationDate = [matches entryModificationDate];
@@ -147,16 +148,12 @@
 
 		}
 	}
-
-	[currentUserChoiceDAO release];
 }
 
 /**
  Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceViewController to read
  */
 - (void) retrieveChoice:(NSString *) choiceKey {
-
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
 
     UserChoice *match = [currentUserChoiceDAO read:choiceKey];
 
@@ -173,17 +170,11 @@
     [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
     [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
 
-    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:[match choiceMoral]];
-
-    Moral *currentMoral = [currentMoralDAO read:@""];
+    Moral *currentMoral = [currentMoralDAO read:[match choiceMoral]];
 
     [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
     [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
     [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
-
-    [currentMoralDAO release];
-
-	[currentUserChoiceDAO release];
 
 }
 
@@ -195,6 +186,8 @@
     [_choiceKeys release];
     [_details release];
     [_icons release];
+    [currentUserChoiceDAO release];
+    [currentMoralDAO release];
 
     [super dealloc];
 }

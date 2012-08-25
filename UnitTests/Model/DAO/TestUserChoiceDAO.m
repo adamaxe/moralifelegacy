@@ -76,6 +76,16 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+    [testingSubject release];
+
+	[super tearDown];
+    
+}
+
 - (void)testUserChoiceDAOAllTypeCanBeCreated {
     STAssertNotNil(testingSubject, @"UserChoiceDAO All type can't be created.");
 }

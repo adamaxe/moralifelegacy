@@ -65,6 +65,16 @@
 
 }
 
+- (void)tearDown{
+
+	//Tear-down code here.
+	[testModelManager release];
+    [testingSubject release];
+
+	[super tearDown];
+    
+}
+
 - (void)testReferenceDAOAllTypeCanBeCreated {
     
     STAssertNotNil(testingSubject, @"ReferenceDAO can't be created.");
