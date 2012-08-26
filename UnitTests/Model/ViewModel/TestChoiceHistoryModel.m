@@ -12,11 +12,13 @@
 #import "ModelManager.h"
 #import "Moral.h"
 #import "UserChoice.h"
+#import "OCMock/OCMock.h"
 
 @interface TestChoiceHistoryModel : SenTestCase {
     
     ChoiceHistoryModel *testingSubject;
     ModelManager *testModelManager;
+    id userDefaultsMock;
 
     CGFloat virtue1Weight;
     CGFloat virtue2Weight;
@@ -68,6 +70,7 @@
 
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
+    userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
 
     virtue1Weight = 1.0;
     virtue2Weight = 2.0;
@@ -114,7 +117,7 @@
 
     [testModelManager saveContext];
 
-    testingSubject = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager];
+    testingSubject = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock];
 
 }
 
@@ -130,7 +133,7 @@
 
 - (void)testChoiceHistoryModelCanBeCreated {
 
-    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager];
+    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock];
 
     STAssertNotNil(testingSubjectCreate, @"ChoiceHistoryModel can't be created.");
 
@@ -149,7 +152,7 @@
 
     ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
 
-    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate];
+    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
 
     STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
     STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
@@ -210,7 +213,7 @@
 
     ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
 
-    /**< @TODO: Determine issue with sending a real choice to be parsed */
+    /**< @TODO: Determine issue with sending a real choice to be parsed, most likely an actual bug in returning a nil list of choices */
 //    NSString *dilemmaName = @"testName";
     NSString *dilemmaName = @"dile-test";
 
@@ -218,7 +221,7 @@
 
     STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
 
-    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate];
+    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
 
 
     STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
@@ -229,6 +232,15 @@
 
     [testingSubjectCreate release];
     [testModelManagerCreate release];
+}
+
+- (void)testRetrieveChoiceWritesToStandardUserDefaults {
+    [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
+    [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
+
+    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name]];
+
+    [userDefaultsMock verify];
 }
 
 - (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
@@ -270,6 +282,7 @@
     testChoice1.entryIsGood = ([moral.shortDescriptionMoral isEqualToString:@"Virtue"]) ? @1 : @0;
     testChoice1.choiceWeight = @(weight);
     testChoice1.entryModificationDate = [NSDate date];
+    testChoice1.entrySeverity = @(1.0);
 
     [modelManager saveContext];
 
@@ -286,7 +299,7 @@
         STAssertEqualObjects([testingSubject.choicesAreGood objectAtIndex:i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
         STAssertEqualObjects([testingSubject.choiceKeys objectAtIndex:i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
 
-        /**< @TODO: figure out why moral creation crashes */
+        /**< @TODO: figure out why moral creation crashes, then implement details and icon tests */
 //        Moral *expectedMoral = [self readMoralWithName:expectedUserChoice.choiceMoral];
 
 //        STAssertEqualObjects([testingSubject.icons objectAtIndex:i], expectedMoral.imageNameMoral, @"Choice moral icon are not in correct order");

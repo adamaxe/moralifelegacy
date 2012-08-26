@@ -338,6 +338,7 @@
 
         STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct order");
 
+        /**< @TODO: Determine moral issue, then implement moralImageName tests */
 //        Moral *moral = [self readMoralWithName:moralName];
 //        UIColor *color = [UIColor colorWithHexString:moral.colorMoral];
 //        STAssertTrue([color isEqual:[testingSubject.pieColors objectAtIndex:i]],  @"Moral Colors are not in correct ascending order");

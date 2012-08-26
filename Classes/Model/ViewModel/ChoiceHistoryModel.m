@@ -5,6 +5,7 @@
 #import "MoralDAO.h"
 
 @interface ChoiceHistoryModel () {
+    NSUserDefaults *preferences;                  /**< User defaults to write to file system */
     UserChoiceDAO *currentUserChoiceDAO;    /**< current User Choices*/
     MoralDAO *currentMoralDAO;              /**< retrieve morals User has utilized */
 
@@ -28,10 +29,10 @@
 - (id)init {
     MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    return [self initWithModelManager:[appDelegate moralModelManager]];
+    return [self initWithModelManager:[appDelegate moralModelManager] andDefaults:[NSUserDefaults standardUserDefaults]];
 }
 
-- (id)initWithModelManager:(ModelManager *) modelManager {
+- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs{
 
     self = [super init];
     if (self) {
@@ -44,6 +45,7 @@
         _choiceKeys = [[NSMutableArray alloc] init];
         _details = [[NSMutableArray alloc] init];
         _icons = [[NSMutableArray alloc] init];
+        preferences = prefs;
 
         currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:modelManager];
         currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:modelManager];
@@ -157,24 +159,23 @@
 
     UserChoice *match = [currentUserChoiceDAO read:choiceKey];
 
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-
     //Set state retention for eventual call to ChoiceViewController to pick up
 //		[prefs setObject:[match entryKey] forKey:@"entryKey"];
-    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];
-    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];
-    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];
-    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
+    [preferences setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
+    [preferences setObject:[match entryShortDescription] forKey:@"entryShortDescription"];
+    [preferences setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
+    [preferences setObject:[match choiceJustification] forKey:@"choiceJustification"];
+    [preferences setObject:[match choiceConsequences] forKey:@"choiceConsequence"];
+    [preferences setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
+    [preferences setObject:[match choiceMoral] forKey:@"moralKey"];
+    [preferences setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
 
     Moral *currentMoral = [currentMoralDAO read:[match choiceMoral]];
 
-    [prefs setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
-    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-    [prefs setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
+    [preferences setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
+    [preferences setObject:[match choiceMoral] forKey:@"moralKey"];
+    [preferences setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
+    [preferences synchronize];
 
 }
 

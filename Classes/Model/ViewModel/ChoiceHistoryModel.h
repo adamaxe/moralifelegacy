@@ -30,7 +30,7 @@
  @param modelManager ModelManager for either production or testing
  @return id ChoiceHistoryModel
  */
-- (id)initWithModelManager:(ModelManager *) modelManager;
+- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs;
 
 /**
  Retrieve choice for copying into new choice
