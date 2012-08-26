@@ -159,26 +159,27 @@
 
     UserChoice *match = [currentUserChoiceDAO read:choiceKey];
 
-    //Set state retention for eventual call to ChoiceViewController to pick up
-//		[prefs setObject:[match entryKey] forKey:@"entryKey"];
-    [preferences setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-    [preferences setObject:[match entryShortDescription] forKey:@"entryShortDescription"];
-    [preferences setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-    [preferences setObject:[match choiceJustification] forKey:@"choiceJustification"];
-    [preferences setObject:[match choiceConsequences] forKey:@"choiceConsequence"];
-    [preferences setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-    [preferences setObject:[match choiceMoral] forKey:@"moralKey"];
-    [preferences setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
+    if (match) {
 
-    Moral *currentMoral = [currentMoralDAO read:[match choiceMoral]];
+        //Set state retention for eventual call to ChoiceViewController to pick up
+    //		[prefs setObject:[match entryKey] forKey:@"entryKey"];
+        [preferences setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
+        [preferences setObject:[match entryShortDescription] forKey:@"entryShortDescription"];
+        [preferences setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
+        [preferences setObject:[match choiceJustification] forKey:@"choiceJustification"];
+        [preferences setObject:[match choiceConsequences] forKey:@"choiceConsequence"];
+        [preferences setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
+        [preferences setObject:[match choiceMoral] forKey:@"moralKey"];
+        [preferences setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
 
-    [preferences setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
-    [preferences setObject:[match choiceMoral] forKey:@"moralKey"];
-    [preferences setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
-    [preferences synchronize];
+        Moral *currentMoral = [currentMoralDAO read:[match choiceMoral]];
+
+        [preferences setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
+        [preferences setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
+        [preferences synchronize];
+    }
 
 }
-
 
 -(void)dealloc {
 

@@ -62,6 +62,12 @@
     NSString *choiceImmoral2Name;
     NSString *choiceImmoral3Name;
 
+    CGFloat moralChoice1EntrySeverity;
+    CGFloat moralChoice1Influence;
+    NSString *moralChoice1Justification;
+    NSString *moralChoice1Consequence;
+    BOOL moralChoice1EntryIsGood;
+
 }
 
 @end
@@ -102,6 +108,12 @@
     choiceImmoral2Name = @"choiceImmoral2Name";
     choiceImmoral3Name = @"choiceImmoral3Name";
 
+    moralChoice1EntrySeverity = 3.0;
+    moralChoice1Influence = 2.5;
+    moralChoice1Justification = @"moralChoice1Justification";
+    moralChoice1Consequence = @"moralChoice1Consequence";
+    moralChoice1EntryIsGood = TRUE;
+
     virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
     virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
     vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
@@ -114,6 +126,12 @@
     choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andWeight:vice1Weight andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
     choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andWeight:vice2Weight andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
     choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andWeight:vice3Weight andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
+
+    choiceMoral1.entrySeverity = @(moralChoice1EntrySeverity);
+    choiceMoral1.choiceInfluence = @(moralChoice1Influence);
+    choiceMoral1.choiceJustification = moralChoice1Justification;
+    choiceMoral1.choiceConsequences = moralChoice1Consequence;
+    choiceMoral1.entryIsGood = @(moralChoice1EntryIsGood);
 
     [testModelManager saveContext];
 
@@ -238,7 +256,32 @@
     [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
     [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
 
+    [[userDefaultsMock expect] setFloat:moralChoice1EntrySeverity forKey:@"entrySeverity"];
+    [[userDefaultsMock expect] setObject:moralChoice1Justification forKey:@"choiceJustification"];
+    [[userDefaultsMock expect] setObject:moralChoice1Consequence forKey:@"choiceConsequence"];
+    [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
+    [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
+
     [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name]];
+
+    [userDefaultsMock verify];
+}
+
+- (void)testRetrieveChoiceDoesNotWriteToStandardUserDefaultsIfChoiceIsNotFound {
+    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"entryShortDescription"];
+    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"entryLongDescription"];
+
+    [[userDefaultsMock reject] setFloat:moralChoice1EntrySeverity forKey:@"entrySeverity"];
+    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"choiceJustification"];
+    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"choiceConsequence"];
+    [[userDefaultsMock reject] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
+    [[userDefaultsMock reject] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
+
+    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralKey"];
+    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralName"];
+    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralImage"];
+
+    [testingSubject retrieveChoice:@"incorrectChoiceKey"];
 
     [userDefaultsMock verify];
 }
