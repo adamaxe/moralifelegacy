@@ -20,11 +20,11 @@
     ModelManager *testModelManager;
     id userDefaultsMock;
 
-    CGFloat virtue1Weight;
-    CGFloat virtue2Weight;
-    CGFloat vice1Weight;
-    CGFloat vice2Weight;
-    CGFloat vice3Weight;
+    CGFloat virtue1Severity;
+    CGFloat virtue2Severity;
+    CGFloat vice1Severity;
+    CGFloat vice2Severity;
+    CGFloat vice3Severity;
 
     Moral *virtue1;
     Moral *virtue2;
@@ -62,7 +62,6 @@
     NSString *choiceImmoral2Name;
     NSString *choiceImmoral3Name;
 
-    CGFloat moralChoice1EntrySeverity;
     CGFloat moralChoice1Influence;
     NSString *moralChoice1Justification;
     NSString *moralChoice1Consequence;
@@ -78,11 +77,11 @@
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
 
-    virtue1Weight = 1.0;
-    virtue2Weight = 2.0;
-    vice1Weight = 1.0;
-    vice2Weight = 2.0;
-    vice3Weight = 3.0;
+    virtue1Severity = 5.0;
+    virtue2Severity = 3.0;
+    vice1Severity = 4.0;
+    vice2Severity = 2.0;
+    vice3Severity = 1.0;
 
     virtue1Name = @"Virtue1";
     virtue2Name = @"Virtue2";
@@ -108,7 +107,6 @@
     choiceImmoral2Name = @"choiceImmoral2Name";
     choiceImmoral3Name = @"choiceImmoral3Name";
 
-    moralChoice1EntrySeverity = 3.0;
     moralChoice1Influence = 2.5;
     moralChoice1Justification = @"moralChoice1Justification";
     moralChoice1Consequence = @"moralChoice1Consequence";
@@ -120,14 +118,13 @@
     vice2 = [self createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
     vice3 = [self createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
 
-    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andWeight:virtue1Weight andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
-    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andWeight:virtue2Weight andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
 
-    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andWeight:vice1Weight andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
-    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andWeight:vice2Weight andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
-    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andWeight:vice3Weight andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
+    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
+    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
+    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
 
-    choiceMoral1.entrySeverity = @(moralChoice1EntrySeverity);
     choiceMoral1.choiceInfluence = @(moralChoice1Influence);
     choiceMoral1.choiceJustification = moralChoice1Justification;
     choiceMoral1.choiceConsequences = moralChoice1Consequence;
@@ -183,7 +180,31 @@
 
 }
 
-- (void)testWhenAscendingMoralChoicesAreRequestedHistoryisCorrect {
+- (void)testWhenDateAscendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.isAscending = TRUE;
+
+    NSArray *expectedChoices = @[choiceMoral1, choiceMoral2, choiceImmoral1, choiceImmoral2, choiceImmoral3];
+
+    [self assertCorrectOrder:expectedChoices];
+
+}
+
+- (void)testWhenDateDescendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.isAscending = FALSE;
+
+    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1, choiceMoral2, choiceMoral1];
+
+    [self assertCorrectOrder:expectedChoices];
+    
+}
+
+
+
+- (void)testWhenDateAscendingMoralChoicesAreRequestedHistoryisCorrect {
 
     testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
     testingSubject.isAscending = TRUE;
@@ -194,7 +215,7 @@
 
 }
 
-- (void)testWhenDescendingMoralChoicesAreRequestedHistoryisCorrect {
+- (void)testWhenDateDescendingMoralChoicesAreRequestedHistoryisCorrect {
 
     testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
     testingSubject.isAscending = FALSE;
@@ -205,7 +226,7 @@
     
 }
 
-- (void)testWhenAscendingImmoralChoicesAreRequestedHistoryisCorrect {
+- (void)testWhenDateAscendingImmoralChoicesAreRequestedHistoryisCorrect {
 
     testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
     testingSubject.isAscending = TRUE;
@@ -216,13 +237,81 @@
 
 }
 
-- (void)testWhenDescendingImmoralChoicesAreRequestedHistoryisCorrect {
+- (void)testWhenDateDescendingImmoralChoicesAreRequestedHistoryisCorrect {
 
     testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1];
 
+    [self assertCorrectOrder:expectedChoices];
+    
+}
+
+- (void)testWhenNameAscendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = kChoiceListSortName;
+    testingSubject.isAscending = TRUE;
+
+    NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3, choiceMoral1, choiceMoral2];
+
+    [self assertCorrectOrder:expectedChoices];
+
+}
+
+- (void)testWhenNameDescendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = kChoiceListSortName;
+    testingSubject.isAscending = FALSE;
+
+    NSArray *expectedChoices = @[choiceMoral2, choiceMoral1, choiceImmoral3, choiceImmoral2, choiceImmoral1];
+
+    [self assertCorrectOrder:expectedChoices];
+    
+}
+
+- (void)testWhenSeverityAscendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = kChoiceListSortSeverity;
+    testingSubject.isAscending = TRUE;
+
+    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceMoral2, choiceImmoral1, choiceMoral1];
+    [self assertCorrectOrder:expectedChoices];
+
+}
+
+- (void)testWhenSeverityDescendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = kChoiceListSortSeverity;
+    testingSubject.isAscending = FALSE;
+
+    NSArray *expectedChoices = @[choiceMoral1, choiceImmoral1, choiceMoral2, choiceImmoral2, choiceImmoral3];
+    [self assertCorrectOrder:expectedChoices];
+    
+}
+
+- (void)testWhenWeightAscendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = kChoiceListSortWeight;
+    testingSubject.isAscending = TRUE;
+
+    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceMoral2, choiceImmoral1, choiceMoral1];
+    [self assertCorrectOrder:expectedChoices];
+
+}
+
+- (void)testWhenWeightDescendingAllChoicesAreRequestedHistoryisCorrect {
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = kChoiceListSortWeight;
+    testingSubject.isAscending = FALSE;
+
+    NSArray *expectedChoices = @[choiceMoral1, choiceImmoral1, choiceMoral2, choiceImmoral2, choiceImmoral3];
     [self assertCorrectOrder:expectedChoices];
     
 }
@@ -235,7 +324,7 @@
 //    NSString *dilemmaName = @"testName";
     NSString *dilemmaName = @"dile-test";
 
-    UserChoice *choiceDilemma = [self createUserEntryWithName:dilemmaName withMoral:virtue1 andWeight:virtue1Weight andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManagerCreate];
+    UserChoice *choiceDilemma = [self createUserEntryWithName:dilemmaName withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManagerCreate];
 
     STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
 
@@ -256,7 +345,7 @@
     [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
     [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
 
-    [[userDefaultsMock expect] setFloat:moralChoice1EntrySeverity forKey:@"entrySeverity"];
+    [[userDefaultsMock expect] setFloat:virtue1Severity forKey:@"entrySeverity"];
     [[userDefaultsMock expect] setObject:moralChoice1Justification forKey:@"choiceJustification"];
     [[userDefaultsMock expect] setObject:moralChoice1Consequence forKey:@"choiceConsequence"];
     [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
@@ -272,7 +361,7 @@
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"entryShortDescription"];
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"entryLongDescription"];
 
-    [[userDefaultsMock reject] setFloat:moralChoice1EntrySeverity forKey:@"entrySeverity"];
+    [[userDefaultsMock reject] setFloat:virtue1Severity forKey:@"entrySeverity"];
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"choiceJustification"];
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"choiceConsequence"];
     [[userDefaultsMock reject] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
@@ -314,7 +403,7 @@
     
 }
 
-- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andWeight:(CGFloat) weight andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
+- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
 
     UserChoice *testChoice1 = [modelManager create:UserChoice.class];
 
@@ -324,9 +413,9 @@
     testChoice1.entryCreationDate = [NSDate date];
     testChoice1.entryKey = [NSString stringWithFormat:@"%@key", entryName];
     testChoice1.entryIsGood = ([moral.shortDescriptionMoral isEqualToString:@"Virtue"]) ? @1 : @0;
-    testChoice1.choiceWeight = @(weight);
+    testChoice1.choiceWeight = @(severity * 2);
     testChoice1.entryModificationDate = [NSDate date];
-    testChoice1.entrySeverity = @(1.0);
+    testChoice1.entrySeverity = @(severity);
 
     [modelManager saveContext];
 

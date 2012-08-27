@@ -15,12 +15,16 @@ extern NSString* const kChoiceHistoryModelTypeAll;
 extern NSString* const kChoiceHistoryModelTypeIsGood;
 extern NSString* const kChoiceHistoryModelTypeIsBad;
 
+extern NSString* const kChoiceListSortDate;
+extern NSString* const kChoiceListSortWeight;
+extern NSString* const kChoiceListSortSeverity;
+extern NSString* const kChoiceListSortName;
+
 @interface ChoiceHistoryModel : NSObject
 
 @property (nonatomic, retain) NSString *choiceType;     /**< determine if Virtues/Vices/All should be returned */
 @property (nonatomic, assign) BOOL isAscending;         /**< current order type */
 @property (nonatomic, retain) NSString *sortKey; /**< sort order */
-
 
 //Raw, readonly data of all entered choices
 @property (nonatomic, readonly, retain) NSMutableArray *choices;			/**< Array of User-entered choice titles */

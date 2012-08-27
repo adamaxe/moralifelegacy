@@ -8,6 +8,11 @@ NSString* const kChoiceHistoryModelTypeAll = @"Virtue";
 NSString* const kChoiceHistoryModelTypeIsGood = @"Vice";
 NSString* const kChoiceHistoryModelTypeIsBad = @"All";
 
+NSString* const kChoiceListSortDate = @"entryModificationDate";
+NSString* const kChoiceListSortWeight = @"choiceWeight";
+NSString* const kChoiceListSortSeverity = @"entrySeverity";
+NSString* const kChoiceListSortName = @"entryShortDescription";
+
 @interface ChoiceHistoryModel () {
     NSUserDefaults *preferences;                  /**< User defaults to write to file system */
     UserChoiceDAO *currentUserChoiceDAO;    /**< current User Choices*/
@@ -43,12 +48,12 @@ NSString* const kChoiceHistoryModelTypeIsBad = @"All";
 
         _choiceType = @"";
         _isAscending = FALSE;
+        _sortKey = kChoiceListSortDate;
 
         _choices = [[NSMutableArray alloc] init];
         _choicesAreGood = [[NSMutableArray alloc] init];
         _choiceKeys = [[NSMutableArray alloc] init];
         _details = [[NSMutableArray alloc] init];
-        _sortKey = [[NSString alloc] initWithString:kChoiceListSortDate];
         _icons = [[NSMutableArray alloc] init];
         preferences = prefs;
 
@@ -84,10 +89,10 @@ NSString* const kChoiceHistoryModelTypeIsBad = @"All";
 
 /* Whenever sortDescriptor is changed from ViewController, model is refreshed */
 - (void) setSortKey:(NSString *)sortKey {
-    if (![_sortKey isEqualToString:sortKey]) {
+//    if (![_sortKey isEqualToString:sortKey]) {
         _sortKey = sortKey;
         [self retrieveAllChoices];
-    }
+//    }
 }
 
 
