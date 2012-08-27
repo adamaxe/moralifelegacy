@@ -6,6 +6,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 #import "ChoiceInitViewController.h"
 #import "ChoiceListViewController.h"
+#import "ChoiceHistoryModel.h"
 #import "ChoiceViewController.h"
 #import "LuckViewController.h"
 #import "LuckListViewController.h"
@@ -179,7 +180,9 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 
 		//Create subsequent view controller to be pushed onto stack, determine if choice or luck
 		if (isChoice) {
-			ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] init];
+            ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+			ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
+            [choiceHistoryModel release];
 			[self.navigationController pushViewController:choiceListCont animated:YES];
 			[choiceListCont release];
 		} else {

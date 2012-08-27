@@ -39,6 +39,11 @@
 @property (nonatomic, retain) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
 
 /**
+ Retrieve all User entered Choices
+ */
+- (void) retrieveAllChoices;
+
+/**
  Filter the list based on User search string
  @param searchText NSString of requested pkey
  */
@@ -86,10 +91,11 @@
 	NSObject *boolCheck = [prefs objectForKey:@"entryIsGood"];
 	
 	if (boolCheck != nil) {
-		self.choiceHistoryModel.isGood = [prefs boolForKey:@"entryIsGood"];
-		
+
+        BOOL isPersistentChoiceGood = [prefs boolForKey:@"entryIsGood"];
+        self.choiceHistoryModel.choiceType = isPersistentChoiceGood ? kChoiceHistoryModelTypeIsGood: kChoiceHistoryModelTypeIsBad;
 	}else {
-		self.choiceHistoryModel.isGood = TRUE;
+        self.choiceHistoryModel.choiceType = kChoiceHistoryModelTypeIsGood;
 	}
         
 	//Initialize filtered data containers

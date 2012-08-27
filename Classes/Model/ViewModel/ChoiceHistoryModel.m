@@ -4,6 +4,10 @@
 #import "UserChoiceDAO.h"
 #import "MoralDAO.h"
 
+NSString* const kChoiceHistoryModelTypeAll = @"Virtue";
+NSString* const kChoiceHistoryModelTypeIsGood = @"Vice";
+NSString* const kChoiceHistoryModelTypeIsBad = @"All";
+
 @interface ChoiceHistoryModel () {
     NSUserDefaults *preferences;                  /**< User defaults to write to file system */
     UserChoiceDAO *currentUserChoiceDAO;    /**< current User Choices*/
@@ -37,13 +41,14 @@
     self = [super init];
     if (self) {
 
-        _isGood = TRUE;
+        _choiceType = @"";
         _isAscending = FALSE;
 
         _choices = [[NSMutableArray alloc] init];
         _choicesAreGood = [[NSMutableArray alloc] init];
         _choiceKeys = [[NSMutableArray alloc] init];
         _details = [[NSMutableArray alloc] init];
+        _sortKey = [[NSString alloc] initWithString:kChoiceListSortDate];
         _icons = [[NSMutableArray alloc] init];
         preferences = prefs;
 
@@ -61,21 +66,30 @@
 #pragma mark -
 #pragma mark Overloaded Setters
 
-/* Whenever this isGood is changed from ViewController, model is refreshed */
-- (void) setIsGood:(BOOL) isGood {
-    if (_isGood != isGood) {
-        _isGood = isGood;
+/* Whenever sGood is changed from ViewController, model is refreshed */
+- (void) setChoiceType:(NSString *)choiceType {
+    if (_choiceType != choiceType) {
+        _choiceType = choiceType;
         [self retrieveAllChoices];
     }
 }
 
-/* Whenever this isAscending is changed from ViewController, model is refreshed */
+/* Whenever isAscending is changed from ViewController, model is refreshed */
 - (void) setIsAscending:(BOOL)isAscending {
     if (_isAscending != isAscending) {
         _isAscending = isAscending;
         [self retrieveAllChoices];
     }
 }
+
+/* Whenever sortDescriptor is changed from ViewController, model is refreshed */
+- (void) setSortKey:(NSString *)sortKey {
+    if (![_sortKey isEqualToString:sortKey]) {
+        _sortKey = sortKey;
+        [self retrieveAllChoices];
+    }
+}
+
 
 /**
  Implementation: Retrieve all User entered Choices, and then populate a working set of data containers upon which to filter.
@@ -94,13 +108,21 @@
 	//Ensure that Choices created during Morathology sessions are not displayed here
 	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
 	//@see DilemmaViewController
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@ AND NOT entryKey contains[cd] %@", @(self.isGood), predicateParam];
+	NSPredicate *pred;
+
+    if ([self.choiceType isEqualToString:kChoiceHistoryModelTypeAll]) {
+        pred = [NSPredicate predicateWithFormat:@"NOT entryKey contains[cd] %@", predicateParam];
+    } else if ([self.choiceType isEqualToString:kChoiceHistoryModelTypeIsGood]) {
+        pred = [NSPredicate predicateWithFormat:@"entryIsGood == TRUE AND NOT entryKey contains[cd] %@", predicateParam];
+    } else {
+        pred = [NSPredicate predicateWithFormat:@"entryIsGood == FALSE AND NOT entryKey contains[cd] %@", predicateParam];
+    }
+
 	currentUserChoiceDAO.predicates = @[pred];
 	[predicateParam release];
 
-	NSSortDescriptor* sortDescriptor;
-
-	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:kChoiceListSortDate ascending:self.isAscending];
+	//choiceSortDescriptor and isAscending are set throughout class
+	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:self.sortKey ascending:self.isAscending];
 
     NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
 	currentUserChoiceDAO.sorts = sortDescriptors;

@@ -11,10 +11,15 @@
 
 @class ModelManager;
 
+extern NSString* const kChoiceHistoryModelTypeAll;
+extern NSString* const kChoiceHistoryModelTypeIsGood;
+extern NSString* const kChoiceHistoryModelTypeIsBad;
+
 @interface ChoiceHistoryModel : NSObject
 
-@property (nonatomic, assign) BOOL isGood;		/**< is current view for Virtues or Vices */
-@property (nonatomic, assign) BOOL isAscending;		/**< current order type */
+@property (nonatomic, retain) NSString *choiceType;     /**< determine if Virtues/Vices/All should be returned */
+@property (nonatomic, assign) BOOL isAscending;         /**< current order type */
+@property (nonatomic, retain) NSString *sortKey; /**< sort order */
 
 
 //Raw, readonly data of all entered choices

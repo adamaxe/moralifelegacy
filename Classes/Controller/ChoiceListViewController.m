@@ -8,24 +8,14 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
 #import "ChoiceListViewController.h"
 #import "MoraLifeAppDelegate.h"
-#import "ModelManager.h"
 #import "ChoiceViewController.h"
-#import "UserChoiceDAO.h"
-#import "MoralDAO.h"
+#import "ChoiceHistoryModel.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceListViewController () <ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
-	
-	//Raw data of all entered choices
-	NSMutableArray *choices;			/**< Array of User-entered choice titles */
-	NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
-	NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
-	NSMutableArray *details;			/**< Array of User-entered details */
-	NSMutableArray *icons;				/**< Array of associated images */
     
 	//Data for filtering/searching sourced from raw data
 	NSMutableArray *dataSource;			/**< array for storing of Choices populated from previous view*/
@@ -42,10 +32,13 @@ Refetches of table data are necessary when sorting and ordering are requested.
     
 	IBOutlet UIButton *moralSortButton;		/**< button for sorting criteria */
 	IBOutlet UIButton *moralOrderButton;	/**< button for ordering criteria */
-    
+
+    //Refactor into model
 	NSMutableString *choiceSortDescriptor;	/**< sort descriptor for filtering Core Data */
 	BOOL isAscending;					/**< is data ascending or descending order */
 }
+
+@property (nonatomic, retain) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
 
 /**
  Retrieve all User entered Choices
@@ -58,18 +51,12 @@ Refetches of table data are necessary when sorting and ordering are requested.
  */
 - (void) filterResults: (NSString *)searchText;
 
-/**
- Retrieve choice for selection
- @param choiceKey NSString of requested pkey
- */
-- (void) retrieveChoice:(NSString *) choiceKey;
-
-/**
- Delete the particular choice
- @param choiceKey NSString of requested pkey
- @todo v2.0 determine best course for Choice deletion
- */
-- (void) deleteChoice:(NSString *) choiceKey;
+///**
+// Delete the particular choice
+// @param choiceKey NSString of requested pkey
+// @todo v2.0 determine best course for Choice deletion
+// */
+//- (void) deleteChoice:(NSString *) choiceKey;
 
 @end
 
@@ -78,12 +65,22 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #pragma mark -
 #pragma mark View lifecycle
 
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel {
+    self = [super init];
+
+    if (self) {
+        _choiceHistoryModel = [choiceHistoryModel retain];
+        _choiceHistoryModel.choiceType = kChoiceHistoryModelTypeAll;
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Set default listing and sort order
@@ -102,14 +99,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	choiceSearchBar.showsCancelButton = NO;
 	choicesTableView.delegate = self;
 	choicesTableView.dataSource = self;
-    
-	//Initialize raw data containers
-	choices = [[NSMutableArray alloc] init];			
-	icons = [[NSMutableArray alloc] init];			
-	details = [[NSMutableArray alloc] init];
-	choiceKeys = [[NSMutableArray alloc] init];
-	choicesAreGood = [[NSMutableArray alloc] init];
-    
+        
 	//Initialize filtered data containers
 	dataSource = [[NSMutableArray alloc] init];
 	tableData = [[NSMutableArray alloc] init];
@@ -192,6 +182,9 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                     [choiceSortDescriptor setString:kChoiceListSortName];
                     [moralSortButton setTitle:@"Alpha" forState: UIControlStateNormal];
                 }
+
+                [self.choiceHistoryModel setSortKey:choiceSortDescriptor];
+
             } break;
 
 		//Order change requested, cycle between Ascending, Descending
@@ -202,8 +195,8 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                 } else {
                     isAscending = TRUE;
                     [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
-                    
                 }
+                [self.choiceHistoryModel setIsAscending:isAscending];
             }
                 break;                 
             default:
@@ -222,162 +215,44 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
 Implementation: Retrieve all User entered Choices, and then populate a working set of data containers upon which to filter.
  */
 - (void) retrieveAllChoices {
-	
-	//Clear all datasets
-	[choices removeAllObjects];
-	[choiceKeys removeAllObjects];
-	[choicesAreGood removeAllObjects];
-	[icons removeAllObjects];
-	[details removeAllObjects];
-	
+		
 	[dataSource removeAllObjects];
 	[tableData removeAllObjects];
 	[tableDataImages removeAllObjects];
 	[tableDataKeys removeAllObjects];
 	[tableDataDetails removeAllObjects];
 	[tableDataColorBools removeAllObjects];
-    
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-
-	//Ensure that Choices created during Morathology sessions are not displayed here
-	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
-	//@see DilemmaViewController
-	NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"NOT entryKey contains[cd] %@", predicateParam];
-	currentUserChoiceDAO.predicates = @[pred];
-	[predicateParam release];
-
-	NSSortDescriptor* sortDescriptor;
-
-	//choiceSortDescriptor and isAscending are set throughout class    
-	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:choiceSortDescriptor ascending:isAscending];
-    
-    NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
-	currentUserChoiceDAO.sorts = sortDescriptors;
-	[sortDescriptor release];
-    [sortDescriptors release];
-	
-	NSArray *objects = [currentUserChoiceDAO readAll];
-	
-	if ([objects count] > 0) {
-		
-		//Build raw data list to be filtered by second data container set
-		for (UserChoice *matches in objects){
-                        
-			[choices addObject:[matches entryShortDescription]];
-		 	[choiceKeys addObject:[matches entryKey]];
-			[choicesAreGood addObject:@([[matches entryIsGood] boolValue])];
-            
-			//Detailed text is name of Moral, Weight, Date, Long Description
-			NSMutableString *detailText = [[NSMutableString alloc] init];
-
-			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
-
-            
-            NSString *value = [matches choiceMoral];            
-            MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
-            
-            Moral *currentMoral = [currentMoralDAO read:value];
-            
-            [icons addObject:currentMoral.imageNameMoral];
-            [detailText appendString:currentMoral.displayNameMoral];
-            
-            [currentMoralDAO release];
-
-			//Display date last modified for sorting
-	            NSDate *modificationDate = [matches entryModificationDate];
-      	      NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-	            [dateFormat setDateFormat:@"MM-dd"];
-            
-	            [detailText appendFormat:@" %@", [dateFormat stringFromDate:modificationDate]];
-            
-      	      [dateFormat release];
-            
-			//If longDescription is empty, do not show colon separating
-	            if (![[matches entryLongDescription] isEqualToString:@""]) {
-      	          [detailText appendFormat:@": %@", [matches entryLongDescription]];
-	            }
-            
-			//Populate details array with constructed detail
-      	      [details addObject:detailText];
-			[detailText release];
-                            
-		}
-	}
-	
-	[currentUserChoiceDAO release];
-	
+    	
 	//Populate datasource arrays for filtering
-	[dataSource addObjectsFromArray:choices];
+	[dataSource addObjectsFromArray:self.choiceHistoryModel.choices];
 	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:icons];
-	[tableDataKeys addObjectsFromArray:choiceKeys];
-	[tableDataDetails addObjectsFromArray:details];
-	[tableDataColorBools addObjectsFromArray:choicesAreGood];
-    
+	[tableDataImages addObjectsFromArray:self.choiceHistoryModel.icons];
+	[tableDataKeys addObjectsFromArray:self.choiceHistoryModel.choiceKeys];
+	[tableDataDetails addObjectsFromArray:self.choiceHistoryModel.details];
+	[tableDataColorBools addObjectsFromArray:self.choiceHistoryModel.choicesAreGood];
+
 	[choicesTableView reloadData];
 	
 }
 
-/**
-Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceViewController to read
- */
-- (void) retrieveChoice:(NSString *) choiceKey {
-	
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-	
-	if (choiceKey != nil) {
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-        currentUserChoiceDAO.predicates = @[pred];
-	}
-		
-    UserChoice *match = [currentUserChoiceDAO read:@""];
-    
-    //Set state retention for eventual call to ChoiceViewController to pick up
-    [prefs setObject:[match entryKey] forKey:@"entryKey"];
-    [prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-    [prefs setObject:[match entryShortDescription] forKey:@"entryShortDescription"];    
-    [prefs setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-    [prefs setObject:[match choiceJustification] forKey:@"choiceJustification"];    
-    [prefs setObject:[match choiceConsequences] forKey:@"choiceConsequence"];    
-    [prefs setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-    [prefs setObject:[match choiceMoral] forKey:@"moralKey"];
-    [prefs setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
-    
-    NSString *value = [match choiceMoral];            
-    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:value];
-    
-    Moral *currentMoral = [currentMoralDAO read:@""];
-    
-    [prefs setObject:currentMoral.displayNameMoral forKey:@"moralName"];
-    [prefs setObject:value forKey:@"moralKey"];
-    [prefs setObject:currentMoral.imageNameMoral forKey:@"moralImage"];
-            
-    [currentMoralDAO release];        
-        
-	
-	[currentUserChoiceDAO release];
-
-}
-
-/**
-Implementation:  VERSION 2.0 Delete selected choice and remove its influence from calculations and reports
-@todo determine best deletion affect
- */
-- (void) deleteChoice:(NSString *) choiceKey {
-	
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-	
-	if (choiceKey != nil) {
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-        currentUserChoiceDAO.predicates = @[pred];
-	}
-	
-    [currentUserChoiceDAO delete:nil];
-    		
-	[currentUserChoiceDAO release];
-	
-}
+///**
+//Implementation:  VERSION 2.0 Delete selected choice and remove its influence from calculations and reports
+//@todo determine best deletion affect
+// */
+//- (void) deleteChoice:(NSString *) choiceKey {
+//	
+//    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
+//	
+//	if (choiceKey != nil) {
+//		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
+//        currentUserChoiceDAO.predicates = @[pred];
+//	}
+//	
+//    [currentUserChoiceDAO delete:nil];
+//    		
+//	[currentUserChoiceDAO release];
+//	
+//}
 
 #pragma mark -
 #pragma mark Table view data source
@@ -480,7 +355,7 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
 
 	//Get selected row and commit to NSUserDefaults    
-	[self retrieveChoice:selectedRow];
+	[self.choiceHistoryModel retrieveChoice:selectedRow];
 	[selectedRow release];
 	
 	//Create subsequent view controller to be pushed onto stack
@@ -538,8 +413,8 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeMorals = [[[icons objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+		NSRange searchRangeDetails = [[[self.choiceHistoryModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+		NSRange searchRangeMorals = [[[self.choiceHistoryModel.icons objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 		
 		//A match was found in row name, details or moral
 		if(searchRange.location != NSNotFound)
@@ -557,11 +432,11 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 			//{
 			
 			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:[choices objectAtIndex:counter]];
-			[tableDataImages addObject:[icons objectAtIndex:counter]];
-			[tableDataDetails addObject:[details objectAtIndex:counter]];
-			[tableDataKeys addObject:[choiceKeys objectAtIndex:counter]];
-            	[tableDataColorBools addObject:[choicesAreGood objectAtIndex:counter]];
+			[tableData addObject:[self.choiceHistoryModel.choices objectAtIndex:counter]];
+			[tableDataImages addObject:[self.choiceHistoryModel.icons objectAtIndex:counter]];
+			[tableDataDetails addObject:[self.choiceHistoryModel.details objectAtIndex:counter]];
+			[tableDataKeys addObject:[self.choiceHistoryModel.choiceKeys objectAtIndex:counter]];
+            	[tableDataColorBools addObject:[self.choiceHistoryModel.choicesAreGood objectAtIndex:counter]];
 
 			//}
 		}
@@ -593,10 +468,10 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 
     
 	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:icons];
-	[tableDataDetails addObjectsFromArray:details];
-	[tableDataKeys addObjectsFromArray:choiceKeys];
-	[tableDataColorBools addObjectsFromArray:choicesAreGood];
+	[tableDataImages addObjectsFromArray:self.choiceHistoryModel.icons];
+	[tableDataDetails addObjectsFromArray:self.choiceHistoryModel.details];
+	[tableDataKeys addObjectsFromArray:self.choiceHistoryModel.choiceKeys];
+	[tableDataColorBools addObjectsFromArray:self.choiceHistoryModel.choicesAreGood];
 
     
 	@try{
@@ -654,11 +529,6 @@ Implementation:  VERSION 2.0 Delete selected choice and remove its influence fro
 	[tableDataDetails release];
 	[tableDataKeys release];
 	[dataSource release];	
-	[choices release], choices = nil;
-	[choiceKeys release], choiceKeys = nil;
-	[details release], details = nil;
-	[icons release], icons = nil;
-	[choicesAreGood release], choicesAreGood = nil;
 	[choiceSortDescriptor release];
     
 	[super dealloc];

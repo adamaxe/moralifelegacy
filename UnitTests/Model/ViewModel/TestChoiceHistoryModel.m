@@ -161,7 +161,7 @@
 
 - (void)testChoiceHistoryModelDefaultValuesAreSetCorrectly {
 
-    STAssertTrue(testingSubject.isGood, @"ChoiceHistoryModel isn't good by default");
+    STAssertTrue([testingSubject.choiceType isEqualToString:@""], @"ChoiceHistoryModel isn't good by default");
     STAssertFalse(testingSubject.isAscending, @"ChoiceHistoryModel is ascending incorrectly by default");
 
 }
@@ -185,7 +185,7 @@
 
 - (void)testWhenAscendingMoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.isGood = TRUE;
+    testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceMoral1, choiceMoral2];
@@ -196,7 +196,7 @@
 
 - (void)testWhenDescendingMoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.isGood = TRUE;
+    testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceMoral2, choiceMoral1];
@@ -207,7 +207,7 @@
 
 - (void)testWhenAscendingImmoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.isGood = FALSE;
+    testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3];
@@ -218,7 +218,7 @@
 
 - (void)testWhenDescendingImmoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.isGood = FALSE;
+    testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1];
@@ -262,6 +262,7 @@
     [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
     [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name]];
 
     [userDefaultsMock verify];
