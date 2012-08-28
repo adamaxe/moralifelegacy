@@ -72,6 +72,8 @@
 		5E1D6CD312EFCA2300FEA844 /* cardback-single@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D6CCF12EFCA2300FEA844 /* cardback-single@2x.png */; };
 		5E1D6CDA12EFCABA00FEA844 /* cardback-single.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D6CD612EFCABA00FEA844 /* cardback-single.png */; };
 		5E23AA1115E85CEB0049BE87 /* TestChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */; };
+		5E23AA1415EB32880049BE87 /* ReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E23AA1315EB32880049BE87 /* ReferenceModel.m */; };
+		5E23AA1515EB32880049BE87 /* ReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E23AA1315EB32880049BE87 /* ReferenceModel.m */; };
 		5E23DE9013307D7F00B66412 /* ref-acharyabhadrabahu-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8A13307D7F00B66412 /* ref-acharyabhadrabahu-sm.png */; };
 		5E23DE9113307D7F00B66412 /* ref-acharyabhadrabahu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8B13307D7F00B66412 /* ref-acharyabhadrabahu.jpg */; };
 		5E23DE9213307D7F00B66412 /* ref-davidhume-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E23DE8C13307D7F00B66412 /* ref-davidhume-sm.png */; };
@@ -1817,6 +1819,8 @@
 		5E1D6CCF12EFCA2300FEA844 /* cardback-single@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardback-single@2x.png"; path = "Resources/images/interface/cards/cardback-single@2x.png"; sourceTree = "<group>"; };
 		5E1D6CD612EFCABA00FEA844 /* cardback-single.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardback-single.png"; path = "Resources/images/interface/cards/cardback-single.png"; sourceTree = "<group>"; };
 		5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestChoiceHistoryModel.m; sourceTree = "<group>"; };
+		5E23AA1215EB32880049BE87 /* ReferenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceModel.h; sourceTree = "<group>"; };
+		5E23AA1315EB32880049BE87 /* ReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceModel.m; sourceTree = "<group>"; };
 		5E23DE8A13307D7F00B66412 /* ref-acharyabhadrabahu-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-acharyabhadrabahu-sm.png"; path = "Resources/images/reference/ref-acharyabhadrabahu-sm.png"; sourceTree = "<group>"; };
 		5E23DE8B13307D7F00B66412 /* ref-acharyabhadrabahu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-acharyabhadrabahu.jpg"; path = "Resources/images/reference/ref-acharyabhadrabahu.jpg"; sourceTree = "<group>"; };
 		5E23DE8C13307D7F00B66412 /* ref-davidhume-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-davidhume-sm.png"; path = "Resources/images/reference/ref-davidhume-sm.png"; sourceTree = "<group>"; };
@@ -5282,10 +5286,12 @@
 		5E9D258D15DDF35D0097A5F0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */,
-				5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */,
 				5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */,
 				5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */,
+				5E23AA1215EB32880049BE87 /* ReferenceModel.h */,
+				5E23AA1315EB32880049BE87 /* ReferenceModel.m */,
+				5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */,
+				5E9D258F15DDF35D0097A5F0 /* ReportPieModel.m */,
 			);
 			name = ViewModel;
 			path = Model/ViewModel;
@@ -7332,6 +7338,7 @@
 				5E9D259015DDF35D0097A5F0 /* ReportPieModel.m in Sources */,
 				5EAA72EE15E19FA500656390 /* UIColor+Utility.m in Sources */,
 				5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
+				5E23AA1415EB32880049BE87 /* ReferenceModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7452,6 +7459,7 @@
 				5EAA72EF15E19FA500656390 /* UIColor+Utility.m in Sources */,
 				5E7180C215E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
 				5E23AA1115E85CEB0049BE87 /* TestChoiceHistoryModel.m in Sources */,
+				5E23AA1515EB32880049BE87 /* ReferenceModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

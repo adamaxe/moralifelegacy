@@ -7,6 +7,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferenceListViewController.h"
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ReferenceModel.h"
 #import "ConscienceAssetDAO.h"
 #import "ReferenceAssetDAO.h"
 #import "ReferenceBeliefDAO.h"
@@ -19,12 +20,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	
-	NSMutableArray *references;			/**< text to appear as row name */
-	NSMutableArray *referenceKeys;		/**< text to key on DB */
-	NSMutableArray *icons;				/**< filename of picture to be shown in row */
-	NSMutableArray *details;			/**< text to appear under row name */
-	
+		
 	NSMutableArray *dataSource;			/**< array for storing of References populated from previous view*/
 	NSMutableArray *searchedData;
 	NSMutableArray *tableData;			/**< array for stored data displayed in table populated from dataSource */
@@ -36,6 +32,9 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	IBOutlet UISearchBar *referenceSearchBar;		/**< search bar for limiting list */
 	IBOutlet UIView *namesView;
 }
+
+@property (nonatomic, retain) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
+
 
 /**
  Load Reference data from Core Data for table
@@ -55,13 +54,13 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #pragma mark -
 #pragma mark View lifecycle
 
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+- (id)initWithModel:(ReferenceModel *)referenceModel {
+    self = [super init];
 
-		//Setup default values
-		_referenceType = 0;
+    if (self) {
+        _referenceModel = [referenceModel retain];
     }
+
     return self;
 }
 
@@ -80,11 +79,6 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
     
     [self setTitle:@"List"];
 	
-	references = [[NSMutableArray alloc] init];			
-	icons = [[NSMutableArray alloc] init];			
-	details = [[NSMutableArray alloc] init];
-	referenceKeys = [[NSMutableArray alloc] init];
-	
 	dataSource = [[NSMutableArray alloc] init];
 	searchedData = [[NSMutableArray alloc] init];
 	tableData = [[NSMutableArray alloc] init];
@@ -100,11 +94,11 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	[self retrieveAllReferences];
     
     //User may be returning from DilemmaView and will expect search filtered list
-	NSString *searchString = [prefs objectForKey:[NSString stringWithFormat:@"searchText%d", _referenceType]];	
+	NSString *searchString = [prefs objectForKey:[NSString stringWithFormat:@"searchText%d", self.referenceModel.referenceType]];	
 	
 	if (searchString != nil) {
 		
-		[prefs removeObjectForKey:[NSString stringWithFormat:@"searchText%d", _referenceType]];
+		[prefs removeObjectForKey:[NSString stringWithFormat:@"searchText%d", self.referenceModel.referenceType]];
 		[self filterResults:searchString];
         [referenceSearchBar setText:searchString];
 		
@@ -127,7 +121,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	
     //If user has filtered list, we must retain this upon return to this view
 	if (referenceSearchBar.text != nil && ![referenceSearchBar.text isEqualToString:@""]) {
-		[prefs setObject:referenceSearchBar.text forKey:[NSString stringWithFormat:@"searchText%d", _referenceType]];
+		[prefs setObject:referenceSearchBar.text forKey:[NSString stringWithFormat:@"searchText%d", self.referenceModel.referenceType]];
 		
 	}
 	
@@ -140,106 +134,25 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 Implementation: Retrieve all relevant hits from SystemData as raw.  Populate searchable dataset for filtering
  */
 - (void) retrieveAllReferences{
-	
-	[references removeAllObjects];
-	[referenceKeys removeAllObjects];
-	[icons removeAllObjects];
-	[details removeAllObjects];
-	
+		
 	[dataSource removeAllObjects];
 	[searchedData removeAllObjects];
 	[tableData removeAllObjects];
 	[tableDataImages removeAllObjects];
 	[tableDataKeys removeAllObjects];
 	[tableDataDetails removeAllObjects];
-	
-    id currentDAO;
-    	
-    //Populate subsequent list controller with appropriate choice
-	switch (_referenceType){
-		case 0:
-			currentDAO = [[ConscienceAssetDAO alloc] init];
-			break;
-		case 1:
-			currentDAO = [[ReferenceBeliefDAO alloc] init];
-			break;
-		case 2:
-			currentDAO = [[ReferenceTextDAO alloc] init];
-			break;
-		case 3:
-			currentDAO = [[ReferencePersonDAO alloc] init];
-			break;
-		case 4:
-			currentDAO = [[MoralDAO alloc] init];
-			break;
-		default:
-			currentDAO = [[ReferenceAssetDAO alloc] init];
-			break;
-	}
     
-    if (_referenceType != 4) {
-        NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
-        
-        NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, nil] autorelease];
-        [sortDescriptor1 release];
-        [currentDAO setSorts:sortDescriptors];
-    } 
-        
-    
-	/** @bug leaks complaint */
-	NSArray *objects = [currentDAO readAll];
-	
-	if ([objects count] > 0) {
-		
-        if (_referenceType != 4) {
-            for (ReferenceAsset *matches in objects){
-                
-                //Is the asset owned
-                if([appDelegate.userCollection containsObject:[matches nameReference]]){
-                    
-                    [references addObject:[matches displayNameReference]];
-                    [icons addObject:[matches imageNameReference]];
-                    [details addObject:[matches shortDescriptionReference]];
-                    [referenceKeys addObject:[matches nameReference]];		
-                }
-                
-            }
-        } else {
-            
-            for (Moral *matches in objects){
-                
-                if([appDelegate.userCollection containsObject:[matches nameMoral]]){
-                    
-                    [references addObject:[matches displayNameMoral]];
-                    [icons addObject:[matches imageNameMoral]];
-                    [details addObject:[NSString stringWithFormat:@"%@: %@", [matches shortDescriptionMoral], [matches longDescriptionMoral]]];
-                    [referenceKeys addObject:[matches nameMoral]];			
-                }
-            }
-            
-		}
-    }
-    
-    [currentDAO release];
+    for (int i = 0; i < self.referenceModel.referenceKeys.count; i++) {
 
-    
-    for (int i = 0; i < referenceKeys.count; i++) {
+        if([appDelegate.userCollection containsObject:[self.referenceModel.referenceKeys objectAtIndex:i]]){
 
-        if([appDelegate.userCollection containsObject:[referenceKeys objectAtIndex:i]]){
-
-            [dataSource addObject:[references objectAtIndex:i]];
-            [tableData addObject:[references objectAtIndex:i]];
-            [tableDataImages addObject:[icons objectAtIndex:i]];
-            [tableDataKeys addObject:[referenceKeys objectAtIndex:i]];
-            [tableDataDetails addObject:[details objectAtIndex:i]];
+            [dataSource addObject:[self.referenceModel.references objectAtIndex:i]];
+            [tableData addObject:[self.referenceModel.references objectAtIndex:i]];
+            [tableDataImages addObject:[self.referenceModel.icons objectAtIndex:i]];
+            [tableDataKeys addObject:[self.referenceModel.referenceKeys objectAtIndex:i]];
+            [tableDataDetails addObject:[self.referenceModel.details objectAtIndex:i]];
         }
     }
-    
-    //Must set original arrays with filtered values for searching
-    [references setArray:dataSource];
-    [referenceKeys setArray:tableDataKeys];
-    [icons setArray:tableDataImages];
-    [details setArray:tableDataDetails];
 
 	[referencesTableView reloadData];
 	
@@ -280,7 +193,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[tableDataImages objectAtIndex:indexPath.row]];	
 
-    if (_referenceType != 4) {
+    if (self.referenceModel.referenceType != kReferenceModelTypeMoral) {
         [rowImageName appendString:@"-sm"];
     }
     
@@ -299,10 +212,9 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] init];
-	
-	[prefs setInteger:_referenceType forKey:@"referenceType"];
-	[prefs setObject:[tableDataKeys objectAtIndex:indexPath.row] forKey:@"referenceKey"];
-    
+
+    [self.referenceModel retrieveReference:[tableDataKeys objectAtIndex:indexPath.row]];
+
 	[self.navigationController pushViewController:detailViewCont animated:YES];
 	[detailViewCont release];
 }
@@ -338,9 +250,9 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	[tableDataKeys removeAllObjects];
 	
 	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:icons];
-	[tableDataDetails addObjectsFromArray:details];
-	[tableDataKeys addObjectsFromArray:referenceKeys];
+	[tableDataImages addObjectsFromArray:self.referenceModel.icons];
+	[tableDataDetails addObjectsFromArray:self.referenceModel.details];
+	[tableDataKeys addObjectsFromArray:self.referenceModel.referenceKeys];
 	
 	@try{
 		[referencesTableView reloadData];
@@ -386,7 +298,7 @@ Implementation: Iterate through searchData looking for instances of searchText
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+		NSRange searchRangeDetails = [[[self.referenceModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 		
 		//A match was found
 		if(searchRange.location != NSNotFound)
@@ -403,10 +315,10 @@ Implementation: Iterate through searchData looking for instances of searchText
 			//{
 			
 			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:[references objectAtIndex:counter]];
-			[tableDataImages addObject:[icons objectAtIndex:counter]];
-			[tableDataDetails addObject:[details objectAtIndex:counter]];
-			[tableDataKeys addObject:[referenceKeys objectAtIndex:counter]];
+			[tableData addObject:[self.referenceModel.references objectAtIndex:counter]];
+			[tableDataImages addObject:[self.referenceModel.icons objectAtIndex:counter]];
+			[tableDataDetails addObject:[self.referenceModel.details objectAtIndex:counter]];
+			[tableDataKeys addObject:[self.referenceModel.referenceKeys objectAtIndex:counter]];
 			
 			//}
 		}
@@ -446,11 +358,6 @@ Implementation: Iterate through searchData looking for instances of searchText
 	[tableDataKeys release];
 	[dataSource release];	
 	
-	[references release], references = nil;
-	[referenceKeys release], referenceKeys = nil;
-	[details release], details = nil;
-	[icons release], icons = nil;
-    
     [super dealloc];
 }
 

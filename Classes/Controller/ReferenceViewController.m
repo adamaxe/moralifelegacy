@@ -7,6 +7,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "MoraLifeAppDelegate.h"
 #import "ReferenceViewController.h"
 #import "ReferenceListViewController.h"
+#import "ReferenceModel.h"
 #import "ConscienceHelpViewController.h"
 #import "MenuScreenAnimations.h"
 #import "ViewControllerLocalization.h"
@@ -105,29 +106,31 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (IBAction) selectReferenceType:(id) sender{
 	
 	//Create view controller to be pushed upon navigation stack
-	ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] init];
+    ReferenceModel *referenceModel = [[ReferenceModel alloc] init];
 
-	int referenceType = 0;
-		
+	int referenceType = kReferenceModelTypeConscienceAsset;
+
 	//Determine which choice was selected
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
 		int choiceIndex = senderButton.tag;
-		
+
 		//Populate subsequent list controller with appropriate choice
 		//Pass which reference type is requested
 		switch (choiceIndex){
-			case 0:referenceType = kReferenceTypeAccessories;break;
-			case 1:referenceType = kReferenceTypeBeliefs;break;
-			case 2:referenceType = kReferenceTypeBooks;break;
-			case 3:referenceType = kReferenceTypePeople;break;
-			case 4:referenceType = kReferenceTypePlaces;break;
-			default:break;
+			case 0:referenceType = kReferenceModelTypeConscienceAsset;break;
+			case 1:referenceType = kReferenceModelTypeBelief;break;
+			case 2:referenceType = kReferenceModelTypeText;break;
+			case 3:referenceType = kReferenceModelTypePerson;break;
+			case 4:referenceType = kReferenceModelTypeMoral;break;
+			default:referenceType = kReferenceModelTypeConscienceAsset;break;
 		}
-		
+
 	}
-	
-    referenceListViewCont.referenceType = referenceType;		
+
+    referenceModel.referenceType = referenceType;
+    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];
+    [referenceModel release];
     [self.navigationController pushViewController:referenceListViewCont animated:YES];
 
 	[referenceListViewCont release];

@@ -268,18 +268,6 @@ typedef enum expressionBagsEnum{
 }expressionBagsEnum;
 
 /**
- Possible referenceTypes
- */
-typedef enum referenceTypeEnum{
-	kReferenceTypeAccessories,
-	kReferenceTypeBeliefs,
-	kReferenceTypeBooks,
-	kReferenceTypePeople,
-	kReferenceTypePlaces,
-	kReferenceTypeReports
-}referenceTypeEnum;
-
-/**
  Possible bubbleTypes
  */
 typedef enum bubbleTypeEnum{

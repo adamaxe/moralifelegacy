@@ -219,7 +219,6 @@ Implementation: Determine whether death is applicable, create span and determine
 Implementation: Determine which type of image to show to User in reference card.  Figures get the full frame.
  */
 -(void) populateReferenceScreen{
-
 	
 	NSMutableString *detailImageName = [[NSMutableString alloc] initWithString:referencePicture];
 
@@ -445,7 +444,6 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
 
 - (void)dealloc {
 	
-
     [referenceQuote release];
 	[referenceName release];
 	[referenceDate release];    

@@ -89,10 +89,8 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 
 /* Whenever sortDescriptor is changed from ViewController, model is refreshed */
 - (void) setSortKey:(NSString *)sortKey {
-//    if (![_sortKey isEqualToString:sortKey]) {
-        _sortKey = sortKey;
-        [self retrieveAllChoices];
-//    }
+    _sortKey = sortKey;
+    [self retrieveAllChoices];
 }
 
 
