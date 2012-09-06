@@ -302,50 +302,14 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	[[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
 	
 	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
-    //	[rowImageName appendString:@".png"];
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
-    //	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
     [[cell imageView] setImage:rowImage];
     [rowImage release];
     [rowImageName release];
     
 	return cell;
 }
-
-
-/** @todo VERSION 2.0 determine logical choice deletion */
-//#pragma mark -
-//#pragma mark Table view edit
-//
-//-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//}
-//
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	
-//	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
-//	
-//	[self deleteChoice:selectedRow];
-//	
-//	[selectedRow release];
-//	
-//	[self retrieveAllChoices];
-//	[choicesTableView reloadData];
-//	
-//	/** @todo make nice animation deletion work */
-//	/*
-//     // If row is deleted, remove it from the list.
-//     if (editingStyle == UITableViewCellEditingStyleDelete)
-//     {
-//     
-//     // Animate the deletion from the table.
-//     [choicesTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-//     
-//     }
-//	 */
-//}
 
 #pragma mark -
 #pragma mark Table view delegate

@@ -363,8 +363,8 @@ Implementation: Internal function to retrieve how many ethicals User currently h
  */
 -(void)retrieveCurrentFunds{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
-    
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
 
     //Increase the moral's value
@@ -467,7 +467,8 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 	//Retrieve User's ethicals
     
     //Update User's ethicals
-	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:kCollectableEthicals];;
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
 	int ethicals = [[currentUserCollectable collectableValue] intValue];
     

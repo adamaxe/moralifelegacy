@@ -22,6 +22,8 @@ typedef enum referenceModelTypeEnum{
 	kReferenceModelTypeReferenceAsset
 }referenceModelTypeEnum;
 
+@class ModelManager;
+
 @interface ReferenceModel : NSObject
 
 @property (nonatomic, assign) int referenceType;    /**< current reference type */

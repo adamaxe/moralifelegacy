@@ -11,7 +11,6 @@
 
 @interface ReferenceModel () {
     NSUserDefaults *preferences;            /**< User defaults to write to file system */
-    UserChoiceDAO *currentUserChoiceDAO;    /**< current User Choices*/
     MoralDAO *currentMoralDAO;              /**< retrieve morals User has utilized */
     NSArray *currentUserCollection;                /**< collection of owned Assets */
 
@@ -50,7 +49,6 @@
         preferences = prefs;
         currentUserCollection = userCollection;
 
-        currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:modelManager];
         currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:modelManager];
 
     }
@@ -64,7 +62,7 @@
 #pragma mark -
 #pragma mark Overloaded Setters
 
-/* Whenever sGood is changed from ViewController, model is refreshed */
+/* Whenever referenceType is changed from ViewController, model is refreshed */
 - (void) setReferenceType:(int)referenceType {
     if (_referenceType != referenceType) {
         _referenceType = referenceType;
@@ -175,7 +173,6 @@
     [_referenceKeys release];
     [_details release];
     [_icons release];
-    [currentUserChoiceDAO release];
     [currentMoralDAO release];
 
     [super dealloc];

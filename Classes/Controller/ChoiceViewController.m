@@ -834,9 +834,10 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
  */
 -(void)increaseEthicals{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
     
     //Update User's ethicals
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     [currentUserCollectableDAO release];
     

@@ -1260,6 +1260,7 @@
 		5E8FBE0C138A136200173584 /* UserData.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 5E8FBE0A138A136200173584 /* UserData.sqlite */; };
 		5E9104E3121A18E200423DE8 /* AccessoryObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9104DF121A18E200423DE8 /* AccessoryObjectView.m */; };
 		5E91184C1319984200EB5617 /* card-doubt.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E91184B1319984200EB5617 /* card-doubt.png */; };
+		5E978A1315EC5BB400EB2ED1 /* TestReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */; };
 		5E99BE66132872F9000D6F60 /* thoughtbubble-smallest.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99BE60132872F9000D6F60 /* thoughtbubble-smallest.png */; };
 		5E99BE67132872F9000D6F60 /* thoughtbubble-smallest@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99BE61132872F9000D6F60 /* thoughtbubble-smallest@2x.png */; };
 		5E99BE68132872F9000D6F60 /* thoughtbubble-thin1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E99BE62132872F9000D6F60 /* thoughtbubble-thin1.png */; };
@@ -3003,6 +3004,7 @@
 		5E9104DE121A18E200423DE8 /* AccessoryObjectView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AccessoryObjectView.h; path = View/AccessoryObjectView.h; sourceTree = "<group>"; };
 		5E9104DF121A18E200423DE8 /* AccessoryObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AccessoryObjectView.m; path = View/AccessoryObjectView.m; sourceTree = "<group>"; };
 		5E91184B1319984200EB5617 /* card-doubt.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-doubt.png"; path = "Resources/images/interface/cards/card-doubt.png"; sourceTree = "<group>"; };
+		5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceModel.m; sourceTree = "<group>"; };
 		5E99BE60132872F9000D6F60 /* thoughtbubble-smallest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-smallest.png"; path = "Resources/images/interface/thoughtbubble-smallest.png"; sourceTree = "<group>"; };
 		5E99BE61132872F9000D6F60 /* thoughtbubble-smallest@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-smallest@2x.png"; path = "Resources/images/interface/thoughtbubble-smallest@2x.png"; sourceTree = "<group>"; };
 		5E99BE62132872F9000D6F60 /* thoughtbubble-thin1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-thin1.png"; path = "Resources/images/interface/thoughtbubble-thin1.png"; sourceTree = "<group>"; };
@@ -5300,8 +5302,9 @@
 		5E9D259215DDF3AD0097A5F0 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */,
 				5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */,
+				5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */,
+				5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */,
 			);
 			name = ViewModel;
 			path = Model/ViewModel;
@@ -7460,6 +7463,7 @@
 				5E7180C215E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
 				5E23AA1115E85CEB0049BE87 /* TestChoiceHistoryModel.m in Sources */,
 				5E23AA1515EB32880049BE87 /* ReferenceModel.m in Sources */,
+				5E978A1315EC5BB400EB2ED1 /* TestReferenceModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

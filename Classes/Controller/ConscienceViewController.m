@@ -659,8 +659,8 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     }
     
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
-    
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     int ethicals = 0;

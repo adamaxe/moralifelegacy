@@ -1,5 +1,5 @@
 /**
- Unit Test for ChoiceHistoryModel.  Test model interaction with peristed data
+ Unit Test for ChoiceHistoryModel.  Test model interaction with peristed data for the ChoiceHistoryViewController and ChoiceListViewController
  
  @class TestChoiceHistoryModel
  

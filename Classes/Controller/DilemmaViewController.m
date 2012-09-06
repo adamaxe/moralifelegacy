@@ -579,8 +579,8 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[appDelegate.userCollection addObject:selectedReward];
 	}
     
-	//Reward ethicals    
-	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:kCollectableEthicals];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
 	//Increase the moral's value
 	int ethicalIncrease = [[currentUserCollectable collectableValue] intValue];
@@ -597,7 +597,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		ethicalIncrease += [selectedReward intValue];
 	}
     
-	[currentUserCollectable setValue:@(ethicalIncrease) forKey:@"collectableValue"];
+	[currentUserCollectable setCollectableValue:@(ethicalIncrease)];
         
 	[selectedReward release];
     

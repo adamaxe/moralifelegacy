@@ -328,8 +328,8 @@ Implementation: Retrieve User's current ethicals from UserData
  */
 -(void)retrieveCurrentFunds{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:kCollectableEthicals];
-            
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     //Set current ethicals for UIViewController
