@@ -21,6 +21,7 @@
     ReferenceModel *testingSubject;
     ModelManager *testModelManager;
     id userDefaultsMock;
+    NSArray *userCollection;
 
     CGFloat virtue1Severity;
     CGFloat virtue2Severity;
@@ -72,6 +73,7 @@
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
+    userCollection = @[];
 
     virtue1Severity = 5.0;
     virtue2Severity = 3.0;
@@ -116,7 +118,7 @@
 
     [testModelManager saveContext];
 
-    testingSubject = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock];
+    testingSubject = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
 
 }
 
