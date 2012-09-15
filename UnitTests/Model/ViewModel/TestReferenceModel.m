@@ -24,45 +24,35 @@
     NSArray *userCollection;
 
     CGFloat virtue1Severity;
-    CGFloat virtue2Severity;
     CGFloat vice1Severity;
-    CGFloat vice2Severity;
-    CGFloat vice3Severity;
 
     Moral *virtue1;
-    Moral *virtue2;
     Moral *vice1;
-    Moral *vice2;
-    Moral *vice3;
 
     NSString *moralChoice1Short;
-    NSString *moralChoice2Short;
     NSString *immoralChoice1Short;
-    NSString *immoralChoice2Short;
-    NSString *immoralChoice3Short;
 
     NSString *moralChoice1Long;
-    NSString *moralChoice2Long;
     NSString *immoralChoice1Long;
-    NSString *immoralChoice2Long;
-    NSString *immoralChoice3Long;
 
     NSString *virtue1Name;
-    NSString *virtue2Name;
     NSString *vice1Name;
-    NSString *vice2Name;
-    NSString *vice3Name;
 
     NSString *choiceMoral1Name;
-    NSString *choiceMoral2Name;
     NSString *choiceImmoral1Name;
-    NSString *choiceImmoral2Name;
-    NSString *choiceImmoral3Name;
 
     CGFloat moralChoice1Influence;
     NSString *moralChoice1Justification;
     NSString *moralChoice1Consequence;
     BOOL moralChoice1EntryIsGood;
+
+    NSString *shortDescription;
+    NSNumber *originYear;
+    NSString *name;
+    NSString *longDescription;
+    NSString *link;
+    NSString *displayName;
+    NSString *imageName;
 
 }
 
@@ -76,45 +66,47 @@
     userCollection = @[];
 
     virtue1Severity = 5.0;
-    virtue2Severity = 3.0;
     vice1Severity = 4.0;
-    vice2Severity = 2.0;
-    vice3Severity = 1.0;
 
     virtue1Name = @"Virtue1";
-    virtue2Name = @"Virtue2";
     vice1Name = @"Vice1";
-    vice2Name = @"Vice2";
-    vice3Name = @"Vice3";
 
     moralChoice1Short = @"moralChoice1Short";
-    moralChoice2Short = @"moralChoice2Short";
     immoralChoice1Short = @"immoralChoice1Short";
-    immoralChoice2Short = @"immoralChoice2Short";
-    immoralChoice3Short = @"immoralChoice3Short";
 
     moralChoice1Long = @"moralChoice1Long";
-    moralChoice2Long = @"moralChoice2Long";
     immoralChoice1Long = @"immoralChoice1Long";
-    immoralChoice2Long = @"immoralChoice2Long";
-    immoralChoice3Long = @"immoralChoice3Long";
 
     choiceMoral1Name = @"choiceMoral1Name";
-    choiceMoral2Name = @"choiceMoral2Name";
     choiceImmoral1Name = @"choiceImmoral1Name";
-    choiceImmoral2Name = @"choiceImmoral2Name";
-    choiceImmoral3Name = @"choiceImmoral3Name";
 
     moralChoice1Influence = 2.5;
     moralChoice1Justification = @"moralChoice1Justification";
     moralChoice1Consequence = @"moralChoice1Consequence";
     moralChoice1EntryIsGood = TRUE;
 
+    shortDescription = @"short description";
+    originYear = @2010;
+    name = @"name";
+    longDescription = @"long description";
+    link = @"http://www.teamaxe.org";
+    displayName = @"display name";
+    imageName = @"image name";
+
+//    ConscienceAsset *testAsset = [testModelManager create:ConscienceAsset.class];
+//
+//    testAsset.costAsset =  @1.0f;
+//
+//    testAsset.shortDescriptionReference = shortDescription;
+//    testAsset.originYear = originYear;
+//    testAsset.nameReference = name;
+//    testAsset.longDescriptionReference = longDescription;
+//    testAsset.linkReference = link;
+//    testAsset.displayNameReference = displayName;
+//    testAsset.imageNameReference = imageName;
+
     virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
-    virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
     vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
-    vice2 = [self createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
-    vice3 = [self createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
 
     [testModelManager saveContext];
 
@@ -132,20 +124,20 @@
 
 }
 
-//- (void)testChoiceHistoryModelCanBeCreated {
+- (void)testReferenceModelCanBeCreated {
+
+    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
+
+    STAssertNotNil(testingSubjectCreate, @"ReferenceModel can't be created.");
+
+    [testingSubjectCreate release];
+    
+}
 //
-//    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock];
+//- (void)testReferenceModelDefaultValuesAreSetCorrectly {
 //
-//    STAssertNotNil(testingSubjectCreate, @"ChoiceHistoryModel can't be created.");
-//
-//    [testingSubjectCreate release];
-//    
-//}
-//
-//- (void)testChoiceHistoryModelDefaultValuesAreSetCorrectly {
-//
-//    STAssertTrue([testingSubject.choiceType isEqualToString:@""], @"ChoiceHistoryModel isn't good by default");
-//    STAssertFalse(testingSubject.isAscending, @"ChoiceHistoryModel is ascending incorrectly by default");
+//    STAssertTrue([testingSubject.choiceType isEqualToString:@""], @"ReferenceModel isn't good by default");
+//    STAssertFalse(testingSubject.isAscending, @"ReferenceModel is ascending incorrectly by default");
 //
 //}
 //
@@ -168,7 +160,7 @@
 //
 //- (void)testWhenDateAscendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.isAscending = TRUE;
 //
 //    NSArray *expectedChoices = @[choiceMoral1, choiceMoral2, choiceImmoral1, choiceImmoral2, choiceImmoral3];
@@ -179,7 +171,7 @@
 //
 //- (void)testWhenDateDescendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.isAscending = FALSE;
 //
 //    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1, choiceMoral2, choiceMoral1];
@@ -192,7 +184,7 @@
 //
 //- (void)testWhenDateAscendingMoralChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
+//    testingSubject.choiceType = kReferenceModelTypeIsGood;
 //    testingSubject.isAscending = TRUE;
 //
 //    NSArray *expectedChoices = @[choiceMoral1, choiceMoral2];
@@ -203,7 +195,7 @@
 //
 //- (void)testWhenDateDescendingMoralChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
+//    testingSubject.choiceType = kReferenceModelTypeIsGood;
 //    testingSubject.isAscending = FALSE;
 //
 //    NSArray *expectedChoices = @[choiceMoral2, choiceMoral1];
@@ -214,7 +206,7 @@
 //
 //- (void)testWhenDateAscendingImmoralChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
+//    testingSubject.choiceType = kReferenceModelTypeIsBad;
 //    testingSubject.isAscending = TRUE;
 //
 //    NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3];
@@ -225,7 +217,7 @@
 //
 //- (void)testWhenDateDescendingImmoralChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
+//    testingSubject.choiceType = kReferenceModelTypeIsBad;
 //    testingSubject.isAscending = FALSE;
 //
 //    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1];
@@ -236,7 +228,7 @@
 //
 //- (void)testWhenNameAscendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.sortKey = kChoiceListSortName;
 //    testingSubject.isAscending = TRUE;
 //
@@ -248,7 +240,7 @@
 //
 //- (void)testWhenNameDescendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.sortKey = kChoiceListSortName;
 //    testingSubject.isAscending = FALSE;
 //
@@ -260,7 +252,7 @@
 //
 //- (void)testWhenSeverityAscendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.sortKey = kChoiceListSortSeverity;
 //    testingSubject.isAscending = TRUE;
 //
@@ -271,7 +263,7 @@
 //
 //- (void)testWhenSeverityDescendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.sortKey = kChoiceListSortSeverity;
 //    testingSubject.isAscending = FALSE;
 //
@@ -282,7 +274,7 @@
 //
 //- (void)testWhenWeightAscendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.sortKey = kChoiceListSortWeight;
 //    testingSubject.isAscending = TRUE;
 //
@@ -293,7 +285,7 @@
 //
 //- (void)testWhenWeightDescendingAllChoicesAreRequestedHistoryisCorrect {
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    testingSubject.sortKey = kChoiceListSortWeight;
 //    testingSubject.isAscending = FALSE;
 //
@@ -314,7 +306,7 @@
 //
 //    STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
 //
-//    ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
+//    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
 //
 //
 //    STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
@@ -337,7 +329,7 @@
 //    [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
 //    [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 //
-//    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+//    testingSubject.choiceType = kReferenceModelTypeAll;
 //    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name]];
 //
 //    [userDefaultsMock verify];

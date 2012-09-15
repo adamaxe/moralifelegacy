@@ -16,7 +16,6 @@
     NSString *link;    
     NSString *displayName;
     NSString *imageName;
-
 }
 
 @end

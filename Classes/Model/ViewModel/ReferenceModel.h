@@ -10,7 +10,7 @@
  */
 
 /**
- Possible positions of Extensions
+ Possible Reference Types
  typedef utilized to avoid having to use enum declaration
  */
 typedef enum referenceModelTypeEnum{
@@ -38,13 +38,15 @@ typedef enum referenceModelTypeEnum{
 /**
  Builds model with dependency injection
  @param modelManager ModelManager for either production or testing
- @return id ChoiceHistoryModel
+ @param prefs NSUserDefaults for dependency injection
+ @param userCollection NSArray of currently owned objects for comparison
+ @return id ReferenceModel
  */
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andUserCollection:(NSArray *) userCollection;
 
 /**
- Retrieve choice for copying into new choice
- @param choiceKey NSString of requested pkey
+ Retrieve reference for displaying in detail view
+ @param reference NSString of requested pkey
  */
 - (void) retrieveReference:(NSString *) referenceKey;
 
