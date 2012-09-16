@@ -113,7 +113,6 @@
     
 	[super viewWillAppear:animated];
     
-    
 	//Refresh Data in case something changed since last time onscreen
 	[self retrieveAllChoices];
 	

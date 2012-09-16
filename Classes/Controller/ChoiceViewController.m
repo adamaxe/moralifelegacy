@@ -32,30 +32,30 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	IBOutlet UILabel *severityLabel;					/**< UILabel for UISlider of choice's severity */
 	IBOutlet UIImageView *moralImageView;				/**< moral image */
 	IBOutlet UIImageView *backgroundImageView;			/**< background image */
-	IBOutlet UIImageView *descriptionInnerShadow;			/**< faux inner drop shadow for UITextView */
+	IBOutlet UIImageView *descriptionInnerShadow;		/**< faux inner drop shadow for UITextView */
 	IBOutlet UIView *choiceParametersView;				/**< UIView for hiding top parameters for keyboard */
 	IBOutlet UIView *choiceDescriptionView;				/**< UIView for shifting bottom parameter for keyboard */
 	
-	IBOutlet UIButton *hideKeyboardButton;				/**< done button for UITextView keyboard dismissal */
+	IBOutlet UIButton *hideKeyboardButton;			/**< done button for UITextView keyboard dismissal */
 	IBOutlet UIButton *doneButton;					/**< done button for ViewController dismissal */
-	IBOutlet UIButton *cancelButton;					/**< cancel button for ViewController dismissal and entry deletion*/
+	IBOutlet UIButton *cancelButton;				/**< cancel button for ViewController dismissal and entry deletion*/
 	IBOutlet UIButton *moralButton;					/**< moral button list selection for ViewController dismissal */
-	IBOutlet UIButton *moralReferenceButton;				/**< moral button which selects moral reference */
+	IBOutlet UIButton *moralReferenceButton;		/**< moral button which selects moral reference */
     
-    IBOutlet UIButton *moralHistoryButton;  /**< moral history button which selects previous entries */
-	IBOutlet StructuredTextField *choiceTextField;			/**< overloaded text field for choice title */
-	IBOutlet UITextView *descriptionTextView;				/**< UITextView for choice's extended description */
+    IBOutlet UIButton *moralHistoryButton;              /**< moral history button which selects previous entries */
+	IBOutlet StructuredTextField *choiceTextField;		/**< overloaded text field for choice title */
+	IBOutlet UITextView *descriptionTextView;			/**< UITextView for choice's extended description */
 	IBOutlet UISlider *severitySlider;					/**< UISlider for choice's severity */
     
 	StructuredTextField *activeField;					/** temporary overloaded text field for determining active field */
 	
-	NSMutableArray *severityLabelDescriptions;				/** list of localized severity descriptions */
+	NSMutableArray *severityLabelDescriptions;			/** list of localized severity descriptions */
 	
 	BOOL isVirtue;							/** determine if screen shown is virtue or vice */
-	BOOL isChoiceFinished;						/** determine if choice is complete */
+	BOOL isChoiceFinished;					/** determine if choice is complete */
 	
-	UserChoice *currentUserChoice;				/** nsmanagedobject of current choice */
-	NSMutableString *choiceKey;						/** string to hold primary key of current choice */
+	UserChoice *currentUserChoice;			/** nsmanagedobject of current choice */
+	NSMutableString *choiceKey;				/** string to hold primary key of current choice */
 	NSString *moralKey;						/** string to hold primary key of current moral */
     
 }
@@ -225,6 +225,9 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 		[moralImage release];
         
 	}
+
+    //Do not allow user to select a prior entry if entering a previous entry
+    moralHistoryButton.hidden = [choiceKey isEqualToString:@""] ? FALSE : TRUE;
     
 	//Set moral and cloud image to invisible, so viewDidAppear can make them fade in
 	[moralReferenceButton setAlpha:0];
@@ -823,7 +826,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     [currentUserChoiceDAO update];
 	
     [currentUserChoiceDAO release];
-    
+
     //invalidate rest of session
     [self cancelChoice:placeHolderID];
 }
