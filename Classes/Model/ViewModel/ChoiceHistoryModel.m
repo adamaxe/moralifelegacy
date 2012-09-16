@@ -180,14 +180,16 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 /**
  Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceViewController to read
  */
-- (void) retrieveChoice:(NSString *) choiceKey {
+- (void) retrieveChoice:(NSString *) choiceKey forEditing:(BOOL)isEditing{
 
     UserChoice *match = [currentUserChoiceDAO read:choiceKey];
 
     if (match) {
 
         //Set state retention for eventual call to ChoiceViewController to pick up
-    //		[prefs setObject:[match entryKey] forKey:@"entryKey"];
+        if(isEditing){
+            [preferences setObject:[match entryKey] forKey:@"entryKey"];
+        }
         [preferences setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
         [preferences setObject:[match entryShortDescription] forKey:@"entryShortDescription"];
         [preferences setObject:[match entryLongDescription] forKey:@"entryLongDescription"];

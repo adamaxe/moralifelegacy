@@ -341,7 +341,10 @@
     [testModelManagerCreate release];
 }
 
-- (void)testRetrieveChoiceWritesToStandardUserDefaults {
+- (void)testRetrieveChoiceWritesToStandardUserDefaultsForEditing {
+    NSString *moralChoice1EntryKey = [NSString stringWithFormat:@"%@key", choiceMoral1Name];
+
+    [[userDefaultsMock expect] setObject:moralChoice1EntryKey forKey:@"entryKey"];
     [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
     [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
 
@@ -352,7 +355,23 @@
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
     testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name]];
+    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name] forEditing:YES];
+
+    [userDefaultsMock verify];
+}
+
+- (void)testRetrieveChoiceWritesToStandardUserDefaultsForNewRecord {
+    [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
+    [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
+
+    [[userDefaultsMock expect] setFloat:virtue1Severity forKey:@"entrySeverity"];
+    [[userDefaultsMock expect] setObject:moralChoice1Justification forKey:@"choiceJustification"];
+    [[userDefaultsMock expect] setObject:moralChoice1Consequence forKey:@"choiceConsequence"];
+    [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
+    [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name] forEditing:NO];
 
     [userDefaultsMock verify];
 }
@@ -371,7 +390,7 @@
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralName"];
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralImage"];
 
-    [testingSubject retrieveChoice:@"incorrectChoiceKey"];
+    [testingSubject retrieveChoice:@"incorrectChoiceKey" forEditing:NO];
 
     [userDefaultsMock verify];
 }

@@ -319,7 +319,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
 
 	//Get selected row and commit to NSUserDefaults    
-	[self.choiceHistoryModel retrieveChoice:selectedRow];
+	[self.choiceHistoryModel retrieveChoice:selectedRow forEditing:YES];
 	[selectedRow release];
 	
 	//Create subsequent view controller to be pushed onto stack

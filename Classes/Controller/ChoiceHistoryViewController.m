@@ -295,7 +295,7 @@
 	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
     
 	//Get selected row and commit to NSUserDefaults    
-	[self.choiceHistoryModel retrieveChoice:selectedRow];
+	[self.choiceHistoryModel retrieveChoice:selectedRow forEditing:NO];
 
     id placeHolder = nil;
 
