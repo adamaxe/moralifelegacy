@@ -113,8 +113,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  @see ConscienceBody
  @see ConscienceAccessories
  */
-- (void)applicationDidFinishLaunching:(UIApplication *)application { 
-	
+- (void)applicationDidFinishLaunching:(UIApplication *)application {
+
     _isCurrentIOS = (&UIApplicationDidEnterBackgroundNotification != NULL);
     
     _moralModelManager = [[ModelManager alloc] init];

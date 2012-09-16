@@ -360,14 +360,14 @@
 
 - (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
 
-    NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
+    NSString *imageNameGenerated = [NSString stringWithFormat:@"%@imageName", moralName];
 
     Moral *testMoral1 = [modelManager create:Moral.class];
 
     testMoral1.shortDescriptionMoral = type;
     testMoral1.nameMoral = moralName;
 
-    testMoral1.imageNameMoral = imageName;
+    testMoral1.imageNameMoral = imageNameGenerated;
     testMoral1.colorMoral = @"FF0000";
     testMoral1.displayNameMoral = @"displayName";
     testMoral1.longDescriptionMoral = @"longDescription";
