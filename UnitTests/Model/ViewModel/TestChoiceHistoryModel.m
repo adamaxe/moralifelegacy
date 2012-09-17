@@ -170,10 +170,10 @@
     ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
 
     STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"ChoicesAreGood are not empty");
+    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"ChoiceKeys are not empty");
+    STAssertTrue(testingSubjectCreate.details.count == 0, @"Details are not empty");
+    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Icons are not empty");
 
     [testingSubjectCreate release];
     [testModelManagerCreate release];
@@ -341,7 +341,10 @@
     [testModelManagerCreate release];
 }
 
-- (void)testRetrieveChoiceWritesToStandardUserDefaults {
+- (void)testRetrieveChoiceWritesToStandardUserDefaultsForEditing {
+    NSString *moralChoice1EntryKey = [NSString stringWithFormat:@"%@key", choiceMoral1Name];
+
+    [[userDefaultsMock expect] setObject:moralChoice1EntryKey forKey:@"entryKey"];
     [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
     [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
 
@@ -352,7 +355,27 @@
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
     testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name]];
+    [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:YES];
+
+    [userDefaultsMock verify];
+}
+
+- (void)testRetrieveChoiceWritesToStandardUserDefaultsForNewRecord {
+
+    NSString *moralChoice1EntryKey = [NSString stringWithFormat:@"%@key", choiceMoral1Name];
+
+    [[userDefaultsMock reject] setObject:moralChoice1EntryKey forKey:@"entryKey"];
+    [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
+    [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
+
+    [[userDefaultsMock expect] setFloat:virtue1Severity forKey:@"entrySeverity"];
+    [[userDefaultsMock expect] setObject:moralChoice1Justification forKey:@"choiceJustification"];
+    [[userDefaultsMock expect] setObject:moralChoice1Consequence forKey:@"choiceConsequence"];
+    [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
+    [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
+
+    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:NO];
 
     [userDefaultsMock verify];
 }
