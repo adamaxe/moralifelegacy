@@ -26,9 +26,11 @@
 
     Moral *virtue1;
     Moral *vice1;
-    ConscienceAsset *testAsset;
-    ReferencePerson *testPerson;
-    
+    ConscienceAsset *testAsset1;
+    ConscienceAsset *testAsset2;
+    ReferencePerson *testPerson1;
+    ReferencePerson *testPerson2;
+
 }
 
 @end
@@ -41,10 +43,12 @@
 
     virtue1 = [self createMoralWithName:@"Virtue1" withType:@"Virtue" withModelManager:testModelManager];
     vice1 = [self createMoralWithName:@"Vice1" withType:@"Vice" withModelManager:testModelManager];
-    testAsset = [self createAssetWithName:@"Asset1" withModelManager:testModelManager];
-    testPerson = [self createPersonWithName:@"Person1" withModelManager:testModelManager];
+    testAsset1 = [self createAssetWithName:@"Asset1" withModelManager:testModelManager];
+    testAsset2 = [self createAssetWithName:@"Asset2" withModelManager:testModelManager];
+    testPerson1 = [self createPersonWithName:@"Person1" withModelManager:testModelManager];
+    testPerson2 = [self createPersonWithName:@"Person2" withModelManager:testModelManager];
 
-    userCollection = @[[testPerson nameReference], [testAsset nameReference], [virtue1 nameMoral], [vice1 nameMoral]];
+    userCollection = @[[testPerson1 nameReference], [testAsset1 nameReference], [testAsset2 nameReference], [virtue1 nameMoral], [vice1 nameMoral]];
 
     testingSubject = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
 
@@ -123,10 +127,10 @@
     STAssertTrue(testingSubject.details.count == 1, @"ReferencePerson details count is incorrect");
     STAssertTrue(testingSubject.icons.count == 1, @"ReferencePerson icons count is incorrect");
 
-    STAssertEqualObjects([testingSubject.references lastObject], [testPerson displayNameReference], @"ReferencePerson displayName is wrong");
-    STAssertEqualObjects([testingSubject.icons lastObject], [testPerson imageNameReference], @"ReferencePerson icon is wrong");
-    STAssertEqualObjects([testingSubject.referenceKeys lastObject], [testPerson nameReference], @"ReferencePerson referenceKey is wrong");
-    STAssertEqualObjects([testingSubject.details lastObject], [testPerson shortDescriptionReference], @"ReferencePerson detail is wrong");
+    STAssertEqualObjects([testingSubject.references lastObject], [testPerson1 displayNameReference], @"ReferencePerson displayName is wrong");
+    STAssertEqualObjects([testingSubject.icons lastObject], [testPerson1 imageNameReference], @"ReferencePerson icon is wrong");
+    STAssertEqualObjects([testingSubject.referenceKeys lastObject], [testPerson1 nameReference], @"ReferencePerson referenceKey is wrong");
+    STAssertEqualObjects([testingSubject.details lastObject], [testPerson1 shortDescriptionReference], @"ReferencePerson detail is wrong");
 
 }
 
@@ -134,15 +138,20 @@
 
     testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
 
-    STAssertTrue(testingSubject.references.count == 1, @"ConscienceAsset references count is incorrect");
-    STAssertTrue(testingSubject.referenceKeys.count == 1, @"ConscienceAsset referenceKeys count is incorrect");
-    STAssertTrue(testingSubject.details.count == 1, @"ConscienceAsset details count is incorrect");
-    STAssertTrue(testingSubject.icons.count == 1, @"ConscienceAsset icons count is incorrect");
+    STAssertTrue(testingSubject.references.count == 2, @"ConscienceAsset references count is incorrect");
+    STAssertTrue(testingSubject.referenceKeys.count == 2, @"ConscienceAsset referenceKeys count is incorrect");
+    STAssertTrue(testingSubject.details.count == 2, @"ConscienceAsset details count is incorrect");
+    STAssertTrue(testingSubject.icons.count == 2, @"ConscienceAsset icons count is incorrect");
 
-    STAssertEqualObjects([testingSubject.references lastObject], [testAsset displayNameReference], @"ConscienceAsset displayName is wrong");
-    STAssertEqualObjects([testingSubject.icons lastObject], [testAsset imageNameReference], @"ConscienceAsset icon is wrong");
-    STAssertEqualObjects([testingSubject.referenceKeys lastObject], [testAsset nameReference], @"ConscienceAsset referenceKey is wrong");
-    STAssertEqualObjects([testingSubject.details lastObject], [testAsset shortDescriptionReference], @"ConscienceAsset detail is wrong");
+    STAssertTrue([testingSubject.references containsObject:[testAsset1 displayNameReference]], @"ConscienceAsset1 displayName not present");
+    STAssertTrue([testingSubject.icons containsObject:[testAsset1 imageNameReference]],  @"ConscienceAsset1 icon not present");
+    STAssertTrue([testingSubject.referenceKeys containsObject:[testAsset1 nameReference]], @"ConscienceAsset1 referenceKey not present");
+    STAssertTrue([testingSubject.details containsObject:[testAsset1 shortDescriptionReference]], @"ConscienceAsset1 detail not present");
+
+    STAssertTrue([testingSubject.references containsObject:[testAsset2 displayNameReference]], @"ConscienceAsset2 displayName not present");
+    STAssertTrue([testingSubject.icons containsObject:[testAsset2 imageNameReference]],  @"ConscienceAsset2 icon not present");
+    STAssertTrue([testingSubject.referenceKeys containsObject:[testAsset2 nameReference]], @"ConscienceAsset2 referenceKey not present");
+    STAssertTrue([testingSubject.details containsObject:[testAsset2 shortDescriptionReference]], @"ConscienceAsset2 detail not present");
     
 }
 
@@ -170,15 +179,27 @@
     STAssertTrue([testingSubject.details containsObject:viceDetail], @"Vice detail not present");
 }
 
+- (void)testWhenSystemAndUserDataIsPresentConscienceAssetsAreSortedByShortDescription {
+
+    testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
+
+    STAssertEqualObjects([testingSubject.referenceKeys objectAtIndex:0], [testAsset1 nameReference], @"ConscienceAsset1 referenceKey ordered incorrectly");
+    STAssertEqualObjects([testingSubject.details objectAtIndex:0], [testAsset1 shortDescriptionReference], @"ConscienceAsset1 detail ordered incorrectly");
+
+    STAssertEqualObjects([testingSubject.referenceKeys objectAtIndex:1], [testAsset2 nameReference], @"ConscienceAsset2 referenceKey ordered incorrectly");
+    STAssertEqualObjects([testingSubject.details objectAtIndex:1], [testAsset2 shortDescriptionReference], @"ConscienceAsset2 detail ordered incorrectly");
+
+}
+
 - (void)testRetrieveConscienceAssetWritesToStandardUserDefaultsForViewing {
 
     testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
 
     [[userDefaultsMock expect] setInteger:testingSubject.referenceType forKey:@"referenceType"];
-    [[userDefaultsMock expect] setObject:testAsset.nameReference forKey:@"referenceKey"];
+    [[userDefaultsMock expect] setObject:testAsset1.nameReference forKey:@"referenceKey"];
     [[userDefaultsMock expect] synchronize];
 
-    [testingSubject retrieveReference:testAsset.nameReference];
+    [testingSubject retrieveReference:testAsset1.nameReference];
 
     [userDefaultsMock verify];
 }
@@ -233,39 +254,39 @@
 
 - (ReferencePerson *)createPersonWithName:(NSString *)personName withModelManager:(ModelManager *)modelManager{
 
-    ReferencePerson *testPerson1 = [modelManager create:ReferencePerson.class];
+    ReferencePerson *testPersonLocal1 = [modelManager create:ReferencePerson.class];
 
-    testPerson1.nameReference = personName;
+    testPersonLocal1.nameReference = personName;
 
-    testPerson1.imageNameReference = @"imageNamePerson";
-    testPerson1.displayNameReference = @"displayNamePerson";
-    testPerson1.longDescriptionReference = @"longDescriptionPerson";
-    testPerson1.originYear = @2012;
-    testPerson1.linkReference = @"linkPerson";
-    testPerson1.shortDescriptionReference = @"shortDescriptionPerson";
+    testPersonLocal1.imageNameReference = @"imageNamePerson";
+    testPersonLocal1.displayNameReference = @"displayNamePerson";
+    testPersonLocal1.longDescriptionReference = @"longDescriptionPerson";
+    testPersonLocal1.originYear = @2012;
+    testPersonLocal1.linkReference = @"linkPerson";
+    testPersonLocal1.shortDescriptionReference = [NSString stringWithFormat:@"%@shortDescriptionPerson", personName];
 
     [modelManager saveContext];
 
-    return testPerson1;
+    return testPersonLocal1;
 }
 
 - (ConscienceAsset *)createAssetWithName:(NSString *)assetName withModelManager:(ModelManager *)modelManager{
 
-    ConscienceAsset *testAsset1 = [modelManager create:ConscienceAsset.class];
+    ConscienceAsset *testAssetLocal1 = [modelManager create:ConscienceAsset.class];
 
-    testAsset1.nameReference = assetName;
+    testAssetLocal1.nameReference = assetName;
 
-    testAsset1.costAsset = @20;
-    testAsset1.imageNameReference = @"imageNameAsset";
-    testAsset1.displayNameReference = @"displayNameAsset";
-    testAsset1.longDescriptionReference = @"longDescriptionAsset";
-    testAsset1.originYear = @2011;
-    testAsset1.linkReference = @"linkAsset";
-    testAsset1.shortDescriptionReference = @"shortDescriptionAsset";
+    testAssetLocal1.costAsset = @20;
+    testAssetLocal1.imageNameReference = @"imageNameAsset";
+    testAssetLocal1.displayNameReference = @"displayNameAsset";
+    testAssetLocal1.longDescriptionReference = @"longDescriptionAsset";
+    testAssetLocal1.originYear = @2011;
+    testAssetLocal1.linkReference = @"linkAsset";
+    testAssetLocal1.shortDescriptionReference = [NSString stringWithFormat:@"%@shortDescriptionAsset", assetName];
 
     [modelManager saveContext];
 
-    return testAsset1;
+    return testAssetLocal1;
 }
 
 @end
