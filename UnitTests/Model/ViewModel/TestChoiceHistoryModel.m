@@ -170,10 +170,10 @@
     ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
 
     STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
+    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"ChoicesAreGood are not empty");
+    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"ChoiceKeys are not empty");
+    STAssertTrue(testingSubjectCreate.details.count == 0, @"Details are not empty");
+    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Icons are not empty");
 
     [testingSubjectCreate release];
     [testModelManagerCreate release];
@@ -355,12 +355,17 @@
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
     testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name] forEditing:YES];
+    [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:YES];
 
     [userDefaultsMock verify];
 }
 
 - (void)testRetrieveChoiceWritesToStandardUserDefaultsForNewRecord {
+
+    NSString *moralChoice1EntryKey = [NSString stringWithFormat:@"%@key", choiceMoral1Name];
+
+    [[userDefaultsMock reject] setObject:moralChoice1EntryKey forKey:@"entryKey"];
+
     [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
     [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
 
@@ -371,7 +376,7 @@
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
     testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name] forEditing:NO];
+    [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:NO];
 
     [userDefaultsMock verify];
 }

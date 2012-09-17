@@ -23,37 +23,6 @@
     id userDefaultsMock;
     NSArray *userCollection;
 
-    CGFloat virtue1Severity;
-    CGFloat vice1Severity;
-
-    Moral *virtue1;
-    Moral *vice1;
-
-    NSString *moralChoice1Short;
-    NSString *immoralChoice1Short;
-
-    NSString *moralChoice1Long;
-    NSString *immoralChoice1Long;
-
-    NSString *virtue1Name;
-    NSString *vice1Name;
-
-    NSString *choiceMoral1Name;
-    NSString *choiceImmoral1Name;
-
-    CGFloat moralChoice1Influence;
-    NSString *moralChoice1Justification;
-    NSString *moralChoice1Consequence;
-    BOOL moralChoice1EntryIsGood;
-
-    NSString *shortDescription;
-    NSNumber *originYear;
-    NSString *name;
-    NSString *longDescription;
-    NSString *link;
-    NSString *displayName;
-    NSString *imageName;
-
 }
 
 @end
@@ -65,33 +34,69 @@
     userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
     userCollection = @[];
 
-    virtue1Severity = 5.0;
-    vice1Severity = 4.0;
+//    Moral *virtue1;
+//    Moral *vice1;
+//
+//    CGFloat virtue1Severity;
+//    CGFloat vice1Severity;
+//
+//    NSString *moralChoice1Short;
+//    NSString *immoralChoice1Short;
+//
+//    NSString *moralChoice1Long;
+//    NSString *immoralChoice1Long;
+//
+//    NSString *virtue1Name;
+//    NSString *vice1Name;
+//
+//    NSString *choiceMoral1Name;
+//    NSString *choiceImmoral1Name;
+//
+//    CGFloat moralChoice1Influence;
+//    NSString *moralChoice1Justification;
+//    NSString *moralChoice1Consequence;
+//    BOOL moralChoice1EntryIsGood;
+//
+//    NSString *shortDescription;
+//    NSNumber *originYear;
+//    NSString *name;
+//    NSString *longDescription;
+//    NSString *link;
+//    NSString *displayName;
+//    NSString *imageName;
+//
+//
+//    virtue1Severity = 5.0;
+//    vice1Severity = 4.0;
+//
+//    virtue1Name = @"Virtue1";
+//    vice1Name = @"Vice1";
+//
+//    moralChoice1Short = @"moralChoice1Short";
+//    immoralChoice1Short = @"immoralChoice1Short";
+//
+//    moralChoice1Long = @"moralChoice1Long";
+//    immoralChoice1Long = @"immoralChoice1Long";
+//
+//    choiceMoral1Name = @"choiceMoral1Name";
+//    choiceImmoral1Name = @"choiceImmoral1Name";
+//
+//    moralChoice1Influence = 2.5;
+//    moralChoice1Justification = @"moralChoice1Justification";
+//    moralChoice1Consequence = @"moralChoice1Consequence";
+//    moralChoice1EntryIsGood = TRUE;
+//
+//    shortDescription = @"short description";
+//    originYear = @2010;
+//    name = @"name";
+//    longDescription = @"long description";
+//    link = @"http://www.teamaxe.org";
+//    displayName = @"display name";
+//    imageName = @"image name";
+//
+//    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
+//    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
 
-    virtue1Name = @"Virtue1";
-    vice1Name = @"Vice1";
-
-    moralChoice1Short = @"moralChoice1Short";
-    immoralChoice1Short = @"immoralChoice1Short";
-
-    moralChoice1Long = @"moralChoice1Long";
-    immoralChoice1Long = @"immoralChoice1Long";
-
-    choiceMoral1Name = @"choiceMoral1Name";
-    choiceImmoral1Name = @"choiceImmoral1Name";
-
-    moralChoice1Influence = 2.5;
-    moralChoice1Justification = @"moralChoice1Justification";
-    moralChoice1Consequence = @"moralChoice1Consequence";
-    moralChoice1EntryIsGood = TRUE;
-
-    shortDescription = @"short description";
-    originYear = @2010;
-    name = @"name";
-    longDescription = @"long description";
-    link = @"http://www.teamaxe.org";
-    displayName = @"display name";
-    imageName = @"image name";
 
 //    ConscienceAsset *testAsset = [testModelManager create:ConscienceAsset.class];
 //
@@ -105,10 +110,8 @@
 //    testAsset.displayNameReference = displayName;
 //    testAsset.imageNameReference = imageName;
 
-    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
-    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
 
-    [testModelManager saveContext];
+//    [testModelManager saveContext];
 
     testingSubject = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
 
@@ -133,31 +136,29 @@
     [testingSubjectCreate release];
     
 }
-//
-//- (void)testReferenceModelDefaultValuesAreSetCorrectly {
-//
-//    STAssertTrue([testingSubject.choiceType isEqualToString:@""], @"ReferenceModel isn't good by default");
-//    STAssertFalse(testingSubject.isAscending, @"ReferenceModel is ascending incorrectly by default");
-//
-//}
-//
-//- (void)testWhenNoUserChoicesArePresentHistoryIsEmpty {
-//
-//    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
-//
-//    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
-//
-//    STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
-//
-//    [testingSubjectCreate release];
-//    [testModelManagerCreate release];
-//
-//}
-//
+
+- (void)testReferenceModelDefaultValuesAreSetCorrectly {
+
+    STAssertEquals(testingSubject.referenceType, kReferenceModelTypeConscienceAsset, @"ReferenceModel referenceType isn't ConscienceAsset by default");
+
+}
+
+- (void)testWhenNoUserChoicesArePresentReferencesAreEmpty {
+
+    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
+
+    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock andUserCollection:@[]];
+
+    STAssertTrue(testingSubjectCreate.references.count == 0, @"References are not empty");
+    STAssertTrue(testingSubjectCreate.referenceKeys.count == 0, @"ReferenceKeys are not empty");
+    STAssertTrue(testingSubjectCreate.details.count == 0, @"Details are not empty");
+    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Icons are not empty");
+
+    [testingSubjectCreate release];
+    [testModelManagerCreate release];
+
+}
+
 //- (void)testWhenDateAscendingAllChoicesAreRequestedHistoryisCorrect {
 //
 //    testingSubject.choiceType = kReferenceModelTypeAll;
