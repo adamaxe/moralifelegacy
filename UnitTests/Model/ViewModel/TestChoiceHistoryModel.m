@@ -355,7 +355,6 @@
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
     testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-
     [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:YES];
 
     [userDefaultsMock verify];
