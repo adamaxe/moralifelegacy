@@ -355,6 +355,7 @@
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
     testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+
     [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:YES];
 
     [userDefaultsMock verify];
@@ -394,7 +395,7 @@
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralName"];
     [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralImage"];
 
-    [testingSubject retrieveChoice:@"incorrectChoiceKey"];
+    [testingSubject retrieveChoice:@"incorrectChoiceKey" forEditing:NO];
 
     [userDefaultsMock verify];
 }

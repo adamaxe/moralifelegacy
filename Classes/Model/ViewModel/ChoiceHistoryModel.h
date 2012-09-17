@@ -44,7 +44,8 @@ extern NSString* const kChoiceListSortName;
 /**
  Retrieve choice for copying into new choice
  @param choiceKey NSString of requested pkey
+ @param isEditing BOOL return determining if choice should be used for new entry or for editing
  */
-- (void) retrieveChoice:(NSString *) choiceKey;
+- (void) retrieveChoice:(NSString *) choiceKey forEditing:(BOOL)isEditing;
 
 @end

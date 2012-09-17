@@ -150,7 +150,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	navController3.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 		
 	[navController1 pushViewController:conscienceViewController1 animated:NO];
-	
     [navController2	pushViewController:choiceIntViewController1 animated:NO];
 	[navController3	pushViewController:referenceViewController1 animated:NO];
 	
@@ -183,7 +182,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	[navController3 release];
 		
 	application.applicationSupportsShakeToEdit = YES;
-    
+//    [_window setRootViewController:mainMenuTabBarCont];
 	[_window addSubview:mainMenuTabBarCont.view];
 	[_window makeKeyAndVisible];
 	

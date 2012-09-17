@@ -114,7 +114,6 @@ Refetches of table data are necessary when sorting and ordering are requested.
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
     
-    
 	//Refresh Data in case something changed since last time onscreen
 	[self retrieveAllChoices];
 	
@@ -136,7 +135,11 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	if (selection){
 		[choicesTableView deselectRowAtIndexPath:selection animated:YES];
 	}
-	
+
+    //Upon a return from a higher viewcontroller in uinavigationcontroller stack, view does not refresh
+    //Tell the choiceHistoryModel to update itself in the event that a user changed an entry
+    [self switchList:nil];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -158,6 +161,7 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
 -(IBAction)switchList:(id) sender{
     
 	//Set boolean to determine which version of screen to present
+    //This method can be called from UI or from code
 	if ([sender isKindOfClass:[UIButton class]]) {
 		
 		UIButton *senderButton = sender;
@@ -202,10 +206,14 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
             default:
                 break;
         }
-        
-		//Refresh data view based on new criteria
-		[self retrieveAllChoices];   
+
+    } else {
+        [self.choiceHistoryModel setSortKey:self.choiceHistoryModel.sortKey];
+        [self.choiceHistoryModel setIsAscending:self.choiceHistoryModel.isAscending];
     }
+    
+    //Refresh data view based on new criteria
+    [self retrieveAllChoices];
 }
 
 #pragma mark -
@@ -319,7 +327,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
 
 	//Get selected row and commit to NSUserDefaults    
-	[self.choiceHistoryModel retrieveChoice:selectedRow];
+	[self.choiceHistoryModel retrieveChoice:selectedRow forEditing:YES];
 	[selectedRow release];
 	
 	//Create subsequent view controller to be pushed onto stack

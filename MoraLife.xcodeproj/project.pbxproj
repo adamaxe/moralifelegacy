@@ -1319,6 +1319,8 @@
 		5EA542281380B9BB009077B7 /* UserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA542271380B9BB009077B7 /* UserCharacter.m */; };
 		5EA5422B1380BB13009077B7 /* Character.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA5422A1380BB13009077B7 /* Character.m */; };
 		5EA639BA12625D9100C72419 /* button-large-down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA639B612625D9100C72419 /* button-large-down.png */; };
+		5EA83801160645BF00536C9E /* acc-top-lancercap.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA83800160645BF00536C9E /* acc-top-lancercap.png */; };
+		5EA83804160645D400536C9E /* acc-top-lancercap-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA83803160645D400536C9E /* acc-top-lancercap-sm.png */; };
 		5EA90E6012B31275005F82A4 /* icon-accessoriesani1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA90DD612B31275005F82A4 /* icon-accessoriesani1.png */; };
 		5EA90E6112B31275005F82A4 /* icon-accessoriesani2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA90DD712B31275005F82A4 /* icon-accessoriesani2.png */; };
 		5EA90E6212B31275005F82A4 /* icon-accessoriesani3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EA90DD812B31275005F82A4 /* icon-accessoriesani3.png */; };
@@ -3077,6 +3079,8 @@
 		5EA696DB157DFF440075115F /* helpscreendismissals.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = helpscreendismissals.js; sourceTree = "<group>"; };
 		5EA696DC157DFF440075115F /* introcompletion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = introcompletion.js; sourceTree = "<group>"; };
 		5EA696DD15804A190075115F /* consciencenavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = consciencenavigation.js; sourceTree = "<group>"; };
+		5EA83800160645BF00536C9E /* acc-top-lancercap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-top-lancercap.png"; path = "Resources/images/accessories/acc-top-lancercap.png"; sourceTree = "<group>"; };
+		5EA83803160645D400536C9E /* acc-top-lancercap-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-top-lancercap-sm.png"; sourceTree = "<group>"; };
 		5EA90DD612B31275005F82A4 /* icon-accessoriesani1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani1.png"; path = "Resources/images/interface/icons/icon-accessoriesani1.png"; sourceTree = "<group>"; };
 		5EA90DD712B31275005F82A4 /* icon-accessoriesani2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani2.png"; path = "Resources/images/interface/icons/icon-accessoriesani2.png"; sourceTree = "<group>"; };
 		5EA90DD812B31275005F82A4 /* icon-accessoriesani3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-accessoriesani3.png"; path = "Resources/images/interface/icons/icon-accessoriesani3.png"; sourceTree = "<group>"; };
@@ -4006,6 +4010,7 @@
 				5E498973131C940F00A13D11 /* acc-top-hockeyhelmet.png */,
 				5E498974131C940F00A13D11 /* acc-top-horns.png */,
 				5E498975131C940F00A13D11 /* acc-top-leaf.png */,
+				5EA83800160645BF00536C9E /* acc-top-lancercap.png */,
 				5E498976131C940F00A13D11 /* acc-top-nursecap.png */,
 				5E498977131C940F00A13D11 /* acc-top-officerhat.png */,
 				5E498978131C940F00A13D11 /* acc-top-partyhat.png */,
@@ -4421,6 +4426,7 @@
 				5E498ABC131C941000A13D11 /* acc-top-hockeyhelmet-sm.png */,
 				5E498ABD131C941000A13D11 /* acc-top-horns-sm.png */,
 				5E498ABE131C941000A13D11 /* acc-top-leaf-sm.png */,
+				5EA83803160645D400536C9E /* acc-top-lancercap-sm.png */,
 				5E498ABF131C941000A13D11 /* acc-top-nursecap-sm.png */,
 				5E498AC0131C941000A13D11 /* acc-top-officerhat-sm.png */,
 				5E498AC1131C941000A13D11 /* acc-top-partyhat-sm.png */,
@@ -7227,6 +7233,8 @@
 				5E2D0C0A1405284500CB3032 /* bubble-type14-sm.png in Resources */,
 				5E1C81551573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */,
 				5E6BA4F515B920290008825D /* systemTests.sh in Resources */,
+				5EA83801160645BF00536C9E /* acc-top-lancercap.png in Resources */,
+				5EA83804160645D400536C9E /* acc-top-lancercap-sm.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
