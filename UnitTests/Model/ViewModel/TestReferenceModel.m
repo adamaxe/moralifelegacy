@@ -13,6 +13,7 @@
 #import "ConscienceAsset.h"
 #import "ReferencePerson.h"
 #import "ReferenceAsset.h"
+#import "UserCollectable.h"
 #import "Moral.h"
 #import "OCMock/OCMock.h"
 
@@ -23,6 +24,11 @@
     id userDefaultsMock;
     NSArray *userCollection;
 
+    Moral *virtue1;
+    Moral *vice1;
+    ConscienceAsset *testAsset;
+    ReferencePerson *testPerson;
+    
 }
 
 @end
@@ -32,86 +38,13 @@
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
-    userCollection = @[];
 
-//    Moral *virtue1;
-//    Moral *vice1;
-//
-//    CGFloat virtue1Severity;
-//    CGFloat vice1Severity;
-//
-//    NSString *moralChoice1Short;
-//    NSString *immoralChoice1Short;
-//
-//    NSString *moralChoice1Long;
-//    NSString *immoralChoice1Long;
-//
-//    NSString *virtue1Name;
-//    NSString *vice1Name;
-//
-//    NSString *choiceMoral1Name;
-//    NSString *choiceImmoral1Name;
-//
-//    CGFloat moralChoice1Influence;
-//    NSString *moralChoice1Justification;
-//    NSString *moralChoice1Consequence;
-//    BOOL moralChoice1EntryIsGood;
-//
-//    NSString *shortDescription;
-//    NSNumber *originYear;
-//    NSString *name;
-//    NSString *longDescription;
-//    NSString *link;
-//    NSString *displayName;
-//    NSString *imageName;
-//
-//
-//    virtue1Severity = 5.0;
-//    vice1Severity = 4.0;
-//
-//    virtue1Name = @"Virtue1";
-//    vice1Name = @"Vice1";
-//
-//    moralChoice1Short = @"moralChoice1Short";
-//    immoralChoice1Short = @"immoralChoice1Short";
-//
-//    moralChoice1Long = @"moralChoice1Long";
-//    immoralChoice1Long = @"immoralChoice1Long";
-//
-//    choiceMoral1Name = @"choiceMoral1Name";
-//    choiceImmoral1Name = @"choiceImmoral1Name";
-//
-//    moralChoice1Influence = 2.5;
-//    moralChoice1Justification = @"moralChoice1Justification";
-//    moralChoice1Consequence = @"moralChoice1Consequence";
-//    moralChoice1EntryIsGood = TRUE;
-//
-//    shortDescription = @"short description";
-//    originYear = @2010;
-//    name = @"name";
-//    longDescription = @"long description";
-//    link = @"http://www.teamaxe.org";
-//    displayName = @"display name";
-//    imageName = @"image name";
-//
-//    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
-//    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
+    virtue1 = [self createMoralWithName:@"Virtue1" withType:@"Virtue" withModelManager:testModelManager];
+    vice1 = [self createMoralWithName:@"Vice1" withType:@"Vice" withModelManager:testModelManager];
+    testAsset = [self createAssetWithName:@"Asset1" withModelManager:testModelManager];
+    testPerson = [self createPersonWithName:@"Person1" withModelManager:testModelManager];
 
-
-//    ConscienceAsset *testAsset = [testModelManager create:ConscienceAsset.class];
-//
-//    testAsset.costAsset =  @1.0f;
-//
-//    testAsset.shortDescriptionReference = shortDescription;
-//    testAsset.originYear = originYear;
-//    testAsset.nameReference = name;
-//    testAsset.longDescriptionReference = longDescription;
-//    testAsset.linkReference = link;
-//    testAsset.displayNameReference = displayName;
-//    testAsset.imageNameReference = imageName;
-
-
-//    [testModelManager saveContext];
+    userCollection = @[[testPerson nameReference], [testAsset nameReference], [virtue1 nameMoral], [vice1 nameMoral]];
 
     testingSubject = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
 
@@ -142,8 +75,30 @@
     STAssertEquals(testingSubject.referenceType, kReferenceModelTypeConscienceAsset, @"ReferenceModel referenceType isn't ConscienceAsset by default");
 
 }
+- (void)testReferenceModelReferenceTypeCanBeSet {
 
-- (void)testWhenNoUserChoicesArePresentReferencesAreEmpty {
+    testingSubject.referenceType = kReferenceModelTypePerson;
+    STAssertEquals(testingSubject.referenceType, kReferenceModelTypePerson, @"ReferenceModel referenceType can't be set");
+
+}
+
+- (void)testWhenNoSystemDataIsPresentReferencesAreEmpty {
+
+    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
+
+    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock andUserCollection:userCollection];
+
+    STAssertTrue(testingSubjectCreate.references.count == 0, @"References are not empty");
+    STAssertTrue(testingSubjectCreate.referenceKeys.count == 0, @"ReferenceKeys are not empty");
+    STAssertTrue(testingSubjectCreate.details.count == 0, @"Details are not empty");
+    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Icons are not empty");
+
+    [testingSubjectCreate release];
+    [testModelManagerCreate release];
+
+}
+
+- (void)testWhenSystemDataIsPresentButNoUserDataIsPresentReferencesAreEmpty {
 
     ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
 
@@ -159,204 +114,99 @@
 
 }
 
-//- (void)testWhenDateAscendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.isAscending = TRUE;
-//
-//    NSArray *expectedChoices = @[choiceMoral1, choiceMoral2, choiceImmoral1, choiceImmoral2, choiceImmoral3];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//
-//}
-//
-//- (void)testWhenDateDescendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.isAscending = FALSE;
-//
-//    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1, choiceMoral2, choiceMoral1];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//    
-//}
-//
-//
-//
-//- (void)testWhenDateAscendingMoralChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeIsGood;
-//    testingSubject.isAscending = TRUE;
-//
-//    NSArray *expectedChoices = @[choiceMoral1, choiceMoral2];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//
-//}
-//
-//- (void)testWhenDateDescendingMoralChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeIsGood;
-//    testingSubject.isAscending = FALSE;
-//
-//    NSArray *expectedChoices = @[choiceMoral2, choiceMoral1];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//    
-//}
-//
-//- (void)testWhenDateAscendingImmoralChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeIsBad;
-//    testingSubject.isAscending = TRUE;
-//
-//    NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//
-//}
-//
-//- (void)testWhenDateDescendingImmoralChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeIsBad;
-//    testingSubject.isAscending = FALSE;
-//
-//    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//    
-//}
-//
-//- (void)testWhenNameAscendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.sortKey = kChoiceListSortName;
-//    testingSubject.isAscending = TRUE;
-//
-//    NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3, choiceMoral1, choiceMoral2];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//
-//}
-//
-//- (void)testWhenNameDescendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.sortKey = kChoiceListSortName;
-//    testingSubject.isAscending = FALSE;
-//
-//    NSArray *expectedChoices = @[choiceMoral2, choiceMoral1, choiceImmoral3, choiceImmoral2, choiceImmoral1];
-//
-//    [self assertCorrectOrder:expectedChoices];
-//    
-//}
-//
-//- (void)testWhenSeverityAscendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.sortKey = kChoiceListSortSeverity;
-//    testingSubject.isAscending = TRUE;
-//
-//    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceMoral2, choiceImmoral1, choiceMoral1];
-//    [self assertCorrectOrder:expectedChoices];
-//
-//}
-//
-//- (void)testWhenSeverityDescendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.sortKey = kChoiceListSortSeverity;
-//    testingSubject.isAscending = FALSE;
-//
-//    NSArray *expectedChoices = @[choiceMoral1, choiceImmoral1, choiceMoral2, choiceImmoral2, choiceImmoral3];
-//    [self assertCorrectOrder:expectedChoices];
-//    
-//}
-//
-//- (void)testWhenWeightAscendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.sortKey = kChoiceListSortWeight;
-//    testingSubject.isAscending = TRUE;
-//
-//    NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceMoral2, choiceImmoral1, choiceMoral1];
-//    [self assertCorrectOrder:expectedChoices];
-//
-//}
-//
-//- (void)testWhenWeightDescendingAllChoicesAreRequestedHistoryisCorrect {
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    testingSubject.sortKey = kChoiceListSortWeight;
-//    testingSubject.isAscending = FALSE;
-//
-//    NSArray *expectedChoices = @[choiceMoral1, choiceImmoral1, choiceMoral2, choiceImmoral2, choiceImmoral3];
-//    [self assertCorrectOrder:expectedChoices];
-//    
-//}
-//
-//- (void)testThatDilemmaAnswersAreNotReturnedInResults {
-//
-//    ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
-//
-//    /**< @TODO: Determine issue with sending a real choice to be parsed, most likely an actual bug in returning a nil list of choices */
-////    NSString *dilemmaName = @"testName";
-//    NSString *dilemmaName = @"dile-test";
-//
-//    UserChoice *choiceDilemma = [self createUserEntryWithName:dilemmaName withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManagerCreate];
-//
-//    STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
-//
-//    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
-//
-//
-//    STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
-//    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
-//
-//    [testingSubjectCreate release];
-//    [testModelManagerCreate release];
-//}
-//
-//- (void)testRetrieveChoiceWritesToStandardUserDefaults {
-//    [[userDefaultsMock expect] setObject:moralChoice1Short forKey:@"entryShortDescription"];
-//    [[userDefaultsMock expect] setObject:moralChoice1Long forKey:@"entryLongDescription"];
-//
-//    [[userDefaultsMock expect] setFloat:virtue1Severity forKey:@"entrySeverity"];
-//    [[userDefaultsMock expect] setObject:moralChoice1Justification forKey:@"choiceJustification"];
-//    [[userDefaultsMock expect] setObject:moralChoice1Consequence forKey:@"choiceConsequence"];
-//    [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
-//    [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
-//
-//    testingSubject.choiceType = kReferenceModelTypeAll;
-//    [testingSubject retrieveChoice:[NSString stringWithFormat:@"%@key", choiceMoral1Name]];
-//
-//    [userDefaultsMock verify];
-//}
-//
-//- (void)testRetrieveChoiceDoesNotWriteToStandardUserDefaultsIfChoiceIsNotFound {
-//    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"entryShortDescription"];
-//    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"entryLongDescription"];
-//
-//    [[userDefaultsMock reject] setFloat:virtue1Severity forKey:@"entrySeverity"];
-//    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"choiceJustification"];
-//    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"choiceConsequence"];
-//    [[userDefaultsMock reject] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
-//    [[userDefaultsMock reject] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
-//
-//    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralKey"];
-//    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralName"];
-//    [[userDefaultsMock reject] setObject:OCMOCK_ANY forKey:@"moralImage"];
-//
-//    [testingSubject retrieveChoice:@"incorrectChoiceKey"];
-//
-//    [userDefaultsMock verify];
-//}
-//
-- (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
-    return [testModelManager read:Moral.class withKey:@"nameMoral" andValue:moralName];
+- (void)testWhenSystemAndUserDataIsPresentReferencePersonsAreCorrect {
+
+    testingSubject.referenceType = kReferenceModelTypePerson;
+
+    STAssertTrue(testingSubject.references.count == 1, @"ReferencePerson references count is incorrect");
+    STAssertTrue(testingSubject.referenceKeys.count == 1, @"ReferencePerson referenceKeys count is incorrect");
+    STAssertTrue(testingSubject.details.count == 1, @"ReferencePerson details count is incorrect");
+    STAssertTrue(testingSubject.icons.count == 1, @"ReferencePerson icons count is incorrect");
+
+    STAssertEqualObjects([testingSubject.references lastObject], [testPerson displayNameReference], @"ReferencePerson displayName is wrong");
+    STAssertEqualObjects([testingSubject.icons lastObject], [testPerson imageNameReference], @"ReferencePerson icon is wrong");
+    STAssertEqualObjects([testingSubject.referenceKeys lastObject], [testPerson nameReference], @"ReferencePerson referenceKey is wrong");
+    STAssertEqualObjects([testingSubject.details lastObject], [testPerson shortDescriptionReference], @"ReferencePerson detail is wrong");
+
+}
+
+- (void)testWhenSystemAndUserDataIsPresentConscienceAssetsAreCorrect {
+
+    testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
+
+    STAssertTrue(testingSubject.references.count == 1, @"ConscienceAsset references count is incorrect");
+    STAssertTrue(testingSubject.referenceKeys.count == 1, @"ConscienceAsset referenceKeys count is incorrect");
+    STAssertTrue(testingSubject.details.count == 1, @"ConscienceAsset details count is incorrect");
+    STAssertTrue(testingSubject.icons.count == 1, @"ConscienceAsset icons count is incorrect");
+
+    STAssertEqualObjects([testingSubject.references lastObject], [testAsset displayNameReference], @"ConscienceAsset displayName is wrong");
+    STAssertEqualObjects([testingSubject.icons lastObject], [testAsset imageNameReference], @"ConscienceAsset icon is wrong");
+    STAssertEqualObjects([testingSubject.referenceKeys lastObject], [testAsset nameReference], @"ConscienceAsset referenceKey is wrong");
+    STAssertEqualObjects([testingSubject.details lastObject], [testAsset shortDescriptionReference], @"ConscienceAsset detail is wrong");
+    
+}
+
+- (void)testWhenSystemAndUserDataIsPresentMoralsAreCorrect {
+
+    testingSubject.referenceType = kReferenceModelTypeMoral;
+
+    STAssertTrue(testingSubject.references.count == 2, @"Moral references count is incorrect");
+    STAssertTrue(testingSubject.referenceKeys.count == 2, @"Moral referenceKeys count is incorrect");
+    STAssertTrue(testingSubject.details.count == 2, @"Moral details count is incorrect");
+    STAssertTrue(testingSubject.icons.count == 2, @"Moral icons count is incorrect");
+
+    NSString *virtueDetail = [NSString stringWithFormat:@"%@: %@", [virtue1 shortDescriptionMoral], [virtue1 longDescriptionMoral]];
+
+    STAssertTrue([testingSubject.references containsObject:[virtue1 displayNameMoral]], @"Virtue displayName not present");
+    STAssertTrue([testingSubject.icons containsObject:[virtue1 imageNameMoral]],  @"Virtue icon not present");
+    STAssertTrue([testingSubject.referenceKeys containsObject:[virtue1 nameMoral]], @"Virtue referenceKey not present");
+    STAssertTrue([testingSubject.details containsObject:virtueDetail], @"Virtue detail not present");
+
+    NSString *viceDetail = [NSString stringWithFormat:@"%@: %@", [vice1 shortDescriptionMoral], [vice1 longDescriptionMoral]];
+
+    STAssertTrue([testingSubject.references containsObject:[vice1 displayNameMoral]], @"Vice displayName not present");
+    STAssertTrue([testingSubject.icons containsObject:[vice1 imageNameMoral]],  @"Vice icon not present");
+    STAssertTrue([testingSubject.referenceKeys containsObject:[vice1 nameMoral]], @"Vice referenceKey not present");
+    STAssertTrue([testingSubject.details containsObject:viceDetail], @"Vice detail not present");
+}
+
+- (void)testRetrieveConscienceAssetWritesToStandardUserDefaultsForViewing {
+
+    testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
+
+    [[userDefaultsMock expect] setInteger:testingSubject.referenceType forKey:@"referenceType"];
+    [[userDefaultsMock expect] setObject:testAsset.nameReference forKey:@"referenceKey"];
+    [[userDefaultsMock expect] synchronize];
+
+    [testingSubject retrieveReference:testAsset.nameReference];
+
+    [userDefaultsMock verify];
+}
+
+- (void)testRetrieveVirtueWritesToStandardUserDefaultsForViewing {
+
+    testingSubject.referenceType = kReferenceModelTypeMoral;
+
+    [[userDefaultsMock expect] setInteger:testingSubject.referenceType forKey:@"referenceType"];
+    [[userDefaultsMock expect] setObject:virtue1.nameMoral forKey:@"referenceKey"];
+    [[userDefaultsMock expect] synchronize];
+
+    [testingSubject retrieveReference:virtue1.nameMoral];
+
+    [userDefaultsMock verify];
+}
+
+- (void)testRetrieveViceWritesToStandardUserDefaultsForViewing {
+
+    testingSubject.referenceType = kReferenceModelTypeMoral;
+
+    [[userDefaultsMock expect] setInteger:testingSubject.referenceType forKey:@"referenceType"];
+    [[userDefaultsMock expect] setObject:vice1.nameMoral forKey:@"referenceKey"];
+    [[userDefaultsMock expect] synchronize];
+
+    [testingSubject retrieveReference:vice1.nameMoral];
+
+    [userDefaultsMock verify];
 }
 
 - (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
@@ -379,52 +229,44 @@
     [modelManager saveContext];
 
     return testMoral1;
-    
 }
 
-//- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
-//
-//    UserChoice *testChoice1 = [modelManager create:UserChoice.class];
-//
-//    testChoice1.entryShortDescription = moralChoiceShort;
-//    testChoice1.entryLongDescription = moralChoiceLong;
-//    testChoice1.choiceMoral = moral.nameMoral;
-//    testChoice1.entryCreationDate = [NSDate date];
-//    testChoice1.entryKey = [NSString stringWithFormat:@"%@key", entryName];
-//    testChoice1.entryIsGood = ([moral.shortDescriptionMoral isEqualToString:@"Virtue"]) ? @1 : @0;
-//    testChoice1.choiceWeight = @(severity * 2);
-//    testChoice1.entryModificationDate = [NSDate date];
-//    testChoice1.entrySeverity = @(severity);
-//
-//    [modelManager saveContext];
-//
-//    return testChoice1;
-//    
-//}
+- (ReferencePerson *)createPersonWithName:(NSString *)personName withModelManager:(ModelManager *)modelManager{
 
-//- (void)assertCorrectOrder:(NSArray *)expectedChoices {
-//
-//    for (int i = 0; i < testingSubject.choices.count; i++) {
-//
-//        UserChoice *expectedUserChoice = [expectedChoices objectAtIndex:i];
-//        STAssertEqualObjects([testingSubject.choices objectAtIndex:i], expectedUserChoice.entryShortDescription, @"Choice shortDescriptions are not in correct order");
-//        STAssertEqualObjects([testingSubject.choicesAreGood objectAtIndex:i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
-//        STAssertEqualObjects([testingSubject.choiceKeys objectAtIndex:i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
-//
-//        /**< @TODO: figure out why moral creation crashes, then implement details and icon tests */
-//        Moral *expectedMoral = [self readMoralWithName:expectedUserChoice.choiceMoral];
+    ReferencePerson *testPerson1 = [modelManager create:ReferencePerson.class];
 
-//        STAssertEqualObjects([testingSubject.icons objectAtIndex:i], expectedMoral.imageNameMoral, @"Choice moral icon are not in correct order");
+    testPerson1.nameReference = personName;
 
+    testPerson1.imageNameReference = @"imageNamePerson";
+    testPerson1.displayNameReference = @"displayNamePerson";
+    testPerson1.longDescriptionReference = @"longDescriptionPerson";
+    testPerson1.originYear = @2012;
+    testPerson1.linkReference = @"linkPerson";
+    testPerson1.shortDescriptionReference = @"shortDescriptionPerson";
 
-//        STAssertEqualObjects([testingSubject.choicesAreGood objectAtIndex:i], [expectedGoodness objectAtIndex:i], @"Choices are not in correct order");
+    [modelManager saveContext];
 
-//    for (int i = 0; i < testingSubject.choiceKeys.count; i++) {
-//
-//        NSString *test = [testingSubject.choiceKeys objectAtIndex:i];
-//        STAssertEqualObjects([testingSubject.choiceKeys objectAtIndex:i], [NSString stringWithFormat:@"%@key", [expectedValues objectAtIndex:i]],  @"Choice Keys are not in correct order");
-//    }
-//}
+    return testPerson1;
+}
+
+- (ConscienceAsset *)createAssetWithName:(NSString *)assetName withModelManager:(ModelManager *)modelManager{
+
+    ConscienceAsset *testAsset1 = [modelManager create:ConscienceAsset.class];
+
+    testAsset1.nameReference = assetName;
+
+    testAsset1.costAsset = @20;
+    testAsset1.imageNameReference = @"imageNameAsset";
+    testAsset1.displayNameReference = @"displayNameAsset";
+    testAsset1.longDescriptionReference = @"longDescriptionAsset";
+    testAsset1.originYear = @2011;
+    testAsset1.linkReference = @"linkAsset";
+    testAsset1.shortDescriptionReference = @"shortDescriptionAsset";
+
+    [modelManager saveContext];
+
+    return testAsset1;
+}
 
 @end
 

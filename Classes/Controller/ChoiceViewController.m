@@ -806,7 +806,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         [self increaseEthicals];
         
-    }else {        
+    } else {        
         currentUserChoice = [currentUserChoiceDAO read:@""];
         
     }

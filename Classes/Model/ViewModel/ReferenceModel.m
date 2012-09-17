@@ -11,7 +11,6 @@
 
 @interface ReferenceModel () {
     NSUserDefaults *preferences;            /**< User defaults to write to file system */
-    MoralDAO *currentMoralDAO;              /**< retrieve morals User has utilized */
     NSArray *currentUserCollection;                /**< collection of owned Assets */
     ModelManager *moralModelManager;    
 
@@ -49,9 +48,7 @@
         _icons = [[NSMutableArray alloc] init];
         preferences = prefs;
         currentUserCollection = userCollection;
-        moralModelManager = modelManager;
-
-        currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:modelManager];
+        moralModelManager = [modelManager retain];
 
     }
 
@@ -91,22 +88,22 @@
 			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case kReferenceModelTypeBelief:
-			currentDAO = [[ReferenceBeliefDAO alloc]  initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case kReferenceModelTypeText:
-			currentDAO = [[ReferenceTextDAO alloc]  initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferenceTextDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case kReferenceModelTypePerson:
-			currentDAO = [[ReferencePersonDAO alloc]  initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferencePersonDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case kReferenceModelTypeMoral:
-			currentDAO = [[MoralDAO alloc]  initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
         case kReferenceModelTypeReferenceAsset:
-            currentDAO = [[ReferenceAssetDAO alloc]  initWithKey:@"" andModelManager:moralModelManager];
+            currentDAO = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
             break;
 		default:
-			currentDAO = [[ReferenceAssetDAO alloc]  initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 	}
 
@@ -175,7 +172,7 @@
     [_referenceKeys release];
     [_details release];
     [_icons release];
-    [currentMoralDAO release];
+    [moralModelManager release];
 
     [super dealloc];
 }

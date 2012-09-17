@@ -45,7 +45,7 @@ typedef enum referenceModelTypeEnum{
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andUserCollection:(NSArray *) userCollection;
 
 /**
- Retrieve reference for writing to file system
+ Retrieve reference for display
  @param reference NSString of requested pkey
  */
 - (void) retrieveReference:(NSString *) referenceKey;
