@@ -10,6 +10,9 @@ Path from XML represents an image portion of a feature (iris, teeth, etc.)  Poss
 @file
  */
 
+extern NSString* const kPathColor;
+extern float const kDefault0Float;
+
 @interface ConsciencePath : NSObject <NSCoding> 
 
 @property (nonatomic, retain) NSMutableArray *pathInstructions;     /**< array of integer instructions */

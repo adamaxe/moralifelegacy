@@ -1,6 +1,5 @@
 #import "ModelManager.h"
 #import "UserCollectableDAO.h"
-#import "Constants.h"
 
 @interface TestUserCollectableDAO: SenTestCase {
     ModelManager *testModelManager;

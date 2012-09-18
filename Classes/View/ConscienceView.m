@@ -21,6 +21,175 @@ Actual facial changes are requested by ViewController.
 #import "ConscienceMind.h"
 #import "ConsciencePath.h"
 
+int const kDirectionFacingLeft = 0;
+int const kDirectionFacingRight = 1;
+int const kConscienceLowerLeftX = 55;
+int const kConscienceLowerLeftY = 440;
+int const kConscienceHomeX = 105;
+int const kConscienceHomeY = 225;
+int const kConscienceOffscreenBottomX = 70;
+int const kConscienceOffscreenBottomY = 605;
+int const kConscienceAntagonistX = 90;
+int const kConscienceAntagonistY = 45;
+int const kConscienceAntagonistWidth = 165;
+int const kConscienceAntagonistHeight = 165;
+int const kConscienceViewTag = 3017;
+int const kConscienceAntagonistViewTag = 3020;
+float const kConscienceLargeSizeX = 1.25;
+float const kConscienceLargeSizeY = 1.25;
+float const kConscienceLargestSize = 2.25;
+
+int const kMouthHeight = 32;
+int const kMouthWidth = 50;
+int const kEyeHeight = 32;
+int const kEyeWidth = 32;
+int const kSymbolHeight = 200;
+int const kSymbolWidth = 200;
+int const kSideAccessoryWidth = 75;
+int const kSideAccessoryHeight = 162;
+int const kTopBottomAccessoryHeight = 50;
+int const kTopBottomAccessoryWidth = 162;
+int const kEyeLeftIndex = 0;
+int const kEyeRightIndex = 1;
+int const kEyeBothIndex = 2;
+int const kEyeRandomIndex = 3;
+int const kEyeCloseIndex = 0;
+int const kEyeOpenIndex = 1;
+int const kExpressionInterval = 3;
+float const kBlinkInterval = 2;
+
+/**
+ Tag Numbers for webViews in order to reference them
+ */
+typedef enum bodyViewTags{
+	kEyeRightViewTag = 3000,
+	kEyeLeftViewTag = 3001,
+	kMouthWebViewTag = 3002,
+	kSymbolWebViewTag = 3003,
+	kBubbleImageViewTag = 3004,
+	kPrimaryAccessoryViewTag = 3005,
+	kSecondaryAccessoryViewTag = 3006,
+	kTopAccessoryViewTag = 3007,
+	kBottomAccessoryViewTag = 3008,
+	kEyeLeftSleepImageViewTag = 3009,
+	kEyeLeftBrowViewTag = 3010,
+	kEyeRightBrowViewTag = 3011,
+	kBubbleViewTag = 3012,
+	kEyeLeftBagViewTag = 3013,
+	kEyeRightBagViewTag = 3014,
+	kSymbolViewTag = 3015,
+	kMouthViewTag = 3016,
+	kConscienceCustomizeViewTag = 3018,
+	kAnimatedBubbleViewTag = 3019,
+	kConscienceProtagonistViewTag = 3021,
+	kChoiceCancelButtonTag = 3022,
+	kChoiceMoralButtonTag = 3023
+} bodyViewTags;
+
+/**
+ Possible expression states of Lips
+ */
+typedef enum expressionLipsEnum{
+	kExpressionLipsSadShock,
+	kExpressionLipsSadOpenAlt1,
+	kExpressionLipsSadOpen,
+	kExpressionLipsSadAlt1,
+	kExpressionLipsSad,
+	kExpressionLipsSadSmirk,
+	kExpressionLipsSadSilly,
+	kExpressionLipsNormal,
+	kExpressionLipsHappySmirk,
+	kExpressionLipsHappy,
+	kExpressionLipsHappyAlt1,
+	kExpressionLipsHappySilly,
+	kExpressionLipsHappyOpen,
+	kExpressionLipsHappyOpenAlt1,
+	kExpressionLipsHappyShock
+}expressionLipsEnum;
+
+/**
+ Possible expression states of Dimples
+ */
+typedef enum expressionDimplesEnum{
+	kExpressionDimplesSad,
+	kExpressionDimplesNormal,
+	kExpressionDimplesHappy
+}expressionDimplesEnum;
+
+/**
+ Possible expression states of Teeth
+ */
+typedef enum expressionTeethEnum{
+	kExpressionTeethSadOpenAlt1,
+	kExpressionTeethSadOpen,
+	kExpressionTeethHappyOpen,
+	kExpressionTeethHappyOpenAlt1
+}expressionTeethEnum;
+
+/**
+ Possible expression states of Tongue
+ */
+typedef enum expressionTongueEnum{
+	kExpressionTongueSadCenter,
+	kExpressionTongueSadLeft,
+	kExpressionTongueSadRight,
+	kExpressionTongueHappyCenter,
+	kExpressionTongueHappyLeft,
+	kExpressionTongueHappyRight
+}expressionTongueEnum;
+
+/**
+ Possible expression states of Brow
+ */
+typedef enum expressionBrowEnum{
+	kExpressionBrowAngry,
+	kExpressionBrowNormal,
+	kExpressionBrowConfused,
+	kExpressionBrowExcited
+}expressionBrowEnum;
+
+/**
+ Possible expression states of Lashes
+ */
+typedef enum expressionLashesEnum{
+	kExpressionLashesUp,
+	kExpressionLashesDown
+}expressionLashesEnum;
+
+/**
+ Possible expression states of Lid
+ */
+typedef enum expressionLidEnum{
+	kExpressionLidAngry,
+	kExpressionLidSleepy,
+	kExpressionLidNormal,
+	kExpressionLidUnder
+}expressionLidEnum;
+
+
+/**
+ Possible look direction of Eye
+ */
+typedef enum expressionLookEnum{
+	kExpressionLookCenter,
+	kExpressionLookDown,
+	kExpressionLookUp,
+	kExpressionLookLeft,
+	kExpressionLookRight,
+	kExpressionLookCross,
+	kExpressionLookCrazy
+}expressionLookEnum;
+
+/**
+ Possible expression states of Bags
+ */
+typedef enum expressionBagsEnum{
+	kExpressionBagsNormal,
+	kExpressionBagsOld,
+	kExpressionBagsOlder,
+	kExpressionBagsOldest
+}expressionBagsEnum;
+
 @interface ConscienceView () {
     
 	MoraLifeAppDelegate *appDelegate;               /**< delegate for application level callbacks */

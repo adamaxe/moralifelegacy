@@ -10,6 +10,13 @@ Each Dictionary contains every expression frame for currently selected feature t
 @file
  */
 
+extern float const kConscienceSize;
+extern int const kConscienceAge;
+
+extern NSString* const kEyeFileNameResource;
+extern NSString* const kMouthFileNameResource;
+extern NSString* const kSymbolFileNameResource;
+
 @interface ConscienceBody : NSObject 
 
 @property (nonatomic, retain) NSMutableDictionary *browLayers;	/**< Conscience Layer states of eye brow */

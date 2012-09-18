@@ -6,6 +6,18 @@ Implementation: List cardviews of UserCollectable.  Allows User to select a sele
 
 #import "ConscienceDeckViewController.h"
 
+/**
+ Tag Numbers for webViews in order to reference them
+ */
+typedef enum deckCard{
+	kDeckCard1ButtonTag = 3024,
+	kDeckCard2ButtonTag = 3025,
+	kDeckCard3ButtonTag = 3026,
+	kDeckCard4ButtonTag = 3027,
+	kDeckCard5ButtonTag = 3028,
+	kDeckCard6ButtonTag = 3029
+} deckCard;
+
 @interface ConscienceDeckViewController () {
 	
 	NSArray *cardStates;			/**< store selected state of card */

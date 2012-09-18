@@ -8,6 +8,9 @@ Data derived from User's actions
 
 #import "ConscienceMind.h"
 
+float const kConscienceEnthusiasm = 50.0;
+float const kConscienceMood = 55.0;
+
 @implementation ConscienceMind
 
 - (id)init

@@ -7,6 +7,9 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 
 #import "ConsciencePath.h"
 
+NSString* const kPathColor = @"";
+float const kDefault0Float = 0.0;
+
 @implementation ConsciencePath
 
 - (id)init

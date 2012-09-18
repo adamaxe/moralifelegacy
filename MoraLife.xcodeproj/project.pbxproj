@@ -210,7 +210,6 @@
 		5E3E87E71226090B00F2708A /* ReferenceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BB1226090B00F2708A /* ReferenceListView.xib */; };
 		5E3E87E81226090B00F2708A /* ReferenceModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BC1226090B00F2708A /* ReferenceModalView.xib */; };
 		5E3E87E91226090B00F2708A /* ReferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BD1226090B00F2708A /* ReferenceView.xib */; };
-		5E3E880C122609B600F2708A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3E8803122609B600F2708A /* Constants.m */; };
 		5E3E880D122609B600F2708A /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3E8805122609B600F2708A /* XMLParser.m */; };
 		5E3F48EA12FD103C00B4B4EC /* ChoiceInitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3F48E812FD103C00B4B4EC /* ChoiceInitViewController.m */; };
 		5E4108DA125C1BFB00C9C60F /* card-abstinence.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E410856125C1BFA00C9C60F /* card-abstinence.png */; };
@@ -1237,7 +1236,6 @@
 		5E866B5F12DC1B03007BAEFD /* ref-zenoofcitium-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AE712DC1B02007BAEFD /* ref-zenoofcitium-sm.png */; };
 		5E866B6012DC1B03007BAEFD /* ref-zenoofcitium.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AE812DC1B02007BAEFD /* ref-zenoofcitium.jpg */; };
 		5E87B29111D059FD006AC618 /* navbar-texture-bevel.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E87B28E11D059FD006AC618 /* navbar-texture-bevel.png */; };
-		5E8B8F7913C421DB004AE16A /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3E8803122609B600F2708A /* Constants.m */; };
 		5E8B8F7A13C421DB004AE16A /* ConscienceHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */; };
 		5E8CA931123469AE00461363 /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E8CA930123469AE00461363 /* GraphView.m */; };
 		5E8CF29012E7AC2C004FBBBB /* ref-annefrank-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF27E12E7AC2C004FBBBB /* ref-annefrank-sm.png */; };
@@ -1948,8 +1946,6 @@
 		5E3E87BB1226090B00F2708A /* ReferenceListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceListView.xib; path = Resources/ReferenceListView.xib; sourceTree = "<group>"; };
 		5E3E87BC1226090B00F2708A /* ReferenceModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceModalView.xib; path = Resources/ReferenceModalView.xib; sourceTree = "<group>"; };
 		5E3E87BD1226090B00F2708A /* ReferenceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceView.xib; path = Resources/ReferenceView.xib; sourceTree = "<group>"; };
-		5E3E8802122609B600F2708A /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = Common/Constants.h; sourceTree = "<group>"; };
-		5E3E8803122609B600F2708A /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Constants.m; path = Common/Constants.m; sourceTree = "<group>"; };
 		5E3E8804122609B600F2708A /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParser.h; path = Common/XMLParser.h; sourceTree = "<group>"; };
 		5E3E8805122609B600F2708A /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParser.m; path = Common/XMLParser.m; sourceTree = "<group>"; };
 		5E3F48E712FD103C00B4B4EC /* ChoiceInitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceInitViewController.h; sourceTree = "<group>"; };
@@ -3673,8 +3669,6 @@
 			children = (
 				5EE7FD0B12E8B22200ABDBEC /* ConscienceBuilder.h */,
 				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
-				5E3E8802122609B600F2708A /* Constants.h */,
-				5E3E8803122609B600F2708A /* Constants.m */,
 				5E3E8804122609B600F2708A /* XMLParser.h */,
 				5E3E8805122609B600F2708A /* XMLParser.m */,
 				5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */,
@@ -7286,7 +7280,6 @@
 				5E9104E3121A18E200423DE8 /* AccessoryObjectView.m in Sources */,
 				5E7191D412206AEF000A3508 /* UINavigationBar-Transparent.m in Sources */,
 				5EE2E182122608840091140B /* ConscienceViewController.m in Sources */,
-				5E3E880C122609B600F2708A /* Constants.m in Sources */,
 				5E3E880D122609B600F2708A /* XMLParser.m in Sources */,
 				5ED61EBD122CAD3A00542453 /* ConscienceBubbleView.m in Sources */,
 				5E8CA931123469AE00461363 /* GraphView.m in Sources */,
@@ -7363,7 +7356,6 @@
 				5E99C5B913C55090001F5CB8 /* AccessoryObjectView.m in Sources */,
 				5E99C5BA13C55090001F5CB8 /* ConscienceObjectView.m in Sources */,
 				5E99C5BB13C55090001F5CB8 /* ConscienceBubbleView.m in Sources */,
-				5E8B8F7913C421DB004AE16A /* Constants.m in Sources */,
 				5E8B8F7A13C421DB004AE16A /* ConscienceHelpViewController.m in Sources */,
 				5E99C5A713C542DC001F5CB8 /* TestConscienceHelpViewController.m in Sources */,
 				5E99C5AC13C542E7001F5CB8 /* TestConscienceLayer.m in Sources */,

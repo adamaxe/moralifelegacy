@@ -9,6 +9,8 @@ Accessory image wrapper.  The image file of the User's or Antagonist's single ac
 @file
  */
 
+extern NSString* const kAccessoryFileNameResource;
+
 @interface AccessoryObjectView : UIView
 
 @property (nonatomic, retain) NSString *accessoryFilename;	/**< file name to be retrieved */

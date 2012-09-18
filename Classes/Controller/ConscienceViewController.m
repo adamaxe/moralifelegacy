@@ -21,6 +21,17 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "ConscienceAssetDAO.h"
 #import "ViewControllerLocalization.h"
 
+typedef enum kConscienceViewControllerTags{
+    kHomeVirtueButtonTag = 3030,
+    kHomeViceButtonTag = 3031,
+    kHomeRankButtonTag = 3032,
+    kHomeThoughtButtonTag = 3033
+} kConscienceViewControllerTags;
+
+float const kTransientInterval = 7;
+int const kThoughtIterations = 4;
+float const kThoughtInterval = 5;
+
 @interface ConscienceViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */

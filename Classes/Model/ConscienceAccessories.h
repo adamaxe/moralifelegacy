@@ -9,6 +9,11 @@
 @file
 */
 
+extern NSString* const kPrimaryAccessoryFileNameResource;
+extern NSString* const kSecondaryAccessoryFileNameResource;
+extern NSString* const kTopAccessoryFileNameResource;
+extern NSString* const kBottomAccessoryFileNameResource;
+
 @interface ConscienceAccessories : NSObject 
 
 @property (nonatomic, retain) NSString *primaryAccessory;		/**< Conscience left-hand image filename */

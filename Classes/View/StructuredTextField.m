@@ -6,6 +6,8 @@ Implementation: There is no inherent way to prevent User from entering in data t
 
 #import "StructuredTextField.h"
 
+int const kChoiceTextFieldLength = 64;
+
 @implementation StructuredTextField
 
 /**

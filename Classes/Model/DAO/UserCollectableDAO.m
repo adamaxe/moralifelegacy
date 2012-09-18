@@ -1,6 +1,8 @@
 #import "UserCollectableDAO.h"
 #import "MoraLifeAppDelegate.h"
 
+NSString* const kCollectableEthicals = @"ethical";
+
 @implementation UserCollectableDAO
 
 - (id) init {

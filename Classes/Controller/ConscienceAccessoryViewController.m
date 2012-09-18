@@ -12,6 +12,9 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 #import "ConscienceAsset.h"
 #import "ViewControllerLocalization.h"
 
+int const kConscienceCenterX = 145;
+int const kConscienceCenterY = 165;
+
 @interface ConscienceAccessoryViewController () <ViewControllerLocalization> {
 	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */

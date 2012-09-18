@@ -48,6 +48,7 @@
     testPerson1 = [self createPersonWithName:@"Person1" withModelManager:testModelManager];
     testPerson2 = [self createPersonWithName:@"Person2" withModelManager:testModelManager];
 
+    //Don't add testPerson2 to ensure that ReferenceModel only returns things owned by User
     userCollection = @[[testPerson1 nameReference], [testAsset1 nameReference], [testAsset2 nameReference], [virtue1 nameMoral], [vice1 nameMoral]];
 
     testingSubject = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];

@@ -12,6 +12,12 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 #import "ConscienceBubbleFactory.h"
 #import "UIColor+Utility.h"
 
+NSString* const kBubbleColor = @"0000FF";
+int const kBubbleType = 0;
+
+float const kBubbleDuration = 0.75;
+float const kBubbleWidth = 5.0;
+
 @implementation ConscienceBubbleView
 
 #pragma mark -

@@ -8,6 +8,8 @@ Maximum Length Textfield Subclass UIView.  Allow for a maximum length to be ente
 @file
 */
 
+extern int const kChoiceTextFieldLength;
+
 @interface StructuredTextField: UITextField 
 
 @property (nonatomic, assign) int maxLength;	/**< maximum length of field */

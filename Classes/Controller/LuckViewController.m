@@ -10,6 +10,9 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 #import "UserLuck.h"
 #import "ConscienceHelpViewController.h"
 
+NSString* const kLuckImageNameGood = @"icon-luckgood";
+NSString* const kLuckImageNameBad = @"icon-luckbad";
+
 @interface LuckViewController () {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
@@ -130,7 +133,7 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 	
 	//luckTextField is a custom StructuredTextField with max length.
 	luckTextField.delegate = self;
-	luckTextField.maxLength = kLuckTextFieldLength;
+	luckTextField.maxLength = kChoiceTextFieldLength;
 	luckTextField.accessibilityHint = NSLocalizedString(@"LuckScreenLuckTextFieldHint",@"Hint for Luck textField");
 	luckTextField.accessibilityLabel =  NSLocalizedString(@"LuckScreenLuckTextFieldLabel",@"Label for Luck textField");
 	descriptionTextView.delegate = self;

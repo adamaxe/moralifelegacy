@@ -7,6 +7,28 @@
 #import "ConscienceBubbleFactory.h"
 #import <CoreGraphics/CoreGraphics.h>
 #import <QuartzCore/QuartzCore.h>
+#import "ConscienceBubbleView.h"
+
+/**
+ Possible bubbleTypes
+ */
+typedef enum bubbleTypeEnum{
+	kBubbleTypeRoundNormal,
+	kBubbleTypeRoundTall,
+	kBubbleTypeRoundShort,
+	kBubbleTypeDiamondNormal,
+	kBubbleTypeDiamondTall,
+	kBubbleTypeDiamondShort,
+	kBubbleTypeStarNormal,
+	kBubbleTypeStarTall,
+	kBubbleTypeStarShort,
+	kBubbleTypePuffyNormal,
+	kBubbleTypePuffyTall,
+	kBubbleTypePuffyShort,
+	kBubbleTypeGearNormal,
+	kBubbleTypeGearTall,
+	kBubbleTypeGearShort
+}bubbleTypeEnum;
 
 @implementation ConscienceBubbleFactory
 

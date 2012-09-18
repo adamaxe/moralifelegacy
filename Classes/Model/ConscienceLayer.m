@@ -5,6 +5,10 @@ Implementation:  NSMutableArray of ConsciencePaths.
  */
 
 #import "ConscienceLayer.h"
+#import "ConsciencePath.h"
+
+float const kFeatureOffsetX = 0.0;
+float const kFeatureOffsetY = 0.0;
 
 @implementation ConscienceLayer
 

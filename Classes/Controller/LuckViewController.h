@@ -12,6 +12,9 @@ Secondary screen for Luck data entry.
 @file
  */
 
+extern NSString* const kLuckImageNameGood;
+extern NSString* const kLuckImageNameBad;
+
 @interface LuckViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
 
 /**

@@ -10,6 +10,8 @@
 #import "BaseDAO.h"
 #import "UserCollectable.h"
 
+extern NSString* const kCollectableEthicals;
+
 @interface UserCollectableDAO : BaseDAO
 
 - (id)initWithKey:(NSString *)key;

@@ -103,10 +103,10 @@ the application.
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Setup the default Conscience
-	appDelegate.userConscienceAccessories.primaryAccessory = kAccessoryFileNameResource;
-	appDelegate.userConscienceAccessories.secondaryAccessory = kAccessoryFileNameResource;
-	appDelegate.userConscienceAccessories.topAccessory = kAccessoryFileNameResource;
-	appDelegate.userConscienceAccessories.bottomAccessory = kAccessoryFileNameResource;
+	appDelegate.userConscienceAccessories.primaryAccessory = kPrimaryAccessoryFileNameResource;
+	appDelegate.userConscienceAccessories.secondaryAccessory = kSecondaryAccessoryFileNameResource;
+	appDelegate.userConscienceAccessories.topAccessory = kTopAccessoryFileNameResource;
+	appDelegate.userConscienceAccessories.bottomAccessory = kBottomAccessoryFileNameResource;
 	appDelegate.userConscienceBody.symbolName = kSymbolFileNameResource;    
     
 	[consciencePlayground addSubview:appDelegate.userConscienceView];
@@ -753,7 +753,7 @@ Implementation:  Accessorize Conscience with Angel accessories
 -(void) makeAngel{
     
     appDelegate.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-crook";
-    appDelegate.userConscienceAccessories.secondaryAccessory = @"acc-nothing";
+    appDelegate.userConscienceAccessories.secondaryAccessory = kSecondaryAccessoryFileNameResource;
     appDelegate.userConscienceAccessories.topAccessory = @"acc-top-halo";
     appDelegate.userConscienceAccessories.bottomAccessory = @"acc-bottom-beard-longgray";
     

@@ -9,6 +9,9 @@ Conscience Bubble visualization.  The appearance and animation of the User's or 
 @file
  */
 
+extern NSString* const kBubbleColor;
+extern int const kBubbleType;
+
 @interface ConscienceBubbleView : UIView 
 
 @property (nonatomic, assign) int bubbleType;		/**< type of bubble */

@@ -13,6 +13,24 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 
 @class ConscienceBody, ConscienceAccessories, ConscienceMind, CAKeyframeAnimation;
 
+extern int const kDirectionFacingLeft;
+extern int const kDirectionFacingRight;
+extern int const kConscienceLowerLeftX;
+extern int const kConscienceLowerLeftY;
+extern int const kConscienceHomeX;
+extern int const kConscienceHomeY;
+extern int const kConscienceOffscreenBottomX;
+extern int const kConscienceOffscreenBottomY;
+extern int const kConscienceAntagonistX;
+extern int const kConscienceAntagonistY;
+extern int const kConscienceAntagonistWidth;
+extern int const kConscienceAntagonistHeight;
+extern int const kConscienceViewTag;
+extern int const kConscienceAntagonistViewTag;
+extern float const kConscienceLargeSizeX;
+extern float const kConscienceLargeSizeY;
+extern float const kConscienceLargestSize;
+
 @interface ConscienceView : UIView
 
 @property (nonatomic, assign) int directionFacing;                  /**< Which way the Conscience is currently facing */

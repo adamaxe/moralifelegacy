@@ -7,6 +7,11 @@ It can be utilizied for both the User ConscienceView and the Antagonist Conscien
 
 #import "ConscienceAccessories.h"
 
+NSString* const kPrimaryAccessoryFileNameResource = @"acc-nothing";
+NSString* const kSecondaryAccessoryFileNameResource = @"acc-nothing";
+NSString* const kTopAccessoryFileNameResource = @"acc-nothing";
+NSString* const kBottomAccessoryFileNameResource = @"acc-nothing";
+
 @implementation ConscienceAccessories
 
 - (id)init
