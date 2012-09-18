@@ -10,9 +10,13 @@ Each Dictionary contains every expression frame for currently selected feature t
 @file
  */
 
+#import "ConscienceBubbleView.h"
+
 extern float const kConscienceSize;
 extern int const kConscienceAge;
 
+extern NSString* const kEyeColor;
+extern NSString* const kBrowColor;
 extern NSString* const kEyeFileNameResource;
 extern NSString* const kMouthFileNameResource;
 extern NSString* const kSymbolFileNameResource;

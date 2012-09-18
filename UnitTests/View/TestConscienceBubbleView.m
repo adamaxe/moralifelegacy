@@ -10,7 +10,7 @@
 
 #define USE_APPLICATION_UNIT_TEST 0
 
-@class ConscienceBubbleView;
+#import "ConscienceBubbleView.h"
 
 @interface TestConscienceBubbleView: SenTestCase {
     
@@ -31,7 +31,7 @@
     
     [super setUp];
     
-    testingSubject = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
+    testingSubject = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, 200, 200)];
     
 }
 

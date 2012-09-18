@@ -41,12 +41,8 @@ float const kConscienceLargestSize = 2.25;
 
 int const kMouthHeight = 32;
 int const kMouthWidth = 50;
-int const kEyeHeight = 32;
-int const kEyeWidth = 32;
 int const kSymbolHeight = 200;
 int const kSymbolWidth = 200;
-int const kSideAccessoryWidth = 75;
-int const kSideAccessoryHeight = 162;
 int const kTopBottomAccessoryHeight = 50;
 int const kTopBottomAccessoryWidth = 162;
 int const kEyeLeftIndex = 0;

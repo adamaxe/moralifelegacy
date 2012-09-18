@@ -10,6 +10,9 @@ Data derived from User's actions.  Member of ConscienceView.
 @file
  */
 
+extern float const kConscienceEnthusiasm;
+extern float const kConscienceMood;
+
 @interface ConscienceMind : NSObject
 
 @property (nonatomic, retain) NSMutableDictionary *enthusiasmMemories;	/**< past enthusiasm states and timestamps */

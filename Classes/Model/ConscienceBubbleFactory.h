@@ -10,6 +10,27 @@
  @file
  */
 
+/**
+ Possible bubbleTypes
+ */
+typedef enum bubbleTypeEnum{
+	kBubbleTypeRoundNormal,
+	kBubbleTypeRoundTall,
+	kBubbleTypeRoundShort,
+	kBubbleTypeDiamondNormal,
+	kBubbleTypeDiamondTall,
+	kBubbleTypeDiamondShort,
+	kBubbleTypeStarNormal,
+	kBubbleTypeStarTall,
+	kBubbleTypeStarShort,
+	kBubbleTypePuffyNormal,
+	kBubbleTypePuffyTall,
+	kBubbleTypePuffyShort,
+	kBubbleTypeGearNormal,
+	kBubbleTypeGearTall,
+	kBubbleTypeGearShort
+}bubbleTypeEnum;
+
 @interface ConscienceBubbleFactory : NSObject
 
 /**

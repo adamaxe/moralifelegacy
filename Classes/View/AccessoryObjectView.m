@@ -7,6 +7,8 @@ Implementation: An image wrapper is used for accessories as to simplify the setu
 #import "AccessoryObjectView.h"
 
 NSString* const kAccessoryFileNameResource = @"acc-nothing";
+int const kSideAccessoryWidth = 75;
+int const kSideAccessoryHeight = 162;
 
 @implementation AccessoryObjectView
 

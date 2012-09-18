@@ -12,7 +12,7 @@
 
 #define USE_APPLICATION_UNIT_TEST 0
 
-@class ConscienceBubbleFactory;
+#import "ConscienceBubbleFactory.h"
 
 @interface TestConscienceBubbleFactory : SenTestCase
 

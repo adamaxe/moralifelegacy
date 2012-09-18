@@ -12,7 +12,7 @@
 
 #define USE_APPLICATION_UNIT_TEST 0
 
-@class ConscienceObjectView;
+#import "ConscienceObjectView.h"
 
 @interface TestConscienceObjectView : SenTestCase {
     

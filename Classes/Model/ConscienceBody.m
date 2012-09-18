@@ -6,16 +6,15 @@ Implementation:  Each NSMutableDictionary holds the CoreGraphics drawing instruc
 */
 
 #import "ConscienceBody.h"
-#import "ConscienceBubbleView.h"
 
 float const kConscienceSize = 1.0;
 int const kConscienceAge = 0;
+NSString* const kEyeColor = @"1C943D";
+NSString* const kBrowColor = @"7B4027";
 
 NSString* const kEyeFileNameResource = @"body-eye2";
 NSString* const kMouthFileNameResource = @"body-mouth1";
 NSString* const kSymbolFileNameResource = @"con-nothing";
-NSString* const kEyeColor = @"1C943D";
-NSString* const kBrowColor = @"7B4027";
 
 @implementation ConscienceBody
 
