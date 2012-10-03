@@ -89,7 +89,7 @@
     NSArray *texts = [testModelManager readAll:ReferenceText.class];
     
     STAssertEquals(texts.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
-    ReferenceText *retrieved = [texts objectAtIndex: 0];
+    ReferenceText *retrieved = texts[0];
     STAssertEqualObjects(retrieved.quote, quote, @"typeBelief Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescriptionReference, @"shortDescription Getter/Setter failed.");
     STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
@@ -157,7 +157,7 @@
     request.predicate = searchPredicate;
     NSArray *texts = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
 
-    ReferenceText *retrieved = [texts objectAtIndex: 0];
+    ReferenceText *retrieved = texts[0];
     NSArray *childrenTexts = [[retrieved childrenReference] allObjects];
     
     STAssertTrue([childrenTexts containsObject:childText1], @"child Relationship 1 failed.");
@@ -187,7 +187,7 @@
     STAssertNoThrow([testModelManager saveContext], @"ReferenceText can't be updated for RI Update test");
     
     NSArray *texts = [testModelManager readAll:ReferenceText.class];
-    ReferenceText *retrieved = [texts objectAtIndex: 0];
+    ReferenceText *retrieved = texts[0];
     STAssertEqualObjects(retrieved.author.nameReference, newAuthorName, @"author RI update failed.");
     STAssertEqualObjects([[retrieved.belief anyObject] nameReference], newBeliefName, @"belief RI update failed.");
     

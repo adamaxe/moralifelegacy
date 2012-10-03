@@ -139,7 +139,7 @@
 
     ReportPieModel *testingSubjectCreate = [[ReportPieModel alloc] initWithModelManager:testModelManagerCreate];
 
-    STAssertEqualObjects([testingSubjectCreate.reportNames objectAtIndex:0], @"No Moral Entries!", @"Empty Virtue name is incorrect");
+    STAssertEqualObjects((testingSubjectCreate.reportNames)[0], @"No Moral Entries!", @"Empty Virtue name is incorrect");
 
 
 }
@@ -151,7 +151,7 @@
 
     testingSubjectCreate.isGood = FALSE;
     
-    STAssertEqualObjects([testingSubjectCreate.reportNames objectAtIndex:0], @"No Immoral Entries!", @"Empty Vice name is incorrect");
+    STAssertEqualObjects((testingSubjectCreate.reportNames)[0], @"No Immoral Entries!", @"Empty Vice name is incorrect");
     
 }
 
@@ -325,13 +325,13 @@
 - (void)assertCorrectOrder:(NSArray *)expectedMorals expectedValues:(NSArray *)expectedValues{
     for (int i = 0; i < testingSubject.moralNames.count; i++) {
 
-        NSString *moralName = [testingSubject.moralNames objectAtIndex:i];
+        NSString *moralName = (testingSubject.moralNames)[i];
 
-        STAssertEqualObjects(moralName, [expectedMorals objectAtIndex:i], @"Moral Names are not in correct order");
+        STAssertEqualObjects(moralName, expectedMorals[i], @"Moral Names are not in correct order");
 
         NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
 
-        STAssertEqualObjects([testingSubject.moralImageNames objectForKey:moralName], imageName, @"Moral Image Names are not in correct order");
+        STAssertEqualObjects((testingSubject.moralImageNames)[moralName], imageName, @"Moral Image Names are not in correct order");
 
         /**< @TODO: Determine moral issue, then implement moralImageName tests */
 //        Moral *moral = [self readMoralWithName:moralName];
@@ -341,7 +341,7 @@
 
     for (int i = 0; i < testingSubject.pieValues.count; i++) {
 
-        STAssertEqualsWithAccuracy([[testingSubject.pieValues objectAtIndex:i] floatValue], [[expectedValues objectAtIndex:i] floatValue], 0,  @"Moral Values are not in correct order");
+        STAssertEqualsWithAccuracy([(testingSubject.pieValues)[i] floatValue], [expectedValues[i] floatValue], 0,  @"Moral Values are not in correct order");
     }
 }
 

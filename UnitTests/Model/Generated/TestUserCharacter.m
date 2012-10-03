@@ -90,7 +90,7 @@
     NSArray *characters = [testModelManager readAll:UserCharacter.class];
     
     STAssertEquals(characters.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
-    UserCharacter *retrieved = [characters objectAtIndex: 0];
+    UserCharacter *retrieved = characters[0];
     
     STAssertEqualObjects(retrieved.characterEnthusiasm, characterEnthusiasm, @"characterEnthusiasm Getter/Setter failed.");
     STAssertEqualObjects(retrieved.characterAge, characterAge, @"characterAge Getter/Setter failed.");

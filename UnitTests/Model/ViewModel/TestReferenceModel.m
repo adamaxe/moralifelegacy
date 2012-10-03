@@ -220,7 +220,7 @@
     [[userDefaultsMock expect] synchronize];
 
     [testingSubject retrieveReference:vice1.nameMoral];
-
+    
     [userDefaultsMock verify];
 }
 

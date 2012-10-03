@@ -173,7 +173,7 @@
     NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     
     STAssertEquals(dilemmas.count, (NSUInteger) 1, @"There should only be 1 Dilemma in the context.");
-    Dilemma *retrieved = [dilemmas objectAtIndex: 0];
+    Dilemma *retrieved = dilemmas[0];
         
     STAssertEqualObjects(retrieved.enthusiasmDilemma, enthusiasmDilemma, @"enthusiasmDilemma Getter/Setter failed.");
     STAssertEqualObjects(retrieved.moodDilemma, moodDilemma, @"moodDilemma Getter/Setter failed.");
@@ -200,7 +200,7 @@
             
     NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     
-    Dilemma *retrieved = [dilemmas objectAtIndex: 0];
+    Dilemma *retrieved = dilemmas[0];
     STAssertEqualObjects(retrieved.antagonist, testCharacter, @"antagonist Relationship failed.");
     STAssertEqualObjects(retrieved.moralChoiceA, testMoral, @"moralChoiceA Relationship failed.");
     STAssertEqualObjects(retrieved.moralChoiceB, testMoral2, @"moralChoiceB Relationship failed.");
@@ -230,7 +230,7 @@
     STAssertNoThrow([testModelManager saveContext], @"Character can't be updated for RI Update test");
     
     NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
-    Dilemma *retrieved = [dilemmas objectAtIndex: 0];
+    Dilemma *retrieved = dilemmas[0];
     STAssertEqualObjects(retrieved.antagonist.nameCharacter, newCharacterName, @"story RI update failed.");
     STAssertEqualObjects(retrieved.moralChoiceA.nameMoral, newMoralName, @"moralChoiceA RI update failed.");    
     STAssertEqualObjects(retrieved.moralChoiceB.nameMoral, newMoralName2, @"moralChoiceB RI update failed.");    

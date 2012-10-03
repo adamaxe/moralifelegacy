@@ -443,10 +443,10 @@
 
     for (int i = 0; i < testingSubject.choices.count; i++) {
 
-        UserChoice *expectedUserChoice = [expectedChoices objectAtIndex:i];
-        STAssertEqualObjects([testingSubject.choices objectAtIndex:i], expectedUserChoice.entryShortDescription, @"Choice shortDescriptions are not in correct order");
-        STAssertEqualObjects([testingSubject.choicesAreGood objectAtIndex:i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
-        STAssertEqualObjects([testingSubject.choiceKeys objectAtIndex:i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
+        UserChoice *expectedUserChoice = expectedChoices[i];
+        STAssertEqualObjects((testingSubject.choices)[i], expectedUserChoice.entryShortDescription, @"Choice shortDescriptions are not in correct order");
+        STAssertEqualObjects((testingSubject.choicesAreGood)[i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
+        STAssertEqualObjects((testingSubject.choiceKeys)[i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
 
         /**< @TODO: figure out why moral creation crashes, then implement details and icon tests */
 //        Moral *expectedMoral = [self readMoralWithName:expectedUserChoice.choiceMoral];

@@ -75,7 +75,7 @@
     NSArray *assets = [testModelManager readAll:ConscienceAsset.class];
     
     STAssertEquals(assets.count, (NSUInteger) 1, @"There should only be 1 ConscienceAsset in the context.");
-    ConscienceAsset *retrieved = [assets objectAtIndex: 0];
+    ConscienceAsset *retrieved = assets[0];
 
     STAssertEqualObjects(retrieved.costAsset, costAsset, @"costAsset Getter/Setter failed.");
     STAssertEqualObjects(retrieved.moralValueAsset, moralValueAsset, @"moralValueAsset Getter/Setter failed.");

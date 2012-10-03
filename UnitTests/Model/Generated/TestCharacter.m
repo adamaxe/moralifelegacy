@@ -102,7 +102,7 @@
     NSArray *characters = [testModelManager readAll:Character.class];
     
     STAssertEquals(characters.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
-    Character *retrieved = [characters objectAtIndex: 0];
+    Character *retrieved = characters[0];
     
     STAssertEqualObjects(retrieved.ageCharacter, characterAge, @"characterAge Getter/Setter failed.");
     STAssertEqualObjects(retrieved.sizeCharacter, characterSize, @"characterSize Getter/Setter failed.");
@@ -131,7 +131,7 @@
             
     NSArray *characters = [testModelManager readAll:Character.class];
     
-    Character *retrieved = [characters objectAtIndex: 0];
+    Character *retrieved = characters[0];
     STAssertEqualObjects([retrieved.story anyObject], testDilemma, @"story Relationship failed.");
     
 }
@@ -149,7 +149,7 @@
     STAssertNoThrow([testModelManager saveContext], @"Dilemma can't be updated for RI Update test");
     
     NSArray *characters = [testModelManager readAll:Character.class];
-    Character *retrieved = [characters objectAtIndex: 0];
+    Character *retrieved = characters[0];
     STAssertEqualObjects([[retrieved.story anyObject] nameDilemma], newDilemmadName, @"story RI update failed.");
     
 }

@@ -55,7 +55,7 @@
     NSArray *collectables = [testModelManager readAll:UserCollectable.class];
     
     STAssertEquals(collectables.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
-    UserCollectable *retrieved = [collectables objectAtIndex: 0];
+    UserCollectable *retrieved = collectables[0];
     
     STAssertEqualObjects(retrieved.collectableValue, collectableValue, @"collectableValue Getter/Setter failed.");
     STAssertEqualObjects(retrieved.collectableCreationDate, collectableCreationDate, @"collectableCreationDate Getter/Setter failed.");

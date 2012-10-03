@@ -87,8 +87,8 @@
     NSString *testTitle = @"Test Title";
     NSString *testText = @"Test Text for the Text Help Screen";
     
-    NSArray *titles = [[NSArray alloc] initWithObjects:testTitle, nil];
-    NSArray *texts = [[NSArray alloc] initWithObjects:testText, nil];
+    NSArray *titles = @[testTitle];
+    NSArray *texts = @[testText];
     
     [testingSubject setHelpTitles:titles];
     [testingSubject setHelpTexts:texts];
@@ -98,8 +98,8 @@
     isConscienceOnScreenTest = [testingSubject isConscienceOnScreen];
     STAssertEquals(1, numberOfTitles, @"Title setter/getter non-functional");
     STAssertEquals(isConscienceOnScreenTest, [testingSubject isConscienceOnScreen], @"Conscience Bool setter/getter non-functional.");    
-    STAssertEqualObjects(testTitle, [[testingSubject helpTitles] objectAtIndex:0], @"Title setter/getter inaccurate.");
-    STAssertEqualObjects(testText, [[testingSubject helpTexts] objectAtIndex:0], @"Title setter/getter inaccurate.");
+    STAssertEqualObjects(testTitle, [testingSubject helpTitles][0], @"Title setter/getter inaccurate.");
+    STAssertEqualObjects(testText, [testingSubject helpTexts][0], @"Title setter/getter inaccurate.");
 }
 
 #endif

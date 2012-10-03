@@ -93,8 +93,8 @@
 	ConscienceLayer *testLayer = [[ConscienceLayer alloc] init];
 	ConscienceGradient *testGradient = [[ConscienceGradient alloc] init];
 
-	[testLayers setObject:testLayer forKey:@"layer1"];
-	[testGradients setObject:testGradient forKey:@"gradient1"];
+	testLayers[@"layer1"] = testLayer;
+	testGradients[@"gradient1"] = testGradient;
 
 	[testingSubject setTotalLayers:testLayers];
 	[testingSubject setTotalGradients:testGradients];

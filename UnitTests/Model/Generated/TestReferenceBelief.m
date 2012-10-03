@@ -88,7 +88,7 @@
     NSArray *beliefs = [testModelManager readAll:ReferenceBelief.class];
     
     STAssertEquals(beliefs.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
-    ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
+    ReferenceBelief *retrieved = beliefs[0];
     STAssertEqualObjects(retrieved.typeBelief, typeBelief, @"typeBelief Getter/Setter failed.");
     STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescriptionReference, @"shortDescription Getter/Setter failed.");
     STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
@@ -117,7 +117,7 @@
     NSArray *beliefs = [testModelManager readAll:ReferenceBelief.class];
     
     STAssertEquals(beliefs.count, (NSUInteger) 1, @"There should only be 1 RefenceBelief in the context.");
-    ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
+    ReferenceBelief *retrieved = beliefs[0];
     STAssertEqualObjects(retrieved.figurehead, testPerson, @"figurehead Relationship failed.");
     STAssertEqualObjects([retrieved.texts anyObject], testText, @"text Relationship failed.");
     
@@ -142,7 +142,7 @@
     STAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be updated for RI Update test");
     
     NSArray *beliefs = [testModelManager readAll:ReferenceBelief.class];
-    ReferenceBelief *retrieved = [beliefs objectAtIndex: 0];
+    ReferenceBelief *retrieved = beliefs[0];
     STAssertEqualObjects(retrieved.figurehead.nameReference, newFigureheadName, @"figurehead RI update failed.");
     STAssertEqualObjects([[retrieved.texts anyObject] nameReference], newTextName, @"text RI update failed.");
     

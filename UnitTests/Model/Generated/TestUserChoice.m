@@ -98,7 +98,7 @@
     NSArray *userChoices = [testModelManager readAll:UserChoice.class];
         
     STAssertEquals(userChoices.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
-    UserChoice *retrieved = [userChoices objectAtIndex: 0];
+    UserChoice *retrieved = userChoices[0];
     STAssertEqualObjects(retrieved.entryShortDescription, entryShortDescription, @"entryShortDescription Getter/Setter failed.");
     STAssertEqualObjects(retrieved.entryIsGood, entryIsGood, @"entryIsGood Getter/Setter failed.");
     STAssertEqualObjects(retrieved.entryKey, entryKey, @"entryKey Getter/Setter failed.");
@@ -149,7 +149,7 @@
     NSArray *userChoices = [[testModelManager readWriteManagedObjectContext] executeFetchRequest:request error:&error];
 //    NSArray *userChoices = [testModelManager read:UserChoice.class withKey:@"entryKey" andValue:@"0"];
     
-    UserChoice *retrieved = [userChoices objectAtIndex: 0];
+    UserChoice *retrieved = userChoices[0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
     STAssertEqualObjects(retrieved.entryIsGood, @1, @"entryIsGood default value failed.");
     STAssertEqualObjects(retrieved.entryKey, @"0", @"entryKey default value failed.");

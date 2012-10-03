@@ -122,7 +122,7 @@
     NSArray *morals = [testModelManager readAll:Moral.class];
     
     STAssertEquals(morals.count, (NSUInteger) 1, @"There should only be 1 Moral in the context.");
-    Moral *retrieved = [morals objectAtIndex: 0];
+    Moral *retrieved = morals[0];
     
     STAssertEqualObjects(retrieved.imageNameMoral, imageNameMoral, @"imageNameMoral Getter/Setter failed.");
     STAssertEqualObjects(retrieved.colorMoral, colorMoral, @"colorMoral Getter/Setter failed.");
@@ -146,7 +146,7 @@
             
     NSArray *morals = [testModelManager readAll:Moral.class];
     
-    Moral *retrieved = [morals objectAtIndex: 0];
+    Moral *retrieved = morals[0];
     STAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
     STAssertEqualObjects([retrieved.dillemmaB anyObject], testDilemma2, @"dilemmaB Relationship failed.");
     
@@ -170,7 +170,7 @@
     
     NSArray *morals = [testModelManager readAll:Moral.class];
     
-    Moral *retrieved = [morals objectAtIndex: 0];
+    Moral *retrieved = morals[0];
     STAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
     STAssertEqualObjects([retrieved.dillemmaB anyObject], testDilemma2, @"dilemmaB Relationship failed.");
     
@@ -227,7 +227,7 @@
     request.predicate = searchPredicate;
     NSArray *userChoices = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
     
-    Moral *retrieved = [userChoices objectAtIndex: 0];
+    Moral *retrieved = userChoices[0];
     STAssertEqualObjects(retrieved.shortDescriptionMoral, @"Virtue", @"shortDescriptionMoral default value failed.");
     STAssertEqualObjects(retrieved.nameMoral, @"Moral", @"nameMoral default value failed.");
     STAssertEqualObjects(retrieved.longDescriptionMoral, @"Moral", @"longDescriptionMoral default value failed.");

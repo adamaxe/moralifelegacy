@@ -51,8 +51,8 @@ const int kGraphWidth = 240;
 
 - (void)testDefaultData{
     
-    STAssertEqualObjects([NSNumber numberWithFloat:360.0], [[testingSubject pieValues] objectAtIndex:0], @"Default Graph data inaccurate.");
-    STAssertEqualObjects([UIColor redColor], [[testingSubject pieColors] objectAtIndex:0], @"Default Graph Color inaccurate.");
+    STAssertEqualObjects([NSNumber numberWithFloat:360.0], [testingSubject pieValues][0], @"Default Graph data inaccurate.");
+    STAssertEqualObjects([UIColor redColor], [testingSubject pieColors][0], @"Default Graph Color inaccurate.");
 }
 
 /**
@@ -60,17 +60,17 @@ const int kGraphWidth = 240;
  */
 - (void)testGraphProperties{
 
-    NSNumber *pieValue1 = [[NSNumber alloc] initWithFloat:30.0];
-    NSNumber *pieValue2 = [[NSNumber alloc] initWithFloat:70.0];
+    NSNumber *pieValue1 = @30.0f;
+    NSNumber *pieValue2 = @70.0f;
 
-	NSArray *testValues = [[NSArray alloc] initWithObjects:pieValue1, pieValue2, nil];
-	NSArray *testColors = [[NSArray alloc] initWithObjects:[UIColor blueColor], [UIColor greenColor], nil];
+	NSArray *testValues = @[pieValue1, pieValue2];
+	NSArray *testColors = @[[UIColor blueColor], [UIColor greenColor]];
     
     [testingSubject setPieValues:testValues];
     [testingSubject setPieColors:testColors];
     
-    STAssertEqualObjects(pieValue1, [[testingSubject pieValues] objectAtIndex:0], @"Graph data setter inaccurate.");
-    STAssertEqualObjects([UIColor blueColor], [[testingSubject pieColors] objectAtIndex:0], @"Graph color setter inaccurate.");
+    STAssertEqualObjects(pieValue1, [testingSubject pieValues][0], @"Graph data setter inaccurate.");
+    STAssertEqualObjects([UIColor blueColor], [testingSubject pieColors][0], @"Graph color setter inaccurate.");
 
 
 }

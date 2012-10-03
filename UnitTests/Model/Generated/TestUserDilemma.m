@@ -71,7 +71,7 @@
     NSArray *userDilemmas = [testModelManager readAll:UserDilemma.class];
         
     STAssertEquals(userDilemmas.count, (NSUInteger) 1, @"There should only be 1 RefenceText in the context.");
-    UserDilemma *retrieved = [userDilemmas objectAtIndex: 0];
+    UserDilemma *retrieved = userDilemmas[0];
     STAssertEqualObjects(retrieved.entryShortDescription, entryShortDescription, @"entryShortDescription Getter/Setter failed.");
     STAssertEqualObjects(retrieved.entryIsGood, entryIsGood, @"entryIsGood Getter/Setter failed.");
     STAssertEqualObjects(retrieved.entryKey, entryKey, @"entryKey Getter/Setter failed.");
@@ -113,7 +113,7 @@
     request.predicate = searchPredicate;
     NSArray *userDilemmas = [[testModelManager readWriteManagedObjectContext] executeFetchRequest:request error:&error];
 
-    UserDilemma *retrieved = [userDilemmas objectAtIndex: 0];
+    UserDilemma *retrieved = userDilemmas[0];
     STAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
     STAssertEqualObjects(retrieved.entryIsGood, @1, @"entryIsGood default value failed.");
     STAssertEqualObjects(retrieved.entryKey, @"0", @"entryKey default value failed.");
