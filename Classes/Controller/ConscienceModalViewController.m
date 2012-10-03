@@ -88,7 +88,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	/** @todo change hardcoded selection descriptions into localized strings */
 	buttonImages = [[NSMutableDictionary alloc] init];
 	buttonLabels = [[NSMutableDictionary alloc] init];
-	screenTitles = [[NSArray alloc] initWithObjects:@"What do you need?", @"What would you like to change?", @"Morathology Adventures", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?", nil];
+	screenTitles = @[@"What do you need?", @"What would you like to change?", @"Morathology Adventures", @"Which Setting would you like to change?", @" ", @"Which feature?", @"What would you like to color?",  @"Which Accessory type?", @"What information?"];
 	
 	currentState = 0;
 
@@ -96,40 +96,40 @@ User selection causes selectChoice to be called which sets the currentState vari
 	thoughtModalArea.alpha = 0;
 
 	/** @todo determine better screen loading method */
-	NSArray *tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-customization.png", @"icon-rank.png", @"icon-piechart.png", @" ",nil];
-	[buttonImages setObject:tempButtonImages forKey:@"0"];
+	NSArray *tempButtonImages = @[@"icon-customization.png", @"icon-rank.png", @"icon-piechart.png", @" "];
+	buttonImages[@"0"] = tempButtonImages;
 
-	NSArray *tempButtonLabels = [[NSArray alloc] initWithObjects:@"Commissary", @"Morathology", @"Moral Report", @" ", nil];
+	NSArray *tempButtonLabels = @[@"Commissary", @"Morathology", @"Moral Report", @" "];
 	[buttonLabels setValue:tempButtonLabels forKey:@"0"];
 	
-	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-features.png", @"icon-palette.png", @"icon-accessories.png", @" ",nil];
+	tempButtonImages = @[@"icon-features.png", @"icon-palette.png", @"icon-accessories.png", @" "];
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"Atlantic", @"Coming Soon!", @"Coming Soon!", nil];
+	tempButtonLabels = @[@"Orientation", @"Atlantic", @"Coming Soon!", @"Coming Soon!"];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	
-	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-placesani1.png", @"icon-placesani2.png", @"icon-placesani3.png", @"icon-placesani4.png",nil];
+	tempButtonImages = @[@"icon-placesani1.png", @"icon-placesani2.png", @"icon-placesani3.png", @"icon-placesani4.png"];
 	[buttonImages setValue:tempButtonImages forKey:@"2"];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Features", @"Colors", @"Accessories", @" ", nil];
+	tempButtonLabels = @[@"Features", @"Colors", @"Accessories", @" "];
 	[buttonLabels setValue:tempButtonLabels forKey:@"1"];
     
-	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-resetapp.png", @" ", @" ", @" ",nil];
+	tempButtonImages = @[@"icon-resetapp.png", @" ", @" ", @" "];
 	[buttonImages setValue:tempButtonImages forKey:@"3"];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Reset Application", @" ", @" ", @" ", nil];
+	tempButtonLabels = @[@"Reset Application", @" ", @" ", @" "];
 	[buttonLabels setValue:tempButtonLabels forKey:@"3"];
 	
-	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-eye.png", @"icon-symbol.png", @"icon-mouth.png", @"icon-bubble.png",nil];
+	tempButtonImages = @[@"icon-eye.png", @"icon-symbol.png", @"icon-mouth.png", @"icon-bubble.png"];
 	[buttonImages setValue:tempButtonImages forKey:@"5"];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Eye", @"Face", @"Mouth", @"Bubble", nil];
+	tempButtonLabels = @[@"Eye", @"Face", @"Mouth", @"Bubble"];
 	[buttonLabels setValue:tempButtonLabels forKey:@"5"];
 	
-	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-eye.png", @"icon-brow.png", @"icon-bubble.png", @"icon-none.png",nil];
+	tempButtonImages = @[@"icon-eye.png", @"icon-brow.png", @"icon-bubble.png", @"icon-none.png"];
 	[buttonImages setValue:tempButtonImages forKey:@"6"];
 	
-	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Eye", @"Brow", @"Bubble", @" ", nil];
+	tempButtonLabels = @[@"Eye", @"Brow", @"Bubble", @" "];
 	[buttonLabels setValue:tempButtonLabels forKey:@"6"];
     
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
@@ -303,11 +303,11 @@ Determines if current screen should change or if another UIViewController needs 
 - (void) showSelectionChoices{
     
     //Change buttons and status bar for appropriate requested screen
-	statusMessage1.text = (NSString *)[screenTitles objectAtIndex:currentState];
+	statusMessage1.text = (NSString *)screenTitles[currentState];
     
 	//Set button image and names, set tags for screen derivation
-	NSString *buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:0];
-	NSString *buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:0];
+	NSString *buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][0];
+	NSString *buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][0];
 	[button1 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton1 setTitle:buttonLabel forState: UIControlStateNormal];
 	button1.tag = currentState*4;
@@ -319,8 +319,8 @@ Determines if current screen should change or if another UIViewController needs 
 	labelButton1.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton1.tag]), @"Hint for Menu Button 1");
 
     
-	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:1];
-	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:1];
+	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][1];
+	buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][1];
 	[button2 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton2 setTitle:buttonLabel forState: UIControlStateNormal];
 	button2.tag = currentState*4 + 1;
@@ -332,8 +332,8 @@ Determines if current screen should change or if another UIViewController needs 
 	labelButton2.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton2.tag]), @"Hint for Menu Button 2");
 
     
-	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:2];
-	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:2];
+	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][2];
+	buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][2];
 	[button3 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton3 setTitle:buttonLabel forState: UIControlStateNormal];
 	button3.tag = currentState*4 + 2;
@@ -344,8 +344,8 @@ Determines if current screen should change or if another UIViewController needs 
     labelButton3.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton3.tag]), @"Label for Menu Button 3");
 	labelButton3.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton3.tag]), @"Hint for Menu Button 3");
     
-	buttonImageName = (NSString *)[[buttonImages objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:3];
-	buttonLabel = (NSString *)[[buttonLabels objectForKey:[NSString stringWithFormat:@"%d", currentState]] objectAtIndex:3];
+	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][3];
+	buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][3];
 	[button4 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
 	[labelButton4 setTitle:buttonLabel forState: UIControlStateNormal];
 	button4.tag = currentState*4 + 3;
@@ -567,7 +567,7 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
         
         //Retrieve readwrite Documents directory
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *documentsDirectory = paths[0];
         NSString *userData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
         NSURL *storeURL = [NSURL fileURLWithPath:userData];
         

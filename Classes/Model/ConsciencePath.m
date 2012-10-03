@@ -101,7 +101,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
             NSArray *points = [element componentsSeparatedByString: @","];
             
             for (int i = 0; i < [points count]; i++) {
-                [self.pathPoints addObject:[points objectAtIndex:i]];
+                [self.pathPoints addObject:points[i]];
                 pointCount++;
             }
             
@@ -170,10 +170,10 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 		styleComponent = [element componentsSeparatedByString: @":"];
 		//Insert name value pairs into dictionary for easy retrieval.
 		//Name:Value
-		[styleNameValuePairs setObject:[styleComponent objectAtIndex:1] forKey:[styleComponent objectAtIndex:0]];
+		styleNameValuePairs[styleComponent[0]] = styleComponent[1];
 	}
 	
-	NSString *pathColorPre = (NSString *)[styleNameValuePairs objectForKey:@"fill"];
+	NSString *pathColorPre = (NSString *)styleNameValuePairs[@"fill"];
 	
 	//Determine if fill color is null, an RGB hex color or a gradient
 	if ((pathColorPre == NULL) || [pathColorPre isEqualToString:@"none"]) {
@@ -198,7 +198,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 		[self setPathFillOpacity: 0];
 	}
 
-	pathColorPre = (NSString *)[styleNameValuePairs objectForKey:@"stroke"];
+	pathColorPre = (NSString *)styleNameValuePairs[@"stroke"];
 	
 	if (pathColorPre != NULL && ![pathColorPre isEqualToString:@"none"]) {
 
@@ -209,10 +209,10 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 		
 	}	
 
-	[self setPathStrokeWidth: [(NSNumber*)[styleNameValuePairs objectForKey:@"stroke-width"] floatValue]];
-	[self setPathFillOpacity: [(NSNumber*)[styleNameValuePairs objectForKey:@"fill-opacity"] floatValue]];
-	[self setPathStrokeMiterLimit: [(NSNumber*)[styleNameValuePairs objectForKey:@"stroke-miterlimit"] floatValue]];
-	[self setPathStrokeOpacity: [(NSNumber*)[styleNameValuePairs objectForKey:@"stroke-opacity"] floatValue]];
+	[self setPathStrokeWidth: [(NSNumber*)styleNameValuePairs[@"stroke-width"] floatValue]];
+	[self setPathFillOpacity: [(NSNumber*)styleNameValuePairs[@"fill-opacity"] floatValue]];
+	[self setPathStrokeMiterLimit: [(NSNumber*)styleNameValuePairs[@"stroke-miterlimit"] floatValue]];
+	[self setPathStrokeOpacity: [(NSNumber*)styleNameValuePairs[@"stroke-opacity"] floatValue]];
 	
 }
 

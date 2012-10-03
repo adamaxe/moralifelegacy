@@ -45,7 +45,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 		
 		//Array to hold button names for random animations
-		buttonNames = [[NSArray alloc] initWithObjects:@"accessories", @"beliefs", @"books", @"people", @"choicegood", @"reports", nil];
+		buttonNames = @[@"accessories", @"beliefs", @"books", @"people", @"choicegood", @"reports"];
         
     }
     return self;
@@ -152,7 +152,7 @@ Implementation: Build animated UIImage from sequential icon files
  */
 - (void) buttonAnimate:(NSNumber *) buttonNumber{
 	
-	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", [buttonNames objectAtIndex: [buttonNumber intValue]]];
+	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", buttonNames[[buttonNumber intValue]]];
 
 	UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
 	UIImage *iconani2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@2.png", iconFileName]];
@@ -164,7 +164,7 @@ Implementation: Build animated UIImage from sequential icon files
 	UIImageView *animation1 = [[UIImageView alloc] init];
 	animation1.frame = CGRectMake(0,0,75,75);
 	
-	NSArray *images = [[NSArray alloc] initWithObjects:iconani1, iconani2, iconani3, iconani4, nil];
+	NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
 	animation1.animationImages = images;
 
 	switch ([buttonNumber intValue]){
@@ -191,7 +191,7 @@ Implementation: Return the button's icon to default after animation finishes
  */
 - (void) buttonAnimationDone:(NSNumber *) buttonNumber{
 	
-	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani1.png", [buttonNames objectAtIndex:[buttonNumber intValue]]];
+	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani1.png", buttonNames[[buttonNumber intValue]]];
 
 	switch ([buttonNumber intValue]){
 		case 0: [accessoriesButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;

@@ -180,7 +180,7 @@ NSString* const kContextReadWrite = @"readWrite";
     }
     
     if (objects.count > 0) {
-        return [objects objectAtIndex:0];
+        return objects[0];
     } else {
         return nil;
     }
@@ -224,7 +224,7 @@ NSString* const kContextReadWrite = @"readWrite";
         [request setSortDescriptors:self.sorts];
     } else {
         NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:self.sortDefaultName ascending:YES];
-        NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+        NSArray* sortDescriptors = @[sortDescriptor];
         [request setSortDescriptors:sortDescriptors];
     }
     

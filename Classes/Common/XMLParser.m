@@ -37,7 +37,7 @@ attributes:(NSDictionary *)attributeDict {
 	if([elementName isEqualToString:@"g"]) {
 		//Layer Group has been found, initialize containers to hold data
 		self.currentConscienceLayer = [[ConscienceLayer alloc] init];
-		[self.currentConscienceLayer setLayerID:[attributeDict objectForKey:@"id"]];
+		[self.currentConscienceLayer setLayerID:attributeDict[@"id"]];
 
 	} else if([elementName isEqualToString:@"path"]) {
 
@@ -46,7 +46,7 @@ attributes:(NSDictionary *)attributeDict {
 		currentConsciencePath = [[ConsciencePath alloc] init];
 		
 		//Transform path/style strings into ConsciencePaths ready for Quartz rendering
-		currentConsciencePath.pathID = [attributeDict objectForKey:@"id"];
+		currentConsciencePath.pathID = attributeDict[@"id"];
 
         /** 
          d = current path data from XML under inspection/tokenization
@@ -55,7 +55,7 @@ attributes:(NSDictionary *)attributeDict {
          style = current style data from XML under inspection/tokenization
          Style Data represents stroke/fill instructions. Possesses color, opacity, style and possible gradientID
          */
-        [currentConsciencePath convertToConsciencePath:[attributeDict objectForKey:@"d"] WithStyle:[attributeDict objectForKey:@"style"]];
+        [currentConsciencePath convertToConsciencePath:attributeDict[@"d"] WithStyle:attributeDict[@"style"]];
         
 		//Add completed path to layer
 		[self.currentConscienceLayer.consciencePaths addObject:currentConsciencePath];
@@ -66,10 +66,10 @@ attributes:(NSDictionary *)attributeDict {
 		//Initialize the path.
 		currentConscienceGradient = [[ConscienceGradient alloc] init];
 
-		[currentConscienceGradient setGradientID:(NSString *)[attributeDict objectForKey:@"id"]];
+		[currentConscienceGradient setGradientID:(NSString *)attributeDict[@"id"]];
 
-        CGPoint startPoint = CGPointMake([[attributeDict objectForKey:@"x1"] floatValue],[[attributeDict objectForKey:@"y1"] floatValue]);
-		CGPoint endPoint = CGPointMake([[attributeDict objectForKey:@"x2"] floatValue],[[attributeDict objectForKey:@"y2"] floatValue]);
+        CGPoint startPoint = CGPointMake([attributeDict[@"x1"] floatValue],[attributeDict[@"y1"] floatValue]);
+		CGPoint endPoint = CGPointMake([attributeDict[@"x2"] floatValue],[attributeDict[@"y2"] floatValue]);
 		
 		[currentConscienceGradient.gradientPoints addObject:[NSValue valueWithCGPoint:startPoint]];
 		[currentConscienceGradient.gradientPoints addObject:[NSValue valueWithCGPoint:endPoint]];
@@ -114,29 +114,29 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 	if([elementName isEqualToString:@"g"]){
 		//Determine which ConscienceLayer path belongs
 		if (browFoundBool) {
-			[self.currentConscienceBody.browLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.browLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (bagsFoundBool) {
-			[self.currentConscienceBody.bagsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.bagsLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (eyeFoundBool) {
-			[self.currentConscienceBody.eyeLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.eyeLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (lashesFoundBool) {
-			[self.currentConscienceBody.lashesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.lashesLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (lidFoundBool) {
-			[self.currentConscienceBody.lidLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.lidLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (socketFoundBool) {
-			[self.currentConscienceBody.socketLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.socketLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (dimplesFoundBool) {
-			[self.currentConscienceBody.dimplesLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.dimplesLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (lipsFoundBool) {
-			[self.currentConscienceBody.lipsLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.lipsLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (teethFoundBool) {
-			[self.currentConscienceBody.teethLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.teethLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (tongueFoundBool) {
-			[self.currentConscienceBody.tongueLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.tongueLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (symbolFoundBool) {
-			[self.currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.symbolLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		} else if (positionFoundBool) {
-			[self.currentConscienceBody.symbolLayers setObject: self.currentConscienceLayer forKey:[self.currentConscienceLayer layerID]];
+			(self.currentConscienceBody.symbolLayers)[[self.currentConscienceLayer layerID]] = self.currentConscienceLayer;
 		}
 		
 	}
@@ -144,7 +144,7 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 	
 	if([elementName isEqualToString:@"linearGradient"]) {
 			//Gradient has been found
-			[self.currentConscienceBody.gradientLayers setObject: currentConscienceGradient forKey:currentConscienceGradient.gradientID];
+			(self.currentConscienceBody.gradientLayers)[currentConscienceGradient.gradientID] = currentConscienceGradient;
 	}
 	
 }

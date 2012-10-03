@@ -246,7 +246,7 @@ Implementation: Retrieve all User entered Lucks, and then populate a working set
 
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:luckSortDescriptor ascending:isAscending];
     
-	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+	NSArray* sortDescriptors = @[sortDescriptor];
 	[request setSortDescriptors:sortDescriptors];
 	
 	NSArray *objects = [context executeFetchRequest:request error:&outError];
@@ -329,7 +329,7 @@ Implementation: Retrieve a requested Luck and set NSUserDefaults for ChoiceViewC
 		NSLog(@"No matches");
 	} else {
 		
-		UserLuck *match = [objects objectAtIndex:0];
+		UserLuck *match = objects[0];
         
 		[prefs setObject:[match entryKey] forKey:@"entryKey"];
 		[prefs setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
@@ -367,7 +367,7 @@ Implementation:  VERSION 2.0 Delete selected luck
 		NSLog(@"No matches");
 	} else {
 		
-		UserLuck *match = [objects objectAtIndex:0];
+		UserLuck *match = objects[0];
 		
 		[context deleteObject:match];		
 		
@@ -411,14 +411,14 @@ Implementation:  VERSION 2.0 Delete selected luck
 		
     }
 	
-	[[cell textLabel] setText:[tableData objectAtIndex:indexPath.row]];
+	[[cell textLabel] setText:tableData[indexPath.row]];
     [[cell textLabel] setFont:[UIFont systemFontOfSize:18.0]];
     [[cell textLabel] setNumberOfLines:1];
     [[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
     [[cell textLabel] setMinimumFontSize:12.0];    
-	[[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]]; 
+	[[cell detailTextLabel] setText:tableDataDetails[indexPath.row]]; 
 	
-    BOOL isRowGood = [[tableDataColorBools objectAtIndex:indexPath.row] boolValue];
+    BOOL isRowGood = [tableDataColorBools[indexPath.row] boolValue];
     
     if (isRowGood) {
         [[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
@@ -427,7 +427,7 @@ Implementation:  VERSION 2.0 Delete selected luck
 		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
     }
     
-	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
+	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:tableDataImages[indexPath.row]];
 	[rowImageName appendString:@".png"];
 	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
 	
@@ -445,7 +445,7 @@ Implementation:  VERSION 2.0 Delete selected luck
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	
-	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
+	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:tableDataKeys[indexPath.row]];
 	
 	[self deleteLuck:selectedRow];
 	
@@ -511,7 +511,7 @@ Implementation:  VERSION 2.0 Delete selected luck
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
+	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:tableDataKeys[indexPath.row]];
 	
 	[self retrieveLuck:selectedRow];
 	
@@ -573,7 +573,7 @@ Implementation:  VERSION 2.0 Delete selected luck
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[[details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[details[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 			
 			
 			//A match was found
@@ -591,10 +591,10 @@ Implementation:  VERSION 2.0 Delete selected luck
 				//{
 				
 				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-				[tableData addObject:[lucks objectAtIndex:counter]];
-				[tableDataImages addObject:[icons objectAtIndex:counter]];
-				[tableDataDetails addObject:[details objectAtIndex:counter]];
-				[tableDataKeys addObject:[luckKeys objectAtIndex:counter]];
+				[tableData addObject:lucks[counter]];
+				[tableDataImages addObject:icons[counter]];
+				[tableDataDetails addObject:details[counter]];
+				[tableDataKeys addObject:luckKeys[counter]];
 				
 				//}
 			}

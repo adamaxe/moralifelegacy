@@ -256,12 +256,12 @@
 	}
     
 	//Setup cell contents
-	[[cell textLabel] setText:[tableData objectAtIndex:indexPath.row]];
+	[[cell textLabel] setText:tableData[indexPath.row]];
 	[[cell textLabel] setMinimumFontSize:12.0];    
-	[[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
+	[[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
     
 	//Determine if Choice is good or bad
-	BOOL isRowGood = [[tableDataColorBools objectAtIndex:indexPath.row] boolValue];
+	BOOL isRowGood = [tableDataColorBools[indexPath.row] boolValue];
     
 	if (isRowGood) {
 		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
@@ -274,7 +274,7 @@
 	[[cell textLabel] setNumberOfLines:1];
 	[[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
 	
-	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
+	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:tableDataImages[indexPath.row]];
     //	[rowImageName appendString:@".png"];
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
@@ -289,7 +289,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
+	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:tableDataKeys[indexPath.row]];
     
 	//Get selected row and commit to NSUserDefaults    
 	[self.choiceHistoryModel retrieveChoice:selectedRow forEditing:NO];
@@ -344,8 +344,8 @@
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[[self.choiceHistoryModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeMorals = [[[self.choiceHistoryModel.icons objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[(self.choiceHistoryModel.details)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeMorals = [[(self.choiceHistoryModel.icons)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 			
 			//A match was found in row name, details or moral
 			if(searchRange.location != NSNotFound)
@@ -363,11 +363,11 @@
 				//{
 				
 				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-				[tableData addObject:[self.choiceHistoryModel.choices objectAtIndex:counter]];
-				[tableDataImages addObject:[self.choiceHistoryModel.icons objectAtIndex:counter]];
-				[tableDataDetails addObject:[self.choiceHistoryModel.details objectAtIndex:counter]];
-				[tableDataKeys addObject:[self.choiceHistoryModel.choiceKeys objectAtIndex:counter]];
-            [tableDataColorBools addObject:[self.choiceHistoryModel.choicesAreGood objectAtIndex:counter]];
+				[tableData addObject:(self.choiceHistoryModel.choices)[counter]];
+				[tableDataImages addObject:(self.choiceHistoryModel.icons)[counter]];
+				[tableDataDetails addObject:(self.choiceHistoryModel.details)[counter]];
+				[tableDataKeys addObject:(self.choiceHistoryModel.choiceKeys)[counter]];
+            [tableDataColorBools addObject:(self.choiceHistoryModel.choicesAreGood)[counter]];
             
 				//}
 			}

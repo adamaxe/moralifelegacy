@@ -219,12 +219,12 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
     
 	//Populate cell information
     if ([tableData count] > 0) {
-        [[cell textLabel] setText:[[tableData objectAtIndex:indexPath.row] capitalizedString]];
+        [[cell textLabel] setText:[tableData[indexPath.row] capitalizedString]];
                 
-        UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[tableDataImages objectAtIndex:indexPath.row] ofType:@"png"]];
+        UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:tableDataImages[indexPath.row] ofType:@"png"]];
         [[cell imageView] setImage:rowImage];
         
-        [[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
+        [[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
     }
 	
 	return cell;
@@ -233,9 +233,9 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	//Commit selected Moral to NSUserDefaults for retrieval from ChoiceViewController
-	[prefs setObject:[tableDataKeys objectAtIndex:indexPath.row] forKey:@"moralKey"];
-	[prefs setObject:[tableData objectAtIndex:indexPath.row] forKey:@"moralName"];
-	[prefs setObject:[tableDataImages objectAtIndex:indexPath.row] forKey:@"moralImage"];
+	[prefs setObject:tableDataKeys[indexPath.row] forKey:@"moralKey"];
+	[prefs setObject:tableData[indexPath.row] forKey:@"moralName"];
+	[prefs setObject:tableDataImages[indexPath.row] forKey:@"moralImage"];
 		
 	//Must create blank ID to call function typically referenced by IB
 	id placeHolderID = @"";
@@ -283,7 +283,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[[moralDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[moralDetails[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         
 			
 			//A match was found
@@ -300,10 +300,10 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 				//if(searchRange.location== 0)
 				//{			
 				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-				[tableData addObject:[moralDisplayNames objectAtIndex:counter]];
-				[tableDataImages addObject:[moralImages objectAtIndex:counter]];
-				[tableDataDetails addObject:[moralDetails objectAtIndex:counter]];
-				[tableDataKeys addObject:[moralNames objectAtIndex:counter]];
+				[tableData addObject:moralDisplayNames[counter]];
+				[tableDataImages addObject:moralImages[counter]];
+				[tableDataDetails addObject:moralDetails[counter]];
+				[tableDataKeys addObject:moralNames[counter]];
             
 				//}
 			}

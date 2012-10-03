@@ -60,7 +60,7 @@ Must override drawRect because custom drawing from a vector source is required
 	ConscienceLayer *currentLayer;
 	
 	for (int i=0; i<[sortedKeys count]; i++) {
-		currentLayer = (ConscienceLayer *)[_totalLayers objectForKey:[sortedKeys objectAtIndex:i]];
+		currentLayer = (ConscienceLayer *)_totalLayers[sortedKeys[i]];
 
 		if (currentLayer != nil) {
 			CGContextRef context = UIGraphicsGetCurrentContext();
@@ -105,7 +105,7 @@ Must override drawRect because custom drawing from a vector source is required
 					NSString *gradientSubstring = (NSString *)[currentPath.pathFillColor substringFromIndex:5];
 					gradientSubstring = [gradientSubstring substringToIndex:[gradientSubstring length]-1];
 					
-					ConscienceGradient *gradientElement = [_totalGradients objectForKey:gradientSubstring];
+					ConscienceGradient *gradientElement = _totalGradients[gradientSubstring];
 					CGContextClip(context);
 					CGColorSpaceRef conscienceColorSpace = CGColorSpaceCreateDeviceRGB();
 					
@@ -113,8 +113,8 @@ Must override drawRect because custom drawing from a vector source is required
 					CGFloat gradientComponents[8] = {0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0};
 					CGGradientRef conscienceGradient = CGGradientCreateWithColorComponents (conscienceColorSpace, gradientComponents,  gradientLocations, 2);
 					
-					CGPoint startPoint = [[gradientElement.gradientPoints objectAtIndex:0] CGPointValue];
-					CGPoint endPoint = [[gradientElement.gradientPoints objectAtIndex:1] CGPointValue];
+					CGPoint startPoint = [(gradientElement.gradientPoints)[0] CGPointValue];
+					CGPoint endPoint = [(gradientElement.gradientPoints)[1] CGPointValue];
 
 					CGContextDrawLinearGradient (context, conscienceGradient, startPoint, endPoint, 0);
 					//CFRelease(conscienceGradient);
@@ -172,30 +172,30 @@ Points must be absolute.
 		//Pass the appropriate number of CGFloats to operation.
 		//Must typecast NSNumber Object back to CGFloat typedef
 		//Increment Operators cannot be used due to subsequent utilizations inline
-		switch ([[instructions objectAtIndex:i] integerValue]){
-			case 0:CGPathMoveToPoint(path, NULL, [[points objectAtIndex:pointPosition] floatValue], 
-									[[points objectAtIndex:pointPosition+1] floatValue]);
+		switch ([instructions[i] integerValue]){
+			case 0:CGPathMoveToPoint(path, NULL, [points[pointPosition] floatValue], 
+									[points[pointPosition+1] floatValue]);
 									pointPosition+=2;break;
-			case 1:CGPathAddLineToPoint(path, NULL, [[points objectAtIndex:pointPosition] floatValue], 
-									[[points objectAtIndex:pointPosition+1] floatValue]);
+			case 1:CGPathAddLineToPoint(path, NULL, [points[pointPosition] floatValue], 
+									[points[pointPosition+1] floatValue]);
 									pointPosition+=2;break;
-			case 2:CGPathAddCurveToPoint(path, NULL, [[points objectAtIndex:pointPosition] floatValue], 
-									[[points objectAtIndex:pointPosition+1] floatValue],
-									[[points objectAtIndex:pointPosition+2] floatValue],
-									[[points objectAtIndex:pointPosition+3] floatValue],
-									[[points objectAtIndex:pointPosition+4] floatValue],
-									[[points objectAtIndex:pointPosition+5] floatValue]);
+			case 2:CGPathAddCurveToPoint(path, NULL, [points[pointPosition] floatValue], 
+									[points[pointPosition+1] floatValue],
+									[points[pointPosition+2] floatValue],
+									[points[pointPosition+3] floatValue],
+									[points[pointPosition+4] floatValue],
+									[points[pointPosition+5] floatValue]);
 									pointPosition+=6;break;
-			case 3:CGPathAddQuadCurveToPoint(path, NULL, [[points objectAtIndex:pointPosition] floatValue], 
-									[[points objectAtIndex:pointPosition+1] floatValue],
-									[[points objectAtIndex:pointPosition+2] floatValue],
-									[[points objectAtIndex:pointPosition+3] floatValue]);
+			case 3:CGPathAddQuadCurveToPoint(path, NULL, [points[pointPosition] floatValue], 
+									[points[pointPosition+1] floatValue],
+									[points[pointPosition+2] floatValue],
+									[points[pointPosition+3] floatValue]);
 									pointPosition+=4;break;
-			case 4:CGPathAddArcToPoint(path, NULL, [[points objectAtIndex:pointPosition] floatValue], 
-									[[points objectAtIndex:pointPosition+1] floatValue],
-									[[points objectAtIndex:pointPosition+2] floatValue],
-									[[points objectAtIndex:pointPosition+3] floatValue],
-									[[points objectAtIndex:pointPosition+4] floatValue]);
+			case 4:CGPathAddArcToPoint(path, NULL, [points[pointPosition] floatValue], 
+									[points[pointPosition+1] floatValue],
+									[points[pointPosition+2] floatValue],
+									[points[pointPosition+3] floatValue],
+									[points[pointPosition+4] floatValue]);
 									pointPosition+=5;break;
 			default:break;
 		}

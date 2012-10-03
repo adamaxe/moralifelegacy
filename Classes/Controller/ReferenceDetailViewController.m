@@ -138,15 +138,14 @@ Implementation: Show Conscience thoughtbubble containing Quote
     
     NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
     
-    NSArray *titles = [[NSArray alloc] initWithObjects:
-                       NSLocalizedString(helpTitleName,@"Title for Help Screen"), nil];
+    NSArray *titles = @[NSLocalizedString(helpTitleName,@"Title for Help Screen")];
     
     ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
     
 
     NSString *quoteFormatted = [[NSString alloc] initWithString:[referenceQuote stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
     
-    NSArray *texts = [[NSArray alloc] initWithObjects:quoteFormatted, nil];
+    NSArray *texts = @[quoteFormatted];
 
     
     [conscienceHelpViewCont setHelpTitles:titles];

@@ -97,14 +97,14 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         NSMutableArray *helpAllTexts = [[NSMutableArray alloc] init];    
         
         for (int i = 0; i < 6; i++) {
-            NSString *tempTitle = [[NSString alloc] initWithString:NSLocalizedString([helpTitleNames objectAtIndex:i],@"Title for Help Screen")];
-            NSString *tempText = [[NSString alloc] initWithString:NSLocalizedString([helpTextNames objectAtIndex:i],@"Text for Help Screen")];
+            NSString *tempTitle = [[NSString alloc] initWithString:NSLocalizedString(helpTitleNames[i],@"Title for Help Screen")];
+            NSString *tempText = [[NSString alloc] initWithString:NSLocalizedString(helpTextNames[i],@"Text for Help Screen")];
             
-            if (![tempText isEqualToString:[helpTextNames objectAtIndex:i]]) {
+            if (![tempText isEqualToString:helpTextNames[i]]) {
                 [helpAllTexts addObject:tempText];
             }
             
-            if (![tempTitle isEqualToString:[helpTitleNames objectAtIndex:i]]) {
+            if (![tempTitle isEqualToString:helpTitleNames[i]]) {
                 [helpAllTitles addObject:tempTitle];
             }
         }
@@ -115,7 +115,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     }
 
 	//Create NSArray of help screens.  Populate them programattically
-	NSArray *viewsArray = [[NSArray alloc] initWithObjects:screen1View, screen2View, screen3View, screen4View, screen5View, screen6View, nil];
+	NSArray *viewsArray = @[screen1View, screen2View, screen3View, screen4View, screen5View, screen6View];
 	int counter = 0;
     
 	for (NSString *helpTextIterate in _helpTitles) {
@@ -132,19 +132,19 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		[label setAdjustsFontSizeToFitWidth:TRUE];
 		[label setShadowColor:[UIColor darkGrayColor]];
 		[label setShadowOffset:CGSizeMake(0, -1)];
-		[[viewsArray objectAtIndex:counter] addSubview:label];
+		[viewsArray[counter] addSubview:label];
 		
 		CGRect textViewFrame = CGRectMake(40, 80, 240, 258);
 		UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
 		[textView setTextAlignment:UITextAlignmentCenter];
-		[textView setText:[_helpTexts objectAtIndex:counter]];
+		[textView setText:_helpTexts[counter]];
 		[textView setTextColor:[UIColor grayColor]];
 		[textView setFont:[UIFont systemFontOfSize:18.0]];
 		[textView flashScrollIndicators];
 		[label setShadowColor:[UIColor darkGrayColor]];
 		[label setShadowOffset:CGSizeMake(0, 1)];        
 		[textView setEditable:FALSE];
-		[[viewsArray objectAtIndex:counter] addSubview:textView];
+		[viewsArray[counter] addSubview:textView];
         
         
 		counter++;

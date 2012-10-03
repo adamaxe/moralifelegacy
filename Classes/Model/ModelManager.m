@@ -177,7 +177,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     
     //Retrieve legacy readwrite store from Documents directory if it exists
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     
     //Create pre-loaded, legacy SQLite db location
     NSString *readOnlyStore = [NSString stringWithFormat:@"%@.%@", kMLReadOnlyModelName, kMLStoreType];
@@ -187,7 +187,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     
     //Create the pre-loaded, correcdt SQLite db location in Library/Caches
     NSArray *cachePaths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-    NSString *cacheDirectory = [cachePaths objectAtIndex:0];
+    NSString *cacheDirectory = cachePaths[0];
     
     //Create pre-loaded SQLite db location
     NSString *preloadCacheData =  [cacheDirectory stringByAppendingPathComponent:readOnlyStore];
@@ -214,9 +214,9 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
         error = nil;
         
         NSDictionary *dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:defaultStorePath error:&error];
-        NSDate *defaultFileDate =[dictionary objectForKey:NSFileModificationDate];
+        NSDate *defaultFileDate =dictionary[NSFileModificationDate];
         dictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:preloadCacheData error:&error];
-        NSDate *preloadFileDate =[dictionary objectForKey:NSFileModificationDate];
+        NSDate *preloadFileDate =dictionary[NSFileModificationDate];
         
         //Check to see if older data was found in cache, replace with newer version
         if ([defaultFileDate compare:preloadFileDate] == NSOrderedDescending) {
@@ -320,7 +320,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     
     //Retrieve legacy readwrite store from Documents directory
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *documentsDirectory = paths[0];
     //Create pre-loaded SQLite db location
     NSString *readWriteStore = [NSString stringWithFormat:@"%@.%@", kMLReadWriteModelName, kMLStoreType];
     NSString *readWriteStoreTemp = [NSString stringWithFormat:@"%@Temp.%@", kMLReadWriteModelName, kMLStoreType];
@@ -404,7 +404,7 @@ Performs a migration from the legacy store with a merged model to the new store
     }
     
     // Get the migration manager class to perform the migration.
-    NSValue *classValue = [[NSPersistentStoreCoordinator registeredStoreTypes] objectForKey:NSSQLiteStoreType];
+    NSValue *classValue = [NSPersistentStoreCoordinator registeredStoreTypes][NSSQLiteStoreType];
     Class sqliteStoreClass = (Class)[classValue pointerValue];
     Class sqliteStoreMigrationManagerClass = [sqliteStoreClass migrationManagerClass];
     
@@ -496,7 +496,7 @@ Read a single NSManagedObject
     }
     
     if ([results count] > 0) {
-        return [results objectAtIndex:0];
+        return results[0];
     } else {
         return nil;
     }

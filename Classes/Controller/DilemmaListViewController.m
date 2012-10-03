@@ -257,11 +257,11 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 		
 	}
     
-	[[cell textLabel] setText:[tableData objectAtIndex:indexPath.row]];
+	[[cell textLabel] setText:tableData[indexPath.row]];
 	
 	//cell image is surrounding utilized in dilemma
     
-    NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
+    NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:tableDataImages[indexPath.row]];
     [rowImageName appendString:@"-sm"];
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
@@ -291,25 +291,25 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 	if (previousRow > 0) {
 		previousRow = indexPath.row - 1;
         
-		if ([allUserChoices containsObject:[tableDataKeys objectAtIndex:previousRow]]) {
+		if ([allUserChoices containsObject:tableDataKeys[previousRow]]) {
 			isSelectable = TRUE;
 		}
 	} else {
        
-		if (![allUserChoices containsObject:[tableDataKeys objectAtIndex:indexPath.row]]) {
+		if (![allUserChoices containsObject:tableDataKeys[indexPath.row]]) {
 			isSelectable = TRUE;
 		}
 	}
         
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
-	if ([allUserChoices containsObject:[tableDataKeys objectAtIndex:indexPath.row]]) {
+	if ([allUserChoices containsObject:tableDataKeys[indexPath.row]]) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
         [[cell textLabel] setTextColor:[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1]];
 		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
         
-		NSString *moralName = [moralNames valueForKey:[userChoices valueForKey:[tableDataKeys objectAtIndex:indexPath.row]]];
+		NSString *moralName = [moralNames valueForKey:[userChoices valueForKey:tableDataKeys[indexPath.row]]];
 		[[cell detailTextLabel] setText:moralName];
 		[[cell textLabel] setFont:[UIFont systemFontOfSize:12.0]];
 	} else {
@@ -320,7 +320,7 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             	cell.selectionStyle = UITableViewCellSelectionStyleGray;
             	[[cell textLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1]];
             	[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-            	[[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
+            	[[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
 		} else {
         
                 [[cell textLabel] setTextColor:[UIColor colorWithRed:100.0/255.0 green:150.00/255.0 blue:100.0/255.0 alpha:1]];
@@ -329,7 +329,7 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             	cell.accessoryType = UITableViewCellAccessoryNone;
             	cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //            	[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-            	[[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]]; 
+            	[[cell detailTextLabel] setText:tableDataDetails[indexPath.row]]; 
             
 		}
         
@@ -351,26 +351,26 @@ Implementation: Signals User desire to return to ConscienceModalViewController
     if (previousRow > 0) {
         previousRow = indexPath.row - 1;
         
-        if ([allUserChoices containsObject:[tableDataKeys objectAtIndex:previousRow]]) {
+        if ([allUserChoices containsObject:tableDataKeys[previousRow]]) {
             isSelectable = TRUE;
         }
     } else {
         
-        if (![allUserChoices containsObject:[tableDataKeys objectAtIndex:indexPath.row]]) {
+        if (![allUserChoices containsObject:tableDataKeys[indexPath.row]]) {
             isSelectable = TRUE;
         }
     }
     
-    if (![allUserChoices containsObject:[tableDataKeys objectAtIndex:indexPath.row]]) {
+    if (![allUserChoices containsObject:tableDataKeys[indexPath.row]]) {
         
         if (isSelectable) {
     
-            NSMutableString *selectedRowKey = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
+            NSMutableString *selectedRowKey = [[NSMutableString alloc] initWithString:tableDataKeys[indexPath.row]];
             
             [prefs setObject:selectedRowKey forKey:@"dilemmaKey"];
             
 
-            if ([[tableDataTypes objectAtIndex:indexPath.row] boolValue]){
+            if ([tableDataTypes[indexPath.row] boolValue]){
                 DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] init];
                 [self.navigationController pushViewController:dilemmaViewCont animated:NO];
             } else {
@@ -484,7 +484,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	}
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameDilemma" ascending:YES];
-	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+	NSArray* sortDescriptors = @[sortDescriptor];
 	[currentDilemmaDAO setSorts:sortDescriptors];
 	
 	NSArray *objects = [currentDilemmaDAO readAll];
@@ -547,7 +547,7 @@ Implementation: Load User data to determine which Dilemmas have already been com
     currentUserDilemmaDAO.predicates = @[pred];
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
-	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+	NSArray* sortDescriptors = @[sortDescriptor];
 
     currentUserDilemmaDAO.sorts = sortDescriptors;
     
@@ -586,7 +586,7 @@ Implementation: Determine what effects to rollback from an already completed dil
     }
 	
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryCreationDate" ascending:YES];
-	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+	NSArray* sortDescriptors = @[sortDescriptor];
     currentUserDilemmaDAO.sorts = sortDescriptors;    
     UserDilemma *match = [currentUserDilemmaDAO read:@""];
     
@@ -650,7 +650,7 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[[choiceDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[choiceDetails[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         
 			
 			//A match was found
@@ -668,10 +668,10 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
 				//{			
 				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
 				[tableData addObject:name];
-				[tableDataImages addObject:[choiceImages objectAtIndex:counter]];
-				[tableDataDetails addObject:[choiceDetails objectAtIndex:counter]];
-				[tableDataKeys addObject:[choiceNames objectAtIndex:counter]];
-            [tableDataTypes addObject:[choiceTypes objectAtIndex:counter]];
+				[tableDataImages addObject:choiceImages[counter]];
+				[tableDataDetails addObject:choiceDetails[counter]];
+				[tableDataKeys addObject:choiceNames[counter]];
+            [tableDataTypes addObject:choiceTypes[counter]];
 
 				//}
 			}

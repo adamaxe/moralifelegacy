@@ -19,8 +19,8 @@ const float kDefaultPieDegrees = 360;
         
 		//Ensure that background color is transparent
 		self.backgroundColor = [UIColor clearColor];
-        _pieValues = [[NSArray alloc] initWithObjects:@(kDefaultPieDegrees), nil];
-        _pieColors = [[NSArray alloc] initWithObjects:[UIColor redColor], nil];
+        _pieValues = @[@(kDefaultPieDegrees)];
+        _pieColors = @[[UIColor redColor]];
         
 	}
     
@@ -88,7 +88,7 @@ const float kDefaultPieDegrees = 360;
 		for (int i = 0; i < [_pieValues count]; i++) {
             
 			//Array is composed of NSNumbers that must be casted back down to floats
-			arcPointNext += [[_pieValues objectAtIndex:i] floatValue];
+			arcPointNext += [_pieValues[i] floatValue];
 			CGContextMoveToPoint(context, x, y);
             
 			//Core Graphics Arc functions take radians as arguments
@@ -100,7 +100,7 @@ const float kDefaultPieDegrees = 360;
 			CGContextAddArc(context, x, y, width/2.5, arcPointRadians, arcPointNextRadians, 0);
             
 			//Fill slice with appropriate color
-			CGContextSetFillColor(context, CGColorGetComponents([[_pieColors objectAtIndex:i] CGColor]));
+			CGContextSetFillColor(context, CGColorGetComponents([_pieColors[i] CGColor]));
 			CGContextClosePath(context);
 			CGContextFillPath(context);
 			CGContextStrokePath(context);

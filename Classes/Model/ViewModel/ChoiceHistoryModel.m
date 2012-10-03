@@ -126,7 +126,7 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 	//choiceSortDescriptor and isAscending are set throughout class
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:self.sortKey ascending:self.isAscending];
 
-    NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+    NSArray* sortDescriptors = @[sortDescriptor];
 	currentUserChoiceDAO.sorts = sortDescriptors;
 
 	NSArray *objects = [currentUserChoiceDAO readAll];

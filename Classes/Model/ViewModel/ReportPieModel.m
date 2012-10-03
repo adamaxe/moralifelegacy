@@ -135,7 +135,7 @@
 		//Iterate through every UserChoice combining each entry
 		for (UserChoice *userChoiceMatch in objects){
 
-			NSNumber *choiceWeightTemp = [reportValues objectForKey:[userChoiceMatch choiceMoral]];
+			NSNumber *choiceWeightTemp = reportValues[[userChoiceMatch choiceMoral]];
 
 			//See if a Choice has already been entered for particular Moral
             if (choiceWeightTemp != nil) {
@@ -231,9 +231,9 @@
             [self.pieValues addObject:@(moralPercentage * 360)];
 
             //Add report names for relation to table
-            [self.reportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", [moralDisplayNames objectForKey:moralInstance], moralPercentage * 100]];
+            [self.reportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", moralDisplayNames[moralInstance], moralPercentage * 100]];
 
-            [self.pieColors addObject:[moralColors objectForKey:moralInstance]];
+            [self.pieColors addObject:moralColors[moralInstance]];
 
             //Don't add Moral if it already exists in the display list
             if (![self.moralNames containsObject:moralInstance]) {

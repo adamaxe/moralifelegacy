@@ -264,11 +264,11 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientationAsset in %@", predicateArguments];
 
-    NSArray *predicateArray = [[NSArray alloc] initWithObjects:predicate, nil];
+    NSArray *predicateArray = @[predicate];
     
 	NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 	NSSortDescriptor* sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"displayNameReference" ascending:YES];
-	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor1, sortDescriptor2, nil];
+	NSArray* sortDescriptors = @[sortDescriptor1, sortDescriptor2];
     
 	[currentAssetDAO setPredicates:predicateArray];
     [currentAssetDAO setSorts:sortDescriptors];
@@ -358,7 +358,7 @@ Implementation: Retrieve User's current ethicals from UserData
 	}
     
 	//Get image filename and append icon suffix (for iOS3)
-	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[tableDataImages objectAtIndex:indexPath.row]];
+	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:tableDataImages[indexPath.row]];
     [rowImageName appendString:@"-sm"];
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
@@ -366,7 +366,7 @@ Implementation: Retrieve User's current ethicals from UserData
     
 	//Determine if User can actually equip ConscienceAsset by testing if enough ethicals are present, or it's already owned
 	//Adjust visual cues accordingly
-	if(([[tableDataCosts objectAtIndex:indexPath.row] floatValue] <= currentFunds) || ([[tableDataDetails objectAtIndex:indexPath.row] rangeOfString:@"Owned"].location != NSNotFound)){
+	if(([tableDataCosts[indexPath.row] floatValue] <= currentFunds) || ([tableDataDetails[indexPath.row] rangeOfString:@"Owned"].location != NSNotFound)){
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		cell.detailTextLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1];
@@ -377,13 +377,13 @@ Implementation: Retrieve User's current ethicals from UserData
 	}
     
 	//Configure cell text
-	[[cell textLabel] setText:[tableData objectAtIndex:indexPath.row]];
+	[[cell textLabel] setText:tableData[indexPath.row]];
 	[[cell textLabel] setFont:[UIFont systemFontOfSize:12.0]];
 	[[cell textLabel] setNumberOfLines:1];
 	[[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
 
 	//Configure cell subtitle text
-	[cell.detailTextLabel setText:[tableDataDetails objectAtIndex:indexPath.row]];
+	[cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
 	[cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
 	[cell.detailTextLabel setNumberOfLines:1];
 	[cell.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
@@ -434,7 +434,7 @@ Implementation: Retrieve User's current ethicals from UserData
         
 		//Convert both searches to lowercase and compare search string to name in various elements of data
 			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[[choiceSubtitles objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[choiceSubtitles[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         		
 			//A match was found
 			if(searchRange.location != NSNotFound)
@@ -452,14 +452,14 @@ Implementation: Retrieve User's current ethicals from UserData
 				if (isFound) {
                 
                 if (searchViewFilter == 1) {
-                    if([[choiceSubtitles objectAtIndex:counter] rangeOfString:@"Owned"].location != NSNotFound){
+                    if([choiceSubtitles[counter] rangeOfString:@"Owned"].location != NSNotFound){
                         isFound = TRUE;
                     } else {
                         isFound = FALSE;
                     }
                                         
                 } else {
-                    if((currentFunds >= [[choiceCosts objectAtIndex:counter] intValue])  || ([[choiceSubtitles objectAtIndex:counter] rangeOfString:@"Owned"].location != NSNotFound)){
+                    if((currentFunds >= [choiceCosts[counter] intValue])  || ([choiceSubtitles[counter] rangeOfString:@"Owned"].location != NSNotFound)){
                         isFound = TRUE;
                     } else {
                         isFound = FALSE;
@@ -473,10 +473,10 @@ Implementation: Retrieve User's current ethicals from UserData
 
 			if (isFound) {
 				[tableData addObject:name];
-				[tableDataImages addObject:[choiceImages objectAtIndex:counter]];
-				[tableDataDetails addObject:[choiceSubtitles objectAtIndex:counter]];
-				[tableDataKeys addObject:[choiceIDs objectAtIndex:counter]];
-				[tableDataCosts addObject:[choiceCosts objectAtIndex:counter]];
+				[tableDataImages addObject:choiceImages[counter]];
+				[tableDataDetails addObject:choiceSubtitles[counter]];
+				[tableDataKeys addObject:choiceIDs[counter]];
+				[tableDataCosts addObject:choiceCosts[counter]];
 			}
 			
 			isFound = FALSE;
@@ -531,7 +531,7 @@ Implementation: Retrieve User's current ethicals from UserData
 	//Create next view to accept, review or reject purchase	
 	ConscienceAcceptViewController *conscienceAcceptCont = [[ConscienceAcceptViewController alloc] init];
                 
-	NSMutableString *selectedRow = [NSMutableString stringWithString:[tableDataKeys objectAtIndex:indexPath.row]];
+	NSMutableString *selectedRow = [NSMutableString stringWithString:tableDataKeys[indexPath.row]];
 
 	//Alert following ConscienceAcceptViewController to type and key of requested ConscienceAsset
 	[conscienceAcceptCont setAssetSelection:selectedRow];
