@@ -95,8 +95,6 @@
 - (void)tearDown{
 
 	//Tear-down code here.
-	[testModelManager release];
-    [testingSubject release];
 
 	[super tearDown];
     
@@ -116,7 +114,6 @@
 
     STAssertNotNil(testingSubjectVirtue, @"MoralDAO Virtue type can't be created.");
     
-    [testingSubjectVirtue release];
     
 }
 
@@ -127,7 +124,6 @@
     testingSubjectVice.predicates = @[pred];
     
     STAssertNotNil(testingSubjectVice, @"MoralDAO Vice can't be created.");
-    [testingSubjectVice release];
     
 }
 
@@ -158,7 +154,6 @@
     STAssertTrue([allMorals containsObject:testMoral2], @"MoralDAO All not populated with vices.");
     STAssertTrue([allMorals containsObject:testMoral3], @"MoralDAO All not populated with virtue 2.");
     
-    [testingSubjectAll release];
     
 }
 
@@ -174,7 +169,6 @@
     STAssertFalse([allMorals containsObject:testMoral2], @"MoralDAO Virtue populated with vices.");
     STAssertTrue([allMorals containsObject:testMoral3], @"MoralDAO Virtue not populated with virtue 2.");
 
-    [testingSubjectVirtue release];
     
 }
 
@@ -190,7 +184,6 @@
     STAssertTrue([allMorals containsObject:testMoral2], @"MoralDAO Vice not populated with vices.");
     STAssertFalse([allMorals containsObject:testMoral1], @"MoralDAO Vice populated with virtues.");
     STAssertFalse([allMorals containsObject:testMoral3], @"MoralDAO Vice populated with virtues.");
-    [testingSubjectVice release];
     
 }
 
@@ -205,7 +198,6 @@
     NSArray *allNames = [testingEmptySubject readAll];
     int count = [allNames count];
     STAssertEquals(count, 0, @"MoralDAO Empty is not empty.");
-    [testingEmptySubject release];
     
 }
 

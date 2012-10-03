@@ -111,8 +111,6 @@
 - (void)tearDown{
 
 	//Tear-down code here.
-    [testModelManager release];
-	[testingSubject release];
 
 	[super tearDown];
 
@@ -124,7 +122,6 @@
 
     STAssertNotNil(testingSubjectCreate, @"ReportPieModel can't be created.");
 
-    [testingSubjectCreate release];
     
 }
 
@@ -144,8 +141,6 @@
 
     STAssertEqualObjects([testingSubjectCreate.reportNames objectAtIndex:0], @"No Moral Entries!", @"Empty Virtue name is incorrect");
 
-    [testingSubjectCreate release];
-    [testModelManagerCreate release];
 
 }
 

@@ -38,7 +38,6 @@
 
 - (void)tearDown{
 
-    [testingSubject release];
     
 	[super tearDown];
     
@@ -110,10 +109,6 @@
 	STAssertEquals(count, countSetter, @"totalGradients setter/getter inaccurate.");
 	STAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor setter/getter inaccurate.");
 
-	[testLayers release];
-	[testGradients release];
-	[testLayer release];
-	[testGradient release];
 }
 
 #endif

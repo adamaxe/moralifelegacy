@@ -34,7 +34,6 @@ const int kGraphWidth = 240;
 {
     
     [super tearDown];
-    [testingSubject release];
 
 }
 
@@ -84,10 +83,6 @@ const int kGraphWidth = 240;
     STAssertEqualObjects(pieValue1, [[testingSubject pieValues] objectAtIndex:0], @"Graph data setter inaccurate.");
     STAssertEqualObjects([UIColor blueColor], [[testingSubject pieColors] objectAtIndex:0], @"Graph color setter inaccurate.");
 
-	[pieValue1 release];
-	[pieValue2 release];
-	[testValues release];
-	[testColors release];
 
 }
 

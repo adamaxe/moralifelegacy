@@ -35,7 +35,6 @@
 - (void)tearDown{
 
 	//Tear-down code here.
-	[testingSubject release];
     
 	[super tearDown];
     

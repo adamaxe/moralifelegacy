@@ -38,7 +38,6 @@
 - (void)tearDown{
 
 	//Tear-down code here.
-	[testingSubject release];
     
 	[super tearDown];
     
@@ -111,8 +110,6 @@
 	STAssertEqualObjects(testStrokeColor, [testingSubject currentStrokeColor], @"stroke color setter/getter inaccurate.");
 	STAssertEqualObjects(testID, [testingSubject layerID], @"layerID setter/getter inaccurate.");
 
-	[testPath release];
-	[testPaths release];
 
 }
 

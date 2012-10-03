@@ -34,7 +34,6 @@
 
 - (void)tearDown{
 
-    [testingSubject release];
     
 	[super tearDown];
     

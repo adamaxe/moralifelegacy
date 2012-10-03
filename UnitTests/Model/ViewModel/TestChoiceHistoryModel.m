@@ -139,8 +139,6 @@
 - (void)tearDown{
 
 	//Tear-down code here.
-    [testModelManager release];
-	[testingSubject release];
 
 	[super tearDown];
 
@@ -152,7 +150,6 @@
 
     STAssertNotNil(testingSubjectCreate, @"ChoiceHistoryModel can't be created.");
 
-    [testingSubjectCreate release];
     
 }
 
@@ -175,8 +172,6 @@
     STAssertTrue(testingSubjectCreate.details.count == 0, @"Details are not empty");
     STAssertTrue(testingSubjectCreate.icons.count == 0, @"Icons are not empty");
 
-    [testingSubjectCreate release];
-    [testModelManagerCreate release];
 
 }
 
@@ -337,8 +332,6 @@
     STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
     STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
 
-    [testingSubjectCreate release];
-    [testModelManagerCreate release];
 }
 
 - (void)testRetrieveChoiceWritesToStandardUserDefaultsForEditing {

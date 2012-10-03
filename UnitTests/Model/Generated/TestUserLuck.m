@@ -45,7 +45,6 @@
 - (void)tearDown{
 
 	//Tear-down code here.
-	[testModelManager release];
 
 	[super tearDown];
     

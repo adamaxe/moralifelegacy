@@ -58,7 +58,6 @@
 
     STAssertNotNil(testingSubjectCreate, @"ModelManager can't be created.");
     
-    [testingSubjectCreate release];
     
 }
 

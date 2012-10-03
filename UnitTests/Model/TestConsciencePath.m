@@ -37,7 +37,6 @@
 - (void)tearDown{
 
 	//Tear-down code here.
-	[testingSubject release];
     
 	[super tearDown];
     
@@ -129,8 +128,6 @@
 	STAssertEqualObjects(testPathID , [testingSubject pathID], @"Path ID setter/getter inaccurate.");
 	STAssertEqualObjects(testGradientID , [testingSubject pathGradient], @"Gradient setter/getter inaccurate.");
 
-	[pathPoints release];
-	[pathInstructions release];
 
 }
 

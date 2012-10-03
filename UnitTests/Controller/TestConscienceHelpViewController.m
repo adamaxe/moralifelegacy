@@ -42,7 +42,6 @@
 - (void)tearDown{
 	//Tear-down code here.
     testingView = nil;
-    [testingSubject release];
     
 	[super tearDown];
     
