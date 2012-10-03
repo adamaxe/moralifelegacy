@@ -7551,7 +7551,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/UnitTests/Libraries\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -7591,7 +7591,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/UnitTests/Libraries\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
@@ -7631,7 +7631,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/UnitTests/Libraries\"",
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-framework",
 					SenTestingKit,
