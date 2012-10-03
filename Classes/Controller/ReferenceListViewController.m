@@ -144,13 +144,13 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     
     for (int i = 0; i < self.referenceModel.referenceKeys.count; i++) {
 
-        if([appDelegate.userCollection containsObject:[self.referenceModel.referenceKeys objectAtIndex:i]]){
+        if([appDelegate.userCollection containsObject:(self.referenceModel.referenceKeys)[i]]){
 
-            [dataSource addObject:[self.referenceModel.references objectAtIndex:i]];
-            [tableData addObject:[self.referenceModel.references objectAtIndex:i]];
-            [tableDataImages addObject:[self.referenceModel.icons objectAtIndex:i]];
-            [tableDataKeys addObject:[self.referenceModel.referenceKeys objectAtIndex:i]];
-            [tableDataDetails addObject:[self.referenceModel.details objectAtIndex:i]];
+            [dataSource addObject:(self.referenceModel.references)[i]];
+            [tableData addObject:(self.referenceModel.references)[i]];
+            [tableDataImages addObject:(self.referenceModel.icons)[i]];
+            [tableDataKeys addObject:(self.referenceModel.referenceKeys)[i]];
+            [tableDataDetails addObject:(self.referenceModel.details)[i]];
         }
     }
 
@@ -184,14 +184,14 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 	
-    [[cell textLabel] setText:[tableData objectAtIndex:indexPath.row]];
+    [[cell textLabel] setText:tableData[indexPath.row]];
     [[cell textLabel] setFont:[UIFont systemFontOfSize:18.0]];
     [[cell textLabel] setNumberOfLines:1];
     [[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];    
 
-    [[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
+    [[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
 	
-	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[tableDataImages objectAtIndex:indexPath.row]];	
+	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:tableDataImages[indexPath.row]];	
 
     if (self.referenceModel.referenceType != kReferenceModelTypeMoral) {
         [rowImageName appendString:@"-sm"];
@@ -211,7 +211,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] init];
 
-    [self.referenceModel retrieveReference:[tableDataKeys objectAtIndex:indexPath.row]];
+    [self.referenceModel retrieveReference:tableDataKeys[indexPath.row]];
 
 	[self.navigationController pushViewController:detailViewCont animated:YES];
 }
@@ -295,7 +295,7 @@ Implementation: Iterate through searchData looking for instances of searchText
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[[self.referenceModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[(self.referenceModel.details)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 			
 			//A match was found
 			if(searchRange.location != NSNotFound)
@@ -312,10 +312,10 @@ Implementation: Iterate through searchData looking for instances of searchText
 				//{
 				
 				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-				[tableData addObject:[self.referenceModel.references objectAtIndex:counter]];
-				[tableDataImages addObject:[self.referenceModel.icons objectAtIndex:counter]];
-				[tableDataDetails addObject:[self.referenceModel.details objectAtIndex:counter]];
-				[tableDataKeys addObject:[self.referenceModel.referenceKeys objectAtIndex:counter]];
+				[tableData addObject:(self.referenceModel.references)[counter]];
+				[tableDataImages addObject:(self.referenceModel.icons)[counter]];
+				[tableDataDetails addObject:(self.referenceModel.details)[counter]];
+				[tableDataKeys addObject:(self.referenceModel.referenceKeys)[counter]];
 				
 				//}
 			}

@@ -241,28 +241,28 @@ withMind: (ConscienceMind *) argMind{
         //Conscience Look direction determined by layeroffset
         //Array of pixel offsets by X/Y coordinates utilized for every eyetype
         //Values are look: center, up, down, left, right, cross, crazy
-        eyeLeftPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
+        eyeLeftPositions = @[[NSValue valueWithCGPoint:CGPointMake(0, 0)],
                                      [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
                                      [NSValue valueWithCGPoint:CGPointMake(0, 3)],
                                      [NSValue valueWithCGPoint:CGPointMake(-2, 1)],	
                                      [NSValue valueWithCGPoint:CGPointMake(3, 0)],
                                      [NSValue valueWithCGPoint:CGPointMake(4, 1)],
-                                     [NSValue valueWithCGPoint:CGPointMake(4, -2)], nil];
+                                     [NSValue valueWithCGPoint:CGPointMake(4, -2)]];
         
-        eyeRightPositions = [[NSArray alloc] initWithObjects:[NSValue valueWithCGPoint:CGPointMake(0, 0)],
+        eyeRightPositions = @[[NSValue valueWithCGPoint:CGPointMake(0, 0)],
                                       [NSValue valueWithCGPoint:CGPointMake(0, -2)], 
                                       [NSValue valueWithCGPoint:CGPointMake(0, 3)],
                                       [NSValue valueWithCGPoint:CGPointMake(3, 1)],
                                       [NSValue valueWithCGPoint:CGPointMake(-3, -1)],
                                       [NSValue valueWithCGPoint:CGPointMake(4, 1)],
-                                      [NSValue valueWithCGPoint:CGPointMake(-1, 4)], nil];
+                                      [NSValue valueWithCGPoint:CGPointMake(-1, 4)]];
 
-        lipsExpressions = [[NSArray alloc] initWithObjects:@"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock", nil];
-        dimplesExpressions = [[NSArray alloc] initWithObjects:@"layerDimplesSad", @"layerDimplesNormal", @"layerDimplesHappy", nil];        
-        teethExpressions = [[NSArray alloc] initWithObjects:@"layerTeethSadOpenAlt1", @"layerTeethSadOpen", @"layerTeethNormal", @"layerTeethHappyOpen", @"layerTeethHappyOpenAlt1", nil];
-        tongueExpressions = [[NSArray alloc] initWithObjects:@"layerTongueSadCenter", @"layerTongueSadLeft", @"layerTongueSadRight", @"layerTongueNormal", @"layerTongueHappyCenter", @"layerTongueHappyLeft", @"layerTongueHappyRight", nil];
-        browExpressions = [[NSArray alloc] initWithObjects:@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited", nil];
-        lidExpressions = [[NSArray alloc] initWithObjects:@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder", nil];
+        lipsExpressions = @[@"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock"];
+        dimplesExpressions = @[@"layerDimplesSad", @"layerDimplesNormal", @"layerDimplesHappy"];        
+        teethExpressions = @[@"layerTeethSadOpenAlt1", @"layerTeethSadOpen", @"layerTeethNormal", @"layerTeethHappyOpen", @"layerTeethHappyOpenAlt1"];
+        tongueExpressions = @[@"layerTongueSadCenter", @"layerTongueSadLeft", @"layerTongueSadRight", @"layerTongueNormal", @"layerTongueHappyCenter", @"layerTongueHappyLeft", @"layerTongueHappyRight"];
+        browExpressions = @[@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited"];
+        lidExpressions = @[@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder"];
 
         
         appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -379,20 +379,20 @@ Views are called by tags which are set in initWithFrame by constants
 	//currentConscienceBody layers are pulled for each eye feature
 	//then set into view in specific order to account for layer draw order
 	//order is determined by leading number in setObject:forKey:
-	ConscienceLayer *insertLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisLeft"];
+	ConscienceLayer *insertLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisLeft"];
 	insertLayer.currentFillColor = _currentConscienceBody.eyeColor;
     
-	[conscienceEyeLeftView.totalLayers setObject:insertLayer forKey:@"4layerEyeball"];
-	insertLayer = [_currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
+	(conscienceEyeLeftView.totalLayers)[@"4layerEyeball"] = insertLayer;
+	insertLayer = (_currentConscienceBody.browLayers)[@"layerBrowNormal"];
 	insertLayer.currentFillColor = _currentConscienceBody.browColor;
     
-	[conscienceEyeLeftView.totalLayers setObject:insertLayer forKey:@"2layerBrow"];
+	(conscienceEyeLeftView.totalLayers)[@"2layerBrow"] = insertLayer;
 	
 	//Rest of Eye layers are without color
-	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.lidLayers objectForKey:@"layerLidNormal"] forKey:@"6layerLid"];
-	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketBottom"] forKey:@"5layerSocketBottom"];
-	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketTop"] forKey:@"7layerSocketTop"];
-	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
+	(conscienceEyeLeftView.totalLayers)[@"6layerLid"] = (_currentConscienceBody.lidLayers)[@"layerLidNormal"];
+	(conscienceEyeLeftView.totalLayers)[@"5layerSocketBottom"] = (_currentConscienceBody.socketLayers)[@"layerSocketBottom"];
+	(conscienceEyeLeftView.totalLayers)[@"7layerSocketTop"] = (_currentConscienceBody.socketLayers)[@"layerSocketTop"];
+	(conscienceEyeLeftView.totalLayers)[@"9layerLashes"] = (_currentConscienceBody.lashesLayers)[@"layerLashesUp"];
     
 	NSMutableString *ageLayer = [[NSMutableString alloc] initWithString:@"layerBags"];
     
@@ -404,7 +404,7 @@ Views are called by tags which are set in initWithFrame by constants
 		default: [ageLayer appendString:@"Normal"]; break;
 	}
     
-	[conscienceEyeLeftView.totalLayers setObject:[_currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
+	(conscienceEyeLeftView.totalLayers)[@"3layerBags"] = (_currentConscienceBody.bagsLayers)[ageLayer];
 	[conscienceEyeLeftView.totalGradients addEntriesFromDictionary:_currentConscienceBody.gradientLayers];
 	
 	//Request ConscienceObject view update
@@ -413,45 +413,45 @@ Views are called by tags which are set in initWithFrame by constants
 	//Repeat work for right eye
 	//Both cannot be done simultaneously to account for expression differences between eyes
 	//such as wink/blink, raise eyebrow, one lid, etc.
-	insertLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisRight"];
+	insertLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisRight"];
 	insertLayer.currentFillColor = _currentConscienceBody.eyeColor;
-	[conscienceEyeRightView.totalLayers setObject:insertLayer forKey:@"4layerEyeball"];
-	insertLayer = [_currentConscienceBody.browLayers objectForKey:@"layerBrowNormal"];
+	(conscienceEyeRightView.totalLayers)[@"4layerEyeball"] = insertLayer;
+	insertLayer = (_currentConscienceBody.browLayers)[@"layerBrowNormal"];
 	insertLayer.currentFillColor = _currentConscienceBody.browColor;
     
-	[conscienceEyeRightView.totalLayers setObject:insertLayer forKey:@"2layerBrow"];
+	(conscienceEyeRightView.totalLayers)[@"2layerBrow"] = insertLayer;
     
-	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.lidLayers objectForKey:@"layerLidNormal"] forKey:@"6layerLid"];
-	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketBottom"] forKey:@"5layerSocketBottom"];
-	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketTop"] forKey:@"7layerSocketTop"];
-	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
-	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
+	(conscienceEyeRightView.totalLayers)[@"6layerLid"] = (_currentConscienceBody.lidLayers)[@"layerLidNormal"];
+	(conscienceEyeRightView.totalLayers)[@"5layerSocketBottom"] = (_currentConscienceBody.socketLayers)[@"layerSocketBottom"];
+	(conscienceEyeRightView.totalLayers)[@"7layerSocketTop"] = (_currentConscienceBody.socketLayers)[@"layerSocketTop"];
+	(conscienceEyeRightView.totalLayers)[@"9layerLashes"] = (_currentConscienceBody.lashesLayers)[@"layerLashesUp"];
+	(conscienceEyeRightView.totalLayers)[@"3layerBags"] = (_currentConscienceBody.bagsLayers)[ageLayer];
     
 	[conscienceEyeRightView.totalGradients addEntriesFromDictionary:_currentConscienceBody.gradientLayers];
 	[conscienceEyeRightView setNeedsDisplay];	
 	
 	//Set Symbol layer, Symbol is actually composed of a single layer for the graphic
 	//Position layer is included to set the positioning of the eyes/mouth for each symbol
-	[conscienceSymbolView.totalLayers setObject:[_currentConscienceBody.symbolLayers objectForKey:@"layerSymbol"] forKey:@"layerSymbol"];
+	(conscienceSymbolView.totalLayers)[@"layerSymbol"] = (_currentConscienceBody.symbolLayers)[@"layerSymbol"];
 	[conscienceSymbolView setNeedsDisplay];
     
 	//Set Mouth layer, Mouth is actually composed of separate layers to allow for animation
-	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.dimplesLayers objectForKey:@"layerDimplesHappy"] forKey:@"layerDimples"];
-	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.lipsLayers objectForKey:@"layerLipsNormal"] forKey:@"layerLips"];
-	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.teethLayers objectForKey:@"layerTeethNormal"] forKey:@"layerTeeth"];
-	[conscienceMouthView.totalLayers setObject:[_currentConscienceBody.tongueLayers objectForKey:@"layerTongueNormal"] forKey:@"layerTongue"];
+	(conscienceMouthView.totalLayers)[@"layerDimples"] = (_currentConscienceBody.dimplesLayers)[@"layerDimplesHappy"];
+	(conscienceMouthView.totalLayers)[@"layerLips"] = (_currentConscienceBody.lipsLayers)[@"layerLipsNormal"];
+	(conscienceMouthView.totalLayers)[@"layerTeeth"] = (_currentConscienceBody.teethLayers)[@"layerTeethNormal"];
+	(conscienceMouthView.totalLayers)[@"layerTongue"] = (_currentConscienceBody.tongueLayers)[@"layerTongueNormal"];
 	[conscienceMouthView.totalGradients addEntriesFromDictionary:_currentConscienceBody.gradientLayers];
     
 	//Positioning of Eyes/Mouth/Symbol actually housed in symbol SVG file
 	//Position is a single path in SVG where each point represents a facial feature location		
-	ConscienceLayer *positionLayer = (ConscienceLayer *)[_currentConscienceBody.symbolLayers objectForKey:@"layerPosition"];
-	ConsciencePath *positionPath = (ConsciencePath *)[[positionLayer consciencePaths] objectAtIndex:0];
+	ConscienceLayer *positionLayer = (ConscienceLayer *)(_currentConscienceBody.symbolLayers)[@"layerPosition"];
+	ConsciencePath *positionPath = (ConsciencePath *)[positionLayer consciencePaths][0];
 	
-	CGPoint p = CGPointMake([[positionPath.pathPoints objectAtIndex:0] floatValue], [[positionPath.pathPoints objectAtIndex:1] floatValue]);
+	CGPoint p = CGPointMake([(positionPath.pathPoints)[0] floatValue], [(positionPath.pathPoints)[1] floatValue]);
 	conscienceEyeRightView.center = p;
-	p = CGPointMake([[positionPath.pathPoints objectAtIndex:2] floatValue], [[positionPath.pathPoints objectAtIndex:3] floatValue]);
+	p = CGPointMake([(positionPath.pathPoints)[2] floatValue], [(positionPath.pathPoints)[3] floatValue]);
 	conscienceEyeLeftView.center = p;		
-	p = CGPointMake([[positionPath.pathPoints objectAtIndex:4] floatValue], [[positionPath.pathPoints objectAtIndex:5] floatValue]);
+	p = CGPointMake([(positionPath.pathPoints)[4] floatValue], [(positionPath.pathPoints)[5] floatValue]);
 	conscienceMouthView.center = p;
         
 	_isExpressionForced = FALSE;
@@ -509,22 +509,22 @@ eyeState determined by ViewController
 			ConscienceLayer *currentLayer;
             
             if (eyeNumber == kEyeLeftIndex) {
-                currentLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisLeft"];
+                currentLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisLeft"];
 			}else {
-                currentLayer = [_currentConscienceBody.eyeLayers objectForKey:@"layerEyeballIrisRight"];
+                currentLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisRight"];
 			}
             
 			currentLayer.currentFillColor = _currentConscienceBody.eyeColor;
 			
-			[conscienceEyeView.totalLayers setObject:currentLayer forKey:@"4layerEyeball"];
+			(conscienceEyeView.totalLayers)[@"4layerEyeball"] = currentLayer;
 			[conscienceEyeView setNeedsDisplay];
 			
-			[conscienceEyeView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
+			(conscienceEyeView.totalLayers)[@"9layerLashes"] = (_currentConscienceBody.lashesLayers)[@"layerLashesUp"];
 			[conscienceEyeView setNeedsDisplay];
 		
 		}else {
 			//Close the eye
-			[conscienceEyeView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesDown"] forKey:@"9layerLashes"];
+			(conscienceEyeView.totalLayers)[@"9layerLashes"] = (_currentConscienceBody.lashesLayers)[@"layerLashesDown"];
 			[conscienceEyeView setNeedsDisplay];
 
 		}
@@ -558,10 +558,10 @@ expressionIndex determined by ViewController
 	//Select the Eye to respond
 	if (eyeNumber == kEyeLeftIndex) {
 		conscienceEyeView = conscienceEyeLeftView;
-		val = [eyeLeftPositions objectAtIndex:expressionIndex];
+		val = eyeLeftPositions[expressionIndex];
 	}else if (eyeNumber == kEyeRightIndex ) {
 		conscienceEyeView = conscienceEyeRightView;
-		val = [eyeRightPositions objectAtIndex:expressionIndex];
+		val = eyeRightPositions[expressionIndex];
 	}else if (eyeNumber == kEyeBothIndex) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
 		[self changeEyeDirection:expressionIndex forEye:kEyeLeftIndex];
@@ -583,7 +583,7 @@ expressionIndex determined by ViewController
 	if (!isRecursive) {
         
 		CGPoint p = [val CGPointValue];
-        ConscienceLayer *currentEyeball = (ConscienceLayer *)[conscienceEyeView.totalLayers objectForKey:layerID];
+        ConscienceLayer *currentEyeball = (ConscienceLayer *)(conscienceEyeView.totalLayers)[layerID];
 		[currentEyeball setOffsetX:p.x];
 		[currentEyeball setOffsetY:p.y];
         
@@ -634,9 +634,9 @@ expression determined by Conscience Mood/Enthusiasm
 	//Otherwise change lid layer
 	if (!isRecursive) {
 		//Ensure correct brow color is passed
-		ConscienceLayer *currentLayer = [_currentConscienceBody.browLayers objectForKey:expression];
+		ConscienceLayer *currentLayer = (_currentConscienceBody.browLayers)[expression];
 		currentLayer.currentFillColor = _currentConscienceBody.browColor;
-		[conscienceEyeView.totalLayers setObject:currentLayer forKey:@"2layerBrow"];
+		(conscienceEyeView.totalLayers)[@"2layerBrow"] = currentLayer;
 		[conscienceEyeView setNeedsDisplay];
 			
 	}
@@ -683,7 +683,7 @@ expression determined by Conscience Mood/Enthusiasm
 	//If both/random eyes have been requested, recursion is active, cancel work
 	//Otherwise change lid layer
 	if (!isRecursive) {
-		[conscienceEyeView.totalLayers setObject:[_currentConscienceBody.lidLayers objectForKey:expression] forKey:@"6layerLid"];
+		(conscienceEyeView.totalLayers)[@"6layerLid"] = (_currentConscienceBody.lidLayers)[expression];
 		[conscienceEyeView setNeedsDisplay];
 
 	}
@@ -706,7 +706,7 @@ expression determined by Conscience Mood/Enthusiasm
 	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 
 	//Change Dimples Layer	
-	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.dimplesLayers objectForKey:expression] forKey:@"layerDimples"];
+	(conscienceNewMouthView.totalLayers)[@"layerDimples"] = (_currentConscienceBody.dimplesLayers)[expression];
 	
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -724,7 +724,7 @@ expression determined by Conscience Mood/Enthusiasm
 	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 
 	//Change lips Layer	
-	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.lipsLayers objectForKey:expression] forKey:@"layerLips"];
+	(conscienceNewMouthView.totalLayers)[@"layerLips"] = (_currentConscienceBody.lipsLayers)[expression];
 
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -743,7 +743,7 @@ expression determined by Conscience Mood/Enthusiasm
 	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 	
 	//Change teeth Layer
-	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.teethLayers objectForKey:expression] forKey:@"layerTeeth"];
+	(conscienceNewMouthView.totalLayers)[@"layerTeeth"] = (_currentConscienceBody.teethLayers)[expression];
 	
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -762,7 +762,7 @@ expression determined by Conscience Mood/Enthusiasm
 	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
 
 	//Set Tongue Layer	
-	[conscienceNewMouthView.totalLayers setObject:[_currentConscienceBody.tongueLayers objectForKey:expression] forKey:@"layerTongue"];
+	(conscienceNewMouthView.totalLayers)[@"layerTongue"] = (_currentConscienceBody.tongueLayers)[expression];
 	
 	//Request mouth update
 	[conscienceNewMouthView setNeedsDisplay];
@@ -915,7 +915,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	
 	if ((randomSwitch < 1) || _isExpressionForced) {
 
-		[self changeLipsExpressions:[lipsExpressions objectAtIndex:randomIndex]];
+		[self changeLipsExpressions:lipsExpressions[randomIndex]];
 	}
 
 	_isExpressionForced = FALSE;
@@ -951,12 +951,12 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 		
 	}
 	
-	[self changeDimplesExpressions:[dimplesExpressions objectAtIndex:dimpleIndex]];
+	[self changeDimplesExpressions:dimplesExpressions[dimpleIndex]];
 	
     if (conscienceEnthusiasm > 40) {
 
-        [self changeTeethExpressions:[teethExpressions objectAtIndex:teethIndex]];        
-        [self changeTongueExpressions:[tongueExpressions objectAtIndex:tongueIndex]];
+        [self changeTeethExpressions:teethExpressions[teethIndex]];        
+        [self changeTongueExpressions:tongueExpressions[tongueIndex]];
     
     }
     
@@ -1038,10 +1038,10 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
             eyeNumber = kEyeRandomIndex;
         }
 		
-		[self changeBrowExpressions:[browExpressions objectAtIndex:randomBrow] forEye:eyeNumber]; 
+		[self changeBrowExpressions:browExpressions[randomBrow] forEye:eyeNumber]; 
 		
 	} else {
-        [self changeBrowExpressions:[browExpressions objectAtIndex:0] forEye:eyeNumber]; 
+        [self changeBrowExpressions:browExpressions[0] forEye:eyeNumber]; 
 
     }
     
@@ -1083,10 +1083,10 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 			
 		}
 
-		[self changeLidExpressions:[lidExpressions objectAtIndex:randomLid] forEye:eyeNumber];
+		[self changeLidExpressions:lidExpressions[randomLid] forEye:eyeNumber];
 		
 	} else {
-        [self changeLidExpressions:[lidExpressions objectAtIndex:0] forEye:eyeNumber];
+        [self changeLidExpressions:lidExpressions[0] forEye:eyeNumber];
 
     }
         	

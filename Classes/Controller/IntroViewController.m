@@ -1067,7 +1067,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 		case 1: { //Single touch
 			
 			//Get the first touch.
-			UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
+			UITouch *touch = [allTouches allObjects][0];
     
 			CGPoint conscienceCenter = [touch locationInView:self.view];
 			UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];

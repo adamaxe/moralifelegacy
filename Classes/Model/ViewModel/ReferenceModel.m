@@ -110,7 +110,7 @@
     if (_referenceType != kReferenceModelTypeMoral) {
         NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 
-        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor1, nil];
+        NSArray *sortDescriptors = @[sortDescriptor1];
         [currentDAO setSorts:sortDescriptors];
     }
 

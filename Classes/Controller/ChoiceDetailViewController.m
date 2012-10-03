@@ -178,7 +178,7 @@ Implementation: change the influence value and update the influence Label
 		int influenceAsInt =(int)(slider.value);
 
 		//Change slider description to current localized value.	
-		[influenceLabel setText:(NSString *)[influenceLabelDescriptions objectAtIndex:influenceAsInt-1]];
+		[influenceLabel setText:(NSString *)influenceLabelDescriptions[influenceAsInt-1]];
 //        [influenceSlider setValue:influenceAsInt];
 	}
 	
@@ -328,7 +328,7 @@ Implementation:  Truncate the field on each keypress if length is greater
     
 	//Retrieve localized influence description strings
     [influenceLabel setText:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",@"Label for Influence Slider")];
-	influenceLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel1",@"Label for Influence Level 1"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel2",@"Label for Influence Level 2"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel3",@"Label for Influence Level 3"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel4",@"Label for Influence Level 4"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel5",@"Label for Influence Level 5"), nil];
+	influenceLabelDescriptions = @[NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel1",@"Label for Influence Level 1"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel2",@"Label for Influence Level 2"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel3",@"Label for Influence Level 3"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel4",@"Label for Influence Level 4"), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel5",@"Label for Influence Level 5")];
     
 	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];
 	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateHighlighted];

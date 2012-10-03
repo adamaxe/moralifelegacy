@@ -116,11 +116,11 @@ NSString* const kLuckImageNameBad = @"icon-luckbad";
 	severitySlider.accessibilityLabel =  NSLocalizedString(@"LuckScreenSeverity1Label", @"Label for Severity Slider");		
 	
 	//Populate severity arrays for descriptions to reflect good or bad luck
-	luckSeverityLabelDescriptions = [[NSArray alloc] initWithObjects:NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%da", isGood]), @"Label for Severity Level 1"), 
+	luckSeverityLabelDescriptions = @[NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%da", isGood]), @"Label for Severity Level 1"), 
                                      NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%db", isGood]), @"Label for Severity Level 2"), 
                                      NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%dc", isGood]), @"Label for Severity Level 3"), 
                                      NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%dd", isGood]), @"Label for Severity Level 4"), 
-                                     NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%de", isGood]), @"Label for Severity Level 5"), nil];
+                                     NSLocalizedString(([NSString stringWithFormat:@"LuckScreenSeverityLabel%de", isGood]), @"Label for Severity Level 5")];
 	
 	[doneButton setTitle:NSLocalizedString(@"LuckScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];	
 	[doneButton setTitle:NSLocalizedString(@"LuckScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateHighlighted];	
@@ -272,7 +272,7 @@ Implementation: Set Choice Severity and reflect change in UI
 		UISlider *slider = (UISlider *) sender;
 		int severityAsInt = (int)(slider.value);
 		
-		[severityLabel setText:(NSString *)[luckSeverityLabelDescriptions objectAtIndex:severityAsInt-1]];
+		[severityLabel setText:(NSString *)luckSeverityLabelDescriptions[severityAsInt-1]];
 		severityLabel.accessibilityLabel = severityLabel.text;
 		
 	}
@@ -406,7 +406,7 @@ Implementation: Compile all of the relevant data from fields.  Calculate changes
     
 	//Retrieve readwrite Documents directory
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *documentsDirectory = paths[0];
 	NSString *userData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
 	NSURL *storeURL = [NSURL fileURLWithPath:userData];
 		
@@ -450,7 +450,7 @@ Implementation: Compile all of the relevant data from fields.  Calculate changes
 		[request setPredicate:pred];
 		
 		NSArray *objects = [context executeFetchRequest:request error:&outError];
-		currentUserLuck = [objects objectAtIndex:0];
+		currentUserLuck = objects[0];
 		
 	}
 		

@@ -255,9 +255,9 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 		
     }
 	
-	[[cell textLabel] setText:[self.reportPieModel.reportNames objectAtIndex:indexPath.row]];
+	[[cell textLabel] setText:(self.reportPieModel.reportNames)[indexPath.row]];
     
-    [[cell textLabel] setTextColor:[self.reportPieModel.pieColors objectAtIndex:indexPath.row]];
+    [[cell textLabel] setTextColor:(self.reportPieModel.pieColors)[indexPath.row]];
     [[cell textLabel] setShadowColor:[UIColor lightGrayColor]];
     [[cell textLabel] setShadowOffset:CGSizeMake(1, 1)];
 
@@ -267,7 +267,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     
     if ([self.reportPieModel.moralNames count] > 0) {
         
-        NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[self.reportPieModel.moralImageNames objectForKey:[self.reportPieModel.moralNames objectAtIndex:indexPath.row]]];
+        NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:(self.reportPieModel.moralImageNames)[(self.reportPieModel.moralNames)[indexPath.row]]];
         [rowImageName appendString:@".png"];
         [[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
         

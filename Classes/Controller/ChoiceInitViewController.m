@@ -56,7 +56,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		prefs = [NSUserDefaults standardUserDefaults];
 		
 		//Array to hold button names for random animations
-		buttonNames = [[NSArray alloc] initWithObjects:@"choicegood", @"choicebad", @"luckgood", @"luckbad", @"choicelist", @"lucklist", nil];
+		buttonNames = @[@"choicegood", @"choicebad", @"luckgood", @"luckbad", @"choicelist", @"lucklist"];
 
 	}
     
@@ -251,7 +251,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (void) buttonAnimate:(NSNumber *) buttonNumber{
 	
     //Get button image base filename
-	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", [buttonNames objectAtIndex: [buttonNumber intValue]]];
+	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", buttonNames[[buttonNumber intValue]]];
 
     //Build 4 frames of animation for selected button
 	UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
@@ -266,7 +266,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	UIImageView *animation1 = [[UIImageView alloc] init];
 	animation1.frame = CGRectMake(0,0,75,75);
 	
-	NSArray *images = [[NSArray alloc] initWithObjects:iconani1, iconani2, iconani3, iconani4, nil];
+	NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
 	animation1.animationImages = images;
 
     //Determine which button to animate
@@ -296,7 +296,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (void) buttonAnimationDone:(NSNumber *) buttonNumber{
 	
     //Return button to default state
-	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani1.png", [buttonNames objectAtIndex:[buttonNumber intValue]]];
+	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani1.png", buttonNames[[buttonNumber intValue]]];
 
 	switch ([buttonNumber intValue]){
 		case 0: [goodChoiceButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;

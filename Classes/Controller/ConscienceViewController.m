@@ -450,7 +450,7 @@ static int thoughtVersion = 0;
 		case 1: { //Single touch
 			
 			//Get the first touch.
-			UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
+			UITouch *touch = [allTouches allObjects][0];
 						
 			CGPoint conscienceCenter = [touch locationInView:self.view];
 			UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];
@@ -494,7 +494,7 @@ static int thoughtVersion = 0;
     [self endMovementReaction];
     
     NSSet *allTouches = [event allTouches];
-    UITouch *touch = [[allTouches allObjects] objectAtIndex:0];
+    UITouch *touch = [allTouches allObjects][0];
 
     CGPoint conscienceCenter = [touch locationInView:self.view];
 
@@ -643,8 +643,8 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:now];
     NSInteger hour = [components hour];
     
-    NSArray *conscienceEnthusiasm = [[NSArray alloc] initWithObjects:@"Stuporous", @"Unresponsive", @"Apathetic", @"Lethargic", @"Indifferent", @"Calm", @"Focused", @"Animated", @"Excited", @"Passionate", @"Unbridled", nil];
-    NSArray *conscienceMood = [[NSArray alloc] initWithObjects:@"Livid", @"Angry", @"Depressed", @"Sad", @"Discontent", @"Normal", @"Content", @"Pleasant", @"Happy", @"Ecstatic", @"Jubilant", nil];
+    NSArray *conscienceEnthusiasm = @[@"Stuporous", @"Unresponsive", @"Apathetic", @"Lethargic", @"Indifferent", @"Calm", @"Focused", @"Animated", @"Excited", @"Passionate", @"Unbridled"];
+    NSArray *conscienceMood = @[@"Livid", @"Angry", @"Depressed", @"Sad", @"Discontent", @"Normal", @"Content", @"Pleasant", @"Happy", @"Ecstatic", @"Jubilant"];
     
     if (hour < 4) {
         timeOfDay = @"Night";
@@ -696,7 +696,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
             int moodIndex = [@(appDelegate.userConscienceMind.mood) intValue];
             int enthusiasmIndex = [@(appDelegate.userConscienceMind.enthusiasm) intValue];
 
-            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", [conscienceMood objectAtIndex:moodIndex/10], [conscienceEnthusiasm objectAtIndex:enthusiasmIndex/10]];
+            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", conscienceMood[moodIndex/10], conscienceEnthusiasm[enthusiasmIndex/10]];
             
             break;
         }               
@@ -767,7 +767,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
         for (UserChoice *match in objects){
             
-            NSNumber *choiceWeightTemp = [reportValues objectForKey:[match choiceMoral]];
+            NSNumber *choiceWeightTemp = reportValues[[match choiceMoral]];
             
             if (choiceWeightTemp != nil) {
                 currentValue = [choiceWeightTemp floatValue];
@@ -783,7 +783,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
         NSArray* reversedPercentages = [[sortedPercentages reverseObjectEnumerator] allObjects];
         
-        NSString *value = [reversedPercentages objectAtIndex:0];
+        NSString *value = reversedPercentages[0];
 
         MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
         Moral *currentMoral = [currentMoralDAO read:value];
@@ -829,7 +829,7 @@ Change the Rank picture and description.
 	//sort by collectablename as all ranks are alphabetically/numerically sorted by collectableName
 	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"collectableName" ascending:FALSE];
     
-	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
+	NSArray* sortDescriptors = @[sortDescriptor];
 	currentUserCollectableDAO.sorts = sortDescriptors;
     
 	NSArray *objects = [currentUserCollectableDAO readAll];
@@ -841,7 +841,7 @@ Change the Rank picture and description.
 	//Ensure that at least one rank is present
 	if ([objects count] > 0) {
         
-        NSString *value = [[objects objectAtIndex:0] collectableName];
+        NSString *value = [objects[0] collectableName];
         ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] init];
         ConscienceAsset *currentAsset = [currentAssetDAO read:value];
         

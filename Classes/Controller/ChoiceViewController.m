@@ -323,7 +323,7 @@ Implementation: Set Choice Severity and reflect change in UI
 		UISlider *slider = (UISlider *) sender;
 		int severityAsInt = (int)(slider.value);
         
-		[severityLabel setText:(NSString *)[severityLabelDescriptions objectAtIndex:severityAsInt-1]];
+		[severityLabel setText:(NSString *)severityLabelDescriptions[severityAsInt-1]];
 		severityLabel.accessibilityLabel = severityLabel.text;
         
 	}
