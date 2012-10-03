@@ -14,20 +14,20 @@
 @interface Character : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSDecimalNumber * sizeCharacter;
-@property (nonatomic, retain) NSString * faceCharacter;
-@property (nonatomic, retain) NSString * eyeColor;
-@property (nonatomic, retain) NSString * accessoryBottomCharacter;
-@property (nonatomic, retain) NSString * eyeCharacter;
-@property (nonatomic, retain) NSString * browColor;
-@property (nonatomic, retain) NSString * mouthCharacter;
-@property (nonatomic, retain) NSNumber * ageCharacter;
-@property (nonatomic, retain) NSString * accessoryTopCharacter;
-@property (nonatomic, retain) NSString * accessoryPrimaryCharacter;
-@property (nonatomic, retain) NSString * accessorySecondaryCharacter;
-@property (nonatomic, retain) NSString * nameCharacter;
-@property (nonatomic, retain) NSString * bubbleColor;
-@property (nonatomic, retain) NSNumber * bubbleType;
-@property (nonatomic, retain) NSSet* story;
+@property (nonatomic, strong) NSDecimalNumber * sizeCharacter;
+@property (nonatomic, strong) NSString * faceCharacter;
+@property (nonatomic, strong) NSString * eyeColor;
+@property (nonatomic, strong) NSString * accessoryBottomCharacter;
+@property (nonatomic, strong) NSString * eyeCharacter;
+@property (nonatomic, strong) NSString * browColor;
+@property (nonatomic, strong) NSString * mouthCharacter;
+@property (nonatomic, strong) NSNumber * ageCharacter;
+@property (nonatomic, strong) NSString * accessoryTopCharacter;
+@property (nonatomic, strong) NSString * accessoryPrimaryCharacter;
+@property (nonatomic, strong) NSString * accessorySecondaryCharacter;
+@property (nonatomic, strong) NSString * nameCharacter;
+@property (nonatomic, strong) NSString * bubbleColor;
+@property (nonatomic, strong) NSNumber * bubbleType;
+@property (nonatomic, strong) NSSet* story;
 
 @end

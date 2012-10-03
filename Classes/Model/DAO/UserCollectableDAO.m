@@ -37,8 +37,5 @@ NSString* const kCollectableEthicals = @"ethical";
     return (UserCollectable *)[self readObject:key];
 }
 
--(void)dealloc {
-    [super dealloc];
-}
 
 @end

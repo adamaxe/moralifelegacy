@@ -155,9 +155,6 @@ Implementation: Determine if card is selected or not, then flip it to opposite s
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 
 @end

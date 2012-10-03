@@ -27,7 +27,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     IBOutlet UILabel *moralTypeLabel;       /**< is report virtue or vice */
 }
 
-@property (nonatomic, retain) ReportPieModel *reportPieModel;
+@property (nonatomic, strong) ReportPieModel *reportPieModel;
 @property (nonatomic, assign) BOOL isGood;		/**< is current view for Virtues or Vices */
 @property (nonatomic, assign) BOOL isAscending;		/**< current order type */
 @property (nonatomic, assign) BOOL isAlphabetical;	/**< current sort type */
@@ -46,7 +46,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     self = [super init];
 
     if (self) {
-        _reportPieModel = [reportPieModel retain];
+        _reportPieModel = reportPieModel;
         _isGood = TRUE;
         _isAlphabetical = FALSE;
         _isAscending = FALSE;
@@ -134,7 +134,6 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
         [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
         
         [prefs setBool:FALSE forKey:@"firstPie"];
         
@@ -221,7 +220,6 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 
 	//Add new graph to view
 	[thoughtModalArea addSubview:graph];
-	[graph release];
     
 	//Refresh tableview with new data
 	[reportTableView reloadData];
@@ -253,7 +251,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
 		
     }
 	
@@ -272,7 +270,6 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
         NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:[self.reportPieModel.moralImageNames objectForKey:[self.reportPieModel.moralNames objectAtIndex:indexPath.row]]];
         [rowImageName appendString:@".png"];
         [[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
-        [rowImageName release];
         
     } else {
         [[cell imageView] setImage:[UIImage imageNamed:@"card-doubt.png"]];
@@ -295,7 +292,6 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     
     [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, self.isGood]), @"Title For View Controller")];
     [moralTypeLabel setText:@"Virtue"];                
-    [titleName release];
     
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
@@ -321,16 +317,10 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 }
 
 - (void)viewDidUnload {
-    [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
 }
 
-- (void)dealloc {
-    [_reportPieModel release];
-    [previousButton release];
-    [super dealloc];
-}
 
 
 @end

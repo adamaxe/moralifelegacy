@@ -15,11 +15,11 @@ BaseDAO Superclass.  This class handles the interaction between the model and th
 extern NSString* const kContextReadOnly;    /**< key to determine read only persistent store to access */
 extern NSString* const kContextReadWrite;   /**< key to determine read write persistent store to access */
 
-@property (nonatomic, retain) NSArray *sorts;       /**< array of NSSortDescriptors to order */
-@property (nonatomic, retain) NSArray *predicates;  /**< array of NSPredicates to filter */
-@property (nonatomic, retain) NSMutableString *predicateDefaultName;    /**< default NSPredicate attribute name */
-@property (nonatomic, retain) NSMutableString *sortDefaultName;         /**< default NSSortDescriptor attribute name */
-@property (nonatomic, retain) NSMutableString *managedObjectClassName;  /**< NSManagedObject type to act upon */
+@property (nonatomic, strong) NSArray *sorts;       /**< array of NSSortDescriptors to order */
+@property (nonatomic, strong) NSArray *predicates;  /**< array of NSPredicates to filter */
+@property (nonatomic, strong) NSMutableString *predicateDefaultName;    /**< default NSPredicate attribute name */
+@property (nonatomic, strong) NSMutableString *sortDefaultName;         /**< default NSSortDescriptor attribute name */
+@property (nonatomic, strong) NSMutableString *managedObjectClassName;  /**< NSManagedObject type to act upon */
 
 /**
 Overloaded init to provide dependency injection of ModelManager for both release and testing

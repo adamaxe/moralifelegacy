@@ -13,21 +13,21 @@
 @interface UserCharacter : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * characterAccessoryPrimary;
-@property (nonatomic, retain) NSString * characterAccessoryTop;
-@property (nonatomic, retain) NSString * characterFace;
-@property (nonatomic, retain) NSString * characterName;
-@property (nonatomic, retain) NSString * characterEye;
-@property (nonatomic, retain) NSString * characterMouth;
-@property (nonatomic, retain) NSNumber * characterEnthusiasm;
-@property (nonatomic, retain) NSNumber * characterAge;
-@property (nonatomic, retain) NSNumber * characterMood;
-@property (nonatomic, retain) NSString * characterAccessoryBottom;
-@property (nonatomic, retain) NSString * characterEyeColor;
-@property (nonatomic, retain) NSString * characterAccessorySecondary;
-@property (nonatomic, retain) NSString * characterBrowColor;
-@property (nonatomic, retain) NSString * characterBubbleColor;
-@property (nonatomic, retain) NSNumber * characterSize;
-@property (nonatomic, retain) NSNumber * characterBubbleType;
+@property (nonatomic, strong) NSString * characterAccessoryPrimary;
+@property (nonatomic, strong) NSString * characterAccessoryTop;
+@property (nonatomic, strong) NSString * characterFace;
+@property (nonatomic, strong) NSString * characterName;
+@property (nonatomic, strong) NSString * characterEye;
+@property (nonatomic, strong) NSString * characterMouth;
+@property (nonatomic, strong) NSNumber * characterEnthusiasm;
+@property (nonatomic, strong) NSNumber * characterAge;
+@property (nonatomic, strong) NSNumber * characterMood;
+@property (nonatomic, strong) NSString * characterAccessoryBottom;
+@property (nonatomic, strong) NSString * characterEyeColor;
+@property (nonatomic, strong) NSString * characterAccessorySecondary;
+@property (nonatomic, strong) NSString * characterBrowColor;
+@property (nonatomic, strong) NSString * characterBubbleColor;
+@property (nonatomic, strong) NSNumber * characterSize;
+@property (nonatomic, strong) NSNumber * characterBubbleType;
 
 @end

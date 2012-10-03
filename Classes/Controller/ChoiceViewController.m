@@ -129,7 +129,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",@"Hint for Details Label") style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
 	
 	self.navigationItem.rightBarButtonItem = barButtonItem;
-	[barButtonItem release];
     
     hideKeyboardButton = [UIButton buttonWithType: UIButtonTypeCustom];
     hideKeyboardButton.frame = CGRectMake(250, 480, 74, 39);
@@ -220,9 +219,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         		
 		[moralImageView setImage:[UIImage imageNamed:moralImageName]];
 		
-		[moralImageName release];
-		[moralName release];
-		[moralImage release];
         
 	}
 
@@ -298,7 +294,6 @@ Implementation: Show an initial help screen if this is the User's first use of t
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
         
@@ -314,7 +309,6 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 	ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] init];
 	
 	[self.navigationController pushViewController:choiceDetailViewCont animated:YES];
-	[choiceDetailViewCont release];
 	
 }
 
@@ -356,7 +350,6 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// The navigation controller is now owned by the current view controller
 	// and the root view controller is owned by the navigation controller,
 	// so both objects should be released to prevent over-retention.
-	[virtueViceViewController release];
 	
 }
 
@@ -370,7 +363,6 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// navigation bar.
     ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
 	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel];
-    [choiceHistoryModel release];
 
 	[moralReferenceButton setAlpha:0];
 	[moralImageView setAlpha:0];
@@ -382,7 +374,6 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	// The navigation controller is now owned by the current view controller
 	// and the root view controller is owned by the navigation controller,
 	// so both objects should be released to prevent over-retention.
-	[historyViewController release];
 	
 }
 
@@ -406,18 +397,14 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         [titles addObject:currentMoral.displayNameMoral];
         [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", currentMoral.definitionMoral, currentMoral.longDescriptionMoral]];
 
-        [currentMoralDAO release];
 
         //Set help title and verbiage
         [conscienceHelpViewCont setHelpTitles:titles];
         [conscienceHelpViewCont setHelpTexts:texts];
         [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         
-        [titles release];
-        [texts release];   
         
         [self presentModalViewController:conscienceHelpViewCont animated:NO];
-        [conscienceHelpViewCont release];
         
 	} else {
      
@@ -426,7 +413,6 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         [conscienceHelpViewCont setHelpVersion:3];
         [self presentModalViewController:conscienceHelpViewCont animated:NO];
-        [conscienceHelpViewCont release];
 
 	}
     
@@ -454,7 +440,6 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         [conscienceHelpViewCont setHelpVersion:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
 
 	} else {
 		isReadyToCommit = TRUE;
@@ -472,7 +457,6 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
             [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
             [conscienceHelpViewCont setHelpVersion:2];
             [self presentModalViewController:conscienceHelpViewCont animated:NO];
-            [conscienceHelpViewCont release];
             
             isReadyToCommit = FALSE;
         }
@@ -699,7 +683,6 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
 	
     NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
-    [dateFormatter release];
 		
     BOOL isNewChoice = TRUE;
 
@@ -763,7 +746,6 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         [currentUserCharacterDAO update];
         
-        [currentUserCharacterDAO release];
         
         //See if moral has been rewarded before
         //Cannot assume that first instance of UserChoice implies no previous reward
@@ -773,7 +755,6 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
 
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
                         
-            [currentUserCollectableDAO release];
             //Increase the moral's value
             float moralIncrease = [[currentUserCollectable collectableValue] floatValue];
             
@@ -800,7 +781,6 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             [appDelegate.userCollection addObject:moralKey];
             
             [currentUserCollectableDAO update];
-            [currentUserCollectableDAO release];
 
         }
         
@@ -825,7 +805,6 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
 	
     [currentUserChoiceDAO update];
 	
-    [currentUserChoiceDAO release];
 
     //invalidate rest of session
     [self cancelChoice:placeHolderID];
@@ -842,7 +821,6 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     //Update User's ethicals
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
-    [currentUserCollectableDAO release];
     
     int ethicals = [[currentUserCollectable collectableValue] intValue];
     
@@ -929,7 +907,6 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 }
 
 - (void)viewDidUnload {
-    [moralHistoryButton release];
     moralHistoryButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -937,11 +914,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 }
 
 - (void)dealloc {
-    [choiceKey release];
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
-    [moralHistoryButton release];
-    [severityLabelDescriptions release];
-	[super dealloc];
 }
 
 

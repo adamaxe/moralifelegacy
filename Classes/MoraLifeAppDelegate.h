@@ -24,14 +24,14 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 
 @interface MoraLifeAppDelegate : NSObject <UIApplicationDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) ConscienceBody *userConscienceBody;   /**< Representation of User's Conscience */
-@property (nonatomic, retain) ConscienceAccessories *userConscienceAccessories;     /**< Representation of User's Accessories */
-@property (nonatomic, retain) ConscienceView *userConscienceView;   /**< Visual representation of User's Conscience+Accessories */
-@property (nonatomic, retain) ConscienceMind *userConscienceMind;   /**< Representation of User's Mental State */
-@property (nonatomic, retain) NSMutableArray *userCollection;       /**< Currently owned items */
+@property (nonatomic, strong) IBOutlet UIWindow *window;
+@property (nonatomic, strong) ConscienceBody *userConscienceBody;   /**< Representation of User's Conscience */
+@property (nonatomic, strong) ConscienceAccessories *userConscienceAccessories;     /**< Representation of User's Accessories */
+@property (nonatomic, strong) ConscienceView *userConscienceView;   /**< Visual representation of User's Conscience+Accessories */
+@property (nonatomic, strong) ConscienceMind *userConscienceMind;   /**< Representation of User's Mental State */
+@property (nonatomic, strong) NSMutableArray *userCollection;       /**< Currently owned items */
 @property (nonatomic, assign) BOOL isCurrentIOS;
-@property (nonatomic, retain) ModelManager *moralModelManager;
+@property (nonatomic, strong) ModelManager *moralModelManager;
 
 /**
  Retrieve current sandbox Documents directory

@@ -31,8 +31,5 @@
     return (ConscienceAsset *)[self readObject:key];
 }
 
--(void)dealloc {
-    [super dealloc];
-}
 
 @end

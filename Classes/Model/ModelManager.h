@@ -12,8 +12,8 @@
 
 @interface ModelManager : NSObject 
 
-@property (nonatomic, retain, readonly) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, retain, readonly) NSManagedObjectContext *readWriteManagedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong, readonly) NSManagedObjectContext *readWriteManagedObjectContext;
 
 /**
 Provides access to backing data store while obscuring details of stack.  Provides dependency injection for testing

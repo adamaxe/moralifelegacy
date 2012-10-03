@@ -36,7 +36,7 @@
     
 }
 
-@property (nonatomic, retain) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
+@property (nonatomic, strong) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
 
 /**
  Retrieve all User entered Choices
@@ -60,7 +60,7 @@
     self = [super init];
 
     if (self) {
-        _choiceHistoryModel = [choiceHistoryModel retain];
+        _choiceHistoryModel = choiceHistoryModel;
     }
 
     return self;
@@ -252,7 +252,7 @@
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
 	if (cell == nil) {
-      	cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
+      	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
 	}
     
 	//Setup cell contents
@@ -280,8 +280,6 @@
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
     //	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
     [[cell imageView] setImage:rowImage];
-    [rowImage release];
-    [rowImageName release];
     
 	return cell;
 }
@@ -300,7 +298,6 @@
 
     [self dismissChoiceModal:placeHolder];
 
-	[selectedRow release];
 	
 }
 
@@ -343,41 +340,41 @@
 	NSInteger counter = 0;
 	for(NSString *name in dataSource)
 	{
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
+		@autoreleasepool {
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[self.choiceHistoryModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeMorals = [[[self.choiceHistoryModel.icons objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-		
-		//A match was found in row name, details or moral
-		if(searchRange.location != NSNotFound)
-		{
-			isFound = TRUE;
-		}else if(searchRangeDetails.location != NSNotFound){
-			isFound = TRUE;
-		}else if(searchRangeMorals.location != NSNotFound){
-			isFound = TRUE;
-		}		
-		
-		if (isFound) {
-			//If search is slow, only search prefix
-			//if(searchRange.location== 0)
-			//{
+			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[[self.choiceHistoryModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeMorals = [[[self.choiceHistoryModel.icons objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 			
-			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:[self.choiceHistoryModel.choices objectAtIndex:counter]];
-			[tableDataImages addObject:[self.choiceHistoryModel.icons objectAtIndex:counter]];
-			[tableDataDetails addObject:[self.choiceHistoryModel.details objectAtIndex:counter]];
-			[tableDataKeys addObject:[self.choiceHistoryModel.choiceKeys objectAtIndex:counter]];
+			//A match was found in row name, details or moral
+			if(searchRange.location != NSNotFound)
+			{
+				isFound = TRUE;
+			}else if(searchRangeDetails.location != NSNotFound){
+				isFound = TRUE;
+			}else if(searchRangeMorals.location != NSNotFound){
+				isFound = TRUE;
+			}		
+			
+			if (isFound) {
+				//If search is slow, only search prefix
+				//if(searchRange.location== 0)
+				//{
+				
+				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
+				[tableData addObject:[self.choiceHistoryModel.choices objectAtIndex:counter]];
+				[tableDataImages addObject:[self.choiceHistoryModel.icons objectAtIndex:counter]];
+				[tableDataDetails addObject:[self.choiceHistoryModel.details objectAtIndex:counter]];
+				[tableDataKeys addObject:[self.choiceHistoryModel.choiceKeys objectAtIndex:counter]];
             [tableDataColorBools addObject:[self.choiceHistoryModel.choicesAreGood objectAtIndex:counter]];
             
-			//}
+				//}
+			}
+			
+			isFound = FALSE;
+			counter++;
 		}
-		
-		isFound = FALSE;
-		counter++;
-		[pool release];
 	}
 	
 	[choicesTableView reloadData];
@@ -452,18 +449,5 @@
 }
 
 
-- (void)dealloc {
-	
-	[tableData release];
-	[tableDataImages release];
-	[tableDataColorBools release];
-	[tableDataDetails release];
-	[tableDataKeys release];
-	[dataSource release];	
-
-    [_choiceHistoryModel release];
-
-	[super dealloc];
-}
 
 @end

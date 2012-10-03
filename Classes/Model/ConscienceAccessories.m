@@ -30,13 +30,5 @@ NSString* const kBottomAccessoryFileNameResource = @"acc-nothing";
     return self;
 }
 
-- (void) dealloc {
-
-	[_primaryAccessory release];
-	[_secondaryAccessory release];
-	[_topAccessory release];
-	[_bottomAccessory release];
-	[super dealloc];
-}
 
 @end

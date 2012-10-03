@@ -16,9 +16,9 @@ extern NSString* const kBottomAccessoryFileNameResource;
 
 @interface ConscienceAccessories : NSObject 
 
-@property (nonatomic, retain) NSString *primaryAccessory;		/**< Conscience left-hand image filename */
-@property (nonatomic, retain) NSString *secondaryAccessory;		/**< Conscience right-hand image filename */
-@property (nonatomic, retain) NSString *topAccessory;			/**< Conscience top image filename */
-@property (nonatomic, retain) NSString *bottomAccessory;		/**< Conscience bottom image filename */
+@property (nonatomic, strong) NSString *primaryAccessory;		/**< Conscience left-hand image filename */
+@property (nonatomic, strong) NSString *secondaryAccessory;		/**< Conscience right-hand image filename */
+@property (nonatomic, strong) NSString *topAccessory;			/**< Conscience top image filename */
+@property (nonatomic, strong) NSString *bottomAccessory;		/**< Conscience bottom image filename */
 
 @end

@@ -13,11 +13,11 @@
 @interface UserEntry : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * entryShortDescription;
-@property (nonatomic, retain) NSNumber * entryIsGood;
-@property (nonatomic, retain) NSString * entryKey;
-@property (nonatomic, retain) NSString * entryLongDescription;
-@property (nonatomic, retain) NSNumber * entrySeverity;
-@property (nonatomic, retain) NSDate * entryCreationDate;
+@property (nonatomic, strong) NSString * entryShortDescription;
+@property (nonatomic, strong) NSNumber * entryIsGood;
+@property (nonatomic, strong) NSString * entryKey;
+@property (nonatomic, strong) NSString * entryLongDescription;
+@property (nonatomic, strong) NSNumber * entrySeverity;
+@property (nonatomic, strong) NSDate * entryCreationDate;
 
 @end

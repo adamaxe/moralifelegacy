@@ -28,9 +28,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "UserCollectableDAO.h"
 
 @interface MoraLifeAppDelegate () {
-    
-	UIWindow *window;	/**< UIWindow that contains all other UIViews */
-	
+
 	UITabBarController *mainMenuTabBarCont;	/**< UITabBarController along bottom of screens */
 	UINavigationController *navController1; /**< UINavController for first screen, Home */
 	UINavigationController *navController2; /**< UINavController for second screen, Choices */
@@ -153,9 +151,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     [navController2	pushViewController:choiceIntViewController1 animated:NO];
 	[navController3	pushViewController:referenceViewController1 animated:NO];
 	
-    [conscienceViewController1 release];
-	[choiceIntViewController1 release];
-	[referenceViewController1 release];
 
 #if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
     
@@ -177,12 +172,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	//mainMenuTabBarCont.tabBar.opaque = YES;
 	//mainMenuTabBarCont.view.alpha = [NSNumber numberWithFloat:0.5];
 	[mainMenuTabBarCont.tabBar setAlpha:cgf];
-	[navController1 release];
-	[navController2 release];
-	[navController3 release];
 		
 	application.applicationSupportsShakeToEdit = YES;
-//    [_window setRootViewController:mainMenuTabBarCont];
 	[_window addSubview:mainMenuTabBarCont.view];
 	[_window makeKeyAndVisible];
 	
@@ -247,10 +238,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  */
 - (void) destroyConscience{
     
-	[_userConscienceBody release];
-	[_userConscienceAccessories release];
-    [_userConscienceMind release];
-	[_userConscienceView release];
 }
 
 /**
@@ -281,7 +268,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     _userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
     _userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
 
-    [currentUserCharacterDAO release];  
 
 	//Call utility class to parse svg data for feature building    
 	[ConscienceBuilder buildConscience:_userConscienceBody];
@@ -302,7 +288,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
         [_userCollection addObject:[match collectableName]];
     }
                 
-    [currentUserCollectableDAO release];
     
 }
 
@@ -321,19 +306,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 /**
  Release init'ed objects, deallocate super.
  */
-- (void)dealloc {
-	
-	/** @todo revisit memory management for ARC migration */    
-	
-	[mainMenuTabBarCont release];
-	[_userConscienceBody release];
-	[_userConscienceAccessories release];
-    [_userConscienceMind release];
-	[_userConscienceView release];
-    [_userCollection release];
-    [window release];
-    [super dealloc];
-}
 
 
 @end

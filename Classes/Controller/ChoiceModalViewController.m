@@ -188,7 +188,6 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
         [moralDisplayNames addObject:moral.displayNameMoral];        
     }
     
-    [currentMoralDAO release];
     
 	dataSource = [[NSMutableArray alloc] initWithArray:moralDisplayNames];
 	searchedData = [[NSMutableArray alloc]init];
@@ -214,7 +213,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
     
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
 		
 	}
     
@@ -224,7 +223,6 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
                 
         UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[tableDataImages objectAtIndex:indexPath.row] ofType:@"png"]];
         [[cell imageView] setImage:rowImage];
-        [rowImage release];
         
         [[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
     }
@@ -281,38 +279,38 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	NSInteger counter = 0;
 	for(NSString *name in dataSource)
 	{
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
+		@autoreleasepool {
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[moralDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[[moralDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         
-		
-		//A match was found
-		if(searchRange.location != NSNotFound)
-		{
-			isFound = TRUE;
 			
-		}else if(searchRangeDetails.location != NSNotFound){
-			isFound = TRUE;
-		}		
-		
-		if (isFound) {
-			//If search is slow, only search prefix
-			//if(searchRange.location== 0)
-			//{			
-			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:[moralDisplayNames objectAtIndex:counter]];
-			[tableDataImages addObject:[moralImages objectAtIndex:counter]];
-			[tableDataDetails addObject:[moralDetails objectAtIndex:counter]];
-			[tableDataKeys addObject:[moralNames objectAtIndex:counter]];
+			//A match was found
+			if(searchRange.location != NSNotFound)
+			{
+				isFound = TRUE;
+				
+			}else if(searchRangeDetails.location != NSNotFound){
+				isFound = TRUE;
+			}		
+			
+			if (isFound) {
+				//If search is slow, only search prefix
+				//if(searchRange.location== 0)
+				//{			
+				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
+				[tableData addObject:[moralDisplayNames objectAtIndex:counter]];
+				[tableDataImages addObject:[moralImages objectAtIndex:counter]];
+				[tableDataDetails addObject:[moralDetails objectAtIndex:counter]];
+				[tableDataKeys addObject:[moralNames objectAtIndex:counter]];
             
-			//}
+				//}
+			}
+			
+			isFound = FALSE;
+			counter++;
 		}
-		
-		isFound = FALSE;
-		counter++;
-		[pool release];
 	}
 	
 	[choiceModalTableView reloadData];
@@ -370,27 +368,11 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 
 - (void)viewDidUnload
 {
-    [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc
-{
-    [searchedData release];
-	[tableData release];
-	[tableDataImages release];
-	[tableDataDetails release];
-	[tableDataKeys release];
-	[dataSource release];
-	[moralNames release];
-	[moralImages release];
-	[moralDetails release];
-	[moralDisplayNames release];
-    [previousButton release];
-    [super dealloc];
-}
 
 @end

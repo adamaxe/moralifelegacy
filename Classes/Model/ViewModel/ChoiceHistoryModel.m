@@ -20,11 +20,11 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 
 }
 
-@property (nonatomic, readwrite, retain) NSMutableArray *choices;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, retain) NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
-@property (nonatomic, readwrite, retain) NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, retain) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readwrite, retain) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readwrite, strong) NSMutableArray *choices;			/**< Array of User-entered choice titles */
+@property (nonatomic, readwrite, strong) NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
+@property (nonatomic, readwrite, strong) NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
+@property (nonatomic, readwrite, strong) NSMutableArray *details;			/**< Array of User-entered details */
+@property (nonatomic, readwrite, strong) NSMutableArray *icons;				/**< Array of associated images */
 
 /**
  Retrieve all User entered Choices
@@ -106,7 +106,7 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 	[self.icons removeAllObjects];
 	[self.details removeAllObjects];
 
-    NSString *predicateParam = [[NSString alloc] initWithString:@"dile-"];
+    NSString *predicateParam = @"dile-";
 
 	//Ensure that Choices created during Morathology sessions are not displayed here
 	//All Dilemma/Action Choice entryKeys are prefixed with string "dile-"
@@ -122,15 +122,12 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
     }
 
 	currentUserChoiceDAO.predicates = @[pred];
-	[predicateParam release];
 
 	//choiceSortDescriptor and isAscending are set throughout class
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:self.sortKey ascending:self.isAscending];
 
     NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
 	currentUserChoiceDAO.sorts = sortDescriptors;
-	[sortDescriptor release];
-    [sortDescriptors release];
 
 	NSArray *objects = [currentUserChoiceDAO readAll];
 
@@ -162,7 +159,6 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 
             [detailText appendFormat:@" %@", [dateFormat stringFromDate:modificationDate]];
 
-            [dateFormat release];
 
 			//If longDescription is empty, do not show colon separating
             if (![[matches entryLongDescription] isEqualToString:@""]) {
@@ -171,7 +167,6 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 
 			//Populate details array with constructed detail
             [self.details addObject:detailText];
-			[detailText release];
 
 		}
 	}
@@ -208,18 +203,6 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 
 }
 
--(void)dealloc {
-
-    [_choices release];
-    [_choicesAreGood release];
-    [_choiceKeys release];
-    [_details release];
-    [_icons release];
-    [currentUserChoiceDAO release];
-    [currentMoralDAO release];
-
-    [super dealloc];
-}
 
 
 @end

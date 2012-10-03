@@ -15,7 +15,7 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 @interface ConscienceAcceptViewController : UIViewController
 
 @property (nonatomic, assign) int accessorySlot;		/**< which slot is ConscienceAsset, set from ConscienceListViewController */
-@property (nonatomic, retain) NSString *assetSelection;	/**< which ConscienceAsset, set from ConscienceListViewController */
+@property (nonatomic, strong) NSString *assetSelection;	/**< which ConscienceAsset, set from ConscienceListViewController */
 
 /**
 Accepts User input to commit the choice of ConscienceAsset to persistence.  Returns User to ConscienceViewController.

@@ -105,7 +105,6 @@ Implementation: Show an initial help screen if this is the User's first use of t
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
         
         [prefs setBool:FALSE forKey:@"firstChoice"];
         
@@ -169,12 +168,10 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 			ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
 			//Push view onto stack	
 			[self.navigationController pushViewController:choiceCont animated:YES];
-			[choiceCont release];
 		} else {
 			LuckViewController *luckCont = [[LuckViewController alloc] init];
 			//Push view onto stack	
 			[self.navigationController pushViewController:luckCont animated:YES];
-			[luckCont release];
 		}
 	} else {
 
@@ -182,13 +179,10 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 		if (isChoice) {
             ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
 			ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
-            [choiceHistoryModel release];
 			[self.navigationController pushViewController:choiceListCont animated:YES];
-			[choiceListCont release];
 		} else {
 			LuckListViewController *luckListCont = [[LuckListViewController alloc] init];
 			[self.navigationController pushViewController:luckListCont animated:YES];
-			[luckListCont release];
 		}
 	}
 	
@@ -274,7 +268,6 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	
 	NSArray *images = [[NSArray alloc] initWithObjects:iconani1, iconani2, iconani3, iconani4, nil];
 	animation1.animationImages = images;
-	[images release];
 
     //Determine which button to animate
 	switch ([buttonNumber intValue]){
@@ -291,7 +284,6 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	animation1.animationRepeatCount = 1;
 	[animation1 startAnimating];
 	
-	[animation1 release];
 	
 	//Reset button after animation, delay slightly to allow animation to catchup
 	[self performSelector:@selector(buttonAnimationDone:) withObject:buttonNumber afterDelay:0.70];
@@ -342,9 +334,5 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 }
 
 
-- (void)dealloc {
-	[buttonNames release];
-	[super dealloc];
-}
 
 @end

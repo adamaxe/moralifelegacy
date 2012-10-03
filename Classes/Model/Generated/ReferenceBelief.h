@@ -16,9 +16,9 @@
 {
 }
 
-@property (nonatomic, retain) NSString * typeBelief;
-@property (nonatomic, retain) NSSet* texts;
-@property (nonatomic, retain) ReferencePerson * figurehead;
+@property (nonatomic, strong) NSString * typeBelief;
+@property (nonatomic, strong) NSSet* texts;
+@property (nonatomic, strong) ReferencePerson * figurehead;
 
 @end
 

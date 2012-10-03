@@ -105,27 +105,5 @@ NSString* const kSymbolFileNameResource = @"con-nothing";
 //	return bodyCopy;
 //}
 
-- (void) dealloc {
-
-	[_browLayers release];
-	[_bagsLayers release];
-	[_eyeLayers release];
-	[_lidLayers release];
-	[_lashesLayers release];
-	[_socketLayers release];
-	[_lipsLayers release];
-	[_dimplesLayers release];
-	[_teethLayers release];
-	[_tongueLayers release];
-	[_symbolLayers release];
-	[_gradientLayers release];
-	[_eyeName release];
-	[_mouthName release];
-	[_symbolName release];
-	[_eyeColor release];
-	[_browColor release];
-	[_bubbleColor release];
-	[super dealloc];
-}
 
 @end

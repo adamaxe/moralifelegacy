@@ -22,7 +22,6 @@
     [self willChangeValueForKey:@"oeuvre" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"oeuvre"] addObject:value];
     [self didChangeValueForKey:@"oeuvre" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)removeOeuvreObject:(ReferenceText *)value {
@@ -30,7 +29,6 @@
     [self willChangeValueForKey:@"oeuvre" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"oeuvre"] removeObject:value];
     [self didChangeValueForKey:@"oeuvre" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)addOeuvre:(NSSet *)value {    
@@ -51,7 +49,6 @@
     [self willChangeValueForKey:@"belief" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"belief"] addObject:value];
     [self didChangeValueForKey:@"belief" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)removeBeliefObject:(ReferenceBelief *)value {
@@ -59,7 +56,6 @@
     [self willChangeValueForKey:@"belief" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"belief"] removeObject:value];
     [self didChangeValueForKey:@"belief" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)addBelief:(NSSet *)value {    

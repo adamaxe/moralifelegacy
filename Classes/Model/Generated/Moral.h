@@ -14,17 +14,17 @@
 @interface Moral : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * imageNameMoral;
-@property (nonatomic, retain) NSString * colorMoral;
-@property (nonatomic, retain) NSString * displayNameMoral;
-@property (nonatomic, retain) NSString * longDescriptionMoral;
-@property (nonatomic, retain) NSString * component;
-@property (nonatomic, retain) NSString * shortDescriptionMoral;
-@property (nonatomic, retain) NSString * linkMoral;
-@property (nonatomic, retain) NSString * nameMoral;
-@property (nonatomic, retain) NSString * definitionMoral;
-@property (nonatomic, retain) NSSet* dillemmaB;
-@property (nonatomic, retain) NSSet* dillemmaA;
-@property (nonatomic, retain) NSSet* relatedReference;
+@property (nonatomic, strong) NSString * imageNameMoral;
+@property (nonatomic, strong) NSString * colorMoral;
+@property (nonatomic, strong) NSString * displayNameMoral;
+@property (nonatomic, strong) NSString * longDescriptionMoral;
+@property (nonatomic, strong) NSString * component;
+@property (nonatomic, strong) NSString * shortDescriptionMoral;
+@property (nonatomic, strong) NSString * linkMoral;
+@property (nonatomic, strong) NSString * nameMoral;
+@property (nonatomic, strong) NSString * definitionMoral;
+@property (nonatomic, strong) NSSet* dillemmaB;
+@property (nonatomic, strong) NSSet* dillemmaA;
+@property (nonatomic, strong) NSSet* relatedReference;
 
 @end

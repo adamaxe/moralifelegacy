@@ -70,11 +70,5 @@ Implemenation:  Determine prior state of mind for enthusiasm.  Retrieve top of D
 }
 
 
-- (void) dealloc {
-
-	[_enthusiasmMemories release];
-	[_moodMemories release];
-	[super dealloc];
-}
 
 @end

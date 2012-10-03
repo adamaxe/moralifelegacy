@@ -14,8 +14,8 @@
 @interface ConscienceAsset : ReferenceAsset {
 @private
 }
-@property (nonatomic, retain) NSNumber * costAsset;
-@property (nonatomic, retain) NSString * orientationAsset;
-@property (nonatomic, retain) NSNumber * moralValueAsset;
+@property (nonatomic, strong) NSNumber * costAsset;
+@property (nonatomic, strong) NSString * orientationAsset;
+@property (nonatomic, strong) NSNumber * moralValueAsset;
 
 @end

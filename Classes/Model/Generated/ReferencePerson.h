@@ -15,9 +15,9 @@
 @interface ReferencePerson : ReferenceAsset {
 @private
 }
-@property (nonatomic, retain) NSNumber * deathYearPerson;
-@property (nonatomic, retain) NSString * quotePerson;
-@property (nonatomic, retain) NSSet* oeuvre;
-@property (nonatomic, retain) NSSet* belief;
+@property (nonatomic, strong) NSNumber * deathYearPerson;
+@property (nonatomic, strong) NSString * quotePerson;
+@property (nonatomic, strong) NSSet* oeuvre;
+@property (nonatomic, strong) NSSet* belief;
 
 @end

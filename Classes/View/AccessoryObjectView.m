@@ -40,16 +40,11 @@ int const kSideAccessoryHeight = 162;
     
     UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:_accessoryFilename ofType:@"png"]];
     [image drawInRect:rect];
-    [image release];
     
 }
 
 #pragma mark -
 #pragma mark Memory management
 
-- (void)dealloc {
-	[_accessoryFilename release];
-	[super dealloc];
-}
 
 @end

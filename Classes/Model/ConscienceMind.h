@@ -15,8 +15,8 @@ extern float const kConscienceMood;
 
 @interface ConscienceMind : NSObject
 
-@property (nonatomic, retain) NSMutableDictionary *enthusiasmMemories;	/**< past enthusiasm states and timestamps */
-@property (nonatomic, retain) NSMutableDictionary *moodMemories;		/**< past mood states and timestamps */
+@property (nonatomic, strong) NSMutableDictionary *enthusiasmMemories;	/**< past enthusiasm states and timestamps */
+@property (nonatomic, strong) NSMutableDictionary *moodMemories;		/**< past mood states and timestamps */
 @property (nonatomic, assign) CGFloat enthusiasm;	/**< current Conscience enthusiasm */
 @property (nonatomic, assign) CGFloat mood;		/**< current Conscience mood */
 

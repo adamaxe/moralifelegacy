@@ -33,7 +33,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	IBOutlet UIView *namesView;
 }
 
-@property (nonatomic, retain) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
+@property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
 
 
 /**
@@ -58,7 +58,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
     self = [super init];
 
     if (self) {
-        _referenceModel = [referenceModel retain];
+        _referenceModel = referenceModel;
     }
 
     return self;
@@ -181,7 +181,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
     }
 	
     [[cell textLabel] setText:[tableData objectAtIndex:indexPath.row]];
@@ -199,8 +199,6 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
     [[cell imageView] setImage:rowImage];
-    [rowImage release];
-    [rowImageName release];
 	
     return cell;
 }
@@ -216,7 +214,6 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     [self.referenceModel retrieveReference:[tableDataKeys objectAtIndex:indexPath.row]];
 
 	[self.navigationController pushViewController:detailViewCont animated:YES];
-	[detailViewCont release];
 }
 
 #pragma mark -
@@ -294,38 +291,38 @@ Implementation: Iterate through searchData looking for instances of searchText
 	NSInteger counter = 0;
 	for(NSString *name in dataSource)
 	{
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
+		@autoreleasepool {
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[self.referenceModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-		
-		//A match was found
-		if(searchRange.location != NSNotFound)
-		{
-			isFound = TRUE;
+			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[[self.referenceModel.details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 			
-		}else if(searchRangeDetails.location != NSNotFound){
-			isFound = TRUE;
-		}		
-		
-		if (isFound) {
-			//If search is slow, only search prefix
-			//if(searchRange.location== 0)
-			//{
+			//A match was found
+			if(searchRange.location != NSNotFound)
+			{
+				isFound = TRUE;
+				
+			}else if(searchRangeDetails.location != NSNotFound){
+				isFound = TRUE;
+			}		
 			
-			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:[self.referenceModel.references objectAtIndex:counter]];
-			[tableDataImages addObject:[self.referenceModel.icons objectAtIndex:counter]];
-			[tableDataDetails addObject:[self.referenceModel.details objectAtIndex:counter]];
-			[tableDataKeys addObject:[self.referenceModel.referenceKeys objectAtIndex:counter]];
+			if (isFound) {
+				//If search is slow, only search prefix
+				//if(searchRange.location== 0)
+				//{
+				
+				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
+				[tableData addObject:[self.referenceModel.references objectAtIndex:counter]];
+				[tableDataImages addObject:[self.referenceModel.icons objectAtIndex:counter]];
+				[tableDataDetails addObject:[self.referenceModel.details objectAtIndex:counter]];
+				[tableDataKeys addObject:[self.referenceModel.referenceKeys objectAtIndex:counter]];
+				
+				//}
+			}
 			
-			//}
+			isFound = FALSE;
+			counter++;
 		}
-		
-		isFound = FALSE;
-		counter++;
-		[pool release];
 	}
 	
 	[referencesTableView reloadData];
@@ -349,17 +346,6 @@ Implementation: Iterate through searchData looking for instances of searchText
 }
 
 
-- (void)dealloc {
-    
-    [searchedData release];
-	[tableData release];
-	[tableDataImages release];
-	[tableDataDetails release];
-	[tableDataKeys release];
-	[dataSource release];	
-	
-    [super dealloc];
-}
 
 
 @end

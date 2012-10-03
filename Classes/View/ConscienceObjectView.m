@@ -88,8 +88,6 @@ Must override drawRect because custom drawing from a vector source is required
 				//Create the path
 				[self createPathFromPoints:pathPoints WithInstructions:pathInstructions ForPath:_dynamicPath];
 
-				[pathInstructions release];
-				[pathPoints release];
                 
 				//Color the path
 				//Convert hex from data to CGPathColor format
@@ -208,15 +206,6 @@ Points must be absolute.
 #pragma mark -
 #pragma mark Memory management
 
-- (void)dealloc {
-    
-	[_conscienceBackgroundColor release];
-	[_totalGradients release];
-	[_totalLayers release];
-    
-    [super dealloc];
-
-}
 
 
 @end

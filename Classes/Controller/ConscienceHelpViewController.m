@@ -107,17 +107,11 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
             if (![tempTitle isEqualToString:[helpTitleNames objectAtIndex:i]]) {
                 [helpAllTitles addObject:tempTitle];
             }
-            [tempText release];
-            [tempTitle release];
         }
         
         _helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
         _helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
         
-        [helpTitleNames release];
-        [helpTextNames release];
-        [helpAllTitles release];
-        [helpAllTexts release];
     }
 
 	//Create NSArray of help screens.  Populate them programattically
@@ -139,7 +133,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		[label setShadowColor:[UIColor darkGrayColor]];
 		[label setShadowOffset:CGSizeMake(0, -1)];
 		[[viewsArray objectAtIndex:counter] addSubview:label];
-		[label release];
 		
 		CGRect textViewFrame = CGRectMake(40, 80, 240, 258);
 		UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
@@ -153,12 +146,10 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		[textView setEditable:FALSE];
 		[[viewsArray objectAtIndex:counter] addSubview:textView];
         
-		[textView release];
         
 		counter++;
 	}
 	
-	[viewsArray release];    
     
     
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
@@ -404,14 +395,6 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 }
 
 
-- (void)dealloc {
-    [_viewControllerClassName release];
-    [_helpTitles release];
-    [_helpTexts release];
-
-    [super dealloc];
-
-}
 
 
 @end

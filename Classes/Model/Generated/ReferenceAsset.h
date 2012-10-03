@@ -14,14 +14,14 @@
 @interface ReferenceAsset : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * linkReference;
-@property (nonatomic, retain) NSString * nameReference;
-@property (nonatomic, retain) NSNumber * originYear;
-@property (nonatomic, retain) NSString * longDescriptionReference;
-@property (nonatomic, retain) NSString * displayNameReference;
-@property (nonatomic, retain) NSString * shortDescriptionReference;
-@property (nonatomic, retain) NSString * imageNameReference;
-@property (nonatomic, retain) NSString * originLocation;
-@property (nonatomic, retain) Moral * relatedMoral;
+@property (nonatomic, strong) NSString * linkReference;
+@property (nonatomic, strong) NSString * nameReference;
+@property (nonatomic, strong) NSNumber * originYear;
+@property (nonatomic, strong) NSString * longDescriptionReference;
+@property (nonatomic, strong) NSString * displayNameReference;
+@property (nonatomic, strong) NSString * shortDescriptionReference;
+@property (nonatomic, strong) NSString * imageNameReference;
+@property (nonatomic, strong) NSString * originLocation;
+@property (nonatomic, strong) Moral * relatedMoral;
 
 @end

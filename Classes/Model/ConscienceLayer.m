@@ -59,12 +59,7 @@ float const kFeatureOffsetY = 0.0;
 - (void) dealloc {
 
     [_consciencePaths removeAllObjects];
-	[_consciencePaths release];_consciencePaths = nil;
-	[_layerID release];
-	[_currentFillColor release];
-	[_currentStrokeColor release];
 
-    [super dealloc];
 
 }
 

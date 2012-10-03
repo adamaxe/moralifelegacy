@@ -143,7 +143,6 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
     
     
     [self.navigationController pushViewController:conscienceListCont animated:NO];
-    [conscienceListCont release];
 }
 
 /**
@@ -183,29 +182,15 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 }
 
 - (void)viewDidUnload {
-    [topAccessoryButton release];
     topAccessoryButton = nil;
-    [primaryAccessoryButton release];
     primaryAccessoryButton = nil;
-    [bottomAccessoryButton release];
     bottomAccessoryButton = nil;
-    [secondaryAccessoryButton release];
     secondaryAccessoryButton = nil;
-    [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc {
-
-    [topAccessoryButton release];
-    [primaryAccessoryButton release];
-    [bottomAccessoryButton release];
-    [secondaryAccessoryButton release];
-    [previousButton release];
-    [super dealloc];
-}
 
 @end

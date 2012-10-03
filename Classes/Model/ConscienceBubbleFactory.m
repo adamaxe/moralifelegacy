@@ -11,7 +11,7 @@
 
 @implementation ConscienceBubbleFactory
 
-+ (CGMutablePathRef)bubbleSurfaceWithType:(int)bubbleType{
++ (NSObject *)bubbleSurfaceWithType:(int)bubbleType{
     
     BOOL isBubbleDefault = TRUE;
         
@@ -149,12 +149,12 @@
     }
 
     CGPathCloseSubpath(outerPath);
-    return (CGMutablePathRef)[(NSObject*)outerPath autorelease];
+    return (NSObject*)CFBridgingRelease(outerPath);
 
     
 }
 
-+ (CGMutablePathRef)bubbleAccentWithType:(int)bubbleType {
++ (NSObject *)bubbleAccentWithType:(int)bubbleType {
     
     BOOL isBubbleDefault = TRUE;
     
@@ -225,7 +225,7 @@
     }
     
     CGPathCloseSubpath(dynamicPath);
-    return (CGMutablePathRef)[(NSObject*)dynamicPath autorelease];    
+    return (NSObject*)CFBridgingRelease(dynamicPath);
     
 }
 

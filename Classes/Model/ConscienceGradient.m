@@ -26,10 +26,5 @@ Implementation:  Facial Features Gradient Data.  Object to be populated with the
     return self;
 }
 
-- (void) dealloc {
-	[_gradientID release];
-	[_gradientPoints release];
-	[super dealloc];
-}
 
 @end

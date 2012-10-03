@@ -29,7 +29,7 @@ typedef enum kConscienceViewControllerTags{
 } kConscienceViewControllerTags;
 
 float const kTransientInterval = 7;
-int const kThoughtIterations = 4;
+int const kThoughtIterations = 5;
 float const kThoughtInterval = 5;
 
 @interface ConscienceViewController () <ViewControllerLocalization> {
@@ -349,14 +349,12 @@ static int thoughtVersion = 0;
 	ConscienceModalViewController *conscienceModalViewController1 = [[ConscienceModalViewController alloc] init];
 	
     [modalNavController1 pushViewController:conscienceModalViewController1 animated:NO];
-	[conscienceModalViewController1 release];
 	
 	[self presentModalViewController:modalNavController1 animated:NO];
 	
 	// The navigation controller is now owned by the current view controller
 	// and the root view controller is owned by the navigation controller,
 	// so both objects should be released to prevent over-retention.
-	[modalNavController1 release];
 
 }
 
@@ -385,7 +383,6 @@ static int thoughtVersion = 0;
     IntroViewController *introViewCont = [[IntroViewController alloc] init];
     
     [self presentModalViewController:introViewCont animated:NO];
-    [introViewCont release];
 }
 
 
@@ -473,9 +470,6 @@ static int thoughtVersion = 0;
                 [self createMovementReaction];
 				
 			}	
-            
-            /** @todo implement ability to dismiss Conscience Thought */
-			
 
 		} break;
 		default:break;
@@ -559,7 +553,6 @@ static int thoughtVersion = 0;
     
     [currentUserCharacterDAO update];
     
-    [currentUserCharacterDAO release];  
     
 }
 
@@ -678,7 +671,6 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     //Increase the moral's value
     ethicals = [[currentUserCollectable collectableValue] intValue];		
     
-    [currentUserCollectableDAO release];
         
     NSString *welcomeTextName =[[NSString alloc] initWithFormat:@"%@Welcome%@%@",NSStringFromClass([self class]), timeOfDay, mood ];
     NSString *welcomeText = [[NSString alloc] initWithString:NSLocalizedString(welcomeTextName,@"Welcome Text")];
@@ -713,6 +705,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
             break;
         }
         default:
+            [thoughtSpecialized setString:welcomeText];
             break;
             
     }
@@ -725,11 +718,6 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     
     [conscienceStatus setText:thoughtSpecialized];
     
-    [welcomeTextName release];
-    [welcomeText release];
-    [thoughtSpecialized release];
-    [conscienceEnthusiasm release];
-    [conscienceMood release];
     
     //Only show status when User interacts with Conscience
     [UIView beginAnimations:@"hideThoughtLabel" context:nil];
@@ -805,7 +793,6 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
             [moralImageName setString:currentMoral.imageNameMoral];            
         }
                 
-        [currentMoralDAO release];
         
         if (isVirtue) {
             [virtueButton setEnabled:TRUE];
@@ -822,8 +809,6 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
 	}
 	
-	[currentUserChoiceDAO release];
-    [reportValues release];
 	
 }
 
@@ -846,8 +831,6 @@ Change the Rank picture and description.
     
 	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
 	currentUserCollectableDAO.sorts = sortDescriptors;
-	[sortDescriptor release];
-	[sortDescriptors release];    
     
 	NSArray *objects = [currentUserCollectableDAO readAll];
 
@@ -867,11 +850,9 @@ Change the Rank picture and description.
             [highestRankName setString:currentAsset.displayNameReference];
         }
         
-        [currentAssetDAO release];
                         
 	}
 	
-	[currentUserCollectableDAO release];
     
 }
 
@@ -933,14 +914,5 @@ Change the Rank picture and description.
 }
 
 
-- (void)dealloc {
- 
-    [homeVirtueDisplayName release];
-    [homeViceDisplayName release];
-    [highestRankName release];
-
-    [super dealloc];
-	
-}
 
 @end

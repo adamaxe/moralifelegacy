@@ -29,10 +29,10 @@ typedef enum referenceModelTypeEnum{
 @property (nonatomic, assign) int referenceType;    /**< current reference type */
 
 //Raw, readonly data of all entered choices
-@property (nonatomic, readonly, retain) NSMutableArray *references;			/**< Array of User-entered choice titles */
-@property (nonatomic, readonly, retain) NSMutableArray *referenceKeys;     	/**< Array of whether choices are good/bad */
-@property (nonatomic, readonly, retain) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readonly, retain) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readonly, strong) NSMutableArray *references;			/**< Array of User-entered choice titles */
+@property (nonatomic, readonly, strong) NSMutableArray *referenceKeys;     	/**< Array of whether choices are good/bad */
+@property (nonatomic, readonly, strong) NSMutableArray *details;			/**< Array of User-entered details */
+@property (nonatomic, readonly, strong) NSMutableArray *icons;				/**< Array of associated images */
 
 
 /**

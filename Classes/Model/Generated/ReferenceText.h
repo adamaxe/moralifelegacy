@@ -16,11 +16,11 @@
 {
 }
 
-@property (nonatomic, retain) NSString * quote;
-@property (nonatomic, retain) ReferencePerson * author;
-@property (nonatomic, retain) NSSet* childrenReference;
-@property (nonatomic, retain) NSSet* belief;
-@property (nonatomic, retain) ReferenceText * parentReference;
+@property (nonatomic, strong) NSString * quote;
+@property (nonatomic, strong) ReferencePerson * author;
+@property (nonatomic, strong) NSSet* childrenReference;
+@property (nonatomic, strong) NSSet* belief;
+@property (nonatomic, strong) ReferenceText * parentReference;
 
 @end
 

@@ -14,6 +14,6 @@
 @interface UserLuck : UserEntry {
 @private
 }
-@property (nonatomic, retain) NSDate * entryModificationDate;
+@property (nonatomic, strong) NSDate * entryModificationDate;
 
 @end

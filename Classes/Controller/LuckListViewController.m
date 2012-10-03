@@ -8,6 +8,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
 #import "LuckListViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "LuckViewController.h"
 #import "ChoiceHistoryModel.h"
 #import "UserLuck.h"
@@ -245,9 +246,8 @@ Implementation: Retrieve all User entered Lucks, and then populate a working set
 
     sortDescriptor = [[NSSortDescriptor alloc] initWithKey:luckSortDescriptor ascending:isAscending];
     
-	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
+	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
 	[request setSortDescriptors:sortDescriptors];
-	[sortDescriptor release];
 	
 	NSArray *objects = [context executeFetchRequest:request error:&outError];
     
@@ -281,7 +281,6 @@ Implementation: Retrieve all User entered Lucks, and then populate a working set
             
             [detailText appendFormat:@", %@", [dateFormat stringFromDate:modificationDate]];
             
-            [dateFormat release];
 
             if (![[matches entryLongDescription] isEqualToString:@""]) {
                 [detailText appendFormat:@": %@", [matches entryLongDescription]];
@@ -290,12 +289,10 @@ Implementation: Retrieve all User entered Lucks, and then populate a working set
 			[details addObject:detailText];	
             [lucksAreGood addObject:@([[matches entryIsGood] boolValue])];
 
-            [detailText release];
             
 		}
 	}
 	
-	[request release];
 	
 	[dataSource addObjectsFromArray:lucks];
 	[tableData addObjectsFromArray:dataSource];
@@ -342,7 +339,6 @@ Implementation: Retrieve a requested Luck and set NSUserDefaults for ChoiceViewC
 		
 	}
 	
-	[request release];
 	
 	
 }
@@ -384,7 +380,6 @@ Implementation:  VERSION 2.0 Delete selected luck
 		NSLog(@"save:%@", outError);
 	}
 	
-	[request release];
 	
 }
 
@@ -412,7 +407,7 @@ Implementation:  VERSION 2.0 Delete selected luck
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
 		
     }
 	
@@ -435,7 +430,6 @@ Implementation:  VERSION 2.0 Delete selected luck
 	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
 	[rowImageName appendString:@".png"];
 	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
-	[rowImageName release];
 	
     return cell;
 }
@@ -455,7 +449,6 @@ Implementation:  VERSION 2.0 Delete selected luck
 	
 	[self deleteLuck:selectedRow];
 	
-	[selectedRow release];
 	
 	[self retrieveAllLucks];
 	[lucksTableView reloadData];
@@ -522,14 +515,12 @@ Implementation:  VERSION 2.0 Delete selected luck
 	
 	[self retrieveLuck:selectedRow];
 	
-	[selectedRow release];
 	
 	//Create subsequent view controller to be pushed onto stack
 	LuckViewController *luckCont = [[LuckViewController alloc] init];
 	
 	//Push view onto stack
 	[self.navigationController pushViewController:luckCont animated:YES];
-	[luckCont release];
 	
 	//[self dismissModalViewControllerAnimated:NO];	
 	
@@ -578,39 +569,39 @@ Implementation:  VERSION 2.0 Delete selected luck
 	NSInteger counter = 0;
 	for(NSString *name in dataSource)
 	{
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
+		@autoreleasepool {
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-		
-		
-		//A match was found
-		if(searchRange.location != NSNotFound)
-		{
-			isFound = TRUE;
+			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[[details objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
 			
-		}else if(searchRangeDetails.location != NSNotFound){
-			isFound = TRUE;
-		}		
-		
-		if (isFound) {
-			//If search is slow, only search prefix
-			//if(searchRange.location== 0)
-			//{
 			
-			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:[lucks objectAtIndex:counter]];
-			[tableDataImages addObject:[icons objectAtIndex:counter]];
-			[tableDataDetails addObject:[details objectAtIndex:counter]];
-			[tableDataKeys addObject:[luckKeys objectAtIndex:counter]];
+			//A match was found
+			if(searchRange.location != NSNotFound)
+			{
+				isFound = TRUE;
+				
+			}else if(searchRangeDetails.location != NSNotFound){
+				isFound = TRUE;
+			}		
 			
-			//}
+			if (isFound) {
+				//If search is slow, only search prefix
+				//if(searchRange.location== 0)
+				//{
+				
+				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
+				[tableData addObject:[lucks objectAtIndex:counter]];
+				[tableDataImages addObject:[icons objectAtIndex:counter]];
+				[tableDataDetails addObject:[details objectAtIndex:counter]];
+				[tableDataKeys addObject:[luckKeys objectAtIndex:counter]];
+				
+				//}
+			}
+			
+			isFound = FALSE;
+			counter++;
 		}
-		
-		isFound = FALSE;
-		counter++;
-		[pool release];
 	}
 	
 	[lucksTableView reloadData];
@@ -669,21 +660,12 @@ Implementation:  VERSION 2.0 Delete selected luck
 
 - (void)dealloc {
     
-	[tableData release];
-	[tableDataImages release];
-	[tableDataDetails release];
-	[tableDataKeys release];
-	[tableDataColorBools release];
-	[dataSource release];	
-	[lucks release], lucks = nil;
-	[luckKeys release], luckKeys = nil;
-	[lucksAreGood release], lucksAreGood = nil;
-	[details release], details = nil;
-	[icons release], icons = nil;
-	[lucksView release];
+	lucks = nil;
+	luckKeys = nil;
+	lucksAreGood = nil;
+	details = nil;
+	icons = nil;
     
-    [luckSortDescriptor release];
-	[super dealloc];
 }
 
 @end

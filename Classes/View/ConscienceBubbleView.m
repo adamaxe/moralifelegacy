@@ -73,8 +73,8 @@ float const kBubbleWidth = 5.0;
 
     //outerpath is shape enclosing Conscience
     //dynamicPath is the accent promoting 3d nature of Conscience
-    CGMutablePathRef outerPath = [ConscienceBubbleFactory bubbleSurfaceWithType:_bubbleType];
-    CGMutablePathRef dynamicPath = [ConscienceBubbleFactory bubbleAccentWithType:_bubbleType];
+    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:_bubbleType];
+    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:_bubbleType];
         
 	CGContextAddPath(context, outerPath);
 	CGContextFillPath(context);    
@@ -146,9 +146,5 @@ float const kBubbleWidth = 5.0;
 #pragma mark -
 #pragma mark Memory management
 
-- (void)dealloc {
-    [_bubbleColor release];
-    [super dealloc];
-}
 
 @end

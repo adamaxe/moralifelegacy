@@ -149,8 +149,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	//Save image name for when ConscienceAsset is no longer retained
 	/** @todo determine if Conscience update can be refactored */
 	currentFeature = [[NSString alloc] initWithString:assetFileName];
-    [assetFileName release];
-    [currentAssetDAO release];                
     
     //Add requested ConscienceAsset to duplicate ConscienceView for review
 	switch (_accessorySlot) {
@@ -365,7 +363,6 @@ Implementation: Internal function to retrieve how many ethicals User currently h
     
     currentFunds = ethicals;
     
-    [currentUserCollectableDAO release];
     
 }
 
@@ -424,7 +421,6 @@ Implementation: Commits the ConscienceAsset to persistence framework.
 
     [currentUserCharacterDAO update];
     
-    [currentUserCharacterDAO release];
 }
 
 /**
@@ -438,7 +434,6 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
     
 	NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
-	[dateFormatter release];
     
 	//Create a new UserCollectable
 	//It has already been determined to not exist in MoraLifeAppDelegate::userCollection, no need to test
@@ -475,7 +470,6 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 	[currentUserCollectable setValue:@(ethicals) forKey:@"collectableValue"];
         
     [currentUserCollectableDAO update];
-    [currentUserCollectableDAO release];
 }
 
 #pragma mark -
@@ -505,7 +499,6 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 }
 
 - (void)viewDidUnload {
-    [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -513,14 +506,5 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 }
 
 
-- (void)dealloc {
-
-	[currentFeature release];
-    [resetFeature release];
-	[_assetSelection release];
-    [previousButton release];
-	[super dealloc];
-
-}
 
 @end

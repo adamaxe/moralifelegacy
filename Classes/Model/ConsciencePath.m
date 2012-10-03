@@ -81,22 +81,22 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 	int currentPointLimit = 0;
 	bool addInstruction = FALSE;
 
-	NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-	NSMutableString *previousInstruction = [[NSMutableString alloc] initWithString:@""];
-	
+	@autoreleasepool {
+		NSMutableString *previousInstruction = [[NSMutableString alloc] initWithString:@""];
+		
     /**
-	Tokenize path data.
-	Path must be tokenized twice.  Once for instructions/coordinates.  Twice for X/Y components.
-	 */
-	for (NSString *element in [pathData componentsSeparatedByString:@" "]) {        
+		Tokenize path data.
+		Path must be tokenized twice.  Once for instructions/coordinates.  Twice for X/Y components.
+		 */
+		for (NSString *element in [pathData componentsSeparatedByString:@" "]) {        
     
         NSCharacterSet *characterSet = [NSCharacterSet letterCharacterSet];
         NSRange characterRange = [element rangeOfCharacterFromSet:characterSet];
 
-		//Check for instruction or point
-		if(characterRange.location == NSNotFound ){			
-			/** @todo account for non-CGPoint instances like Arc */
-			//If point found, tokenize to get x, y
+			//Check for instruction or point
+			if(characterRange.location == NSNotFound ){			
+				/** @todo account for non-CGPoint instances like Arc */
+				//If point found, tokenize to get x, y
                 
             NSArray *points = [element componentsSeparatedByString: @","];
             
@@ -105,61 +105,59 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
                 pointCount++;
             }
             
-			//Determine if an SVG instruction has been omitted
-			if (pointCount == currentPointLimit) {
-				addInstruction = TRUE;
-				
-			}
-            
-		}else {		
-			//Determine SVG path "simplification"
-			//M=0, L=1, C=2, Q=3, A=4
-			if ([element isEqualToString:@"M"]) {
-				currentPointLimit = 2;
-                [previousInstruction setString:@"0"];
-			}else if ([element isEqualToString:@"L"]) {
-                [previousInstruction setString:@"1"];                
-				currentPointLimit = 2;
-			}else if ([element isEqualToString:@"C"]) {
-                [previousInstruction setString:@"2"];                
-				currentPointLimit = 6;
-			}else if ([element isEqualToString:@"Q"]) {
-                [previousInstruction setString:@"3"];                
-				currentPointLimit = 4;
-			}else if([element isEqualToString:@"A"]){
-                [previousInstruction setString:@"4"];                
-				currentPointLimit = 5;
-			}else if([element isEqualToString:@"z"]){
-				
-				if (pointCount == currentPointLimit){
+				//Determine if an SVG instruction has been omitted
+				if (pointCount == currentPointLimit) {
 					addInstruction = TRUE;
 					
 				}
-			}	
-			pointCount = 0;
+            
+			}else {		
+				//Determine SVG path "simplification"
+				//M=0, L=1, C=2, Q=3, A=4
+				if ([element isEqualToString:@"M"]) {
+					currentPointLimit = 2;
+                [previousInstruction setString:@"0"];
+				}else if ([element isEqualToString:@"L"]) {
+                [previousInstruction setString:@"1"];                
+					currentPointLimit = 2;
+				}else if ([element isEqualToString:@"C"]) {
+                [previousInstruction setString:@"2"];                
+					currentPointLimit = 6;
+				}else if ([element isEqualToString:@"Q"]) {
+                [previousInstruction setString:@"3"];                
+					currentPointLimit = 4;
+				}else if([element isEqualToString:@"A"]){
+                [previousInstruction setString:@"4"];                
+					currentPointLimit = 5;
+				}else if([element isEqualToString:@"z"]){
+					
+					if (pointCount == currentPointLimit){
+						addInstruction = TRUE;
+						
+					}
+				}	
+				pointCount = 0;
+				
+			}
 			
-		}
-		
-		//Determine if an SVG instruction has been omitted
-		if (addInstruction) {
-			addInstruction = FALSE;
-			//Explicitly add "simplified" SVG instruction
-			//M=0, L=1, C=2, Q=3, A=4
+			//Determine if an SVG instruction has been omitted
+			if (addInstruction) {
+				addInstruction = FALSE;
+				//Explicitly add "simplified" SVG instruction
+				//M=0, L=1, C=2, Q=3, A=4
 
             NSString *finalInstruction = [[NSString alloc] initWithString:previousInstruction];
-			[self.pathInstructions addObject:finalInstruction];
-            [finalInstruction release];
+				[self.pathInstructions addObject:finalInstruction];
+					
+				//Reset counter for next instruction
+				pointCount = 0;
 				
-			//Reset counter for next instruction
-			pointCount = 0;
-			
+			}
+
 		}
 
-	}
 
-	[previousInstruction release];
-
-    [pool drain];
+    }
 	
 	//Tokenizing style element.  CSS format utilized so ';' is first delimiter, ':' is second
 	//name:valuepair1;name:valuepair2;etc.
@@ -219,16 +217,5 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 }
 
 
-- (void) dealloc {
-
-	[_pathInstructions release];_pathInstructions = nil;
-	[_pathPoints release];_pathPoints = nil;
-	[_pathID release];
-	[_pathGradient release];
-	[_pathFillColor release];
-	[_pathStrokeColor release];
-	[super dealloc];
-
-}
 
 @end

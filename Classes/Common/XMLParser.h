@@ -20,13 +20,6 @@ Limitations: SVG must be unoptimized, only small subset of SVG instructions are 
 
 #endif
 
-@property (nonatomic, retain) ConscienceBody *currentConscienceBody;    /**< current Conscience selected for population */
-
-/**
-Initializes XMLParser instance
-Source data is direct from xml parsing.
-@return XMLParser	initialized XMLParser
- */
-- (XMLParser *) initXMLParser;
+@property (nonatomic, strong) ConscienceBody *currentConscienceBody;    /**< current Conscience selected for population */
 
 @end

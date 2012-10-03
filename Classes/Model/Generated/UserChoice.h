@@ -14,11 +14,11 @@
 @interface UserChoice : UserEntry {
 @private
 }
-@property (nonatomic, retain) NSDate * entryModificationDate;
-@property (nonatomic, retain) NSNumber * choiceInfluence;
-@property (nonatomic, retain) NSString * choiceConsequences;
-@property (nonatomic, retain) NSString * choiceJustification;
-@property (nonatomic, retain) NSString * choiceMoral;
-@property (nonatomic, retain) NSNumber * choiceWeight;
+@property (nonatomic, strong) NSDate * entryModificationDate;
+@property (nonatomic, strong) NSNumber * choiceInfluence;
+@property (nonatomic, strong) NSString * choiceConsequences;
+@property (nonatomic, strong) NSString * choiceJustification;
+@property (nonatomic, strong) NSString * choiceMoral;
+@property (nonatomic, strong) NSNumber * choiceWeight;
 
 @end

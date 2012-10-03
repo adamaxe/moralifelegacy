@@ -32,7 +32,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
 }
 
-@property (nonatomic, retain) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
+@property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
 
 @end
 
@@ -93,7 +93,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
         
         [prefs setBool:FALSE forKey:@"firstReference"];
         
@@ -130,10 +129,8 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 
     referenceModel.referenceType = referenceType;
     ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];
-    [referenceModel release];
     [self.navigationController pushViewController:referenceListViewCont animated:YES];
 
-	[referenceListViewCont release];
 }
 
 #pragma mark -
@@ -169,7 +166,6 @@ Implementation: Build animated UIImage from sequential icon files
 	
 	NSArray *images = [[NSArray alloc] initWithObjects:iconani1, iconani2, iconani3, iconani4, nil];
 	animation1.animationImages = images;
-	[images release];
 
 	switch ([buttonNumber intValue]){
 		case 0: [accessoriesButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[accessoriesButton addSubview:animation1];break;
@@ -185,7 +181,6 @@ Implementation: Build animated UIImage from sequential icon files
 	animation1.animationRepeatCount = 1;
 	[animation1 startAnimating];
 	
-	[animation1 release];
 		
 	[self performSelector:@selector(buttonAnimationDone:) withObject:buttonNumber afterDelay:0.70];
 	
@@ -266,10 +261,5 @@ Implementation: Return the button's icon to default after animation finishes
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc {
-	[buttonNames release];
-    [super dealloc];
-
-}
 
 @end

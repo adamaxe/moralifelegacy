@@ -16,14 +16,14 @@
 
 @interface ModelManager () 
 
-@property (nonatomic, retain) NSManagedObjectModel *managedObjectModel;             /**< readOnly NSManagedObjectModel */
-@property (nonatomic, retain) NSManagedObjectModel *readWriteManagedObjectModel;    /**< readWrite NSManagedObjectModel */
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;             /**< readOnly NSManagedObjectContext */
-@property (nonatomic, retain) NSManagedObjectContext *readWriteManagedObjectContext;    /**< readWrite NSManagedObjectContext */
-@property (nonatomic, retain) NSPersistentStoreCoordinator *persistentStoreCoordinator;             /**< readOnly NSPersistentStoreCoordinator */
-@property (nonatomic, retain) NSPersistentStoreCoordinator *readWritePersistentStoreCoordinator;    /**< readWrite NSManagedObjectContext */
-@property (nonatomic, retain) NSBundle *currentBundle;                                  /**< Bundle in which to look for the store */
-@property (nonatomic, retain) NSString *storeType;                                      /**< Store type of in-memory or sqlite */
+@property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;             /**< readOnly NSManagedObjectModel */
+@property (nonatomic, strong) NSManagedObjectModel *readWriteManagedObjectModel;    /**< readWrite NSManagedObjectModel */
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;             /**< readOnly NSManagedObjectContext */
+@property (nonatomic, strong) NSManagedObjectContext *readWriteManagedObjectContext;    /**< readWrite NSManagedObjectContext */
+@property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;             /**< readOnly NSPersistentStoreCoordinator */
+@property (nonatomic, strong) NSPersistentStoreCoordinator *readWritePersistentStoreCoordinator;    /**< readWrite NSManagedObjectContext */
+@property (nonatomic, strong) NSBundle *currentBundle;                                  /**< Bundle in which to look for the store */
+@property (nonatomic, strong) NSString *storeType;                                      /**< Store type of in-memory or sqlite */
 
 @end
 
@@ -154,12 +154,10 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathOriginalReadOnlyMOM];
 	NSManagedObjectModel *modelReadOnly = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];
     
-    NSManagedObjectModel *mergedModel = [[NSManagedObjectModel modelByMergingModels:@[modelReadWrite, modelReadOnly]] retain];
+    NSManagedObjectModel *mergedModel = [NSManagedObjectModel modelByMergingModels:@[modelReadWrite, modelReadOnly]];
 	
-	[modelReadOnly release];
-	[modelReadWrite release];
     
-	return [mergedModel autorelease];
+	return mergedModel;
 }
 
 /**
@@ -416,7 +414,6 @@ Performs a migration from the legacy store with a merged model to the new store
                                         options:nil withMappingModel:mappingModel toDestinationURL:destinationStoreURL
                                 destinationType:NSSQLiteStoreType destinationOptions:nil error:outError];
     
-    [manager release];
     
     return success;
 }
@@ -478,7 +475,6 @@ Read a single NSManagedObject
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@", classKey, keyValue];
 	[request setPredicate:pred];
-	[pred release];
     
     NSArray *results;
     
@@ -576,9 +572,4 @@ Save the current NSManagedObjectContext.  Allows for testing of the Core Data st
     }
 } 
 
--(void)dealloc {
-    [_storeType release];
-    
-    [super dealloc];
-}
 @end

@@ -7,6 +7,7 @@ User selection causes selectChoice to be called which sets the currentState vari
  */
 
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "ConscienceBody.h"
 #import "ConscienceView.h"
 #import "ConscienceModalViewController.h"
@@ -97,51 +98,39 @@ User selection causes selectChoice to be called which sets the currentState vari
 	/** @todo determine better screen loading method */
 	NSArray *tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-customization.png", @"icon-rank.png", @"icon-piechart.png", @" ",nil];
 	[buttonImages setObject:tempButtonImages forKey:@"0"];
-	[tempButtonImages release];
 
 	NSArray *tempButtonLabels = [[NSArray alloc] initWithObjects:@"Commissary", @"Morathology", @"Moral Report", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"0"];
-	[tempButtonLabels release];
 	
 	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-features.png", @"icon-palette.png", @"icon-accessories.png", @" ",nil];
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
-	[tempButtonImages release];
 	
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Orientation", @"Atlantic", @"Coming Soon!", @"Coming Soon!", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
-	[tempButtonLabels release];
 	
 	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-placesani1.png", @"icon-placesani2.png", @"icon-placesani3.png", @"icon-placesani4.png",nil];
 	[buttonImages setValue:tempButtonImages forKey:@"2"];
-	[tempButtonImages release];
 	
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Features", @"Colors", @"Accessories", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"1"];
-	[tempButtonLabels release];
     
 	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-resetapp.png", @" ", @" ", @" ",nil];
 	[buttonImages setValue:tempButtonImages forKey:@"3"];
-	[tempButtonImages release];
 	
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Reset Application", @" ", @" ", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"3"];
-	[tempButtonLabels release];	
 	
 	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-eye.png", @"icon-symbol.png", @"icon-mouth.png", @"icon-bubble.png",nil];
 	[buttonImages setValue:tempButtonImages forKey:@"5"];
-	[tempButtonImages release];
 	
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Eye", @"Face", @"Mouth", @"Bubble", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"5"];
-	[tempButtonLabels release];
 	
 	tempButtonImages = [[NSArray alloc] initWithObjects:@"icon-eye.png", @"icon-brow.png", @"icon-bubble.png", @"icon-none.png",nil];
 	[buttonImages setValue:tempButtonImages forKey:@"6"];
-	[tempButtonImages release];
 	
 	tempButtonLabels = [[NSArray alloc] initWithObjects:@"Eye", @"Brow", @"Bubble", @" ", nil];
 	[buttonLabels setValue:tempButtonLabels forKey:@"6"];
-	[tempButtonLabels release];	
     
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
@@ -238,7 +227,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
         [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
         
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
         
@@ -414,12 +402,10 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			case 2:{
                 ReportPieModel *reportPieModel = [[ReportPieModel alloc] init];
 				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel];
-                [reportPieModel release];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
 				[self.navigationController pushViewController:reportPieViewCont animated:NO];
                 
-				[reportPieViewCont release];
 
 			}
 				break;
@@ -427,7 +413,6 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 				ConscienceAccessoryViewController *conscienceAccessoryCont = [[ConscienceAccessoryViewController alloc] init];
                 
 				[self.navigationController pushViewController:conscienceAccessoryCont animated:NO];
-				[conscienceAccessoryCont release];
 			}
 				break;
                 
@@ -454,7 +439,6 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 		ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] init];
 		[conscienceListCont setAccessorySlot:requestedAccessorySlot];
 		[self.navigationController pushViewController:conscienceListCont animated:NO];
-		[conscienceListCont release];
 	}
 
 	//Present a DilemmaListViewController
@@ -469,7 +453,6 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
             [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
             [conscienceHelpViewCont setHelpVersion:2];
             [self presentModalViewController:conscienceHelpViewCont animated:NO];
-            [conscienceHelpViewCont release];
 			
     } else {
 
@@ -478,7 +461,6 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 		[prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
 
 		[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-		[dilemmaListViewCont release];
 		}
 	}
 }
@@ -611,7 +593,6 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
         [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
         [conscienceHelpViewCont setHelpVersion:1];
         [self presentModalViewController:conscienceHelpViewCont animated:NO];
-        [conscienceHelpViewCont release];
         
         [prefs setBool:TRUE forKey:@"isReadyToRemove"];    
         
@@ -633,7 +614,6 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
 }
 
 - (void)viewDidUnload {
-    [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -641,12 +621,5 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
 }
 
 
-- (void)dealloc {
-	[buttonImages release];
-	[buttonLabels release];
-	[screenTitles release];
-    [previousButton release];
-	[super dealloc];
-}
 
 @end

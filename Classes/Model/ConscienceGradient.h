@@ -12,10 +12,10 @@ Facial Features Gradient Data.  Object to be populated with the gradient data fr
 
 @interface ConscienceGradient : NSObject 
 
-@property (nonatomic, retain) NSString *gradientID;         /**< id from SVG */
+@property (nonatomic, strong) NSString *gradientID;         /**< id from SVG */
 @property (nonatomic, assign) int locationsCount;           /**< unimplemented */
 @property (nonatomic, assign) int componentsCount;          /**< unimplemented */
 @property (nonatomic, assign) int pointsCount;              /**< unimplemented */
-@property (nonatomic, retain) NSMutableArray *gradientPoints;	/**< array of CGPoints */
+@property (nonatomic, strong) NSMutableArray *gradientPoints;	/**< array of CGPoints */
 
 @end

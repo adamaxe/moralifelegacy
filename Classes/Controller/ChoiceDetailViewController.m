@@ -159,7 +159,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
         
         [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
         
@@ -228,8 +227,6 @@ Implementation: pop UIViewController from current navigationController
         
         [prefs synchronize];
         
-        [defaultTextJustification release];
-        [defaultTextConsequences release];
     }
 }
 
@@ -255,7 +252,6 @@ Implementation: pop UIViewController from current navigationController
     [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
     [conscienceHelpViewCont setHelpVersion:1];
     [self presentModalViewController:conscienceHelpViewCont animated:NO];
-    [conscienceHelpViewCont release];
 }
 
 #pragma mark -
@@ -366,8 +362,6 @@ Implementation:  Truncate the field on each keypress if length is greater
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
-	[influenceLabelDescriptions release];
-	[super dealloc];
 }
 
 @end

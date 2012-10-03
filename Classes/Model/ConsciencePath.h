@@ -15,12 +15,12 @@ extern float const kDefault0Float;
 
 @interface ConsciencePath : NSObject <NSCoding> 
 
-@property (nonatomic, retain) NSMutableArray *pathInstructions;     /**< array of integer instructions */
-@property (nonatomic, retain) NSMutableArray *pathPoints;           /**< array of CGFloat points */
-@property (nonatomic, retain) NSString *pathFillColor;              /**< path fill color */
-@property (nonatomic, retain) NSString *pathStrokeColor;            /**< path stroke color */
-@property (nonatomic, retain) NSString *pathID;                     /**< id of path from svg */
-@property (nonatomic, retain) NSString *pathGradient;               /**< gradient of path (optional) */
+@property (nonatomic, strong) NSMutableArray *pathInstructions;     /**< array of integer instructions */
+@property (nonatomic, strong) NSMutableArray *pathPoints;           /**< array of CGFloat points */
+@property (nonatomic, strong) NSString *pathFillColor;              /**< path fill color */
+@property (nonatomic, strong) NSString *pathStrokeColor;            /**< path stroke color */
+@property (nonatomic, strong) NSString *pathID;                     /**< id of path from svg */
+@property (nonatomic, strong) NSString *pathGradient;               /**< gradient of path (optional) */
 @property (nonatomic, assign) CGFloat pathStrokeWidth;	/**< width of stroke */
 @property (nonatomic, assign) CGFloat pathFillOpacity;	/**< opacity of fill */
 @property (nonatomic, assign) CGFloat pathStrokeOpacity;	/**< opacity of stroke */

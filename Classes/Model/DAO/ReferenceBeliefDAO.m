@@ -31,8 +31,5 @@
     return (ReferenceBelief *)[self readObject:key];
 }
 
--(void)dealloc {
-    [super dealloc];
-}
 
 @end

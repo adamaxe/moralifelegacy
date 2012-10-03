@@ -117,14 +117,5 @@ const float kDefaultPieDegrees = 360;
 /**
  Release init'ed objects, deallocate super.
  */
-- (void)dealloc {
-    
-	//Clean up synthesized properties
-	[_pieValues release];
-	[_pieColors release];
-    
-	[super dealloc];
-    
-}
 
 @end

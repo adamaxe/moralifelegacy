@@ -18,9 +18,9 @@ extern int const kEyeHeight;
 
 @interface ConscienceObjectView : UIView
 
-@property (nonatomic, retain) NSMutableDictionary *totalLayers;     /**< all ConscienceLayers of an Object */
-@property (nonatomic, retain) NSMutableDictionary *totalGradients;  /**< dictionary of ConscienceGradients */
-@property (nonatomic, retain) UIColor *conscienceBackgroundColor;   /**< default background color */
+@property (nonatomic, strong) NSMutableDictionary *totalLayers;     /**< all ConscienceLayers of an Object */
+@property (nonatomic, strong) NSMutableDictionary *totalGradients;  /**< dictionary of ConscienceGradients */
+@property (nonatomic, strong) UIColor *conscienceBackgroundColor;   /**< default background color */
 @property (nonatomic, assign) CGMutablePathRef dynamicPath;         /**< path to be used in all drawing/shading */
 
 /**

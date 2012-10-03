@@ -284,55 +284,45 @@ withMind: (ConscienceMind *) argMind{
 		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
 		animatedBubbleView.tag = kAnimatedBubbleViewTag;
 		[_conscienceBubbleView insertSubview:animatedBubbleView atIndex:0];
-		[animatedBubbleView release];		
 		
 		accessoryPrimaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(160, 25, kSideAccessoryWidth, kSideAccessoryHeight)]; 
 		accessoryPrimaryView.tag = kPrimaryAccessoryViewTag;
 		
 		[_conscienceBubbleView addSubview:accessoryPrimaryView];
-		[accessoryPrimaryView release];
 		
 		accessorySecondaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(-20, 25, kSideAccessoryWidth, kSideAccessoryHeight)]; 
 		accessorySecondaryView.tag = kSecondaryAccessoryViewTag;
 		[_conscienceBubbleView addSubview:accessorySecondaryView];
-		[accessorySecondaryView release];
 		
 		accessoryTopView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(12, -10, kTopBottomAccessoryWidth, kTopBottomAccessoryHeight)]; 
 		accessoryTopView.tag = kTopAccessoryViewTag;		
 		[_conscienceBubbleView addSubview:accessoryTopView];
-		[accessoryTopView release];
 		
 		accessoryBottomView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(20, 165, kTopBottomAccessoryWidth, kTopBottomAccessoryHeight)]; 
 		accessoryBottomView.tag = kBottomAccessoryViewTag;		
 		[_conscienceBubbleView addSubview:accessoryBottomView];
-		[accessoryBottomView release];		
 		
 		conscienceEyeRightView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kEyeWidth, kEyeHeight)];
 		conscienceEyeRightView.tag = kEyeRightViewTag;
 		[_conscienceBubbleView addSubview:conscienceEyeRightView];
-		[conscienceEyeRightView release];
 		
 		conscienceEyeLeftView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kEyeWidth, kEyeHeight)];
 		conscienceEyeLeftView.tag = kEyeLeftViewTag;
 		conscienceEyeLeftView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
 		[_conscienceBubbleView addSubview:conscienceEyeLeftView];
-		[conscienceEyeLeftView release];		
         
 		conscienceMouthView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kMouthWidth, kMouthHeight)];
 		conscienceMouthView.tag = kMouthViewTag;
 		[_conscienceBubbleView addSubview:conscienceMouthView];
-		[conscienceMouthView release];	
 		
 		conscienceSymbolView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
 		conscienceSymbolView.tag = kSymbolViewTag;
         
 		[_conscienceBubbleView addSubview:conscienceSymbolView];
-		[conscienceSymbolView release];
         
 		
 		[self addSubview: _conscienceBubbleView];
 		
-		[_conscienceBubbleView release];
         
     }
 	
@@ -436,7 +426,6 @@ Views are called by tags which are set in initWithFrame by constants
 	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.socketLayers objectForKey:@"layerSocketTop"] forKey:@"7layerSocketTop"];
 	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.lashesLayers objectForKey:@"layerLashesUp"] forKey:@"9layerLashes"];
 	[conscienceEyeRightView.totalLayers setObject:[_currentConscienceBody.bagsLayers objectForKey:ageLayer] forKey:@"3layerBags"];
-	[ageLayer release];
     
 	[conscienceEyeRightView.totalGradients addEntriesFromDictionary:_currentConscienceBody.gradientLayers];
 	[conscienceEyeRightView setNeedsDisplay];	
@@ -1153,21 +1142,8 @@ Release init'ed objects, deallocate super.
     
 	[self stopTimers];
     
-    [browExpressions release];
-    [lidExpressions release];
-    [lipsExpressions release];
-    [tongueExpressions release];
-    [teethExpressions release];
-    [dimplesExpressions release];
-    [eyeLeftPositions release];
-    [eyeRightPositions release]; 
 	
-	[_conscienceBubbleView release];
-	[_currentConscienceBody release];
-	[_currentConscienceAccessories release];
-	[_currentConscienceMind release];
     
-    [super dealloc];
     
 
 }

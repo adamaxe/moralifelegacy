@@ -32,7 +32,6 @@
     [self willChangeValueForKey:@"story" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"story"] addObject:value];
     [self didChangeValueForKey:@"story" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)removeStoryObject:(Dilemma *)value {
@@ -40,7 +39,6 @@
     [self willChangeValueForKey:@"story" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"story"] removeObject:value];
     [self didChangeValueForKey:@"story" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)addStory:(NSSet *)value {    

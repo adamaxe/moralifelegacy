@@ -24,11 +24,11 @@
 
 }
 
-@property (nonatomic, readwrite, retain) NSMutableArray *reportNames;
-@property (nonatomic, readwrite, retain) NSMutableArray *moralNames;
-@property (nonatomic, readwrite, retain) NSMutableArray *pieValues;
-@property (nonatomic, readwrite, retain) NSMutableArray *pieColors;
-@property (nonatomic, readwrite, retain) NSMutableDictionary *moralImageNames;
+@property (nonatomic, readwrite, strong) NSMutableArray *reportNames;
+@property (nonatomic, readwrite, strong) NSMutableArray *moralNames;
+@property (nonatomic, readwrite, strong) NSMutableArray *pieValues;
+@property (nonatomic, readwrite, strong) NSMutableArray *pieColors;
+@property (nonatomic, readwrite, strong) NSMutableDictionary *moralImageNames;
 
 /**
  Retrieve all User entered Morals from persisted User Data
@@ -161,7 +161,6 @@
 
             [moralColors setValue:[UIColor colorWithHexString:moralColor] forKey:moralName];
 
-            [moralColor release];
 
         }
 
@@ -247,20 +246,5 @@
 
 }
 
-- (void)dealloc {
-
-    [_reportNames release];
-    [_moralNames release];
-    [_pieColors release];
-    [_pieValues release];
-    [_moralImageNames release];
-    [currentUserChoiceDAO release];
-    [currentMoralDAO release];
-    [reportValues release];
-    [moralDisplayNames release];
-    [moralColors release];
-
-    [super dealloc];
-}
 
 @end

@@ -22,16 +22,16 @@ extern NSString* const kChoiceListSortName;
 
 @interface ChoiceHistoryModel : NSObject
 
-@property (nonatomic, retain) NSString *choiceType;     /**< determine if Virtues/Vices/All should be returned */
+@property (nonatomic, strong) NSString *choiceType;     /**< determine if Virtues/Vices/All should be returned */
 @property (nonatomic, assign) BOOL isAscending;         /**< current order type */
-@property (nonatomic, retain) NSString *sortKey; /**< sort order */
+@property (nonatomic, strong) NSString *sortKey; /**< sort order */
 
 //Raw, readonly data of all entered choices
-@property (nonatomic, readonly, retain) NSMutableArray *choices;			/**< Array of User-entered choice titles */
-@property (nonatomic, readonly, retain) NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
-@property (nonatomic, readonly, retain) NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
-@property (nonatomic, readonly, retain) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readonly, retain) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readonly, strong) NSMutableArray *choices;			/**< Array of User-entered choice titles */
+@property (nonatomic, readonly, strong) NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
+@property (nonatomic, readonly, strong) NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
+@property (nonatomic, readonly, strong) NSMutableArray *details;			/**< Array of User-entered details */
+@property (nonatomic, readonly, strong) NSMutableArray *icons;				/**< Array of associated images */
 
 
 /**

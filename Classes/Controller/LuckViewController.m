@@ -6,6 +6,7 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 
 #import "LuckViewController.h"
 #import "MoraLifeAppDelegate.h"
+#import "ModelManager.h"
 #import "StructuredTextField.h"
 #import "UserLuck.h"
 #import "ConscienceHelpViewController.h"
@@ -173,7 +174,6 @@ NSString* const kLuckImageNameBad = @"icon-luckbad";
 	
 	[luckImageName appendString:@".png"];
 	[luckImageView setImage:[UIImage imageNamed:luckImageName]];
-	[luckImageName release];
 	
 	//Restore state of prior view if applicable	
 	NSString *restoreShortDescription = [prefs objectForKey:@"entryShortDescription"];
@@ -203,7 +203,6 @@ NSString* const kLuckImageNameBad = @"icon-luckbad";
 	}
 	
 	/** @bug fix leak in luckKey possibly */
-	[luckKey retain];
 	
 	if (restoreSeverity > 0) {
 		severitySlider.value = restoreSeverity;
@@ -243,7 +242,6 @@ NSString* const kLuckImageNameBad = @"icon-luckbad";
 		
 		//Save off entries to FS
 		[prefs setObject:luckKey forKey:@"entryKey"];
-		[luckKey release];
 		[prefs setFloat:severitySlider.value forKey:@"entrySeverity"];
 		[prefs setBool:isGood forKey:@"entryIsGood"];
 	}
@@ -300,7 +298,6 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
         [conscienceHelpViewCont setHelpVersion:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
 		
 	}else { 
 		[self commitDataToUserData];
@@ -423,7 +420,6 @@ Implementation: Compile all of the relevant data from fields.  Calculate changes
 		
 	NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
 		
-	[dateFormatter release];
         
 	BOOL isNewLuck = TRUE;
 		
@@ -456,7 +452,6 @@ Implementation: Compile all of the relevant data from fields.  Calculate changes
 		NSArray *objects = [context executeFetchRequest:request error:&outError];
 		currentUserLuck = [objects objectAtIndex:0];
 		
-		[request release];
 	}
 		
 	[currentUserLuck setEntryShortDescription:luckTextField.text];
@@ -568,8 +563,6 @@ Implementation: Compile all of the relevant data from fields.  Calculate changes
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];
-	[luckSeverityLabelDescriptions release];
-    [super dealloc];
 }
 
 

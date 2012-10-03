@@ -30,7 +30,6 @@
     [self willChangeValueForKey:@"dillemmaB" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"dillemmaB"] addObject:value];
     [self didChangeValueForKey:@"dillemmaB" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)removeDillemmaBObject:(Dilemma *)value {
@@ -38,7 +37,6 @@
     [self willChangeValueForKey:@"dillemmaB" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"dillemmaB"] removeObject:value];
     [self didChangeValueForKey:@"dillemmaB" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)addDillemmaB:(NSSet *)value {    
@@ -59,7 +57,6 @@
     [self willChangeValueForKey:@"dillemmaA" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"dillemmaA"] addObject:value];
     [self didChangeValueForKey:@"dillemmaA" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)removeDillemmaAObject:(Dilemma *)value {
@@ -67,7 +64,6 @@
     [self willChangeValueForKey:@"dillemmaA" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"dillemmaA"] removeObject:value];
     [self didChangeValueForKey:@"dillemmaA" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)addDillemmaA:(NSSet *)value {    
@@ -88,7 +84,6 @@
     [self willChangeValueForKey:@"relatedReference" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"relatedReference"] addObject:value];
     [self didChangeValueForKey:@"relatedReference" withSetMutation:NSKeyValueUnionSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)removeRelatedReferenceObject:(ReferenceAsset *)value {
@@ -96,7 +91,6 @@
     [self willChangeValueForKey:@"relatedReference" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
     [[self primitiveValueForKey:@"relatedReference"] removeObject:value];
     [self didChangeValueForKey:@"relatedReference" withSetMutation:NSKeyValueMinusSetMutation usingObjects:changedObjects];
-    [changedObjects release];
 }
 
 - (void)addRelatedReference:(NSSet *)value {    

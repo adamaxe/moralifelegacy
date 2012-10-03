@@ -149,7 +149,6 @@ User can filter list by only things that are affordable to currentFunds.
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
         [conscienceHelpViewCont setHelpVersion:0];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
-		[conscienceHelpViewCont release];
 
         [prefs setBool:FALSE forKey:@"firstConscienceList"];
         
@@ -162,7 +161,7 @@ Implementation: Cycle between affordable and all Conscience Asset listings.  Cha
  */
 -(IBAction)filterByCost:(id)sender{
     
-	UISearchBar *blankSearch = [[[UISearchBar alloc] init] autorelease];
+	UISearchBar *blankSearch = [[UISearchBar alloc] init];
 
 	//Cycle button state
 	if (isLessThanCost) {
@@ -264,21 +263,16 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
 	}
     
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"orientationAsset in %@", predicateArguments];
-    [predicateArguments release];
 
     NSArray *predicateArray = [[NSArray alloc] initWithObjects:predicate, nil];
     
 	NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 	NSSortDescriptor* sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"displayNameReference" ascending:YES];
 	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor1, sortDescriptor2, nil];
-    [sortDescriptor1 release];
-	[sortDescriptor2 release];
     
 	[currentAssetDAO setPredicates:predicateArray];
     [currentAssetDAO setSorts:sortDescriptors];
     
-    [predicateArray release];
-    [sortDescriptors release];
     
     NSArray *assets = [currentAssetDAO readAll];
     int numberOfAssets = [assets count];
@@ -308,7 +302,6 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
         
     }
     
-    [currentAssetDAO release];
 
 	//End CoreData Retrieval
 	
@@ -335,7 +328,6 @@ Implementation: Retrieve User's current ethicals from UserData
     //Set current ethicals for UIViewController
     currentFunds = [[currentUserCollectable collectableValue] intValue];
         
-    [currentUserCollectableDAO release];
 
 }
 
@@ -362,7 +354,7 @@ Implementation: Retrieve User's current ethicals from UserData
 	
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
 	}
     
 	//Get image filename and append icon suffix (for iOS3)
@@ -371,8 +363,6 @@ Implementation: Retrieve User's current ethicals from UserData
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
     [[cell imageView] setImage:rowImage];
-    [rowImage release];
-    [rowImageName release];
     
 	//Determine if User can actually equip ConscienceAsset by testing if enough ethicals are present, or it's already owned
 	//Adjust visual cues accordingly
@@ -440,26 +430,26 @@ Implementation: Retrieve User's current ethicals from UserData
 	NSInteger counter = 0;
 	for(NSString *name in dataSource)
 	{
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
+		@autoreleasepool {
         
 		//Convert both searches to lowercase and compare search string to name in various elements of data
-		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[choiceSubtitles objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[[choiceSubtitles objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         		
-		//A match was found
-		if(searchRange.location != NSNotFound)
-		{
+			//A match was found
+			if(searchRange.location != NSNotFound)
+			{
             isFound = TRUE;
-			
-		} else if(searchRangeDetails.location != NSNotFound){
+				
+			} else if(searchRangeDetails.location != NSNotFound){
             isFound = TRUE;
 
-		} 
+			} 
               
         //Is User requesting to only see affordable entries
-		if (searchViewFilter > 0) {
+			if (searchViewFilter > 0) {
             
-			if (isFound) {
+				if (isFound) {
                 
                 if (searchViewFilter == 1) {
                     if([[choiceSubtitles objectAtIndex:counter] rangeOfString:@"Owned"].location != NSNotFound){
@@ -477,21 +467,21 @@ Implementation: Retrieve User's current ethicals from UserData
                     
                 }
 
-			}
+				}
             
-		}
+			}
 
-		if (isFound) {
-			[tableData addObject:name];
-			[tableDataImages addObject:[choiceImages objectAtIndex:counter]];
-			[tableDataDetails addObject:[choiceSubtitles objectAtIndex:counter]];
-			[tableDataKeys addObject:[choiceIDs objectAtIndex:counter]];
-			[tableDataCosts addObject:[choiceCosts objectAtIndex:counter]];
+			if (isFound) {
+				[tableData addObject:name];
+				[tableDataImages addObject:[choiceImages objectAtIndex:counter]];
+				[tableDataDetails addObject:[choiceSubtitles objectAtIndex:counter]];
+				[tableDataKeys addObject:[choiceIDs objectAtIndex:counter]];
+				[tableDataCosts addObject:[choiceCosts objectAtIndex:counter]];
+			}
+			
+			isFound = FALSE;
+			counter++;
 		}
-		
-		isFound = FALSE;
-		counter++;
-		[pool release];
 	}
 	
 	[choicesTableView reloadData];
@@ -548,7 +538,6 @@ Implementation: Retrieve User's current ethicals from UserData
 	[conscienceAcceptCont setAccessorySlot:_accessorySlot];
 		
 	[self.navigationController pushViewController:conscienceAcceptCont animated:NO];
-	[conscienceAcceptCont release];
         
 }
 
@@ -574,7 +563,6 @@ Implementation: Retrieve User's current ethicals from UserData
 
 - (void)viewDidUnload
 {
-    [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
@@ -583,20 +571,11 @@ Implementation: Retrieve User's current ethicals from UserData
 
 - (void)dealloc
 {
-	[searchedData release];
-	[tableData release];
-	[tableDataImages release];
-	[tableDataDetails release];
-	[tableDataKeys release];
-	[tableDataCosts release];
-	[dataSource release];
-	[choices release], choices = nil;
-	[choiceImages release], choiceImages = nil;
-	[choiceIDs release], choiceImages = nil;
-	[choiceSubtitles release], choiceSubtitles = nil;	
-	[choiceCosts release], choiceCosts = nil;
-    [previousButton release];
-	[super dealloc];
+	choices = nil;
+	choiceImages = nil;
+	choiceImages = nil;
+	choiceSubtitles = nil;	
+	choiceCosts = nil;
 }
 
 @end

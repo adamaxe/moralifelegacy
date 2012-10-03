@@ -36,8 +36,7 @@ the application.
 	IBOutlet UIButton *nextButton;              /**< area in which thought bubble appears */	
     
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
-	NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
-	
+
 	CGFloat initialTapDistance;			/**< assists in gesture recognition */
     CGFloat animationDuration;          /**< duration variable for determining movement */
     
@@ -46,7 +45,7 @@ the application.
     
 }
 
-@property (nonatomic, retain) NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
+@property (nonatomic, strong) NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
 
 /**
  In case of interruption, return Intro to saved state
@@ -1150,10 +1149,6 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 }
 
 
-- (void)dealloc {
-    [super dealloc];
-    
-}
 
 
 @end

@@ -31,8 +31,5 @@
     return (Dilemma *)[self readObject:key];
 }
 
--(void)dealloc {
-    [super dealloc];
-}
 
 @end

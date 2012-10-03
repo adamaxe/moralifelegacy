@@ -190,7 +190,6 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
         [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
         [conscienceHelpViewCont setHelpVersion:0];
         [self presentModalViewController:conscienceHelpViewCont animated:NO];
-        [conscienceHelpViewCont release];
         
         [prefs setBool:FALSE forKey:@"firstMorathology"];
         
@@ -254,7 +253,7 @@ Implementation: Signals User desire to return to ConscienceModalViewController
     
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier] autorelease];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
 		
 	}
     
@@ -268,8 +267,6 @@ Implementation: Signals User desire to return to ConscienceModalViewController
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
     //	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
     [[cell imageView] setImage:rowImage];
-    [rowImage release];
-    [rowImageName release];
     
     
 
@@ -338,7 +335,6 @@ Implementation: Signals User desire to return to ConscienceModalViewController
         
 	}
     
-	[allUserChoices release];
     
 	return cell;
 }
@@ -373,22 +369,18 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             
             [prefs setObject:selectedRowKey forKey:@"dilemmaKey"];
             
-            [selectedRowKey release];
 
             if ([[tableDataTypes objectAtIndex:indexPath.row] boolValue]){
                 DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] init];
                 [self.navigationController pushViewController:dilemmaViewCont animated:NO];
-                [dilemmaViewCont release];
             } else {
                 ConscienceActionViewController *actionViewCont = [[ConscienceActionViewController alloc] init];
                 [self.navigationController pushViewController:actionViewCont animated:NO];
-                [actionViewCont release];
             }
         }
         
     }
     
-    [allUserChoices release];
 	
 }
 
@@ -486,16 +478,14 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 
 	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
-	[dilemmaPredicate release];
 
 	if (dilemmaCampaign > 0) {
 		[currentDilemmaDAO setPredicates:@[pred]];
 	}
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameDilemma" ascending:YES];
-	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
+	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
 	[currentDilemmaDAO setSorts:sortDescriptors];
-	[sortDescriptor release];
 	
 	NSArray *objects = [currentDilemmaDAO readAll];
     
@@ -524,12 +514,10 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
             [moralNames setValue:[[match moralChoiceB] displayNameMoral] forKey:[[match moralChoiceB] nameMoral]];
             [choiceTypes addObject:@(isDilemma)];
 			[choiceDetails addObject:dilemmaDescription];			
-            [dilemmaDescription release];
 			
 		}
 	}
 	
-	[currentDilemmaDAO release];
     
 	[self loadUserData];
 	//End CoreData Retrieval
@@ -555,15 +543,13 @@ Implementation: Load User data to determine which Dilemmas have already been com
     
     NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey contains[cd] %@", dilemmaPredicate];
-	[dilemmaPredicate release];
     
     currentUserDilemmaDAO.predicates = @[pred];
     
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
-	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
+	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
 
     currentUserDilemmaDAO.sorts = sortDescriptors;
-	[sortDescriptor release];
     
     NSArray *objects = [currentUserDilemmaDAO readAll];
     
@@ -583,7 +569,6 @@ Implementation: Load User data to determine which Dilemmas have already been com
         
 	}
 	
-	[currentUserDilemmaDAO release];
     
 }
 
@@ -601,9 +586,8 @@ Implementation: Determine what effects to rollback from an already completed dil
     }
 	
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryCreationDate" ascending:YES];
-	NSArray* sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor, nil] autorelease];
+	NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
     currentUserDilemmaDAO.sorts = sortDescriptors;    
-    [sortDescriptor release];
     UserDilemma *match = [currentUserDilemmaDAO read:@""];
     
     NSString *moralKey = [match entryLongDescription];
@@ -628,13 +612,11 @@ Implementation: Determine what effects to rollback from an already completed dil
             [currentUserCollectable setValue:@(moralDecrease) forKey:@"collectableValue"];
         }
         
-        [currentUserCollectableDAO release];        
         
     }
     
     [currentUserDilemmaDAO delete:match];		
 	
-	[currentUserDilemmaDAO release];
 	
 }
 
@@ -664,39 +646,39 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
 	NSInteger counter = 0;
 	for(NSString *name in dataSource)
 	{
-		NSAutoreleasePool *pool = [[NSAutoreleasePool alloc]init];
+		@autoreleasepool {
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-		NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-		NSRange searchRangeDetails = [[[choiceDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[[choiceDetails objectAtIndex:counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         
-		
-		//A match was found
-		if(searchRange.location != NSNotFound)
-		{
-			isFound = TRUE;
 			
-		}else if(searchRangeDetails.location != NSNotFound){
-			isFound = TRUE;
-		}		
-		
-		if (isFound) {
-			//If search is slow, only search prefix
-			//if(searchRange.location== 0)
-			//{			
-			//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
-			[tableData addObject:name];
-			[tableDataImages addObject:[choiceImages objectAtIndex:counter]];
-			[tableDataDetails addObject:[choiceDetails objectAtIndex:counter]];
-			[tableDataKeys addObject:[choiceNames objectAtIndex:counter]];
+			//A match was found
+			if(searchRange.location != NSNotFound)
+			{
+				isFound = TRUE;
+				
+			}else if(searchRangeDetails.location != NSNotFound){
+				isFound = TRUE;
+			}		
+			
+			if (isFound) {
+				//If search is slow, only search prefix
+				//if(searchRange.location== 0)
+				//{			
+				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
+				[tableData addObject:name];
+				[tableDataImages addObject:[choiceImages objectAtIndex:counter]];
+				[tableDataDetails addObject:[choiceDetails objectAtIndex:counter]];
+				[tableDataKeys addObject:[choiceNames objectAtIndex:counter]];
             [tableDataTypes addObject:[choiceTypes objectAtIndex:counter]];
 
-			//}
+				//}
+			}
+			
+			isFound = FALSE;
+			counter++;
 		}
-		
-		isFound = FALSE;
-		counter++;
-		[pool release];
 	}
 	
 	[dilemmaListTableView reloadData];
@@ -775,32 +757,12 @@ Implementation - Delete
 
 - (void)viewDidUnload
 {
-    [previousButton release];
     previousButton = nil;
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (void)dealloc
-{
-	[searchedData release];
-	[tableData release];
-	[tableDataImages release];
-	[tableDataDetails release];
-	[tableDataKeys release];
-    [tableDataTypes release];
-	[dataSource release];
-	[choiceNames release];
-	[choiceImages release];
-	[choiceDetails release];
-    [choiceTypes release];
-	[choiceDisplayNames release];
-	[userChoices release];
-	[moralNames release];
-    [previousButton release];
-	[super dealloc];
-}
 
 @end
 

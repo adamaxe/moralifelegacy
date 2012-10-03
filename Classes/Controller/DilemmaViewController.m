@@ -387,8 +387,6 @@ Construct antagonist Conscience
 		[selectionButton1 setTitle:moral1Text forState:UIControlStateNormal];
 		[selectionButton2 setTitle:moral2Text forState:UIControlStateNormal];
         
-		[moral1Text release];
-		[moral2Text release];
         
 		[reward1 appendString:[currentDilemma rewardADilemma]];
 		[reward2 appendString:[currentDilemma rewardBDilemma]];
@@ -440,13 +438,8 @@ Construct antagonist Conscience
 		[thoughtModalArea addSubview:antagonistConscienceView];
         
         [antagonistConscienceView setNeedsDisplay];
-		[antagonistConscienceView release];
-        [antagonistConscienceBody release];
-        [antagonistConscienceAccessories release];
-        [antagonistConscienceMind release];
 	}
     
-    [currentDilemmaDAO release];
 }
 
 /**
@@ -465,7 +458,6 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
-    [dateFormatter release];
         
     NSString *dilemmaKey = [NSString stringWithFormat:@"%@%@", currentDTS, dilemmaName];
     
@@ -546,7 +538,6 @@ Calculate changes to User's ethicals.  Limit to 999.
         
 		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentPerson.imageNameReference]]];
         
-        [currentPersonDAO release];
 
 		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
@@ -568,7 +559,6 @@ Calculate changes to User's ethicals.  Limit to 999.
         
 		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentReference.imageNameReference]]];
         
-        [currentReferenceDAO release];
                 
 		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
@@ -599,12 +589,9 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	[currentUserCollectable setCollectableValue:@(ethicalIncrease)];
         
-	[selectedReward release];
     
     [currentUserDilemmaDAO update];
     [currentUserCollectableDAO update];
-    [currentUserDilemmaDAO release];
-    [currentUserCollectableDAO release];
     
 	//Create a User Choice so that User's Moral report is affected
 	//Prefix with dile- on a User prohibited field to ensure that entry is never shown on ConscienceListViewController
@@ -628,7 +615,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 		isGood = TRUE;
 	}
 
-	[moralType release];
     
 	//Commit UserChoice
 	[currentUserChoice setEntryShortDescription:dilemmaName];
@@ -642,7 +628,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 	[currentUserChoice setEntryIsGood:@(isGood)];
 	[currentUserChoice setChoiceConsequences:@""];
     
-    [moralKey release];
 
 	if (isGood) {
 		[currentUserChoice setChoiceWeight:@0.2f];  
@@ -651,7 +636,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 	}
     
     [currentUserChoiceDAO update];
-    [currentUserChoiceDAO release];
     
     /** @todo refactor into ConscienceMind
      */
@@ -681,7 +665,6 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     [currentUserCharacterDAO update];
     
-    [currentUserCharacterDAO release];  
     
 }
 
@@ -791,18 +774,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 }
 
 
-- (void)dealloc {
-    [reward1 release];
-    [reward2 release];
-    [dilemmaName release];
-    [moralAName release];
-    [moralBName release];
-    [moralADescription release];
-    [moralBDescription release];
-    
-    [super dealloc];
-
-}
 
 
 @end

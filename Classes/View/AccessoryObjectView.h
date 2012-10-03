@@ -15,6 +15,6 @@ extern int const kSideAccessoryHeight;
 
 @interface AccessoryObjectView : UIView
 
-@property (nonatomic, retain) NSString *accessoryFilename;	/**< file name to be retrieved */
+@property (nonatomic, strong) NSString *accessoryFilename;	/**< file name to be retrieved */
 
 @end

@@ -9,10 +9,10 @@
 
 @interface BaseDAO () 
 
-@property (nonatomic, retain) NSString *currentKey;             /**< current NSPredicate filter */
-@property (nonatomic, retain) NSString *classType;              /**< current NSManagedObject type */
-@property (nonatomic, retain) NSManagedObjectContext *context;  /**< injected context */
-@property (nonatomic, retain) NSMutableArray *persistedObjects; /**< current NSManagedObjects under control */
+@property (nonatomic, strong) NSString *currentKey;             /**< current NSPredicate filter */
+@property (nonatomic, strong) NSString *classType;              /**< current NSManagedObject type */
+@property (nonatomic, strong) NSManagedObjectContext *context;  /**< injected context */
+@property (nonatomic, strong) NSMutableArray *persistedObjects; /**< current NSManagedObjects under control */
 
 - (NSManagedObject *)findPersistedObject:(NSString *)key;       /**< retrieve requested NSManagedObject from temp array */
 - (NSArray *)retrievePersistedObjects;                          /**< retrieve NSManagedObject from persisted store */
@@ -46,9 +46,9 @@ NSString* const kContextReadWrite = @"readWrite";
     if (self) {
 
         if ([classType isEqualToString:kContextReadWrite]) {
-            _context = [[moralModelManager readWriteManagedObjectContext] retain];
+            _context = [moralModelManager readWriteManagedObjectContext];
         } else {
-            _context = [[moralModelManager managedObjectContext] retain];            
+            _context = [moralModelManager managedObjectContext];            
         }
         
         _classType = [[NSString alloc] initWithString:classType];
@@ -61,7 +61,7 @@ NSString* const kContextReadWrite = @"readWrite";
         if (key) {
             _currentKey = [[NSString alloc] initWithString:key];
         } else {
-            _currentKey = [[NSString alloc] initWithString:@""];
+            _currentKey = @"";
         }
                 
         _persistedObjects = [[NSMutableArray alloc] init];
@@ -218,7 +218,6 @@ NSString* const kContextReadWrite = @"readWrite";
     NSPredicate *currentPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:currentPredicates];
     [request setPredicate:currentPredicate];
 
-    [currentPredicates release];
 
     //Determine if client requests a specific sort order
 	if (self.sorts.count > 0) {
@@ -227,29 +226,14 @@ NSString* const kContextReadWrite = @"readWrite";
         NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:self.sortDefaultName ascending:YES];
         NSArray* sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor, nil];
         [request setSortDescriptors:sortDescriptors];
-        [sortDescriptor release];
-        [sortDescriptors release];
     }
     
 	NSArray *objects = [self.context executeFetchRequest:request error:&outError];
     	
-	[request release];
     
     return objects;
 
 }
 
--(void)dealloc {
-    [_predicates release];
-    [_sorts release];
-    [_currentKey release];
-    [_classType release];
-    [_predicateDefaultName release];
-    [_sortDefaultName release];
-    [_managedObjectClassName release];
-    [_context release];
-    [_persistedObjects release];
-    [super dealloc];
-}
 
 @end

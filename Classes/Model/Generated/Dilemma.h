@@ -14,18 +14,18 @@
 @interface Dilemma : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSString * rewardADilemma;
-@property (nonatomic, retain) NSString * choiceB;
-@property (nonatomic, retain) NSNumber * moodDilemma;
-@property (nonatomic, retain) NSString * displayNameDilemma;
-@property (nonatomic, retain) NSString * surrounding;
-@property (nonatomic, retain) NSString * nameDilemma;
-@property (nonatomic, retain) NSString * rewardBDilemma;
-@property (nonatomic, retain) NSString * choiceA;
-@property (nonatomic, retain) NSNumber * enthusiasmDilemma;
-@property (nonatomic, retain) NSString * dilemmaText;
-@property (nonatomic, retain) Moral * moralChoiceA;
-@property (nonatomic, retain) Character * antagonist;
-@property (nonatomic, retain) Moral * moralChoiceB;
+@property (nonatomic, strong) NSString * rewardADilemma;
+@property (nonatomic, strong) NSString * choiceB;
+@property (nonatomic, strong) NSNumber * moodDilemma;
+@property (nonatomic, strong) NSString * displayNameDilemma;
+@property (nonatomic, strong) NSString * surrounding;
+@property (nonatomic, strong) NSString * nameDilemma;
+@property (nonatomic, strong) NSString * rewardBDilemma;
+@property (nonatomic, strong) NSString * choiceA;
+@property (nonatomic, strong) NSNumber * enthusiasmDilemma;
+@property (nonatomic, strong) NSString * dilemmaText;
+@property (nonatomic, strong) Moral * moralChoiceA;
+@property (nonatomic, strong) Character * antagonist;
+@property (nonatomic, strong) Moral * moralChoiceB;
 
 @end

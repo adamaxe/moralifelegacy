@@ -26,7 +26,6 @@ override text for a field in order to prevent it from being updated
     
 	[super setText: (NSString *) transformString];
     
-	[transformString release];
 
 }
 

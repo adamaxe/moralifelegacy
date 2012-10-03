@@ -35,10 +35,10 @@ extern float const kConscienceLargestSize;
 
 @property (nonatomic, assign) int directionFacing;                  /**< Which way the Conscience is currently facing */
 @property (nonatomic, assign) BOOL isExpressionForced;				/**< allow for forcing of an expression */
-@property (nonatomic, retain) UIView *conscienceBubbleView;			/**< UIView that contains all other Views */
-@property (nonatomic, retain) ConscienceBody *currentConscienceBody;			/**< Current Conscience visual configuration */
-@property (nonatomic, retain) ConscienceAccessories *currentConscienceAccessories;	/**< Current Conscience visual possessions */
-@property (nonatomic, retain) ConscienceMind *currentConscienceMind;			/**< Current Conscience mood/enthusiasm */
+@property (nonatomic, strong) UIView *conscienceBubbleView;			/**< UIView that contains all other Views */
+@property (nonatomic, strong) ConscienceBody *currentConscienceBody;			/**< Current Conscience visual configuration */
+@property (nonatomic, strong) ConscienceAccessories *currentConscienceAccessories;	/**< Current Conscience visual possessions */
+@property (nonatomic, strong) ConscienceMind *currentConscienceMind;			/**< Current Conscience mood/enthusiasm */
 
 /**
 Change eye state to imitate winking/blinking

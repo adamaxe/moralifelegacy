@@ -36,15 +36,15 @@ typedef enum bubbleTypeEnum{
 /**
  Returns and autoreleased CGMutablePathRef representing the Conscience's Outer Surface Bubble
  @param int Type of Bubble to Draw (kBubbleTypeRoundNormal, kBubbleTypeRoundShort, etc.)
- @return CGMutablePathRef autoreleased CGMutablePathRef to add to CGContext
+ @return NSObject autoreleased CGMutablePathRef to add to CGContext
  */
-+ (CGMutablePathRef)bubbleSurfaceWithType:(int)bubbleType;
++ (NSObject *)bubbleSurfaceWithType:(int)bubbleType;
 
 /**
  Returns and autoreleased CGMutablePathRef representing the Conscience's Inner Bubble Accent
  @param int Type of Bubble to Draw (kBubbleTypeRoundNormal, kBubbleTypeRoundShort, etc.)
- @return CGMutablePathRef autoreleased CGMutablePathRef to add to CGContext
+ @return NSObject autoreleased CGMutablePathRef to add to CGContext
  */
-+ (CGMutablePathRef)bubbleAccentWithType:(int)bubbleType;
++ (NSObject *)bubbleAccentWithType:(int)bubbleType;
 
 @end

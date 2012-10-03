@@ -14,32 +14,17 @@ Implementation:  We are parsing the svg's of the animatable facial features.  Ea
 #import "ConscienceBody.h"
 
 @interface XMLParser () {
-    
-    NSAutoreleasePool *pool;
-    
+        
 	ConsciencePath *currentConsciencePath;		/**< current Path selected for population */
 	ConscienceGradient *currentConscienceGradient;	/**< current gradient selected for population */
     
 }
 
-@property (nonatomic, retain) ConscienceLayer *currentConscienceLayer;   /**< current Layer selected for population */
+@property (nonatomic, strong) ConscienceLayer *currentConscienceLayer;   /**< current Layer selected for population */
 
 @end
 
 @implementation XMLParser 
-
-#pragma mark -
-#pragma mark View lifecycle
-
-- (XMLParser *) initXMLParser {
-
-    if ((self = [super init])) {
-
-        pool = [[NSAutoreleasePool alloc] init];
-    }
-    
-	return self;
-}
 
 #pragma mark -
 #pragma mark NSXMLParserDelegate methods
@@ -51,7 +36,7 @@ attributes:(NSDictionary *)attributeDict {
 	//Determine element type for opening
 	if([elementName isEqualToString:@"g"]) {
 		//Layer Group has been found, initialize containers to hold data
-		self.currentConscienceLayer = [[[ConscienceLayer alloc] init] autorelease];
+		self.currentConscienceLayer = [[ConscienceLayer alloc] init];
 		[self.currentConscienceLayer setLayerID:[attributeDict objectForKey:@"id"]];
 
 	} else if([elementName isEqualToString:@"path"]) {
@@ -74,7 +59,6 @@ attributes:(NSDictionary *)attributeDict {
         
 		//Add completed path to layer
 		[self.currentConscienceLayer.consciencePaths addObject:currentConsciencePath];
-		[currentConsciencePath release];
 		
 	} else if([elementName isEqualToString:@"linearGradient"]) {
 
@@ -161,7 +145,6 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 	if([elementName isEqualToString:@"linearGradient"]) {
 			//Gradient has been found
 			[self.currentConscienceBody.gradientLayers setObject: currentConscienceGradient forKey:currentConscienceGradient.gradientID];
-			[currentConscienceGradient release];
 	}
 	
 }
@@ -177,11 +160,5 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 #pragma mark -
 #pragma mark Memory management
 
-- (void) dealloc {
-    [pool drain];
-    [_currentConscienceBody release];
-    [_currentConscienceLayer release];
-	[super dealloc];
-}
 
 @end

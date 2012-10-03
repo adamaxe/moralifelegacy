@@ -13,9 +13,9 @@
 @interface UserCollectable : NSManagedObject {
 @private
 }
-@property (nonatomic, retain) NSDate * collectableCreationDate;
-@property (nonatomic, retain) NSString * collectableName;
-@property (nonatomic, retain) NSString * collectableKey;
-@property (nonatomic, retain) NSNumber * collectableValue;
+@property (nonatomic, strong) NSDate * collectableCreationDate;
+@property (nonatomic, strong) NSString * collectableName;
+@property (nonatomic, strong) NSString * collectableKey;
+@property (nonatomic, strong) NSNumber * collectableValue;
 
 @end

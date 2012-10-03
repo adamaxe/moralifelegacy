@@ -16,10 +16,10 @@ extern float const kFeatureOffsetY;
 
 @interface ConscienceLayer : NSObject <NSCoding> 
 
-@property (nonatomic, retain) NSMutableArray *consciencePaths;	/**< array of ConsciencePath defining structure */
-@property (nonatomic, retain) NSString *layerID;                /**< id from SVG */
-@property (nonatomic, retain) NSString *currentFillColor;		/**< hex representation of fill color */
-@property (nonatomic, retain) NSString *currentStrokeColor;		/**< hex representation of stroke color */
+@property (nonatomic, strong) NSMutableArray *consciencePaths;	/**< array of ConsciencePath defining structure */
+@property (nonatomic, strong) NSString *layerID;                /**< id from SVG */
+@property (nonatomic, strong) NSString *currentFillColor;		/**< hex representation of fill color */
+@property (nonatomic, strong) NSString *currentStrokeColor;		/**< hex representation of stroke color */
 @property (nonatomic, assign) CGFloat offsetX; 		/**< X position facial feature within ConscienceBubble */
 @property (nonatomic, assign) CGFloat offsetY;		/**< Y position facial feature within ConscienceBubble */
 

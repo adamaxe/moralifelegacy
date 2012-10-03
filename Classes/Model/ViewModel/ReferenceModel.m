@@ -16,10 +16,10 @@
 
 }
 
-@property (nonatomic, readwrite, retain) NSMutableArray *references;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, retain) NSMutableArray *referenceKeys;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, retain) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readwrite, retain) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readwrite, strong) NSMutableArray *references;			/**< Array of User-entered choice titles */
+@property (nonatomic, readwrite, strong) NSMutableArray *referenceKeys;			/**< Array of User-entered choice titles */
+@property (nonatomic, readwrite, strong) NSMutableArray *details;			/**< Array of User-entered details */
+@property (nonatomic, readwrite, strong) NSMutableArray *icons;				/**< Array of associated images */
 
 /**
  Retrieve all User entered Choices
@@ -48,7 +48,7 @@
         _icons = [[NSMutableArray alloc] init];
         preferences = prefs;
         currentUserCollection = userCollection;
-        moralModelManager = [modelManager retain];
+        moralModelManager = modelManager;
 
     }
 
@@ -110,8 +110,7 @@
     if (_referenceType != kReferenceModelTypeMoral) {
         NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 
-        NSArray *sortDescriptors = [[[NSArray alloc] initWithObjects: sortDescriptor1, nil] autorelease];
-        [sortDescriptor1 release];
+        NSArray *sortDescriptors = [[NSArray alloc] initWithObjects: sortDescriptor1, nil];
         [currentDAO setSorts:sortDescriptors];
     }
 
@@ -150,7 +149,6 @@
 		}
     }
 
-    [currentDAO release];
 }
 
 /**
@@ -166,16 +164,6 @@
 
 }
 
--(void)dealloc {
-
-    [_references release];
-    [_referenceKeys release];
-    [_details release];
-    [_icons release];
-    [moralModelManager release];
-
-    [super dealloc];
-}
 
 
 @end

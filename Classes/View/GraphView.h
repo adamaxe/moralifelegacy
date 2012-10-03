@@ -11,7 +11,7 @@ Graph chart for reporting.  The appearance and display of various graph forms fo
 
 @interface GraphView : UIView 
 
-@property (nonatomic, retain) NSArray *pieValues;	/**< Array of float pieValues in number of degrees out of 360 */
-@property (nonatomic, retain) NSArray *pieColors;	/**< NSArray of UIColors that map to each Value */
+@property (nonatomic, strong) NSArray *pieValues;	/**< Array of float pieValues in number of degrees out of 360 */
+@property (nonatomic, strong) NSArray *pieColors;	/**< NSArray of UIColors that map to each Value */
 
 @end

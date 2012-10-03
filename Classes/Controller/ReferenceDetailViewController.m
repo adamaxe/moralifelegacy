@@ -147,19 +147,14 @@ Implementation: Show Conscience thoughtbubble containing Quote
     NSString *quoteFormatted = [[NSString alloc] initWithString:[referenceQuote stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
     
     NSArray *texts = [[NSArray alloc] initWithObjects:quoteFormatted, nil];
-    [quoteFormatted release];
 
     
     [conscienceHelpViewCont setHelpTitles:titles];
     [conscienceHelpViewCont setHelpTexts:texts];
     [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
     
-    [helpTitleName release];
-    [titles release];
-    [texts release];
     
     [self presentModalViewController:conscienceHelpViewCont animated:NO];
-    [conscienceHelpViewCont release];
 	
 }
 
@@ -211,7 +206,6 @@ Implementation: Determine whether death is applicable, create span and determine
     NSString *combinedDate = [[NSString alloc] initWithFormat:@"%@-%@", referenceDate, referenceDeathDate];
 	
 	[referenceDateLabel setText:combinedDate];
-	[combinedDate release];
 
 }
 
@@ -235,7 +229,6 @@ Implementation: Determine which type of image to show to User in reference card.
 	}
 
 	[moralPictureView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", referenceMoral]]];
-	[detailImageName release];
 	
 	[referenceNameLabel setText:referenceName];
 	[referenceOriginLabel setText:referenceOrigin];
@@ -292,8 +285,9 @@ Implementation: Find value of reference from UserCollection in case of Morals
     
     [cardNumberLabel setText:[NSString stringWithFormat:@"%d", [[currentUserCollectable collectableValue] intValue]]];
 
-    [currentUserCollectableDAO release];
 }
+
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 /**
 Implementation: Retrieve reference from SystemData based upon type passed from ReferenceListViewController.
@@ -347,7 +341,6 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
      SEL imageNameSelector = NSSelectorFromString([NSString stringWithFormat:@"imageName%@", selectorSuffix]);
      SEL shortDescriptionSelector = NSSelectorFromString([NSString stringWithFormat:@"shortDescription%@", selectorSuffix]);
      
-     //Balance releases in case of no Reference		
      referenceName = [[NSString alloc] initWithString:[managedObject performSelector:displayNameSelector]];
      referencePicture = [[NSString alloc] initWithString:[managedObject performSelector:imageNameSelector]];
      referenceShortDescription = [[NSString alloc] initWithString:[managedObject performSelector:shortDescriptionSelector]];
@@ -391,13 +384,13 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
      if ([managedObject respondsToSelector:@selector(orientationAsset)]) {
          referenceOrientation = [[NSString alloc] initWithString:[managedObject orientationAsset]];
      } else {
-         referenceOrientation = [[NSString alloc] initWithString:@""];
+         referenceOrientation = @"";
      }
      
      if ([managedObject respondsToSelector:@selector(quotePerson)]) {
          referenceQuote = [[NSString alloc] initWithString:[managedObject quotePerson]];
      } else {
-         referenceQuote = [[NSString alloc] initWithString:@""];
+         referenceQuote = @"";
      }
      
 
@@ -409,19 +402,17 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
              
              if (![currentDAO isKindOfClass:ReferencePersonDAO.class]) {
 
-                 [referenceOrigin release];
                  referenceOrigin = [[NSString alloc] initWithFormat:@"+%d %@", [[managedObject moralValueAsset] intValue], currentMoral.displayNameMoral];
              }
              
          } else {
-             referenceMoral = [[NSString alloc] initWithString:@""];
+             referenceMoral = @"";
          }
          
      } else {
-         referenceMoral = [[NSString alloc] initWithString:@""];
+         referenceMoral = @"";
      }
      		
-     [currentDAO release];
 }
 
 
@@ -442,23 +433,6 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
 }
 
 
-- (void)dealloc {
-	
-    [referenceQuote release];
-	[referenceName release];
-	[referenceDate release];    
-	[referenceDeathDate release];    
-	[referenceMoral release];
-	[referenceOrientation release];
-	[referenceLongDescription release];
-	[referenceShortDescription release];
-	[referenceReferenceURL release];
-	[referencePicture release];
-	[referenceOrigin release];
-    
-    [super dealloc];
-
-}
 
 
 @end
