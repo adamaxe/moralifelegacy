@@ -455,20 +455,7 @@ Implementation: Retrieve User's current ethicals from UserData
             isFound = TRUE;
 
 		} 
-      
-//		//Is User requesting to only see affordable entries
-//		if (isLessThanCost) {
-//            
-//			if (isFound) {
-//				if((currentFunds >= [[choiceCosts objectAtIndex:counter] intValue])  || ([[choiceSubtitles objectAtIndex:counter] rangeOfString:@"Owned"].location != NSNotFound)){
-//					isFound = TRUE;
-//				} else {
-//					isFound = FALSE;
-//				}
-//			}
-//
-//		}
-        
+              
         //Is User requesting to only see affordable entries
 		if (searchViewFilter > 0) {
             

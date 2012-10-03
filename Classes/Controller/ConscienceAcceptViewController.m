@@ -261,11 +261,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
 		//User has elected to buy ConscienceAsset
 		//Return User to Home screen after transaction		
 		if (choiceIndex < 1){
-            
-            /** 
-             @bug determine timer start/stop issue
-		*/
-                            
+                                        
 			//Save choices to persistence
       	    [self saveConscience];
             
@@ -289,8 +285,6 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             [UIView commitAnimations];
 		} else {
             
-//            [appDelegate.userConscienceView stopTimers];
-
             switch (_accessorySlot) {
                 case 0:appDelegate.userConscienceAccessories.topAccessory = resetFeature;break;
                 case 1:appDelegate.userConscienceAccessories.primaryAccessory = resetFeature;break;
@@ -318,7 +312,6 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             appDelegate.userConscienceView.alpha = 0;
             appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
             
-            //    appDelegate.userConscienceView.center = centerPoint;
             [UIView setAnimationDelegate:self]; // self is a view controller
             
             if (senderButton.tag < 2) {

@@ -66,23 +66,7 @@ int const kConscienceCenterY = 165;
 
 	[super viewWillAppear:animated];
 
-	//[statusMessage1 setText:NSLocalizedString(@"ConscienceAccessoryStatusLabel",@"Label for status label")];
-
 	[consciencePlayground addSubview:appDelegate.userConscienceView];
-
-	//Move Conscience to center of boxes
-//	CGPoint centerPoint = CGPointMake(kConscienceCenterX, kConscienceCenterY);
-
-//	[UIView beginAnimations:@"MoveConscience" context:nil];
-//	[UIView setAnimationDuration:0.5];
-//	[UIView setAnimationBeginsFromCurrentState:YES];
-//	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-//
-//	appDelegate.userConscienceView.center = centerPoint;
-//	
-//	[UIView commitAnimations];
-//	
-//	[appDelegate.userConscienceView setNeedsDisplay];
 
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
@@ -91,7 +75,6 @@ int const kConscienceCenterY = 165;
     appDelegate.userConscienceView.alpha = 0;
     appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 
-//    appDelegate.userConscienceView.center = centerPoint;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToCenter)];
     
@@ -135,7 +118,6 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
         appDelegate.userConscienceView.alpha = 0;
         appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         
-        //    appDelegate.userConscienceView.center = centerPoint;
         [UIView setAnimationDelegate:self]; // self is a view controller
     
         if (senderButton.tag < 5) {

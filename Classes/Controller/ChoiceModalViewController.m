@@ -155,7 +155,7 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
 }
 
 #pragma mark -
-//#pragma mark Data Manipulation
+#pragma mark Data Manipulation
 
 /**
 Implementation: Retrieve all available Virtues/Vices and populate searchable data set.
@@ -221,13 +221,10 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	//Populate cell information
     if ([tableData count] > 0) {
         [[cell textLabel] setText:[[tableData objectAtIndex:indexPath.row] capitalizedString]];
-        
-        NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:[tableDataImages objectAtIndex:indexPath.row]];
-        
-        UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
+                
+        UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[tableDataImages objectAtIndex:indexPath.row] ofType:@"png"]];
         [[cell imageView] setImage:rowImage];
         [rowImage release];
-        [rowImageName release];
         
         [[cell detailTextLabel] setText:[tableDataDetails objectAtIndex:indexPath.row]];
     }
@@ -238,23 +235,14 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	//Commit selected Moral to NSUserDefaults for retrieval from ChoiceViewController
- 	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableData objectAtIndex:indexPath.row]];
- 	NSMutableString *selectedRowImage = [[NSMutableString alloc] initWithString:[tableDataImages objectAtIndex:indexPath.row]];
- 	NSMutableString *selectedRowKey = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
-    
-	[prefs setObject:selectedRowKey forKey:@"moralKey"];
-	[prefs setObject:selectedRow forKey:@"moralName"];
-	[prefs setObject:selectedRowImage forKey:@"moralImage"];
-	
-	[selectedRow release];
-	[selectedRowImage release];
-	[selectedRowKey release];
-	
+	[prefs setObject:[tableDataKeys objectAtIndex:indexPath.row] forKey:@"moralKey"];
+	[prefs setObject:[tableData objectAtIndex:indexPath.row] forKey:@"moralName"];
+	[prefs setObject:[tableDataImages objectAtIndex:indexPath.row] forKey:@"moralImage"];
+		
 	//Must create blank ID to call function typically referenced by IB
 	id placeHolderID = @"";
 	
 	[self dismissChoiceModal:placeHolderID];
-	//[self dismissModalViewControllerAnimated:NO];	
 }
 
 #pragma mark -
