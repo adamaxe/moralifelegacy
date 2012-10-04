@@ -174,7 +174,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	[mainMenuTabBarCont.tabBar setAlpha:cgf];
 		
 	application.applicationSupportsShakeToEdit = YES;
-	[_window addSubview:mainMenuTabBarCont.view];
+    [_window setRootViewController:mainMenuTabBarCont];
 	[_window makeKeyAndVisible];
 	
 } 

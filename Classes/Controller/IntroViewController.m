@@ -190,8 +190,6 @@ the application.
     
     if (introCheck != nil) {
         messageStateRestore = [prefs integerForKey:@"introStateRestore"];        
-        NSLog(@"interruptedintroreturn:%d", messageStateRestore);
-
     }
     
     //If User was left at a particular stage in the intro, return them to that state
@@ -223,7 +221,7 @@ the application.
         appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
         
         [UIView beginAnimations:@"BottomUpConscience" context:nil];
-        [UIView setAnimationDuration:1.0];
+        [UIView setAnimationDuration:1.75];
         [UIView setAnimationBeginsFromCurrentState:NO];
         
         backgroundImage.alpha = 1;
@@ -358,9 +356,17 @@ the application.
 -(void) switchText2{
         
     [self animateStatusText];
-    
+
     [conscienceStatus setText:@"But I get lonely, so you should stick around until the end.  You can tap my thought bubble to get me to hurry up, though."];
-        
+
+	[UIView beginAnimations:@"labelFade2b" context:nil];
+	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationBeginsFromCurrentState:NO];
+
+    conscienceStatus.alpha = 1;
+
+    [UIView commitAnimations];
+
     messageState = 2;
     
     [self.thoughtChangeTimer invalidate];
