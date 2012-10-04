@@ -29,7 +29,7 @@ function CGPoint(x, y){
 //Test data
 var moralName = "Test moral 1";
 var moralType = "Aptitude";
-var virtueSeverity = 0.35;
+var virtueSeverity = 0.36;
 var virtueSeveritySliderValue = (virtueSeverity * 100) + "%";
 var moralDescription = "Moral test description 1\n\nLine 2";
 var moralJustification = "Moral Justification test 1";
