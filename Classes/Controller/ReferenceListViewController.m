@@ -211,7 +211,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] init];
 
-    [self.referenceModel retrieveReference:tableDataKeys[indexPath.row]];
+    [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
 
 	[self.navigationController pushViewController:detailViewCont animated:YES];
 }

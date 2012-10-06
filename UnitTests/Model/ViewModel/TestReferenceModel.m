@@ -185,7 +185,7 @@
 
 }
 
-- (void)testRetrieveConscienceAssetWritesToStandardUserDefaultsForViewing {
+- (void)testSelectConscienceAssetWritesToStandardUserDefaultsForViewing {
 
     testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
 
@@ -193,12 +193,12 @@
     [[userDefaultsMock expect] setObject:testAsset1.nameReference forKey:@"referenceKey"];
     [[userDefaultsMock expect] synchronize];
 
-    [testingSubject retrieveReference:testAsset1.nameReference];
+    [testingSubject selectReference:testAsset1.nameReference];
 
     [userDefaultsMock verify];
 }
 
-- (void)testRetrieveVirtueWritesToStandardUserDefaultsForViewing {
+- (void)testSelectVirtueWritesToStandardUserDefaultsForViewing {
 
     testingSubject.referenceType = kReferenceModelTypeMoral;
 
@@ -206,12 +206,12 @@
     [[userDefaultsMock expect] setObject:virtue1.nameMoral forKey:@"referenceKey"];
     [[userDefaultsMock expect] synchronize];
 
-    [testingSubject retrieveReference:virtue1.nameMoral];
+    [testingSubject selectReference:virtue1.nameMoral];
 
     [userDefaultsMock verify];
 }
 
-- (void)testRetrieveViceWritesToStandardUserDefaultsForViewing {
+- (void)testSelectViceWritesToStandardUserDefaultsForViewing {
 
     testingSubject.referenceType = kReferenceModelTypeMoral;
 
@@ -219,7 +219,7 @@
     [[userDefaultsMock expect] setObject:vice1.nameMoral forKey:@"referenceKey"];
     [[userDefaultsMock expect] synchronize];
 
-    [testingSubject retrieveReference:vice1.nameMoral];
+    [testingSubject selectReference:vice1.nameMoral];
     
     [userDefaultsMock verify];
 }

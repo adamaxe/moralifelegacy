@@ -125,7 +125,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
     
 	//Create input for requesting ChoiceDetailViewController
-//	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showChoiceDetailEntry)];
     UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",@"Hint for Details Label") style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
 	
 	self.navigationItem.rightBarButtonItem = barButtonItem;

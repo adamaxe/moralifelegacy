@@ -48,6 +48,6 @@ typedef enum referenceModelTypeEnum{
  Retrieve reference for display
  @param reference NSString of requested pkey
  */
-- (void) retrieveReference:(NSString *) referenceKey;
+- (void) selectReference:(NSString *) referenceKey;
 
 @end

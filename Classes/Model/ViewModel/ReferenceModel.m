@@ -70,7 +70,7 @@
 }
 
 /**
- Implementation: Retrieve all User entered Choices, and then populate a working set of data containers upon which to filter.
+ Implementation: Retrieve all User-received references, and then populate a working set of data containers upon which to filter.
  */
 - (void) retrieveAllReferences {
 
@@ -152,9 +152,9 @@
 }
 
 /**
- Implementation: Retrieve a requested Choice and set NSUserDefaults for ChoiceViewController to read
+ Implementation: Retrieve a requested reference and set NSUserDefaults for Reference*ViewControllers to read
  */
-- (void) retrieveReference:(NSString *) referenceKey {
+- (void) selectReference:(NSString *) referenceKey {
 
     //Set state retention for eventual call to ChoiceViewController to pick up
     [preferences setInteger:self.referenceType forKey:@"referenceType"];
