@@ -15,14 +15,14 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 @interface ReferenceViewController () <MenuScreenAnimations, ViewControllerLocalization> {
         
 	IBOutlet UIButton *peopleLabelButton;		/**< label for People button */
-	IBOutlet UIButton *placesLabelButton;		/**< label for Places button */
+	IBOutlet UIButton *moralsLabelButton;		/**< label for Morals button */
 	IBOutlet UIButton *booksLabelButton;		/**< label for Books button */
 	IBOutlet UIButton *beliefsLabelButton;		/**< label for Beliefs button */
 	IBOutlet UIButton *reportsLabelButton;		/**< label for Reports button */
 	IBOutlet UIButton *accessoriesLabelButton;	/**< label for Accessories button */
 	
 	IBOutlet UIButton *peopleButton;		/**< label for People button */
-	IBOutlet UIButton *placesButton;		/**< label for Places button */
+	IBOutlet UIButton *moralsButton;		/**< label for Places button */
 	IBOutlet UIButton *booksButton;		/**< label for Books button */
 	IBOutlet UIButton *beliefsButton;		/**< label for Beliefs button */
 	IBOutlet UIButton *reportsButton;		/**< label for Reports button */
@@ -46,7 +46,22 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		
 		//Array to hold button names for random animations
 		buttonNames = @[@"accessories", @"beliefs", @"books", @"people", @"choicegood", @"reports"];
-        
+
+        //Assign buttons to reference Types
+        peopleButton.tag = kReferenceModelTypePerson;
+        moralsButton.tag = kReferenceModelTypeMoral;
+        booksButton.tag = kReferenceModelTypeText;
+        beliefsButton.tag = kReferenceModelTypeBelief;
+        reportsButton.tag = kReferenceModelTypeReferenceAsset;
+        accessoriesButton.tag = kReferenceModelTypeConscienceAsset;
+
+        peopleLabelButton.tag = kReferenceModelTypePerson;
+        moralsLabelButton.tag = kReferenceModelTypeMoral;
+        booksLabelButton.tag = kReferenceModelTypeText;
+        beliefsLabelButton.tag = kReferenceModelTypeBelief;
+        reportsLabelButton.tag = kReferenceModelTypeReferenceAsset;
+        accessoriesLabelButton.tag = kReferenceModelTypeConscienceAsset;
+
     }
     return self;
 }
@@ -100,34 +115,21 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 }
 
 /**
-Implementation: A single view controller is utilized for both Good and Bad choices.  A boolean controls which version of the view controller is presented to User.
+Implementation: Determine which type of reference is requested by the User.
  */
 - (IBAction) selectReferenceType:(id) sender{
 	
 	//Create view controller to be pushed upon navigation stack
     ReferenceModel *referenceModel = [[ReferenceModel alloc] init];
 
-	int referenceType = kReferenceModelTypeConscienceAsset;
+	referenceModel.referenceType = kReferenceModelTypeConscienceAsset;
 
 	//Determine which choice was selected
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
-
-		//Populate subsequent list controller with appropriate choice
-		//Pass which reference type is requested
-		switch (choiceIndex){
-			case 0:referenceType = kReferenceModelTypeConscienceAsset;break;
-			case 1:referenceType = kReferenceModelTypeBelief;break;
-			case 2:referenceType = kReferenceModelTypeText;break;
-			case 3:referenceType = kReferenceModelTypePerson;break;
-			case 4:referenceType = kReferenceModelTypeMoral;break;
-			default:referenceType = kReferenceModelTypeConscienceAsset;break;
-		}
-
+        referenceModel.referenceType = senderButton.tag;
 	}
-
-    referenceModel.referenceType = referenceType;
+    
     ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];
     [self.navigationController pushViewController:referenceListViewCont animated:YES];
 
@@ -172,7 +174,7 @@ Implementation: Build animated UIImage from sequential icon files
 		case 1: [beliefsButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[beliefsButton addSubview:animation1];break;
 		case 2: [booksButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[booksButton addSubview:animation1];break;
 		case 3: [peopleButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[peopleButton addSubview:animation1];break;
-		case 4: [placesButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[placesButton addSubview:animation1];break;
+		case 4: [moralsButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[moralsButton addSubview:animation1];break;
 		case 5: [reportsButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[reportsButton addSubview:animation1];break;
 		default:break;
 	}
@@ -198,7 +200,7 @@ Implementation: Return the button's icon to default after animation finishes
 		case 1: [beliefsButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
 		case 2: [booksButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
 		case 3: [peopleButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		case 4: [placesButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
+		case 4: [moralsButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
 		case 5: [reportsButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
 		default:break;
 	}
@@ -213,7 +215,7 @@ Implementation: Return the button's icon to default after animation finishes
     //Local Button Titles.  Do no do this in init, XIB is not loaded until viewDidLoad
     [accessoriesLabelButton setTitle:NSLocalizedString(@"ReferenceScreenAccessoriesTitle",@"Title for Accessories Button") forState:UIControlStateNormal];	
     [peopleLabelButton setTitle:NSLocalizedString(@"ReferenceScreenPeopleTitle",@"Title for People Button") forState:UIControlStateNormal];
-    [placesLabelButton setTitle:NSLocalizedString(@"ReferenceScreenMoralsTitle",@"Title for Morals Button") forState:UIControlStateNormal];
+    [moralsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenMoralsTitle",@"Title for Morals Button") forState:UIControlStateNormal];
     [booksLabelButton setTitle:NSLocalizedString(@"ReferenceScreenBooksTitle",@"Title for Books Button") forState:UIControlStateNormal];
     [beliefsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenBeliefsTitle",@"Title for Beliefs Button") forState:UIControlStateNormal];
     [reportsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenReportsTitle",@"Title for Reports Button") forState:UIControlStateNormal];
@@ -221,9 +223,9 @@ Implementation: Return the button's icon to default after animation finishes
 	peopleLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenPeopleHint",@"Hint for People Button");
 	peopleButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenPeopleHint",@"Hint for People Button");
 	peopleButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenPeopleLabel",@"Label for People Button");
-	placesLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenPlacesHint",@"Hint for Places Button");
-	placesButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenMoralsHint",@"Hint for Morals Button");
-	placesButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenMoralsLabel",@"Label for Morals Button");
+	moralsLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenMoralsHint",@"Hint for Morals Button");
+	moralsButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenMoralsHint",@"Hint for Morals Button");
+	moralsButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenMoralsLabel",@"Label for Morals Button");
 	booksLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBooksHint",@"Hint for Books Button");
 	booksButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBooksHint",@"Hint for Books Button");
 	booksButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenBooksLabel",@"Label for Books Button");

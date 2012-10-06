@@ -1,14 +1,14 @@
 /**
- Unit Test for ReferenceModel.  Test model interaction with peristed data for ReferenceViewController and ReferenceListViewController
+ Unit Test for ReferenceDetailModel.  Test model interaction with peristed data for ReferenceDetailViewController
  
- @class TestReferenceModel
+ @class TestReferenceDetailModel
  
  @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
  @date 06/09/2012
  @file
  */
 
-#import "ReferenceModel.h"
+#import "ReferenceDetailModel.h"
 #import "ConscienceAsset.h"
 #import "ReferencePerson.h"
 #import "ReferenceAsset.h"
@@ -16,9 +16,9 @@
 #import "Moral.h"
 #import "OCMock/OCMock.h"
 
-@interface TestReferenceModel : SenTestCase {
+@interface TestReferenceDetailModel : SenTestCase {
     
-    ReferenceModel *testingSubject;
+    ReferenceDetailModel *testingSubject;
     ModelManager *testModelManager;
     id userDefaultsMock;
     NSArray *userCollection;
@@ -34,7 +34,7 @@
 
 @end
 
-@implementation TestReferenceModel
+@implementation TestReferenceDetailModel
 
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
@@ -47,10 +47,10 @@
     testPerson1 = [self createPersonWithName:@"Person1" withModelManager:testModelManager];
     testPerson2 = [self createPersonWithName:@"Person2" withModelManager:testModelManager];
 
-    //Don't add testPerson2 to ensure that ReferenceModel only returns things owned by User
+    //Don't add testPerson2 to ensure that ReferenceDetailModel only returns things owned by User
     userCollection = @[[testPerson1 nameReference], [testAsset1 nameReference], [testAsset2 nameReference], [virtue1 nameMoral], [vice1 nameMoral]];
 
-    testingSubject = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
+    testingSubject = [[ReferenceDetailModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
 
 }
 
@@ -62,24 +62,24 @@
 
 }
 
-- (void)testReferenceModelCanBeCreated {
+- (void)testReferenceDetailModelCanBeCreated {
 
-    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
+    ReferenceDetailModel *testingSubjectCreate = [[ReferenceDetailModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andUserCollection:userCollection];
 
-    STAssertNotNil(testingSubjectCreate, @"ReferenceModel can't be created.");
+    STAssertNotNil(testingSubjectCreate, @"ReferenceDetailModel can't be created.");
 
     
 }
 
-- (void)testReferenceModelDefaultValuesAreSetCorrectly {
+- (void)testReferenceDetailModelDefaultValuesAreSetCorrectly {
 
-    STAssertEquals(testingSubject.referenceType, kReferenceModelTypeConscienceAsset, @"ReferenceModel referenceType isn't ConscienceAsset by default");
+    STAssertEquals(testingSubject.referenceType, kReferenceModelTypeConscienceAsset, @"ReferenceDetailModel referenceType isn't ConscienceAsset by default");
 
 }
-- (void)testReferenceModelReferenceTypeCanBeSet {
+- (void)testReferenceDetailModelReferenceTypeCanBeSet {
 
     testingSubject.referenceType = kReferenceModelTypePerson;
-    STAssertEquals(testingSubject.referenceType, kReferenceModelTypePerson, @"ReferenceModel referenceType can't be set");
+    STAssertEquals(testingSubject.referenceType, kReferenceModelTypePerson, @"ReferenceDetailModel referenceType can't be set");
 
 }
 
@@ -87,7 +87,7 @@
 
     ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
 
-    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock andUserCollection:userCollection];
+    ReferenceDetailModel *testingSubjectCreate = [[ReferenceDetailModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock andUserCollection:userCollection];
 
     STAssertTrue(testingSubjectCreate.references.count == 0, @"References are not empty");
     STAssertTrue(testingSubjectCreate.referenceKeys.count == 0, @"ReferenceKeys are not empty");
@@ -101,7 +101,7 @@
 
     ModelManager *testModelManagerCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
 
-    ReferenceModel *testingSubjectCreate = [[ReferenceModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock andUserCollection:@[]];
+    ReferenceDetailModel *testingSubjectCreate = [[ReferenceDetailModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock andUserCollection:@[]];
 
     STAssertTrue(testingSubjectCreate.references.count == 0, @"References are not empty");
     STAssertTrue(testingSubjectCreate.referenceKeys.count == 0, @"ReferenceKeys are not empty");
@@ -192,7 +192,7 @@
     [[userDefaultsMock expect] setObject:testAsset1.nameReference forKey:@"referenceKey"];
     [[userDefaultsMock expect] synchronize];
 
-    [testingSubject selectReference:testAsset1.nameReference];
+    [testingSubject retrieveReference:testAsset1.nameReference];
 
     [userDefaultsMock verify];
 }
@@ -205,7 +205,7 @@
     [[userDefaultsMock expect] setObject:virtue1.nameMoral forKey:@"referenceKey"];
     [[userDefaultsMock expect] synchronize];
 
-    [testingSubject selectReference:virtue1.nameMoral];
+    [testingSubject retrieveReference:virtue1.nameMoral];
 
     [userDefaultsMock verify];
 }
@@ -218,7 +218,7 @@
     [[userDefaultsMock expect] setObject:vice1.nameMoral forKey:@"referenceKey"];
     [[userDefaultsMock expect] synchronize];
 
-    [testingSubject selectReference:vice1.nameMoral];
+    [testingSubject retrieveReference:vice1.nameMoral];
     
     [userDefaultsMock verify];
 }

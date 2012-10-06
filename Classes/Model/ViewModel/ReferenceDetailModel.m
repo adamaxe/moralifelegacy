@@ -1,5 +1,5 @@
 #import "MoraLifeAppDelegate.h"
-#import "ReferenceModel.h"
+#import "ReferenceDetailModel.h"
 #import "UserChoiceDAO.h"
 #import "ConscienceAssetDAO.h"
 #import "ReferenceAssetDAO.h"
@@ -8,7 +8,7 @@
 #import "ReferenceTextDAO.h"
 #import "MoralDAO.h"
 
-@interface ReferenceModel () {
+@interface ReferenceDetailModel () {
     NSUserDefaults *preferences;            /**< User defaults to write to file system */
     NSArray *currentUserCollection;                /**< collection of owned Assets */
     ModelManager *moralModelManager;    
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation ReferenceModel
+@implementation ReferenceDetailModel
 
 - (id)init {
     MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -153,7 +153,7 @@
 /**
  Implementation: Retrieve a requested reference and set NSUserDefaults for Reference*ViewControllers to read
  */
-- (void) selectReference:(NSString *) referenceKey {
+- (void) retrieveReference:(NSString *) referenceKey {
 
     //Set state retention for eventual call to ChoiceViewController to pick up
     [preferences setInteger:self.referenceType forKey:@"referenceType"];

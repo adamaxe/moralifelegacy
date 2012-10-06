@@ -1,8 +1,8 @@
 /**
- Reference view model.  Generate the various reference assets to which the User has access.
+ ReferenceDetails view model.  Returns the details about a specific reference asset.
 
- @class ReferenceModel
- @see ReferenceListViewController
+ @class ReferenceDetailModel
+ @see ReferenceDetailViewController
 
  @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
  @date 08/16/2012
@@ -11,7 +11,7 @@
 
 #import "ModelManager.h"
 
-@interface ReferenceModel : NSObject
+@interface ReferenceDetailModel : NSObject
 
 @property (nonatomic, assign) int referenceType;    /**< current reference type */
 
@@ -35,6 +35,6 @@
  Retrieve reference for display
  @param reference NSString of requested pkey
  */
-- (void) selectReference:(NSString *) referenceKey;
+- (void) retrieveReference:(NSString *) referenceKey;
 
 @end
