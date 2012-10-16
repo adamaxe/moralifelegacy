@@ -14,7 +14,6 @@ extern int const kBubbleType;
 extern float const kBubbleDuration;
 extern float const kBubbleWidth;
 
-
 @interface ConscienceBubbleView : UIView 
 
 @property (nonatomic, assign) int bubbleType;		/**< type of bubble */
