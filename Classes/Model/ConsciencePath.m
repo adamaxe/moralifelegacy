@@ -7,8 +7,8 @@ Data will represent images that will be drawn via CoreGraphics on Conscience
 
 #import "ConsciencePath.h"
 
-NSString* const kPathColor = @"";
-float const kDefault0Float = 0.0;
+NSString* const MLPathColorDefault = @"";
+float const MLDefault0Float = 0.0;
 
 @implementation ConsciencePath
 
@@ -17,14 +17,14 @@ float const kDefault0Float = 0.0;
     self = [super init];
 	if (self) {
 		//In case of first time run, or User does not supply configuration, default gradient
-		_pathFillColor = kPathColor;
-		_pathStrokeColor = kPathColor;
+		_pathFillColor = MLPathColorDefault;
+		_pathStrokeColor = MLPathColorDefault;
 		_pathID = @"none";
 		_pathGradient = @"";
-		_pathStrokeWidth = kDefault0Float;
-        _pathFillOpacity = kDefault0Float;
-		_pathStrokeMiterLimit = kDefault0Float;
-		_pathStrokeOpacity = kDefault0Float;
+		_pathStrokeWidth = MLDefault0Float;
+        _pathFillOpacity = MLDefault0Float;
+		_pathStrokeMiterLimit = MLDefault0Float;
+		_pathStrokeOpacity = MLDefault0Float;
 
 		_pathPoints = [[NSMutableArray alloc] init];
 		_pathInstructions = [[NSMutableArray alloc] init];		

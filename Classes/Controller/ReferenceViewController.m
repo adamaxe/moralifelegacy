@@ -107,7 +107,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	//Create view controller to be pushed upon navigation stack
     ReferenceModel *referenceModel = [[ReferenceModel alloc] init];
 
-	int referenceType = kReferenceModelTypeConscienceAsset;
+	int referenceType = MLReferenceModelTypeConscienceAsset;
 
 	//Determine which choice was selected
 	if ([sender isKindOfClass:[UIButton class]]) {
@@ -117,12 +117,12 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 		//Populate subsequent list controller with appropriate choice
 		//Pass which reference type is requested
 		switch (choiceIndex){
-			case 0:referenceType = kReferenceModelTypeConscienceAsset;break;
-			case 1:referenceType = kReferenceModelTypeBelief;break;
-			case 2:referenceType = kReferenceModelTypeText;break;
-			case 3:referenceType = kReferenceModelTypePerson;break;
-			case 4:referenceType = kReferenceModelTypeMoral;break;
-			default:referenceType = kReferenceModelTypeConscienceAsset;break;
+			case 0:referenceType = MLReferenceModelTypeConscienceAsset;break;
+			case 1:referenceType = MLReferenceModelTypeBelief;break;
+			case 2:referenceType = MLReferenceModelTypeText;break;
+			case 3:referenceType = MLReferenceModelTypePerson;break;
+			case 4:referenceType = MLReferenceModelTypeMoral;break;
+			default:referenceType = MLReferenceModelTypeConscienceAsset;break;
 		}
 
 	}

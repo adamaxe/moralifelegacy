@@ -22,15 +22,15 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "ViewControllerLocalization.h"
 
 typedef enum {
-    kHomeVirtueButtonTag = 3030,
-    kHomeViceButtonTag = 3031,
-    kHomeRankButtonTag = 3032,
-    kHomeThoughtButtonTag = 3033
-} kConscienceViewControllerTags;
+    MLConscienceViewControllerVirtueButtonTag = 3030,
+    MLConscienceViewControllerViceButtonTag = 3031,
+    MLConscienceViewControllerRankButtonTag = 3032,
+    MLConscienceViewControllerThoughtButtonTag = 3033
+} MLConscienceViewControllerTags;
 
-float const kTransientInterval = 7;
-int const kThoughtIterations = 5;
-float const kThoughtInterval = 5;
+float const MLTransientInterval = 7;
+int const MLThoughtIterations = 5;
+float const MLThoughtInterval = 5;
 
 @interface ConscienceViewController () <ViewControllerLocalization> {
     
@@ -152,9 +152,9 @@ static int thoughtVersion = 0;
     viceImage.alpha = 0;
     rankImage.alpha = 0;
     
-    [virtueButton setTag:kHomeVirtueButtonTag];    
-    [viceButton setTag:kHomeViceButtonTag];
-    [rankButton setTag:kHomeRankButtonTag];
+    [virtueButton setTag:MLConscienceViewControllerVirtueButtonTag];    
+    [viceButton setTag:MLConscienceViewControllerViceButtonTag];
+    [rankButton setTag:MLConscienceViewControllerRankButtonTag];
 
 	animationDuration = 1.0;
     
@@ -199,7 +199,7 @@ static int thoughtVersion = 0;
     
 	[consciencePlayground addSubview:initialConscienceView];
 	
-    initialConscienceView.center = CGPointMake(kConscienceHomeX, kConscienceHomeY);
+    initialConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY);
     
 	[UIView beginAnimations:@"ShowConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -246,7 +246,7 @@ static int thoughtVersion = 0;
         [prefs removeObjectForKey:@"transientMind"];
         [initialConscienceView setNeedsDisplay];
         
-        [NSTimer scheduledTimerWithTimeInterval:kTransientInterval invocation:invocation repeats:NO];
+        [NSTimer scheduledTimerWithTimeInterval:MLTransientInterval invocation:invocation repeats:NO];
         
     }
     
@@ -309,7 +309,7 @@ static int thoughtVersion = 0;
         [thoughtFadeTimer invalidate];
     }
     
-    thoughtFadeTimer = [NSTimer scheduledTimerWithTimeInterval:kThoughtInterval target:self selector:@selector(hideThought) userInfo:nil repeats:YES];
+    thoughtFadeTimer = [NSTimer scheduledTimerWithTimeInterval:MLThoughtInterval target:self selector:@selector(hideThought) userInfo:nil repeats:YES];
 
 }
 
@@ -389,7 +389,7 @@ static int thoughtVersion = 0;
 /** Implementation:  Needs function due to invocation
  */
 -(void) refreshConscience{
-	[[consciencePlayground viewWithTag:kConscienceViewTag] setNeedsDisplay];
+	[[consciencePlayground viewWithTag:MLConscienceViewTag] setNeedsDisplay];
 }
 
 //Implement Shaking response
@@ -457,7 +457,7 @@ static int thoughtVersion = 0;
 			
 			//Shrink the Conscience to emulate that User is pushing Conscience
 			//into background.  Only animate this if User is actually touching Conscience.
-			if (touchedView.tag==kConscienceViewTag) {
+			if (touchedView.tag==MLConscienceViewTag) {
 				                
                 /** @todo fix Conscience movement */
 				//Depress Conscience slightly to simulate actual contact
@@ -500,7 +500,7 @@ static int thoughtVersion = 0;
 
     UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];
 
-    if (touchedView.tag==kConscienceViewTag) {
+    if (touchedView.tag==MLConscienceViewTag) {
     
         [self showConscienceModal];
     }
@@ -573,19 +573,19 @@ static int thoughtVersion = 0;
 		int choiceIndex = senderButton.tag;
         
 		switch (choiceIndex){
-			case kHomeVirtueButtonTag:{
+			case MLConscienceViewControllerVirtueButtonTag:{
                 isChoice = TRUE;
                 if (![homeVirtueDisplayName isEqualToString:@""]) {
                     searchString = [NSString stringWithFormat:@"Your most developed Virtue is %@.", homeVirtueDisplayName];
                 }
             }break;
-			case kHomeViceButtonTag:{
+			case MLConscienceViewControllerViceButtonTag:{
                 isChoice = TRUE;
                 if (![homeViceDisplayName isEqualToString:@""]) {
                     searchString = [NSString stringWithFormat:@"Your most troublesome Vice is %@.", homeViceDisplayName];
                 }
             }break;
-			case kHomeRankButtonTag:{
+			case MLConscienceViewControllerRankButtonTag:{
                 isChoice = TRUE;
                 if (![highestRankName isEqualToString:@""]) {
                     searchString = [NSString stringWithFormat:@"Your current rank is %@.", highestRankName];
@@ -664,7 +664,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     
     
     UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
-    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     int ethicals = 0;
@@ -710,7 +710,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
             
     }
     
-    if (thoughtVersion < kThoughtIterations-1) {
+    if (thoughtVersion < MLThoughtIterations-1) {
         thoughtVersion++;
     } else {
         thoughtVersion = 0;

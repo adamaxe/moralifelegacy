@@ -9,10 +9,10 @@ Conscience Bubble visualization.  The appearance and animation of the User's or 
 @file
  */
 
-extern NSString* const kBubbleColor;
-extern int const kBubbleType;
-extern float const kBubbleDuration;
-extern float const kBubbleWidth;
+extern NSString* const MLBubbleColorDefault;
+extern int const MLBubbleTypeDefault;
+extern float const MLBubbleDurationDefault;
+extern float const MLBubbleWidthDefault;
 
 @interface ConscienceBubbleView : UIView 
 

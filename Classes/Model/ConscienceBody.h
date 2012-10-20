@@ -12,14 +12,14 @@ Each Dictionary contains every expression frame for currently selected feature t
 
 #import "ConscienceBubbleView.h"
 
-extern float const kConscienceSize;
-extern int const kConscienceAge;
+extern float const MLConscienceSizeDefault;
+extern int const MLConscienceAgeDefault;
 
-extern NSString* const kEyeColor;
-extern NSString* const kBrowColor;
-extern NSString* const kEyeFileNameResource;
-extern NSString* const kMouthFileNameResource;
-extern NSString* const kSymbolFileNameResource;
+extern NSString* const MLConscienceEyeColorDefault;
+extern NSString* const MLConscienceBrowColorDefault;
+extern NSString* const MLEyeFileNameResourceDefault;
+extern NSString* const MLMouthFileNameResourceDefault;
+extern NSString* const MLSymbolFileNameResourceDefault;
 
 @interface ConscienceBody : NSObject 
 

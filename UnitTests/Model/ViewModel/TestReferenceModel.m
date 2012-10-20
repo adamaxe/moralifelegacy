@@ -74,13 +74,13 @@
 
 - (void)testReferenceModelDefaultValuesAreSetCorrectly {
 
-    STAssertEquals(testingSubject.referenceType, kReferenceModelTypeConscienceAsset, @"ReferenceModel referenceType isn't ConscienceAsset by default");
+    STAssertEquals(testingSubject.referenceType, MLReferenceModelTypeConscienceAsset, @"ReferenceModel referenceType isn't ConscienceAsset by default");
 
 }
 - (void)testReferenceModelReferenceTypeCanBeSet {
 
-    testingSubject.referenceType = kReferenceModelTypePerson;
-    STAssertEquals(testingSubject.referenceType, kReferenceModelTypePerson, @"ReferenceModel referenceType can't be set");
+    testingSubject.referenceType = MLReferenceModelTypePerson;
+    STAssertEquals(testingSubject.referenceType, MLReferenceModelTypePerson, @"ReferenceModel referenceType can't be set");
 
 }
 
@@ -114,7 +114,7 @@
 
 - (void)testWhenSystemAndUserDataIsPresentReferencePersonsAreCorrect {
 
-    testingSubject.referenceType = kReferenceModelTypePerson;
+    testingSubject.referenceType = MLReferenceModelTypePerson;
 
     STAssertTrue(testingSubject.references.count == 1, @"ReferencePerson references count is incorrect");
     STAssertTrue(testingSubject.referenceKeys.count == 1, @"ReferencePerson referenceKeys count is incorrect");
@@ -130,7 +130,7 @@
 
 - (void)testWhenSystemAndUserDataIsPresentConscienceAssetsAreCorrect {
 
-    testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
+    testingSubject.referenceType = MLReferenceModelTypeConscienceAsset;
 
     STAssertTrue(testingSubject.references.count == 2, @"ConscienceAsset references count is incorrect");
     STAssertTrue(testingSubject.referenceKeys.count == 2, @"ConscienceAsset referenceKeys count is incorrect");
@@ -151,7 +151,7 @@
 
 - (void)testWhenSystemAndUserDataIsPresentMoralsAreCorrect {
 
-    testingSubject.referenceType = kReferenceModelTypeMoral;
+    testingSubject.referenceType = MLReferenceModelTypeMoral;
 
     STAssertTrue(testingSubject.references.count == 2, @"Moral references count is incorrect");
     STAssertTrue(testingSubject.referenceKeys.count == 2, @"Moral referenceKeys count is incorrect");
@@ -175,7 +175,7 @@
 
 - (void)testWhenSystemAndUserDataIsPresentConscienceAssetsAreSortedByShortDescription {
 
-    testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
+    testingSubject.referenceType = MLReferenceModelTypeConscienceAsset;
 
     STAssertEqualObjects([testingSubject.referenceKeys objectAtIndex:0], [testAsset1 nameReference], @"ConscienceAsset1 referenceKey ordered incorrectly");
     STAssertEqualObjects([testingSubject.details objectAtIndex:0], [testAsset1 shortDescriptionReference], @"ConscienceAsset1 detail ordered incorrectly");
@@ -187,7 +187,7 @@
 
 - (void)testRetrieveConscienceAssetWritesToStandardUserDefaultsForViewing {
 
-    testingSubject.referenceType = kReferenceModelTypeConscienceAsset;
+    testingSubject.referenceType = MLReferenceModelTypeConscienceAsset;
 
     [[userDefaultsMock expect] setInteger:testingSubject.referenceType forKey:@"referenceType"];
     [[userDefaultsMock expect] setObject:testAsset1.nameReference forKey:@"referenceKey"];
@@ -200,7 +200,7 @@
 
 - (void)testRetrieveVirtueWritesToStandardUserDefaultsForViewing {
 
-    testingSubject.referenceType = kReferenceModelTypeMoral;
+    testingSubject.referenceType = MLReferenceModelTypeMoral;
 
     [[userDefaultsMock expect] setInteger:testingSubject.referenceType forKey:@"referenceType"];
     [[userDefaultsMock expect] setObject:virtue1.nameMoral forKey:@"referenceKey"];
@@ -213,7 +213,7 @@
 
 - (void)testRetrieveViceWritesToStandardUserDefaultsForViewing {
 
-    testingSubject.referenceType = kReferenceModelTypeMoral;
+    testingSubject.referenceType = MLReferenceModelTypeMoral;
 
     [[userDefaultsMock expect] setInteger:testingSubject.referenceType forKey:@"referenceType"];
     [[userDefaultsMock expect] setObject:vice1.nameMoral forKey:@"referenceKey"];

@@ -193,7 +193,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:tableDataImages[indexPath.row]];	
 
-    if (self.referenceModel.referenceType != kReferenceModelTypeMoral) {
+    if (self.referenceModel.referenceType != MLReferenceModelTypeMoral) {
         [rowImageName appendString:@"-sm"];
     }
     

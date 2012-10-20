@@ -145,13 +145,13 @@ Implementation:  UIViewController changes state of UI depending upon which stage
     
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
     //Animate vs. image and Consciences
 	[UIView beginAnimations:@"MoveConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
+	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
     
 	screen1View.alpha = 1;
 	
@@ -441,9 +441,9 @@ Construct antagonist Conscience
         
 		[ConscienceBuilder buildConscience:antagonistConscienceBody];
         
-		ConscienceView *antagonistConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(kConscienceAntagonistX, kConscienceAntagonistY, kConscienceAntagonistWidth, kConscienceAntagonistHeight) withBody:antagonistConscienceBody withAccessories:antagonistConscienceAccessories withMind:antagonistConscienceMind];
+		ConscienceView *antagonistConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(MLConscienceAntagonistX, MLConscienceAntagonistY, MLConscienceAntagonistWidth, MLConscienceAntagonistHeight) withBody:antagonistConscienceBody withAccessories:antagonistConscienceAccessories withMind:antagonistConscienceMind];
         
-		antagonistConscienceView.tag = kConscienceAntagonistViewTag;
+		antagonistConscienceView.tag = MLConscienceAntagonistViewTag;
 		antagonistConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
 		antagonistConscienceView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
 		[antagonistConscienceView setUserInteractionEnabled:FALSE];
@@ -529,8 +529,8 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	//Determine if reward is ethicals or a Reference/ConscienceAsset
 	//@todo localize reward
-	if ([selectedReward rangeOfString:kCollectableEthicals].location != NSNotFound) {
-		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:kCollectableEthicals]];
+	if ([selectedReward rangeOfString:MLCollectableEthicals].location != NSNotFound) {
+		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:MLCollectableEthicals]];
 		[moralSelectedRewardLabel setText:@"Have some Ethicals!"];
         
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
@@ -578,7 +578,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	}
     
 	//Update User's ethicals
-    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
 	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
 	//Increase the moral's value

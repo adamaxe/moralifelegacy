@@ -13,8 +13,8 @@ ConscienceObjectView draws via Core Graphics these points when provided the draw
 #import "ConscienceGradient.h"
 #import "UIColor+Utility.h"
 
-int const kEyeWidth = 32;
-int const kEyeHeight = 32;
+int const MLEyeWidth = 32;
+int const MLEyeHeight = 32;
 
 @implementation ConscienceObjectView
 

@@ -41,7 +41,7 @@
     self = [super init];
     if (self) {
 
-        _referenceType = kReferenceModelTypeConscienceAsset;
+        _referenceType = MLReferenceModelTypeConscienceAsset;
         _references = [[NSMutableArray alloc] init];
         _referenceKeys = [[NSMutableArray alloc] init];
         _details = [[NSMutableArray alloc] init];
@@ -84,22 +84,22 @@
 
     //Populate subsequent list controller with appropriate choice
 	switch (_referenceType){
-		case kReferenceModelTypeConscienceAsset:
+		case MLReferenceModelTypeConscienceAsset:
 			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
-		case kReferenceModelTypeBelief:
+		case MLReferenceModelTypeBelief:
 			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
-		case kReferenceModelTypeText:
+		case MLReferenceModelTypeText:
 			currentDAO = [[ReferenceTextDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
-		case kReferenceModelTypePerson:
+		case MLReferenceModelTypePerson:
 			currentDAO = [[ReferencePersonDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
-		case kReferenceModelTypeMoral:
+		case MLReferenceModelTypeMoral:
 			currentDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
-        case kReferenceModelTypeReferenceAsset:
+        case MLReferenceModelTypeReferenceAsset:
             currentDAO = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
             break;
 		default:
@@ -107,7 +107,7 @@
 			break;
 	}
 
-    if (_referenceType != kReferenceModelTypeMoral) {
+    if (_referenceType != MLReferenceModelTypeMoral) {
         NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 
         NSArray *sortDescriptors = @[sortDescriptor1];
@@ -120,7 +120,7 @@
 
 	if ([objects count] > 0) {
 
-        if (_referenceType != kReferenceModelTypeMoral) {
+        if (_referenceType != MLReferenceModelTypeMoral) {
             for (ReferenceAsset *matches in objects){
 
                 //Is the asset owned

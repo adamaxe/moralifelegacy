@@ -145,7 +145,7 @@ User selection causes selectChoice to be called which sets the currentState vari
     [self.view addSubview:appDelegate.userConscienceView];
 	
 	//Flip Conscience direction if facing left
-	if (appDelegate.userConscienceView.directionFacing == kDirectionFacingLeft) {
+	if (appDelegate.userConscienceView.directionFacing == MLDirectionFacingLeft) {
 		
 		[UIView beginAnimations:@"conscienceFlipper" context:nil];
 		[UIView setAnimationDuration:0.25];
@@ -159,7 +159,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	}
     
     //Move Conscience to center of boxes
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
     appDelegate.userConscienceView.center = centerPoint;
     
 	[UIView beginAnimations:@"FadeInView" context:nil];
@@ -240,7 +240,7 @@ Implementation:  Sometimes the Conscience can be put in the wrong section of the
 -(void) moveConscienceToBottom{
     
     //Move Conscience to center of boxes
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
     appDelegate.userConscienceView.center = centerPoint;
     
     [UIView beginAnimations:@"conscienceRestore" context:nil];
@@ -248,7 +248,7 @@ Implementation:  Sometimes the Conscience can be put in the wrong section of the
     
     [UIView setAnimationBeginsFromCurrentState:YES];
     appDelegate.userConscienceView.alpha = 1;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
+    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
     
     [UIView commitAnimations];
     

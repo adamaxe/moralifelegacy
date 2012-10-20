@@ -10,7 +10,7 @@
 #import "BaseDAO.h"
 #import "UserCollectable.h"
 
-extern NSString* const kCollectableEthicals;
+extern NSString* const MLCollectableEthicals;
 
 @interface UserCollectableDAO : BaseDAO
 

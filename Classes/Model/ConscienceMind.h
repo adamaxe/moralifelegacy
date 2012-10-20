@@ -10,8 +10,8 @@ Data derived from User's actions.  Member of ConscienceView.
 @file
  */
 
-extern float const kConscienceEnthusiasm;
-extern float const kConscienceMood;
+extern float const MLConscienceEnthusiasmDefault;
+extern float const MLConscienceMoodDefault;
 
 @interface ConscienceMind : NSObject
 

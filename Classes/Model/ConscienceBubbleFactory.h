@@ -14,22 +14,22 @@
  Possible bubbleTypes
  */
 typedef enum {
-	kBubbleTypeRoundNormal,
-	kBubbleTypeRoundTall,
-	kBubbleTypeRoundShort,
-	kBubbleTypeDiamondNormal,
-	kBubbleTypeDiamondTall,
-	kBubbleTypeDiamondShort,
-	kBubbleTypeStarNormal,
-	kBubbleTypeStarTall,
-	kBubbleTypeStarShort,
-	kBubbleTypePuffyNormal,
-	kBubbleTypePuffyTall,
-	kBubbleTypePuffyShort,
-	kBubbleTypeGearNormal,
-	kBubbleTypeGearTall,
-	kBubbleTypeGearShort
-} kBubbleTypeEnum;
+	MLBubbleTypeRoundNormal,
+	MLBubbleTypeRoundTall,
+	MLBubbleTypeRoundShort,
+	MLBubbleTypeDiamondNormal,
+	MLBubbleTypeDiamondTall,
+	MLBubbleTypeDiamondShort,
+	MLBubbleTypeStarNormal,
+	MLBubbleTypeStarTall,
+	MLBubbleTypeStarShort,
+	MLBubbleTypePuffyNormal,
+	MLBubbleTypePuffyTall,
+	MLBubbleTypePuffyShort,
+	MLBubbleTypeGearNormal,
+	MLBubbleTypeGearTall,
+	MLBubbleTypeGearShort
+} MLBubbleType;
 
 @interface ConscienceBubbleFactory : NSObject
 
@@ -38,13 +38,13 @@ typedef enum {
  @param int Type of Bubble to Draw (kBubbleTypeRoundNormal, kBubbleTypeRoundShort, etc.)
  @return NSObject autoreleased CGMutablePathRef to add to CGContext
  */
-+ (NSObject *)bubbleSurfaceWithType:(int)bubbleType;
++ (NSObject *)bubbleSurfaceWithType:(MLBubbleType)bubbleType;
 
 /**
  Returns and autoreleased CGMutablePathRef representing the Conscience's Inner Bubble Accent
  @param int Type of Bubble to Draw (kBubbleTypeRoundNormal, kBubbleTypeRoundShort, etc.)
  @return NSObject autoreleased CGMutablePathRef to add to CGContext
  */
-+ (NSObject *)bubbleAccentWithType:(int)bubbleType;
++ (NSObject *)bubbleAccentWithType:(MLBubbleType)bubbleType;
 
 @end

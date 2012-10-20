@@ -12,10 +12,10 @@ Bubble Animation speed is determined by Conscience's mood and enthusiasm
 #import "ConscienceBubbleFactory.h"
 #import "UIColor+Utility.h"
 
-NSString* const kBubbleColor = @"0000FF";
-int const kBubbleType = 0;
-float const kBubbleDuration = 0.75;
-float const kBubbleWidth = 5.0;
+NSString* const MLBubbleColorDefault = @"0000FF";
+int const MLBubbleTypeDefault = 0;
+float const MLBubbleDurationDefault = 0.75;
+float const MLBubbleWidthDefault = 5.0;
 
 @implementation ConscienceBubbleView
 
@@ -30,10 +30,10 @@ float const kBubbleWidth = 5.0;
 		self.multipleTouchEnabled = YES;
 
 		//Set default pulse, line width and black glow
-		_bubbleGlowDuration = kBubbleDuration;
-		_bubbleGlowWidth = kBubbleWidth;
-		_bubbleColor = kBubbleColor;
-		_bubbleType = kBubbleType;
+		_bubbleGlowDuration = MLBubbleDurationDefault;
+		_bubbleGlowWidth = MLBubbleWidthDefault;
+		_bubbleColor = MLBubbleColorDefault;
+		_bubbleType = MLBubbleTypeDefault;
 	}
 
 	return self;

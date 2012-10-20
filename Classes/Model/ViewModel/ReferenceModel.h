@@ -14,13 +14,13 @@
  typedef utilized to avoid having to use enum declaration
  */
 typedef enum {
-	kReferenceModelTypeConscienceAsset,
-	kReferenceModelTypeBelief,
-	kReferenceModelTypeText,
-	kReferenceModelTypePerson,
-	kReferenceModelTypeMoral,
-	kReferenceModelTypeReferenceAsset
-}referenceModelTypeEnum;
+	MLReferenceModelTypeConscienceAsset,
+	MLReferenceModelTypeBelief,
+	MLReferenceModelTypeText,
+	MLReferenceModelTypePerson,
+	MLReferenceModelTypeMoral,
+	MLReferenceModelTypeReferenceAsset
+} MLReferenceModelTypeEnum;
 
 @class ModelManager;
 

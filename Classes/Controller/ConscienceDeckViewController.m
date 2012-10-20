@@ -10,13 +10,13 @@ Implementation: List cardviews of UserCollectable.  Allows User to select a sele
  Tag Numbers for webViews in order to reference them
  */
 typedef enum {
-	kDeckCard1ButtonTag = 3024,
-	kDeckCard2ButtonTag = 3025,
-	kDeckCard3ButtonTag = 3026,
-	kDeckCard4ButtonTag = 3027,
-	kDeckCard5ButtonTag = 3028,
-	kDeckCard6ButtonTag = 3029
-} deckCard;
+	MLDeckCard1ButtonTag = 3024,
+	MLDeckCard2ButtonTag = 3025,
+	MLDeckCard3ButtonTag = 3026,
+	MLDeckCard4ButtonTag = 3027,
+	MLDeckCard5ButtonTag = 3028,
+	MLDeckCard6ButtonTag = 3029
+} MLDeckCard;
 
 @interface ConscienceDeckViewController () {
 	
@@ -125,15 +125,6 @@ Implementation: Determine if card is selected or not, then flip it to opposite s
 				
 		UIImageView *cardTopSelected = (UIImageView *)[deckView viewWithTag:mlButton.tag - 1000];
 		[cardTopSelected setImage:[UIImage imageNamed:@"cardtop-user.png"]];
-		/*
-		if (mlButton.tag == kDeckCard1ButtonTag) {
-			[card1MoralImage setImage:[UIImage imageNamed:@"card-compassion.png"]];
-			[card1MoralLabel setText:@"CompassionPushed"];
-			[card1MoralScore setText:@"45"];			
-		}
-		*/
-		
-		
 	}
 
 }

@@ -13,23 +13,23 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 
 @class ConscienceBody, ConscienceAccessories, ConscienceMind, CAKeyframeAnimation;
 
-extern int const kDirectionFacingLeft;
-extern int const kDirectionFacingRight;
-extern int const kConscienceLowerLeftX;
-extern int const kConscienceLowerLeftY;
-extern int const kConscienceHomeX;
-extern int const kConscienceHomeY;
-extern int const kConscienceOffscreenBottomX;
-extern int const kConscienceOffscreenBottomY;
-extern int const kConscienceAntagonistX;
-extern int const kConscienceAntagonistY;
-extern int const kConscienceAntagonistWidth;
-extern int const kConscienceAntagonistHeight;
-extern int const kConscienceViewTag;
-extern int const kConscienceAntagonistViewTag;
-extern float const kConscienceLargeSizeX;
-extern float const kConscienceLargeSizeY;
-extern float const kConscienceLargestSize;
+extern int const MLDirectionFacingLeft;
+extern int const MLDirectionFacingRight;
+extern int const MLConscienceLowerLeftX;
+extern int const MLConscienceLowerLeftY;
+extern int const MLConscienceHomeX;
+extern int const MLConscienceHomeY;
+extern int const MLConscienceOffscreenBottomX;
+extern int const MLConscienceOffscreenBottomY;
+extern int const MLConscienceAntagonistX;
+extern int const MLConscienceAntagonistY;
+extern int const MLConscienceAntagonistWidth;
+extern int const MLConscienceAntagonistHeight;
+extern int const MLConscienceViewTag;
+extern int const MLConscienceAntagonistViewTag;
+extern float const MLConscienceLargeSizeX;
+extern float const MLConscienceLargeSizeY;
+extern float const MLConscienceLargestSize;
 
 @interface ConscienceView : UIView
 

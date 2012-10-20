@@ -58,12 +58,12 @@
  */
 - (void)testPathsRoundBubbleTypes{
 
-    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeRoundNormal];
-    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeRoundNormal];
-    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeRoundShort];
-    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeRoundShort];
-    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeRoundTall];
-    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeRoundTall];
+    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeRoundNormal];
+    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeRoundNormal];
+    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeRoundShort];
+    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeRoundShort];
+    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeRoundTall];
+    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeRoundTall];
     
     STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Round Bubble outerPath failed");
     STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Round Bubble dynamic failed");
@@ -78,12 +78,12 @@
 
 - (void)testPathsStarBubbleTypes{
     
-    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeStarNormal];
-    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeStarNormal];
-    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeStarShort];
-    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeStarShort];
-    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeStarTall];
-    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeStarTall];
+    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeStarNormal];
+    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeStarNormal];
+    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeStarShort];
+    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeStarShort];
+    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeStarTall];
+    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeStarTall];
     
     STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Star Bubble outerPath failed");
     STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Star Bubble dynamic failed");
@@ -98,12 +98,12 @@
 
 - (void)testPathsDiamondBubbleTypes{
     
-    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeDiamondNormal];
-    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeDiamondNormal];
-    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeDiamondShort];
-    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeDiamondShort];
-    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeDiamondTall];
-    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeDiamondTall];
+    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeDiamondNormal];
+    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeDiamondNormal];
+    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeDiamondShort];
+    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeDiamondShort];
+    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeDiamondTall];
+    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeDiamondTall];
     
     STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Diamond Bubble outerPath failed");
     STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Diamond Bubble dynamic failed");
@@ -118,12 +118,12 @@
 
 - (void)testPathsPuffyBubbleTypes{
     
-    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyNormal];
-    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyNormal];
-    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyShort];
-    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyShort];
-    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypePuffyTall];
-    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypePuffyTall];
+    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypePuffyNormal];
+    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypePuffyNormal];
+    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypePuffyShort];
+    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypePuffyShort];
+    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypePuffyTall];
+    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypePuffyTall];
     
     STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Puffy Bubble outerPath failed");
     STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Puffy Bubble dynamic failed");
@@ -138,12 +138,12 @@
 
 - (void)testPathsGearBubbleTypes{
     
-    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeGearNormal];
-    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeGearNormal];
-    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeGearShort];
-    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeGearShort];
-    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:kBubbleTypeGearTall];
-    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:kBubbleTypeGearTall];
+    CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeGearNormal];
+    CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeGearNormal];
+    CGMutablePathRef outerPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeGearShort];
+    CGMutablePathRef dynamicPathShort = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeGearShort];
+    CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeGearTall];
+    CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeGearTall];
     
     STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Gear Bubble outerPath failed");
     STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Gear Bubble dynamic failed");

@@ -142,7 +142,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	}
 
 	//Position Conscience in lower-left of screen
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	

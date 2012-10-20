@@ -71,7 +71,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	//appDelegate needed to reference Conscience and to get Core Data Context and prefs to save state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	appDelegate.userConscienceView.center = centerPoint;	
     
@@ -154,7 +154,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	screen1View.hidden = TRUE;
 	screen1View.alpha = 0;
@@ -163,7 +163,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
 	thoughtModalArea.alpha = 1;
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
+	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
 
 	//Determine if Conscience is already on screen
 	if (!_isConscienceOnScreen) {
@@ -337,10 +337,10 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 
 	//If Conscience wasn't on screen, place it offscreen, otherwise place it centrally.
 	if (!_isConscienceOnScreen) {
-		appDelegate.userConscienceView.center = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+		appDelegate.userConscienceView.center = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
         appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	} else {
-        appDelegate.userConscienceView.center = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+        appDelegate.userConscienceView.center = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	}
 	
 	nextButton.hidden = TRUE;

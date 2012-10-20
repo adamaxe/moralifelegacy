@@ -9,9 +9,9 @@ Accessory image wrapper.  The image file of the User's or Antagonist's single ac
 @file
  */
 
-extern NSString* const kAccessoryFileNameResource;
-extern int const kSideAccessoryWidth;
-extern int const kSideAccessoryHeight;
+extern NSString* const MLAccessoryFileNameResourceDefault;
+extern int const MLSideAccessoryWidth;
+extern int const MLSideAccessoryHeight;
 
 @interface AccessoryObjectView : UIView
 

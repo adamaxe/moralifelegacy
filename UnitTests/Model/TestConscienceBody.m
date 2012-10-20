@@ -64,14 +64,14 @@
  */
 - (void)testDefaultConscienceBody{
     
-	STAssertEquals(kConscienceAge, [testingSubject age], @"Default ConscienceAge inaccurate.");
-	STAssertEquals(kConscienceSize, [testingSubject size], @"Default ConscienceSize inaccurate.");
-	STAssertEquals(kBubbleType, [testingSubject bubbleType], @"Default BubbleType inaccurate.");
-	STAssertEqualObjects(kBubbleColor, [testingSubject bubbleColor], @"Default BubbleColor inaccurate.");
-	STAssertEqualObjects(kBrowColor, [testingSubject browColor], @"Default BrowColor inaccurate.");
-    STAssertEqualObjects(kEyeColor, [testingSubject eyeColor], @"Default EyeColor inaccurate.");
-    STAssertEqualObjects(kSymbolFileNameResource, [testingSubject symbolName], @"Default SymbolName inaccurate.");
-    STAssertEqualObjects(kEyeFileNameResource, [testingSubject eyeName], @"Default EyeName inaccurate.");
+	STAssertEquals(MLConscienceAgeDefault, [testingSubject age], @"Default ConscienceAge inaccurate.");
+	STAssertEquals(MLConscienceSizeDefault, [testingSubject size], @"Default ConscienceSize inaccurate.");
+	STAssertEquals(MLBubbleTypeDefault, [testingSubject bubbleType], @"Default BubbleType inaccurate.");
+	STAssertEqualObjects(MLBubbleColorDefault, [testingSubject bubbleColor], @"Default BubbleColor inaccurate.");
+	STAssertEqualObjects(MLConscienceBrowColorDefault, [testingSubject browColor], @"Default BrowColor inaccurate.");
+    STAssertEqualObjects(MLConscienceEyeColorDefault, [testingSubject eyeColor], @"Default EyeColor inaccurate.");
+    STAssertEqualObjects(MLSymbolFileNameResourceDefault, [testingSubject symbolName], @"Default SymbolName inaccurate.");
+    STAssertEqualObjects(MLEyeFileNameResourceDefault, [testingSubject eyeName], @"Default EyeName inaccurate.");
 }
 
 /**

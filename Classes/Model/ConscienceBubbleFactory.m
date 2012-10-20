@@ -11,7 +11,7 @@
 
 @implementation ConscienceBubbleFactory
 
-+ (NSObject *)bubbleSurfaceWithType:(int)bubbleType{
++ (NSObject *)bubbleSurfaceWithType:(MLBubbleType)bubbleType{
     
     BOOL isBubbleDefault = TRUE;
         
@@ -19,7 +19,7 @@
     CGAffineTransform outerTransform = CGAffineTransformMakeTranslation(-5.0, -5.0);
 
 	//Puffy
-    if ((bubbleType == kBubbleTypePuffyNormal) || (bubbleType == kBubbleTypePuffyShort) || (bubbleType == kBubbleTypePuffyTall)){
+    if ((bubbleType == MLBubbleTypePuffyNormal) || (bubbleType == MLBubbleTypePuffyShort) || (bubbleType == MLBubbleTypePuffyTall)){
         
         CGPathMoveToPoint(outerPath, &outerTransform, 97.3125,12.1875);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 89.771357,12.1875, 83.35237,15.375279, 80.6875,19.875);
@@ -60,7 +60,7 @@
     }
     
 	//Gear
-    if ((bubbleType == kBubbleTypeGearNormal) || (bubbleType == kBubbleTypeGearShort) || (bubbleType == kBubbleTypeGearTall)){
+    if ((bubbleType == MLBubbleTypeGearNormal) || (bubbleType == MLBubbleTypeGearShort) || (bubbleType == MLBubbleTypeGearTall)){
         
         CGPathMoveToPoint(outerPath, &outerTransform, 83.247996,13.876715);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 67.229297,16.850686, 52.83941,24.409978, 41.463755,35.118096);
@@ -93,7 +93,7 @@
     }
     
     //Diamond
-    if ((bubbleType == kBubbleTypeDiamondNormal) || (bubbleType == kBubbleTypeDiamondShort) || (bubbleType == kBubbleTypeDiamondTall)){
+    if ((bubbleType == MLBubbleTypeDiamondNormal) || (bubbleType == MLBubbleTypeDiamondShort) || (bubbleType == MLBubbleTypeDiamondTall)){
         
         CGPathMoveToPoint(outerPath, &outerTransform, 98.700171,12.386015);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 154.41884,31.662947, 166.74852,55.522583, 180.76773,95.494499);
@@ -106,7 +106,7 @@
     }
     
     //Star
-    if ((bubbleType == kBubbleTypeStarNormal) || (bubbleType == kBubbleTypeStarShort) || (bubbleType == kBubbleTypeStarTall)){
+    if ((bubbleType == MLBubbleTypeStarNormal) || (bubbleType == MLBubbleTypeStarShort) || (bubbleType == MLBubbleTypeStarTall)){
     
         CGPathMoveToPoint(outerPath, &outerTransform, 188.17655,112.9759);
         CGPathAddCurveToPoint(outerPath, &outerTransform, 179.20301,120.68764, 172.08713,128.05859, 167.46332,137.38865);
@@ -132,7 +132,7 @@
 
     }    
 
-    if ((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)){
+    if ((bubbleType == MLBubbleTypeRoundNormal) || (bubbleType == MLBubbleTypeRoundShort) || (bubbleType == MLBubbleTypeRoundTall)){
 
         isBubbleDefault = TRUE;
         
@@ -154,7 +154,7 @@
     
 }
 
-+ (NSObject *)bubbleAccentWithType:(int)bubbleType {
++ (NSObject *)bubbleAccentWithType:(MLBubbleType)bubbleType {
     
     BOOL isBubbleDefault = TRUE;
     
@@ -162,7 +162,7 @@
     CGAffineTransform transform = CGAffineTransformMakeTranslation(-5.0, -5.0);
 
 	//Puffy
-    if ((bubbleType == kBubbleTypePuffyNormal) || (bubbleType == kBubbleTypePuffyShort) || (bubbleType == kBubbleTypePuffyTall)){
+    if ((bubbleType == MLBubbleTypePuffyNormal) || (bubbleType == MLBubbleTypePuffyShort) || (bubbleType == MLBubbleTypePuffyTall)){
                 
         CGPathMoveToPoint(dynamicPath, &transform, 49.772043,85.807275);
         CGPathAddCurveToPoint(dynamicPath, &transform, 44.954268,85.143469, 43.480141,68.330355, 49.394172,57.474822);
@@ -175,7 +175,7 @@
     }
     
 	//Gear
-    if ((bubbleType == kBubbleTypeGearNormal) || (bubbleType == kBubbleTypeGearShort) || (bubbleType == kBubbleTypeGearTall)){
+    if ((bubbleType == MLBubbleTypeGearNormal) || (bubbleType == MLBubbleTypeGearShort) || (bubbleType == MLBubbleTypeGearTall)){
                 
         CGPathMoveToPoint(dynamicPath, &transform, 54.035547,122.8622);
         CGPathAddCurveToPoint(dynamicPath, &transform, 48.841308,116.70674, 41.713064,115.2702, 35.51987,115.00433);
@@ -188,7 +188,7 @@
     }    
     
     //Diamond
-    if ((bubbleType == kBubbleTypeDiamondNormal) || (bubbleType == kBubbleTypeDiamondShort) || (bubbleType == kBubbleTypeDiamondTall)){
+    if ((bubbleType == MLBubbleTypeDiamondNormal) || (bubbleType == MLBubbleTypeDiamondShort) || (bubbleType == MLBubbleTypeDiamondTall)){
                 
         CGPathMoveToPoint(dynamicPath, &transform, 77.131517, 41.164534);
         CGPathAddCurveToPoint(dynamicPath, &transform, 58.402992,47.037226, 42.916954,59.396467, 39.298579,82.104262);
@@ -199,7 +199,7 @@
     }
     
     //Star
-    if ((bubbleType == kBubbleTypeStarNormal) || (bubbleType == kBubbleTypeStarShort) || (bubbleType == kBubbleTypeStarTall)){
+    if ((bubbleType == MLBubbleTypeStarNormal) || (bubbleType == MLBubbleTypeStarShort) || (bubbleType == MLBubbleTypeStarTall)){
 
         CGPathMoveToPoint(dynamicPath, &transform, 42.321547,94.196133);
         CGPathAddCurveToPoint(dynamicPath, &transform, 44.885925,82.169095, 45.585874,70.142057, 41.943676,61.32136);
@@ -210,7 +210,7 @@
         isBubbleDefault = FALSE;
     }
 
-    if ((bubbleType == kBubbleTypeRoundNormal) || (bubbleType == kBubbleTypeRoundShort) || (bubbleType == kBubbleTypeRoundTall)){
+    if ((bubbleType == MLBubbleTypeRoundNormal) || (bubbleType == MLBubbleTypeRoundShort) || (bubbleType == MLBubbleTypeRoundTall)){
         
         isBubbleDefault = TRUE;
                 

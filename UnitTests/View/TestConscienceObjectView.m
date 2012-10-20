@@ -32,7 +32,7 @@
     
     [super setUp];
     
-    testingSubject = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kEyeWidth, kEyeHeight)];
+    testingSubject = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, MLEyeWidth, MLEyeHeight)];
     
 }
 

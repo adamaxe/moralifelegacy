@@ -7,8 +7,8 @@ Implementation:  NSMutableArray of ConsciencePaths.
 #import "ConscienceLayer.h"
 #import "ConsciencePath.h"
 
-float const kFeatureOffsetX = 0.0;
-float const kFeatureOffsetY = 0.0;
+float const MLFeatureOffsetX = 0.0;
+float const MLFeatureOffsetY = 0.0;
 
 @implementation ConscienceLayer
 
@@ -18,11 +18,11 @@ float const kFeatureOffsetY = 0.0;
         //In case of first time run, or User does not supply configuration, default gradient
         _consciencePaths = [[NSMutableArray alloc] init];
 
-        _currentFillColor = kPathColor;
-        _currentStrokeColor = kPathColor;
+        _currentFillColor = MLPathColorDefault;
+        _currentStrokeColor = MLPathColorDefault;
         _layerID = @"";
-        _offsetX = kDefault0Float;
-        _offsetY = kDefault0Float;
+        _offsetX = MLDefault0Float;
+        _offsetY = MLDefault0Float;
     }
     
 	return self;

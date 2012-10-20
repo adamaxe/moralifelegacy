@@ -108,12 +108,12 @@ User can filter list by only things that are affordable to currentFunds.
 
 	//Add Conscience to lower-left screen
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	appDelegate.userConscienceView.center = centerPoint;    
 	[UIView beginAnimations:@"MoveConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
+	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
 //	appDelegate.userConscienceView.center = centerPoint;
     appDelegate.userConscienceView.alpha = 1;
 	[UIView commitAnimations];
@@ -322,7 +322,7 @@ Implementation: Retrieve User's current ethicals from UserData
 -(void)retrieveCurrentFunds{
     
     UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
-    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     //Set current ethicals for UIViewController

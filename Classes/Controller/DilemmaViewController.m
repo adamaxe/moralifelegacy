@@ -27,9 +27,9 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "ViewControllerLocalization.h"
 
 typedef enum {
-kViewVersus,
-kViewReward
-} viewToAnimate;
+    MLViewToAnimateVersus,
+    MLViewToAnimateReward
+} MLViewToAnimate;
 
 @interface DilemmaViewController () <ViewControllerLocalization> {
     
@@ -162,29 +162,29 @@ kViewReward
 	versusImage.alpha = 0;    
     versusImage.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
 
-    [self animateViewDetail: kViewVersus atBeginning: TRUE];    
+    [self animateViewDetail: MLViewToAnimateVersus atBeginning: TRUE];    
     
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
     //Animate vs. image and Consciences
 	[UIView beginAnimations:@"MoveConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
+	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
     
 	screen1View.alpha = 1;
 	
 	screen1View.hidden = FALSE;
     
-    [self animateViewDetail: kViewVersus atBeginning: FALSE];
+    [self animateViewDetail: MLViewToAnimateVersus atBeginning: FALSE];
     
 	appDelegate.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
     
-    [self animateViewDetail: kViewReward atBeginning: TRUE];    
+    [self animateViewDetail: MLViewToAnimateReward atBeginning: TRUE];    
 
 	
 	[appDelegate.userConscienceView setNeedsDisplay];
@@ -305,7 +305,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
 			
             nextButton.tag = 8;
             
-            [self animateViewDetail: kViewReward atBeginning: FALSE];    
+            [self animateViewDetail: MLViewToAnimateReward atBeginning: FALSE];    
             
 			[UIView beginAnimations:@"ScoreChange" context:nil];
 			[UIView setAnimationDuration:3];
@@ -427,9 +427,9 @@ Construct antagonist Conscience
 		[ConscienceBuilder buildConscience:antagonistConscienceBody];
         
 		//Add Conscience to view
-		ConscienceView *antagonistConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(kConscienceAntagonistX, kConscienceAntagonistY, kConscienceAntagonistWidth, kConscienceAntagonistHeight) withBody:antagonistConscienceBody withAccessories:antagonistConscienceAccessories withMind:antagonistConscienceMind];
+		ConscienceView *antagonistConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(MLConscienceAntagonistX, MLConscienceAntagonistY, MLConscienceAntagonistWidth, MLConscienceAntagonistHeight) withBody:antagonistConscienceBody withAccessories:antagonistConscienceAccessories withMind:antagonistConscienceMind];
         
-		antagonistConscienceView.tag = kConscienceAntagonistViewTag;
+		antagonistConscienceView.tag = MLConscienceAntagonistViewTag;
 		antagonistConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.5f, 0.5f);
 		antagonistConscienceView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
 		[antagonistConscienceView setUserInteractionEnabled:FALSE];
@@ -522,9 +522,9 @@ Calculate changes to User's ethicals.  Limit to 999.
 	}
 
 	//Determine type of reward given    
-	if ([selectedReward rangeOfString:kCollectableEthicals].location != NSNotFound) {
+	if ([selectedReward rangeOfString:MLCollectableEthicals].location != NSNotFound) {
 		//Ethicals are rewarded, process
-		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:kCollectableEthicals]];
+		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:MLCollectableEthicals]];
 		[moralSelectedRewardLabel setText:@"Have some Ethicals!"];
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
         
@@ -569,7 +569,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[appDelegate.userCollection addObject:selectedReward];
 	}
     
-    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
 	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
 	//Increase the moral's value
@@ -697,13 +697,13 @@ Calculate changes to User's ethicals.  Limit to 999.
     if (isBeginning) {
     
         switch (viewToAnimateIndex) {
-            case kViewVersus: {
+            case MLViewToAnimateVersus: {
                 versusImage.alpha = 0;
                 versusImage.transform = viewAnimationTransform;
 
             }
                 break;
-            case kViewReward: {
+            case MLViewToAnimateReward: {
                 rewardView.alpha = 0;
                 rewardView.transform = viewAnimationTransform;
                 
@@ -716,7 +716,7 @@ Calculate changes to User's ethicals.  Limit to 999.
     } else {
 
         switch (viewToAnimateIndex) {
-            case kViewVersus: {
+            case MLViewToAnimateVersus: {
                 //Animate vs. image and Consciences
                 [UIView beginAnimations:@"Versus" context:nil];
                 [UIView setAnimationDuration:0.5];
@@ -727,7 +727,7 @@ Calculate changes to User's ethicals.  Limit to 999.
                 
             }
                 break;
-            case kViewReward: {
+            case MLViewToAnimateReward: {
                 //Animate reward image
                 [UIView beginAnimations:@"Reward" context:nil];
                 [UIView setAnimationDuration:0.75];

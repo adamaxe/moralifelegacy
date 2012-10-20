@@ -66,7 +66,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	choiceModalTableView.delegate = self;
 	choiceModalTableView.dataSource = self;
     
-	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
@@ -93,7 +93,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	[super viewWillAppear:animated];
 	thoughtModalArea.alpha = 0;
     
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -125,7 +125,7 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
  */
 -(IBAction)dismissChoiceModal:(id)sender{
 	
-	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
 	[UIView beginAnimations:@"ReplaceConscience" context:nil];
 	[UIView setAnimationDuration:0.5];

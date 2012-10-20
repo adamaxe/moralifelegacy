@@ -12,8 +12,8 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 #import "ConscienceAsset.h"
 #import "ViewControllerLocalization.h"
 
-int const kConscienceCenterX = 145;
-int const kConscienceCenterY = 165;
+int const MLConscienceCenterX = 145;
+int const MLConscienceCenterY = 165;
 
 @interface ConscienceAccessoryViewController () <ViewControllerLocalization> {
 	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
@@ -87,7 +87,7 @@ int const kConscienceCenterY = 165;
 -(void) moveConscienceToCenter{
     
     //Move Conscience to center of boxes
-	CGPoint centerPoint = CGPointMake(kConscienceCenterX, kConscienceCenterY);
+	CGPoint centerPoint = CGPointMake(MLConscienceCenterX, MLConscienceCenterY);
     appDelegate.userConscienceView.center = centerPoint;
     
     [UIView beginAnimations:@"conscienceRestore" context:nil];

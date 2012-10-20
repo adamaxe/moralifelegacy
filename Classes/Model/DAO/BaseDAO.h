@@ -12,8 +12,8 @@ BaseDAO Superclass.  This class handles the interaction between the model and th
 
 @interface BaseDAO : NSObject
 
-extern NSString* const kContextReadOnly;    /**< key to determine read only persistent store to access */
-extern NSString* const kContextReadWrite;   /**< key to determine read write persistent store to access */
+extern NSString* const MLContextReadOnly;    /**< key to determine read only persistent store to access */
+extern NSString* const MLContextReadWrite;   /**< key to determine read write persistent store to access */
 
 @property (nonatomic, strong) NSArray *sorts;       /**< array of NSSortDescriptors to order */
 @property (nonatomic, strong) NSArray *predicates;  /**< array of NSPredicates to filter */

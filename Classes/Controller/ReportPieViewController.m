@@ -78,7 +78,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 -(void)viewWillAppear:(BOOL)animated {
     
     //Position Conscience in lower-left of screen
-    CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+    CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     //Add User Conscience to view
     [self.view addSubview:appDelegate.userConscienceView];

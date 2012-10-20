@@ -7,14 +7,14 @@ Implementation:  Each NSMutableDictionary holds the CoreGraphics drawing instruc
 
 #import "ConscienceBody.h"
 
-float const kConscienceSize = 1.0;
-int const kConscienceAge = 0;
-NSString* const kEyeColor = @"1C943D";
-NSString* const kBrowColor = @"7B4027";
+float const MLConscienceSizeDefault = 1.0;
+int const MLConscienceAgeDefault = 0;
+NSString* const MLConscienceEyeColorDefault = @"1C943D";
+NSString* const MLConscienceBrowColorDefault = @"7B4027";
 
-NSString* const kEyeFileNameResource = @"body-eye2";
-NSString* const kMouthFileNameResource = @"body-mouth1";
-NSString* const kSymbolFileNameResource = @"con-nothing";
+NSString* const MLEyeFileNameResourceDefault = @"body-eye2";
+NSString* const MLMouthFileNameResourceDefault = @"body-mouth1";
+NSString* const MLSymbolFileNameResourceDefault = @"con-nothing";
 
 @implementation ConscienceBody
 
@@ -37,15 +37,15 @@ NSString* const kSymbolFileNameResource = @"con-nothing";
 		_gradientLayers = [[NSMutableDictionary alloc] init];
 		
         //In case of first time run, or User does not supply configuration, default Conscience
-        _eyeName = kEyeFileNameResource;
-        _mouthName = kMouthFileNameResource;
-        _symbolName = kSymbolFileNameResource;
-        _eyeColor = kEyeColor;
-        _browColor = kBrowColor;
-        _bubbleColor = kBubbleColor;
-        _age = kConscienceAge;
-        _size = kConscienceSize;
-        _bubbleType = kBubbleType;
+        _eyeName = MLEyeFileNameResourceDefault;
+        _mouthName = MLMouthFileNameResourceDefault;
+        _symbolName = MLSymbolFileNameResourceDefault;
+        _eyeColor = MLConscienceEyeColorDefault;
+        _browColor = MLConscienceBrowColorDefault;
+        _bubbleColor = MLBubbleColorDefault;
+        _age = MLConscienceAgeDefault;
+        _size = MLConscienceSizeDefault;
+        _bubbleType = MLBubbleTypeDefault;
         
     }
 

@@ -15,7 +15,7 @@
 
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
     
-    self = [super initWithKey:key andModelManager:moralModelManager andClassType:kContextReadOnly];
+    self = [super initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadOnly];
     
     if (self) {
         [self.predicateDefaultName setString:@"nameMoral"];

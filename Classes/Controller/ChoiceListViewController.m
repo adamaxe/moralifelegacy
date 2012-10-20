@@ -70,7 +70,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
     if (self) {
         _choiceHistoryModel = choiceHistoryModel;
-        _choiceHistoryModel.choiceType = kChoiceHistoryModelTypeAll;
+        _choiceHistoryModel.choiceType = MLChoiceHistoryModelTypeAll;
     }
 
     return self;
@@ -85,7 +85,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
     
 	//Set default listing and sort order
 	isAscending = FALSE;
-	choiceSortDescriptor = [[NSMutableString alloc] initWithString:kChoiceListSortDate];
+	choiceSortDescriptor = [[NSMutableString alloc] initWithString:MLChoiceListSortDate];
     
 	//Retrieve localized view title string
 	/** 
@@ -172,18 +172,18 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
 
 		//Sort change requested, cycle between Name, Date, Weight
             case 0:{    
-                if ([choiceSortDescriptor isEqualToString:kChoiceListSortName]) {
+                if ([choiceSortDescriptor isEqualToString:MLChoiceListSortName]) {
 
-                    [choiceSortDescriptor setString:kChoiceListSortDate];
+                    [choiceSortDescriptor setString:MLChoiceListSortDate];
                     [moralSortButton setTitle:@"Date" forState: UIControlStateNormal];
-                } else if ([choiceSortDescriptor isEqualToString:kChoiceListSortDate]){
+                } else if ([choiceSortDescriptor isEqualToString:MLChoiceListSortDate]){
 
-                    [choiceSortDescriptor setString:kChoiceListSortWeight];
+                    [choiceSortDescriptor setString:MLChoiceListSortWeight];
                     [moralSortButton setTitle:@"Weight" forState: UIControlStateNormal];
                     
                 } else {
 
-                    [choiceSortDescriptor setString:kChoiceListSortName];
+                    [choiceSortDescriptor setString:MLChoiceListSortName];
                     [moralSortButton setTitle:@"Alpha" forState: UIControlStateNormal];
                 }
 
