@@ -13,7 +13,7 @@
  Possible Reference Types
  typedef utilized to avoid having to use enum declaration
  */
-typedef enum referenceModelTypeEnum{
+typedef enum {
 	kReferenceModelTypeConscienceAsset,
 	kReferenceModelTypeBelief,
 	kReferenceModelTypeText,

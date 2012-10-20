@@ -13,7 +13,7 @@
 /**
  Possible bubbleTypes
  */
-typedef enum bubbleTypeEnum{
+typedef enum {
 	kBubbleTypeRoundNormal,
 	kBubbleTypeRoundTall,
 	kBubbleTypeRoundShort,
@@ -29,7 +29,7 @@ typedef enum bubbleTypeEnum{
 	kBubbleTypeGearNormal,
 	kBubbleTypeGearTall,
 	kBubbleTypeGearShort
-}bubbleTypeEnum;
+} kBubbleTypeEnum;
 
 @interface ConscienceBubbleFactory : NSObject
 

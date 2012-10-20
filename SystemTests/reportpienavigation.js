@@ -31,10 +31,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
     UIALogger.logStart(testCaseName + " Test");
 
     window.buttons()["Moral Report"].tap();
-    target.delay(2.0);
-
-	UIATarget.localTarget().frontMostApp().logElementTree();
-	
+    target.delay(2.0);	
 	
     testCaseName = testSuiteName + " Initial Report Type verification";
     UIALogger.logStart(testCaseName + " Test");
@@ -59,7 +56,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
     testCaseName = testSuiteName + " Initial Report Sort verification";
     UIALogger.logStart(testCaseName + " Test");
 
-    if(window.buttons()["Moral Sort"].value() == "A") {
+    if(window.buttons()["Moral Sort"].value() == "%") {
         UIALogger.logPass(testCaseName + " verified.");
     } else {
         UIALogger.logFail(testCaseName + " not verified: " + window.buttons()["Moral Sort"].value());
@@ -70,7 +67,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
     testCaseName = testSuiteName + " Report Sort Change verification";
     UIALogger.logStart(testCaseName + " Test");
 
-    if(window.buttons()["Moral Sort"].value() == "%") {
+    if(window.buttons()["Moral Sort"].value() == "A") {
         UIALogger.logPass(testCaseName + " verified.");
     } else {
         UIALogger.logFail(testCaseName + " not verified: " + window.buttons()["Moral Sort"].value());

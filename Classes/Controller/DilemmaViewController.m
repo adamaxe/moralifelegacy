@@ -26,10 +26,10 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "UserChoiceDAO.h"
 #import "ViewControllerLocalization.h"
 
-enum viewToAnimate{
+typedef enum {
 kViewVersus,
 kViewReward
-};
+} viewToAnimate;
 
 @interface DilemmaViewController () <ViewControllerLocalization> {
     

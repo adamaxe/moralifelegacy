@@ -21,7 +21,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "ConscienceAssetDAO.h"
 #import "ViewControllerLocalization.h"
 
-typedef enum kConscienceViewControllerTags{
+typedef enum {
     kHomeVirtueButtonTag = 3030,
     kHomeViceButtonTag = 3031,
     kHomeRankButtonTag = 3032,

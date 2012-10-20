@@ -57,7 +57,7 @@ float const kBlinkInterval = 2;
 /**
  Tag Numbers for webViews in order to reference them
  */
-typedef enum bodyViewTags{
+typedef enum {
 	kEyeRightViewTag = 3000,
 	kEyeLeftViewTag = 3001,
 	kMouthWebViewTag = 3002,
@@ -85,7 +85,7 @@ typedef enum bodyViewTags{
 /**
  Possible expression states of Lips
  */
-typedef enum expressionLipsEnum{
+typedef enum {
 	kExpressionLipsSadShock,
 	kExpressionLipsSadOpenAlt1,
 	kExpressionLipsSadOpen,
@@ -106,7 +106,7 @@ typedef enum expressionLipsEnum{
 /**
  Possible expression states of Dimples
  */
-typedef enum expressionDimplesEnum{
+typedef enum {
 	kExpressionDimplesSad,
 	kExpressionDimplesNormal,
 	kExpressionDimplesHappy
@@ -115,7 +115,7 @@ typedef enum expressionDimplesEnum{
 /**
  Possible expression states of Teeth
  */
-typedef enum expressionTeethEnum{
+typedef enum {
 	kExpressionTeethSadOpenAlt1,
 	kExpressionTeethSadOpen,
 	kExpressionTeethHappyOpen,
@@ -125,7 +125,7 @@ typedef enum expressionTeethEnum{
 /**
  Possible expression states of Tongue
  */
-typedef enum expressionTongueEnum{
+typedef enum {
 	kExpressionTongueSadCenter,
 	kExpressionTongueSadLeft,
 	kExpressionTongueSadRight,
@@ -137,7 +137,7 @@ typedef enum expressionTongueEnum{
 /**
  Possible expression states of Brow
  */
-typedef enum expressionBrowEnum{
+typedef enum {
 	kExpressionBrowAngry,
 	kExpressionBrowNormal,
 	kExpressionBrowConfused,
@@ -155,7 +155,7 @@ typedef enum expressionLashesEnum{
 /**
  Possible expression states of Lid
  */
-typedef enum expressionLidEnum{
+typedef enum {
 	kExpressionLidAngry,
 	kExpressionLidSleepy,
 	kExpressionLidNormal,
@@ -166,7 +166,7 @@ typedef enum expressionLidEnum{
 /**
  Possible look direction of Eye
  */
-typedef enum expressionLookEnum{
+typedef enum {
 	kExpressionLookCenter,
 	kExpressionLookDown,
 	kExpressionLookUp,
@@ -179,7 +179,7 @@ typedef enum expressionLookEnum{
 /**
  Possible expression states of Bags
  */
-typedef enum expressionBagsEnum{
+typedef enum {
 	kExpressionBagsNormal,
 	kExpressionBagsOld,
 	kExpressionBagsOlder,

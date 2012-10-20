@@ -9,7 +9,7 @@ Implementation: List cardviews of UserCollectable.  Allows User to select a sele
 /**
  Tag Numbers for webViews in order to reference them
  */
-typedef enum deckCard{
+typedef enum {
 	kDeckCard1ButtonTag = 3024,
 	kDeckCard2ButtonTag = 3025,
 	kDeckCard3ButtonTag = 3026,
