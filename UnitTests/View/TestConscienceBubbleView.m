@@ -66,10 +66,10 @@
  */
 - (void)testDefaultBubbleProperties{
     
-	STAssertEquals(kBubbleType, [testingSubject bubbleType], @"Default bubble type inaccurate");
-	STAssertEquals(kBubbleWidth, [testingSubject bubbleGlowWidth], @"Default bubble glow inaccurate");
-	STAssertEquals(kBubbleDuration, [testingSubject bubbleGlowDuration], @"Default bubble duration inaccurate");
-	STAssertEqualObjects(kBubbleColor, [testingSubject bubbleColor], @"Default bubble color inaccurate");
+	STAssertEquals(MLBubbleTypeDefault, [testingSubject bubbleType], @"Default bubble type inaccurate");
+	STAssertEquals(MLBubbleWidthDefault, [testingSubject bubbleGlowWidth], @"Default bubble glow inaccurate");
+	STAssertEquals(MLBubbleDurationDefault, [testingSubject bubbleGlowDuration], @"Default bubble duration inaccurate");
+	STAssertEqualObjects(MLBubbleColorDefault, [testingSubject bubbleColor], @"Default bubble color inaccurate");
 
 }
 

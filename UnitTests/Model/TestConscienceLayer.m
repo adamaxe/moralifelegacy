@@ -70,10 +70,10 @@
     int count = [[testingSubject consciencePaths] count];
     
 	STAssertEquals(0, count, @"Default empty paths array inaccurate.");
-	STAssertEquals(kFeatureOffsetX, [testingSubject offsetX], @"Default feature offset X inaccurate.");
-	STAssertEquals(kFeatureOffsetY, [testingSubject offsetY], @"Default feature offset Y inaccurate.");
-	STAssertEqualObjects(kPathColor, [testingSubject currentFillColor], @"Default fill color inaccurate.");
-	STAssertEqualObjects(kPathColor, [testingSubject currentStrokeColor], @"Default stroke color inaccurate.");
+	STAssertEquals(MLFeatureOffsetX, [testingSubject offsetX], @"Default feature offset X inaccurate.");
+	STAssertEquals(MLFeatureOffsetY, [testingSubject offsetY], @"Default feature offset Y inaccurate.");
+	STAssertEqualObjects(MLPathColorDefault, [testingSubject currentFillColor], @"Default fill color inaccurate.");
+	STAssertEqualObjects(MLPathColorDefault, [testingSubject currentStrokeColor], @"Default stroke color inaccurate.");
 	STAssertEqualObjects(@"", [testingSubject layerID], @"Default layer ID inaccurate.");
 
 }
