@@ -45,12 +45,6 @@ int const MLSymbolHeight = 200;
 int const MLSymbolWidth = 200;
 int const MLTopBottomAccessoryHeight = 50;
 int const MLTopBottomAccessoryWidth = 162;
-int const MLEyeLeftIndex = 0;
-int const MLEyeRightIndex = 1;
-int const MLEyeBothIndex = 2;
-int const MLEyeRandomIndex = 3;
-int const MLEyeCloseIndex = 0;
-int const MLEyeOpenIndex = 1;
 int const MLExpressionInterval = 3;
 float const MLBlinkInterval = 2;
 
@@ -81,6 +75,23 @@ typedef enum {
 	MLConscienceViewChoiceCancelButtonTag = 3022,
 	MLConscienceViewChoiceMoralButtonTag = 3023
 } MLConscienceViewTags;
+
+/** Eyes
+ */
+
+typedef enum {
+    MLEyePlacementLeft,
+    MLEyePlacementRight,
+    MLEyePlacementBoth,
+    MLEyePlacementRandom
+
+} MLEyePlacement;
+
+typedef enum {
+    MLEyeStateClose,
+    MLEyeStateOpen
+
+} MLEyeState;
 
 /**
  Possible expression states of Lips
@@ -218,6 +229,40 @@ typedef enum {
 	
 }
 
+/**
+ Change eye state to imitate winking/blinking
+ Values are open and closed
+ @param eyeState int whether eye is open or closed
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ */
+- (void) changeEyeState:(MLEyeState) eyeState forEye:(MLEyePlacement) eyeNumber;
+
+/**
+ Change direction Conscience is looking by moving iris
+ Values are center, down, up, left, right, cross, crazy
+ @param expressionIndex int direction eye can look
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ @see expressionLookEnum
+ */
+- (void) changeEyeDirection:(MLExpressionLook)expressionIndex forEye:(MLEyePlacement) eyeNumber;
+
+/**
+ Change brow expression
+ Values are angry, confused, excited, normal
+ @param expression NSString layerName of brow ConscienceLayer to be selected
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ */
+- (void) changeBrowExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber;
+
+/**
+ Change lid expression
+ Values are angry, normal, sleepy, under
+ @param expression NSString layerName of lid ConscienceLayer to be selected
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ */
+- (void) changeLidExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber;
+
+
 @end
 
 @implementation ConscienceView
@@ -322,7 +367,6 @@ withMind: (ConscienceMind *) argMind{
         
 		
 		[self addSubview: _conscienceBubbleView];
-		
         
     }
 	
@@ -466,7 +510,7 @@ Implementation: Change Eye state for winking/blinking, function is recursive to 
 Eye choices/color determined by User's eye/color choice
 eyeState determined by ViewController
  */
-- (void) changeEyeState:(int) eyeState forEye:(int) eyeNumber{
+- (void) changeEyeState:(MLEyeState) eyeState forEye:(MLEyePlacement) eyeNumber{
 
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 2;
@@ -476,24 +520,24 @@ eyeState determined by ViewController
 	ConscienceObjectView *conscienceEyeView;
 
 	//Select the Eye to respond
-	if (eyeNumber == MLEyeLeftIndex) {
+	if (eyeNumber == MLEyePlacementLeft) {
 		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeLeftViewTag];
 	
-	} else if (eyeNumber == MLEyeRightIndex ) {
+	} else if (eyeNumber == MLEyePlacementRight ) {
 		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeRightViewTag];
 
-	} else if (eyeNumber == MLEyeBothIndex) {
+	} else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeEyeState:eyeState forEye:MLEyeLeftIndex];
-		[self changeEyeState:eyeState forEye:MLEyeRightIndex];
+		[self changeEyeState:eyeState forEye:MLEyePlacementLeft];
+		[self changeEyeState:eyeState forEye:MLEyePlacementRight];
 		isRecursive = YES;
 
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeEyeState:eyeState forEye:MLEyeLeftIndex];
+			[self changeEyeState:eyeState forEye:MLEyePlacementLeft];
 		}else {
-			[self changeEyeState:eyeState forEye:MLEyeRightIndex];
+			[self changeEyeState:eyeState forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -503,12 +547,12 @@ eyeState determined by ViewController
 	if (!isRecursive) {
 		
 		//Change the eyeState
-		if (eyeState == MLEyeOpenIndex) {
+		if (eyeState == MLEyeStateOpen) {
 
 			//Ensure correct eye color is passed
 			ConscienceLayer *currentLayer;
             
-            if (eyeNumber == MLEyeLeftIndex) {
+            if (eyeNumber == MLEyePlacementLeft) {
                 currentLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisLeft"];
 			}else {
                 currentLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisRight"];
@@ -538,13 +582,8 @@ Eye choices/color determined by User's eye/color choice
 expressionIndex determined by ViewController
 */
 
-- (void) changeEyeDirection:(int)expressionIndex forEye:(int) eyeNumber{
+- (void) changeEyeDirection:(MLExpressionLook)expressionIndex forEye:(MLEyePlacement) eyeNumber{
 
-    //Ensure valid expression Index
-    if ((expressionIndex > 6) || (expressionIndex < 0)) {
-        expressionIndex = 0;
-    }
-    
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 6;
 
@@ -556,24 +595,24 @@ expressionIndex determined by ViewController
 	ConscienceObjectView *conscienceEyeView;
 	
 	//Select the Eye to respond
-	if (eyeNumber == MLEyeLeftIndex) {
+	if (eyeNumber == MLEyePlacementLeft) {
 		conscienceEyeView = conscienceEyeLeftView;
 		val = eyeLeftPositions[expressionIndex];
-	}else if (eyeNumber == MLEyeRightIndex ) {
+	}else if (eyeNumber == MLEyePlacementRight ) {
 		conscienceEyeView = conscienceEyeRightView;
 		val = eyeRightPositions[expressionIndex];
-	}else if (eyeNumber == MLEyeBothIndex) {
+	}else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeEyeDirection:expressionIndex forEye:MLEyeLeftIndex];
-		[self changeEyeDirection:expressionIndex forEye:MLEyeRightIndex];
+		[self changeEyeDirection:expressionIndex forEye:MLEyePlacementLeft];
+		[self changeEyeDirection:expressionIndex forEye:MLEyePlacementRight];
 		isRecursive = YES;
 		
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeEyeDirection:expressionIndex forEye:MLEyeLeftIndex];
+			[self changeEyeDirection:expressionIndex forEye:MLEyePlacementLeft];
 		}else {
-			[self changeEyeDirection:expressionIndex forEye:MLEyeRightIndex];
+			[self changeEyeDirection:expressionIndex forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -598,7 +637,7 @@ Implementation: Display brows, function is recursive to account for left,right,b
 Brow choices/color determined by User's eye/color choice
 expression determined by Conscience Mood/Enthusiasm
 */
-- (void) changeBrowExpressions:(NSString *) expression forEye:(int) eyeNumber{
+- (void) changeBrowExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber{
 
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 2;
@@ -608,24 +647,24 @@ expression determined by Conscience Mood/Enthusiasm
 	ConscienceObjectView *conscienceEyeView;
 	
 	//Select the Eye to respond
-	if (eyeNumber == MLEyeLeftIndex) {
+	if (eyeNumber == MLEyePlacementLeft) {
 		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeLeftViewTag];
 		
-	}else if (eyeNumber == MLEyeRightIndex ) {
+	}else if (eyeNumber == MLEyePlacementRight ) {
 		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeRightViewTag];
 		
-	}else if (eyeNumber == MLEyeBothIndex) {
+	}else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeBrowExpressions:expression forEye:MLEyeLeftIndex];
-		[self changeBrowExpressions:expression forEye:MLEyeRightIndex];
+		[self changeBrowExpressions:expression forEye:MLEyePlacementLeft];
+		[self changeBrowExpressions:expression forEye:MLEyePlacementRight];
 		isRecursive = YES;
 		
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeBrowExpressions:expression forEye:MLEyeLeftIndex];
+			[self changeBrowExpressions:expression forEye:MLEyePlacementLeft];
 		}else {
-			[self changeBrowExpressions:expression forEye:MLEyeRightIndex];
+			[self changeBrowExpressions:expression forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -648,7 +687,7 @@ Implementation: Display eyelids, function is recursive to account for left,right
 Lid choices determined by User's eye choice
 expression determined by Conscience Mood/Enthusiasm
 */
-- (void) changeLidExpressions:(NSString *) expression forEye:(int) eyeNumber{
+- (void) changeLidExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber{
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 2;
 	//boolean to mark if change is requested for both eyes
@@ -657,24 +696,24 @@ expression determined by Conscience Mood/Enthusiasm
 	ConscienceObjectView *conscienceEyeView;
 	
 	//Select the Eye to respond
-	if (eyeNumber == MLEyeLeftIndex) {
+	if (eyeNumber == MLEyePlacementLeft) {
 		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeLeftViewTag];
 		
-	}else if (eyeNumber == MLEyeRightIndex ) {
+	}else if (eyeNumber == MLEyePlacementRight ) {
 		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeRightViewTag];
 		
-	}else if (eyeNumber == MLEyeBothIndex) {
+	}else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeLidExpressions:expression forEye:MLEyeLeftIndex];
-		[self changeLidExpressions:expression forEye:MLEyeRightIndex];
+		[self changeLidExpressions:expression forEye:MLEyePlacementLeft];
+		[self changeLidExpressions:expression forEye:MLEyePlacementRight];
 		isRecursive = YES;
 		
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeLidExpressions:expression forEye:MLEyeLeftIndex];
+			[self changeLidExpressions:expression forEye:MLEyePlacementLeft];
 		}else {
-			[self changeLidExpressions:expression forEye:MLEyeRightIndex];
+			[self changeLidExpressions:expression forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -849,7 +888,7 @@ Implementation: Determine if Conscience is awake.  Set timers to change eye and 
         }
         
     } else {
-        [self changeEyeState:MLEyeCloseIndex forEye:MLEyeBothIndex];
+        [self changeEyeState:MLEyeStateClose forEye:MLEyePlacementBoth];
     }
 	
 }
@@ -998,8 +1037,8 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	[eyeTimerInvocation setTarget:self];
 	[eyeTimerInvocation setSelector:eyeTimerSelector];
 	
-	int eyeState = MLEyeOpenIndex;
-    int eyeNumber = MLEyeBothIndex;
+	int eyeState = MLEyeStateOpen;
+    int eyeNumber = MLEyePlacementBoth;
     
     /** @bug fix winking */
 //    //If Conscience is in a good mood, allow for winking
@@ -1016,12 +1055,12 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	[eyeTimerInvocation setArgument:&eyeNumber atIndex:3];
 	
 	if (randomSwitch < 2)  {
-		[self changeEyeState:MLEyeCloseIndex forEye:eyeNumber];
+		[self changeEyeState:MLEyeStateClose forEye:eyeNumber];
 		blinkTimer = [NSTimer scheduledTimerWithTimeInterval:blinkDuration invocation:eyeTimerInvocation repeats:NO];
 	}
     
     /** @todo lessen confused frequency */
-    eyeNumber = MLEyeBothIndex;
+    eyeNumber = MLEyePlacementBoth;
 	
     if ((randomSwitch < 1) || _isExpressionForced){
         int randomBrow = 0; 
@@ -1035,7 +1074,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 
         } else {
             randomBrow = 2;
-            eyeNumber = MLEyeRandomIndex;
+            eyeNumber = MLEyePlacementRandom;
         }
 		
 		[self changeBrowExpressions:browExpressions[randomBrow] forEye:eyeNumber]; 
@@ -1045,7 +1084,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 
     }
     
-    eyeNumber = MLEyeBothIndex;
+    eyeNumber = MLEyePlacementBoth;
         
 	if ((randomSwitch == 2) || _isExpressionForced) {
             
@@ -1078,7 +1117,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 			
             if ((arc4random() %3) > 2) {
 
-                eyeNumber = MLEyeRandomIndex;
+                eyeNumber = MLEyePlacementRandom;
             }
 			
 		}
@@ -1091,7 +1130,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
     }
         	
 	_isExpressionForced = FALSE;
-	[self changeEyeDirection:randomDirection forEye:MLEyeBothIndex];
+	[self changeEyeDirection:randomDirection forEye:MLEyePlacementBoth];
 	
 }
 
@@ -1105,8 +1144,8 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	}		
 	
 	
-	[self changeEyeDirection:expressionIndex forEye:MLEyeLeftIndex];
-	[self changeEyeDirection:expressionIndex forEye:MLEyeRightIndex];
+	[self changeEyeDirection:expressionIndex forEye:MLEyePlacementLeft];
+	[self changeEyeDirection:expressionIndex forEye:MLEyePlacementRight];
 	expressionIndex++;		
 }
 

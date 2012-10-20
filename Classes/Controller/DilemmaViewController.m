@@ -93,7 +93,7 @@ typedef enum {
     
 }
 
-- (void) animateViewDetail: (int) viewToAnimateIndex atBeginning: (BOOL) isBeginning;
+- (void) animateViewDetail: (MLViewToAnimate) viewToAnimateIndex atBeginning: (BOOL) isBeginning;
 
 /**
  Load the dilemma's details from SystemData
@@ -668,7 +668,7 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 }
 
-- (void) animateViewDetail: (int) viewToAnimateIndex atBeginning: (BOOL) isBeginning {
+- (void) animateViewDetail: (MLViewToAnimate) viewToAnimateIndex atBeginning: (BOOL) isBeginning {
     
     int animationType = arc4random()%4;
     CGAffineTransform viewAnimationTransform = CGAffineTransformIdentity;
