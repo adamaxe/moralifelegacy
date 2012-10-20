@@ -11,6 +11,9 @@ Member of ConscienceObjectView.
 @file
  */
 
+extern float const MLFeatureOffsetX;
+extern float const MLFeatureOffsetY;
+
 @interface ConscienceLayer : NSObject <NSCoding> 
 
 @property (nonatomic, strong) NSMutableArray *consciencePaths;	/**< array of ConsciencePath defining structure */
