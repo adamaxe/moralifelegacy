@@ -78,7 +78,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 -(void)viewWillAppear:(BOOL)animated {
     
     //Position Conscience in lower-left of screen
-    CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+    CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     //Add User Conscience to view
     [self.view addSubview:appDelegate.userConscienceView];
@@ -161,8 +161,9 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
                 } else {
                     self.isGood = TRUE;
                     [moralType setImage:[UIImage imageNamed:@"acc-top-halo-sm.png"]];
-                    [moralTypeLabel setText:@"Virtue"];                
+                    [moralTypeLabel setText:@"Virtue"];
                 }
+                [moralTypeLabel setAccessibilityValue:moralTypeLabel.text];
             } break;
             case 1:{    
                 if (self.isAlphabetical) {
@@ -172,6 +173,8 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
                     self.isAlphabetical = TRUE;
                     [moralSortButton setTitle:@"A" forState: UIControlStateNormal];
                 }
+                [moralSortButton setAccessibilityValue:moralSortButton.titleLabel.text];
+
             }
                 break;
             case 2:{    
@@ -181,10 +184,11 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
                 } else {
                     self.isAscending = TRUE;
                     [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
-                    
                 }
+                [moralOrderButton setAccessibilityValue:moralOrderButton.titleLabel.text];
+
             }
-                break;                 
+                break;
             default:
                 break;
         }
@@ -301,10 +305,16 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 
     moralSortButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralSortButtonHint", @"Hint for moralSortButton");
 	moralSortButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralSortButtonLabel",@"Label for moralSortButton");
+    moralSortButton.accessibilityValue = moralSortButton.titleLabel.text;
 
     moralOrderButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralOrderButtonHint", @"Hint for moralOrderButton");
 	moralOrderButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralOrderButtonLabel",@"Label for moralOrderButton");
-    
+    moralOrderButton.accessibilityValue = moralOrderButton.titleLabel.text;
+
+    moralTypeLabel.accessibilityHint = NSLocalizedString(@"ReportScreenMoralTypeLabelHint", @"Hint for moralOrderLabel");
+	moralTypeLabel.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralTypeLabelLabel",@"Label for moralOrderLabel");
+    moralTypeLabel.accessibilityValue = moralTypeLabel.text;
+
 }
 
 

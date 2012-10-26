@@ -6,9 +6,9 @@ Implementation: An image wrapper is used for accessories as to simplify the setu
 
 #import "AccessoryObjectView.h"
 
-NSString* const kAccessoryFileNameResource = @"acc-nothing";
-int const kSideAccessoryWidth = 75;
-int const kSideAccessoryHeight = 162;
+NSString* const MLAccessoryFileNameResourceDefault = @"acc-nothing";
+int const MLSideAccessoryWidth = 75;
+int const MLSideAccessoryHeight = 162;
 
 @implementation AccessoryObjectView
 
@@ -26,7 +26,7 @@ int const kSideAccessoryHeight = 162;
 		self.contentMode = UIViewContentModeCenter;
 		
 		//Set filename to known blank png at initialization
-		[self setAccessoryFilename:kAccessoryFileNameResource];
+		[self setAccessoryFilename:MLAccessoryFileNameResourceDefault];
 		
 	}
 	return self;
@@ -35,7 +35,7 @@ int const kSideAccessoryHeight = 162;
 - (void)drawRect:(CGRect)rect {
     
     if ([_accessoryFilename isEqualToString:@""]) {
-        [self setAccessoryFilename:kAccessoryFileNameResource];
+        [self setAccessoryFilename:MLAccessoryFileNameResourceDefault];
     }
     
     UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:_accessoryFilename ofType:@"png"]];

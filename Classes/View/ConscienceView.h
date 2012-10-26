@@ -13,23 +13,23 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 
 @class ConscienceBody, ConscienceAccessories, ConscienceMind, CAKeyframeAnimation;
 
-extern int const kDirectionFacingLeft;
-extern int const kDirectionFacingRight;
-extern int const kConscienceLowerLeftX;
-extern int const kConscienceLowerLeftY;
-extern int const kConscienceHomeX;
-extern int const kConscienceHomeY;
-extern int const kConscienceOffscreenBottomX;
-extern int const kConscienceOffscreenBottomY;
-extern int const kConscienceAntagonistX;
-extern int const kConscienceAntagonistY;
-extern int const kConscienceAntagonistWidth;
-extern int const kConscienceAntagonistHeight;
-extern int const kConscienceViewTag;
-extern int const kConscienceAntagonistViewTag;
-extern float const kConscienceLargeSizeX;
-extern float const kConscienceLargeSizeY;
-extern float const kConscienceLargestSize;
+extern int const MLDirectionFacingLeft;
+extern int const MLDirectionFacingRight;
+extern int const MLConscienceLowerLeftX;
+extern int const MLConscienceLowerLeftY;
+extern int const MLConscienceHomeX;
+extern int const MLConscienceHomeY;
+extern int const MLConscienceOffscreenBottomX;
+extern int const MLConscienceOffscreenBottomY;
+extern int const MLConscienceAntagonistX;
+extern int const MLConscienceAntagonistY;
+extern int const MLConscienceAntagonistWidth;
+extern int const MLConscienceAntagonistHeight;
+extern int const MLConscienceViewTag;
+extern int const MLConscienceAntagonistViewTag;
+extern float const MLConscienceLargeSizeX;
+extern float const MLConscienceLargeSizeY;
+extern float const MLConscienceLargestSize;
 
 @interface ConscienceView : UIView
 
@@ -51,38 +51,6 @@ Values are open and closed
  */
 - (id)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
            withMind:(ConscienceMind *) argMind;
-/**
-Change eye state to imitate winking/blinking
-Values are open and closed
-@param eyeState int whether eye is open or closed
-@param eyeNumber int eye designation to affect (left, right, both, random)
- */
-- (void) changeEyeState:(int) eyeState forEye:(int) eyeNumber;
-
-/**
-Change direction Conscience is looking by moving iris
-Values are center, down, up, left, right, cross, crazy
-@param expressionIndex int direction eye can look
-@param eyeNumber int eye designation to affect (left, right, both, random)
-@see expressionLookEnum
- */
-- (void) changeEyeDirection:(int)expressionIndex forEye:(int) eyeNumber;
-
-/**
-Change brow expression 
-Values are angry, confused, excited, normal
-@param expression NSString layerName of brow ConscienceLayer to be selected
-@param eyeNumber int eye designation to affect (left, right, both, random)
- */
-- (void) changeBrowExpressions:(NSString *) expression forEye:(int) eyeNumber;
-
-/**
-Change lid expression 
-Values are angry, normal, sleepy, under
-@param expression NSString layerName of lid ConscienceLayer to be selected
-@param eyeNumber int eye designation to affect (left, right, both, random)
- */
-- (void) changeLidExpressions:(NSString *) expression forEye:(int) eyeNumber;
 
 /**
 Change dimples expression 

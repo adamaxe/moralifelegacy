@@ -34,7 +34,7 @@
 
     collectableName1 = @"collectableName1";
     collectableName2 = @"collectableName2";
-    collectableName3 = kCollectableEthicals;
+    collectableName3 = MLCollectableEthicals;
     collectableCreateDate = [NSDate date];
     
     testCollectable1 = [testModelManager create:UserCollectable.class];
@@ -86,7 +86,7 @@
 
 - (void)testUserCollectableDAOEthicalRead {
 
-    testingSubject.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+    testingSubject.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
 
     UserCollectable *testCollectable1Retrieve = [testingSubject read:@""];
     STAssertEqualObjects(testCollectable1Retrieve, testCollectable3, @"Ethicals not populated with Collectable 1.");

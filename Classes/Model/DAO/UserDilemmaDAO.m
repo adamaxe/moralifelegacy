@@ -15,7 +15,7 @@
 
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
 
-    self = [super initWithKey:key andModelManager:moralModelManager andClassType:kContextReadWrite];
+    self = [super initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadWrite];
 
     if (self) {
         [self.predicateDefaultName setString:@"entryKey"];

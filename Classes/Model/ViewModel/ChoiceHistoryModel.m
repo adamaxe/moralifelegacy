@@ -4,14 +4,14 @@
 #import "UserChoiceDAO.h"
 #import "MoralDAO.h"
 
-NSString* const kChoiceHistoryModelTypeAll = @"Virtue";
-NSString* const kChoiceHistoryModelTypeIsGood = @"Vice";
-NSString* const kChoiceHistoryModelTypeIsBad = @"All";
+NSString* const MLChoiceHistoryModelTypeAll = @"Virtue";
+NSString* const MLChoiceHistoryModelTypeIsGood = @"Vice";
+NSString* const MLChoiceHistoryModelTypeIsBad = @"All";
 
-NSString* const kChoiceListSortDate = @"entryModificationDate";
-NSString* const kChoiceListSortWeight = @"choiceWeight";
-NSString* const kChoiceListSortSeverity = @"entrySeverity";
-NSString* const kChoiceListSortName = @"entryShortDescription";
+NSString* const MLChoiceListSortDate = @"entryModificationDate";
+NSString* const MLChoiceListSortWeight = @"choiceWeight";
+NSString* const MLChoiceListSortSeverity = @"entrySeverity";
+NSString* const MLChoiceListSortName = @"entryShortDescription";
 
 @interface ChoiceHistoryModel () {
     NSUserDefaults *preferences;                  /**< User defaults to write to file system */
@@ -48,7 +48,7 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 
         _choiceType = @"";
         _isAscending = FALSE;
-        _sortKey = kChoiceListSortDate;
+        _sortKey = MLChoiceListSortDate;
 
         _choices = [[NSMutableArray alloc] init];
         _choicesAreGood = [[NSMutableArray alloc] init];
@@ -113,9 +113,9 @@ NSString* const kChoiceListSortName = @"entryShortDescription";
 	//@see DilemmaViewController
 	NSPredicate *pred;
 
-    if ([self.choiceType isEqualToString:kChoiceHistoryModelTypeAll]) {
+    if ([self.choiceType isEqualToString:MLChoiceHistoryModelTypeAll]) {
         pred = [NSPredicate predicateWithFormat:@"NOT entryKey contains[cd] %@", predicateParam];
-    } else if ([self.choiceType isEqualToString:kChoiceHistoryModelTypeIsGood]) {
+    } else if ([self.choiceType isEqualToString:MLChoiceHistoryModelTypeIsGood]) {
         pred = [NSPredicate predicateWithFormat:@"entryIsGood == TRUE AND NOT entryKey contains[cd] %@", predicateParam];
     } else {
         pred = [NSPredicate predicateWithFormat:@"entryIsGood == FALSE AND NOT entryKey contains[cd] %@", predicateParam];

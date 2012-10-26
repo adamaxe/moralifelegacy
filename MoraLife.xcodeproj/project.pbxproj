@@ -3038,6 +3038,7 @@
 		5EA108DA154E3234008A7936 /* TestUserCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCollectable.m; sourceTree = "<group>"; };
 		5EA108DC154F8848008A7936 /* TestUserCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCharacter.m; sourceTree = "<group>"; };
 		5EA108DE154F8EE8008A7936 /* TestCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCharacter.m; sourceTree = "<group>"; };
+		5EA12260162CFC13004B14E8 /* reportpienavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = reportpienavigation.js; sourceTree = "<group>"; };
 		5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
 		5EA1D224130E38A200BA81D6 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA1D22A130E38A200BA81D6 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
@@ -5356,6 +5357,7 @@
 				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
 				5EC55448157748FF004BF692 /* choicemoralentry.js */,
 				5EBBDC781582E9D700355FDE /* choicemoralverify.js */,
+				5EA12260162CFC13004B14E8 /* reportpienavigation.js */,
 				5E6BA4F215B920290008825D /* systemTests.sh */,
 			);
 			path = SystemTests;

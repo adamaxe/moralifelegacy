@@ -177,7 +177,7 @@
 
 - (void)testWhenDateAscendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceMoral1, choiceMoral2, choiceImmoral1, choiceImmoral2, choiceImmoral3];
@@ -188,7 +188,7 @@
 
 - (void)testWhenDateDescendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1, choiceMoral2, choiceMoral1];
@@ -201,7 +201,7 @@
 
 - (void)testWhenDateAscendingMoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeIsGood;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceMoral1, choiceMoral2];
@@ -212,7 +212,7 @@
 
 - (void)testWhenDateDescendingMoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeIsGood;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeIsGood;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceMoral2, choiceMoral1];
@@ -223,7 +223,7 @@
 
 - (void)testWhenDateAscendingImmoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeIsBad;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3];
@@ -234,7 +234,7 @@
 
 - (void)testWhenDateDescendingImmoralChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeIsBad;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeIsBad;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceImmoral1];
@@ -245,8 +245,8 @@
 
 - (void)testWhenNameAscendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    testingSubject.sortKey = kChoiceListSortName;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = MLChoiceListSortName;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceImmoral1, choiceImmoral2, choiceImmoral3, choiceMoral1, choiceMoral2];
@@ -257,8 +257,8 @@
 
 - (void)testWhenNameDescendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    testingSubject.sortKey = kChoiceListSortName;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = MLChoiceListSortName;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceMoral2, choiceMoral1, choiceImmoral3, choiceImmoral2, choiceImmoral1];
@@ -269,8 +269,8 @@
 
 - (void)testWhenSeverityAscendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    testingSubject.sortKey = kChoiceListSortSeverity;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = MLChoiceListSortSeverity;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceMoral2, choiceImmoral1, choiceMoral1];
@@ -280,8 +280,8 @@
 
 - (void)testWhenSeverityDescendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    testingSubject.sortKey = kChoiceListSortSeverity;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = MLChoiceListSortSeverity;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceMoral1, choiceImmoral1, choiceMoral2, choiceImmoral2, choiceImmoral3];
@@ -291,8 +291,8 @@
 
 - (void)testWhenWeightAscendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    testingSubject.sortKey = kChoiceListSortWeight;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = MLChoiceListSortWeight;
     testingSubject.isAscending = TRUE;
 
     NSArray *expectedChoices = @[choiceImmoral3, choiceImmoral2, choiceMoral2, choiceImmoral1, choiceMoral1];
@@ -302,8 +302,8 @@
 
 - (void)testWhenWeightDescendingAllChoicesAreRequestedHistoryisCorrect {
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
-    testingSubject.sortKey = kChoiceListSortWeight;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
+    testingSubject.sortKey = MLChoiceListSortWeight;
     testingSubject.isAscending = FALSE;
 
     NSArray *expectedChoices = @[choiceMoral1, choiceImmoral1, choiceMoral2, choiceImmoral2, choiceImmoral3];
@@ -347,7 +347,7 @@
     [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
     [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:YES];
 
     [userDefaultsMock verify];
@@ -367,7 +367,7 @@
     [[userDefaultsMock expect] setFloat:moralChoice1Influence forKey:@"choiceInfluence"];
     [[userDefaultsMock expect] setBool:moralChoice1EntryIsGood forKey:@"entryIsGood"];
 
-    testingSubject.choiceType = kChoiceHistoryModelTypeAll;
+    testingSubject.choiceType = MLChoiceHistoryModelTypeAll;
     [testingSubject retrieveChoice:moralChoice1EntryKey forEditing:NO];
 
     [userDefaultsMock verify];

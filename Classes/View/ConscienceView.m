@@ -21,170 +21,181 @@ Actual facial changes are requested by ViewController.
 #import "ConscienceMind.h"
 #import "ConsciencePath.h"
 
-int const kDirectionFacingLeft = 0;
-int const kDirectionFacingRight = 1;
-int const kConscienceLowerLeftX = 55;
-int const kConscienceLowerLeftY = 440;
-int const kConscienceHomeX = 105;
-int const kConscienceHomeY = 225;
-int const kConscienceOffscreenBottomX = 70;
-int const kConscienceOffscreenBottomY = 605;
-int const kConscienceAntagonistX = 90;
-int const kConscienceAntagonistY = 45;
-int const kConscienceAntagonistWidth = 165;
-int const kConscienceAntagonistHeight = 165;
-int const kConscienceViewTag = 3017;
-int const kConscienceAntagonistViewTag = 3020;
-float const kConscienceLargeSizeX = 1.25;
-float const kConscienceLargeSizeY = 1.25;
-float const kConscienceLargestSize = 2.25;
+int const MLDirectionFacingLeft = 0;
+int const MLDirectionFacingRight = 1;
+int const MLConscienceLowerLeftX = 55;
+int const MLConscienceLowerLeftY = 440;
+int const MLConscienceHomeX = 105;
+int const MLConscienceHomeY = 225;
+int const MLConscienceOffscreenBottomX = 70;
+int const MLConscienceOffscreenBottomY = 605;
+int const MLConscienceAntagonistX = 90;
+int const MLConscienceAntagonistY = 45;
+int const MLConscienceAntagonistWidth = 165;
+int const MLConscienceAntagonistHeight = 165;
+int const MLConscienceViewTag = 3017;
+int const MLConscienceAntagonistViewTag = 3020;
+float const MLConscienceLargeSizeX = 1.25;
+float const MLConscienceLargeSizeY = 1.25;
+float const MLConscienceLargestSize = 2.25;
 
-int const kMouthHeight = 32;
-int const kMouthWidth = 50;
-int const kSymbolHeight = 200;
-int const kSymbolWidth = 200;
-int const kTopBottomAccessoryHeight = 50;
-int const kTopBottomAccessoryWidth = 162;
-int const kEyeLeftIndex = 0;
-int const kEyeRightIndex = 1;
-int const kEyeBothIndex = 2;
-int const kEyeRandomIndex = 3;
-int const kEyeCloseIndex = 0;
-int const kEyeOpenIndex = 1;
-int const kExpressionInterval = 3;
-float const kBlinkInterval = 2;
+int const MLMouthHeight = 32;
+int const MLMouthWidth = 50;
+int const MLSymbolHeight = 200;
+int const MLSymbolWidth = 200;
+int const MLTopBottomAccessoryHeight = 50;
+int const MLTopBottomAccessoryWidth = 162;
+int const MLExpressionInterval = 3;
+float const MLBlinkInterval = 2;
 
 /**
  Tag Numbers for webViews in order to reference them
  */
-typedef enum bodyViewTags{
-	kEyeRightViewTag = 3000,
-	kEyeLeftViewTag = 3001,
-	kMouthWebViewTag = 3002,
-	kSymbolWebViewTag = 3003,
-	kBubbleImageViewTag = 3004,
-	kPrimaryAccessoryViewTag = 3005,
-	kSecondaryAccessoryViewTag = 3006,
-	kTopAccessoryViewTag = 3007,
-	kBottomAccessoryViewTag = 3008,
-	kEyeLeftSleepImageViewTag = 3009,
-	kEyeLeftBrowViewTag = 3010,
-	kEyeRightBrowViewTag = 3011,
-	kBubbleViewTag = 3012,
-	kEyeLeftBagViewTag = 3013,
-	kEyeRightBagViewTag = 3014,
-	kSymbolViewTag = 3015,
-	kMouthViewTag = 3016,
-	kConscienceCustomizeViewTag = 3018,
-	kAnimatedBubbleViewTag = 3019,
-	kConscienceProtagonistViewTag = 3021,
-	kChoiceCancelButtonTag = 3022,
-	kChoiceMoralButtonTag = 3023
-} bodyViewTags;
+typedef enum {
+	MLConscienceViewEyeRightViewTag = 3000,
+	MLConscienceViewEyeLeftViewTag = 3001,
+	MLConscienceViewMouthWebViewTag = 3002,
+	MLConscienceViewSymbolWebViewTag = 3003,
+	MLConscienceViewBubbleImageViewTag = 3004,
+	MLConscienceViewPrimaryAccessoryViewTag = 3005,
+	MLConscienceViewSecondaryAccessoryViewTag = 3006,
+	MLConscienceViewTopAccessoryViewTag = 3007,
+	MLConscienceViewBottomAccessoryViewTag = 3008,
+	MLConscienceViewEyeLeftSleepImageViewTag = 3009,
+	MLConscienceViewEyeLeftBrowViewTag = 3010,
+	MLConscienceViewEyeRightBrowViewTag = 3011,
+	MLConscienceViewBubbleViewTag = 3012,
+	MLConscienceViewEyeLeftBagViewTag = 3013,
+	MLConscienceViewEyeRightBagViewTag = 3014,
+	MLConscienceViewSymbolViewTag = 3015,
+	MLConscienceViewMouthViewTag = 3016,
+	MLConscienceViewConscienceCustomizeViewTag = 3018,
+	MLConscienceViewAnimatedBubbleViewTag = 3019,
+	MLConscienceViewConscienceProtagonistViewTag = 3021,
+	MLConscienceViewChoiceCancelButtonTag = 3022,
+	MLConscienceViewChoiceMoralButtonTag = 3023
+} MLConscienceViewTags;
+
+/** Eyes
+ */
+
+typedef enum {
+    MLEyePlacementLeft,
+    MLEyePlacementRight,
+    MLEyePlacementBoth,
+    MLEyePlacementRandom
+
+} MLEyePlacement;
+
+typedef enum {
+    MLEyeStateClose,
+    MLEyeStateOpen
+
+} MLEyeState;
 
 /**
  Possible expression states of Lips
  */
-typedef enum expressionLipsEnum{
-	kExpressionLipsSadShock,
-	kExpressionLipsSadOpenAlt1,
-	kExpressionLipsSadOpen,
-	kExpressionLipsSadAlt1,
-	kExpressionLipsSad,
-	kExpressionLipsSadSmirk,
-	kExpressionLipsSadSilly,
-	kExpressionLipsNormal,
-	kExpressionLipsHappySmirk,
-	kExpressionLipsHappy,
-	kExpressionLipsHappyAlt1,
-	kExpressionLipsHappySilly,
-	kExpressionLipsHappyOpen,
-	kExpressionLipsHappyOpenAlt1,
-	kExpressionLipsHappyShock
-}expressionLipsEnum;
+typedef enum {
+	MLExpressionLipsSadShock,
+	MLExpressionLipsSadOpenAlt1,
+	MLExpressionLipsSadOpen,
+	MLExpressionLipsSadAlt1,
+	MLExpressionLipsSad,
+	MLExpressionLipsSadSmirk,
+	MLExpressionLipsSadSilly,
+	MLExpressionLipsNormal,
+	MLExpressionLipsHappySmirk,
+	MLExpressionLipsHappy,
+	MLExpressionLipsHappyAlt1,
+	MLExpressionLipsHappySilly,
+	MLExpressionLipsHappyOpen,
+	MLExpressionLipsHappyOpenAlt1,
+	MLExpressionLipsHappyShock
+} MLExpressionLips;
 
 /**
  Possible expression states of Dimples
  */
-typedef enum expressionDimplesEnum{
-	kExpressionDimplesSad,
-	kExpressionDimplesNormal,
-	kExpressionDimplesHappy
-}expressionDimplesEnum;
+typedef enum {
+	MLExpressionDimplesSad,
+	MLExpressionDimplesNormal,
+	MLExpressionDimplesHappy
+} MLExpressionDimples;
 
 /**
  Possible expression states of Teeth
  */
-typedef enum expressionTeethEnum{
-	kExpressionTeethSadOpenAlt1,
-	kExpressionTeethSadOpen,
-	kExpressionTeethHappyOpen,
-	kExpressionTeethHappyOpenAlt1
-}expressionTeethEnum;
+typedef enum {
+	MLExpressionTeethSadOpenAlt1,
+	MLExpressionTeethSadOpen,
+	MLExpressionTeethHappyOpen,
+	MLExpressionTeethHappyOpenAlt1
+} MLexpressionTeeth;
 
 /**
  Possible expression states of Tongue
  */
-typedef enum expressionTongueEnum{
-	kExpressionTongueSadCenter,
-	kExpressionTongueSadLeft,
-	kExpressionTongueSadRight,
-	kExpressionTongueHappyCenter,
-	kExpressionTongueHappyLeft,
-	kExpressionTongueHappyRight
-}expressionTongueEnum;
+typedef enum {
+	MLExpressionTongueSadCenter,
+	MLExpressionTongueSadLeft,
+	MLExpressionTongueSadRight,
+	MLExpressionTongueHappyCenter,
+	MLExpressionTongueHappyLeft,
+	MLExpressionTongueHappyRight
+} MLExpressionTongue;
 
 /**
  Possible expression states of Brow
  */
-typedef enum expressionBrowEnum{
-	kExpressionBrowAngry,
-	kExpressionBrowNormal,
-	kExpressionBrowConfused,
-	kExpressionBrowExcited
-}expressionBrowEnum;
+typedef enum {
+	MLExpressionBrowAngry,
+	MLExpressionBrowNormal,
+	MLExpressionBrowConfused,
+	MLExpressionBrowExcited
+} MLExpressionBrow;
 
 /**
  Possible expression states of Lashes
  */
-typedef enum expressionLashesEnum{
-	kExpressionLashesUp,
-	kExpressionLashesDown
-}expressionLashesEnum;
+typedef enum {
+	MLExpressionLashesUp,
+	MLExpressionLashesDown
+} MLExpressionLashes;
 
 /**
  Possible expression states of Lid
  */
-typedef enum expressionLidEnum{
-	kExpressionLidAngry,
-	kExpressionLidSleepy,
-	kExpressionLidNormal,
-	kExpressionLidUnder
-}expressionLidEnum;
+typedef enum {
+	MLExpressionLidAngry,
+	MLExpressionLidSleepy,
+	MLExpressionLidNormal,
+	MLExpressionLidUnder
+} MLExpressionLid;
 
 
 /**
  Possible look direction of Eye
  */
-typedef enum expressionLookEnum{
-	kExpressionLookCenter,
-	kExpressionLookDown,
-	kExpressionLookUp,
-	kExpressionLookLeft,
-	kExpressionLookRight,
-	kExpressionLookCross,
-	kExpressionLookCrazy
-}expressionLookEnum;
+typedef enum {
+	MLExpressionLookCenter,
+	MLExpressionLookDown,
+	MLExpressionLookUp,
+	MLExpressionLookLeft,
+	MLExpressionLookRight,
+	MLExpressionLookCross,
+	MLExpressionLookCrazy
+} MLExpressionLook;
 
 /**
  Possible expression states of Bags
  */
-typedef enum expressionBagsEnum{
-	kExpressionBagsNormal,
-	kExpressionBagsOld,
-	kExpressionBagsOlder,
-	kExpressionBagsOldest
-}expressionBagsEnum;
+typedef enum {
+	MLExpressionBagsNormal,
+	MLExpressionBagsOld,
+	MLExpressionBagsOlder,
+	MLExpressionBagsOldest
+} MLExpressionBags;
 
 @interface ConscienceView () {
     
@@ -217,6 +228,40 @@ typedef enum expressionBagsEnum{
 	NSTimer *blinkTimer;		/**< controls blink/wink interval */
 	
 }
+
+/**
+ Change eye state to imitate winking/blinking
+ Values are open and closed
+ @param eyeState int whether eye is open or closed
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ */
+- (void) changeEyeState:(MLEyeState) eyeState forEye:(MLEyePlacement) eyeNumber;
+
+/**
+ Change direction Conscience is looking by moving iris
+ Values are center, down, up, left, right, cross, crazy
+ @param expressionIndex int direction eye can look
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ @see expressionLookEnum
+ */
+- (void) changeEyeDirection:(MLExpressionLook)expressionIndex forEye:(MLEyePlacement) eyeNumber;
+
+/**
+ Change brow expression
+ Values are angry, confused, excited, normal
+ @param expression NSString layerName of brow ConscienceLayer to be selected
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ */
+- (void) changeBrowExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber;
+
+/**
+ Change lid expression
+ Values are angry, normal, sleepy, under
+ @param expression NSString layerName of lid ConscienceLayer to be selected
+ @param eyeNumber int eye designation to affect (left, right, both, random)
+ */
+- (void) changeLidExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber;
+
 
 @end
 
@@ -268,7 +313,7 @@ withMind: (ConscienceMind *) argMind{
         appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         
 		//Setup initial views
-		_directionFacing = kDirectionFacingLeft;
+		_directionFacing = MLDirectionFacingLeft;
 		self.contentMode = UIViewContentModeScaleAspectFit;
 		self.multipleTouchEnabled = TRUE;
 		self.backgroundColor = [UIColor clearColor];
@@ -278,51 +323,50 @@ withMind: (ConscienceMind *) argMind{
 		//set tag number for each view so they can be changed with reinitialization
 		//configuration is done in setNeedsDisplay		
 		_conscienceBubbleView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 1, 1)];
-		_conscienceBubbleView.tag = kBubbleViewTag;
+		_conscienceBubbleView.tag = MLConscienceViewBubbleViewTag;
 		_conscienceBubbleView.multipleTouchEnabled = TRUE;
         
-		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
-		animatedBubbleView.tag = kAnimatedBubbleViewTag;
+		animatedBubbleView = [[ConscienceBubbleView alloc] initWithFrame:CGRectMake(0, 0, MLSymbolWidth, MLSymbolHeight)];
+		animatedBubbleView.tag = MLConscienceViewAnimatedBubbleViewTag;
 		[_conscienceBubbleView insertSubview:animatedBubbleView atIndex:0];
 		
-		accessoryPrimaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(160, 25, kSideAccessoryWidth, kSideAccessoryHeight)]; 
-		accessoryPrimaryView.tag = kPrimaryAccessoryViewTag;
+		accessoryPrimaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(160, 25, MLSideAccessoryWidth, MLSideAccessoryHeight)]; 
+		accessoryPrimaryView.tag = MLConscienceViewPrimaryAccessoryViewTag;
 		
 		[_conscienceBubbleView addSubview:accessoryPrimaryView];
 		
-		accessorySecondaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(-20, 25, kSideAccessoryWidth, kSideAccessoryHeight)]; 
-		accessorySecondaryView.tag = kSecondaryAccessoryViewTag;
+		accessorySecondaryView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(-20, 25, MLSideAccessoryWidth, MLSideAccessoryHeight)]; 
+		accessorySecondaryView.tag = MLConscienceViewSecondaryAccessoryViewTag;
 		[_conscienceBubbleView addSubview:accessorySecondaryView];
 		
-		accessoryTopView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(12, -10, kTopBottomAccessoryWidth, kTopBottomAccessoryHeight)]; 
-		accessoryTopView.tag = kTopAccessoryViewTag;		
+		accessoryTopView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(12, -10, MLTopBottomAccessoryWidth, MLTopBottomAccessoryHeight)];
+		accessoryTopView.tag = MLConscienceViewTopAccessoryViewTag;		
 		[_conscienceBubbleView addSubview:accessoryTopView];
 		
-		accessoryBottomView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(20, 165, kTopBottomAccessoryWidth, kTopBottomAccessoryHeight)]; 
-		accessoryBottomView.tag = kBottomAccessoryViewTag;		
+		accessoryBottomView = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(20, 165, MLTopBottomAccessoryWidth, MLTopBottomAccessoryHeight)];
+		accessoryBottomView.tag = MLConscienceViewBottomAccessoryViewTag;		
 		[_conscienceBubbleView addSubview:accessoryBottomView];
 		
-		conscienceEyeRightView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kEyeWidth, kEyeHeight)];
-		conscienceEyeRightView.tag = kEyeRightViewTag;
+		conscienceEyeRightView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, MLEyeWidth, MLEyeHeight)];
+		conscienceEyeRightView.tag = MLConscienceViewEyeRightViewTag;
 		[_conscienceBubbleView addSubview:conscienceEyeRightView];
 		
-		conscienceEyeLeftView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kEyeWidth, kEyeHeight)];
-		conscienceEyeLeftView.tag = kEyeLeftViewTag;
+		conscienceEyeLeftView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(MLEyeWidth, 0, MLEyeWidth, MLEyeHeight)];
+		conscienceEyeLeftView.tag = MLConscienceViewEyeLeftViewTag;
 		conscienceEyeLeftView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
 		[_conscienceBubbleView addSubview:conscienceEyeLeftView];
         
-		conscienceMouthView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(kEyeWidth, 0, kMouthWidth, kMouthHeight)];
-		conscienceMouthView.tag = kMouthViewTag;
+		conscienceMouthView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(MLEyeWidth, 0, MLMouthWidth, MLMouthHeight)];
+		conscienceMouthView.tag = MLConscienceViewMouthViewTag;
 		[_conscienceBubbleView addSubview:conscienceMouthView];
 		
-		conscienceSymbolView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, kSymbolWidth, kSymbolHeight)];
-		conscienceSymbolView.tag = kSymbolViewTag;
+		conscienceSymbolView = [[ConscienceObjectView alloc] initWithFrame:CGRectMake(0, 0, MLSymbolWidth, MLSymbolHeight)];
+		conscienceSymbolView.tag = MLConscienceViewSymbolViewTag;
         
 		[_conscienceBubbleView addSubview:conscienceSymbolView];
         
 		
 		[self addSubview: _conscienceBubbleView];
-		
         
     }
 	
@@ -342,24 +386,24 @@ Views are called by tags which are set in initWithFrame by constants
 	[self changeBubble];	
 
     //Display accessories chosen by User or System for Antagonists
-	accessoryPrimaryView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kPrimaryAccessoryViewTag];
+	accessoryPrimaryView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewPrimaryAccessoryViewTag];
 	accessoryPrimaryView.accessoryFilename = _currentConscienceAccessories.primaryAccessory;
     
 	[accessoryPrimaryView setNeedsDisplay];
 	
-	accessorySecondaryView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kSecondaryAccessoryViewTag];
+	accessorySecondaryView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewSecondaryAccessoryViewTag];
 	accessorySecondaryView.accessoryFilename = _currentConscienceAccessories.secondaryAccessory;
 	[accessorySecondaryView setNeedsDisplay];
 	
-	accessoryTopView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kTopAccessoryViewTag];
+	accessoryTopView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewTopAccessoryViewTag];
 	accessoryTopView.accessoryFilename = _currentConscienceAccessories.topAccessory;
 	[accessoryTopView setNeedsDisplay];
 	
-	accessoryBottomView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:kBottomAccessoryViewTag];
+	accessoryBottomView = (AccessoryObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewBottomAccessoryViewTag];
 	accessoryBottomView.accessoryFilename = _currentConscienceAccessories.bottomAccessory;
 	[accessoryBottomView setNeedsDisplay];
 	
-	animatedBubbleView = (ConscienceBubbleView *) [_conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
+	animatedBubbleView = (ConscienceBubbleView *) [_conscienceBubbleView viewWithTag:MLConscienceViewAnimatedBubbleViewTag];
 	[animatedBubbleView setNeedsDisplay];	
 
     
@@ -466,7 +510,7 @@ Implementation: Change Eye state for winking/blinking, function is recursive to 
 Eye choices/color determined by User's eye/color choice
 eyeState determined by ViewController
  */
-- (void) changeEyeState:(int) eyeState forEye:(int) eyeNumber{
+- (void) changeEyeState:(MLEyeState) eyeState forEye:(MLEyePlacement) eyeNumber{
 
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 2;
@@ -476,24 +520,24 @@ eyeState determined by ViewController
 	ConscienceObjectView *conscienceEyeView;
 
 	//Select the Eye to respond
-	if (eyeNumber == kEyeLeftIndex) {
-		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeLeftViewTag];
+	if (eyeNumber == MLEyePlacementLeft) {
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeLeftViewTag];
 	
-	} else if (eyeNumber == kEyeRightIndex ) {
-		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeRightViewTag];
+	} else if (eyeNumber == MLEyePlacementRight ) {
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeRightViewTag];
 
-	} else if (eyeNumber == kEyeBothIndex) {
+	} else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeEyeState:eyeState forEye:kEyeLeftIndex];
-		[self changeEyeState:eyeState forEye:kEyeRightIndex];
+		[self changeEyeState:eyeState forEye:MLEyePlacementLeft];
+		[self changeEyeState:eyeState forEye:MLEyePlacementRight];
 		isRecursive = YES;
 
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeEyeState:eyeState forEye:kEyeLeftIndex];
+			[self changeEyeState:eyeState forEye:MLEyePlacementLeft];
 		}else {
-			[self changeEyeState:eyeState forEye:kEyeRightIndex];
+			[self changeEyeState:eyeState forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -503,12 +547,12 @@ eyeState determined by ViewController
 	if (!isRecursive) {
 		
 		//Change the eyeState
-		if (eyeState == kEyeOpenIndex) {
+		if (eyeState == MLEyeStateOpen) {
 
 			//Ensure correct eye color is passed
 			ConscienceLayer *currentLayer;
             
-            if (eyeNumber == kEyeLeftIndex) {
+            if (eyeNumber == MLEyePlacementLeft) {
                 currentLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisLeft"];
 			}else {
                 currentLayer = (_currentConscienceBody.eyeLayers)[@"layerEyeballIrisRight"];
@@ -538,13 +582,8 @@ Eye choices/color determined by User's eye/color choice
 expressionIndex determined by ViewController
 */
 
-- (void) changeEyeDirection:(int)expressionIndex forEye:(int) eyeNumber{
+- (void) changeEyeDirection:(MLExpressionLook)expressionIndex forEye:(MLEyePlacement) eyeNumber{
 
-    //Ensure valid expression Index
-    if ((expressionIndex > 6) || (expressionIndex < 0)) {
-        expressionIndex = 0;
-    }
-    
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 6;
 
@@ -556,24 +595,24 @@ expressionIndex determined by ViewController
 	ConscienceObjectView *conscienceEyeView;
 	
 	//Select the Eye to respond
-	if (eyeNumber == kEyeLeftIndex) {
+	if (eyeNumber == MLEyePlacementLeft) {
 		conscienceEyeView = conscienceEyeLeftView;
 		val = eyeLeftPositions[expressionIndex];
-	}else if (eyeNumber == kEyeRightIndex ) {
+	}else if (eyeNumber == MLEyePlacementRight ) {
 		conscienceEyeView = conscienceEyeRightView;
 		val = eyeRightPositions[expressionIndex];
-	}else if (eyeNumber == kEyeBothIndex) {
+	}else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeEyeDirection:expressionIndex forEye:kEyeLeftIndex];
-		[self changeEyeDirection:expressionIndex forEye:kEyeRightIndex];
+		[self changeEyeDirection:expressionIndex forEye:MLEyePlacementLeft];
+		[self changeEyeDirection:expressionIndex forEye:MLEyePlacementRight];
 		isRecursive = YES;
 		
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeEyeDirection:expressionIndex forEye:kEyeLeftIndex];
+			[self changeEyeDirection:expressionIndex forEye:MLEyePlacementLeft];
 		}else {
-			[self changeEyeDirection:expressionIndex forEye:kEyeRightIndex];
+			[self changeEyeDirection:expressionIndex forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -598,7 +637,7 @@ Implementation: Display brows, function is recursive to account for left,right,b
 Brow choices/color determined by User's eye/color choice
 expression determined by Conscience Mood/Enthusiasm
 */
-- (void) changeBrowExpressions:(NSString *) expression forEye:(int) eyeNumber{
+- (void) changeBrowExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber{
 
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 2;
@@ -608,24 +647,24 @@ expression determined by Conscience Mood/Enthusiasm
 	ConscienceObjectView *conscienceEyeView;
 	
 	//Select the Eye to respond
-	if (eyeNumber == kEyeLeftIndex) {
-		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeLeftViewTag];
+	if (eyeNumber == MLEyePlacementLeft) {
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeLeftViewTag];
 		
-	}else if (eyeNumber == kEyeRightIndex ) {
-		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeRightViewTag];
+	}else if (eyeNumber == MLEyePlacementRight ) {
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeRightViewTag];
 		
-	}else if (eyeNumber == kEyeBothIndex) {
+	}else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeBrowExpressions:expression forEye:kEyeLeftIndex];
-		[self changeBrowExpressions:expression forEye:kEyeRightIndex];
+		[self changeBrowExpressions:expression forEye:MLEyePlacementLeft];
+		[self changeBrowExpressions:expression forEye:MLEyePlacementRight];
 		isRecursive = YES;
 		
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeBrowExpressions:expression forEye:kEyeLeftIndex];
+			[self changeBrowExpressions:expression forEye:MLEyePlacementLeft];
 		}else {
-			[self changeBrowExpressions:expression forEye:kEyeRightIndex];
+			[self changeBrowExpressions:expression forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -648,7 +687,7 @@ Implementation: Display eyelids, function is recursive to account for left,right
 Lid choices determined by User's eye choice
 expression determined by Conscience Mood/Enthusiasm
 */
-- (void) changeLidExpressions:(NSString *) expression forEye:(int) eyeNumber{
+- (void) changeLidExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber{
 	//determine a random eye if random eye is requested
 	int randomSwitch = arc4random() % 2;
 	//boolean to mark if change is requested for both eyes
@@ -657,24 +696,24 @@ expression determined by Conscience Mood/Enthusiasm
 	ConscienceObjectView *conscienceEyeView;
 	
 	//Select the Eye to respond
-	if (eyeNumber == kEyeLeftIndex) {
-		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeLeftViewTag];
+	if (eyeNumber == MLEyePlacementLeft) {
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeLeftViewTag];
 		
-	}else if (eyeNumber == kEyeRightIndex ) {
-		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kEyeRightViewTag];
+	}else if (eyeNumber == MLEyePlacementRight ) {
+		conscienceEyeView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewEyeRightViewTag];
 		
-	}else if (eyeNumber == kEyeBothIndex) {
+	}else if (eyeNumber == MLEyePlacementBoth) {
 		//Both eyes have been requested.  Call left/right, cancel rest of function
-		[self changeLidExpressions:expression forEye:kEyeLeftIndex];
-		[self changeLidExpressions:expression forEye:kEyeRightIndex];
+		[self changeLidExpressions:expression forEye:MLEyePlacementLeft];
+		[self changeLidExpressions:expression forEye:MLEyePlacementRight];
 		isRecursive = YES;
 		
 	}else {
 		//Random eye requested
 		if (randomSwitch < 1) {
-			[self changeLidExpressions:expression forEye:kEyeLeftIndex];
+			[self changeLidExpressions:expression forEye:MLEyePlacementLeft];
 		}else {
-			[self changeLidExpressions:expression forEye:kEyeRightIndex];
+			[self changeLidExpressions:expression forEye:MLEyePlacementRight];
 		}
 		isRecursive = YES;
 	}
@@ -703,7 +742,7 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */	
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewMouthViewTag];
 
 	//Change Dimples Layer	
 	(conscienceNewMouthView.totalLayers)[@"layerDimples"] = (_currentConscienceBody.dimplesLayers)[expression];
@@ -721,7 +760,7 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */	
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewMouthViewTag];
 
 	//Change lips Layer	
 	(conscienceNewMouthView.totalLayers)[@"layerLips"] = (_currentConscienceBody.lipsLayers)[expression];
@@ -740,7 +779,7 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */	
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewMouthViewTag];
 	
 	//Change teeth Layer
 	(conscienceNewMouthView.totalLayers)[@"layerTeeth"] = (_currentConscienceBody.teethLayers)[expression];
@@ -759,7 +798,7 @@ expression determined by Conscience Mood/Enthusiasm
 	/** @todo determine proper memory management */
 	//Retrieve current Mouth
 	ConscienceObjectView *conscienceNewMouthView;
-	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:kMouthViewTag];
+	conscienceNewMouthView = (ConscienceObjectView *)[_conscienceBubbleView viewWithTag:MLConscienceViewMouthViewTag];
 
 	//Set Tongue Layer	
 	(conscienceNewMouthView.totalLayers)[@"layerTongue"] = (_currentConscienceBody.tongueLayers)[expression];
@@ -776,7 +815,7 @@ Color determined by User.  Animation determined by Conscience Mood/Enthusiasm
 - (void) changeBubble{
 
 	//User is allowed selection of colors for Bubble
-	animatedBubbleView = (ConscienceBubbleView *)[_conscienceBubbleView viewWithTag:kAnimatedBubbleViewTag];
+	animatedBubbleView = (ConscienceBubbleView *)[_conscienceBubbleView viewWithTag:MLConscienceViewAnimatedBubbleViewTag];
 	animatedBubbleView.bubbleColor = _currentConscienceBody.bubbleColor;
 	animatedBubbleView.bubbleType = _currentConscienceBody.bubbleType;
 
@@ -798,12 +837,12 @@ Implementation: Determine Conscience direction facing.  Reverse Conscience if ne
 - (void)removeConscienceInvisibility{
 	
 	//Determine which way Conscience is facing
-	if (_directionFacing == kDirectionFacingLeft) {
-		_directionFacing = kDirectionFacingRight;
+	if (_directionFacing == MLDirectionFacingLeft) {
+		_directionFacing = MLDirectionFacingRight;
 		self.transform = CGAffineTransformIdentity;
 		self.transform = CGAffineTransformMakeScale(1.0, 1.0);		
 	}else{
-		_directionFacing = kDirectionFacingLeft;
+		_directionFacing = MLDirectionFacingLeft;
 		self.transform = CGAffineTransformIdentity;
 		self.transform = CGAffineTransformMakeScale(-1.0, 1.0);		
 	}
@@ -842,14 +881,14 @@ Implementation: Determine if Conscience is awake.  Set timers to change eye and 
         [self timedMouthExpressionChanges];        
         
         if(![mouthTimer isValid]){
-            mouthTimer = [NSTimer scheduledTimerWithTimeInterval:kExpressionInterval target:self selector:@selector(timedMouthExpressionChanges) userInfo:nil repeats:YES];
+            mouthTimer = [NSTimer scheduledTimerWithTimeInterval:MLExpressionInterval target:self selector:@selector(timedMouthExpressionChanges) userInfo:nil repeats:YES];
         }
         if(![eyeTimer isValid]){
-            eyeTimer = [NSTimer scheduledTimerWithTimeInterval:kBlinkInterval target:self selector:@selector(timedEyeChanges) userInfo:nil repeats:YES];
+            eyeTimer = [NSTimer scheduledTimerWithTimeInterval:MLBlinkInterval target:self selector:@selector(timedEyeChanges) userInfo:nil repeats:YES];
         }
         
     } else {
-        [self changeEyeState:kEyeCloseIndex forEye:kEyeBothIndex];
+        [self changeEyeState:MLEyeStateClose forEye:MLEyePlacementBoth];
     }
 	
 }
@@ -998,8 +1037,8 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	[eyeTimerInvocation setTarget:self];
 	[eyeTimerInvocation setSelector:eyeTimerSelector];
 	
-	int eyeState = kEyeOpenIndex;
-    int eyeNumber = kEyeBothIndex;
+	int eyeState = MLEyeStateOpen;
+    int eyeNumber = MLEyePlacementBoth;
     
     /** @bug fix winking */
 //    //If Conscience is in a good mood, allow for winking
@@ -1016,12 +1055,12 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	[eyeTimerInvocation setArgument:&eyeNumber atIndex:3];
 	
 	if (randomSwitch < 2)  {
-		[self changeEyeState:kEyeCloseIndex forEye:eyeNumber];
+		[self changeEyeState:MLEyeStateClose forEye:eyeNumber];
 		blinkTimer = [NSTimer scheduledTimerWithTimeInterval:blinkDuration invocation:eyeTimerInvocation repeats:NO];
 	}
     
     /** @todo lessen confused frequency */
-    eyeNumber = kEyeBothIndex;
+    eyeNumber = MLEyePlacementBoth;
 	
     if ((randomSwitch < 1) || _isExpressionForced){
         int randomBrow = 0; 
@@ -1035,7 +1074,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 
         } else {
             randomBrow = 2;
-            eyeNumber = kEyeRandomIndex;
+            eyeNumber = MLEyePlacementRandom;
         }
 		
 		[self changeBrowExpressions:browExpressions[randomBrow] forEye:eyeNumber]; 
@@ -1045,7 +1084,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 
     }
     
-    eyeNumber = kEyeBothIndex;
+    eyeNumber = MLEyePlacementBoth;
         
 	if ((randomSwitch == 2) || _isExpressionForced) {
             
@@ -1078,7 +1117,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 			
             if ((arc4random() %3) > 2) {
 
-                eyeNumber = kEyeRandomIndex;
+                eyeNumber = MLEyePlacementRandom;
             }
 			
 		}
@@ -1091,7 +1130,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
     }
         	
 	_isExpressionForced = FALSE;
-	[self changeEyeDirection:randomDirection forEye:kEyeBothIndex];
+	[self changeEyeDirection:randomDirection forEye:MLEyePlacementBoth];
 	
 }
 
@@ -1105,8 +1144,8 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	}		
 	
 	
-	[self changeEyeDirection:expressionIndex forEye:kEyeLeftIndex];
-	[self changeEyeDirection:expressionIndex forEye:kEyeRightIndex];
+	[self changeEyeDirection:expressionIndex forEye:MLEyePlacementLeft];
+	[self changeEyeDirection:expressionIndex forEye:MLEyePlacementRight];
 	expressionIndex++;		
 }
 

@@ -80,7 +80,7 @@
 	choicesTableView.delegate = self;
 	choicesTableView.dataSource = self;
     
-    CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+    CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
 	[thoughtArea addSubview:appDelegate.userConscienceView];
 	
@@ -93,9 +93,9 @@
 	if (boolCheck != nil) {
 
         BOOL isPersistentChoiceGood = [prefs boolForKey:@"entryIsGood"];
-        self.choiceHistoryModel.choiceType = isPersistentChoiceGood ? kChoiceHistoryModelTypeIsGood: kChoiceHistoryModelTypeIsBad;
+        self.choiceHistoryModel.choiceType = isPersistentChoiceGood ? MLChoiceHistoryModelTypeIsGood: MLChoiceHistoryModelTypeIsBad;
 	}else {
-        self.choiceHistoryModel.choiceType = kChoiceHistoryModelTypeIsGood;
+        self.choiceHistoryModel.choiceType = MLChoiceHistoryModelTypeIsGood;
 	}
         
 	//Initialize filtered data containers
@@ -137,7 +137,7 @@
     
     thoughtArea.alpha = 0;
     
-	CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY);
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -173,7 +173,7 @@
  */
 -(IBAction)dismissChoiceModal:(id)sender{
 	
-	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
 	[UIView beginAnimations:@"ReplaceConscience" context:nil];
 	[UIView setAnimationDuration:0.5];

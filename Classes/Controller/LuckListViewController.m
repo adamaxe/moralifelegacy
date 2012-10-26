@@ -86,7 +86,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	context = [appDelegate.moralModelManager managedObjectContext];
     
     isAscending = FALSE;
-    luckSortDescriptor = [[NSMutableString alloc] initWithString:kChoiceListSortDate];
+    luckSortDescriptor = [[NSMutableString alloc] initWithString:MLChoiceListSortDate];
 
 	
 	//Retrieve localized view title string
@@ -176,18 +176,18 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
         
         switch (choiceIndex) {
             case 0:{    
-                if ([luckSortDescriptor isEqualToString:kChoiceListSortName]) {
+                if ([luckSortDescriptor isEqualToString:MLChoiceListSortName]) {
                     
-                    [luckSortDescriptor setString:kChoiceListSortDate];
+                    [luckSortDescriptor setString:MLChoiceListSortDate];
                     [luckSortButton setTitle:@"Date" forState: UIControlStateNormal];
-                } else if ([luckSortDescriptor isEqualToString:kChoiceListSortDate]){
+                } else if ([luckSortDescriptor isEqualToString:MLChoiceListSortDate]){
                     
-                    [luckSortDescriptor setString:kChoiceListSortSeverity];
+                    [luckSortDescriptor setString:MLChoiceListSortSeverity];
                     [luckSortButton setTitle:@"Weight" forState: UIControlStateNormal];
                     
                 } else {
                     
-                    [luckSortDescriptor setString:kChoiceListSortName];
+                    [luckSortDescriptor setString:MLChoiceListSortName];
                     [luckSortButton setTitle:@"Alpha" forState: UIControlStateNormal];
                 }
             } break;
@@ -269,10 +269,10 @@ Implementation: Retrieve all User entered Lucks, and then populate a working set
 			
 			if (isGood) {
                 [detailText appendString:@" Good"];
-				[icons addObject:kLuckImageNameGood];
+				[icons addObject:MLLuckImageNameGood];
 			} else {
                 [detailText appendString:@" Bad"];
-				[icons addObject:kLuckImageNameBad];
+				[icons addObject:MLLuckImageNameBad];
 			}
             
             NSDate *modificationDate = [matches entryModificationDate];

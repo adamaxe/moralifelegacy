@@ -11,8 +11,8 @@ Member of ConscienceObjectView.
 @file
  */
 
-extern float const kFeatureOffsetX;
-extern float const kFeatureOffsetY;
+extern float const MLFeatureOffsetX;
+extern float const MLFeatureOffsetY;
 
 @interface ConscienceLayer : NSObject <NSCoding> 
 

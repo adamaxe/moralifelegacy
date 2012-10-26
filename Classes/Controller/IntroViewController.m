@@ -102,15 +102,15 @@ the application.
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Setup the default Conscience
-	appDelegate.userConscienceAccessories.primaryAccessory = kPrimaryAccessoryFileNameResource;
-	appDelegate.userConscienceAccessories.secondaryAccessory = kSecondaryAccessoryFileNameResource;
-	appDelegate.userConscienceAccessories.topAccessory = kTopAccessoryFileNameResource;
-	appDelegate.userConscienceAccessories.bottomAccessory = kBottomAccessoryFileNameResource;
-	appDelegate.userConscienceBody.symbolName = kSymbolFileNameResource;    
+	appDelegate.userConscienceAccessories.primaryAccessory = MLPrimaryAccessoryFileNameResourceDefault;
+	appDelegate.userConscienceAccessories.secondaryAccessory = MLSecondaryAccessoryFileNameResourceDefault;
+	appDelegate.userConscienceAccessories.topAccessory = MLTopAccessoryFileNameResourceDefault;
+	appDelegate.userConscienceAccessories.bottomAccessory = MLBottomAccessoryFileNameResourceDefault;
+	appDelegate.userConscienceBody.symbolName = MLSymbolFileNameResourceDefault;    
     
 	[consciencePlayground addSubview:appDelegate.userConscienceView];
     
-	CGPoint centerPoint = CGPointMake(kConscienceOffscreenBottomX, kConscienceOffscreenBottomY);
+	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
 	appDelegate.userConscienceView.center = centerPoint;
 	[conscienceStatus setText:@"Hello there!  Welcome to..."];
@@ -203,7 +203,7 @@ the application.
         [UIView setAnimationBeginsFromCurrentState:NO];
         
         backgroundImage.alpha = 1;
-        appDelegate.userConscienceView.center = CGPointMake(kConscienceHomeX, kConscienceHomeY-40);        
+        appDelegate.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY-40);        
                 
         [UIView commitAnimations];
         [appDelegate.userConscienceView setNeedsDisplay];
@@ -216,9 +216,9 @@ the application.
         messageState = 0;
         thoughtArea.alpha = 0;
         
-        CGPoint centerPoint = CGPointMake(kConscienceLowerLeftX, kConscienceLowerLeftY-120);
+        CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY-120);
 
-        appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceLargeSizeX, kConscienceLargeSizeY);
+        appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
         
         [UIView beginAnimations:@"BottomUpConscience" context:nil];
         [UIView setAnimationDuration:1.75];
@@ -259,7 +259,7 @@ the application.
  */
 -(void) startIntro{
     
-    CGPoint centerPoint = CGPointMake(kConscienceHomeX, kConscienceHomeY-40);
+    CGPoint centerPoint = CGPointMake(MLConscienceHomeX, MLConscienceHomeY-40);
 
 	//Move Monitor onscreen, resize to simulate moving into background
     [UIView beginAnimations:@"CenterConscience" context:nil];
@@ -269,7 +269,7 @@ the application.
     
     thoughtArea.alpha = 1;
     teamAxeLogoImage.alpha = 0;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(kConscienceSize, kConscienceSize);
+    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceSizeDefault, MLConscienceSizeDefault);
 	
 	[UIView commitAnimations];
     [appDelegate.userConscienceView setNeedsDisplay];
@@ -758,7 +758,7 @@ Implementation:  Accessorize Conscience with Angel accessories
 -(void) makeAngel{
     
     appDelegate.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-crook";
-    appDelegate.userConscienceAccessories.secondaryAccessory = kSecondaryAccessoryFileNameResource;
+    appDelegate.userConscienceAccessories.secondaryAccessory = MLSecondaryAccessoryFileNameResourceDefault;
     appDelegate.userConscienceAccessories.topAccessory = @"acc-top-halo";
     appDelegate.userConscienceAccessories.bottomAccessory = @"acc-bottom-beard-longgray";
     
@@ -1081,7 +1081,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 			//Shrink the Conscience to emulate that User is pushing Conscience
 			//into background.  Only animate this if User is actually touching Conscience.
 			
-			if (touchedView.tag==kConscienceViewTag) {
+			if (touchedView.tag==MLConscienceViewTag) {
 				                
 				//Depress Conscience slightly to simulate actual contact
 				[UIView beginAnimations:@"ResizeConscienceSmall" context:nil];

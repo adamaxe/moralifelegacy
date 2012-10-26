@@ -9,10 +9,10 @@
 @file
 */
 
-extern NSString* const kPrimaryAccessoryFileNameResource;
-extern NSString* const kSecondaryAccessoryFileNameResource;
-extern NSString* const kTopAccessoryFileNameResource;
-extern NSString* const kBottomAccessoryFileNameResource;
+extern NSString* const MLPrimaryAccessoryFileNameResourceDefault;
+extern NSString* const MLSecondaryAccessoryFileNameResourceDefault;
+extern NSString* const MLTopAccessoryFileNameResourceDefault;
+extern NSString* const MLBottomAccessoryFileNameResourceDefault;
 
 @interface ConscienceAccessories : NSObject 
 

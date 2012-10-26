@@ -112,7 +112,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
     //choiceTextField is a custom StructuredTextField with max length.
     choiceTextField.delegate = self;
-    choiceTextField.maxLength = kChoiceTextFieldLength;
+    choiceTextField.maxLength = MLChoiceTextFieldLength;
     descriptionTextView.delegate = self;
 
 	//Place inner shadow around flat UITextView
@@ -818,7 +818,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
     
     //Update User's ethicals
-    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", kCollectableEthicals]];
+    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     int ethicals = [[currentUserCollectable collectableValue] intValue];

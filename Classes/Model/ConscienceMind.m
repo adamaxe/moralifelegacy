@@ -8,8 +8,8 @@ Data derived from User's actions
 
 #import "ConscienceMind.h"
 
-float const kConscienceEnthusiasm = 50.0;
-float const kConscienceMood = 55.0;
+float const MLConscienceEnthusiasmDefault = 50.0;
+float const MLConscienceMoodDefault = 55.0;
 
 @implementation ConscienceMind
 
@@ -18,8 +18,8 @@ float const kConscienceMood = 55.0;
     self = [super init];
     if (self) {
         //In case of first time run, or User does not supply configuration, default gradient        
-        [self setEnthusiasm:kConscienceEnthusiasm];
-        [self setMood:kConscienceMood];
+        [self setEnthusiasm:MLConscienceEnthusiasmDefault];
+        [self setMood:MLConscienceMoodDefault];
 		_enthusiasmMemories = [[NSMutableDictionary alloc] init];
 		_moodMemories = [[NSMutableDictionary alloc] init];
     }

@@ -227,7 +227,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     if (!_userConscienceView) {
         _userConscienceView = [[ConscienceView alloc] initWithFrame:CGRectMake(20, 130, 200, 200) withBody:_userConscienceBody withAccessories:_userConscienceAccessories withMind:_userConscienceMind];
         
-        _userConscienceView.tag = kConscienceViewTag;
+        _userConscienceView.tag = MLConscienceViewTag;
         _userConscienceView.multipleTouchEnabled = TRUE;
     }
     

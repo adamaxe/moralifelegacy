@@ -11,8 +11,8 @@ Implementation:  Provide UI for entering in a Luck.  Commits data to UserData.
 #import "UserLuck.h"
 #import "ConscienceHelpViewController.h"
 
-NSString* const kLuckImageNameGood = @"icon-luckgood";
-NSString* const kLuckImageNameBad = @"icon-luckbad";
+NSString* const MLLuckImageNameGood = @"icon-luckgood";
+NSString* const MLLuckImageNameBad = @"icon-luckbad";
 
 @interface LuckViewController () {
     
@@ -134,7 +134,7 @@ NSString* const kLuckImageNameBad = @"icon-luckbad";
 	
 	//luckTextField is a custom StructuredTextField with max length.
 	luckTextField.delegate = self;
-	luckTextField.maxLength = kChoiceTextFieldLength;
+	luckTextField.maxLength = MLChoiceTextFieldLength;
 	luckTextField.accessibilityHint = NSLocalizedString(@"LuckScreenLuckTextFieldHint",@"Hint for Luck textField");
 	luckTextField.accessibilityLabel =  NSLocalizedString(@"LuckScreenLuckTextFieldLabel",@"Label for Luck textField");
 	descriptionTextView.delegate = self;
@@ -167,9 +167,9 @@ NSString* const kLuckImageNameBad = @"icon-luckbad";
 	[descriptionTextView setText:NSLocalizedString(@"LuckScreenDescription", @"Label for Description Textview")];
 	
 	if (isGood) {
-		[luckImageName appendString:kLuckImageNameGood];
+		[luckImageName appendString:MLLuckImageNameGood];
 	}else {
-		[luckImageName appendString:kLuckImageNameBad];
+		[luckImageName appendString:MLLuckImageNameBad];
 	}
 	
 	[luckImageName appendString:@".png"];

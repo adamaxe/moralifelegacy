@@ -11,14 +11,14 @@
 
 @class ModelManager;
 
-extern NSString* const kChoiceHistoryModelTypeAll;
-extern NSString* const kChoiceHistoryModelTypeIsGood;
-extern NSString* const kChoiceHistoryModelTypeIsBad;
+extern NSString* const MLChoiceHistoryModelTypeAll;
+extern NSString* const MLChoiceHistoryModelTypeIsGood;
+extern NSString* const MLChoiceHistoryModelTypeIsBad;
 
-extern NSString* const kChoiceListSortDate;
-extern NSString* const kChoiceListSortWeight;
-extern NSString* const kChoiceListSortSeverity;
-extern NSString* const kChoiceListSortName;
+extern NSString* const MLChoiceListSortDate;
+extern NSString* const MLChoiceListSortWeight;
+extern NSString* const MLChoiceListSortSeverity;
+extern NSString* const MLChoiceListSortName;
 
 @interface ChoiceHistoryModel : NSObject
 

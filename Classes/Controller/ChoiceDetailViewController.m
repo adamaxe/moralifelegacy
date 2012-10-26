@@ -66,9 +66,9 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     
 	//Set maximum lengths for User-entry to textfields
 	justificationTextField.delegate = self;
-	justificationTextField.maxLength = kChoiceTextFieldLength;
+	justificationTextField.maxLength = MLChoiceTextFieldLength;
 	consequencesTextField.delegate = self;
-	consequencesTextField.maxLength = kChoiceTextFieldLength;
+	consequencesTextField.maxLength = MLChoiceTextFieldLength;
 
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];

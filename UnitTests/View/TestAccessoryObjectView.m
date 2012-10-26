@@ -28,7 +28,7 @@
     
     [super setUp];
     
-    testingSubject = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(0, 0, kSideAccessoryWidth, kSideAccessoryHeight)];
+    testingSubject = [[AccessoryObjectView alloc] initWithFrame:CGRectMake(0, 0, MLSideAccessoryWidth, MLSideAccessoryHeight)];
     
 }
 
@@ -63,7 +63,7 @@
  */
 - (void)testDefaultAccessory{
 
-    STAssertEqualObjects(kAccessoryFileNameResource, [testingSubject accessoryFilename], @"Default accessory name inaccurate.");
+    STAssertEqualObjects(MLAccessoryFileNameResourceDefault, [testingSubject accessoryFilename], @"Default accessory name inaccurate.");
 }
 
 /**

@@ -9,7 +9,20 @@
  @file
  */
 
-#import "ModelManager.h"
+/**
+ Possible Reference Types
+ typedef utilized to avoid having to use enum declaration
+ */
+typedef enum {
+	MLReferenceModelTypeConscienceAsset,
+	MLReferenceModelTypeBelief,
+	MLReferenceModelTypeText,
+	MLReferenceModelTypePerson,
+	MLReferenceModelTypeMoral,
+	MLReferenceModelTypeReferenceAsset
+} MLReferenceModelTypeEnum;
+
+@class ModelManager;
 
 @interface ReferenceModel : NSObject
 

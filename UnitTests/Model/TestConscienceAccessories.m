@@ -64,10 +64,10 @@
  */
 - (void)testDefaultConscienceAccessories{
     
-	STAssertEquals(kPrimaryAccessoryFileNameResource, [testingSubject primaryAccessory], @"Default primaryAccessory inaccurate.");
-	STAssertEquals(kSecondaryAccessoryFileNameResource, [testingSubject secondaryAccessory], @"Default secondaryAccessory inaccurate.");
-	STAssertEquals(kTopAccessoryFileNameResource, [testingSubject topAccessory], @"Default topAccessory inaccurate.");
-	STAssertEquals(kBottomAccessoryFileNameResource, [testingSubject bottomAccessory], @"Default bottomAccessory inaccurate.");
+	STAssertEquals(MLPrimaryAccessoryFileNameResourceDefault, [testingSubject primaryAccessory], @"Default primaryAccessory inaccurate.");
+	STAssertEquals(MLSecondaryAccessoryFileNameResourceDefault, [testingSubject secondaryAccessory], @"Default secondaryAccessory inaccurate.");
+	STAssertEquals(MLTopAccessoryFileNameResourceDefault, [testingSubject topAccessory], @"Default topAccessory inaccurate.");
+	STAssertEquals(MLBottomAccessoryFileNameResourceDefault, [testingSubject bottomAccessory], @"Default bottomAccessory inaccurate.");
 }
 
 /**

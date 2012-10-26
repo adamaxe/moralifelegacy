@@ -1,7 +1,7 @@
 #import "UserCollectableDAO.h"
 #import "MoraLifeAppDelegate.h"
 
-NSString* const kCollectableEthicals = @"ethical";
+NSString* const MLCollectableEthicals = @"ethical";
 
 @implementation UserCollectableDAO
 
@@ -17,7 +17,7 @@ NSString* const kCollectableEthicals = @"ethical";
 
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
 
-    self = [super initWithKey:key andModelManager:moralModelManager andClassType:kContextReadWrite];
+    self = [super initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadWrite];
 
     if (self) {
         [self.predicateDefaultName setString:@"collectableKey"];

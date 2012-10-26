@@ -21,8 +21,8 @@
 
 @implementation BaseDAO 
 
-NSString* const kContextReadOnly = @"readOnly";
-NSString* const kContextReadWrite = @"readWrite";
+NSString* const MLContextReadOnly = @"readOnly";
+NSString* const MLContextReadWrite = @"readWrite";
 
 /**
  Implementation: In case of base init is called, forward call to default constructor to utilize rw context
@@ -30,7 +30,7 @@ NSString* const kContextReadWrite = @"readWrite";
 - (id) init {
     MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
     
-    return [self initWithKey:nil andModelManager:[appDelegate moralModelManager] andClassType:kContextReadWrite];
+    return [self initWithKey:nil andModelManager:[appDelegate moralModelManager] andClassType:MLContextReadWrite];
 }
 
 #pragma mark -
@@ -45,7 +45,7 @@ NSString* const kContextReadWrite = @"readWrite";
     
     if (self) {
 
-        if ([classType isEqualToString:kContextReadWrite]) {
+        if ([classType isEqualToString:MLContextReadWrite]) {
             _context = [moralModelManager readWriteManagedObjectContext];
         } else {
             _context = [moralModelManager managedObjectContext];            
@@ -76,7 +76,7 @@ NSString* const kContextReadWrite = @"readWrite";
  Implementation: Insert an NSManagedObject into the ReadWrite store, otherwise, cancel the create
  */
 - (id)createObject {
-    if ([_classType isEqualToString:kContextReadWrite]) {
+    if ([_classType isEqualToString:MLContextReadWrite]) {
         return [NSEntityDescription insertNewObjectForEntityForName:self.managedObjectClassName inManagedObjectContext:self.context];   
     } else {
         return nil;
@@ -105,7 +105,7 @@ NSString* const kContextReadWrite = @"readWrite";
     
     BOOL isUpdateSuccessful = FALSE;
     
-    if ([_classType isEqualToString:kContextReadWrite]) {
+    if ([_classType isEqualToString:MLContextReadWrite]) {
 
         NSError *error = nil;
         
@@ -128,7 +128,7 @@ NSString* const kContextReadWrite = @"readWrite";
 
     BOOL isDeleteSuccessful = FALSE;
     
-    if ([_classType isEqualToString:kContextReadWrite]) {
+    if ([_classType isEqualToString:MLContextReadWrite]) {
 
         NSError *error = nil;
         

@@ -48,19 +48,19 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		buttonNames = @[@"accessories", @"beliefs", @"books", @"people", @"choicegood", @"reports"];
 
         //Assign buttons to reference Types
-        peopleButton.tag = kReferenceModelTypePerson;
-        moralsButton.tag = kReferenceModelTypeMoral;
-        booksButton.tag = kReferenceModelTypeText;
-        beliefsButton.tag = kReferenceModelTypeBelief;
-        reportsButton.tag = kReferenceModelTypeReferenceAsset;
-        accessoriesButton.tag = kReferenceModelTypeConscienceAsset;
+        peopleButton.tag = MLReferenceModelTypePerson;
+        moralsButton.tag = MLReferenceModelTypeMoral;
+        booksButton.tag = MLReferenceModelTypeText;
+        beliefsButton.tag = MLReferenceModelTypeBelief;
+        reportsButton.tag = MLReferenceModelTypeReferenceAsset;
+        accessoriesButton.tag = MLReferenceModelTypeConscienceAsset;
 
-        peopleLabelButton.tag = kReferenceModelTypePerson;
-        moralsLabelButton.tag = kReferenceModelTypeMoral;
-        booksLabelButton.tag = kReferenceModelTypeText;
-        beliefsLabelButton.tag = kReferenceModelTypeBelief;
-        reportsLabelButton.tag = kReferenceModelTypeReferenceAsset;
-        accessoriesLabelButton.tag = kReferenceModelTypeConscienceAsset;
+        peopleLabelButton.tag = MLReferenceModelTypePerson;
+        moralsLabelButton.tag = MLReferenceModelTypeMoral;
+        booksLabelButton.tag = MLReferenceModelTypeText;
+        beliefsLabelButton.tag = MLReferenceModelTypeBelief;
+        reportsLabelButton.tag = MLReferenceModelTypeReferenceAsset;
+        accessoriesLabelButton.tag = MLReferenceModelTypeConscienceAsset;
 
     }
     return self;
@@ -122,12 +122,11 @@ Implementation: Determine which type of reference is requested by the User.
 	//Create view controller to be pushed upon navigation stack
     ReferenceModel *referenceModel = [[ReferenceModel alloc] init];
 
-	referenceModel.referenceType = kReferenceModelTypeConscienceAsset;
-
 	//Determine which choice was selected
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
         referenceModel.referenceType = senderButton.tag;
+
 	}
     
     ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];

@@ -71,12 +71,12 @@
 
 	STAssertEquals(0, countPaths, @"Default empty path points array inaccurate.");
 	STAssertEquals(0, countInstructions, @"Default empty path instructions array inaccurate.");
-	STAssertEquals(kDefault0Float, [testingSubject pathStrokeWidth], @"Default path stroke width inaccurate.");
-	STAssertEquals(kDefault0Float, [testingSubject pathFillOpacity], @"Default path fill opacity inaccurate.");
-	STAssertEquals(kDefault0Float, [testingSubject pathStrokeMiterLimit], @"Default path stroke miter limit inaccurate.");
-	STAssertEquals(kDefault0Float, [testingSubject pathStrokeOpacity], @"Default path stroke opacity inaccurate.");
-	STAssertEqualObjects(kPathColor, [testingSubject pathFillColor], @"Default fill color inaccurate.");
-	STAssertEqualObjects(kPathColor, [testingSubject pathStrokeColor], @"Default stroke color inaccurate.");
+	STAssertEquals(MLDefault0Float, [testingSubject pathStrokeWidth], @"Default path stroke width inaccurate.");
+	STAssertEquals(MLDefault0Float, [testingSubject pathFillOpacity], @"Default path fill opacity inaccurate.");
+	STAssertEquals(MLDefault0Float, [testingSubject pathStrokeMiterLimit], @"Default path stroke miter limit inaccurate.");
+	STAssertEquals(MLDefault0Float, [testingSubject pathStrokeOpacity], @"Default path stroke opacity inaccurate.");
+	STAssertEqualObjects(MLPathColorDefault, [testingSubject pathFillColor], @"Default fill color inaccurate.");
+	STAssertEqualObjects(MLPathColorDefault, [testingSubject pathStrokeColor], @"Default stroke color inaccurate.");
 	STAssertEqualObjects(@"none", [testingSubject pathID], @"Default path ID inaccurate.");
 	STAssertEqualObjects(@"", [testingSubject pathGradient], @"Default gradient inaccurate.");
 

@@ -7,10 +7,10 @@ It can be utilizied for both the User ConscienceView and the Antagonist Conscien
 
 #import "ConscienceAccessories.h"
 
-NSString* const kPrimaryAccessoryFileNameResource = @"acc-nothing";
-NSString* const kSecondaryAccessoryFileNameResource = @"acc-nothing";
-NSString* const kTopAccessoryFileNameResource = @"acc-nothing";
-NSString* const kBottomAccessoryFileNameResource = @"acc-nothing";
+NSString* const MLPrimaryAccessoryFileNameResourceDefault = @"acc-nothing";
+NSString* const MLSecondaryAccessoryFileNameResourceDefault = @"acc-nothing";
+NSString* const MLTopAccessoryFileNameResourceDefault = @"acc-nothing";
+NSString* const MLBottomAccessoryFileNameResourceDefault = @"acc-nothing";
 
 @implementation ConscienceAccessories
 
@@ -20,10 +20,10 @@ NSString* const kBottomAccessoryFileNameResource = @"acc-nothing";
     if (self) {
 		
         //In case of first time run, or User does not supply configuration, default Conscience
-        _primaryAccessory = kPrimaryAccessoryFileNameResource ;
-        _secondaryAccessory = kSecondaryAccessoryFileNameResource;
-        _topAccessory = kTopAccessoryFileNameResource;
-        _bottomAccessory = kBottomAccessoryFileNameResource;
+        _primaryAccessory = MLPrimaryAccessoryFileNameResourceDefault ;
+        _secondaryAccessory = MLSecondaryAccessoryFileNameResourceDefault;
+        _topAccessory = MLTopAccessoryFileNameResourceDefault;
+        _bottomAccessory = MLBottomAccessoryFileNameResourceDefault;
 
     }
 

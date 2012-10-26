@@ -64,8 +64,8 @@
  */
 - (void)testDefaultConscienceMind{
     
-	STAssertEquals(kConscienceMood, [testingSubject mood], @"Default mood inaccurate.");
-	STAssertEquals(kConscienceEnthusiasm, [testingSubject enthusiasm], @"Default enthusiasm inaccurate.");
+	STAssertEquals(MLConscienceMoodDefault, [testingSubject mood], @"Default mood inaccurate.");
+	STAssertEquals(MLConscienceEnthusiasmDefault, [testingSubject enthusiasm], @"Default enthusiasm inaccurate.");
 
 }
 

@@ -13,8 +13,8 @@ Visual Object that represents animatable facial feature, eye, mouth, symbol.
 
 @class ConscienceLayer;
 
-extern int const kEyeWidth;
-extern int const kEyeHeight;
+extern int const MLEyeWidth;
+extern int const MLEyeHeight;
 
 @interface ConscienceObjectView : UIView
 
