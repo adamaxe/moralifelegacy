@@ -9,6 +9,8 @@
  @file
  */
 
+#import "ModelManager.h"
+
 /**
  Possible Reference Types
  typedef utilized to avoid having to use enum declaration
@@ -22,17 +24,19 @@ typedef enum {
 	MLReferenceModelTypeReferenceAsset
 } MLReferenceModelTypeEnum;
 
-@class ModelManager;
-
 @interface ReferenceModel : NSObject
 
 @property (nonatomic, assign) int referenceType;    /**< current reference type */
 
 //Raw, readonly data of all entered choices
-@property (nonatomic, readonly, strong) NSMutableArray *references;			/**< Array of User-entered choice titles */
-@property (nonatomic, readonly, strong) NSMutableArray *referenceKeys;     	/**< Array of whether choices are good/bad */
-@property (nonatomic, readonly, strong) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readonly, strong) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readonly, strong) NSString *title;    /**< Title of Reference type */
+@property (nonatomic, readonly) BOOL hasQuote;              /**< Determine if Reference Type has quotes */
+@property (nonatomic, readonly) BOOL hasLink;              /**< Determine if Reference Type has URLs */
+
+@property (nonatomic, readonly, strong) NSMutableArray *references;			/**< reference names */
+@property (nonatomic, readonly, strong) NSMutableArray *referenceKeys;     	/**< pkeys for references */
+@property (nonatomic, readonly, strong) NSMutableArray *details;			/**< description of Reference */
+@property (nonatomic, readonly, strong) NSMutableArray *icons;				/**< associated images */
 
 
 /**

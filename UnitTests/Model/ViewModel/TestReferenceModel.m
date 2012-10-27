@@ -74,8 +74,12 @@
 - (void)testReferenceModelDefaultValuesAreSetCorrectly {
 
     STAssertEquals(testingSubject.referenceType, MLReferenceModelTypeConscienceAsset, @"ReferenceModel referenceType isn't ConscienceAsset by default");
+    STAssertEquals(testingSubject.title, NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button"), @"ReferenceModel title isn't ConscienceAsset by default");
+    STAssertFalse(testingSubject.hasLink, @"ReferenceModel hasLink is true incorrectly");
+    STAssertFalse(testingSubject.hasQuote, @"ReferenceModel hasQuote is true incorrectly");
 
 }
+
 - (void)testReferenceModelReferenceTypeCanBeSet {
 
     testingSubject.referenceType = MLReferenceModelTypePerson;
@@ -111,7 +115,17 @@
 
 }
 
-- (void)testWhenSystemAndUserDataIsPresentReferencePersonsAreCorrect {
+- (void)testWhenSystemAndUserDataIsPresentReferencePeopleMetadataIsCorrect {
+
+    testingSubject.referenceType = MLReferenceModelTypePerson;
+
+    STAssertEquals(testingSubject.title, NSLocalizedString(@"ReferenceDetailScreenPeopleTitle",@"Title for People Reference"), @"ReferenceModel title isn't Person");
+    STAssertTrue(testingSubject.hasLink, @"ReferenceModel hasLink is false incorrectly");
+    STAssertTrue(testingSubject.hasQuote, @"ReferenceModel hasQuote is false incorrectly");
+
+}
+
+- (void)testWhenSystemAndUserDataIsPresentReferencePeopleAreCorrect {
 
     testingSubject.referenceType = MLReferenceModelTypePerson;
 
@@ -125,6 +139,15 @@
     STAssertEqualObjects([testingSubject.referenceKeys lastObject], [testPerson1 nameReference], @"ReferencePerson referenceKey is wrong");
     STAssertEqualObjects([testingSubject.details lastObject], [testPerson1 shortDescriptionReference], @"ReferencePerson detail is wrong");
 
+}
+
+- (void)testWhenSystemAndUserDataIsPresentConscienceAssetsMetadataIsCorrect {
+
+    testingSubject.referenceType = MLReferenceModelTypeConscienceAsset;
+
+    STAssertEquals(testingSubject.title, NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Reference"), @"ReferenceModel title isn't Accessory");
+    STAssertFalse(testingSubject.hasLink, @"ReferenceModel hasLink is true incorrectly");
+    STAssertFalse(testingSubject.hasQuote, @"ReferenceModel hasQuote is true incorrectly");
 }
 
 - (void)testWhenSystemAndUserDataIsPresentConscienceAssetsAreCorrect {
@@ -146,6 +169,15 @@
     STAssertTrue([testingSubject.referenceKeys containsObject:[testAsset2 nameReference]], @"ConscienceAsset2 referenceKey not present");
     STAssertTrue([testingSubject.details containsObject:[testAsset2 shortDescriptionReference]], @"ConscienceAsset2 detail not present");
     
+}
+
+- (void)testWhenSystemAndUserDataIsPresentMoralsMetadataIsCorrect {
+
+    testingSubject.referenceType = MLReferenceModelTypeMoral;
+
+    STAssertEquals(testingSubject.title, NSLocalizedString(@"ReferenceDetailScreenMoralsTitle",@"Title for Morals Reference"), @"ReferenceModel title isn't Moral");
+    STAssertTrue(testingSubject.hasLink, @"ReferenceModel hasLink is false incorrectly");
+    STAssertFalse(testingSubject.hasQuote, @"ReferenceModel hasQuote is true incorrectly");
 }
 
 - (void)testWhenSystemAndUserDataIsPresentMoralsAreCorrect {

@@ -1,5 +1,4 @@
 #import "MoraLifeAppDelegate.h"
-#import "ModelManager.h"
 #import "ReferenceModel.h"
 #import "UserChoiceDAO.h"
 #import "ConscienceAssetDAO.h"
@@ -16,13 +15,17 @@
 
 }
 
-@property (nonatomic, readwrite, strong) NSMutableArray *references;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, strong) NSMutableArray *referenceKeys;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, strong) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readwrite, strong) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readwrite, strong) NSString *title;
+@property (nonatomic, readwrite) BOOL hasQuote;
+@property (nonatomic, readwrite) BOOL hasLink;
+
+@property (nonatomic, readwrite, strong) NSMutableArray *references;
+@property (nonatomic, readwrite, strong) NSMutableArray *referenceKeys;
+@property (nonatomic, readwrite, strong) NSMutableArray *details;
+@property (nonatomic, readwrite, strong) NSMutableArray *icons;
 
 /**
- Retrieve all User entered Choices
+ Retrieve all References
  */
 - (void) retrieveAllReferences;
 
@@ -41,11 +44,15 @@
     self = [super init];
     if (self) {
 
-        _referenceType = MLReferenceModelTypeConscienceAsset;
-        _references = [[NSMutableArray alloc] init];
-        _referenceKeys = [[NSMutableArray alloc] init];
-        _details = [[NSMutableArray alloc] init];
-        _icons = [[NSMutableArray alloc] init];
+        self.hasLink = TRUE;
+        self.hasQuote = TRUE;
+        self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button");
+
+        self.referenceType = MLReferenceModelTypeConscienceAsset;
+        self.references = [[NSMutableArray alloc] init];
+        self.referenceKeys = [[NSMutableArray alloc] init];
+        self.details = [[NSMutableArray alloc] init];
+        self.icons = [[NSMutableArray alloc] init];
         preferences = prefs;
         currentUserCollection = userCollection;
         moralModelManager = modelManager;
@@ -81,33 +88,44 @@
 	[self.details removeAllObjects];
 
     id currentDAO;	
+    self.hasLink = TRUE;
+    self.hasQuote = TRUE;
 
     //Populate subsequent list controller with appropriate choice
-	switch (_referenceType){
+	switch (self.referenceType){
 		case MLReferenceModelTypeConscienceAsset:
+			self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button");
+			self.hasQuote = FALSE;
+			self.hasLink = FALSE;
 			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeBelief:
+			self.title = NSLocalizedString(@"ReferenceDetailScreenBeliefsTitle",@"Title for Beliefs Button");            
 			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeText:
+			self.title = NSLocalizedString(@"ReferenceDetailScreenBooksTitle",@"Title for Books Button");
 			currentDAO = [[ReferenceTextDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypePerson:
+			self.title = NSLocalizedString(@"ReferenceDetailScreenPeopleTitle",@"Title for People Button");
 			currentDAO = [[ReferencePersonDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeMoral:
+			self.title = NSLocalizedString(@"ReferenceDetailScreenMoralsTitle",@"Title for Moral Button");
+			self.hasQuote = FALSE;
 			currentDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
         case MLReferenceModelTypeReferenceAsset:
             currentDAO = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
             break;
 		default:
+			self.title = NSLocalizedString(@"ReferenceDetailScreenDefaultTitle",@"Title for Default Screen");
 			currentDAO = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
 			break;
 	}
 
-    if (_referenceType != MLReferenceModelTypeMoral) {
+    if (self.referenceType != MLReferenceModelTypeMoral) {
         NSSortDescriptor* sortDescriptor1 = [[NSSortDescriptor alloc] initWithKey:@"shortDescriptionReference" ascending:YES];
 
         NSArray *sortDescriptors = @[sortDescriptor1];
@@ -120,7 +138,7 @@
 
 	if ([objects count] > 0) {
 
-        if (_referenceType != MLReferenceModelTypeMoral) {
+        if (self.referenceType != MLReferenceModelTypeMoral) {
             for (ReferenceAsset *matches in objects){
 
                 //Is the asset owned
