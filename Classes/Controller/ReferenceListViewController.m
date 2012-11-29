@@ -209,7 +209,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] init];
+	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:[[ReferenceModel alloc] init]];
 
     [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
 

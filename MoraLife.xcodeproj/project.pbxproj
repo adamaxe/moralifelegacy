@@ -976,9 +976,6 @@
 		5E6ABF8E126D48AD0045FC4F /* interface-selectionbox-horizontal.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E6ABF86126D48AD0045FC4F /* interface-selectionbox-horizontal.png */; };
 		5E6BA4F515B920290008825D /* systemTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E6BA4F215B920290008825D /* systemTests.sh */; };
 		5E6BA4F615B920290008825D /* systemTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E6BA4F215B920290008825D /* systemTests.sh */; };
-		5E6D42A7161FE24A0057C8C2 /* TestReferenceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D42A6161FE24A0057C8C2 /* TestReferenceDetailModel.m */; };
-		5E6D42AB161FE4150057C8C2 /* ReferenceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D42AA161FE4150057C8C2 /* ReferenceDetailModel.m */; };
-		5E6D42AC161FE4150057C8C2 /* ReferenceDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6D42AA161FE4150057C8C2 /* ReferenceDetailModel.m */; };
 		5E70EEE411C31BEB0010FBD7 /* pictureframe-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */; };
 		5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */; };
 		5E7180C215E70D4200250935 /* ChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */; };
@@ -2699,9 +2696,6 @@
 		5E6ABF85126D48AD0045FC4F /* interface-selectionbox-vertical.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-selectionbox-vertical.png"; path = "Resources/images/interface/interface-selectionbox-vertical.png"; sourceTree = "<group>"; };
 		5E6ABF86126D48AD0045FC4F /* interface-selectionbox-horizontal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "interface-selectionbox-horizontal.png"; path = "Resources/images/interface/interface-selectionbox-horizontal.png"; sourceTree = "<group>"; };
 		5E6BA4F215B920290008825D /* systemTests.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = systemTests.sh; sourceTree = "<group>"; };
-		5E6D42A6161FE24A0057C8C2 /* TestReferenceDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceDetailModel.m; sourceTree = "<group>"; };
-		5E6D42A9161FE4150057C8C2 /* ReferenceDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceDetailModel.h; sourceTree = "<group>"; };
-		5E6D42AA161FE4150057C8C2 /* ReferenceDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceDetailModel.m; sourceTree = "<group>"; };
 		5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pictureframe-landscape.png"; path = "Resources/images/interface/pictureframe-landscape.png"; sourceTree = "<group>"; };
 		5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHistoryModel.h; sourceTree = "<group>"; };
 		5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryModel.m; sourceTree = "<group>"; };
@@ -5274,8 +5268,6 @@
 			children = (
 				5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */,
 				5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */,
-				5E6D42A9161FE4150057C8C2 /* ReferenceDetailModel.h */,
-				5E6D42AA161FE4150057C8C2 /* ReferenceDetailModel.m */,
 				5E23AA1215EB32880049BE87 /* ReferenceModel.h */,
 				5E23AA1315EB32880049BE87 /* ReferenceModel.m */,
 				5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */,
@@ -5290,7 +5282,6 @@
 			children = (
 				5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */,
 				5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */,
-				5E6D42A6161FE24A0057C8C2 /* TestReferenceDetailModel.m */,
 				5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */,
 			);
 			name = ViewModel;
@@ -7331,7 +7322,6 @@
 				5EAA72EE15E19FA500656390 /* UIColor+Utility.m in Sources */,
 				5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
 				5E23AA1415EB32880049BE87 /* ReferenceModel.m in Sources */,
-				5E6D42AB161FE4150057C8C2 /* ReferenceDetailModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7430,8 +7420,6 @@
 				5E23AA1115E85CEB0049BE87 /* TestChoiceHistoryModel.m in Sources */,
 				5E23AA1515EB32880049BE87 /* ReferenceModel.m in Sources */,
 				5E978A1315EC5BB400EB2ED1 /* TestReferenceModel.m in Sources */,
-				5E6D42A7161FE24A0057C8C2 /* TestReferenceDetailModel.m in Sources */,
-				5E6D42AC161FE4150057C8C2 /* ReferenceDetailModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

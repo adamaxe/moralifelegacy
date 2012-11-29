@@ -8,12 +8,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ConscienceAssetDAO.h"
-#import "ReferenceAssetDAO.h"
-#import "ReferencePersonDAO.h"
-#import "ReferenceBeliefDAO.h"
-#import "MoralDAO.h"
-#import "ReferenceTextDAO.h"
+#import "ReferenceModel.h"
 #import "ConscienceHelpViewController.h"
 #import "UserCollectableDAO.h"
 
@@ -57,6 +52,8 @@ Determine which fields and UI elements should be presented depending up on Refer
     
 }
 
+@property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
+
 /**
  Create a date view for a reference
  */
@@ -83,6 +80,16 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 #pragma mark -
 #pragma mark ViewController Lifecycle
+
+- (id)initWithModel:(ReferenceModel *)referenceModel {
+    self = [super init];
+
+    if (self) {
+        self.referenceModel = referenceModel;
+    }
+
+    return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -293,124 +300,23 @@ Implementation: Retrieve reference from SystemData based upon type passed from R
 Must know type of NSManagedObject in order to fetch.  Determine which UI elements are available to each type of Reference.
   */
  -(void) retrieveReference{
-    
-	hasQuote = TRUE;
-	hasLink = TRUE;
-     
-     id currentDAO;
-     NSString *selectorSuffix = @"Reference";
-    
-	//Determine which type of reference was requested
-	//Show/Hide Quote button
-	switch (referenceType){
-		case 0:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button");
-            currentDAO = [[ConscienceAssetDAO alloc] initWithKey:referenceKey];
-			hasQuote = FALSE;
-			hasLink = FALSE;
-			break;
-		case 1:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenBeliefsTitle",@"Title for Beliefs Button");
-            currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:referenceKey];
-			break;
-		case 2:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenBooksTitle",@"Title for Books Button");
-            currentDAO = [[ReferenceTextDAO alloc] initWithKey:referenceKey];
-			break;
-		case 3:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenPeopleTitle",@"Title for People Button");
-            currentDAO = [[ReferencePersonDAO alloc] initWithKey:referenceKey];
-			break;
-		case 4:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenMoralsTitle",@"Title for Moral Button");
-            currentDAO = [[MoralDAO alloc] initWithKey:referenceKey];
-            selectorSuffix = @"Moral";            
-			hasQuote = FALSE;
-			break;
-		default:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenDefaultTitle",@"Title for Default Screen");
-            currentDAO = [[ReferenceAssetDAO alloc] initWithKey:referenceKey];
-			break;
-	}
-     
-     id managedObject = [currentDAO read:@""];
-     
-     SEL displayNameSelector = NSSelectorFromString([NSString stringWithFormat:@"displayName%@", selectorSuffix]);
-     SEL linkSelector = NSSelectorFromString([NSString stringWithFormat:@"link%@", selectorSuffix]);
-     SEL imageNameSelector = NSSelectorFromString([NSString stringWithFormat:@"imageName%@", selectorSuffix]);
-     SEL shortDescriptionSelector = NSSelectorFromString([NSString stringWithFormat:@"shortDescription%@", selectorSuffix]);
-     
-     referenceName = [[NSString alloc] initWithString:[managedObject performSelector:displayNameSelector]];
-     referencePicture = [[NSString alloc] initWithString:[managedObject performSelector:imageNameSelector]];
-     referenceShortDescription = [[NSString alloc] initWithString:[managedObject performSelector:shortDescriptionSelector]];
-     
-     if ([managedObject respondsToSelector:@selector(shortDescriptionMoral)]) {
-         referenceLongDescription = [[NSString alloc] initWithFormat:@"%@: %@", [managedObject shortDescriptionMoral], [managedObject longDescriptionMoral]];
-     } else {
-         referenceLongDescription = [[NSString alloc] initWithString:[managedObject longDescriptionReference]];
-     }
 
-     if ([managedObject respondsToSelector:linkSelector]) {
-         referenceReferenceURL = [[NSString alloc] initWithString:[managedObject performSelector:linkSelector]];
-     } else {
-         referenceReferenceURL = [[NSMutableString alloc] initWithString:@""];            
-     }
-     
-     if ([managedObject respondsToSelector:@selector(originYear)]) {
-         referenceDate = [[NSMutableString alloc] initWithString:[[managedObject originYear] stringValue]];
-     } else {
-         referenceDate = [[NSMutableString alloc] initWithString:@"0"];
-     }		
-     
-     if ([managedObject respondsToSelector:@selector(readOriginLocation:)]) {
-         
-         if ([managedObject originLocation] == nil) {
-             referenceOrigin = [[NSMutableString alloc] initWithString:@""];
-         } else {
-             referenceOrigin = [[NSMutableString alloc] initWithString:[managedObject originLocation]];
-         }
-         
-     } else {
-         referenceOrigin = [[NSMutableString alloc] initWithString:@""];
-     }	
-     
-     if ([managedObject respondsToSelector:@selector(deathYearPerson)]) {
-         referenceDeathDate = [[NSMutableString alloc] initWithString:[[managedObject deathYearPerson] stringValue]];
-     } else {
-         referenceDeathDate = [[NSMutableString alloc] initWithString:@"0"];
-     }
-     
-     if ([managedObject respondsToSelector:@selector(orientationAsset)]) {
-         referenceOrientation = [[NSString alloc] initWithString:[managedObject orientationAsset]];
-     } else {
-         referenceOrientation = @"";
-     }
-     
-     if ([managedObject respondsToSelector:@selector(quotePerson)]) {
-         referenceQuote = [[NSString alloc] initWithString:[managedObject quotePerson]];
-     } else {
-         referenceQuote = @"";
-     }
-     
+     self.referenceModel.referenceType = referenceType;
+     self.referenceModel.referenceKey = referenceKey;
 
-     if ([managedObject respondsToSelector:@selector(relatedMoral)]) {
-
-         Moral *currentMoral = [managedObject relatedMoral];
-         if (currentMoral) {
-             referenceMoral = [[NSString alloc] initWithString:currentMoral.imageNameMoral];
-             
-             if (![currentDAO isKindOfClass:ReferencePersonDAO.class]) {
-
-                 referenceOrigin = [[NSString alloc] initWithFormat:@"+%d %@", [[managedObject moralValueAsset] intValue], currentMoral.displayNameMoral];
-             }
-             
-         } else {
-             referenceMoral = @"";
-         }
-         
-     } else {
-         referenceMoral = @"";
-     }
+     hasLink = self.referenceModel.hasLink;
+     hasQuote = self.referenceModel.hasQuote;
+     
+     referenceName = [[NSString alloc] initWithString:self.referenceModel.references[0]];
+     referencePicture = [[NSString alloc] initWithString:self.referenceModel.icons[0]];
+     referenceShortDescription = [[NSString alloc] initWithString:self.referenceModel.details[0]];
+     referenceReferenceURL = [[NSString alloc] initWithString:self.referenceModel.links[0]];
+     referenceDate = [[NSMutableString alloc] initWithFormat:@"%@",(NSNumber *)self.referenceModel.originYears[0]];
+     referenceOrigin = [[NSString alloc] initWithString:self.referenceModel.originLocations[0]];
+     referenceQuote = [[NSString alloc] initWithString:self.referenceModel.quotes[0]];
+     referenceDeathDate = [[NSMutableString alloc] initWithFormat:@"%@",(NSNumber *)self.referenceModel.endYears[0]];
+     referenceOrientation = [[NSMutableString alloc] initWithString:self.referenceModel.orientations[0]];
+     referenceMoral = [[NSString alloc] initWithString:self.referenceModel.relatedMorals[0]];
      		
 }
 

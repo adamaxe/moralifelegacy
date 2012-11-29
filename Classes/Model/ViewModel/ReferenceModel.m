@@ -23,6 +23,14 @@
 @property (nonatomic, readwrite, strong) NSMutableArray *referenceKeys;
 @property (nonatomic, readwrite, strong) NSMutableArray *details;
 @property (nonatomic, readwrite, strong) NSMutableArray *icons;
+@property (nonatomic, readwrite, strong) NSMutableArray *longDescriptions;
+@property (nonatomic, readwrite, strong) NSMutableArray *links;
+@property (nonatomic, readwrite, strong) NSMutableArray *originYears;
+@property (nonatomic, readwrite, strong) NSMutableArray *endYears;
+@property (nonatomic, readwrite, strong) NSMutableArray *originLocations;
+@property (nonatomic, readwrite, strong) NSMutableArray *orientations;
+@property (nonatomic, readwrite, strong) NSMutableArray *quotes;
+@property (nonatomic, readwrite, strong) NSMutableArray *relatedMorals;
 
 /**
  Retrieve all References
@@ -44,6 +52,7 @@
     self = [super init];
     if (self) {
 
+        self.referenceKey = @"";
         self.hasLink = TRUE;
         self.hasQuote = TRUE;
         self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button");
@@ -53,6 +62,15 @@
         self.referenceKeys = [[NSMutableArray alloc] init];
         self.details = [[NSMutableArray alloc] init];
         self.icons = [[NSMutableArray alloc] init];
+        self.longDescriptions = [[NSMutableArray alloc] init];
+        self.links = [[NSMutableArray alloc] init];
+        self.originYears = [[NSMutableArray alloc] init];
+        self.endYears = [[NSMutableArray alloc] init];
+        self.originLocations = [[NSMutableArray alloc] init];
+        self.orientations = [[NSMutableArray alloc] init];
+        self.quotes = [[NSMutableArray alloc] init];
+        self.relatedMorals = [[NSMutableArray alloc] init];
+
         preferences = prefs;
         currentUserCollection = userCollection;
         moralModelManager = modelManager;
@@ -86,10 +104,20 @@
 	[self.referenceKeys removeAllObjects];
 	[self.icons removeAllObjects];
 	[self.details removeAllObjects];
+	[self.longDescriptions removeAllObjects];
+	[self.links removeAllObjects];
+	[self.originYears removeAllObjects];
+	[self.endYears removeAllObjects];
+	[self.originLocations removeAllObjects];
+	[self.orientations removeAllObjects];
+	[self.quotes removeAllObjects];
+	[self.relatedMorals removeAllObjects];
 
     id currentDAO;	
     self.hasLink = TRUE;
     self.hasQuote = TRUE;
+
+    Moral *relatedMoral;
 
     //Populate subsequent list controller with appropriate choice
 	switch (self.referenceType){
@@ -97,31 +125,31 @@
 			self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button");
 			self.hasQuote = FALSE;
 			self.hasLink = FALSE;
-			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeBelief:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenBeliefsTitle",@"Title for Beliefs Button");            
-			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeText:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenBooksTitle",@"Title for Books Button");
-			currentDAO = [[ReferenceTextDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferenceTextDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypePerson:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenPeopleTitle",@"Title for People Button");
-			currentDAO = [[ReferencePersonDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferencePersonDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeMoral:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenMoralsTitle",@"Title for Moral Button");
 			self.hasQuote = FALSE;
-			currentDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[MoralDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
         case MLReferenceModelTypeReferenceAsset:
-            currentDAO = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
+            currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
             break;
 		default:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenDefaultTitle",@"Title for Default Screen");
-			currentDAO = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:moralModelManager];
+			currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 	}
 
@@ -139,15 +167,56 @@
 	if ([objects count] > 0) {
 
         if (self.referenceType != MLReferenceModelTypeMoral) {
-            for (ReferenceAsset *matches in objects){
+            for (id match in objects){
 
                 //Is the asset owned
-                if([currentUserCollection containsObject:[matches nameReference]]){
+                if([currentUserCollection containsObject:[match nameReference]]){
 
-                    [self.references addObject:[matches displayNameReference]];
-                    [self.icons addObject:[matches imageNameReference]];
-                    [self.details addObject:[matches shortDescriptionReference]];
-                    [self.referenceKeys addObject:[matches nameReference]];
+                    [self.references addObject:[match displayNameReference]];
+                    [self.icons addObject:[match imageNameReference]];
+                    [self.details addObject:[match shortDescriptionReference]];
+                    [self.referenceKeys addObject:[match nameReference]];
+                    [self.longDescriptions addObject:[match longDescriptionReference]];
+                    [self.links addObject:[match linkReference]];
+                    [self.originYears addObject:[match originYear]];
+
+                    if ([match relatedMoral] == nil) {
+                        [self.relatedMorals addObject:@""];
+                    } else {
+                        relatedMoral = [match relatedMoral];
+                        [self.relatedMorals addObject:[relatedMoral imageNameMoral]];
+                    }
+
+                    if ([match originLocation] == nil) {
+
+                        if ((self.referenceType != MLReferenceModelTypePerson) && relatedMoral) {
+                            [self.originLocations addObject:[[NSString alloc] initWithFormat:@"+%d %@", [[match moralValueAsset] intValue], relatedMoral.displayNameMoral]];
+                        } else {
+                            [self.originLocations addObject:@""];
+                        }
+
+                    } else {
+                        [self.originLocations addObject:[match originLocation]];
+                    }
+
+                    if ([match respondsToSelector:@selector(deathYearPerson)]) {
+                        [self.endYears addObject:[[match deathYearPerson] stringValue]];
+                    } else {
+                        [self.endYears addObject:@0];
+                    }
+
+                    if ([match respondsToSelector:@selector(orientationAsset)] && ([match orientationAsset] != nil)) {
+                        [self.orientations addObject:[match orientationAsset]];
+                    } else {
+                        [self.orientations addObject:@""];
+                    }
+
+                    if ([match respondsToSelector:@selector(quotePerson)] && ([match quotePerson] != nil)) {
+                            [self.quotes addObject:[match quotePerson]];
+                    } else {
+                        [self.quotes addObject:@""];
+                    }
+
                 }
 
             }
@@ -161,10 +230,19 @@
                     [self.icons addObject:[matches imageNameMoral]];
                     [self.details addObject:[NSString stringWithFormat:@"%@: %@", [matches shortDescriptionMoral], [matches longDescriptionMoral]]];
                     [self.referenceKeys addObject:[matches nameMoral]];
+                    [self.longDescriptions addObject:[[NSString alloc] initWithFormat:@"%@: %@", [matches shortDescriptionMoral], [matches longDescriptionMoral]]];
+                    [self.links addObject:[matches linkMoral]];
+                    [self.originYears addObject:@0];
+                    [self.originLocations addObject:@""];
+                    [self.endYears addObject:@"0"];
+                    [self.orientations addObject:@""];
+                    [self.quotes addObject:@""];
+                    [self.relatedMorals addObject:@""];
                 }
             }
 
 		}
+
     }
 
 }

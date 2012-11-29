@@ -27,6 +27,7 @@ typedef enum {
 @interface ReferenceModel : NSObject
 
 @property (nonatomic, assign) int referenceType;    /**< current reference type */
+@property (nonatomic, strong) NSString *referenceKey; /**< pkey for requested asset */
 
 //Raw, readonly data of all entered choices
 @property (nonatomic, readonly, strong) NSString *title;    /**< Title of Reference type */
@@ -37,6 +38,14 @@ typedef enum {
 @property (nonatomic, readonly, strong) NSMutableArray *referenceKeys;     	/**< pkeys for references */
 @property (nonatomic, readonly, strong) NSMutableArray *details;			/**< description of Reference */
 @property (nonatomic, readonly, strong) NSMutableArray *icons;				/**< associated images */
+@property (nonatomic, readonly, strong) NSMutableArray *longDescriptions;			/**< long description of Reference */
+@property (nonatomic, readonly, strong) NSMutableArray *links;				/**< associated urls */
+@property (nonatomic, readonly, strong) NSMutableArray *originYears;				/**< when the reference was created/born */
+@property (nonatomic, readonly, strong) NSMutableArray *endYears;				/**< when the reference ceased to be/died */
+@property (nonatomic, readonly, strong) NSMutableArray *originLocations;				/**< origination geography */
+@property (nonatomic, readonly, strong) NSMutableArray *orientations;				/**<  */
+@property (nonatomic, readonly, strong) NSMutableArray *quotes;				/**<  */
+@property (nonatomic, readonly, strong) NSMutableArray *relatedMorals;				/**<  */
 
 
 /**

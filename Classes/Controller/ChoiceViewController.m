@@ -17,7 +17,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "UserCharacterDAO.h"
 #import "UserChoiceDAO.h"
 #import "ConscienceHelpViewController.h"
-#import "ReferenceDetailViewController.h"
 #import "UserCollectableDAO.h"
 #import "ChoiceHistoryViewController.h"
 #import "ChoiceHistoryModel.h"

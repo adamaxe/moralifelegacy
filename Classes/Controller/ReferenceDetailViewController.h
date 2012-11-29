@@ -12,7 +12,16 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
 @todo rename to ReferenceViewController
  */
 
+@class ReferenceModel;
+
 @interface ReferenceDetailViewController : UIViewController <UIActionSheetDelegate>
+
+/**
+ Dependency injection constructor to pass model
+ @param referenceModel ReferenceModel handling business logic
+ @return id instance of ReferenceModel
+ */
+- (id)initWithModel:(ReferenceModel *) referenceModel;
 
 /**
 Accepts User input to ask for a Quote from reference.
