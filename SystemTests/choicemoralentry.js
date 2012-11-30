@@ -51,6 +51,7 @@ if(window.textFields()["Choice"].value() == moralName) {
 testCaseName = testSuiteName + " Virtue moralButton Required Field";
 UIALogger.logStart(testCaseName + " Test");
 
+target.delay(2.0);
 window.buttons()["Done"].tap();
 
 if(window.buttons()["Previous"].checkIsValid()) {

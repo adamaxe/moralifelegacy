@@ -105,6 +105,8 @@ window.textFields()["Consequence"].tap();
 
 app.keyboard().typeString("\n");
 
+target.delay(2.0);
 window.buttons()["Cancel"].tap();
+target.delay(2.0);
 window.buttons()["Cancel"].tap();
 app.navigationBar().leftButton().tap();

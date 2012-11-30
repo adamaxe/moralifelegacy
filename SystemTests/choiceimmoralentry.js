@@ -48,9 +48,10 @@ if(window.textFields()["Choice"].value() == immoralName) {
        UIALogger.logFail(testCaseName + " incorrect: " + window.textFields()["Choice"].value());
 }
 
-testCaseName = testSuiteName + " Virtue moralButton Required Field";
+testCaseName = testSuiteName + " Vice moralButton Required Field";
 UIALogger.logStart(testCaseName + " Test");
 
+target.delay(2.0);
 window.buttons()["Done"].tap();
 
 if(window.buttons()["Previous"].checkIsValid()) {
