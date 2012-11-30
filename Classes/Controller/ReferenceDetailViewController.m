@@ -310,6 +310,7 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
      referenceName = [[NSString alloc] initWithString:self.referenceModel.references[0]];
      referencePicture = [[NSString alloc] initWithString:self.referenceModel.icons[0]];
      referenceShortDescription = [[NSString alloc] initWithString:self.referenceModel.details[0]];
+     referenceLongDescription = [[NSString alloc] initWithString:self.referenceModel.longDescriptions[0]];
      referenceReferenceURL = [[NSString alloc] initWithString:self.referenceModel.links[0]];
      referenceDate = [[NSMutableString alloc] initWithFormat:@"%@",(NSNumber *)self.referenceModel.originYears[0]];
      referenceOrigin = [[NSString alloc] initWithString:self.referenceModel.originLocations[0]];
