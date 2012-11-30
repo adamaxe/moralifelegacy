@@ -1768,6 +1768,7 @@
 		5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryViewController.m; sourceTree = "<group>"; };
 		5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChoiceHistoryView.xib; path = Resources/ChoiceHistoryView.xib; sourceTree = "<group>"; };
 		5E0B2239139AC27A002A8664 /* icon-rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rank.png"; path = "Resources/images/interface/icons/icon-rank.png"; sourceTree = "<group>"; };
+		5E0C900116685B3F00BCD5EF /* referenceverify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = referenceverify.js; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
 		5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScreenAnimations.h; path = Common/MenuScreenAnimations.h; sourceTree = "<group>"; };
@@ -5349,6 +5350,7 @@
 				5EC55448157748FF004BF692 /* choicemoralentry.js */,
 				5EBBDC781582E9D700355FDE /* choicemoralverify.js */,
 				5EA12260162CFC13004B14E8 /* reportpienavigation.js */,
+				5E0C900116685B3F00BCD5EF /* referenceverify.js */,
 				5E6BA4F215B920290008825D /* systemTests.sh */,
 			);
 			path = SystemTests;

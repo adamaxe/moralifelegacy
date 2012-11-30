@@ -11,8 +11,9 @@ Determine which fields and UI elements should be presented depending up on Refer
 #import "ReferenceModel.h"
 #import "ConscienceHelpViewController.h"
 #import "UserCollectableDAO.h"
+#import "ViewControllerLocalization.h"
 
-@interface ReferenceDetailViewController () {
+@interface ReferenceDetailViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -114,6 +115,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 	[self retrieveReference];
 	[self populateReferenceScreen];
 	[referenceLongDescriptionTextView flashScrollIndicators];
+    [self localizeUI];
 
 }
 
@@ -319,6 +321,25 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
      referenceOrientation = [[NSMutableString alloc] initWithString:self.referenceModel.orientations[0]];
      referenceMoral = [[NSString alloc] initWithString:self.referenceModel.relatedMorals[0]];
      		
+}
+
+
+#pragma mark -
+#pragma mark ViewControllerLocalization Protocol
+
+- (void) localizeUI {
+
+	wwwLinkButton.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenWwwLinkButtonHint",@"Hint for WWW button");
+	wwwLinkButton.accessibilityLabel = NSLocalizedString(@"ReferenceDetailScreenWwwLinkButtonLabel",@"Label for WWW button");
+
+	quoteButton.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenQuoteButtonHint",@"Hint for Quote button");
+	quoteButton.accessibilityLabel = NSLocalizedString(@"ReferenceDetailScreenQuoteButtonLabel",@"Label for Quote button");
+
+	referenceLongDescriptionTextView.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenLongDescriptionTextViewHint",@"Hint for Reference textView");
+	referenceLongDescriptionTextView.accessibilityIdentifier =  NSLocalizedString(@"ReferenceDetailScreenLongDescriptionTextViewLabel",@"Label for Reference textView");
+
+    referenceNameLabel.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenReferenceNameLabelHint",@"Hint for Moral Reference button");
+	referenceNameLabel.accessibilityIdentifier = NSLocalizedString(@"ReferenceDetailScreenReferenceNameLabelLabel",@"Label for Moral Reference button");
 }
 
 
