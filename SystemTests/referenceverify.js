@@ -37,7 +37,7 @@ target.delay(2.0);
 testCaseName = testSuiteName + " Accessory Title Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.staticTexts()["Reference Name"].value() == "Bare Neck") {
+if(window.staticTexts()["Reference Name"].value() == defaultReferenceAccessoryName) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.staticTexts()["Reference Name"].value());
@@ -46,7 +46,7 @@ if(window.staticTexts()["Reference Name"].value() == "Bare Neck") {
 testCaseName = testSuiteName + " Reference Long Description Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textViews()["Long Description"].value() == "This Accessory, when equipped, will allow you to remove whatever is slung around my neck.") {
+if(window.textViews()["Long Description"].value() == defaultReferenceAccessoryDescription) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
@@ -90,7 +90,7 @@ target.delay(2.0);
 testCaseName = testSuiteName + " Figure Title Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.staticTexts()["Reference Name"].value() == "You") {
+if(window.staticTexts()["Reference Name"].value() == defaultReferenceFigureName) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.staticTexts()["Reference Name"].value());
@@ -99,7 +99,7 @@ if(window.staticTexts()["Reference Name"].value() == "You") {
 testCaseName = testSuiteName + " Reference Long Description Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textViews()["Long Description"].value() == "Every hero is a regular person first.  You have chosen to take some responsibility for your actions by using MoraLife.  So, the only question now is how are you going to leave your mark on the world?") {
+if(window.textViews()["Long Description"].value() == defaultReferenceFigureDescription) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
@@ -129,7 +129,7 @@ target.delay(2.0);
 testCaseName = testSuiteName + " Moral Title Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.staticTexts()["Reference Name"].value() == "Aloofness") {
+if(window.staticTexts()["Reference Name"].value() == defaultReferenceMoral) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.staticTexts()["Reference Name"].value());
@@ -138,7 +138,7 @@ if(window.staticTexts()["Reference Name"].value() == "Aloofness") {
 testCaseName = testSuiteName + " Reference Long Description Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textViews()["Long Description"].value() == "Vice: Indifference, Standoffishness") {
+if(window.textViews()["Long Description"].value() == defaultReferenceMoralDescription) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
