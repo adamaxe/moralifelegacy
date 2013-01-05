@@ -15,9 +15,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 @interface ReferenceDetailViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
 	
 	IBOutlet UIButton *wwwLinkButton;			/**< button to allow Safari access to more info */
 	IBOutlet UIButton *quoteButton;			/**< button to push Quote modal window */
@@ -95,8 +93,6 @@ Determine which fields and UI elements should be presented depending up on Refer
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 	prefs = [NSUserDefaults standardUserDefaults];		
     
 	if ([self.title length] == 0) {
@@ -294,8 +290,6 @@ Implementation: Find value of reference from UserCollection in case of Morals
     [cardNumberLabel setText:[NSString stringWithFormat:@"%d", [[currentUserCollectable collectableValue] intValue]]];
 
 }
-
-#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
 
 /**
 Implementation: Retrieve reference from SystemData based upon type passed from ReferenceListViewController.

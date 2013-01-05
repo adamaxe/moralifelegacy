@@ -7,14 +7,12 @@ Refetches of table data are necessary when sorting and ordering are requested.
  */
 
 #import "ChoiceListViewController.h"
-#import "MoraLifeAppDelegate.h"
 #import "ChoiceViewController.h"
 #import "ChoiceHistoryModel.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceListViewController () <ViewControllerLocalization> {
 	
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
 	//Data for filtering/searching sourced from raw data
@@ -79,8 +77,6 @@ Refetches of table data are necessary when sorting and ordering are requested.
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Set default listing and sort order

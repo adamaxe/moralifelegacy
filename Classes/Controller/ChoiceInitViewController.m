@@ -10,14 +10,12 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "ChoiceViewController.h"
 #import "LuckViewController.h"
 #import "LuckListViewController.h"
-#import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
 #import "MenuScreenAnimations.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceInitViewController () <MenuScreenAnimations, ViewControllerLocalization> {
 	
-	MoraLifeAppDelegate *appDelegate;           /**< delegate for application level callbacks */
 	NSUserDefaults *prefs;                      /**< serialized state retention */
 	
 	IBOutlet UIButton *goodChoiceLabelButton;		/**< Label for Good Choice entry selection */
@@ -51,8 +49,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-		//Create appDelegate and reference NSUserDefaults for Conscience and serialized state retention
-		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+		//Create NSUserDefaults for serialized state retention
 		prefs = [NSUserDefaults standardUserDefaults];
 		
 		//Array to hold button names for random animations

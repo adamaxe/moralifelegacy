@@ -12,7 +12,6 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "ConscienceModalViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ConscienceMind.h"
-#import "CoreData/CoreData.h"
 #import "UserChoiceDAO.h"
 #import "UserCollectableDAO.h"
 #import "MoralDAO.h"
@@ -36,7 +35,6 @@ float const MLThoughtInterval = 5;
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
     
 	IBOutlet UILabel *conscienceStatus;				/**< Conscience's thought presented in bubble */
 	IBOutlet ConscienceView *initialConscienceView;		/**< pointer to UserConscienceView */
@@ -130,7 +128,6 @@ static int thoughtVersion = 0;
 		//Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
-        context = [appDelegate.moralModelManager readWriteManagedObjectContext];
 
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];

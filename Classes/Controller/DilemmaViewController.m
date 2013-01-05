@@ -35,7 +35,6 @@ typedef enum {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
     
 	IBOutlet UIImageView *surroundingsBackground;		/**< background image provided by dilemma */
 	IBOutlet UIImageView *versusImage;				/**< animated versus decoration image */
@@ -125,7 +124,6 @@ typedef enum {
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
-		context = [appDelegate.moralModelManager readWriteManagedObjectContext];
         
 		//Setup default values
         reward1 = [[NSMutableString alloc] init];
