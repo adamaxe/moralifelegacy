@@ -97,8 +97,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         NSMutableArray *helpAllTexts = [[NSMutableArray alloc] init];    
         
         for (int i = 0; i < 6; i++) {
-            NSString *tempTitle = [[NSString alloc] initWithString:NSLocalizedString(helpTitleNames[i],@"Title for Help Screen")];
-            NSString *tempText = [[NSString alloc] initWithString:NSLocalizedString(helpTextNames[i],@"Text for Help Screen")];
+            NSString *tempTitle = [[NSString alloc] initWithString:NSLocalizedString(helpTitleNames[i],nil)];
+            NSString *tempText = [[NSString alloc] initWithString:NSLocalizedString(helpTextNames[i],nil)];
             
             if (![tempText isEqualToString:helpTextNames[i]]) {
                 [helpAllTexts addObject:tempText];
@@ -370,11 +370,11 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
     
-    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
-	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint",nil);
+	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",nil);
     
 }
 

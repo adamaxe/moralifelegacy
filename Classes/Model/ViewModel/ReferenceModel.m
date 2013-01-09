@@ -55,7 +55,7 @@
         self.referenceKey = @"";
         self.hasLink = TRUE;
         self.hasQuote = TRUE;
-        self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button");
+        self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",nil);
 
         self.referenceType = MLReferenceModelTypeConscienceAsset;
         self.references = [[NSMutableArray alloc] init];
@@ -122,25 +122,25 @@
     //Populate subsequent list controller with appropriate choice
 	switch (self.referenceType){
 		case MLReferenceModelTypeConscienceAsset:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button");
+			self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",nil);
 			self.hasQuote = FALSE;
 			self.hasLink = FALSE;
 			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeBelief:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenBeliefsTitle",@"Title for Beliefs Button");            
+			self.title = NSLocalizedString(@"ReferenceDetailScreenBeliefsTitle",nil);            
 			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeText:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenBooksTitle",@"Title for Books Button");
+			self.title = NSLocalizedString(@"ReferenceDetailScreenBooksTitle",nil);
 			currentDAO = [[ReferenceTextDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypePerson:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenPeopleTitle",@"Title for People Button");
+			self.title = NSLocalizedString(@"ReferenceDetailScreenPeopleTitle",nil);
 			currentDAO = [[ReferencePersonDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 		case MLReferenceModelTypeMoral:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenMoralsTitle",@"Title for Moral Button");
+			self.title = NSLocalizedString(@"ReferenceDetailScreenMoralsTitle",nil);
 			self.hasQuote = FALSE;
 			currentDAO = [[MoralDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
@@ -148,7 +148,7 @@
             currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
             break;
 		default:
-			self.title = NSLocalizedString(@"ReferenceDetailScreenDefaultTitle",@"Title for Default Screen");
+			self.title = NSLocalizedString(@"ReferenceDetailScreenDefaultTitle",nil);
 			currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
 			break;
 	}

@@ -96,7 +96,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 	prefs = [NSUserDefaults standardUserDefaults];		
     
 	if ([self.title length] == 0) {
-		self.title = NSLocalizedString(@"ReferenceDetailScreenTitle",@"Title for Reference Detail Screen");
+		self.title = NSLocalizedString(@"ReferenceDetailScreenTitle",nil);
 	}
     
 	referenceKey = [prefs objectForKey:@"referenceKey"];
@@ -143,7 +143,7 @@ Implementation: Show Conscience thoughtbubble containing Quote
     
     NSString *helpTitleName =[[NSString alloc] initWithFormat:@"Help%@1Title1",NSStringFromClass([self class])];
     
-    NSArray *titles = @[NSLocalizedString(helpTitleName,@"Title for Help Screen")];
+    NSArray *titles = @[NSLocalizedString(helpTitleName,nil)];
     
     ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
     
@@ -323,17 +323,17 @@ Must know type of NSManagedObject in order to fetch.  Determine which UI element
 
 - (void) localizeUI {
 
-	wwwLinkButton.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenWwwLinkButtonHint",@"Hint for WWW button");
-	wwwLinkButton.accessibilityLabel = NSLocalizedString(@"ReferenceDetailScreenWwwLinkButtonLabel",@"Label for WWW button");
+	wwwLinkButton.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenWwwLinkButtonHint",nil);
+	wwwLinkButton.accessibilityLabel = NSLocalizedString(@"ReferenceDetailScreenWwwLinkButtonLabel",nil);
 
-	quoteButton.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenQuoteButtonHint",@"Hint for Quote button");
-	quoteButton.accessibilityLabel = NSLocalizedString(@"ReferenceDetailScreenQuoteButtonLabel",@"Label for Quote button");
+	quoteButton.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenQuoteButtonHint",nil);
+	quoteButton.accessibilityLabel = NSLocalizedString(@"ReferenceDetailScreenQuoteButtonLabel",nil);
 
-	referenceLongDescriptionTextView.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenLongDescriptionTextViewHint",@"Hint for Reference textView");
-	referenceLongDescriptionTextView.accessibilityIdentifier =  NSLocalizedString(@"ReferenceDetailScreenLongDescriptionTextViewLabel",@"Label for Reference textView");
+	referenceLongDescriptionTextView.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenLongDescriptionTextViewHint",nil);
+	referenceLongDescriptionTextView.accessibilityIdentifier =  NSLocalizedString(@"ReferenceDetailScreenLongDescriptionTextViewLabel",nil);
 
-    referenceNameLabel.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenReferenceNameLabelHint",@"Hint for Moral Reference button");
-	referenceNameLabel.accessibilityIdentifier = NSLocalizedString(@"ReferenceDetailScreenReferenceNameLabelLabel",@"Label for Moral Reference button");
+    referenceNameLabel.accessibilityHint = NSLocalizedString(@"ReferenceDetailScreenReferenceNameLabelHint",nil);
+	referenceNameLabel.accessibilityIdentifier = NSLocalizedString(@"ReferenceDetailScreenReferenceNameLabelLabel",nil);
 }
 
 

@@ -294,25 +294,25 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     
     NSString *titleName =[[NSString alloc] initWithFormat:@"%@",NSStringFromClass([self class])];
     
-    [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, self.isGood]), @"Title For View Controller")];
+    [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, self.isGood]),nil)];
     [moralTypeLabel setText:@"Virtue"];                
     
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
     
-    moralTypeButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralTypeButtonHint", @"Hint for moralTypeButton");
-	moralTypeButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralTypeButtonLabel",@"Label for moralTypeButton");
+    moralTypeButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralTypeButtonHint",nil);
+	moralTypeButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralTypeButtonLabel",nil);
 
-    moralSortButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralSortButtonHint", @"Hint for moralSortButton");
-	moralSortButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralSortButtonLabel",@"Label for moralSortButton");
+    moralSortButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralSortButtonHint",nil);
+	moralSortButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralSortButtonLabel",nil);
     moralSortButton.accessibilityValue = moralSortButton.titleLabel.text;
 
-    moralOrderButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralOrderButtonHint", @"Hint for moralOrderButton");
-	moralOrderButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralOrderButtonLabel",@"Label for moralOrderButton");
+    moralOrderButton.accessibilityHint = NSLocalizedString(@"ReportScreenMoralOrderButtonHint",nil);
+	moralOrderButton.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralOrderButtonLabel",nil);
     moralOrderButton.accessibilityValue = moralOrderButton.titleLabel.text;
 
-    moralTypeLabel.accessibilityHint = NSLocalizedString(@"ReportScreenMoralTypeLabelHint", @"Hint for moralOrderLabel");
-	moralTypeLabel.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralTypeLabelLabel",@"Label for moralOrderLabel");
+    moralTypeLabel.accessibilityHint = NSLocalizedString(@"ReportScreenMoralTypeLabelHint",nil);
+	moralTypeLabel.accessibilityLabel =  NSLocalizedString(@"ReportScreenMoralTypeLabelLabel",nil);
     moralTypeLabel.accessibilityValue = moralTypeLabel.text;
 
 }

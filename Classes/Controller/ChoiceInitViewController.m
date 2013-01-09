@@ -8,8 +8,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "ChoiceListViewController.h"
 #import "ChoiceHistoryModel.h"
 #import "ChoiceViewController.h"
-#import "LuckViewController.h"
-#import "LuckListViewController.h"
 #import "ConscienceHelpViewController.h"
 #import "MenuScreenAnimations.h"
 #import "ViewControllerLocalization.h"
@@ -114,7 +112,6 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (IBAction) selectChoiceType:(id) sender{
 
 	BOOL isGood = TRUE;
-	BOOL isChoice = TRUE;
 	BOOL isList = FALSE;
 	
 	//Set boolean to determine which version of screen to present
@@ -125,10 +122,10 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 		switch (choiceIndex){
 			case 0:isGood = TRUE;break;
 			case 1:isGood = FALSE;break;
-			case 2:isChoice = TRUE;isList = TRUE;break;				
-			case 3:isGood = TRUE;isChoice = FALSE;break;
-			case 4:isGood = FALSE;isChoice = FALSE;break;				
-			case 5:isChoice = FALSE;isList = TRUE;break;
+			case 2:isList = TRUE;break;				
+			case 3:isGood = TRUE;break;
+			case 4:isGood = FALSE;break;				
+			case 5:isList = TRUE;break;
 			default:break;
 		}
 		
@@ -160,27 +157,14 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	//Determine if List controller type or entry controller type is needed
 	if (!isList) {
 
-		//Create subsequent view controller to be pushed onto stack, determine if choice or luck
-		if (isChoice) {
-			ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
-			//Push view onto stack	
-			[self.navigationController pushViewController:choiceCont animated:YES];
-		} else {
-			LuckViewController *luckCont = [[LuckViewController alloc] init];
-			//Push view onto stack	
-			[self.navigationController pushViewController:luckCont animated:YES];
-		}
+        ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
+        //Push view onto stack	
+        [self.navigationController pushViewController:choiceCont animated:YES];
 	} else {
 
-		//Create subsequent view controller to be pushed onto stack, determine if choice or luck
-		if (isChoice) {
-            ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
-			ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
-			[self.navigationController pushViewController:choiceListCont animated:YES];
-		} else {
-			LuckListViewController *luckListCont = [[LuckListViewController alloc] init];
-			[self.navigationController pushViewController:luckListCont animated:YES];
-		}
+        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
+        [self.navigationController pushViewController:choiceListCont animated:YES];
 	}
 	
 }
@@ -191,39 +175,37 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (void) localizeUI {
     
     //Retrieve localized view title string
-	[self setTitle:NSLocalizedString(@"ChoiceInitScreenTitle",@"Title for Choice Home Screen")];
-	self.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLabel",@"Label for Choice Home Screen");
-	self.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenHint",@"Hint for Choice Home Screen");
+	[self setTitle:NSLocalizedString(@"ChoiceInitScreenTitle",nil)];
+	self.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLabel",nil);
+	self.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenHint",nil);
     
 	//Set localized Button Titles.  Do no do this in init, XIB is not loaded until viewDidLoad
-	[goodChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",@"Label for Good Choice Button") forState: UIControlStateNormal];
-	[badChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",@"Label for Bad Choice Button") forState: UIControlStateNormal];
-	[choiceListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",@"Label for Choice List Button") forState: UIControlStateNormal];
-	goodChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",@"Hint for Good Choice Button");
-	badChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",@"Hint for Bad Choice Button");
-	choiceListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",@"Hint for Choice List Button");		
-	goodChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",@"Label for Good Choice Button");
-	badChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",@"Label for Bad Choice Button");
-	choiceListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",@"Label for Choice List Button");
-	goodChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",@"Hint for Good Choice Button");
-	badChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",@"Hint for Bad Choice Button");
-	choiceListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",@"Hint for Choice List Button");
+	[goodChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",nil) forState: UIControlStateNormal];
+	[badChoiceLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",nil) forState: UIControlStateNormal];
+	[choiceListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",nil) forState: UIControlStateNormal];
+	goodChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",nil);
+	badChoiceLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",nil);
+	choiceListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",nil);		
+	goodChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceGoodLabel",nil);
+	badChoiceButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceBadLabel",nil);
+	choiceListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenChoiceListLabel",nil);
+	goodChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceGoodHint",nil);
+	badChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",nil);
+	choiceListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",nil);
 	
-	[goodLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",@"Label for Good Luck Button") forState: UIControlStateNormal];
-	[badLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",@"Label for Bad Luck Button") forState: UIControlStateNormal];
-	[luckListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckListLabel",@"Label for Luck List Button") forState: UIControlStateNormal];
-	goodLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",@"Hint for Good Luck Button");
-	badLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",@"Hint for Bad Luck Button");
-	luckListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",@"Hint for Luck List Button");		
+	[goodLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",nil) forState: UIControlStateNormal];
+	[badLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",nil) forState: UIControlStateNormal];
+	[luckListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckListLabel",nil) forState: UIControlStateNormal];
+	goodLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",nil);
+	badLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",nil);
+	luckListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",nil);		
 	
-	goodLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",@"Label for Good Luck Button");
-	badLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",@"Label for Bad Luck Button");
-	luckListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckListLabel",@"Label for Luck List Button");
-	goodLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",@"Hint for Good Luck Button");
-	badLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",@"Hint for Bad Luck Button");
-	luckListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",@"Hint for Luck List Button");
-
-    
+	goodLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",nil);
+	badLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",nil);
+	luckListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckListLabel",nil);
+	goodLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",nil);
+	badLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",nil);
+	luckListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",nil);    
 }
 
 

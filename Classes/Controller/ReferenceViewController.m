@@ -209,34 +209,34 @@ Implementation: Return the button's icon to default after animation finishes
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {
-    self.title = NSLocalizedString(@"ReferenceScreenTitle",@"Title for Reference Home Screen");
+    self.title = NSLocalizedString(@"ReferenceScreenTitle",nil);
     
     //Local Button Titles.  Do no do this in init, XIB is not loaded until viewDidLoad
-    [accessoriesLabelButton setTitle:NSLocalizedString(@"ReferenceScreenAccessoriesTitle",@"Title for Accessories Button") forState:UIControlStateNormal];	
-    [peopleLabelButton setTitle:NSLocalizedString(@"ReferenceScreenPeopleTitle",@"Title for People Button") forState:UIControlStateNormal];
-    [moralsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenMoralsTitle",@"Title for Morals Button") forState:UIControlStateNormal];
-    [booksLabelButton setTitle:NSLocalizedString(@"ReferenceScreenBooksTitle",@"Title for Books Button") forState:UIControlStateNormal];
-    [beliefsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenBeliefsTitle",@"Title for Beliefs Button") forState:UIControlStateNormal];
-    [reportsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenReportsTitle",@"Title for Reports Button") forState:UIControlStateNormal];
+    [accessoriesLabelButton setTitle:NSLocalizedString(@"ReferenceScreenAccessoriesTitle",nil) forState:UIControlStateNormal];	
+    [peopleLabelButton setTitle:NSLocalizedString(@"ReferenceScreenPeopleTitle",nil) forState:UIControlStateNormal];
+    [moralsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenMoralsTitle",nil) forState:UIControlStateNormal];
+    [booksLabelButton setTitle:NSLocalizedString(@"ReferenceScreenBooksTitle",nil) forState:UIControlStateNormal];
+    [beliefsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenBeliefsTitle",nil) forState:UIControlStateNormal];
+    [reportsLabelButton setTitle:NSLocalizedString(@"ReferenceScreenReportsTitle",nil) forState:UIControlStateNormal];
     
-	peopleLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenPeopleHint",@"Hint for People Button");
-	peopleButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenPeopleHint",@"Hint for People Button");
-	peopleButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenPeopleLabel",@"Label for People Button");
-	moralsLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenMoralsHint",@"Hint for Morals Button");
-	moralsButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenMoralsHint",@"Hint for Morals Button");
-	moralsButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenMoralsLabel",@"Label for Morals Button");
-	booksLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBooksHint",@"Hint for Books Button");
-	booksButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBooksHint",@"Hint for Books Button");
-	booksButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenBooksLabel",@"Label for Books Button");
-	beliefsLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBeliefsHint",@"Hint for Beliefs Button");
-	beliefsButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBeliefsHint",@"Hint for Beliefs Button");
-	beliefsButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenBeliefsLabel",@"Label for Beliefs Button");
-	reportsLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenReportsHint",@"Hint for Reports Button");
-	reportsButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenReportsHint",@"Hint for Reports Button");
-	reportsButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenReportsLabel",@"Label for Reports Button");
-	accessoriesLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenAccessoriesHint",@"Hint for Accessories Button");
-	accessoriesButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenAccessoriesHint",@"Hint for Accessories Button");
-	accessoriesButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenAccessoriesLabel",@"Label for Accessories Button");    
+	peopleLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenPeopleHint",nil);
+	peopleButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenPeopleHint",nil);
+	peopleButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenPeopleLabel",nil);
+	moralsLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenMoralsHint",nil);
+	moralsButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenMoralsHint",nil);
+	moralsButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenMoralsLabel",nil);
+	booksLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBooksHint",nil);
+	booksButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBooksHint",nil);
+	booksButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenBooksLabel",nil);
+	beliefsLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBeliefsHint",nil);
+	beliefsButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenBeliefsHint",nil);
+	beliefsButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenBeliefsLabel",nil);
+	reportsLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenReportsHint",nil);
+	reportsButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenReportsHint",nil);
+	reportsButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenReportsLabel",nil);
+	accessoriesLabelButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenAccessoriesHint",nil);
+	accessoriesButton.accessibilityHint = NSLocalizedString(@"ReferenceScreenAccessoriesHint",nil);
+	accessoriesButton.accessibilityLabel = NSLocalizedString(@"ReferenceScreenAccessoriesLabel",nil);    
 }
 
 #pragma mark -

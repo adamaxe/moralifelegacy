@@ -426,9 +426,9 @@
 
 - (void) localizeUI {
     
-    self.title = NSLocalizedString(@"ChoiceListScreenTitle",@"Label for Choice List Screen");
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    self.title = NSLocalizedString(@"ChoiceListScreenTitle",nil);
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 }
 
 #pragma mark -

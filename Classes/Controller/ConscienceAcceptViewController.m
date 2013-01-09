@@ -477,14 +477,14 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 
 - (void) localizeUI {
 
-    buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonHint", @"Hint for buy button");
-	buyButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBuyButtonLabel",@"Label for buy button");
+    buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonHint",nil);
+	buyButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBuyButtonLabel",nil);
 
-    backButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBackButtonHint", @"Hint for back button");
-	backButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBackButtonLabel",@"Label for back button");    
+    backButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBackButtonHint",nil);
+	backButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBackButtonLabel",nil);    
     
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
 }
 

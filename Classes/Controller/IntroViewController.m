@@ -1130,10 +1130,10 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 
 - (void) localizeUI {
     
-    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
-	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
-    thoughtButton.accessibilityHint = NSLocalizedString(@"IntroThoughtButtonHint", @"Hint for thought button");
-	thoughtButton.accessibilityLabel =  NSLocalizedString(@"IntroThoughtButtonLabel",@"Label for thought button");
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint",nil);
+	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",nil);
+    thoughtButton.accessibilityHint = NSLocalizedString(@"IntroThoughtButtonHint",nil);
+	thoughtButton.accessibilityLabel =  NSLocalizedString(@"IntroThoughtButtonLabel",nil);
 
     
 }

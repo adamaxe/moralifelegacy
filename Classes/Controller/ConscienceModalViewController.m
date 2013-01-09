@@ -132,8 +132,8 @@ User selection causes selectChoice to be called which sets the currentState vari
 	tempButtonLabels = @[@"Eye", @"Brow", @"Bubble", @" "];
 	[buttonLabels setValue:tempButtonLabels forKey:@"6"];
     
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
  
 }
@@ -313,10 +313,10 @@ Determines if current screen should change or if another UIViewController needs 
 	button1.tag = currentState*4;
 	labelButton1.tag = currentState*4;
     
-    button1.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button1.tag]), @"Label for Menu Button 1");
-	button1.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button1.tag]), @"Hint for Menu Button 1");
-    labelButton1.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton1.tag]), @"Label for Menu Button 1");
-	labelButton1.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton1.tag]), @"Hint for Menu Button 1");
+    button1.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button1.tag]),nil);
+	button1.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button1.tag]),nil);
+    labelButton1.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton1.tag]),nil);
+	labelButton1.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton1.tag]),nil);
 
     
 	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][1];
@@ -326,10 +326,10 @@ Determines if current screen should change or if another UIViewController needs 
 	button2.tag = currentState*4 + 1;
 	labelButton2.tag = currentState*4 + 1;
 
-    button2.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button2.tag]), @"Label for Menu Button 2");
-	button2.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button2.tag]), @"Hint for Menu Button 2");
-    labelButton2.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton2.tag]), @"Label for Menu Button 2");
-	labelButton2.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton2.tag]), @"Hint for Menu Button 2");
+    button2.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button2.tag]),nil);
+	button2.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button2.tag]),nil);
+    labelButton2.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton2.tag]),nil);
+	labelButton2.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton2.tag]),nil);
 
     
 	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][2];
@@ -339,10 +339,10 @@ Determines if current screen should change or if another UIViewController needs 
 	button3.tag = currentState*4 + 2;
 	labelButton3.tag = currentState*4 + 2;
     
-    button3.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button3.tag]), @"Label for Menu Button 3");
-	button3.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button3.tag]), @"Hint for Menu Button 3");
-    labelButton3.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton3.tag]), @"Label for Menu Button 3");
-	labelButton3.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton3.tag]), @"Hint for Menu Button 3");
+    button3.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button3.tag]),nil);
+	button3.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button3.tag]),nil);
+    labelButton3.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton3.tag]),nil);
+	labelButton3.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton3.tag]),nil);
     
 	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][3];
 	buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][3];
@@ -351,11 +351,10 @@ Determines if current screen should change or if another UIViewController needs 
 	button4.tag = currentState*4 + 3;
 	labelButton4.tag = currentState*4 + 3;
     
-    button4.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button4.tag]), @"Label for Menu Button 4");
-	button4.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button4.tag]), @"Hint for Menu Button 4");
-    labelButton4.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton4.tag]), @"Label for Menu Button 4");
-	labelButton4.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton4.tag]), @"Hint for Menu Button 4");
-    
+    button4.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button4.tag]),nil);
+	button4.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button4.tag]),nil);
+    labelButton4.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton4.tag]),nil);
+	labelButton4.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton4.tag]),nil);
     
     [UIView beginAnimations:@"ShowChoices" context:nil];
     [UIView setAnimationDuration:0.1];

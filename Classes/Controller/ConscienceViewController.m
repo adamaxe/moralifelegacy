@@ -670,7 +670,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     
         
     NSString *welcomeTextName =[[NSString alloc] initWithFormat:@"%@Welcome%@%@",NSStringFromClass([self class]), timeOfDay, mood ];
-    NSString *welcomeText = [[NSString alloc] initWithString:NSLocalizedString(welcomeTextName,@"Welcome Text")];
+    NSString *welcomeText = [[NSString alloc] initWithString:NSLocalizedString(welcomeTextName,nil)];
     NSMutableString *thoughtSpecialized = [[NSMutableString alloc] init];
     
     /** @todo localize Conscience responses */
@@ -879,17 +879,17 @@ Change the Rank picture and description.
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {
-	[self setTitle:NSLocalizedString(@"ConscienceScreenTitle",@"Title for Conscience Screen")];
-	self.accessibilityLabel = NSLocalizedString(@"ConscienceScreenLabel",@"Label for Conscience Screen");
-	self.accessibilityHint = NSLocalizedString(@"ConscienceScreenHint",@"Hint for Conscience Screen");
+	[self setTitle:NSLocalizedString(@"ConscienceScreenTitle",nil)];
+	self.accessibilityLabel = NSLocalizedString(@"ConscienceScreenLabel",nil);
+	self.accessibilityHint = NSLocalizedString(@"ConscienceScreenHint",nil);
 	consciencePlayground.multipleTouchEnabled = TRUE;
     
-    [virtueLabel setText:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
-    [viceLabel setText:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
+    [virtueLabel setText:NSLocalizedString(@"ConscienceScreenVirtueLabel",nil)];
+    [viceLabel setText:NSLocalizedString(@"ConscienceScreenViceLabel",nil)];
     
-    [virtueButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenVirtueLabel",@"Label for Virtue Button")];
-    [viceButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenViceLabel",@"Label for Vice Button")];
-    [rankButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenRankLabel",@"Label for Rank Button")];
+    [virtueButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenVirtueLabel",nil)];
+    [viceButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenViceLabel",nil)];
+    [rankButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenRankLabel",nil)];
     
 }
 

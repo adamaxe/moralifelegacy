@@ -1462,7 +1462,6 @@
 		5EC990AD12D4190200F5F245 /* card-flattery.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC990A012D4190200F5F245 /* card-flattery.png */; };
 		5EC9E58D130F87B200C4AEE1 /* ChoiceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */; };
 		5EC9E58F130F883D00C4AEE1 /* ReferenceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */; };
-		5EC9E591130F88B200C4AEE1 /* LuckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E590130F88B100C4AEE1 /* LuckViewController.m */; };
 		5EC9E593130F88FB00C4AEE1 /* ChoiceModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E592130F88FB00C4AEE1 /* ChoiceModalViewController.m */; };
 		5EC9E595130F893E00C4AEE1 /* ChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E594130F893D00C4AEE1 /* ChoiceViewController.m */; };
 		5ECC8CEE1255140E00B660C5 /* ConscienceDeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ECC8CEA1255140E00B660C5 /* ConscienceDeckView.xib */; };
@@ -1627,7 +1626,6 @@
 		5EE87D8E122498C600AF208B /* con-animal-rooster.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EE87D7A122498C600AF208B /* con-animal-rooster.svg */; };
 		5EE9A92014FC90A500DD428A /* ConscienceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9BE8D12FD1FEB00584F67 /* ConscienceHelpView.xib */; };
 		5EEB65E0122B6FBF00925B63 /* con-cross-orth.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB65DC122B6FBF00925B63 /* con-cross-orth.svg */; };
-		5EEBBC7212FD2281002E2C1E /* LuckListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7112FD2281002E2C1E /* LuckListViewController.m */; };
 		5EEBBC7512FD22B5002E2C1E /* ConscienceHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */; };
 		5EEBBC7812FD23D1002E2C1E /* ChoiceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7712FD23CF002E2C1E /* ChoiceDetailViewController.m */; };
 		5EEBBC7B12FD24EF002E2C1E /* ConscienceModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */; };
@@ -3215,7 +3213,6 @@
 		5EC990A012D4190200F5F245 /* card-flattery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-flattery.png"; path = "Resources/images/interface/cards/card-flattery.png"; sourceTree = "<group>"; };
 		5EC9E58C130F87B200C4AEE1 /* ChoiceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceListViewController.m; sourceTree = "<group>"; };
 		5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceListViewController.m; sourceTree = "<group>"; };
-		5EC9E590130F88B100C4AEE1 /* LuckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckViewController.m; sourceTree = "<group>"; };
 		5EC9E592130F88FB00C4AEE1 /* ChoiceModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceModalViewController.m; sourceTree = "<group>"; };
 		5EC9E594130F893D00C4AEE1 /* ChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceViewController.m; sourceTree = "<group>"; };
 		5ECC8CEA1255140E00B660C5 /* ConscienceDeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConscienceDeckView.xib; path = Resources/ConscienceDeckView.xib; sourceTree = "<group>"; };
@@ -3384,9 +3381,6 @@
 		5EE87D79122498C600AF208B /* con-animal-pig.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-animal-pig.svg"; path = "Resources/images/conscience/con-animal-pig.svg"; sourceTree = "<group>"; };
 		5EE87D7A122498C600AF208B /* con-animal-rooster.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-animal-rooster.svg"; path = "Resources/images/conscience/con-animal-rooster.svg"; sourceTree = "<group>"; };
 		5EEB65DC122B6FBF00925B63 /* con-cross-orth.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-cross-orth.svg"; path = "Resources/images/conscience/con-cross-orth.svg"; sourceTree = "<group>"; };
-		5EEBBC6D12FD2218002E2C1E /* LuckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckViewController.h; sourceTree = "<group>"; };
-		5EEBBC7012FD2281002E2C1E /* LuckListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuckListViewController.h; sourceTree = "<group>"; };
-		5EEBBC7112FD2281002E2C1E /* LuckListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LuckListViewController.m; sourceTree = "<group>"; };
 		5EEBBC7312FD22B4002E2C1E /* ConscienceHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceHelpViewController.h; sourceTree = "<group>"; };
 		5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceHelpViewController.m; sourceTree = "<group>"; };
 		5EEBBC7612FD23CD002E2C1E /* ChoiceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceDetailViewController.h; sourceTree = "<group>"; };
@@ -5511,10 +5505,6 @@
 				5EAA21211307451000C1DB02 /* DilemmaViewController.m */,
 				5EBC9AD91352A42B001ACD7A /* IntroViewController.h */,
 				5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */,
-				5EEBBC7012FD2281002E2C1E /* LuckListViewController.h */,
-				5EEBBC7112FD2281002E2C1E /* LuckListViewController.m */,
-				5EEBBC6D12FD2218002E2C1E /* LuckViewController.h */,
-				5EC9E590130F88B100C4AEE1 /* LuckViewController.m */,
 				5EB9BE9612FD200500584F67 /* ReferenceDetailViewController.h */,
 				5EB9BE9712FD200500584F67 /* ReferenceDetailViewController.m */,
 				5EB9BE9812FD200500584F67 /* ReferenceListViewController.h */,
@@ -7272,7 +7262,6 @@
 				5EB9BEA012FD200700584F67 /* ReferenceDetailViewController.m in Sources */,
 				5EB9BEA312FD200700584F67 /* ReportPieViewController.m in Sources */,
 				5EB9BEA412FD200700584F67 /* ReferenceViewController.m in Sources */,
-				5EEBBC7212FD2281002E2C1E /* LuckListViewController.m in Sources */,
 				5EEBBC7512FD22B5002E2C1E /* ConscienceHelpViewController.m in Sources */,
 				5EEBBC7812FD23D1002E2C1E /* ChoiceDetailViewController.m in Sources */,
 				5EEBBC7B12FD24EF002E2C1E /* ConscienceModalViewController.m in Sources */,
@@ -7285,7 +7274,6 @@
 				5EAA21261307498200C1DB02 /* DilemmaListViewController.m in Sources */,
 				5EC9E58D130F87B200C4AEE1 /* ChoiceListViewController.m in Sources */,
 				5EC9E58F130F883D00C4AEE1 /* ReferenceListViewController.m in Sources */,
-				5EC9E591130F88B200C4AEE1 /* LuckViewController.m in Sources */,
 				5EC9E593130F88FB00C4AEE1 /* ChoiceModalViewController.m in Sources */,
 				5EC9E595130F893E00C4AEE1 /* ChoiceViewController.m in Sources */,
 				5EFED9011310E22D00F8EB0B /* ReferenceBelief.m in Sources */,

@@ -131,19 +131,19 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	ChoiceInitViewController *choiceIntViewController1 = [[ChoiceInitViewController alloc] init];
 	ReferenceViewController *referenceViewController1 = [[ReferenceViewController alloc] init];
 	
-	navController1.tabBarItem.title = NSLocalizedString(@"PrimaryNav1Title",@"Title for Navigation 1");
-	navController1.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav1Hint",@"Hint for Navigation 1");
-	navController1.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav1Label",@"Label for Navigation 1");	
+	navController1.tabBarItem.title = NSLocalizedString(@"PrimaryNav1Title",nil);
+	navController1.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav1Hint",nil);
+	navController1.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav1Label",nil);	
 	navController1.tabBarItem.image = [UIImage imageNamed:@"tabbar-home.png"];
 	navController1.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	navController2.tabBarItem.title = NSLocalizedString(@"PrimaryNav2Title",@"Title for Navigation 2");
-	navController2.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav2Hint",@"Hint for Navigation 2");
-	navController2.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav2Label",@"Label for Navigation 2");
+	navController2.tabBarItem.title = NSLocalizedString(@"PrimaryNav2Title",nil);
+	navController2.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav2Hint",nil);
+	navController2.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav2Label",nil);
 	navController2.tabBarItem.image = [UIImage imageNamed:@"tabbar-quill.png"];	
 	navController2.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	navController3.tabBarItem.title = NSLocalizedString(@"PrimaryNav3Title",@"Title for Navigation 3");
-	navController3.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav3Hint",@"Hint for Navigation 3");
-	navController3.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav3Label",@"Label for Navigation 3");
+	navController3.tabBarItem.title = NSLocalizedString(@"PrimaryNav3Title",nil);
+	navController3.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav3Hint",nil);
+	navController3.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav3Label",nil);
 	navController3.tabBarItem.image = [UIImage imageNamed:@"tabbar-ref.png"];
 	navController3.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 		
@@ -166,9 +166,9 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	
     // Override point for customization after application launch
 	[mainMenuTabBarCont setViewControllers:@[navController1, navController2, navController3]];
-	mainMenuTabBarCont.title = NSLocalizedString(@"PrimaryMenuTitle",@"Label for Primary Tab Menu");
-	mainMenuTabBarCont.accessibilityHint = NSLocalizedString(@"PrimaryMenuHint",@"Hint for Primary Tab Menu");
-	mainMenuTabBarCont.accessibilityLabel = NSLocalizedString(@"PrimaryMenuLabel",@"Label for Primary Tab Menu");
+	mainMenuTabBarCont.title = NSLocalizedString(@"PrimaryMenuTitle",nil);
+	mainMenuTabBarCont.accessibilityHint = NSLocalizedString(@"PrimaryMenuHint",nil);
+	mainMenuTabBarCont.accessibilityLabel = NSLocalizedString(@"PrimaryMenuLabel",nil);
 	//mainMenuTabBarCont.tabBar.opaque = YES;
 	//mainMenuTabBarCont.view.alpha = [NSNumber numberWithFloat:0.5];
 	[mainMenuTabBarCont.tabBar setAlpha:cgf];

@@ -458,12 +458,12 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {
-    self.title = NSLocalizedString(@"ChoiceListScreenTitle",@"Label for Choice List Screen");
-    moralSortButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenSortButtonLabel",@"Label for Sort Button");
-	moralSortButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenSortButtonHint",@"Hint for Sort Button");
+    self.title = NSLocalizedString(@"ChoiceListScreenTitle",nil);
+    moralSortButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenSortButtonLabel",nil);
+	moralSortButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenSortButtonHint",nil);
     
-    moralOrderButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenOrderButtonLabel",@"Label for Order Button");
-	moralOrderButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenOrderButtonHint",@"Hint for Order Button");
+    moralOrderButton.accessibilityLabel = NSLocalizedString(@"ChoiceListScreenOrderButtonLabel",nil);
+	moralOrderButton.accessibilityHint = NSLocalizedString(@"ChoiceListScreenOrderButtonHint",nil);
 
 }
 

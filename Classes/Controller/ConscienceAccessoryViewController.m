@@ -157,17 +157,17 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
     
-    primaryAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenPrimaryAccessoryHint",@"Hint for Primary Accessory Button");
-	primaryAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenPrimaryAccessoryLabel",@"Label for Primary Accessory Button");
-    secondaryAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenSecondaryAccessoryHint",@"Hint for Secondary Accessory Button");
-	secondaryAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenSecondaryAccessoryLabel",@"Label for Secondary Accessory Button");
-    topAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenTopAccessoryHint",@"Hint for Top Accessory Button");
-	topAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenTopAccessoryLabel",@"Label for Top Accessory Button");
-    bottomAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenBottomAccessoryHint",@"Hint for Bottom Accessory Button");
-	bottomAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenBottomAccessoryLabel",@"Label for Bottom Accessory Button");
+    primaryAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenPrimaryAccessoryHint",nil);
+	primaryAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenPrimaryAccessoryLabel",nil);
+    secondaryAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenSecondaryAccessoryHint",nil);
+	secondaryAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenSecondaryAccessoryLabel",nil);
+    topAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenTopAccessoryHint",nil);
+	topAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenTopAccessoryLabel",nil);
+    bottomAccessoryButton.accessibilityHint = NSLocalizedString(@"ConscienceAccessoryScreenBottomAccessoryHint",nil);
+	bottomAccessoryButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAccessoryScreenBottomAccessoryLabel",nil);
     
 }
 

@@ -124,7 +124,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
     
 	//Create input for requesting ChoiceDetailViewController
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",@"Hint for Details Label") style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
+    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
 	
 	self.navigationItem.rightBarButtonItem = barButtonItem;
     
@@ -237,9 +237,9 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	if (!isChoiceFinished) {
 		
 		//Do not save default help text
-		NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield");
+		NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), nil);
 		
-		NSString *defaultTextViewText = NSLocalizedString(@"ChoiceScreenDescription", @"Label for Description Textview");
+		NSString *defaultTextViewText = NSLocalizedString(@"ChoiceScreenDescription",nil);
         
 		if (![choiceTextField.text isEqualToString:@""] && ![choiceTextField.text isEqualToString:defaultTextFieldText]) {
 			[prefs setObject:choiceTextField.text forKey:@"entryShortDescription"];    
@@ -429,7 +429,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 	NSString *choiceFirst = choiceTextField.text;
     
 	//Do not save default help text
-	NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield");
+	NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), nil);
     
 	if ([choiceFirst isEqualToString:@""] || [choiceFirst isEqualToString:defaultTextFieldText]) {
 
@@ -574,7 +574,7 @@ Implementation: Resign first responder and return the views to original location
 	}
     
 	//If text in view is default, then clear it
-	if ([textView.text isEqualToString:NSLocalizedString(@"ChoiceScreenDescription",@"Label for Choice TextView")]) {
+	if ([textView.text isEqualToString:NSLocalizedString(@"ChoiceScreenDescription",nil)]) {
 		textView.text = @"";
 		
 	}
@@ -586,7 +586,7 @@ Implementation: Resign first responder and return the views to original location
     activeField = (StructuredTextField *) textField;
 
     //Determine which default text is being utilized.
-    NSString *defaultText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield");
+    NSString *defaultText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]),nil);
     
 	//If text in field is default, then clear it
 	if ([activeField.text isEqualToString:defaultText]) {
@@ -648,7 +648,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     NSString *choiceConsequences = [prefs objectForKey:@"choiceConsequence"];
     NSString *choiceLongDescription = descriptionTextView.text;
     
-    NSString *defaultTextViewText = NSLocalizedString(@"ChoiceScreenDescription", @"Label for Choice Textfield");
+    NSString *defaultTextViewText = NSLocalizedString(@"ChoiceScreenDescription",nil);
     
     if (![choiceLongDescription isEqualToString:@""] && ![choiceLongDescription isEqualToString:defaultTextViewText]) {
         choiceWeightFilledFields++;
@@ -838,59 +838,59 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 
 - (void) localizeUI {
     
-	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateNormal];
-	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState:UIControlStateHighlighted];
-	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenDoneButtonHint",@"Hint for Done button");	
-	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenDoneButtonLabel",@"Label for Done button");	
+	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",nil) forState:UIControlStateNormal];
+	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",nil) forState:UIControlStateHighlighted];
+	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenDoneButtonHint",nil);	
+	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenDoneButtonLabel",nil);	
     
-	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateNormal];
-	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",@"Title Label for Cancel button") forState:UIControlStateHighlighted];
-	cancelButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenCancelButtonHint",@"Hint for Cancel button");	
-	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenCancelButtonLabel",@"Label for Cancel button");	
+	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",nil) forState:UIControlStateNormal];
+	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",nil) forState:UIControlStateHighlighted];
+	cancelButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenCancelButtonHint",nil);	
+	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenCancelButtonLabel",nil);	
     
-	choiceTextField.accessibilityHint = NSLocalizedString(@"ChoiceScreenChoiceTextFieldHint",@"Hint for Choice textField");
-	choiceTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenChoiceTextFieldLabel",@"Label for Choice textField");
+	choiceTextField.accessibilityHint = NSLocalizedString(@"ChoiceScreenChoiceTextFieldHint",nil);
+	choiceTextField.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenChoiceTextFieldLabel",nil);
     
-    moralReferenceButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonHint",@"Hint for Moral Reference button");	
-	moralReferenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonLabel",@"Label for Moral Reference button");	
+    moralReferenceButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonHint",nil);	
+	moralReferenceButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralReferenceButtonLabel",nil);	
     
-    moralHistoryButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonHint",@"Hint for Moral History button");	
-	moralHistoryButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonLabel",@"Label for Moral History button");	
+    moralHistoryButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonHint",nil);	
+	moralHistoryButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenMoralHistoryButtonLabel",nil);	
     
     
-	descriptionTextView.accessibilityHint =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewHint",@"Hint for Description textField");
-	descriptionTextView.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewLabel",@"Label for Description textField");
+	descriptionTextView.accessibilityHint =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewHint",nil);
+	descriptionTextView.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenDescriptionTextViewLabel",nil);
     
-    severitySlider.accessibilityHint = NSLocalizedString(@"ChoiceScreenSeverityHint",@"Hint for Severity slider");
-	severitySlider.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Label for Severity slider");
+    severitySlider.accessibilityHint = NSLocalizedString(@"ChoiceScreenSeverityHint",nil);
+	severitySlider.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenSeverityLabel",nil);
     NSMutableString *localString = [NSString stringWithFormat:@"ChoiceScreen%dTitle", isVirtue];
     
     //Change Title of screen to reflect good or bad choice
-    [self setTitle:NSLocalizedString(localString, @"Title for Choice screen")];
-    [severityLabel setText:NSLocalizedString(@"ChoiceScreenSeverityLabel",@"Hint for Details Label")];
+    [self setTitle:NSLocalizedString(localString, nil)];
+    [severityLabel setText:NSLocalizedString(@"ChoiceScreenSeverityLabel",nil)];
     
-    severityLabel.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dHint", isVirtue]), @"Hint for Severity Label");
-    severitySlider.accessibilityHint =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dHint", isVirtue]), @"Hint for Severity Slider");
-    severitySlider.accessibilityLabel =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dLabel", isVirtue]), @"Label for Severity Slider");		
+    severityLabel.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dHint", isVirtue]),nil);
+    severitySlider.accessibilityHint =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dHint", isVirtue]),nil);
+    severitySlider.accessibilityLabel =  NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverity%dLabel", isVirtue]),nil);		
     
     //Populate severity arrays for descriptions to reflect good or bad choice
     //Localized string are keyed to accept the isVirtue BOOL as an int (Virtue = 1, Vice = 0)
     [severityLabelDescriptions removeAllObjects];
-    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]), @"Label for Severity Level 1")]; 
-    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%db", isVirtue]), @"Label for Severity Level 2")];
-    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dc", isVirtue]), @"Label for Severity Level 3")];
-    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]), @"Label for Severity Level 4")];
-    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%de", isVirtue]), @"Label for Severity Level 5")];    
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%da", isVirtue]),nil)]; 
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%db", isVirtue]),nil)];
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dc", isVirtue]),nil)];
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]),nil)];
+    [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%de", isVirtue]),nil)];    
 
-	[choiceTextField setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), @"Label for Choice Textfield")];
+	[choiceTextField setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]),nil)];
     
-	[moralButton setTitle:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button") forState:UIControlStateNormal];
-	moralButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dHint", isVirtue]), @"Hint for Moral Button");
-	moralButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]), @"Label for Moral Button");
-	[descriptionTextView setText:NSLocalizedString(@"ChoiceScreenDescription", @"Label for Description Textview")];
+	[moralButton setTitle:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]),nil) forState:UIControlStateNormal];
+	moralButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dHint", isVirtue]),nil);
+	moralButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]),nil);
+	[descriptionTextView setText:NSLocalizedString(@"ChoiceScreenDescription",nil)];
     
-    [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateNormal];
-    [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",@"Title Label for Done button") forState: UIControlStateHighlighted];    
+    [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",nil) forState: UIControlStateNormal];
+    [hideKeyboardButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",nil) forState: UIControlStateHighlighted];
 
 
 }

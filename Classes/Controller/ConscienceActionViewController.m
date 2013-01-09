@@ -680,11 +680,11 @@ Calculate changes to User's ethicals.  Limit to 999.
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {
-    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint", @"Hint for previous button");
-	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",@"Label for previous button");
+    previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
+	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
-    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint", @"Hint for next button");
-	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",@"Label for next button");
+    nextButton.accessibilityHint = NSLocalizedString(@"NextButtonHint",nil);
+	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",nil);
 
 }
 
