@@ -11,6 +11,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
 #import "ReportPieModel.h"
+#import "ReportMoralTableViewCell.h"
 
 @interface ReportPieViewController () <ViewControllerLocalization> {
     
@@ -250,39 +251,26 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-    static NSString *cellIdentifier = @"Reports";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-		
-    }
-	
-	[[cell textLabel] setText:(self.reportPieModel.reportNames)[indexPath.row]];
-    
-    [[cell textLabel] setTextColor:(self.reportPieModel.pieColors)[indexPath.row]];
-    [[cell textLabel] setShadowColor:[UIColor lightGrayColor]];
-    [[cell textLabel] setShadowOffset:CGSizeMake(1, 1)];
+	ReportMoralTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ReportMoralTableViewCell class])];
 
-    [[cell textLabel] setFont:[UIFont systemFontOfSize:18.0]];
-    [[cell textLabel] setNumberOfLines:1];
-    [[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
+	if (cell == nil) {
+      	cell = [[ReportMoralTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([ReportMoralTableViewCell class])];
+	}
     
+	[cell.textLabel setText:(self.reportPieModel.reportNames)[indexPath.row]];
+    
+    cell.moralColor = self.reportPieModel.pieColors[indexPath.row];
     if ([self.reportPieModel.moralNames count] > 0) {
         
         NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:(self.reportPieModel.moralImageNames)[(self.reportPieModel.moralNames)[indexPath.row]]];
         [rowImageName appendString:@".png"];
-        [[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
+        cell.moralImage = [UIImage imageNamed:rowImageName];
         
     } else {
-        [[cell imageView] setImage:[UIImage imageNamed:@"card-doubt.png"]];
+        cell.moralImage = [UIImage imageNamed:@"card-doubt.png"];
         [[cell textLabel] setTextAlignment:UITextAlignmentCenter];
-
     }
 
-    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-	
     return cell;
 }
 

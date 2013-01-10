@@ -14,7 +14,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferencePersonDAO.h"
 #import "ReferenceTextDAO.h"
 #import "MoralDAO.h"
-
+#import "ReferenceTableViewCell.h"
 
 @interface ReferenceListViewController () {
     
@@ -175,20 +175,14 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    static NSString *cellIdentifier = @"Names";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
-    if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-    }
-	
-    [[cell textLabel] setText:tableData[indexPath.row]];
-    [[cell textLabel] setFont:[UIFont systemFontOfSize:18.0]];
-    [[cell textLabel] setNumberOfLines:1];
-    [[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];    
 
+	ReferenceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ReferenceTableViewCell class])];
+
+	if (cell == nil) {
+      	cell = [[ReferenceTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([ReferenceTableViewCell class])];
+	}
+
+    [[cell textLabel] setText:tableData[indexPath.row]];
     [[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
 	
 	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:tableDataImages[indexPath.row]];	
@@ -198,7 +192,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     }
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
-    [[cell imageView] setImage:rowImage];
+    cell.referenceImage = rowImage;
 	
     return cell;
 }
