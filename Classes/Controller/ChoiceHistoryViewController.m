@@ -13,6 +13,7 @@
 #import "ChoiceViewController.h"
 #import "ConscienceView.h"
 #import "ChoiceHistoryModel.h"
+#import "ChoiceTableViewCell.h"
 #import "ViewControllerLocalization.h"
 
 @interface ChoiceHistoryViewController () <ViewControllerLocalization> {
@@ -247,39 +248,20 @@
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-	static NSString *cellIdentifier = @"Choices";
-    
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	
+	ChoiceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([ChoiceTableViewCell class])];
+
 	if (cell == nil) {
-      	cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+      	cell = [[ChoiceTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([ChoiceTableViewCell class])];
 	}
-    
-	//Setup cell contents
-	[[cell textLabel] setText:tableData[indexPath.row]];
-	[[cell textLabel] setMinimumFontSize:12.0];    
-	[[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
-    
-	//Determine if Choice is good or bad
-	BOOL isRowGood = [tableDataColorBools[indexPath.row] boolValue];
-    
-	if (isRowGood) {
-		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-	} else {
-		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
-	}
-    
-	//Set cell content wrapping
-	[[cell textLabel] setFont:[UIFont systemFontOfSize:18.0]];
-	[[cell textLabel] setNumberOfLines:1];
-	[[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
-	
+
+	cell.textLabel.text = tableData[indexPath.row];
+    cell.detailTextLabel.text = tableDataDetails[indexPath.row];
+    cell.isVirtue = [tableDataColorBools[indexPath.row] boolValue];
+
 	NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:tableDataImages[indexPath.row]];
-    //	[rowImageName appendString:@".png"];
-    
+
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
-    //	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
-    [[cell imageView] setImage:rowImage];
+    cell.moralImage = rowImage;
     
 	return cell;
 }

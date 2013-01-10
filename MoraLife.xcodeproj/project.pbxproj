@@ -1366,6 +1366,7 @@
 		5EAA2129130749D700C1DB02 /* DilemmaListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EAA2128130749D700C1DB02 /* DilemmaListView.xib */; };
 		5EAA72EE15E19FA500656390 /* UIColor+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA72ED15E19FA500656390 /* UIColor+Utility.m */; };
 		5EAA72EF15E19FA500656390 /* UIColor+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAA72ED15E19FA500656390 /* UIColor+Utility.m */; };
+		5EAB7A45169E868600623A48 /* ChoiceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB7A44169E868600623A48 /* ChoiceTableViewCell.m */; };
 		5EAC469A13A3354700074374 /* sur-class-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469813A3354700074374 /* sur-class-sm.png */; };
 		5EAC469B13A3354700074374 /* sur-classchalk-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469913A3354700074374 /* sur-classchalk-sm.png */; };
 		5EAC469E13A3355900074374 /* sur-class.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469C13A3355900074374 /* sur-class.png */; };
@@ -3107,6 +3108,8 @@
 		5EAA2128130749D700C1DB02 /* DilemmaListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DilemmaListView.xib; path = Resources/DilemmaListView.xib; sourceTree = "<group>"; };
 		5EAA72EC15E19FA500656390 /* UIColor+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIColor+Utility.h"; path = "Common/UIColor+Utility.h"; sourceTree = "<group>"; };
 		5EAA72ED15E19FA500656390 /* UIColor+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIColor+Utility.m"; path = "Common/UIColor+Utility.m"; sourceTree = "<group>"; };
+		5EAB7A43169E868600623A48 /* ChoiceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoiceTableViewCell.h; path = View/ChoiceTableViewCell.h; sourceTree = "<group>"; };
+		5EAB7A44169E868600623A48 /* ChoiceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChoiceTableViewCell.m; path = View/ChoiceTableViewCell.m; sourceTree = "<group>"; };
 		5EAC469813A3354700074374 /* sur-class-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class-sm.png"; sourceTree = "<group>"; };
 		5EAC469913A3354700074374 /* sur-classchalk-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-classchalk-sm.png"; sourceTree = "<group>"; };
 		5EAC469C13A3355900074374 /* sur-class.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class.png"; sourceTree = "<group>"; };
@@ -4663,6 +4666,8 @@
 				5ED61EB9122CAD3A00542453 /* ConscienceBubbleView.m */,
 				5E8CA92F123469AE00461363 /* GraphView.h */,
 				5E8CA930123469AE00461363 /* GraphView.m */,
+				5EAB7A43169E868600623A48 /* ChoiceTableViewCell.h */,
+				5EAB7A44169E868600623A48 /* ChoiceTableViewCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -7312,6 +7317,7 @@
 				5EAA72EE15E19FA500656390 /* UIColor+Utility.m in Sources */,
 				5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */,
 				5E23AA1415EB32880049BE87 /* ReferenceModel.m in Sources */,
+				5EAB7A45169E868600623A48 /* ChoiceTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

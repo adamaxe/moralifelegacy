@@ -141,7 +141,6 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 		
 	}
 	
-	
 	if([elementName isEqualToString:@"linearGradient"]) {
 			//Gradient has been found
 			(self.currentConscienceBody.gradientLayers)[currentConscienceGradient.gradientID] = currentConscienceGradient;

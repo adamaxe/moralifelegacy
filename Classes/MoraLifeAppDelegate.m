@@ -288,7 +288,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
         [_userCollection addObject:[match collectableName]];
     }
                 
-    
 }
 
 #pragma mark -
@@ -302,10 +301,5 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     
 //    [self destroyConscience];
 }
-
-/**
- Release init'ed objects, deallocate super.
- */
-
 
 @end
