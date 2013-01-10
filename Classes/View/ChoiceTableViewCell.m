@@ -20,7 +20,7 @@
 }
 
 - (void)prepareForReuse {
-    _isVirtue = FALSE;
+    self.isVirtue = FALSE;
 }
 
 - (void)setIsVirtue:(BOOL)isVirtue {

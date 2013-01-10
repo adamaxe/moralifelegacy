@@ -15,8 +15,9 @@ User can filter list by only things that are affordable to currentFunds.
 #import "ConscienceAsset.h"
 #import "UserCollectableDAO.h"
 #import "ConscienceHelpViewController.h"
-#import "ViewControllerLocalization.h"
 #import "ConscienceAssetDAO.h"
+#import "AccessoryTableViewCell.h"
+#import "ViewControllerLocalization.h"
 
 @interface ConscienceListViewController () <ViewControllerLocalization> {
     
@@ -349,12 +350,11 @@ Implementation: Retrieve User's current ethicals from UserData
 
 // Customize the appearance of table view cells.
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-	static NSString *CellIdentifier = @"accessoryChoices";
-	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+	AccessoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([AccessoryTableViewCell class])];
+
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+      	cell = [[AccessoryTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([AccessoryTableViewCell class])];
 	}
     
 	//Get image filename and append icon suffix (for iOS3)
@@ -362,33 +362,15 @@ Implementation: Retrieve User's current ethicals from UserData
     [rowImageName appendString:@"-sm"];
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
-    [[cell imageView] setImage:rowImage];
+    cell.accessoryImage = rowImage;
     
 	//Determine if User can actually equip ConscienceAsset by testing if enough ethicals are present, or it's already owned
 	//Adjust visual cues accordingly
-	if(([tableDataCosts[indexPath.row] floatValue] <= currentFunds) || ([tableDataDetails[indexPath.row] rangeOfString:@"Owned"].location != NSNotFound)){
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-		cell.detailTextLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1];
-        
-	}else {
-		cell.accessoryType = UITableViewCellAccessoryNone;
-		cell.detailTextLabel.textColor = [UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1];
-	}
-    
-	//Configure cell text
-	[[cell textLabel] setText:tableData[indexPath.row]];
-	[[cell textLabel] setFont:[UIFont systemFontOfSize:12.0]];
-	[[cell textLabel] setNumberOfLines:1];
-	[[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE];
+    cell.isAffordable = (([tableDataCosts[indexPath.row] floatValue] <= currentFunds) || ([tableDataDetails[indexPath.row] rangeOfString:@"Owned"].location != NSNotFound));
 
-	//Configure cell subtitle text
-	[cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
-	[cell.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
-	[cell.detailTextLabel setNumberOfLines:1];
-	[cell.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
-	[cell.detailTextLabel setMinimumFontSize:8.0];    
-        	
+	cell.textLabel.text = tableData[indexPath.row];
+	cell.detailTextLabel.text = tableDataDetails[indexPath.row];
+
 	return cell;
 }
 
