@@ -16,6 +16,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "UserCollectableDAO.h"
 #import "ConscienceActionViewController.h"
 #import "ConscienceHelpViewController.h"
+#import "DilemmaTableViewCell.h"
 
 @interface DilemmaListViewController () {
     
@@ -249,33 +250,22 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 	return [tableData count];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellIdentifier = @"moralIdentifier";
-    
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+
+	DilemmaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([DilemmaTableViewCell class])];
+
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-		
+      	cell = [[DilemmaTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([DilemmaTableViewCell class])];
 	}
-    
-	[[cell textLabel] setText:tableData[indexPath.row]];
+
+	[cell.textLabel setText:tableData[indexPath.row]];
 	
 	//cell image is surrounding utilized in dilemma
-    
     NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:tableDataImages[indexPath.row]];
     [rowImageName appendString:@"-sm"];
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
     //	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
-    [[cell imageView] setImage:rowImage];
-    
-    
-
-	//Setup cell text visuals
-	[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-	[[cell textLabel] setFont:[UIFont systemFontOfSize:16.0]];
-	[[cell textLabel] setNumberOfLines:1];
-	[[cell textLabel] setAdjustsFontSizeToFitWidth:TRUE]; 
-	[[cell detailTextLabel] setAdjustsFontSizeToFitWidth:TRUE];   
+    cell.dilemmaImage = rowImage;
 
 
     /** @todo check for empty arrays */
@@ -304,32 +294,19 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
 	if ([allUserChoices containsObject:tableDataKeys[indexPath.row]]) {
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        [[cell textLabel] setTextColor:[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1]];
-		[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
-        
+        cell.currentCellState = DilemmaTableViewCellStateFinished;
+
 		NSString *moralName = [moralNames valueForKey:[userChoices valueForKey:tableDataKeys[indexPath.row]]];
-		[[cell detailTextLabel] setText:moralName];
-		[[cell textLabel] setFont:[UIFont systemFontOfSize:12.0]];
+		[cell.detailTextLabel setText:moralName];
 	} else {
         
 		if (isSelectable) {
-            
-            	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            	cell.selectionStyle = UITableViewCellSelectionStyleGray;
-            	[[cell textLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1]];
-            	[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-            	[[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
+            cell.currentCellState = DilemmaTableViewCellStateAvailable;
+            [cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
 		} else {
-        
-                [[cell textLabel] setTextColor:[UIColor colorWithRed:100.0/255.0 green:150.00/255.0 blue:100.0/255.0 alpha:1]];
-            	[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1]];
+            cell.currentCellState = DilemmaTableViewCellStateUnavailable;
 
-            	cell.accessoryType = UITableViewCellAccessoryNone;
-            	cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//            	[[cell detailTextLabel] setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-            	[[cell detailTextLabel] setText:tableDataDetails[indexPath.row]]; 
+            [cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
             
 		}
         
