@@ -274,7 +274,7 @@
     NSArray *expectedValues = @[@(vice3Weight/total * 360.0), @(virtue2Weight/total * 360.0), @(virtue1Weight/total *360.0)];
 
     [self assertCorrectOrder:expectedMorals expectedValues:expectedValues];
-    
+
 }
 
 - (Moral *)readMoralWithName:(NSString *)moralName {
@@ -341,7 +341,7 @@
 
     for (int i = 0; i < testingSubject.pieValues.count; i++) {
 
-        STAssertEqualsWithAccuracy([(testingSubject.pieValues)[i] floatValue], [expectedValues[i] floatValue], 0,  @"Moral Values are not in correct order");
+        STAssertEqualsWithAccuracy([(testingSubject.pieValues)[i] floatValue], [expectedValues[i] floatValue], 0,  @"Pie Values are not in correct order");
     }
 }
 

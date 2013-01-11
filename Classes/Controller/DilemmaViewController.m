@@ -329,6 +329,83 @@ Show reward views once User has completed dilemma and refuse access to previous 
     
 }
 
+
+- (void) animateViewDetail: (MLViewToAnimate) viewToAnimateIndex atBeginning: (BOOL) isBeginning {
+
+    int animationType = arc4random()%4;
+    CGAffineTransform viewAnimationTransform = CGAffineTransformIdentity;
+
+    switch (animationType) {
+        case 0:{
+            viewAnimationTransform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
+        }
+            break;
+        case 1:{
+            viewAnimationTransform = CGAffineTransformMakeTranslation(0, 400);
+        }
+            break;
+        case 2:{
+            viewAnimationTransform = CGAffineTransformMakeTranslation(400, 0);
+        }
+            break;
+        case 3:{
+            viewAnimationTransform = CGAffineTransformMakeTranslation(-400, 0);
+        }
+            break;
+        default:
+            break;
+    }
+
+    if (isBeginning) {
+
+        switch (viewToAnimateIndex) {
+            case MLViewToAnimateVersus: {
+                versusImage.alpha = 0;
+                versusImage.transform = viewAnimationTransform;
+
+            }
+                break;
+            case MLViewToAnimateReward: {
+                rewardView.alpha = 0;
+                rewardView.transform = viewAnimationTransform;
+
+            }
+                break;
+            default:
+                break;
+        }
+
+    } else {
+
+        switch (viewToAnimateIndex) {
+            case MLViewToAnimateVersus: {
+                //Animate vs. image and Consciences
+                [UIView beginAnimations:@"Versus" context:nil];
+                [UIView setAnimationDuration:0.5];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                versusImage.alpha = 1;
+                versusImage.transform = CGAffineTransformIdentity;
+                [UIView commitAnimations];
+
+            }
+                break;
+            case MLViewToAnimateReward: {
+                //Animate reward image
+                [UIView beginAnimations:@"Reward" context:nil];
+                [UIView setAnimationDuration:0.75];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                rewardView.alpha = 1;
+                rewardView.transform = CGAffineTransformIdentity;
+                [UIView commitAnimations];
+            }
+                break;
+            default:
+                break;
+        }
+        
+    }
+}
+
 #pragma mark -
 #pragma mark Data Manipulation
 
@@ -664,82 +741,6 @@ Calculate changes to User's ethicals.  Limit to 999.
     [currentUserCharacterDAO update];
     
     
-}
-
-- (void) animateViewDetail: (MLViewToAnimate) viewToAnimateIndex atBeginning: (BOOL) isBeginning {
-    
-    int animationType = arc4random()%4;
-    CGAffineTransform viewAnimationTransform = CGAffineTransformIdentity;
-    
-    switch (animationType) {
-        case 0:{
-            viewAnimationTransform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));                
-        }
-            break;
-        case 1:{
-            viewAnimationTransform = CGAffineTransformMakeTranslation(0, 400);                
-        }
-            break;                        
-        case 2:{
-            viewAnimationTransform = CGAffineTransformMakeTranslation(400, 0);                
-        }
-            break;                        
-        case 3:{
-            viewAnimationTransform = CGAffineTransformMakeTranslation(-400, 0);                
-        }
-            break; 
-        default:
-            break;
-    }
-    
-    if (isBeginning) {
-    
-        switch (viewToAnimateIndex) {
-            case MLViewToAnimateVersus: {
-                versusImage.alpha = 0;
-                versusImage.transform = viewAnimationTransform;
-
-            }
-                break;
-            case MLViewToAnimateReward: {
-                rewardView.alpha = 0;
-                rewardView.transform = viewAnimationTransform;
-                
-            }
-                break;            
-            default:
-                break;
-        }
-        
-    } else {
-
-        switch (viewToAnimateIndex) {
-            case MLViewToAnimateVersus: {
-                //Animate vs. image and Consciences
-                [UIView beginAnimations:@"Versus" context:nil];
-                [UIView setAnimationDuration:0.5];
-                [UIView setAnimationBeginsFromCurrentState:YES];
-                versusImage.alpha = 1;
-                versusImage.transform = CGAffineTransformIdentity;                        
-                [UIView commitAnimations];
-                
-            }
-                break;
-            case MLViewToAnimateReward: {
-                //Animate reward image
-                [UIView beginAnimations:@"Reward" context:nil];
-                [UIView setAnimationDuration:0.75];
-                [UIView setAnimationBeginsFromCurrentState:YES];
-                rewardView.alpha = 1;
-                rewardView.transform = CGAffineTransformIdentity;                        
-                [UIView commitAnimations];
-            }
-                break;            
-            default:
-                break;
-        }
-        
-    }
 }
 
 #pragma mark -

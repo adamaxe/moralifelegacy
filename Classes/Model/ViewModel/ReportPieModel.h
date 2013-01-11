@@ -16,11 +16,11 @@
 @property (nonatomic, assign) BOOL isAscending;		/**< current order type */
 @property (nonatomic, assign) BOOL isAlphabetical;	/**< current sort type */
 
-@property (nonatomic, readonly, strong) NSMutableArray *reportNames;    /**< virtue/vice display */
-@property (nonatomic, readonly, strong) NSMutableArray *moralNames;     /**< display names for Moral listings */
-@property (nonatomic, readonly, strong) NSMutableArray *pieValues;      /**< percentage of pie chart */
-@property (nonatomic, readonly, strong) NSMutableArray *pieColors;      /**< color assigned to moral for name/pie slice */
-@property (nonatomic, readonly, strong) NSMutableDictionary *moralImageNames;   /**< moral icon */
+@property (nonatomic, readonly, strong) NSArray *reportNames;    /**< report types */
+@property (nonatomic, readonly, strong) NSArray *moralNames;     /**< display names for Moral listings */
+@property (nonatomic, readonly, strong) NSArray *pieValues;      /**< percentage of pie chart */
+@property (nonatomic, readonly, strong) NSArray *pieColors;      /**< color assigned to moral for name/pie slice */
+@property (nonatomic, readonly, strong) NSDictionary *moralImageNames;   /**< moral icon */
 
 /**
 Builds model with dependency injection
