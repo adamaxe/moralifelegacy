@@ -20,11 +20,11 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
 
 }
 
-@property (nonatomic, readwrite, strong) NSMutableArray *choices;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, strong) NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
-@property (nonatomic, readwrite, strong) NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
-@property (nonatomic, readwrite, strong) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readwrite, strong) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readwrite, strong) NSArray *choices;			/**< Array of User-entered choice titles */
+@property (nonatomic, readwrite, strong) NSArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
+@property (nonatomic, readwrite, strong) NSArray *choiceKeys;			/**< Array of User-entered choice titles */
+@property (nonatomic, readwrite, strong) NSArray *details;			/**< Array of User-entered details */
+@property (nonatomic, readwrite, strong) NSArray *icons;				/**< Array of associated images */
 
 /**
  Retrieve all User entered Choices
@@ -50,11 +50,11 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
         _isAscending = FALSE;
         _sortKey = MLChoiceListSortDate;
 
-        _choices = [[NSMutableArray alloc] init];
-        _choicesAreGood = [[NSMutableArray alloc] init];
-        _choiceKeys = [[NSMutableArray alloc] init];
-        _details = [[NSMutableArray alloc] init];
-        _icons = [[NSMutableArray alloc] init];
+        _choices = [[NSArray alloc] init];
+        _choicesAreGood = [[NSArray alloc] init];
+        _choiceKeys = [[NSArray alloc] init];
+        _details = [[NSArray alloc] init];
+        _icons = [[NSArray alloc] init];
         preferences = prefs;
 
         currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:modelManager];
@@ -99,12 +99,11 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
  */
 - (void) retrieveAllChoices {
 
-	//Clear all datasets
-	[self.choices removeAllObjects];
-	[self.choiceKeys removeAllObjects];
-	[self.choicesAreGood removeAllObjects];
-	[self.icons removeAllObjects];
-	[self.details removeAllObjects];
+    NSMutableArray *derivedChoices = [[NSMutableArray alloc] init];
+	NSMutableArray *derivedChoiceKeys = [[NSMutableArray alloc] init];
+	NSMutableArray *derivedChoicesAreGood = [[NSMutableArray alloc] init];
+	NSMutableArray *derivedIcons = [[NSMutableArray alloc] init];
+	NSMutableArray *derivedDetails = [[NSMutableArray alloc] init];
 
     NSString *predicateParam = @"dile-";
 
@@ -136,9 +135,9 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
 		//Build raw data list to be filtered by second data container set
 		for (UserChoice *matches in objects){
 
-			[self.choices addObject:[matches entryShortDescription]];
-		 	[self.choiceKeys addObject:[matches entryKey]];
-			[self.choicesAreGood addObject:@([[matches entryIsGood] boolValue])];
+			[derivedChoices addObject:[matches entryShortDescription]];
+		 	[derivedChoiceKeys addObject:[matches entryKey]];
+			[derivedChoicesAreGood addObject:@([[matches entryIsGood] boolValue])];
 
 			//Detailed text is name of Moral, Weight, Date, Long Description
 			NSMutableString *detailText = [[NSMutableString alloc] init];
@@ -149,7 +148,7 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
 			Moral *currentMoral = [currentMoralDAO read:value];
 
             //Display image and moral name
-            [self.icons addObject:[currentMoral imageNameMoral]];
+            [derivedIcons addObject:[currentMoral imageNameMoral]];
             [detailText appendString:[currentMoral displayNameMoral]];
 
 			//Display date last modified for sorting
@@ -166,10 +165,17 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
             }
 
 			//Populate details array with constructed detail
-            [self.details addObject:detailText];
+            [derivedDetails addObject:detailText];
 
 		}
 	}
+
+	self.choices = [NSArray arrayWithArray:derivedChoices];
+	self.choiceKeys = [NSArray arrayWithArray:derivedChoiceKeys];
+	self.choicesAreGood = [NSArray arrayWithArray:derivedChoicesAreGood];
+	self.icons = [NSArray arrayWithArray:derivedIcons];
+	self.details = [NSArray arrayWithArray:derivedDetails];
+
 }
 
 /**
@@ -177,24 +183,24 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
  */
 - (void) retrieveChoice:(NSString *) choiceKey forEditing:(BOOL)isEditing{
 
-    UserChoice *match = [currentUserChoiceDAO read:choiceKey];
+    UserChoice *userChoiceMatch = [currentUserChoiceDAO read:choiceKey];
 
-    if (match) {
+    if (userChoiceMatch) {
 
         //Set state retention for eventual call to ChoiceViewController to pick up
         if(isEditing){
-            [preferences setObject:[match entryKey] forKey:@"entryKey"];
+            [preferences setObject:[userChoiceMatch entryKey] forKey:@"entryKey"];
         }
-        [preferences setFloat:[[match entrySeverity] floatValue]forKey:@"entrySeverity"];
-        [preferences setObject:[match entryShortDescription] forKey:@"entryShortDescription"];
-        [preferences setObject:[match entryLongDescription] forKey:@"entryLongDescription"];
-        [preferences setObject:[match choiceJustification] forKey:@"choiceJustification"];
-        [preferences setObject:[match choiceConsequences] forKey:@"choiceConsequence"];
-        [preferences setFloat:[[match choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-        [preferences setObject:[match choiceMoral] forKey:@"moralKey"];
-        [preferences setBool:[[match entryIsGood] boolValue] forKey:@"entryIsGood"];
+        [preferences setFloat:[[userChoiceMatch entrySeverity] floatValue]forKey:@"entrySeverity"];
+        [preferences setObject:[userChoiceMatch entryShortDescription] forKey:@"entryShortDescription"];
+        [preferences setObject:[userChoiceMatch entryLongDescription] forKey:@"entryLongDescription"];
+        [preferences setObject:[userChoiceMatch choiceJustification] forKey:@"choiceJustification"];
+        [preferences setObject:[userChoiceMatch choiceConsequences] forKey:@"choiceConsequence"];
+        [preferences setFloat:[[userChoiceMatch choiceInfluence] floatValue] forKey:@"choiceInfluence"];
+        [preferences setObject:[userChoiceMatch choiceMoral] forKey:@"moralKey"];
+        [preferences setBool:[[userChoiceMatch entryIsGood] boolValue] forKey:@"entryIsGood"];
 
-        Moral *currentMoral = [currentMoralDAO read:[match choiceMoral]];
+        Moral *currentMoral = [currentMoralDAO read:[userChoiceMatch choiceMoral]];
 
         [preferences setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
         [preferences setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];

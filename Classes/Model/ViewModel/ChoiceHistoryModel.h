@@ -27,11 +27,11 @@ extern NSString* const MLChoiceListSortName;
 @property (nonatomic, strong) NSString *sortKey; /**< sort order */
 
 //Raw, readonly data of all entered choices
-@property (nonatomic, readonly, strong) NSMutableArray *choices;			/**< Array of User-entered choice titles */
-@property (nonatomic, readonly, strong) NSMutableArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
-@property (nonatomic, readonly, strong) NSMutableArray *choiceKeys;			/**< Array of User-entered choice titles */
-@property (nonatomic, readonly, strong) NSMutableArray *details;			/**< Array of User-entered details */
-@property (nonatomic, readonly, strong) NSMutableArray *icons;				/**< Array of associated images */
+@property (nonatomic, readonly, strong) NSArray *choices;			/**< Array of User-entered choice titles */
+@property (nonatomic, readonly, strong) NSArray *choicesAreGood;     	/**< Array of whether choices are good/bad */
+@property (nonatomic, readonly, strong) NSArray *choiceKeys;			/**< Array of User-entered choice titles */
+@property (nonatomic, readonly, strong) NSArray *details;			/**< Array of User-entered details */
+@property (nonatomic, readonly, strong) NSArray *icons;				/**< Array of associated images */
 
 
 /**
