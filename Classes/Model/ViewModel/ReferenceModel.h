@@ -34,19 +34,18 @@ typedef enum {
 @property (nonatomic, readonly) BOOL hasQuote;              /**< Determine if Reference Type has quotes */
 @property (nonatomic, readonly) BOOL hasLink;              /**< Determine if Reference Type has URLs */
 
-@property (nonatomic, readonly, strong) NSMutableArray *references;			/**< reference names */
-@property (nonatomic, readonly, strong) NSMutableArray *referenceKeys;     	/**< pkeys for references */
-@property (nonatomic, readonly, strong) NSMutableArray *details;			/**< description of Reference */
-@property (nonatomic, readonly, strong) NSMutableArray *icons;				/**< associated images */
-@property (nonatomic, readonly, strong) NSMutableArray *longDescriptions;			/**< long description of Reference */
-@property (nonatomic, readonly, strong) NSMutableArray *links;				/**< associated urls */
-@property (nonatomic, readonly, strong) NSMutableArray *originYears;				/**< when the reference was created/born */
-@property (nonatomic, readonly, strong) NSMutableArray *endYears;				/**< when the reference ceased to be/died */
-@property (nonatomic, readonly, strong) NSMutableArray *originLocations;				/**< origination geography */
-@property (nonatomic, readonly, strong) NSMutableArray *orientations;				/**<  */
-@property (nonatomic, readonly, strong) NSMutableArray *quotes;				/**<  */
-@property (nonatomic, readonly, strong) NSMutableArray *relatedMorals;				/**<  */
-
+@property (nonatomic, readonly, strong) NSArray *references;			/**< reference names */
+@property (nonatomic, readonly, strong) NSArray *referenceKeys;     	/**< pkeys for references */
+@property (nonatomic, readonly, strong) NSArray *details;			/**< description of Reference */
+@property (nonatomic, readonly, strong) NSArray *icons;				/**< associated images */
+@property (nonatomic, readonly, strong) NSArray *longDescriptions;			/**< long description of Reference */
+@property (nonatomic, readonly, strong) NSArray *links;				/**< associated urls */
+@property (nonatomic, readonly, strong) NSArray *originYears;				/**< when the reference was created/born */
+@property (nonatomic, readonly, strong) NSArray *endYears;				/**< when the reference ceased to be/died */
+@property (nonatomic, readonly, strong) NSArray *originLocations;				/**< origination geography */
+@property (nonatomic, readonly, strong) NSArray *orientations;				/**<  */
+@property (nonatomic, readonly, strong) NSArray *quotes;				/**<  */
+@property (nonatomic, readonly, strong) NSArray *relatedMorals;				/**<  */
 
 /**
  Builds model with dependency injection

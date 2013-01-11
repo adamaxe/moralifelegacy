@@ -19,18 +19,18 @@
 @property (nonatomic, readwrite) BOOL hasQuote;
 @property (nonatomic, readwrite) BOOL hasLink;
 
-@property (nonatomic, readwrite, strong) NSMutableArray *references;
-@property (nonatomic, readwrite, strong) NSMutableArray *referenceKeys;
-@property (nonatomic, readwrite, strong) NSMutableArray *details;
-@property (nonatomic, readwrite, strong) NSMutableArray *icons;
-@property (nonatomic, readwrite, strong) NSMutableArray *longDescriptions;
-@property (nonatomic, readwrite, strong) NSMutableArray *links;
-@property (nonatomic, readwrite, strong) NSMutableArray *originYears;
-@property (nonatomic, readwrite, strong) NSMutableArray *endYears;
-@property (nonatomic, readwrite, strong) NSMutableArray *originLocations;
-@property (nonatomic, readwrite, strong) NSMutableArray *orientations;
-@property (nonatomic, readwrite, strong) NSMutableArray *quotes;
-@property (nonatomic, readwrite, strong) NSMutableArray *relatedMorals;
+@property (nonatomic, readwrite, strong) NSArray *references;
+@property (nonatomic, readwrite, strong) NSArray *referenceKeys;
+@property (nonatomic, readwrite, strong) NSArray *details;
+@property (nonatomic, readwrite, strong) NSArray *icons;
+@property (nonatomic, readwrite, strong) NSArray *longDescriptions;
+@property (nonatomic, readwrite, strong) NSArray *links;
+@property (nonatomic, readwrite, strong) NSArray *originYears;
+@property (nonatomic, readwrite, strong) NSArray *endYears;
+@property (nonatomic, readwrite, strong) NSArray *originLocations;
+@property (nonatomic, readwrite, strong) NSArray *orientations;
+@property (nonatomic, readwrite, strong) NSArray *quotes;
+@property (nonatomic, readwrite, strong) NSArray *relatedMorals;
 
 /**
  Retrieve all References
@@ -58,18 +58,18 @@
         self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",nil);
 
         self.referenceType = MLReferenceModelTypeConscienceAsset;
-        self.references = [[NSMutableArray alloc] init];
-        self.referenceKeys = [[NSMutableArray alloc] init];
-        self.details = [[NSMutableArray alloc] init];
-        self.icons = [[NSMutableArray alloc] init];
-        self.longDescriptions = [[NSMutableArray alloc] init];
-        self.links = [[NSMutableArray alloc] init];
-        self.originYears = [[NSMutableArray alloc] init];
-        self.endYears = [[NSMutableArray alloc] init];
-        self.originLocations = [[NSMutableArray alloc] init];
-        self.orientations = [[NSMutableArray alloc] init];
-        self.quotes = [[NSMutableArray alloc] init];
-        self.relatedMorals = [[NSMutableArray alloc] init];
+        self.references = [[NSArray alloc] init];
+        self.referenceKeys = [[NSArray alloc] init];
+        self.details = [[NSArray alloc] init];
+        self.icons = [[NSArray alloc] init];
+        self.longDescriptions = [[NSArray alloc] init];
+        self.links = [[NSArray alloc] init];
+        self.originYears = [[NSArray alloc] init];
+        self.endYears = [[NSArray alloc] init];
+        self.originLocations = [[NSArray alloc] init];
+        self.orientations = [[NSArray alloc] init];
+        self.quotes = [[NSArray alloc] init];
+        self.relatedMorals = [[NSArray alloc] init];
 
         preferences = prefs;
         currentUserCollection = userCollection;
@@ -100,18 +100,18 @@
 - (void) retrieveAllReferences {
 
 	//Clear all datasets
-	[self.references removeAllObjects];
-	[self.referenceKeys removeAllObjects];
-	[self.icons removeAllObjects];
-	[self.details removeAllObjects];
-	[self.longDescriptions removeAllObjects];
-	[self.links removeAllObjects];
-	[self.originYears removeAllObjects];
-	[self.endYears removeAllObjects];
-	[self.originLocations removeAllObjects];
-	[self.orientations removeAllObjects];
-	[self.quotes removeAllObjects];
-	[self.relatedMorals removeAllObjects];
+    NSMutableArray *derivedReferences = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedReferenceKeys = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedDetails = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedIcons = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedLongDescriptions = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedLinks = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedOriginYears = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedEndYears = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedOriginLocations = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedOrientations = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedQuotes = [[NSMutableArray alloc] init];
+    NSMutableArray *derivedRelatedMorals = [[NSMutableArray alloc] init];
 
     id currentDAO;	
     self.hasLink = TRUE;
@@ -172,49 +172,49 @@
                 //Is the asset owned
                 if([currentUserCollection containsObject:[match nameReference]]){
 
-                    [self.references addObject:[match displayNameReference]];
-                    [self.icons addObject:[match imageNameReference]];
-                    [self.details addObject:[match shortDescriptionReference]];
-                    [self.referenceKeys addObject:[match nameReference]];
-                    [self.longDescriptions addObject:[match longDescriptionReference]];
-                    [self.links addObject:[match linkReference]];
-                    [self.originYears addObject:[match originYear]];
+                    [derivedReferences addObject:[match displayNameReference]];
+                    [derivedIcons addObject:[match imageNameReference]];
+                    [derivedDetails addObject:[match shortDescriptionReference]];
+                    [derivedReferenceKeys addObject:[match nameReference]];
+                    [derivedLongDescriptions addObject:[match longDescriptionReference]];
+                    [derivedLinks addObject:[match linkReference]];
+                    [derivedOriginYears addObject:[match originYear]];
 
                     if ([match relatedMoral] == nil) {
-                        [self.relatedMorals addObject:@""];
+                        [derivedRelatedMorals addObject:@""];
                     } else {
                         relatedMoral = [match relatedMoral];
-                        [self.relatedMorals addObject:[relatedMoral imageNameMoral]];
+                        [derivedRelatedMorals addObject:[relatedMoral imageNameMoral]];
                     }
 
                     if ([match originLocation] == nil) {
 
                         if ((self.referenceType != MLReferenceModelTypePerson) && relatedMoral) {
-                            [self.originLocations addObject:[[NSString alloc] initWithFormat:@"+%d %@", [[match moralValueAsset] intValue], relatedMoral.displayNameMoral]];
+                            [derivedOriginLocations addObject:[[NSString alloc] initWithFormat:@"+%d %@", [[match moralValueAsset] intValue], relatedMoral.displayNameMoral]];
                         } else {
-                            [self.originLocations addObject:@""];
+                            [derivedOriginLocations addObject:@""];
                         }
 
                     } else {
-                        [self.originLocations addObject:[match originLocation]];
+                        [derivedOriginLocations addObject:[match originLocation]];
                     }
 
                     if ([match respondsToSelector:@selector(deathYearPerson)]) {
-                        [self.endYears addObject:[[match deathYearPerson] stringValue]];
+                        [derivedEndYears addObject:[[match deathYearPerson] stringValue]];
                     } else {
-                        [self.endYears addObject:@0];
+                        [derivedEndYears addObject:@0];
                     }
 
                     if ([match respondsToSelector:@selector(orientationAsset)] && ([match orientationAsset] != nil)) {
-                        [self.orientations addObject:[match orientationAsset]];
+                        [derivedOrientations addObject:[match orientationAsset]];
                     } else {
-                        [self.orientations addObject:@""];
+                        [derivedOrientations addObject:@""];
                     }
 
                     if ([match respondsToSelector:@selector(quotePerson)] && ([match quotePerson] != nil)) {
-                            [self.quotes addObject:[match quotePerson]];
+                            [derivedQuotes addObject:[match quotePerson]];
                     } else {
-                        [self.quotes addObject:@""];
+                        [derivedQuotes addObject:@""];
                     }
 
                 }
@@ -222,28 +222,41 @@
             }
         } else {
 
-            for (Moral *matches in objects){
+            for (Moral *moralMatch in objects){
 
-                if([currentUserCollection containsObject:[matches nameMoral]]){
+                if([currentUserCollection containsObject:[moralMatch nameMoral]]){
 
-                    [self.references addObject:[matches displayNameMoral]];
-                    [self.icons addObject:[matches imageNameMoral]];
-                    [self.details addObject:[NSString stringWithFormat:@"%@: %@", [matches shortDescriptionMoral], [matches longDescriptionMoral]]];
-                    [self.referenceKeys addObject:[matches nameMoral]];
-                    [self.longDescriptions addObject:[[NSString alloc] initWithFormat:@"%@: %@", [matches shortDescriptionMoral], [matches longDescriptionMoral]]];
-                    [self.links addObject:[matches linkMoral]];
-                    [self.originYears addObject:@0];
-                    [self.originLocations addObject:@""];
-                    [self.endYears addObject:@"0"];
-                    [self.orientations addObject:@""];
-                    [self.quotes addObject:@""];
-                    [self.relatedMorals addObject:@""];
+                    [derivedReferences addObject:[moralMatch displayNameMoral]];
+                    [derivedIcons addObject:[moralMatch imageNameMoral]];
+                    [derivedDetails addObject:[NSString stringWithFormat:@"%@: %@", [moralMatch shortDescriptionMoral], [moralMatch longDescriptionMoral]]];
+                    [derivedReferenceKeys addObject:[moralMatch nameMoral]];
+                    [derivedLongDescriptions addObject:[[NSString alloc] initWithFormat:@"%@: %@", [moralMatch shortDescriptionMoral], [moralMatch longDescriptionMoral]]];
+                    [derivedLinks addObject:[moralMatch linkMoral]];
+                    [derivedOriginYears addObject:@0];
+                    [derivedOriginLocations addObject:@""];
+                    [derivedEndYears addObject:@"0"];
+                    [derivedOrientations addObject:@""];
+                    [derivedQuotes addObject:@""];
+                    [derivedRelatedMorals addObject:@""];
                 }
             }
 
 		}
 
     }
+
+	self.references = [NSArray arrayWithArray:derivedReferences];
+	self.referenceKeys = [NSArray arrayWithArray:derivedReferenceKeys];
+	self.icons = [NSArray arrayWithArray:derivedIcons];
+	self.details = [NSArray arrayWithArray:derivedDetails];
+	self.longDescriptions = [NSArray arrayWithArray:derivedLongDescriptions];
+	self.links = [NSArray arrayWithArray:derivedLinks];
+	self.originYears = [NSArray arrayWithArray:derivedOriginYears];
+	self.endYears = [NSArray arrayWithArray:derivedEndYears];
+	self.originLocations = [NSArray arrayWithArray:derivedOriginLocations];
+	self.orientations = [NSArray arrayWithArray:derivedOrientations];
+	self.quotes = [NSArray arrayWithArray:derivedQuotes];
+	self.relatedMorals = [NSArray arrayWithArray:derivedRelatedMorals];
 
 }
 
