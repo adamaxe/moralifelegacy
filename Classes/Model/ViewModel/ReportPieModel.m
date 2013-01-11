@@ -24,11 +24,11 @@
 
 }
 
-@property (nonatomic, readwrite, strong) NSMutableArray *privateReportNames;
-@property (nonatomic, readwrite, strong) NSMutableArray *privateMoralNames;
-@property (nonatomic, readwrite, strong) NSMutableArray *privatePieValues;
-@property (nonatomic, readwrite, strong) NSMutableArray *privatePieColors;
-@property (nonatomic, readwrite, strong) NSMutableDictionary *privateMoralImageNames;
+@property (nonatomic, readwrite, strong) NSArray *reportNames;
+@property (nonatomic, readwrite, strong) NSArray *moralNames;
+@property (nonatomic, readwrite, strong) NSArray *pieValues;
+@property (nonatomic, readwrite, strong) NSArray *pieColors;
+@property (nonatomic, readwrite, strong) NSDictionary *moralImageNames;
 
 /**
  Retrieve all User entered Morals from persisted User Data
@@ -58,11 +58,11 @@
         _isAlphabetical = FALSE;
         _isAscending = FALSE;
 
-        _privateReportNames = [[NSMutableArray alloc] init];
-        _privatePieValues = [[NSMutableArray alloc] init];
-        _privatePieColors = [[NSMutableArray alloc] init];
-        _privateMoralNames = [[NSMutableArray alloc] init];
-        _privateMoralImageNames = [[NSMutableDictionary alloc] init];
+        _reportNames = [[NSArray alloc] init];
+        _pieValues = [[NSArray alloc] init];
+        _pieColors = [[NSArray alloc] init];
+        _moralNames = [[NSArray alloc] init];
+        _moralImageNames = [[NSDictionary alloc] init];
         reportValues = [[NSMutableDictionary alloc] init];
         moralDisplayNames = [[NSMutableDictionary alloc] init];
         moralColors = [[NSMutableDictionary alloc] init];
@@ -75,29 +75,6 @@
     [self generateGraphData];
     return self;
 
-}
-
-#pragma mark -
-#pragma mark Overloaded Getters
-
-- (NSArray *)reportNames {
-    return [NSArray arrayWithArray:self.privateReportNames];
-}
-
-- (NSArray *)moralNames {
-    return [NSArray arrayWithArray:self.privateMoralNames];
-}
-
-- (NSArray *)pieValues {
-    return [NSArray arrayWithArray:self.privatePieValues];
-}
-
-- (NSArray *)pieColors {
-    return [NSArray arrayWithArray:self.privatePieColors];
-}
-
-- (NSDictionary *)moralImageNames {
-    return [NSDictionary dictionaryWithDictionary:self.privateMoralImageNames];
 }
 
 #pragma mark -
@@ -139,11 +116,8 @@
 	//Reset data
  	[reportValues removeAllObjects];
 	[moralDisplayNames removeAllObjects];
-	[self.privateMoralImageNames removeAllObjects];
-	[self.privatePieColors removeAllObjects];
-	[self.privatePieValues removeAllObjects];
-	[self.privateReportNames removeAllObjects];
-	[self.privateMoralNames removeAllObjects];
+
+    NSMutableDictionary *derivedMoralImageNames = [[NSMutableDictionary alloc] init];
 
 	//Retrieve virtue or vice
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryIsGood == %@", @(self.isGood)];
@@ -178,7 +152,7 @@
             Moral *currentMoral = [currentMoralDAO read:moralName];
 
             [moralDisplayNames setValue:currentMoral.displayNameMoral forKey:moralName];
-            [self.privateMoralImageNames setValue:currentMoral.imageNameMoral forKey:moralName];
+            [derivedMoralImageNames setValue:currentMoral.imageNameMoral forKey:moralName];
 
             NSString *moralColor = [[NSString alloc] initWithString:currentMoral.colorMoral];
 
@@ -189,6 +163,7 @@
 
 	}
 
+    self.moralImageNames = derivedMoralImageNames;
 }
 
 /**
@@ -198,6 +173,11 @@
  @todo needs to be optimized.  Don't generate sorted and reversed keys without need.  Check for empty first.
  */
 - (void) generateGraphData {
+	NSMutableArray *derivedPieColors = [[NSMutableArray alloc] init];
+	NSMutableArray *derivedPieValues = [[NSMutableArray alloc] init];
+	NSMutableArray *derivedReportNames = [[NSMutableArray alloc] init];
+	NSMutableArray *derivedMoralNames = [[NSMutableArray alloc] init];
+
 	//Reset running total before getting Choices
 	runningTotal = 0.0;
 
@@ -236,12 +216,12 @@
     if ([iteratorArray count] == 0) {
 
         if (self.isGood) {
-            [self.privateReportNames addObject:@"No Moral Entries!"];
+            [derivedReportNames addObject:@"No Moral Entries!"];
         } else {
-            [self.privateReportNames addObject:@"No Immoral Entries!"];
+            [derivedReportNames addObject:@"No Immoral Entries!"];
         }
 
-        [self.privatePieColors addObject:[UIColor redColor]];
+        [derivedPieColors addObject:[UIColor redColor]];
     } else {
 
         //Iterate through every User selection
@@ -251,21 +231,25 @@
             moralPercentage = ([[reportValues valueForKey:moralInstance] floatValue]/runningTotal);
 
             //Convert percentage to degrees
-            [self.privatePieValues addObject:@(moralPercentage * 360)];
+            [derivedPieValues addObject:@(moralPercentage * 360)];
 
             //Add report names for relation to table
-            [self.privateReportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", moralDisplayNames[moralInstance], moralPercentage * 100]];
+            [derivedReportNames addObject:[NSString stringWithFormat:@"%@: %.2f%%", moralDisplayNames[moralInstance], moralPercentage * 100]];
 
-            [self.privatePieColors addObject:moralColors[moralInstance]];
+            [derivedPieColors addObject:moralColors[moralInstance]];
 
             //Don't add Moral if it already exists in the display list
-            if (![self.moralNames containsObject:moralInstance]) {
-                [self.privateMoralNames addObject:moralInstance];
+            if (![derivedMoralNames containsObject:moralInstance]) {
+                [derivedMoralNames addObject:moralInstance];
             }
             
         }
     }
 
+    self.pieColors = [NSArray arrayWithArray:derivedPieColors];
+	self.pieValues = [NSArray arrayWithArray:derivedPieValues];
+	self.reportNames = [NSArray arrayWithArray:derivedReportNames];
+	self.moralNames = [NSArray arrayWithArray:derivedMoralNames];
 
 }
 
