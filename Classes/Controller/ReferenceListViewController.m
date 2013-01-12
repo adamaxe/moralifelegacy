@@ -90,7 +90,8 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-	
+
+	self.referenceModel.referenceKey = nil;
 	[self retrieveAllReferences];
     
     //User may be returning from DilemmaView and will expect search filtered list
@@ -134,7 +135,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 Implementation: Retrieve all relevant hits from SystemData as raw.  Populate searchable dataset for filtering
  */
 - (void) retrieveAllReferences{
-		
+
 	[dataSource removeAllObjects];
 	[searchedData removeAllObjects];
 	[tableData removeAllObjects];
@@ -203,7 +204,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:[[ReferenceModel alloc] init]];
+	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel];
 
     [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
 

@@ -69,8 +69,10 @@ var immoralInfluenceCancel = 0.24;
 //var immoralInfluenceCancel = Math.floor(1/5);
 var immoralInfluenceSliderValueCancel = (immoralInfluenceCancel * 100) + "%";
 
-var defaultReferenceAccessoryName = "Bare Neck"
-var defaultReferenceAccessoryDescription = "This Accessory, when equipped, will allow you to remove whatever is slung around my neck."
+var defaultReferenceAccessoryName1 = "Bare Neck"
+var defaultReferenceAccessoryDescription1 = "This Accessory, when equipped, will allow you to remove whatever is slung around my neck."
+var defaultReferenceAccessoryName2 = "Bare Neck"
+var defaultReferenceAccessoryDescription2 = "This Accessory, when equipped, will allow you to remove whatever is slung around my neck."
 var defaultReferenceFigureName = "You"
 var defaultReferenceFigureDescription = "Every hero is a regular person first.  You have chosen to take some responsibility for your actions by using MoraLife.  So, the only question now is how are you going to leave your mark on the world?"
 var defaultReferenceMoralName = "Responsibility"

@@ -37,7 +37,7 @@ target.delay(2.0);
 testCaseName = testSuiteName + " Accessory Title Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.staticTexts()["Reference Name"].value() == defaultReferenceAccessoryName) {
+if(window.staticTexts()["Reference Name"].value() == defaultReferenceAccessoryName1) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.staticTexts()["Reference Name"].value());
@@ -46,13 +46,40 @@ if(window.staticTexts()["Reference Name"].value() == defaultReferenceAccessoryNa
 testCaseName = testSuiteName + " Reference Long Description Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textViews()["Long Description"].value() == defaultReferenceAccessoryDescription) {
+if(window.textViews()["Long Description"].value() == defaultReferenceAccessoryDescription1) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
 }
 
 app.navigationBar().leftButton().tap();
+window.tableViews()[0].cells()[1].tap();
+
+testCaseName = testSuiteName + " Verify 2nd Accessory fields";
+target.delay(2.0);
+
+testCaseName = testSuiteName + " Accessory Title Verification";
+UIALogger.logStart(testCaseName + " Test");
+
+if(window.staticTexts()["Reference Name"].value() == defaultReferenceAccessoryName2) {
+	UIALogger.logPass(testCaseName + " verified");
+} else {
+	UIALogger.logFail(testCaseName + " not verified: " + window.staticTexts()["Reference Name"].value());
+}
+
+testCaseName = testSuiteName + " Reference Long Description Verification";
+UIALogger.logStart(testCaseName + " Test");
+
+if(window.textViews()["Long Description"].value() == defaultReferenceAccessoryDescription2) {
+	UIALogger.logPass(testCaseName + " verified");
+} else {
+	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
+}
+
+app.navigationBar().leftButton().tap();
+
+
+
 app.navigationBar().leftButton().tap();
 
 testCaseName = testSuiteName + " Figures Verification";
