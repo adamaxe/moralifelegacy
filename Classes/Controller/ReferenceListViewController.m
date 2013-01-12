@@ -190,7 +190,12 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     if (self.referenceModel.referenceType != MLReferenceModelTypeMoral) {
         [rowImageName appendString:@"-sm"];
     }
-    
+
+    if (self.referenceModel.referenceType == MLReferenceModelTypePerson) {
+        [cell setReferenceType:ReferenceTableViewCellTypeFigure];
+    }
+
+
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
     cell.referenceImage = rowImage;
 	

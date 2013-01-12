@@ -1,11 +1,16 @@
 #import "ReferenceTableViewCell.h"
+#import <QuartzCore/QuartzCore.h>
+#import <CoreGraphics/CoreGraphics.h>
 
+#define ReferenceTableViewCellImageBorderMargin 1.1
+#define ReferenceTableViewCellTextMargin 5
 #define ReferenceTableViewCellHeightDefault 44
-#define ReferenceTableViewCellHeightFigure 60
+#define ReferenceTableViewCellHeightFigure 88
 
 @interface ReferenceTableViewCell ()
 
 @property (nonatomic, assign, readwrite) CGFloat tableCellHeight;
+@property (nonatomic) UIView *figureImageFrame;
 
 @end
 
@@ -20,12 +25,38 @@
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
 
+        UIView *figureImageFrame = [[UIView alloc] initWithFrame:self.imageView.frame];
+        figureImageFrame.backgroundColor = [UIColor clearColor];
+        figureImageFrame.layer.borderColor = [[UIColor brownColor] CGColor];
+        figureImageFrame.layer.borderWidth = 2.0;
+        figureImageFrame.layer.backgroundColor = [[UIColor clearColor] CGColor];
+        figureImageFrame.layer.cornerRadius = 4.0;
+
+        figureImageFrame.hidden = YES;
+        [self addSubview:figureImageFrame];
+        self.figureImageFrame = figureImageFrame;
+
     }
     return self;
 }
 
 -(void)layoutSubviews {
     [super layoutSubviews];
+
+    if (self.referenceType == ReferenceTableViewCellTypeFigure) {
+        CGRect cellImageViewFrame = self.imageView.frame;
+        self.figureImageFrame.frame = CGRectMake(cellImageViewFrame.origin.x, cellImageViewFrame.origin.y, cellImageViewFrame.size.width * ReferenceTableViewCellImageBorderMargin, cellImageViewFrame.size.height * ReferenceTableViewCellImageBorderMargin);
+        self.figureImageFrame.center = self.imageView.center;
+
+        CGRect textLabelFrame = self.textLabel.frame;
+        textLabelFrame.origin.x += ReferenceTableViewCellTextMargin;
+        self.textLabel.frame = textLabelFrame;
+
+        CGRect detailTextLabelFrame = self.detailTextLabel.frame;
+        detailTextLabelFrame.origin.x += ReferenceTableViewCellTextMargin;
+        self.detailTextLabel.frame = detailTextLabelFrame;
+        [self bringSubviewToFront:self.imageView];
+    }
 
 }
 
@@ -42,6 +73,7 @@
 - (void)setReferenceType:(ReferenceTableViewCellType)referenceType {
     if (_referenceType != referenceType) {
         _referenceType = referenceType;
+        self.figureImageFrame.hidden = !(referenceType == ReferenceTableViewCellTypeFigure);
         [self setNeedsDisplay];
     }
 }

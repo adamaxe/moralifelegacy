@@ -1,5 +1,5 @@
 /**
-Custom TableViewCell for Reference Assets.  Changes styling of text and allows for differing heights and a cell type.
+Custom TableViewCell for Reference Assets.  Changes styling of text and allows for differing heights and a cell type.  Also adds frame around Figures if that cell type is is figure.
 
 @class ReferenceTableViewCell
 
