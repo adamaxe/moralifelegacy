@@ -1,5 +1,13 @@
 #import "ReferenceTableViewCell.h"
 
+#define ReferenceTableViewCellHeight 60
+
+@interface ReferenceTableViewCell ()
+
+@property (nonatomic, assign, readwrite) CGFloat tableCellHeight;
+
+@end
+
 @implementation ReferenceTableViewCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -13,6 +21,28 @@
 
     }
     return self;
+}
+
+-(void)layoutSubviews {
+    [super layoutSubviews];
+
+}
+
+
+#pragma mark - Overridden getters
+
+- (CGFloat)tableCellHeight {
+    return ReferenceTableViewCellHeight;
+}
+
+#pragma mark - 
+#pragma mark Overridden setters
+
+- (void)setReferenceType:(ReferenceTableViewCellType)referenceType {
+    if (_referenceType != referenceType) {
+        _referenceType = referenceType;
+        [self setNeedsDisplay];
+    }
 }
 
 - (void)setReferenceImage:(UIImage *)referenceImage {

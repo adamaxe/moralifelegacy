@@ -201,6 +201,13 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 #pragma mark -
 #pragma mark Table view delegate
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    ReferenceTableViewCell *cell = (ReferenceTableViewCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+
+    return cell.tableCellHeight;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:[[ReferenceModel alloc] init]];
