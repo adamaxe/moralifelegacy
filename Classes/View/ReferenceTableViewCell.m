@@ -1,6 +1,7 @@
 #import "ReferenceTableViewCell.h"
 
-#define ReferenceTableViewCellHeight 60
+#define ReferenceTableViewCellHeightDefault 44
+#define ReferenceTableViewCellHeightFigure 60
 
 @interface ReferenceTableViewCell ()
 
@@ -32,7 +33,7 @@
 #pragma mark - Overridden getters
 
 - (CGFloat)tableCellHeight {
-    return ReferenceTableViewCellHeight;
+    return (self.referenceType == ReferenceTableViewCellTypeFigure) ?ReferenceTableViewCellHeightFigure : ReferenceTableViewCellHeightDefault;
 }
 
 #pragma mark - 
