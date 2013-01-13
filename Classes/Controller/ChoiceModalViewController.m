@@ -61,9 +61,6 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
 
-    //tableView hides under search bar, must offset starting point
-    choiceModalTableView.contentOffset = CGPointMake(0, -30);
-
 	moralSearchBar.barStyle = UIBarStyleBlack;
 	moralSearchBar.delegate = self;
 	moralSearchBar.showsCancelButton = NO;
