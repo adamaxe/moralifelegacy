@@ -118,7 +118,7 @@
 							<object class="IBUITableView" id="882851377">
 								<reference key="NSNextResponder" ref="800617297"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{38, 96}, {243, 282}}</string>
+								<string key="NSFrame">{{38, 91}, {243, 287}}</string>
 								<reference key="NSSuperview" ref="800617297"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="80517927"/>
@@ -215,7 +215,7 @@
 							<object class="IBUISearchBar" id="862041201">
 								<reference key="NSNextResponder" ref="930290569"/>
 								<int key="NSvFlags">290</int>
-								<string key="NSFrame">{{10, 7}, {243, 44}}</string>
+								<string key="NSFrameSize">{238, 44}</string>
 								<reference key="NSSuperview" ref="930290569"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="810328684"/>
@@ -234,7 +234,7 @@
 								</object>
 							</object>
 						</object>
-						<string key="NSFrame">{{26, 39}, {263, 58}}</string>
+						<string key="NSFrame">{{36, 46}, {241, 44}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="862041201"/>
@@ -247,7 +247,7 @@
 					<object class="IBUIImageView" id="80517927">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{9, 32}, {300, 75}}</string>
+						<string key="NSFrame">{{18, 28}, {300, 75}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="930290569"/>
@@ -363,9 +363,9 @@
 							<reference ref="141129655"/>
 							<reference ref="736650386"/>
 							<reference ref="475018565"/>
-							<reference ref="80517927"/>
 							<reference ref="930290569"/>
 							<reference ref="800617297"/>
+							<reference ref="80517927"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -436,14 +436,14 @@
 						<reference key="parent" ref="800617297"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">12</int>
-						<reference key="object" ref="80517927"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">11</int>
 						<reference key="object" ref="862041201"/>
 						<reference key="parent" ref="930290569"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">12</int>
+						<reference key="object" ref="80517927"/>
+						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
 			</object>
