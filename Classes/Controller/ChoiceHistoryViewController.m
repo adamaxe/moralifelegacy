@@ -33,7 +33,8 @@
 	
 	IBOutlet UITableView *choicesTableView;	/**< table of User choices*/
     IBOutlet UIView *thoughtArea;			/**< area in which thought bubble appears */
-	IBOutlet UIButton *previousButton;		/**< return to previous page */    
+    IBOutlet UIView *searchArea;			/**< area in which search bubble appears */
+	IBOutlet UIButton *previousButton;		/**< return to previous page */
     
 }
 
@@ -75,7 +76,7 @@
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Set default listing and sort order    
-	choiceSearchBar.barStyle = UIBarStyleBlack;
+	choiceSearchBar.barStyle = UIBarStyleDefault;
 	choiceSearchBar.delegate = self;
 	choiceSearchBar.showsCancelButton = NO;
 	choicesTableView.delegate = self;
@@ -151,8 +152,8 @@
 	[UIView commitAnimations];
 	
 	[appDelegate.userConscienceView setNeedsDisplay];
-
-	
+    choicesTableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
+    choiceSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
