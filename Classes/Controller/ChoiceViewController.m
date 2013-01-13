@@ -59,6 +59,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 }
 
+@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
+
 /**
  Shift UI elements to move UITextView to top of screen to accomodate keyboard
  */
@@ -92,28 +94,49 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #pragma mark -
 #pragma mark View lifecycle
 
+-(id)init {
+    self = [super init];
+    if (self) {
+
+        //appDelegate needed to pass information from modal views (virtues/vices) to primary view
+        //and to get Core Data Context and prefs to save state
+        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        prefs = [NSUserDefaults standardUserDefaults];
+        context = [appDelegate.moralModelManager readWriteManagedObjectContext];
+
+        choiceKey = [[NSMutableString alloc] init];
+
+        //Create input for requesting ChoiceDetailViewController
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
+
+        self.navigationItem.rightBarButtonItem = barButtonItem;
+
+        severityLabelDescriptions = [[NSMutableArray alloc] init];
+
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        [conscienceHelpViewController setViewControllerClassName:NSStringFromClass([self class])];
+        [conscienceHelpViewController setIsConscienceOnScreen:FALSE];
+        self.conscienceHelpViewController = conscienceHelpViewController;
+
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
     
 	/** @bug fix slider bar in iOS3*/
-    
-	//appDelegate needed to pass information from modal views (virtues/vices) to primary view
-	//and to get Core Data Context and prefs to save state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
-    
-    choiceKey = [[NSMutableString alloc] init];
-    
-	if (!isChoiceFinished) {
-		isChoiceFinished = FALSE;
-	}
-    
+
     //choiceTextField is a custom StructuredTextField with max length.
     choiceTextField.delegate = self;
     choiceTextField.maxLength = MLChoiceTextFieldLength;
     descriptionTextView.delegate = self;
 
+	if (!isChoiceFinished) {
+		isChoiceFinished = FALSE;
+	}
+    
 	//Place inner shadow around flat UITextView
 	[descriptionInnerShadow setImage:[UIImage imageNamed:@"textview-innershadow.png"]];
     
@@ -122,12 +145,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
-    
-	//Create input for requesting ChoiceDetailViewController
-    UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
-	
-	self.navigationItem.rightBarButtonItem = barButtonItem;
-    
+        
     hideKeyboardButton = [UIButton buttonWithType: UIButtonTypeCustom];
     hideKeyboardButton.frame = CGRectMake(250, 480, 74, 39);
     hideKeyboardButton.alpha = 0;
@@ -139,9 +157,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     [[hideKeyboardButton titleLabel] setShadowOffset:CGSizeMake(0, -1)];
     
     [self.view addSubview: hideKeyboardButton];
-    
-    severityLabelDescriptions = [[NSMutableArray alloc] init];    
-        
+
 	//User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
 	NSObject *boolCheck = [prefs objectForKey:@"entryIsGood"];
@@ -152,8 +168,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	}else {
 		isVirtue = TRUE;
 	}
-    
-	
+
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -287,11 +303,8 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     if (firstChoiceEntryCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        [conscienceHelpViewCont setHelpVersion:0];
-		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [self.conscienceHelpViewController setHelpVersion:0];
+		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
         
@@ -383,9 +396,7 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
 	//If User has selected a Moral, display the extended description.  Otherwise, ask them to fill in Moral.
 	if (moralKey != nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        
-        //Create help text and controller for presentation	
+        //Create help text and controller for presentation
         NSMutableArray *titles = [[NSMutableArray alloc] init];
         NSMutableArray *texts = [[NSMutableArray alloc] init];        
         
@@ -397,20 +408,15 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
 
 
         //Set help title and verbiage
-        [conscienceHelpViewCont setHelpTitles:titles];
-        [conscienceHelpViewCont setHelpTexts:texts];
-        [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
+        [self.conscienceHelpViewController setHelpTitles:titles];
+        [self.conscienceHelpViewController setHelpTexts:texts];
         
-        
-        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
 	} else {
      
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-        [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        [conscienceHelpViewCont setHelpVersion:3];
-        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [self.conscienceHelpViewController setHelpVersion:3];
+        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
 
 	}
     
@@ -433,11 +439,8 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
     
 	if ([choiceFirst isEqualToString:@""] || [choiceFirst isEqualToString:defaultTextFieldText]) {
 
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        [conscienceHelpViewCont setHelpVersion:1];
-		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+        [self.conscienceHelpViewController setHelpVersion:1];
+		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
 
 	} else {
 		isReadyToCommit = TRUE;
@@ -449,12 +452,9 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 	if (isReadyToCommit) {
         
         if (choiceMoral == nil){
-            
-            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-            [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-            [conscienceHelpViewCont setHelpVersion:2];
-            [self presentModalViewController:conscienceHelpViewCont animated:NO];
+
+            [self.conscienceHelpViewController setHelpVersion:2];
+            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
             
             isReadyToCommit = FALSE;
         }

@@ -59,6 +59,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 -(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         _viewControllerClassName = [[NSString alloc] init];
     }
     
@@ -69,25 +70,25 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     [super viewDidLoad];
 	
 	//appDelegate needed to reference Conscience and to get Core Data Context and prefs to save state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	appDelegate.userConscienceView.center = centerPoint;	
-    
-    [self localizeUI];    
+
+    [self localizeUI];
 	
 }
 
 -(void) viewWillAppear:(BOOL)animated{
 	
 	[super viewWillAppear:animated];
+    previousButton.alpha = 1.0;
+    nextButton.alpha = 1.0;
     
     if (![self.viewControllerClassName isEqualToString:@""]) {
 
         NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
         NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
-        
+
         for (int i = 0; i < 6; i++) {
             [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", _viewControllerClassName, _helpVersion, i+1]];
             [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", _viewControllerClassName, _helpVersion, i+1]];
@@ -150,8 +151,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		counter++;
 	}
 	
-    
-    
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
