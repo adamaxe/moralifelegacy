@@ -10,6 +10,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 #import "ConscienceView.h"
 #import "MoralDAO.h"
 #import "ViewControllerLocalization.h"
+#import "MoralTableViewCell.h"
 
 @interface ChoiceModalViewController () <ViewControllerLocalization> {
     
@@ -210,23 +211,30 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 
 	return [tableData count];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    //Get text that is displayed in cell's detailTextLabel
+    NSString *moralSynonym = tableDataDetails[indexPath.row];
+
+    //Set the cell height to either the default cell height or a sum of the cell's static textLabel and dynamic detailTextLabel height
+    return MAX(MoralTableViewCellDefaultHeight, (MoralTableViewCellRowTextHeight + [MoralTableViewCell heightForDetailTextLabel:moralSynonym] + (MoralTableViewCellRowTextPaddingVertical * 2)));
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellIdentifier = @"moralIdentifier";
-    
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	MoralTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MoralTableViewCell class])];
+
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-		
+      	cell = [[MoralTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([MoralTableViewCell class])];
 	}
-    
+
 	//Populate cell information
     if ([tableData count] > 0) {
-        [[cell textLabel] setText:[tableData[indexPath.row] capitalizedString]];
+        cell.moralName = tableData[indexPath.row];
                 
         UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:tableDataImages[indexPath.row] ofType:@"png"]];
         [[cell imageView] setImage:rowImage];
-        
-        [[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
+        cell.moralSynonyms = tableDataDetails[indexPath.row];
     }
 	
 	return cell;

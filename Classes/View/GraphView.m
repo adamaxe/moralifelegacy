@@ -8,7 +8,7 @@ Implementation: Take data and draw a pie chart.  Iterate through all values in a
 
 @implementation GraphView
 
-const float kDefaultPieDegrees = 360;
+const float GraphViewDefaultPieDegrees = 360;
 
 #pragma mark -
 #pragma mark View lifecycle
@@ -19,7 +19,7 @@ const float kDefaultPieDegrees = 360;
         
 		//Ensure that background color is transparent
 		self.backgroundColor = [UIColor clearColor];
-        _pieValues = @[@(kDefaultPieDegrees)];
+        _pieValues = @[@(GraphViewDefaultPieDegrees)];
         _pieColors = @[[UIColor redColor]];
         
 	}

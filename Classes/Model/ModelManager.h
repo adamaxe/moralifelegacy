@@ -10,19 +10,6 @@
 
 #import <CoreData/CoreData.h>
 
-/**
- Possible Reference Types
- typedef utilized to avoid having to use enum declaration
- */
-typedef enum referenceModelTypeEnum{
-	kReferenceModelTypeConscienceAsset,
-	kReferenceModelTypeBelief,
-	kReferenceModelTypeText,
-	kReferenceModelTypePerson,
-	kReferenceModelTypeMoral,
-	kReferenceModelTypeReferenceAsset
-}referenceModelTypeEnum;
-
 @interface ModelManager : NSObject 
 
 @property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
