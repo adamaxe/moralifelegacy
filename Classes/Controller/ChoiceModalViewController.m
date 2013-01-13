@@ -60,7 +60,10 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-    
+
+    //tableView hides under search bar, must offset starting point
+    choiceModalTableView.contentOffset = CGPointMake(0, -30);
+
 	moralSearchBar.barStyle = UIBarStyleBlack;
 	moralSearchBar.delegate = self;
 	moralSearchBar.showsCancelButton = NO;
@@ -211,8 +214,12 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    //Get text that is displayed in cell's detailTextLabel
     NSString *moralSynonym = tableDataDetails[indexPath.row];
-    return MAX(MoralTableViewCellDefaultHeight, [MoralTableViewCell heightForTextLabels:moralSynonym]);
+
+    //Set the cell height to either the default cell height or a sum of the cell's static textLabel and dynamic detailTextLabel height
+    return MAX(MoralTableViewCellDefaultHeight, (MoralTableViewCellRowTextHeight + [MoralTableViewCell heightForDetailTextLabel:moralSynonym] + (MoralTableViewCellRowTextPaddingVertical * 2)));
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

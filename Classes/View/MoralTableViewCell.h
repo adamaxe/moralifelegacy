@@ -9,13 +9,21 @@
 
 @interface MoralTableViewCell : UITableViewCell
 
+extern int const MoralTableViewCellRowTextPaddingVertical;
 extern CGFloat const MoralTableViewCellDefaultHeight;
+extern CGFloat const MoralTableViewCellRowTextHeight;
 
 @property (nonatomic) NSString *moralName;  /**< name of Moral */
 @property (nonatomic) NSString *moralSynonyms; /**< other names of Moral */
 @property (nonatomic) UIColor *moralColor;  /**< color to match image icon */
 @property (nonatomic) UIImage *moralImage;  /**< moral icon */
 
-+ (CGFloat)heightForTextLabels:(NSString *)text;
+/**
+Static method to return what the detailTextLabel's height will be based upon font and cell width
+
+ @param text NSString to fill the detailTextLabel
+ @return height CGFloat of the height of the text
+ */
++ (CGFloat)heightForDetailTextLabel:(NSString *)text;
 
 @end

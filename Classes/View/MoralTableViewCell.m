@@ -1,25 +1,25 @@
 #import "MoralTableViewCell.h"
 
+//Externalized constants
+int const MoralTableViewCellRowTextPaddingVertical = 3;
 CGFloat const MoralTableViewCellDefaultHeight = 44;
+CGFloat const MoralTableViewCellRowTextHeight = 32.0;
 
 int const MoralTableViewCellMaximumLineNumber = 5;
 int const MoralTableViewCellRowTextWidth = 200;
 int const MoralTableViewCellRowTextPaddingHorizontal = 10;
-int const MoralTableViewCellRowTextPaddingVertical = 3;
-CGFloat const MoralTableViewCellRowTextHeight = 32.0;
 CGFloat const MoralTableViewCellRowImageDimension = 40.0;
 CGFloat const MoralTableViewCellTextLabelFontSize = 18.0;
 CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
 
 @implementation MoralTableViewCell
 
-+ (CGFloat)heightForTextLabels:(NSString *)text {
++ (CGFloat)heightForDetailTextLabel:(NSString *)text {
 
-    UIFont *textFont = [UIFont systemFontOfSize:MoralTableViewCellTextLabelFontSize];
     UIFont *detailTextFont = [UIFont systemFontOfSize:MoralTableViewCellDetailTextLabelFontSize];
     CGSize constraintSize = CGSizeMake(MoralTableViewCellRowTextWidth, CGFLOAT_MAX);
-    CGFloat textHeight = [text sizeWithFont:textFont constrainedToSize:constraintSize].height + [text sizeWithFont:detailTextFont constrainedToSize:constraintSize].height;
-    return MIN(textHeight, (detailTextFont.pointSize * MoralTableViewCellMaximumLineNumber) + 1);
+    CGFloat textHeight = [text sizeWithFont:detailTextFont constrainedToSize:constraintSize].height;
+    return MIN(textHeight, (detailTextFont.pointSize * MoralTableViewCellMaximumLineNumber) + MoralTableViewCellRowTextPaddingVertical);
 }
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -33,9 +33,11 @@ CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
         [self.textLabel setFont:[UIFont systemFontOfSize:MoralTableViewCellTextLabelFontSize]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
+        [self.textLabel sizeToFit];
 
         [self.detailTextLabel setFont:[UIFont systemFontOfSize:MoralTableViewCellDetailTextLabelFontSize]];
         [self.detailTextLabel setNumberOfLines:0];
+        [self.detailTextLabel sizeToFit];
 
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
 
@@ -43,20 +45,17 @@ CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
     return self;
 }
 
--(void)prepareForReuse {
-    
-}
-
 -(void)layoutSubviews {
     [super layoutSubviews];
-    self.textLabel.backgroundColor = [UIColor greenColor];
-    self.detailTextLabel.backgroundColor = [UIColor clearColor];
 
+    //Since the cell's height can grow, we need to adjust the cell's contents accordingly
+    //Prevent the imageview from scaling
     CGRect imageViewFrame = self.imageView.frame;
     imageViewFrame.size.width = MoralTableViewCellRowImageDimension;
     imageViewFrame.size.height = MoralTableViewCellRowImageDimension;
     self.imageView.frame = imageViewFrame;
 
+    //Align the text label with the top of the imageView
     CGRect textLabelFrame = self.detailTextLabel.frame;
     textLabelFrame.origin.x = CGRectGetMaxX(self.imageView.frame) + MoralTableViewCellRowTextPaddingHorizontal;
     textLabelFrame.origin.y = self.imageView.frame.origin.y;
@@ -64,8 +63,9 @@ CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
     textLabelFrame.size.height = MoralTableViewCellRowTextHeight;
     self.textLabel.frame = textLabelFrame;
 
+    //Generate a dynamic height based upon the current contents
     CGRect detailTextLabelFrame = self.detailTextLabel.frame;
-    CGFloat moralSynonymHeight = [MoralTableViewCell heightForTextLabels:self.moralSynonyms];
+    CGFloat moralSynonymHeight = [MoralTableViewCell heightForDetailTextLabel:self.moralSynonyms];
     detailTextLabelFrame.origin.x = CGRectGetMaxX(self.imageView.frame) + MoralTableViewCellRowTextPaddingHorizontal;
     detailTextLabelFrame.origin.y = CGRectGetMaxY(self.textLabel.frame);
     detailTextLabelFrame.size.width = MoralTableViewCellRowTextWidth;
