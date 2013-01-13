@@ -25,30 +25,30 @@ User can filter list by only things that are affordable to currentFunds.
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
 	NSManagedObjectContext *context;		/**< Core Data context */
     
+	IBOutlet UITableView *choicesTableView;	/**< tableview of choices */
+    IBOutlet UIButton *previousButton;
+    IBOutlet UIView *searchArea;			/**< area in which search bubble appears */
+	IBOutlet UIView *thoughtModalArea;			/**< area in which user ConscienceView can float */
+	IBOutlet UIButton *fundsButton;			/**< allow User to filter only affordable choices */
+	IBOutlet UILabel *listType;			/**< show which view is active */
+
+	IBOutlet UISearchBar *accessorySearchBar;		/**< ui element for limiting choices in table */
+
 	NSMutableArray *searchedData;			/**< array for matched data from User search */
-    
 	NSMutableArray *choices;			/**< unfiltered list of assets */
 	NSMutableArray *choiceIDs;			/**< unfiltered list of asset pkeys */
 	NSMutableArray *choiceCosts;			/**< unfiltered list of asset costs */
 	NSMutableArray *choiceSubtitles;		/**< unfiltered list of asset descriptions */
 	NSMutableArray *choiceImages;			/**< unfiltered list of asset images */
-	
+
 	NSMutableArray *dataSource;             /**< array for filtering raw data without having to re-query */
 	NSMutableArray *tableData;              /**< array for filtering data displayed in table populated from dataSource */
 	NSMutableArray *tableDataImages;		/**< array for filtering data images */
 	NSMutableArray *tableDataDetails;		/**< array for filtering data details */
 	NSMutableArray *tableDataKeys;          /**< array for filtering data primary keys */
 	NSMutableArray *tableDataCosts;         /**< array for filtering item cost */
-    
-	IBOutlet UITableView *choicesTableView;	/**< tableview of choices */
-    IBOutlet UIButton *previousButton;
-    
-	IBOutlet UIView *thoughtModalArea;			/**< area in which user ConscienceView can float */
-	IBOutlet UIButton *fundsButton;			/**< allow User to filter only affordable choices */
-	IBOutlet UILabel *listType;			/**< show which view is active */    
-	
-	IBOutlet UISearchBar *accessorySearchBar;		/**< ui element for limiting choices in table */
-    
+
+
 	int currentFunds;						/**< amount of ethicals possessed */
     BOOL isLessThanCost;					/**< is User requesting to show only affordable options */
     int searchViewFilter;                    /**< which view to show */
@@ -122,6 +122,9 @@ User can filter list by only things that are affordable to currentFunds.
 	[appDelegate.userConscienceView setNeedsDisplay];
     
 	[choicesTableView reloadData];
+
+    choicesTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
+    accessorySearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
 	
 }
 
@@ -148,7 +151,7 @@ User can filter list by only things that are affordable to currentFunds.
         ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setHelpVersion:0];
+        [conscienceHelpViewCont setNumberOfScreens:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
 
         [prefs setBool:FALSE forKey:@"firstConscienceList"];

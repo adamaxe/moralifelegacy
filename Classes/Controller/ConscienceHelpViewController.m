@@ -90,8 +90,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
 
         for (int i = 0; i < 6; i++) {
-            [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", _viewControllerClassName, _helpVersion, i+1]];
-            [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", _viewControllerClassName, _helpVersion, i+1]];
+            [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", _viewControllerClassName, self.numberOfScreens - 1, i+1]];
+            [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", _viewControllerClassName, self.numberOfScreens - 1, i+1]];
         }
         
         NSMutableArray *helpAllTitles = [[NSMutableArray alloc] init];

@@ -189,7 +189,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
         ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
         [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setHelpVersion:0];
+        [conscienceHelpViewCont setNumberOfScreens:1];
         [self presentModalViewController:conscienceHelpViewCont animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstMorathology"];

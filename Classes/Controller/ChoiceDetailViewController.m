@@ -157,7 +157,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
         ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        [conscienceHelpViewCont setHelpVersion:0];
+        [conscienceHelpViewCont setNumberOfScreens:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
@@ -250,7 +250,7 @@ Implementation: pop UIViewController from current navigationController
     ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
     [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
     [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-    [conscienceHelpViewCont setHelpVersion:1];
+    [conscienceHelpViewCont setNumberOfScreens:2];
     [self presentModalViewController:conscienceHelpViewCont animated:NO];
 }
 

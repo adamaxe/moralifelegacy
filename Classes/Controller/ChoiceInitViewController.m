@@ -98,7 +98,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
         ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        [conscienceHelpViewCont setHelpVersion:0];
+        [conscienceHelpViewCont setNumberOfScreens:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoice"];

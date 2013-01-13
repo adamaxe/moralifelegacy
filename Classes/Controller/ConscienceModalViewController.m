@@ -225,7 +225,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setHelpVersion:0];
+        [conscienceHelpViewCont setNumberOfScreens:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
@@ -450,7 +450,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
             ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
             [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
             [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-            [conscienceHelpViewCont setHelpVersion:2];
+            [conscienceHelpViewCont setNumberOfScreens:3];
             [self presentModalViewController:conscienceHelpViewCont animated:NO];
 			
     } else {
@@ -590,7 +590,7 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
         ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
         [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setHelpVersion:1];
+        [conscienceHelpViewCont setNumberOfScreens:2];
         [self presentModalViewController:conscienceHelpViewCont animated:NO];
         
         [prefs setBool:TRUE forKey:@"isReadyToRemove"];    

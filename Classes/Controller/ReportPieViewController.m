@@ -133,7 +133,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
         ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
         [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
 		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setHelpVersion:0];
+        [conscienceHelpViewCont setNumberOfScreens:1];
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstPie"];

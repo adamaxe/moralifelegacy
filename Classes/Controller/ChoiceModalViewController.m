@@ -109,7 +109,6 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
     modalTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
     modalSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
-
 	
 }
 

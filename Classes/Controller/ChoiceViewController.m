@@ -303,7 +303,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     if (firstChoiceEntryCheck == nil) {
         
-        [self.conscienceHelpViewController setHelpVersion:0];
+        [self.conscienceHelpViewController setNumberOfScreens:1];
 		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
@@ -415,7 +415,7 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         
 	} else {
      
-        [self.conscienceHelpViewController setHelpVersion:3];
+        [self.conscienceHelpViewController setNumberOfScreens:4];
         [self presentModalViewController:self.conscienceHelpViewController animated:NO];
 
 	}
@@ -439,7 +439,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
     
 	if ([choiceFirst isEqualToString:@""] || [choiceFirst isEqualToString:defaultTextFieldText]) {
 
-        [self.conscienceHelpViewController setHelpVersion:1];
+        [self.conscienceHelpViewController setNumberOfScreens:2];
 		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
 
 	} else {
@@ -453,7 +453,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
         
         if (choiceMoral == nil){
 
-            [self.conscienceHelpViewController setHelpVersion:2];
+            [self.conscienceHelpViewController setNumberOfScreens:3];
             [self presentModalViewController:self.conscienceHelpViewController animated:NO];
             
             isReadyToCommit = FALSE;
