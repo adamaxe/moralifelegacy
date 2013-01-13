@@ -9,10 +9,10 @@
  */
 #import "ModelManager.h"
 
-#define kMLReadOnlyModelName @"SystemData"
-#define kMLReadWriteModelName @"UserData"
-#define kMLDataModelExtension @"momd"
-#define kMLStoreType @"sqlite"
+NSString* const ModelManagerReadOnlyModelName = @"SystemData";
+NSString* const ModelManagerReadWriteModelName = @"UserData";
+NSString* const ModelManagerDataModelExtension = @"momd";
+NSString* const ModelManagerStoreType = @"sqlite";
 
 @interface ModelManager () 
 
@@ -110,7 +110,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
         return _managedObjectModel;
     }
     
-	NSString *pathReadOnly = [self.currentBundle pathForResource:kMLReadOnlyModelName ofType:kMLDataModelExtension];
+	NSString *pathReadOnly = [self.currentBundle pathForResource:ModelManagerReadOnlyModelName ofType:ModelManagerDataModelExtension];
 	NSURL *momURLReadOnly = [NSURL fileURLWithPath:pathReadOnly];
 	_managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadOnly];      
     
@@ -127,7 +127,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
         return _readWriteManagedObjectModel;
     }
 	
-	NSString *pathReadWrite = [self.currentBundle pathForResource:kMLReadWriteModelName ofType:kMLDataModelExtension];
+	NSString *pathReadWrite = [self.currentBundle pathForResource:ModelManagerReadWriteModelName ofType:ModelManagerDataModelExtension];
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathReadWrite];
     _readWriteManagedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
     
@@ -140,14 +140,14 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
  */
 - (NSManagedObjectModel *)mergedManagedObjectModel {
     
-	NSString *pathReadWrite = [self.currentBundle pathForResource:kMLReadWriteModelName ofType:kMLDataModelExtension];
+	NSString *pathReadWrite = [self.currentBundle pathForResource:ModelManagerReadWriteModelName ofType:ModelManagerDataModelExtension];
     NSBundle *bundleReadWrite = [NSBundle bundleWithPath:pathReadWrite];
     NSString *pathOriginalReadWriteMOM = [bundleReadWrite pathForResource:@"UserData" ofType:@"mom"];
 
 	NSURL *momURLReadWrite = [NSURL fileURLWithPath:pathOriginalReadWriteMOM];
     NSManagedObjectModel *modelReadWrite = [[NSManagedObjectModel alloc] initWithContentsOfURL:momURLReadWrite]; 
 	
-    NSString *pathReadOnly = [self.currentBundle pathForResource:kMLReadOnlyModelName ofType:kMLDataModelExtension];
+    NSString *pathReadOnly = [self.currentBundle pathForResource:ModelManagerReadOnlyModelName ofType:ModelManagerDataModelExtension];
     NSBundle *bundleReadOnly = [NSBundle bundleWithPath:pathReadOnly];
     NSString *pathOriginalReadOnlyMOM = [bundleReadOnly pathForResource:@"SystemData2" ofType:@"mom"];
 
@@ -180,8 +180,8 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     NSString *documentsDirectory = paths[0];
     
     //Create pre-loaded, legacy SQLite db location
-    NSString *readOnlyStore = [NSString stringWithFormat:@"%@.%@", kMLReadOnlyModelName, kMLStoreType];
-    NSString *readOnlyStoreTemp = [NSString stringWithFormat:@"%@Temp.%@", kMLReadOnlyModelName, kMLStoreType];
+    NSString *readOnlyStore = [NSString stringWithFormat:@"%@.%@", ModelManagerReadOnlyModelName, ModelManagerStoreType];
+    NSString *readOnlyStoreTemp = [NSString stringWithFormat:@"%@Temp.%@", ModelManagerReadOnlyModelName, ModelManagerStoreType];
     NSString *preloadLegacyData =  [documentsDirectory stringByAppendingPathComponent:readOnlyStore];
     NSURL *storeLegacyURL = [NSURL fileURLWithPath:preloadLegacyData];
     
@@ -204,7 +204,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
 	BOOL isSQLiteFilePresent = [fileManager fileExistsAtPath:preloadCacheData];
     NSError *error = nil;
     
-    NSString *defaultStorePath = [self.currentBundle pathForResource:kMLReadOnlyModelName ofType:kMLStoreType];
+    NSString *defaultStorePath = [self.currentBundle pathForResource:ModelManagerReadOnlyModelName ofType:ModelManagerStoreType];
     
 	//Determine status of persistent store
 	if (isSQLiteFilePresent) {
@@ -322,8 +322,8 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDirectory = paths[0];
     //Create pre-loaded SQLite db location
-    NSString *readWriteStore = [NSString stringWithFormat:@"%@.%@", kMLReadWriteModelName, kMLStoreType];
-    NSString *readWriteStoreTemp = [NSString stringWithFormat:@"%@Temp.%@", kMLReadWriteModelName, kMLStoreType];
+    NSString *readWriteStore = [NSString stringWithFormat:@"%@.%@", ModelManagerReadWriteModelName, ModelManagerStoreType];
+    NSString *readWriteStoreTemp = [NSString stringWithFormat:@"%@Temp.%@", ModelManagerReadWriteModelName, ModelManagerStoreType];
     NSString *preloadData =  [documentsDirectory stringByAppendingPathComponent:readWriteStore];
     NSURL *storeURL = [NSURL fileURLWithPath:preloadData];
     
@@ -341,7 +341,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
 	//Copy pre-loaded SQLite db from bundle to Documents if it doesn't exist
 	if (!isSQLiteFilePresent) {
         
-        NSString *defaultStorePathWrite = [self.currentBundle pathForResource:kMLReadWriteModelName ofType:kMLStoreType];
+        NSString *defaultStorePathWrite = [self.currentBundle pathForResource:ModelManagerReadWriteModelName ofType:ModelManagerStoreType];
         
 		//Ensure that pre-loaded SQLite db exists in bundle before copy
 		if (defaultStorePathWrite) {

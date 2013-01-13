@@ -1044,7 +1044,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 //    //If Conscience is in a good mood, allow for winking
 //    if (conscienceMood > 70) {
 //        if ((arc4random() % 4) > 2) {
-//            eyeNumber = kEyeRandomIndex;
+//            eyeNumber = MLEyeRandomIndex;
 //            blinkDuration = 0.3;
 //            randomDirection = 0;
 //        }
@@ -1137,7 +1137,7 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 - (void) changeEyeDirection{
 	
 	static int expressionIndex = 0;
-	//int eyeIndex = kEyeBothIndex;
+	//int eyeIndex = MLEyeBothIndex;
 	
 	if (expressionIndex > 6) {
 		expressionIndex = 0;

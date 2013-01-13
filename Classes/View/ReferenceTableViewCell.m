@@ -2,10 +2,11 @@
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
 
-#define ReferenceTableViewCellImageBorderMargin 1.1
-#define ReferenceTableViewCellTextMargin 5
-#define ReferenceTableViewCellHeightDefault 44
-#define ReferenceTableViewCellHeightFigure 88
+
+CGFloat const ReferenceTableViewCellImageBorderMargin = 1.1;
+int const ReferenceTableViewCellTextMargin = 5;
+int const ReferenceTableViewCellHeightDefault = 44;
+int const ReferenceTableViewCellHeightFigure = 88;
 
 @interface ReferenceTableViewCell ()
 
