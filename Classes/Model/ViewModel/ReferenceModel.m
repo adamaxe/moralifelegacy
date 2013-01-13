@@ -52,7 +52,7 @@
     self = [super init];
     if (self) {
 
-        self.referenceKey = @"";
+        _referenceKey = @"";
         self.hasLink = TRUE;
         self.hasQuote = TRUE;
         self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",nil);
@@ -87,8 +87,16 @@
 #pragma mark Overloaded Setters
 
 /* Whenever referenceType is changed from ViewController, model is refreshed */
+- (void) setReferenceKey:(NSString *)referenceKey {
+    if ((_referenceKey != referenceKey)) {
+        _referenceKey = referenceKey;
+        [self retrieveAllReferences];
+    }
+}
+
+/* Whenever referenceType is changed from ViewController, model is refreshed */
 - (void) setReferenceType:(int)referenceType {
-    if (_referenceType != referenceType) {
+    if ((_referenceType != referenceType)) {
         _referenceType = referenceType;
         [self retrieveAllReferences];
     }
@@ -264,12 +272,14 @@
  Implementation: Retrieve a requested reference and set NSUserDefaults for Reference*ViewControllers to read
  */
 - (void) selectReference:(NSString *) referenceKey {
+    self.referenceKey = referenceKey;
 
     //Set state retention for eventual call to ChoiceViewController to pick up
     [preferences setInteger:self.referenceType forKey:@"referenceType"];
     [preferences setObject:referenceKey forKey:@"referenceKey"];
 
     [preferences synchronize];
+    [self retrieveAllReferences];
 
 }
 
