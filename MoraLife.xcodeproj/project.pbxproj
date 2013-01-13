@@ -1371,6 +1371,7 @@
 		5EAB7A4B169E95CF00623A48 /* ReferenceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB7A4A169E95CE00623A48 /* ReferenceTableViewCell.m */; };
 		5EAB7A4E169E98B300623A48 /* ReportMoralTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB7A4D169E98B300623A48 /* ReportMoralTableViewCell.m */; };
 		5EAB7A51169E9B4800623A48 /* DilemmaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB7A50169E9B4700623A48 /* DilemmaTableViewCell.m */; };
+		5EAB7A7516A29AB300623A48 /* MoralTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB7A7416A29AB100623A48 /* MoralTableViewCell.m */; };
 		5EAC469A13A3354700074374 /* sur-class-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469813A3354700074374 /* sur-class-sm.png */; };
 		5EAC469B13A3354700074374 /* sur-classchalk-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469913A3354700074374 /* sur-classchalk-sm.png */; };
 		5EAC469E13A3355900074374 /* sur-class.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EAC469C13A3355900074374 /* sur-class.png */; };
@@ -3122,6 +3123,8 @@
 		5EAB7A4D169E98B300623A48 /* ReportMoralTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ReportMoralTableViewCell.m; path = View/ReportMoralTableViewCell.m; sourceTree = "<group>"; };
 		5EAB7A4F169E9B4700623A48 /* DilemmaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DilemmaTableViewCell.h; path = View/DilemmaTableViewCell.h; sourceTree = "<group>"; };
 		5EAB7A50169E9B4700623A48 /* DilemmaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DilemmaTableViewCell.m; path = View/DilemmaTableViewCell.m; sourceTree = "<group>"; };
+		5EAB7A7316A29AAF00623A48 /* MoralTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoralTableViewCell.h; path = View/MoralTableViewCell.h; sourceTree = "<group>"; };
+		5EAB7A7416A29AB100623A48 /* MoralTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoralTableViewCell.m; path = View/MoralTableViewCell.m; sourceTree = "<group>"; };
 		5EAC469813A3354700074374 /* sur-class-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class-sm.png"; sourceTree = "<group>"; };
 		5EAC469913A3354700074374 /* sur-classchalk-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-classchalk-sm.png"; sourceTree = "<group>"; };
 		5EAC469C13A3355900074374 /* sur-class.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-class.png"; sourceTree = "<group>"; };
@@ -4685,6 +4688,8 @@
 				5E8CA92F123469AE00461363 /* GraphView.h */,
 				5E8CA930123469AE00461363 /* GraphView.m */,
 				5EAB7A49169E95CE00623A48 /* ReferenceTableViewCell.h */,
+				5EAB7A7316A29AAF00623A48 /* MoralTableViewCell.h */,
+				5EAB7A7416A29AB100623A48 /* MoralTableViewCell.m */,
 				5EAB7A4A169E95CE00623A48 /* ReferenceTableViewCell.m */,
 				5EAB7A4C169E98B300623A48 /* ReportMoralTableViewCell.h */,
 				5EAB7A4D169E98B300623A48 /* ReportMoralTableViewCell.m */,
@@ -7342,6 +7347,7 @@
 				5EAB7A4B169E95CF00623A48 /* ReferenceTableViewCell.m in Sources */,
 				5EAB7A4E169E98B300623A48 /* ReportMoralTableViewCell.m in Sources */,
 				5EAB7A51169E9B4800623A48 /* DilemmaTableViewCell.m in Sources */,
+				5EAB7A7516A29AB300623A48 /* MoralTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
