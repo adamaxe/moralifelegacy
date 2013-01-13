@@ -209,6 +209,12 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 
 	return [tableData count];
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *moralSynonym = tableDataDetails[indexPath.row];
+    return MAX(MoralTableViewCellDefaultHeight, [MoralTableViewCell heightForTextLabels:moralSynonym]);
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	MoralTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([MoralTableViewCell class])];
 

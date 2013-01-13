@@ -9,9 +9,13 @@
 
 @interface MoralTableViewCell : UITableViewCell
 
+extern CGFloat const MoralTableViewCellDefaultHeight;
+
 @property (nonatomic) NSString *moralName;  /**< name of Moral */
 @property (nonatomic) NSString *moralSynonyms; /**< other names of Moral */
 @property (nonatomic) UIColor *moralColor;  /**< color to match image icon */
 @property (nonatomic) UIImage *moralImage;  /**< moral icon */
+
++ (CGFloat)heightForTextLabels:(NSString *)text;
 
 @end
