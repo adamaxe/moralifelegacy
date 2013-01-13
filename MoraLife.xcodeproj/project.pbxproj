@@ -35,7 +35,7 @@
 		5E07EA03130B589000007A36 /* sur-makebelievetree-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9FF130B589000007A36 /* sur-makebelievetree-sm.png */; };
 		5E07EA05130B7AD200007A36 /* icon-resetapp.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07EA04130B7AD200007A36 /* icon-resetapp.png */; };
 		5E0B22311399C58C002A8664 /* ChoiceHistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */; };
-		5E0B22341399C5E7002A8664 /* ChoiceHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */; };
+		5E0B22341399C5E7002A8664 /* ChoiceModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B22331399C5E7002A8664 /* ChoiceModalView.xib */; };
 		5E0B223A139AC27A002A8664 /* icon-rank.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0B2239139AC27A002A8664 /* icon-rank.png */; };
 		5E0DFA5B120BA66B00F77D70 /* ConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */; };
 		5E0EFCAB130F7DFB00009BB6 /* con-zodiac-scorpio-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */; };
@@ -1240,7 +1240,6 @@
 		5E8CF29312E7AC2C004FBBBB /* ref-georgewashingtoncarver.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF28112E7AC2C004FBBBB /* ref-georgewashingtoncarver.jpg */; };
 		5E8CF29412E7AC2C004FBBBB /* ref-thichquangduc-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF28212E7AC2C004FBBBB /* ref-thichquangduc-sm.png */; };
 		5E8CF29512E7AC2C004FBBBB /* ref-thichquangduc.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E8CF28312E7AC2C004FBBBB /* ref-thichquangduc.jpg */; };
-		5E8D88D512516C3C00E03014 /* ChoiceModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D88D212516C3C00E03014 /* ChoiceModalView.xib */; };
 		5E8D898212516CEB00E03014 /* sur-mecca.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D897012516CEB00E03014 /* sur-mecca.png */; };
 		5E8D898312516CEB00E03014 /* sur-miyajima.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D897112516CEB00E03014 /* sur-miyajima.png */; };
 		5E8D898412516CEB00E03014 /* sur-omparvat.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E8D897212516CEB00E03014 /* sur-omparvat.png */; };
@@ -1769,7 +1768,7 @@
 		5E07EA04130B7AD200007A36 /* icon-resetapp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-resetapp.png"; path = "Resources/images/interface/icons/icon-resetapp.png"; sourceTree = "<group>"; };
 		5E0B222E1399C58C002A8664 /* ChoiceHistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHistoryViewController.h; sourceTree = "<group>"; };
 		5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryViewController.m; sourceTree = "<group>"; };
-		5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChoiceHistoryView.xib; path = Resources/ChoiceHistoryView.xib; sourceTree = "<group>"; };
+		5E0B22331399C5E7002A8664 /* ChoiceModalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChoiceModalView.xib; path = Resources/ChoiceModalView.xib; sourceTree = "<group>"; };
 		5E0B2239139AC27A002A8664 /* icon-rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rank.png"; path = "Resources/images/interface/icons/icon-rank.png"; sourceTree = "<group>"; };
 		5E0C900116685B3F00BCD5EF /* referenceverify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = referenceverify.js; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
@@ -2968,7 +2967,6 @@
 		5E8CF28112E7AC2C004FBBBB /* ref-georgewashingtoncarver.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-georgewashingtoncarver.jpg"; path = "Resources/images/reference/ref-georgewashingtoncarver.jpg"; sourceTree = "<group>"; };
 		5E8CF28212E7AC2C004FBBBB /* ref-thichquangduc-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-thichquangduc-sm.png"; path = "Resources/images/reference/ref-thichquangduc-sm.png"; sourceTree = "<group>"; };
 		5E8CF28312E7AC2C004FBBBB /* ref-thichquangduc.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-thichquangduc.jpg"; path = "Resources/images/reference/ref-thichquangduc.jpg"; sourceTree = "<group>"; };
-		5E8D88D212516C3C00E03014 /* ChoiceModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChoiceModalView.xib; path = Resources/ChoiceModalView.xib; sourceTree = "<group>"; };
 		5E8D897012516CEB00E03014 /* sur-mecca.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-mecca.png"; sourceTree = "<group>"; };
 		5E8D897112516CEB00E03014 /* sur-miyajima.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-miyajima.png"; sourceTree = "<group>"; };
 		5E8D897212516CEB00E03014 /* sur-omparvat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-omparvat.png"; sourceTree = "<group>"; };
@@ -3611,11 +3609,10 @@
 				5E3E87B31226090B00F2708A /* ChoiceDetailView.xib */,
 				5E3E87B41226090B00F2708A /* ChoiceInitView.xib */,
 				5E3E87B51226090B00F2708A /* ChoiceListView.xib */,
-				5E8D88D212516C3C00E03014 /* ChoiceModalView.xib */,
 				5E3E87B61226090B00F2708A /* ChoiceView.xib */,
 				5E3E87B81226090B00F2708A /* ConscienceView.xib */,
 				5E454D711288DFE400C12FF7 /* ConscienceAcceptView.xib */,
-				5E0B22331399C5E7002A8664 /* ChoiceHistoryView.xib */,
+				5E0B22331399C5E7002A8664 /* ChoiceModalView.xib */,
 				5EB5A317122624E800879E11 /* ConscienceAccessoryView.xib */,
 				5E5694C41239EC3B00D03030 /* ConscienceActionView.xib */,
 				5ECC8CEA1255140E00B660C5 /* ConscienceDeckView.xib */,
@@ -5997,7 +5994,6 @@
 				5E7A115C124C4E9400E061C2 /* ref-thomashobbes-sm.png in Resources */,
 				5E7A115D124C4E9400E061C2 /* ref-thomashobbes.jpg in Resources */,
 				5EC91DE6124D91A1000FB490 /* con-bassclef-nose-sm.png in Resources */,
-				5E8D88D512516C3C00E03014 /* ChoiceModalView.xib in Resources */,
 				5E8D898212516CEB00E03014 /* sur-mecca.png in Resources */,
 				5E8D898312516CEB00E03014 /* sur-miyajima.png in Resources */,
 				5E8D898412516CEB00E03014 /* sur-omparvat.png in Resources */,
@@ -7197,7 +7193,7 @@
 				5E8FBE0C138A136200173584 /* UserData.sqlite in Resources */,
 				5E9FEA82138E0A5000AB6645 /* Entitlements.plist in Resources */,
 				5EF29E76138F69B50093DDA9 /* card-hate.png in Resources */,
-				5E0B22341399C5E7002A8664 /* ChoiceHistoryView.xib in Resources */,
+				5E0B22341399C5E7002A8664 /* ChoiceModalView.xib in Resources */,
 				5E0B223A139AC27A002A8664 /* icon-rank.png in Resources */,
 				5EAC469A13A3354700074374 /* sur-class-sm.png in Resources */,
 				5EAC469B13A3354700074374 /* sur-classchalk-sm.png in Resources */,

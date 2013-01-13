@@ -14,29 +14,28 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 @interface ChoiceModalViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
 	
-	IBOutlet UITableView *choiceModalTableView;  	/**< table referenced by IB */
-    
+	IBOutlet UISearchBar *modalSearchBar;	/**< ui element for limiting choices in table */
+	IBOutlet UITableView *modalTableView;  	/**< table referenced by IB */
+	IBOutlet UIView *thoughtArea;		/**< ui surrounding table */
+    IBOutlet UIView *searchArea;			/**< area in which search bubble appears */
+    IBOutlet UIButton *previousButton;		/**< return to previous page */
+
 	//Raw data of all available morals
-	NSMutableArray *searchedData;			/**< array for matched data from User search */
 	NSMutableArray *moralNames;			/**< array for Moral pkey */
 	NSMutableArray *moralDisplayNames;		/**< array for Moral name */
 	NSMutableArray *moralImages;			/**< array for Moral Image */
 	NSMutableArray *moralDetails;		/**< array for Moral synonyms */
-    
+
 	//Data for filtering/searching sourced from raw data
 	NSMutableArray *dataSource;				/**< array for storing of Choices populated from previous view*/
 	NSMutableArray *tableData;				/**< array for stored data displayed in table populated from dataSource */
 	NSMutableArray *tableDataImages;			/**< array for stored data images */
 	NSMutableArray *tableDataDetails;			/**< array for stored data details */
 	NSMutableArray *tableDataKeys;			/**< array for stored data pkeys */
-    
-	IBOutlet UISearchBar *moralSearchBar;			/**< ui element for limiting choices in table */
-	
-    IBOutlet UIButton *previousButton;
-	IBOutlet UIView *thoughtModalArea;				/**< ui surrounding table */
-	
+
+
 	BOOL isVirtue;		/**< is Moral Virtue or Vice */
     
 }
@@ -60,15 +59,15 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
     
-	moralSearchBar.barStyle = UIBarStyleBlack;
-	moralSearchBar.delegate = self;
-	moralSearchBar.showsCancelButton = NO;
-	choiceModalTableView.delegate = self;
-	choiceModalTableView.dataSource = self;
+	modalSearchBar.barStyle = UIBarStyleBlack;
+	modalSearchBar.delegate = self;
+	modalSearchBar.showsCancelButton = NO;
+	modalTableView.delegate = self;
+	modalTableView.dataSource = self;
     
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
+	[thoughtArea addSubview:appDelegate.userConscienceView];
 	
 	appDelegate.userConscienceView.center = centerPoint;
         
@@ -91,14 +90,14 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	thoughtModalArea.alpha = 0;
+	thoughtArea.alpha = 0;
     
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
-	thoughtModalArea.alpha = 1;
+	thoughtArea.alpha = 1;
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
 	
 	appDelegate.userConscienceView.center = centerPoint;
@@ -106,6 +105,10 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	[UIView commitAnimations];
 	
 	[appDelegate.userConscienceView setNeedsDisplay];
+
+    modalTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
+    modalSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
+
 	
 }
 
@@ -130,7 +133,7 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
 	[UIView beginAnimations:@"ReplaceConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	thoughtModalArea.alpha = 0;
+	thoughtArea.alpha = 0;
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	
 	appDelegate.userConscienceView.center = centerPoint;
@@ -190,7 +193,6 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
     
     
 	dataSource = [[NSMutableArray alloc] initWithArray:moralDisplayNames];
-	searchedData = [[NSMutableArray alloc]init];
 	tableData = [[NSMutableArray alloc]initWithArray:dataSource];
 	tableDataImages = [[NSMutableArray alloc]initWithArray:moralImages];
 	tableDataDetails = [[NSMutableArray alloc]initWithArray:moralDetails];
@@ -268,7 +270,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	
 	//Remove all entries once User starts typing
 	if([searchText isEqualToString:@""] || searchText==nil){
-		[choiceModalTableView reloadData];
+		[modalTableView reloadData];
         
 		return;
 	}
@@ -313,7 +315,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 		}
 	}
 	
-	[choiceModalTableView reloadData];
+	[modalTableView reloadData];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
@@ -330,7 +332,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	[tableDataKeys addObjectsFromArray:moralNames];
 	
 	@try{
-		[choiceModalTableView reloadData];
+		[modalTableView reloadData];
 	}
 	@catch(NSException *e){
 	}

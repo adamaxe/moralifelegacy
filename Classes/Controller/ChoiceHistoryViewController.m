@@ -19,7 +19,13 @@
 @interface ChoiceHistoryViewController () <ViewControllerLocalization> {
 	
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
-	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
+	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
+
+	IBOutlet UISearchBar *modalSearchBar;	/**< ui element for limiting choices in table */
+	IBOutlet UITableView *modalTableView;	/**< table of User choices*/
+    IBOutlet UIView *thoughtArea;			/**< area in which thought bubble appears */
+    IBOutlet UIView *searchArea;			/**< area in which search bubble appears */
+	IBOutlet UIButton *previousButton;		/**< return to previous page */
 
 	//Data for filtering/searching sourced from raw data
 	NSMutableArray *dataSource;			/**< array for storing of Choices populated from previous view*/
@@ -28,14 +34,8 @@
 	NSMutableArray *tableDataImages;		/**< array for stored data images */
 	NSMutableArray *tableDataDetails;		/**< array for stored data details */
 	NSMutableArray *tableDataKeys;		/**< array for stored data primary keys */
-	
-	IBOutlet UISearchBar *choiceSearchBar;	/**< ui element for limiting choices in table */
-	
-	IBOutlet UITableView *choicesTableView;	/**< table of User choices*/
-    IBOutlet UIView *thoughtArea;			/**< area in which thought bubble appears */
-    IBOutlet UIView *searchArea;			/**< area in which search bubble appears */
-	IBOutlet UIButton *previousButton;		/**< return to previous page */
-    
+
+
 }
 
 @property (nonatomic, strong) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
@@ -59,7 +59,7 @@
 #pragma mark View lifecycle
 
 - (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel {
-    self = [super init];
+    self = [super initWithNibName:@"ChoiceModalView" bundle:nil];
 
     if (self) {
         _choiceHistoryModel = choiceHistoryModel;
@@ -76,11 +76,11 @@
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Set default listing and sort order    
-	choiceSearchBar.barStyle = UIBarStyleDefault;
-	choiceSearchBar.delegate = self;
-	choiceSearchBar.showsCancelButton = NO;
-	choicesTableView.delegate = self;
-	choicesTableView.dataSource = self;
+	modalSearchBar.barStyle = UIBarStyleDefault;
+	modalSearchBar.delegate = self;
+	modalSearchBar.showsCancelButton = NO;
+	modalTableView.delegate = self;
+	modalTableView.dataSource = self;
     
     CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
@@ -124,17 +124,17 @@
 	if (searchString != nil) {
 		[prefs removeObjectForKey:@"searchTextChoice"];
 		[self filterResults:searchString];
-		[choiceSearchBar setText:searchString];
+		[modalSearchBar setText:searchString];
 	}
 	
 	//The scrollbars won't flash unless the tableview is long enough.
-	[choicesTableView flashScrollIndicators];
+	[modalTableView flashScrollIndicators];
 	
 	//Unselect the selected row if any was previously selected
-	NSIndexPath* selection = [choicesTableView indexPathForSelectedRow];
+	NSIndexPath* selection = [modalTableView indexPathForSelectedRow];
 	
 	if (selection){
-		[choicesTableView deselectRowAtIndexPath:selection animated:YES];
+		[modalTableView deselectRowAtIndexPath:selection animated:YES];
 	}
     
     thoughtArea.alpha = 0;
@@ -152,8 +152,8 @@
 	[UIView commitAnimations];
 	
 	[appDelegate.userConscienceView setNeedsDisplay];
-    choicesTableView.contentInset = UIEdgeInsetsMake(20.0, 0.0, 0.0, 0.0);
-    choiceSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
+    modalTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
+    modalSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -161,8 +161,8 @@
     [super viewWillDisappear:animated];
 	
 	//If search text was present, retain it for retrieval upon return to this UIViewController
-	if (choiceSearchBar.text != nil && ![choiceSearchBar.text isEqualToString:@""]) {
-		[prefs setObject:choiceSearchBar.text forKey:@"searchTextChoice"];
+	if (modalSearchBar.text != nil && ![modalSearchBar.text isEqualToString:@""]) {
+		[prefs setObject:modalSearchBar.text forKey:@"searchTextChoice"];
 		
 	}
 }
@@ -228,7 +228,7 @@
 	[tableDataDetails addObjectsFromArray:self.choiceHistoryModel.details];
 	[tableDataColorBools addObjectsFromArray:self.choiceHistoryModel.choicesAreGood];
     
-	[choicesTableView reloadData];
+	[modalTableView reloadData];
 	
 }
 
@@ -312,7 +312,7 @@
     
 	//Remove all entries once User starts typing
 	if([searchText isEqualToString:@""] || searchText==nil){
-		[choicesTableView reloadData];
+		[modalTableView reloadData];
 		
 		return;
 	}
@@ -360,7 +360,7 @@
 		}
 	}
 	
-	[choicesTableView reloadData];
+	[modalTableView reloadData];
 	
 }
 
@@ -389,7 +389,7 @@
     
     
 	@try{
-		[choicesTableView reloadData];
+		[modalTableView reloadData];
 	}
 	@catch(NSException *e){
 	}
