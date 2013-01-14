@@ -16,18 +16,12 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     
 	IBOutlet UIView *thoughtModalArea;			/**< area in which Conscience floats */
     
-	IBOutlet UIView *screen1View;				/**< 1st possible help page */
-	IBOutlet UIView *screen2View;				/**< 2nd possible help page */
-	IBOutlet UIView *screen3View;				/**< 3rd possible help page */
-	IBOutlet UIView *screen4View;				/**< 4th possible help page */
-	IBOutlet UIView *screen5View;				/**< 5th possible help page */
-	IBOutlet UIView *screen6View;				/**< 6th possible help page */
-    
-	IBOutlet UILabel *helpTitle;			/**< title of each page*/
-	IBOutlet UITextView *helpText;		/**< text of each page*/
 	IBOutlet UIButton *previousButton;		/**< return to previous page */
 	IBOutlet UIButton *nextButton;		/**< proceed to next page */
-	
+
+	UILabel *helpTitle;			/**< title of each page*/
+	UITextView *helpText;		/**< text of each page*/
+
 }
 
 /**
@@ -61,6 +55,27 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     if (self) {
         appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         _viewControllerClassName = [[NSString alloc] init];
+		//Create content dynamically and iterate through possible screens
+
+		helpTitle = [[UILabel alloc] initWithFrame:CGRectZero];
+		[helpTitle setTextAlignment:UITextAlignmentCenter];
+		[helpTitle setTextColor: [UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
+		[helpTitle setFont:[UIFont boldSystemFontOfSize:24.0]];
+		[helpTitle setMinimumFontSize:8.0];
+		[helpTitle setNumberOfLines:1];
+		[helpTitle setAdjustsFontSizeToFitWidth:TRUE];
+		[helpTitle setShadowColor:[UIColor darkGrayColor]];
+		[helpTitle setShadowOffset:CGSizeMake(0, -1)];
+		[self.view addSubview:helpTitle];
+
+		helpText = [[UITextView alloc] initWithFrame:CGRectZero];
+		[helpText setTextAlignment:UITextAlignmentCenter];
+		[helpText setTextColor:[UIColor grayColor]];
+		[helpText setFont:[UIFont systemFontOfSize:18.0]];
+		[helpText flashScrollIndicators];
+		[helpText setEditable:FALSE];
+		[self.view addSubview:helpText];
+
     }
     
     return self;
@@ -68,7 +83,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
 	//appDelegate needed to reference Conscience and to get Core Data Context and prefs to save state
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
@@ -81,9 +95,12 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 -(void) viewWillAppear:(BOOL)animated{
 	
 	[super viewWillAppear:animated];
+    helpTitle.frame = CGRectMake(38, 37, 240, 35);
+    helpText.frame = CGRectMake(40, 80, 240, 258);
+
     previousButton.alpha = 1.0;
     nextButton.alpha = 1.0;
-    
+
     if (![self.viewControllerClassName isEqualToString:@""]) {
 
         NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
@@ -114,49 +131,15 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         _helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
         
     }
-
-	//Create NSArray of help screens.  Populate them programattically
-	NSArray *viewsArray = @[screen1View, screen2View, screen3View, screen4View, screen5View, screen6View];
-	int counter = 0;
-    
-	for (NSString *helpTextIterate in _helpTitles) {
-        
-		//Create content dynamically and iterate through possible screens
-		CGRect labelFrame = CGRectMake(38, 37, 240, 35);
-		UILabel* label = [[UILabel alloc] initWithFrame: labelFrame];
-		[label setText:helpTextIterate];
-		[label setTextAlignment:UITextAlignmentCenter];
-		[label setTextColor: [UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
-		[label setFont:[UIFont boldSystemFontOfSize:24.0]];
-		[label setMinimumFontSize:8.0];
-		[label setNumberOfLines:1];
-		[label setAdjustsFontSizeToFitWidth:TRUE];
-		[label setShadowColor:[UIColor darkGrayColor]];
-		[label setShadowOffset:CGSizeMake(0, -1)];
-		[viewsArray[counter] addSubview:label];
-		
-		CGRect textViewFrame = CGRectMake(40, 80, 240, 258);
-		UITextView *textView = [[UITextView alloc] initWithFrame:textViewFrame];
-		[textView setTextAlignment:UITextAlignmentCenter];
-		[textView setText:_helpTexts[counter]];
-		[textView setTextColor:[UIColor grayColor]];
-		[textView setFont:[UIFont systemFontOfSize:18.0]];
-		[textView flashScrollIndicators];
-		[label setShadowColor:[UIColor darkGrayColor]];
-		[label setShadowOffset:CGSizeMake(0, 1)];        
-		[textView setEditable:FALSE];
-		[viewsArray[counter] addSubview:textView];
-        
-        
-		counter++;
-	}
 	
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-	
-	screen1View.hidden = TRUE;
-	screen1View.alpha = 0;
+
+    helpTitle.hidden = TRUE;
+	helpTitle.alpha = 0;
+    helpText.hidden = TRUE;
+    helpText.alpha = 0;
 	
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -168,12 +151,9 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	if (!_isConscienceOnScreen) {
 		appDelegate.userConscienceView.center = centerPoint;
 	}
-   	
-	screen1View.alpha = 1;
-	screen1View.hidden = FALSE;
-	
+
 	[UIView commitAnimations];
-	
+
 	//This center point is not redundant if Conscience is already onscreen
 	appDelegate.userConscienceView.center = centerPoint;
 	[appDelegate.userConscienceView setNeedsDisplay];
@@ -195,7 +175,7 @@ Implementation: Ensure that actual button wishes to call changeScreen
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
 		int choiceIndex = senderButton.tag;
-		
+        
 		[self changeScreen:choiceIndex];
 		
 	}
@@ -218,77 +198,39 @@ Implementation: Hide or show a screen depending upon which page the User current
 Show reward views once User has completed dilemma and refuse access to previous screen versions.
  */
 -(void)changeScreen:(int) screenVersion {
-
-    //TODO: Refactor screenViews to dynamic builds
-	UIView *viewSelection;
-	int buttonFactor = 0;
-	
 	id placeHolder = @"";
+    int buttonFactor = 0;
 	
-	//Hide all the screens.  Show them one at a time.
-	screen1View.hidden = TRUE;
-	screen1View.alpha = 0;
-	screen2View.hidden = TRUE;
-	screen2View.alpha = 0;
-	screen3View.hidden = TRUE;
-	screen3View.alpha = 0;
-	screen4View.hidden = TRUE;
-	screen4View.alpha = 0;
-	screen5View.hidden = TRUE;
-	screen5View.alpha = 0;
-	screen6View.hidden = TRUE;
-	screen6View.alpha = 0;	
-	nextButton.hidden = FALSE;			
+	nextButton.hidden = FALSE;
 	previousButton.hidden = FALSE;
-	
-	//Depending upon which screen is requested
-	//Setup variables to hide views, change Next/Previous button and move Conscience
-	switch (screenVersion){
-		case 0:	[self dismissThoughtModal:placeHolder];
-			break;
-		case 1:viewSelection = screen1View;
-			buttonFactor = 0;
-			break;
-		case 2:viewSelection = screen2View;
-			buttonFactor = 1;
-			break;
-		case 3:viewSelection = screen3View;
-			buttonFactor = 2;
-			break;
-		case 4:viewSelection = screen4View;
-			buttonFactor = 3;
-			break;
-		case 5:viewSelection = screen5View;
-			buttonFactor = 4;
-			break;	
-		case 6:viewSelection = screen6View;
-			buttonFactor = 5;
-			break;
-		case 7: //[self.navigationController popViewControllerAnimated:NO];
-			break;
-		default:break;
-			
-	}
 
-	//Change the active view except in the case of dismissing the entire ViewController
-	if (screenVersion > 0 && screenVersion < 7) {
-		
-		//Animated changes to the ViewController
-		//Show/Hide relevant subview
-		//Move Conscience to appropriate place on screen
-		[UIView beginAnimations:@"ScreenChange" context:nil];
-		[UIView setAnimationDuration:0.5];
-		[UIView setAnimationBeginsFromCurrentState:YES];
-		
-		viewSelection.alpha = 1;
-		viewSelection.hidden = FALSE;
-		
-		[UIView commitAnimations];
-		
+	//Show the title and text except in the case of dismissing the entire ViewController
+	if (screenVersion > 0) {
+        buttonFactor = screenVersion - 1;
+
+        [UIView animateWithDuration:0.25 animations:^{
+
+            helpTitle.alpha = 0;
+            helpText.alpha = 0;
+
+        } completion:^(BOOL finished) {
+            helpTitle.hidden = FALSE;
+            helpText.hidden = FALSE;
+            helpTitle.text = _helpTitles[screenVersion - 1];
+            helpText.text = _helpTexts[screenVersion - 1];
+
+            [UIView animateWithDuration:0.5 animations:^{
+                helpTitle.alpha = 1;
+                helpText.alpha = 1;
+            }];
+        }];
+
 		//Change Button tag in order to determine which "screen" is active
 		nextButton.tag = 2 + buttonFactor;
 		previousButton.tag = buttonFactor;
-	}
+	} else {
+        [self dismissThoughtModal:placeHolder];
+    }
     
     int screenMaximum = [_helpTitles count];
 	
@@ -332,7 +274,6 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	[UIView beginAnimations:@"ReplaceConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-//	thoughtModalArea.alpha = 0;
 
 	//If Conscience wasn't on screen, place it offscreen, otherwise place it centrally.
 	if (!_isConscienceOnScreen) {
@@ -342,10 +283,9 @@ Implementation:  Return Conscience graphically to place before requesting help. 
         appDelegate.userConscienceView.center = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	}
 	
-	nextButton.hidden = TRUE;
-	previousButton.hidden = TRUE;
-	screen1View.alpha = 0;
-	
+	helpTitle.alpha = 0;
+    helpText.alpha = 0;
+    nextButton.hidden = TRUE;
 	[UIView commitAnimations];
 	
 	//Delay actual dismissal in order to show Conscience and fade animations
