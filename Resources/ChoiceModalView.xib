@@ -118,7 +118,7 @@
 							<object class="IBUITableView" id="882851377">
 								<reference key="NSNextResponder" ref="800617297"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{38, 91}, {243, 287}}</string>
+								<string key="NSFrame">{{38, 91}, {243, 333}}</string>
 								<reference key="NSSuperview" ref="800617297"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="80517927"/>
@@ -261,7 +261,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">thoughtbubble-black.png</string>
+							<string key="NSResourceName">thoughtbubble-search.png</string>
 						</object>
 					</object>
 				</object>
@@ -598,9 +598,9 @@
 				<string>background-wall.jpg</string>
 				<string>interface-choicesprevious.png</string>
 				<string>navbar-texture-bevel.png</string>
-				<string>thoughtbubble-black.png</string>
 				<string>thoughtbubble-connector.png</string>
 				<string>thoughtbubble-large1.png</string>
+				<string>thoughtbubble-search.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -608,9 +608,9 @@
 				<string>{320, 480}</string>
 				<string>{90, 90}</string>
 				<string>{320, 56}</string>
-				<string>{280, 75}</string>
 				<string>{40, 40}</string>
 				<string>{320, 460}</string>
+				<string>{280, 75}</string>
 			</object>
 		</object>
 		<string key="IBCocoaTouchPluginVersion">1930</string>

@@ -20,7 +20,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	IBOutlet UIButton *nextButton;		/**< proceed to next page */
 
 	UILabel *helpTitle;			/**< title of each page*/
-	UITextView *helpText;		/**< text of each page*/
+	IBOutlet UITextView *helpText;		/**< text of each page*/
 
 }
 
@@ -68,13 +68,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		[helpTitle setShadowOffset:CGSizeMake(0, -1)];
 		[self.view addSubview:helpTitle];
 
-		helpText = [[UITextView alloc] initWithFrame:CGRectZero];
-		[helpText setTextAlignment:UITextAlignmentCenter];
-		[helpText setTextColor:[UIColor grayColor]];
-		[helpText setFont:[UIFont systemFontOfSize:18.0]];
 		[helpText flashScrollIndicators];
-		[helpText setEditable:FALSE];
-		[self.view addSubview:helpText];
+        helpText.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
 
     }
     
@@ -96,12 +91,11 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	
 	[super viewWillAppear:animated];
     helpTitle.frame = CGRectMake(38, 37, 240, 35);
-    helpText.frame = CGRectMake(40, 80, 240, 258);
 
     previousButton.alpha = 1.0;
     nextButton.alpha = 1.0;
 
-    if (![self.viewControllerClassName isEqualToString:@""]) {
+    if (!_helpTexts.count) {
 
         NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
         NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
@@ -302,7 +296,9 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	[invocation setArgument:&timerBool atIndex:2];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
-	
+
+    _helpTitles = @[];
+    _helpTexts = @[];
 }
 
 #pragma mark -

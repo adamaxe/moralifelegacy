@@ -169,7 +169,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 		isVirtue = TRUE;
 	}
 
-
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -406,7 +405,6 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         [titles addObject:currentMoral.displayNameMoral];
         [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", currentMoral.definitionMoral, currentMoral.longDescriptionMoral]];
 
-
         //Set help title and verbiage
         [self.conscienceHelpViewController setHelpTitles:titles];
         [self.conscienceHelpViewController setHelpTexts:texts];
@@ -419,7 +417,6 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         [self presentModalViewController:self.conscienceHelpViewController animated:NO];
 
 	}
-    
 
 }
 

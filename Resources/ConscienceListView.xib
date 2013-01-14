@@ -248,16 +248,16 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
-					<object class="IBUIView" id="193465043">
+					<object class="IBUIView" id="704585997">
 						<reference key="NSNextResponder" ref="747400875"/>
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUISearchBar" id="647124967">
-								<reference key="NSNextResponder" ref="193465043"/>
+								<reference key="NSNextResponder" ref="704585997"/>
 								<int key="NSvFlags">290</int>
 								<string key="NSFrameSize">{238, 44}</string>
-								<reference key="NSSuperview" ref="193465043"/>
+								<reference key="NSSuperview" ref="704585997"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="29590703"/>
 								<reference key="IBUIBackgroundColor" ref="443298447"/>
@@ -283,7 +283,7 @@
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace" id="999857068">
+							<object class="NSColorSpace" key="NSCustomColorSpace" id="204553947">
 								<int key="NSID">2</int>
 							</object>
 						</object>
@@ -295,7 +295,7 @@
 						<string key="NSFrame">{{18, 28}, {300, 75}}</string>
 						<reference key="NSSuperview" ref="747400875"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="193465043"/>
+						<reference key="NSNextKeyView" ref="704585997"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -306,7 +306,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">thoughtbubble-black.png</string>
+							<string key="NSResourceName">thoughtbubble-search.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="734085815">
@@ -364,7 +364,7 @@
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="999857068"/>
+					<reference key="NSCustomColorSpace" ref="204553947"/>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -432,7 +432,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">searchArea</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="193465043"/>
+						<reference key="destination" ref="704585997"/>
 					</object>
 					<int key="connectionID">43</int>
 				</object>
@@ -514,7 +514,7 @@
 							<reference ref="734085815"/>
 							<reference ref="453499481"/>
 							<reference ref="29590703"/>
-							<reference ref="193465043"/>
+							<reference ref="704585997"/>
 							<reference ref="348821405"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -592,7 +592,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">42</int>
-						<reference key="object" ref="193465043"/>
+						<reference key="object" ref="704585997"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="647124967"/>
@@ -608,7 +608,7 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">30</int>
 						<reference key="object" ref="647124967"/>
-						<reference key="parent" ref="193465043"/>
+						<reference key="parent" ref="704585997"/>
 					</object>
 				</object>
 			</object>
@@ -812,9 +812,9 @@
 				<string>background-wall.jpg</string>
 				<string>interface-choicesprevious.png</string>
 				<string>navbar-texture-bevel.png</string>
-				<string>thoughtbubble-black.png</string>
 				<string>thoughtbubble-connector.png</string>
 				<string>thoughtbubble-large1.png</string>
+				<string>thoughtbubble-search.png</string>
 				<string>thoughtbubble-smallest@2x.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
@@ -823,9 +823,9 @@
 				<string>{320, 480}</string>
 				<string>{90, 90}</string>
 				<string>{320, 56}</string>
-				<string>{280, 75}</string>
 				<string>{40, 40}</string>
 				<string>{320, 460}</string>
+				<string>{280, 75}</string>
 				<string>{128, 128}</string>
 			</object>
 		</object>
