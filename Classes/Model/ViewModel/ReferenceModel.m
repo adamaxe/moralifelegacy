@@ -236,7 +236,7 @@
 
                     [derivedReferences addObject:[moralMatch displayNameMoral]];
                     [derivedIcons addObject:[moralMatch imageNameMoral]];
-                    [derivedDetails addObject:[NSString stringWithFormat:@"%@: %@", [moralMatch shortDescriptionMoral], [moralMatch longDescriptionMoral]]];
+                    [derivedDetails addObject:[moralMatch shortDescriptionMoral]];
                     [derivedReferenceKeys addObject:[moralMatch nameMoral]];
                     [derivedLongDescriptions addObject:[[NSString alloc] initWithFormat:@"%@: %@", [moralMatch shortDescriptionMoral], [moralMatch longDescriptionMoral]]];
                     [derivedLinks addObject:[moralMatch linkMoral]];
