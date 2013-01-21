@@ -151,7 +151,11 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
             [tableData addObject:(self.referenceModel.references)[i]];
             [tableDataImages addObject:(self.referenceModel.icons)[i]];
             [tableDataKeys addObject:(self.referenceModel.referenceKeys)[i]];
-            [tableDataDetails addObject:(self.referenceModel.details)[i]];
+            if (self.referenceModel.referenceType == MLReferenceModelTypeMoral) {
+                [tableDataDetails addObject:(self.referenceModel.longDescriptions)[i]];
+            } else {
+                [tableDataDetails addObject:(self.referenceModel.details)[i]];
+            }
         }
     }
 
@@ -255,7 +259,11 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 	
 	[tableData addObjectsFromArray:dataSource];
 	[tableDataImages addObjectsFromArray:self.referenceModel.icons];
-	[tableDataDetails addObjectsFromArray:self.referenceModel.details];
+    if (self.referenceModel.referenceType == MLReferenceModelTypeMoral) {
+        [tableDataDetails addObjectsFromArray:self.referenceModel.longDescriptions];
+    } else {
+        [tableDataDetails addObjectsFromArray:self.referenceModel.details];
+    }
 	[tableDataKeys addObjectsFromArray:self.referenceModel.referenceKeys];
 	
 	@try{
@@ -321,7 +329,11 @@ Implementation: Iterate through searchData looking for instances of searchText
 				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
 				[tableData addObject:(self.referenceModel.references)[counter]];
 				[tableDataImages addObject:(self.referenceModel.icons)[counter]];
-				[tableDataDetails addObject:(self.referenceModel.details)[counter]];
+                if (self.referenceModel.referenceType == MLReferenceModelTypeMoral) {
+                    [tableDataDetails addObject:(self.referenceModel.longDescriptions)[counter]];
+                } else {
+                    [tableDataDetails addObject:(self.referenceModel.details)[counter]];
+                }
 				[tableDataKeys addObject:(self.referenceModel.referenceKeys)[counter]];
 				
 				//}
