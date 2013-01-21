@@ -10,6 +10,18 @@
 @interface UIColor (Utility)
 
 /**
+ Common MoraLife Interface Color Red
+ @return UIColor for negative UI choices
+ */
++ (UIColor *) moraLifeChoiceRed;
+
+/**
+ Common MoraLife Interface Color Red
+ @return UIColor for positive UI choices
+ */
++ (UIColor *) moraLifeChoiceGreen;
+
+/**
 Class method for creating a UIColor from a hex formatted string
  @param NSString hex representation to be converted i.e. FF00FF or #FF00FF
  @return UIColor UIColor from the hexValue

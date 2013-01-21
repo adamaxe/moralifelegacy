@@ -20,6 +20,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #import "Moral.h"
 #import "UserCollectableDAO.h"
 #import "ViewControllerLocalization.h"
+#import "UIColor+Utility.h"
 
 @interface ConscienceAcceptViewController () <ViewControllerLocalization> {
     
@@ -44,8 +45,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
     
     IBOutlet UIButton *previousButton;              /**< button used to cancel choice workflow */
  	int currentFunds;		/**< current amount of ethicals from MoraLifeAppDelegate::userCollection */
-	int assetCost;		/**< cost of ConscienceAsset */
-    
+	int assetCost;          /**< cost of ConscienceAsset */
+
 	BOOL isOwned;		/**< is ConscienceAsset already owned by User */
 	
 }
@@ -97,7 +98,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		currentFunds = 0;
 		assetCost = 0;
 		isOwned = FALSE;
-        
+
     }
     return self;
 }
@@ -189,6 +190,12 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[consciencePlayground addSubview:appDelegate.userConscienceView];
 	[appDelegate.userConscienceView setNeedsDisplay];
 
+    [backButton setTitleColor:[UIColor moraLifeChoiceRed] forState:UIControlStateNormal];
+    [insufficientEthicalsLabel setTextColor:[UIColor moraLifeChoiceRed]];
+    [buyButton setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
+    [currentFundsLabel setTextColor:[UIColor moraLifeChoiceGreen]];
+    [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];
+    
 	//Inform/restrict User's ability to actually purchase ConscienceAsset
 	//Flash assetCost is ConscienceAsset is unbuyable
 	if ((assetCost > currentFunds) && !isOwned) {
@@ -196,8 +203,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
         [insufficientEthicalsLabel setHidden:FALSE];
         
 		[backButton setCenter:CGPointMake(backButton.center.x-50, backButton.center.y)];
-		[accessoryCostLabel setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
-        
+		[accessoryCostLabel setTextColor:[UIColor moraLifeChoiceRed]];
+
 		[UIView beginAnimations:@"PulseCost" context:nil];
 		[UIView setAnimationDuration:1.0];
 		[UIView setAnimationBeginsFromCurrentState:TRUE];
@@ -209,7 +216,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
         
 		[UIView commitAnimations];
     }
-		
+
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     

@@ -64,7 +64,7 @@
 //
 //    STAssertNotNil(testingSubject, @"The view controller exists.");    
 //    STAssertNotNil(testingView, @"The view controller should have an associated view.");
-//        
+//
 //}
 
 /**
