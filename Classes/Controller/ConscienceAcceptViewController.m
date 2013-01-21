@@ -132,15 +132,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
     [accessoryNameLabel setText:currentAsset.displayNameReference];
     [accessoryDescriptionLabel setText:currentAsset.shortDescriptionReference];        
     assetCost = [currentAsset.costAsset intValue];
-    
-    //If ConscienceAsset is already owned, change verbiage of UI
-    if (isOwned) {
-        [accessoryCostLabel setText:@"Owned!"];
-        [[buyButton titleLabel] setText:@"Use"];
-    } else {
-        [accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %dε", assetCost]];
-        [[buyButton titleLabel] setText:@"Buy"];
-    }
         
     //Set UI image of Moral
     [moralImageView setImage:[UIImage imageNamed:currentAsset.relatedMoral.imageNameMoral]];
@@ -486,8 +477,18 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
 
 - (void) localizeUI {
 
-    buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonHint",nil);
-	buyButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBuyButtonLabel",nil);
+    //If ConscienceAsset is already owned, change verbiage of UI
+    if (isOwned) {
+        [accessoryCostLabel setText:NSLocalizedString(@"ConscienceAcceptCostButtonOwnedLabel",nil)];
+        buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonUseHint",nil);
+        buyButton.accessibilityLabel = NSLocalizedString(@"ConscienceAcceptBuyButtonUseLabel",nil);
+        [buyButton.titleLabel setText:NSLocalizedString(@"ConscienceAcceptBuyButtonUseLabel",nil)];
+    } else {
+        [accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %dε", assetCost]];
+        buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonBuyHint",nil);
+        buyButton.accessibilityLabel = NSLocalizedString(@"ConscienceAcceptBuyButtonBuyLabel",nil);
+        [buyButton.titleLabel setText:NSLocalizedString(@"ConscienceAcceptBuyButtonBuyLabel",nil)];
+    }
 
     backButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBackButtonHint",nil);
 	backButton.accessibilityLabel =  NSLocalizedString(@"ConscienceAcceptBackButtonLabel",nil);    
