@@ -18,6 +18,7 @@ User can filter list by only things that are affordable to currentFunds.
 #import "ConscienceAssetDAO.h"
 #import "AccessoryTableViewCell.h"
 #import "ViewControllerLocalization.h"
+#import "UIColor+Utility.h"
 
 @interface ConscienceListViewController () <ViewControllerLocalization> {
     
@@ -107,6 +108,7 @@ User can filter list by only things that are affordable to currentFunds.
 	
 	[super viewWillAppear:animated];
 
+    [fundsButton setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
 	//Add Conscience to lower-left screen
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
@@ -115,7 +117,6 @@ User can filter list by only things that are affordable to currentFunds.
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
-//	appDelegate.userConscienceView.center = centerPoint;
     appDelegate.userConscienceView.alpha = 1;
 	[UIView commitAnimations];
 	
