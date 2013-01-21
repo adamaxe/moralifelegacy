@@ -9,7 +9,7 @@
     if (self) {
 
         //Setup cell text visuals
-        [self.detailTextLabel setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
+        [self.detailTextLabel setTextColor:[UIColor moraLifeBrightGreen]];
         [self.textLabel setFont:[UIFont systemFontOfSize:16.0]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];

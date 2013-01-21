@@ -221,7 +221,7 @@
             [derivedReportNames addObject:@"No Immoral Entries!"];
         }
 
-        [derivedPieColors addObject:[UIColor redColor]];
+        [derivedPieColors addObject:[UIColor moraLifeChoiceRed]];
     } else {
 
         //Iterate through every User selection

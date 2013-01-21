@@ -22,6 +22,12 @@
 + (UIColor *) moraLifeChoiceGreen;
 
 /**
+ Common MoraLife Interface Color Bright Green
+ @return UIColor for high-contrast titles
+ */
++ (UIColor *) moraLifeBrightGreen;
+
+/**
  Common MoraLife Interface Color Light Green
  @return UIColor for pending UI choices
  */
@@ -32,6 +38,12 @@
  @return UIColor for neutral UI choices
  */
 + (UIColor *) moraLifeChoiceBlue;
+
+/**
+ Common MoraLife Interface Color Brown
+ @return UIColor for innert UI choices
+ */
++ (UIColor *) moraLifeBrown;
 
 /**
  Common MoraLife Interface Color Gray

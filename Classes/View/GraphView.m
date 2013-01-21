@@ -5,6 +5,7 @@ Implementation: Take data and draw a pie chart.  Iterate through all values in a
  */
 
 #import "GraphView.h"
+#import "UIColor+Utility.h"
 
 @implementation GraphView
 
@@ -20,7 +21,7 @@ const float GraphViewDefaultPieDegrees = 360;
 		//Ensure that background color is transparent
 		self.backgroundColor = [UIColor clearColor];
         _pieValues = @[@(GraphViewDefaultPieDegrees)];
-        _pieColors = @[[UIColor redColor]];
+        _pieColors = @[[UIColor moraLifeChoiceRed]];
         
 	}
     

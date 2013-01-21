@@ -194,8 +194,6 @@
 		5E3BF8721325A52F00FBAF1F /* card-cleanliness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3BF8711325A52F00FBAF1F /* card-cleanliness.png */; };
 		5E3CB173133C0A7D00247A6F /* card-diligence.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CB172133C0A7D00247A6F /* card-diligence.png */; };
 		5E3CB179133C1BD000247A6F /* UserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3CB178133C1BD000247A6F /* UserCollectable.m */; };
-		5E3CED1D16A9E5080022AA65 /* libTACommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3CED1A16A9E5080022AA65 /* libTACommon.a */; };
-		5E3CED1E16A9E5080022AA65 /* libTACommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3CED1A16A9E5080022AA65 /* libTACommon.a */; };
 		5E3CED2D16AB633A0022AA65 /* acc-top-shanda.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CED2C16AB633A0022AA65 /* acc-top-shanda.png */; };
 		5E3CED2E16AB633A0022AA65 /* acc-top-shanda.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CED2C16AB633A0022AA65 /* acc-top-shanda.png */; };
 		5E3CED3016AC69EB0022AA65 /* acc-top-shanda-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CED2F16AC69EB0022AA65 /* acc-top-shanda-sm.png */; };
@@ -1426,8 +1424,6 @@
 		5EB83308159F6256002A3417 /* ReferenceTextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB83307159F6255002A3417 /* ReferenceTextDAO.m */; };
 		5EB83309159F6256002A3417 /* ReferenceTextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB83307159F6255002A3417 /* ReferenceTextDAO.m */; };
 		5EB9BE9212FD1FEC00584F67 /* ConscienceHelpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9BE8D12FD1FEB00584F67 /* ConscienceHelpView.xib */; };
-		5EB9BE9312FD1FEC00584F67 /* LuckListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9BE8E12FD1FEB00584F67 /* LuckListView.xib */; };
-		5EB9BE9412FD1FEC00584F67 /* LuckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EB9BE8F12FD1FEB00584F67 /* LuckView.xib */; };
 		5EB9BEA012FD200700584F67 /* ReferenceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB9BE9712FD200500584F67 /* ReferenceDetailViewController.m */; };
 		5EB9BEA312FD200700584F67 /* ReportPieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB9BE9D12FD200600584F67 /* ReportPieViewController.m */; };
 		5EB9BEA412FD200700584F67 /* ReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB9BE9F12FD200700584F67 /* ReferenceViewController.m */; };
@@ -1475,7 +1471,6 @@
 		5EC9E58F130F883D00C4AEE1 /* ReferenceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */; };
 		5EC9E593130F88FB00C4AEE1 /* ChoiceModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E592130F88FB00C4AEE1 /* ChoiceModalViewController.m */; };
 		5EC9E595130F893E00C4AEE1 /* ChoiceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EC9E594130F893D00C4AEE1 /* ChoiceViewController.m */; };
-		5ECC8CEE1255140E00B660C5 /* ConscienceDeckView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5ECC8CEA1255140E00B660C5 /* ConscienceDeckView.xib */; };
 		5ED00E4A12AEFE6400985108 /* card-stinginess.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED00E4412AEFE6400985108 /* card-stinginess.png */; };
 		5ED00E4B12AEFE6400985108 /* card-vagrancy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED00E4512AEFE6400985108 /* card-vagrancy.png */; };
 		5ED00E5C12AEFE9B00985108 /* icon-luckall.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED00E5012AEFE9B00985108 /* icon-luckall.png */; };
@@ -1917,9 +1912,6 @@
 		5E3CB172133C0A7D00247A6F /* card-diligence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-diligence.png"; path = "Resources/images/interface/cards/card-diligence.png"; sourceTree = "<group>"; };
 		5E3CB177133C1BD000247A6F /* UserCollectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectable.h; sourceTree = "<group>"; };
 		5E3CB178133C1BD000247A6F /* UserCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectable.m; sourceTree = "<group>"; };
-		5E3CED1A16A9E5080022AA65 /* libTACommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTACommon.a; sourceTree = "<group>"; };
-		5E3CED1B16A9E5080022AA65 /* TAQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAQueue.h; sourceTree = "<group>"; };
-		5E3CED1C16A9E5080022AA65 /* TAStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStack.h; sourceTree = "<group>"; };
 		5E3CED2C16AB633A0022AA65 /* acc-top-shanda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-top-shanda.png"; path = "Resources/images/accessories/acc-top-shanda.png"; sourceTree = "<group>"; };
 		5E3CED2F16AC69EB0022AA65 /* acc-top-shanda-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-top-shanda-sm.png"; sourceTree = "<group>"; };
 		5E3D33001207AC2400E8E2CE /* body-eye6.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-eye6.svg"; path = "Resources/images/conscience/body-eye6.svg"; sourceTree = "<group>"; };
@@ -3180,8 +3172,6 @@
 		5EB83306159F6255002A3417 /* ReferenceTextDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceTextDAO.h; sourceTree = "<group>"; };
 		5EB83307159F6255002A3417 /* ReferenceTextDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceTextDAO.m; sourceTree = "<group>"; };
 		5EB9BE8D12FD1FEB00584F67 /* ConscienceHelpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConscienceHelpView.xib; path = Resources/ConscienceHelpView.xib; sourceTree = "<group>"; };
-		5EB9BE8E12FD1FEB00584F67 /* LuckListView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LuckListView.xib; path = Resources/LuckListView.xib; sourceTree = "<group>"; };
-		5EB9BE8F12FD1FEB00584F67 /* LuckView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LuckView.xib; path = Resources/LuckView.xib; sourceTree = "<group>"; };
 		5EB9BE9612FD200500584F67 /* ReferenceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceDetailViewController.h; sourceTree = "<group>"; };
 		5EB9BE9712FD200500584F67 /* ReferenceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceDetailViewController.m; sourceTree = "<group>"; };
 		5EB9BE9812FD200500584F67 /* ReferenceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceListViewController.h; sourceTree = "<group>"; };
@@ -3243,7 +3233,6 @@
 		5EC9E58E130F883D00C4AEE1 /* ReferenceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceListViewController.m; sourceTree = "<group>"; };
 		5EC9E592130F88FB00C4AEE1 /* ChoiceModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceModalViewController.m; sourceTree = "<group>"; };
 		5EC9E594130F893D00C4AEE1 /* ChoiceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceViewController.m; sourceTree = "<group>"; };
-		5ECC8CEA1255140E00B660C5 /* ConscienceDeckView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConscienceDeckView.xib; path = Resources/ConscienceDeckView.xib; sourceTree = "<group>"; };
 		5ED00E4412AEFE6400985108 /* card-stinginess.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-stinginess.png"; path = "Resources/images/interface/cards/card-stinginess.png"; sourceTree = "<group>"; };
 		5ED00E4512AEFE6400985108 /* card-vagrancy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-vagrancy.png"; path = "Resources/images/interface/cards/card-vagrancy.png"; sourceTree = "<group>"; };
 		5ED00E5012AEFE9B00985108 /* icon-luckall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-luckall.png"; path = "Resources/images/interface/icons/icon-luckall.png"; sourceTree = "<group>"; };
@@ -3539,7 +3528,6 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				5E4CBAB0120A5C120090DC29 /* QuartzCore.framework in Frameworks */,
 				5E43FE1E12BDDB0700BF5C28 /* CoreData.framework in Frameworks */,
-				5E3CED1D16A9E5080022AA65 /* libTACommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3553,7 +3541,6 @@
 				5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */,
 				5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */,
 				5E9D161B15E31E9A003AC018 /* libOCMock.a in Frameworks */,
-				5E3CED1E16A9E5080022AA65 /* libTACommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3632,15 +3619,12 @@
 				5E0B22331399C5E7002A8664 /* ChoiceModalView.xib */,
 				5EB5A317122624E800879E11 /* ConscienceAccessoryView.xib */,
 				5E5694C41239EC3B00D03030 /* ConscienceActionView.xib */,
-				5ECC8CEA1255140E00B660C5 /* ConscienceDeckView.xib */,
 				5EB9BE8D12FD1FEB00584F67 /* ConscienceHelpView.xib */,
 				5E4694F5130337C7004E695F /* ConscienceListView.xib */,
 				5E3E87B71226090B00F2708A /* ConscienceModalView.xib */,
 				5E6858E612727E0D0080386B /* DilemmaView.xib */,
 				5EAA2128130749D700C1DB02 /* DilemmaListView.xib */,
 				5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */,
-				5EB9BE8F12FD1FEB00584F67 /* LuckView.xib */,
-				5EB9BE8E12FD1FEB00584F67 /* LuckListView.xib */,
 				5E3E87B91226090B00F2708A /* MainWindow.xib */,
 				5E3E87BD1226090B00F2708A /* ReferenceView.xib */,
 				5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */,
@@ -3655,7 +3639,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E3CED1916A9E5080022AA65 /* TACommonLibrary */,
 				5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */,
 				5E99C5C013C552A6001F5CB8 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -4022,17 +4005,6 @@
 				5E498980131C940F00A13D11 /* acc-top-yarmulke.png */,
 			);
 			name = accessories;
-			sourceTree = "<group>";
-		};
-		5E3CED1916A9E5080022AA65 /* TACommonLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				5E3CED1A16A9E5080022AA65 /* libTACommon.a */,
-				5E3CED1B16A9E5080022AA65 /* TAQueue.h */,
-				5E3CED1C16A9E5080022AA65 /* TAStack.h */,
-			);
-			name = TACommonLibrary;
-			path = Frameworks/TACommonLibrary;
 			sourceTree = "<group>";
 		};
 		5E45464B1304E86300A53B8C /* icons */ = {
@@ -6038,7 +6010,6 @@
 				5E8D8A7B125191E400E03014 /* int-worldeast.png in Resources */,
 				5E8D8A7C125191E400E03014 /* int-worldwest.png in Resources */,
 				5EDA59951252E58A00F4C49D /* thoughtbubble-search.png in Resources */,
-				5ECC8CEE1255140E00B660C5 /* ConscienceDeckView.xib in Resources */,
 				5E73B1B1125969460039A577 /* cardback.png in Resources */,
 				5E73B1B2125969460039A577 /* cardfront.png in Resources */,
 				5E73B1B3125969460039A577 /* cardmiddle.png in Resources */,
@@ -6400,8 +6371,6 @@
 				5E06413512FCE28F0051F4B1 /* card-irrationality.png in Resources */,
 				5E06413712FCE28F0051F4B1 /* card-wantonness.png in Resources */,
 				5EB9BE9212FD1FEC00584F67 /* ConscienceHelpView.xib in Resources */,
-				5EB9BE9312FD1FEC00584F67 /* LuckListView.xib in Resources */,
-				5EB9BE9412FD1FEC00584F67 /* LuckView.xib in Resources */,
 				5E16502A130105EA0024C4D1 /* card-character.png in Resources */,
 				5E16502B130105EA0024C4D1 /* card-flexibility.png in Resources */,
 				5E16502C130105EA0024C4D1 /* card-humor.png in Resources */,
@@ -7515,10 +7484,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "moralife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/TACommonLibrary\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = MoraLife;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "680F44F3-956C-4B85-A75D-43B4C0DAEF8B";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7536,10 +7502,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "moralife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/TACommonLibrary\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = MoraLife;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -7586,10 +7549,7 @@
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "moralife-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/Frameworks/TACommonLibrary\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = MoraLife;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7620,7 +7580,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/UnitTests/Libraries\"",
-					"\"$(SRCROOT)/Frameworks/TACommonLibrary\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -7661,7 +7620,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/UnitTests/Libraries\"",
-					"\"$(SRCROOT)/Frameworks/TACommonLibrary\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -7702,7 +7660,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/UnitTests/Libraries\"",
-					"\"$(SRCROOT)/Frameworks/TACommonLibrary\"",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (

@@ -19,6 +19,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UserCharacterDAO.h"
 #import "ConscienceAssetDAO.h"
 #import "ViewControllerLocalization.h"
+#import "UIColor+Utility.h"
 
 typedef enum {
     MLConscienceViewControllerVirtueButtonTag = 3030,
@@ -168,7 +169,9 @@ static int thoughtVersion = 0;
         [self showIntroView];
         
     }  
-    
+
+    [conscienceStatus setTextColor:[UIColor moraLifeChoiceBlue]];
+    [conscienceStatus setShadowColor:[UIColor moraLifeChoiceLightGray]];
     [self createWelcomeMessage];
     
     [self localizeUI];    

@@ -745,9 +745,10 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         //See if moral has been rewarded before
         //Cannot assume that first instance of UserChoice implies no previous reward
         if ([appDelegate.userCollection containsObject:moralKey]) {
-            
-            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:moralKey];
 
+            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", moralKey];
+            currentUserCollectableDAO.predicates = @[pred];
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
                         
             //Increase the moral's value
@@ -759,7 +760,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
                moralIncrease += 1.0;
             }
             
-            [currentUserCollectable setValue:@(moralIncrease) forKey:@"collectableValue"];
+            [currentUserCollectable setCollectableValue:@(moralIncrease)];
             
         } else {
             

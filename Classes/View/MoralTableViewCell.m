@@ -1,4 +1,5 @@
 #import "MoralTableViewCell.h"
+#import "UIColor+Utility.h"
 
 //Externalized constants
 int const MoralTableViewCellRowTextPaddingVertical = 3;
@@ -27,6 +28,7 @@ CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
+        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
         [self.textLabel setShadowColor:[UIColor lightGrayColor]];
         [self.textLabel setShadowOffset:CGSizeMake(1, 1)];
 

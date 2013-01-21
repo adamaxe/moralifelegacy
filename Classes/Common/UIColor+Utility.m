@@ -12,6 +12,11 @@
     return [UIColor colorWithRed:44.0/255.0 green:103.0/255.0 blue:44.0/255.0 alpha:1];
 }
 
++ (UIColor *) moraLifeBrightGreen {
+
+    return [UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1];
+}
+
 + (UIColor *) moraLifeChoiceLightGreen {
 
     return [UIColor colorWithRed:100.0/255.0 green:150.00/255.0 blue:100.0/255.0 alpha:1];
@@ -21,6 +26,12 @@
 
     return [UIColor colorWithRed:50.0/255.0 green:79.0/255.0 blue:133.0/255.0 alpha:1];
 }
+
++ (UIColor *) moraLifeBrown {
+
+    return [UIColor colorWithRed:153.0/255.0 green:74.0/255.0 blue:49.0/255.0 alpha:1];
+}
+
 
 + (UIColor *) moraLifeChoiceGray {
 

@@ -1,7 +1,7 @@
-#import "ReferenceTableViewCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreGraphics/CoreGraphics.h>
-
+#import "ReferenceTableViewCell.h"
+#import "UIColor+Utility.h"
 
 CGFloat const ReferenceTableViewCellImageBorderMargin = 1.1;
 int const ReferenceTableViewCellTextMargin = 5;
@@ -28,9 +28,9 @@ int const ReferenceTableViewCellHeightFigure = 88;
 
         UIView *figureImageFrame = [[UIView alloc] initWithFrame:self.imageView.frame];
         figureImageFrame.backgroundColor = [UIColor clearColor];
-        figureImageFrame.layer.borderColor = [[UIColor brownColor] CGColor];
+        figureImageFrame.layer.borderColor = [[UIColor moraLifeBrown] CGColor];
         figureImageFrame.layer.borderWidth = 2.0;
-        figureImageFrame.layer.backgroundColor = [[UIColor clearColor] CGColor];
+        figureImageFrame.layer.backgroundColor = [[UIColor moraLifeBrown] CGColor];
         figureImageFrame.layer.cornerRadius = 4.0;
 
         figureImageFrame.hidden = YES;

@@ -9,6 +9,7 @@
 
 #define USE_APPLICATION_UNIT_TEST 0
 
+#import "UIColor+Utility.h"
 @class GraphView;
 
 @interface TestGraphView : SenTestCase {
@@ -52,7 +53,7 @@ const int kGraphWidth = 240;
 - (void)testDefaultData{
     
     STAssertEqualObjects([NSNumber numberWithFloat:360.0], [testingSubject pieValues][0], @"Default Graph data inaccurate.");
-    STAssertEqualObjects([UIColor redColor], [testingSubject pieColors][0], @"Default Graph Color inaccurate.");
+    STAssertEqualObjects([UIColor moraLifeChoiceRed], [testingSubject pieColors][0], @"Default Graph Color inaccurate.");
 }
 
 /**

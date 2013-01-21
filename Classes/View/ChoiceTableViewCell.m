@@ -1,4 +1,5 @@
 #import "ChoiceTableViewCell.h"
+#import "UIColor+Utility.h"
 
 @implementation ChoiceTableViewCell
 
@@ -25,9 +26,9 @@
 
 - (void)setIsVirtue:(BOOL)isVirtue {
     if (isVirtue) {
-        [self.detailTextLabel setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
+        [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceGreen]];
     } else {
-        [self.detailTextLabel setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
+        [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceRed]];
     }
 
     _isVirtue = isVirtue;
