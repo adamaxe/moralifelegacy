@@ -12,6 +12,17 @@
     return [UIColor colorWithRed:44.0/255.0 green:103.0/255.0 blue:44.0/255.0 alpha:1];
 }
 
++ (UIColor *) moraLifeChoiceBlue {
+
+    return [UIColor colorWithRed:50.0/255.0 green:79.0/255.0 blue:133.0/255.0 alpha:1];
+}
+
++ (UIColor *) moraLifeChoiceGray {
+
+    return [UIColor colorWithRed:115.0/255.0 green:118.0/255.0 blue:102.0/255.0 alpha:1];
+}
+
+
 /**
  Implementation: If alpha is omitted, then assume 1.0 and call other class method
  */

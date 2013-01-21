@@ -1,4 +1,5 @@
 #import "AccessoryTableViewCell.h"
+#import "UIColor+Utility.h"
 
 @implementation AccessoryTableViewCell
 
@@ -12,6 +13,8 @@
         [self.textLabel setFont:[UIFont systemFontOfSize:12.0]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
+        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+        [self.textLabel setShadowColor:[UIColor moraLifeChoiceGray]];
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         //Configure cell subtitle text
@@ -28,10 +31,10 @@
     if (isAffordable) {
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		self.selectionStyle = UITableViewCellSelectionStyleGray;
-		self.detailTextLabel.textColor = [UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1];
+		self.detailTextLabel.textColor = [UIColor moraLifeChoiceGreen];
     } else {
 		self.accessoryType = UITableViewCellAccessoryNone;
-		self.detailTextLabel.textColor = [UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1];
+		self.detailTextLabel.textColor = [UIColor moraLifeChoiceRed];
     }
 
     _isAffordable = isAffordable;
