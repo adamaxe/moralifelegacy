@@ -182,19 +182,22 @@
     STAssertTrue(testingSubject.details.count == 2, @"Moral details count is incorrect");
     STAssertTrue(testingSubject.icons.count == 2, @"Moral icons count is incorrect");
 
-    NSString *virtueDetail = [NSString stringWithFormat:@"%@: %@", [virtue1 shortDescriptionMoral], [virtue1 longDescriptionMoral]];
+    NSString *virtueLongDescription = [NSString stringWithFormat:@"%@\n\nDefinition: %@", [virtue1 longDescriptionMoral], [virtue1 definitionMoral]];
 
     STAssertTrue([testingSubject.references containsObject:[virtue1 displayNameMoral]], @"Virtue displayName not present");
     STAssertTrue([testingSubject.icons containsObject:[virtue1 imageNameMoral]],  @"Virtue icon not present");
     STAssertTrue([testingSubject.referenceKeys containsObject:[virtue1 nameMoral]], @"Virtue referenceKey not present");
-    STAssertTrue([testingSubject.details containsObject:virtueDetail], @"Virtue detail not present");
+    STAssertTrue([testingSubject.details containsObject:[virtue1 shortDescriptionMoral]], @"Virtue detail not correct");
+    STAssertTrue([testingSubject.longDescriptions containsObject:virtueLongDescription], @"Virtue longDescription not correct");
 
-    NSString *viceDetail = [NSString stringWithFormat:@"%@: %@", [vice1 shortDescriptionMoral], [vice1 longDescriptionMoral]];
+    NSString *viceLongDescription = [NSString stringWithFormat:@"%@\n\nDefinition: %@", [vice1 longDescriptionMoral], [vice1 definitionMoral]];
 
     STAssertTrue([testingSubject.references containsObject:[vice1 displayNameMoral]], @"Vice displayName not present");
     STAssertTrue([testingSubject.icons containsObject:[vice1 imageNameMoral]],  @"Vice icon not present");
     STAssertTrue([testingSubject.referenceKeys containsObject:[vice1 nameMoral]], @"Vice referenceKey not present");
-    STAssertTrue([testingSubject.details containsObject:viceDetail], @"Vice detail not present");
+    STAssertTrue([testingSubject.details containsObject:[vice1 shortDescriptionMoral]], @"Vice detail not correct");
+    STAssertTrue([testingSubject.longDescriptions containsObject:viceLongDescription], @"Vice longDescription not correct");
+
 }
 
 - (void)testWhenSystemAndUserDataIsPresentConscienceAssetsAreSortedByShortDescription {
