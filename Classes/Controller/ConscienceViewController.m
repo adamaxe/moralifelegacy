@@ -40,6 +40,7 @@ float const MLThoughtInterval = 5;
 	IBOutlet UILabel *conscienceStatus;				/**< Conscience's thought presented in bubble */
 	IBOutlet ConscienceView *initialConscienceView;		/**< pointer to UserConscienceView */
 	IBOutlet UIImageView *thoughtBubbleView1;			/**< bubble surrounding Conscience's thought */
+	IBOutlet UIImageView *thoughtBubbleView2;			/**< bubble surrounding Conscience's thought */
 	IBOutlet UIView *consciencePlayground;			/**< area in which custom ConscienceView can float */
 	IBOutlet UIView *thoughtArea;					/**< area in which thought bubble appears */
 	
@@ -63,6 +64,7 @@ float const MLThoughtInterval = 5;
 	NSMutableString *homeVirtueDisplayName;	/**< most prominent virtue text */
 	NSMutableString *homeViceDisplayName;	/**< most prominent vice text */
     NSMutableString *highestRankName;       /**< highest achieved rank */
+    BOOL isThoughtOnScreen;             /**< whether Conscience Thought bubble is visible */
     
 }
 
@@ -172,6 +174,7 @@ static int thoughtVersion = 0;
 
     [conscienceStatus setTextColor:[UIColor moraLifeChoiceBlue]];
     [conscienceStatus setShadowColor:[UIColor moraLifeChoiceLightGray]];
+
     [self createWelcomeMessage];
     
     [self localizeUI];    
@@ -252,8 +255,7 @@ static int thoughtVersion = 0;
     
 	[consciencePlayground setNeedsDisplay];
     [self createWelcomeMessage];
-    [self showThought];
-
+    [self selectNextView:nil];
 	
 }
 
@@ -292,23 +294,40 @@ static int thoughtVersion = 0;
  */
 -(void)showThought{
     
+    thoughtBubbleView1.alpha = 0;
+//    thoughtBubbleView2.alpha = 0;
+    conscienceStatus.alpha = 0;
     thoughtBubbleView1.hidden = FALSE;
-    
-    //Only show status when User interacts with Conscience
-    [UIView beginAnimations:@"showThought" context:nil];
-    [UIView setAnimationDuration:0.5];
-    
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    thoughtBubbleView1.alpha = 1;
-    conscienceStatus.alpha = 1;
-    
-    [UIView commitAnimations];
-    
+//    thoughtBubbleView2.hidden = FALSE;
+    conscienceStatus.hidden = FALSE;
+
+    [UIView animateWithDuration:0.75 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
+        thoughtBubbleView1.alpha = 1;
+//        thoughtBubbleView2.alpha = 1;
+        conscienceStatus.alpha = 1;
+
+    }completion:^(BOOL finished) {
+        isThoughtOnScreen = TRUE;
+//        thoughtBubbleView1.hidden = TRUE;
+//        thoughtBubbleView2.hidden = TRUE;
+//        conscienceStatus.hidden = TRUE;
+    }];
+
+//    thoughtBubbleView1.alpha = 1.0;
+//    thoughtBubbleView2.alpha = 0.0;
+//    [UIView animateWithDuration:1.0 delay:0.0 options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseInOut) animations:^{
+//        thoughtBubbleView1.alpha = 0.0;
+//        thoughtBubbleView2.alpha = 1.0;
+//    }completion:nil];
+
+//    thoughtBubbleView1.hidden = FALSE;
+
     //Dismiss the thought bubble after a time
     if (thoughtFadeTimer != nil) {
         [thoughtFadeTimer invalidate];
     }
-    
+
+
     thoughtFadeTimer = [NSTimer scheduledTimerWithTimeInterval:MLThoughtInterval target:self selector:@selector(hideThought) userInfo:nil repeats:YES];
 
 }
@@ -317,17 +336,19 @@ static int thoughtVersion = 0;
  Implementation:  Fade the thought bubble from view.  Must be function so can be called from an NSTimer.
  */
 -(void)hideThought{
-        
-    [UIView beginAnimations:@"hideThought" context:nil];
-	[UIView setAnimationDuration:1.0];
-	
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	thoughtBubbleView1.alpha = 0;
-	conscienceStatus.alpha = 0;
-	[UIView setAnimationDelegate:self]; // self is a view controller
-	
-	[UIView commitAnimations];
-    
+
+    [UIView animateWithDuration:0.75 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
+        thoughtBubbleView1.alpha = 0;
+//        thoughtBubbleView2.alpha = 0;
+        conscienceStatus.alpha = 0;
+
+    }completion:^(BOOL finished) {
+        thoughtBubbleView1.hidden = TRUE;
+        thoughtBubbleView2.hidden = TRUE;
+        conscienceStatus.hidden = TRUE;
+        isThoughtOnScreen = FALSE;
+    }];
+
 }
 
 /**
@@ -599,21 +620,30 @@ static int thoughtVersion = 0;
     if (isChoice) {
         
         if (![searchString isEqualToString:@""]) {
-            
-            [conscienceStatus setText:searchString];
-            
+
+            [UIView animateWithDuration:0.5 animations:^{
+                conscienceStatus.alpha = 0;
+            }completion:^(BOOL finished) {
+                [conscienceStatus setText:searchString];
+                [UIView animateWithDuration:0.5 animations:^{
+                    conscienceStatus.alpha = 1;
+                }];
+            }];
+
+
         } else {
             
             [conscienceStatus setText:@"You haven't entered a moral, yet.  Go to your Journal and enter in a Choice!"];
             
         }
         
-        [self showThought];
-        
-    } else {
-        [self hideThought];
+
     }
-    
+
+    if (!isThoughtOnScreen) {
+        [self showThought];
+    }
+
 }
 
 
@@ -621,14 +651,6 @@ static int thoughtVersion = 0;
 Implementation:  Determine time of day, and which thought should be displayed.  Cycle through available dilemmas,  current mood, etc.
  */
 -(void) createWelcomeMessage{
-    
-    //Only show status when User interacts with Conscience
-    [UIView beginAnimations:@"hideThoughtLabel" context:nil];
-    [UIView setAnimationDuration:0.5];
-    
-    conscienceStatus.alpha = 0;
-    
-    [UIView commitAnimations];
     
     [self retrieveBiggestChoice:TRUE];
     [self retrieveBiggestChoice:FALSE];
@@ -717,15 +739,6 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     }
     
     [conscienceStatus setText:thoughtSpecialized];
-    
-    
-    //Only show status when User interacts with Conscience
-    [UIView beginAnimations:@"hideThoughtLabel" context:nil];
-    [UIView setAnimationDuration:0.5];
-    
-    conscienceStatus.alpha = 1;
-    
-    [UIView commitAnimations];
 
 }
 

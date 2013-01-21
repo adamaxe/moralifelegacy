@@ -255,6 +255,22 @@
 						<int key="NSvFlags">292</int>
 						<object class="NSMutableArray" key="NSSubviews">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBUIImageView" id="293407708">
+								<reference key="NSNextResponder" ref="63444883"/>
+								<int key="NSvFlags">-2147483392</int>
+								<string key="NSFrameSize">{320, 150}</string>
+								<reference key="NSSuperview" ref="63444883"/>
+								<reference key="NSNextKeyView" ref="666210340"/>
+								<bool key="IBUIOpaque">NO</bool>
+								<bool key="IBUIClipsSubviews">YES</bool>
+								<int key="IBUIContentMode">4</int>
+								<bool key="IBUIMultipleTouchEnabled">YES</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">thoughtbubble-small2.png</string>
+								</object>
+							</object>
 							<object class="IBUIImageView" id="666210340">
 								<reference key="NSNextResponder" ref="63444883"/>
 								<int key="NSvFlags">256</int>
@@ -313,7 +329,7 @@
 						</object>
 						<string key="NSFrame">{{0, 50}, {320, 150}}</string>
 						<reference key="NSSuperview" ref="457160686"/>
-						<reference key="NSNextKeyView" ref="666210340"/>
+						<reference key="NSNextKeyView" ref="293407708"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="3821925">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -540,6 +556,14 @@
 					<int key="connectionID">233</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">thoughtBubbleView2</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="293407708"/>
+					</object>
+					<int key="connectionID">235</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">selectNextView:</string>
 						<reference key="source" ref="221385838"/>
@@ -628,6 +652,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="666210340"/>
 							<reference ref="76480993"/>
+							<reference ref="293407708"/>
 						</object>
 						<reference key="parent" ref="457160686"/>
 					</object>
@@ -712,6 +737,11 @@
 						<reference key="object" ref="1050963337"/>
 						<reference key="parent" ref="327157724"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">234</int>
+						<reference key="object" ref="293407708"/>
+						<reference key="parent" ref="63444883"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -738,6 +768,7 @@
 					<string>227.IBPluginDependency</string>
 					<string>228.IBPluginDependency</string>
 					<string>229.IBPluginDependency</string>
+					<string>234.IBPluginDependency</string>
 					<string>51.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 					<string>97.IBPluginDependency</string>
@@ -747,6 +778,7 @@
 					<string>ConscienceViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -781,7 +813,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">233</int>
+			<int key="maxID">235</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>
@@ -803,6 +835,7 @@
 				<string>navbar-texture-bevel.png</string>
 				<string>pictureframe-home.png</string>
 				<string>thoughtbubble-small1.png</string>
+				<string>thoughtbubble-small2.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
@@ -812,6 +845,7 @@
 				<string>{128, 128}</string>
 				<string>{320, 56}</string>
 				<string>{324, 275}</string>
+				<string>{320, 150}</string>
 				<string>{320, 150}</string>
 			</object>
 		</object>

@@ -82,7 +82,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	//appDelegate needed to reference Conscience and to get Core Data Context and prefs to save state
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
-	appDelegate.userConscienceView.center = centerPoint;	
+	appDelegate.userConscienceView.center = centerPoint;
 
     [self localizeUI];
 	
