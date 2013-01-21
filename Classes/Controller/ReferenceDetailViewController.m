@@ -12,6 +12,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 #import "ConscienceHelpViewController.h"
 #import "UserCollectableDAO.h"
 #import "ViewControllerLocalization.h"
+#import "UIColor+Utility.h"
 
 @interface ReferenceDetailViewController () <ViewControllerLocalization> {
     
@@ -107,7 +108,10 @@ Determine which fields and UI elements should be presented depending up on Refer
 	}else{
         referenceKey = @"";
 	}
-    
+
+    [referenceNameLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+    [referenceNameLabel setShadowColor:[UIColor moraLifeChoiceGray]];
+
 	[self retrieveReference];
 	[self populateReferenceScreen];
 	[referenceLongDescriptionTextView flashScrollIndicators];

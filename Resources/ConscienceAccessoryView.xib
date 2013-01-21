@@ -312,6 +312,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{252, 383}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="8058304"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">5</int>
 								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">

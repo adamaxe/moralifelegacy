@@ -11,6 +11,7 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 #import "ConscienceAccessories.h"
 #import "ConscienceAsset.h"
 #import "ViewControllerLocalization.h"
+#import "UIColor+Utility.h"
 
 int const MLConscienceCenterX = 145;
 int const MLConscienceCenterY = 165;
@@ -52,7 +53,15 @@ int const MLConscienceCenterY = 165;
     prefs = [NSUserDefaults standardUserDefaults];
     
     accessorySlot = 0;
-    
+
+    [statusMessage1 setTextColor:[UIColor darkGrayColor]];
+    [statusMessage1 setShadowColor:[UIColor moraLifeChoiceBlue]];
+
+    [primaryAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
+    [topAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
+    [bottomAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
+    [secondaryAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
+
 	//Rotate accessoryLabels to be parallel to longest side	
 	primaryAccessoryLabel.transform = CGAffineTransformMakeRotation (3.14/2);
 	secondaryAccessoryLabel.transform = CGAffineTransformMakeRotation (-3.14/2);

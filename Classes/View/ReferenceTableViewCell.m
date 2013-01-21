@@ -25,12 +25,13 @@ int const ReferenceTableViewCellHeightFigure = 88;
         [self.textLabel setFont:[UIFont systemFontOfSize:18.0]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
+        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
 
         UIView *figureImageFrame = [[UIView alloc] initWithFrame:self.imageView.frame];
         figureImageFrame.backgroundColor = [UIColor clearColor];
         figureImageFrame.layer.borderColor = [[UIColor moraLifeBrown] CGColor];
         figureImageFrame.layer.borderWidth = 2.0;
-        figureImageFrame.layer.backgroundColor = [[UIColor moraLifeBrown] CGColor];
+        figureImageFrame.layer.backgroundColor = [[UIColor clearColor] CGColor];
         figureImageFrame.layer.cornerRadius = 4.0;
 
         figureImageFrame.hidden = YES;
