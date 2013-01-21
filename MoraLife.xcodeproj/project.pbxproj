@@ -194,8 +194,6 @@
 		5E3BF8721325A52F00FBAF1F /* card-cleanliness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3BF8711325A52F00FBAF1F /* card-cleanliness.png */; };
 		5E3CB173133C0A7D00247A6F /* card-diligence.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CB172133C0A7D00247A6F /* card-diligence.png */; };
 		5E3CB179133C1BD000247A6F /* UserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3CB178133C1BD000247A6F /* UserCollectable.m */; };
-		5E3CED1D16A9E5080022AA65 /* libTACommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3CED1A16A9E5080022AA65 /* libTACommon.a */; };
-		5E3CED1E16A9E5080022AA65 /* libTACommon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E3CED1A16A9E5080022AA65 /* libTACommon.a */; };
 		5E3CED2D16AB633A0022AA65 /* acc-top-shanda.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CED2C16AB633A0022AA65 /* acc-top-shanda.png */; };
 		5E3CED2E16AB633A0022AA65 /* acc-top-shanda.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CED2C16AB633A0022AA65 /* acc-top-shanda.png */; };
 		5E3CED3016AC69EB0022AA65 /* acc-top-shanda-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E3CED2F16AC69EB0022AA65 /* acc-top-shanda-sm.png */; };
@@ -1917,9 +1915,6 @@
 		5E3CB172133C0A7D00247A6F /* card-diligence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-diligence.png"; path = "Resources/images/interface/cards/card-diligence.png"; sourceTree = "<group>"; };
 		5E3CB177133C1BD000247A6F /* UserCollectable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCollectable.h; sourceTree = "<group>"; };
 		5E3CB178133C1BD000247A6F /* UserCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCollectable.m; sourceTree = "<group>"; };
-		5E3CED1A16A9E5080022AA65 /* libTACommon.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTACommon.a; sourceTree = "<group>"; };
-		5E3CED1B16A9E5080022AA65 /* TAQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAQueue.h; sourceTree = "<group>"; };
-		5E3CED1C16A9E5080022AA65 /* TAStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TAStack.h; sourceTree = "<group>"; };
 		5E3CED2C16AB633A0022AA65 /* acc-top-shanda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-top-shanda.png"; path = "Resources/images/accessories/acc-top-shanda.png"; sourceTree = "<group>"; };
 		5E3CED2F16AC69EB0022AA65 /* acc-top-shanda-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-top-shanda-sm.png"; sourceTree = "<group>"; };
 		5E3D33001207AC2400E8E2CE /* body-eye6.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "body-eye6.svg"; path = "Resources/images/conscience/body-eye6.svg"; sourceTree = "<group>"; };
@@ -3539,7 +3534,6 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				5E4CBAB0120A5C120090DC29 /* QuartzCore.framework in Frameworks */,
 				5E43FE1E12BDDB0700BF5C28 /* CoreData.framework in Frameworks */,
-				5E3CED1D16A9E5080022AA65 /* libTACommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3553,7 +3547,6 @@
 				5EA1D226130E38A200BA81D6 /* Foundation.framework in Frameworks */,
 				5EA1D227130E38A200BA81D6 /* CoreGraphics.framework in Frameworks */,
 				5E9D161B15E31E9A003AC018 /* libOCMock.a in Frameworks */,
-				5E3CED1E16A9E5080022AA65 /* libTACommon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3655,7 +3648,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E3CED1916A9E5080022AA65 /* TACommonLibrary */,
 				5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */,
 				5E99C5C013C552A6001F5CB8 /* QuartzCore.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -4022,17 +4014,6 @@
 				5E498980131C940F00A13D11 /* acc-top-yarmulke.png */,
 			);
 			name = accessories;
-			sourceTree = "<group>";
-		};
-		5E3CED1916A9E5080022AA65 /* TACommonLibrary */ = {
-			isa = PBXGroup;
-			children = (
-				5E3CED1A16A9E5080022AA65 /* libTACommon.a */,
-				5E3CED1B16A9E5080022AA65 /* TAQueue.h */,
-				5E3CED1C16A9E5080022AA65 /* TAStack.h */,
-			);
-			name = TACommonLibrary;
-			path = Frameworks/TACommonLibrary;
 			sourceTree = "<group>";
 		};
 		5E45464B1304E86300A53B8C /* icons */ = {
