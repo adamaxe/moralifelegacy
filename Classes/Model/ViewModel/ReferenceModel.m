@@ -238,7 +238,7 @@
                     [derivedIcons addObject:[moralMatch imageNameMoral]];
                     [derivedDetails addObject:[moralMatch shortDescriptionMoral]];
                     [derivedReferenceKeys addObject:[moralMatch nameMoral]];
-                    [derivedLongDescriptions addObject:[[NSString alloc] initWithFormat:@"%@: %@", [moralMatch shortDescriptionMoral], [moralMatch longDescriptionMoral]]];
+                    [derivedLongDescriptions addObject:[[NSString alloc] initWithFormat:@"%@\n\nDefinition: %@", [moralMatch longDescriptionMoral], [moralMatch definitionMoral]]];
                     [derivedLinks addObject:[moralMatch linkMoral]];
                     [derivedOriginYears addObject:@0];
                     [derivedOriginLocations addObject:@""];
@@ -282,7 +282,5 @@
     [self retrieveAllReferences];
 
 }
-
-
 
 @end
