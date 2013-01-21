@@ -301,7 +301,7 @@ static int thoughtVersion = 0;
 //    thoughtBubbleView2.hidden = FALSE;
     conscienceStatus.hidden = FALSE;
 
-    [UIView animateWithDuration:0.75 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
+    [UIView animateWithDuration:0.25 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
         thoughtBubbleView1.alpha = 1;
 //        thoughtBubbleView2.alpha = 1;
         conscienceStatus.alpha = 1;
@@ -337,7 +337,7 @@ static int thoughtVersion = 0;
  */
 -(void)hideThought{
 
-    [UIView animateWithDuration:0.75 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
+    [UIView animateWithDuration:0.25 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
         thoughtBubbleView1.alpha = 0;
 //        thoughtBubbleView2.alpha = 0;
         conscienceStatus.alpha = 0;

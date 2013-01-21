@@ -271,6 +271,8 @@
 		5E47705C13453F0600EE3EDD /* ref-williamwallace.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E47705713453F0600EE3EDD /* ref-williamwallace.jpg */; };
 		5E4804C015992B7D00E27E88 /* TestConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */; };
 		5E480861137E4E2500C1E0CF /* Moral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E480860137E4E2500C1E0CF /* Moral.m */; };
+		5E480D7616AD11190046855A /* thoughtbubble-medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E480D7416AD11160046855A /* thoughtbubble-medium2.png */; };
+		5E480D7716AD11190046855A /* thoughtbubble-medium2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E480D7516AD11180046855A /* thoughtbubble-medium2@2x.png */; };
 		5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E498ACA131C941000A13D11 /* acc-bottom-beard-braidblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */; };
@@ -1993,6 +1995,8 @@
 		5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConscienceAssetDAO.m; sourceTree = "<group>"; };
 		5E48085F137E4E2500C1E0CF /* Moral.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Moral.h; sourceTree = "<group>"; };
 		5E480860137E4E2500C1E0CF /* Moral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moral.m; sourceTree = "<group>"; };
+		5E480D7416AD11160046855A /* thoughtbubble-medium2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-medium2.png"; path = "Resources/images/interface/thoughtbubble-medium2.png"; sourceTree = "<group>"; };
+		5E480D7516AD11180046855A /* thoughtbubble-medium2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-medium2@2x.png"; path = "Resources/images/interface/thoughtbubble-medium2@2x.png"; sourceTree = "<group>"; };
 		5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAssetDAO.h; sourceTree = "<group>"; };
 		5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAssetDAO.m; sourceTree = "<group>"; };
 		5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblack.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblack.png"; sourceTree = "<group>"; };
@@ -4725,6 +4729,8 @@
 				5E5B9DE0135FE9880043420F /* moralifelogo@2x.png */,
 				5EF5566C135D41810062C408 /* thoughtbubble-medium1.png */,
 				5EF5566D135D41810062C408 /* thoughtbubble-medium1@2x.png */,
+				5E480D7416AD11160046855A /* thoughtbubble-medium2.png */,
+				5E480D7516AD11180046855A /* thoughtbubble-medium2@2x.png */,
 				5E99BE60132872F9000D6F60 /* thoughtbubble-smallest.png */,
 				5E8DD01816A3ADB100D9C5EC /* thoughtbubble-separator.png */,
 				5E99BE61132872F9000D6F60 /* thoughtbubble-smallest@2x.png */,
@@ -7227,6 +7233,8 @@
 				5E8DD01916A3ADB100D9C5EC /* thoughtbubble-separator.png in Resources */,
 				5E3CED2D16AB633A0022AA65 /* acc-top-shanda.png in Resources */,
 				5E3CED3016AC69EB0022AA65 /* acc-top-shanda-sm.png in Resources */,
+				5E480D7616AD11190046855A /* thoughtbubble-medium2.png in Resources */,
+				5E480D7716AD11190046855A /* thoughtbubble-medium2@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
