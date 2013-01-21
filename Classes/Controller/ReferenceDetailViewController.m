@@ -283,8 +283,16 @@ Implementation: Find value of reference from UserCollection in case of Morals
  */
 -(void)retrieveCollection {
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:referenceKey];
-    
+    UserCollectableDAO *currentUserCollectableDAO;
+
+    if (referenceType == 4) {
+        currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", referenceKey];
+        currentUserCollectableDAO.predicates = @[pred];
+    } else {
+        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:referenceKey];
+    }
+
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     [cardNumberLabel setText:[NSString stringWithFormat:@"%d", [[currentUserCollectable collectableValue] intValue]]];
