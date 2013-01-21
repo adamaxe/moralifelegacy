@@ -10,11 +10,11 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
 @date 06/04/2010
  */
 
-@class ReferenceModel;
+#import "ReferenceModel.h"
 
 @interface ReferenceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
-@property (nonatomic, assign) int referenceType;	/**< int determining type of reference selection */
+@property (nonatomic, assign) MLReferenceModelTypeEnum referenceType;	/**< int determining type of reference selection */
 
 /**
  Dependency injection constructor to pass model

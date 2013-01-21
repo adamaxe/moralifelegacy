@@ -26,7 +26,7 @@ typedef enum {
 
 @interface ReferenceModel : NSObject
 
-@property (nonatomic, assign) int referenceType;    /**< current reference type */
+@property (nonatomic, assign) MLReferenceModelTypeEnum referenceType;    /**< current reference type */
 @property (nonatomic, strong) NSString *referenceKey; /**< pkey for requested asset */
 
 //Raw, readonly data of all entered choices

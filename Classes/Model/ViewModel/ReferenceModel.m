@@ -86,7 +86,7 @@
 #pragma mark -
 #pragma mark Overloaded Setters
 
-/* Whenever referenceType is changed from ViewController, model is refreshed */
+/* Whenever referenceKey is changed from ViewController, model is refreshed */
 - (void) setReferenceKey:(NSString *)referenceKey {
     if ((_referenceKey != referenceKey)) {
         _referenceKey = referenceKey;
@@ -95,7 +95,7 @@
 }
 
 /* Whenever referenceType is changed from ViewController, model is refreshed */
-- (void) setReferenceType:(int)referenceType {
+- (void) setReferenceType:(MLReferenceModelTypeEnum)referenceType {
     if ((_referenceType != referenceType)) {
         _referenceType = referenceType;
         [self retrieveAllReferences];

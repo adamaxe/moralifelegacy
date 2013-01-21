@@ -31,7 +31,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 	IBOutlet UILabel *cardNumberLabel;                  	/**< text to appear over card */
 	IBOutlet UITextView *referenceLongDescriptionTextView;	 /**< detailed reference text */
     
-	int referenceType;			/**< which type of reference is being presented */
+	MLReferenceModelTypeEnum referenceType;			/**< which type of reference is being presented */
 	bool hasQuote;				/**< does reference have a quote */
 	bool hasLink;				/**< does reference have an external link */
 	
@@ -220,16 +220,20 @@ Implementation: Determine which type of image to show to User in reference card.
 	
 	NSMutableString *detailImageName = [[NSMutableString alloc] initWithString:referencePicture];
 
-	if (referenceType < 3) {
-		[detailImageName appendString:@"-sm.png"];
-		referenceSmallPictureView.image = [UIImage imageNamed:[NSString stringWithString:detailImageName]];
-	} else if (referenceType == 4) {
-		[detailImageName appendString:@".png"];
-		referenceSmallPictureView.image = [UIImage imageNamed:[NSString stringWithString:detailImageName]];
-		[self retrieveCollection];
-	}  else {
-		[detailImageName appendString:@".jpg"];
-		referencePictureView.image = [UIImage imageNamed:[NSString stringWithString:detailImageName]];
+	switch (referenceType){
+		case MLReferenceModelTypePerson:
+            [detailImageName appendString:@".jpg"];
+            referencePictureView.image = [UIImage imageNamed:[NSString stringWithString:detailImageName]];
+			break;
+		case MLReferenceModelTypeMoral:
+            [detailImageName appendString:@".png"];
+            referenceSmallPictureView.image = [UIImage imageNamed:detailImageName];
+            [self retrieveCollection];
+			break;
+		default:
+            [detailImageName appendString:@"-sm.png"];
+            referenceSmallPictureView.image = [UIImage imageNamed:detailImageName];
+			break;
 	}
 
 	[moralPictureView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", referenceMoral]]];
@@ -285,7 +289,7 @@ Implementation: Find value of reference from UserCollection in case of Morals
     
     UserCollectableDAO *currentUserCollectableDAO;
 
-    if (referenceType == 4) {
+    if (referenceType == MLReferenceModelTypeMoral) {
         currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", referenceKey];
         currentUserCollectableDAO.predicates = @[pred];
