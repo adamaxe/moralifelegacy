@@ -177,7 +177,14 @@ User can return to the previous screen:  return to ConscienceListViewController 
         [ConscienceBuilder buildConscience:appDelegate.userConscienceBody];
 
     }
-    
+
+    [backButton setTitleColor:[UIColor moraLifeChoiceRed] forState:UIControlStateNormal];
+    [insufficientEthicalsLabel setTextColor:[UIColor moraLifeChoiceRed]];
+    [buyButton setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
+    [currentFundsLabel setTextColor:[UIColor moraLifeChoiceGreen]];
+    [accessoryNameLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+    [accessoryNameLabel setShadowColor:[UIColor moraLifeChoiceGray]];
+
     [self localizeUI];    
 
 }
@@ -190,12 +197,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[consciencePlayground addSubview:appDelegate.userConscienceView];
 	[appDelegate.userConscienceView setNeedsDisplay];
 
-    [backButton setTitleColor:[UIColor moraLifeChoiceRed] forState:UIControlStateNormal];
-    [insufficientEthicalsLabel setTextColor:[UIColor moraLifeChoiceRed]];
-    [buyButton setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
-    [currentFundsLabel setTextColor:[UIColor moraLifeChoiceGreen]];
-    [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];
-    
+    [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];    
 	//Inform/restrict User's ability to actually purchase ConscienceAsset
 	//Flash assetCost is ConscienceAsset is unbuyable
 	if ((assetCost > currentFunds) && !isOwned) {

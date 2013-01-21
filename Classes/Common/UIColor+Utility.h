@@ -22,16 +22,28 @@
 + (UIColor *) moraLifeChoiceGreen;
 
 /**
+ Common MoraLife Interface Color Light Green
+ @return UIColor for pending UI choices
+ */
++ (UIColor *) moraLifeChoiceLightGreen;
+
+/**
  Common MoraLife Interface Color Blue
  @return UIColor for neutral UI choices
  */
 + (UIColor *) moraLifeChoiceBlue;
 
 /**
- Common MoraLife Interface Color Grey
- @return UIColor for neutral UI choices
+ Common MoraLife Interface Color Gray
+ @return UIColor for unimportant UI Choices
  */
 + (UIColor *) moraLifeChoiceGray;
+
+/**
+ Common MoraLife Interface Color Light Gray
+ @return UIColor for unavailable UI choices
+ */
++ (UIColor *) moraLifeChoiceLightGray;
 
 /**
 Class method for creating a UIColor from a hex formatted string

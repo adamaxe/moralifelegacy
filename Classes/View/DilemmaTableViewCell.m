@@ -1,4 +1,5 @@
 #import "DilemmaTableViewCell.h"
+#import "UIColor+Utility.h"
 
 @implementation DilemmaTableViewCell
 
@@ -40,21 +41,22 @@
         case DilemmaTableViewCellStateFinished: {
             self.accessoryType = UITableViewCellAccessoryCheckmark;
             self.selectionStyle = UITableViewCellSelectionStyleNone;
-            [self.textLabel setTextColor:[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1]];
-            [self.detailTextLabel setTextColor:[UIColor colorWithRed:200.0/255.0 green:25.0/255.0 blue:2.0/255.0 alpha:1]];
+            [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
+            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
             [self.textLabel setFont:[UIFont systemFontOfSize:12.0]];
 
         } break;
         case DilemmaTableViewCellStateAvailable: {
             self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             self.selectionStyle = UITableViewCellSelectionStyleGray;
-            [self.textLabel setTextColor:[UIColor colorWithRed:0.0/255.0 green:0.0/255.0 blue:0.0/255.0 alpha:1]];
-            [self.detailTextLabel setTextColor:[UIColor colorWithRed:0.0/255.0 green:176.0/255.0 blue:0.0/255.0 alpha:1]];
+            [self.textLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
+            [self.textLabel setTextColor:[UIColor moraLifeChoiceRed]];
+            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceBlue]];
 
         } break;
         case DilemmaTableViewCellStateUnavailable: {
-            [self.textLabel setTextColor:[UIColor colorWithRed:100.0/255.0 green:150.00/255.0 blue:100.0/255.0 alpha:1]];
-            [self.detailTextLabel setTextColor:[UIColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:1]];
+            [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
+            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
 
             self.accessoryType = UITableViewCellAccessoryNone;
             self.selectionStyle = UITableViewCellSelectionStyleNone;

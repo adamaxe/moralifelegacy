@@ -19,6 +19,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ConscienceHelpViewController.h"
 #import "ReportPieViewController.h"
 #import "ReportPieModel.h"
+#import "UIColor+Utility.h"
 
 @interface ConscienceModalViewController () {
     
@@ -135,7 +136,19 @@ User selection causes selectChoice to be called which sets the currentState vari
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
- 
+    [statusMessage1 setTextColor:[UIColor darkGrayColor]];
+    [statusMessage1 setShadowColor:[UIColor moraLifeChoiceBlue]];
+
+    [labelButton1 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
+    [labelButton1 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
+    [labelButton2 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
+    [labelButton2 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
+    [labelButton3 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
+    [labelButton3 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
+    [labelButton4 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
+    [labelButton4 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
+
+
 }
 
 - (void) viewWillAppear:(BOOL)animated{
