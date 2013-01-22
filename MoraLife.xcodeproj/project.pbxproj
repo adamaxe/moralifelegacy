@@ -211,7 +211,6 @@
 		5E3E87E51226090B00F2708A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B91226090B00F2708A /* MainWindow.xib */; };
 		5E3E87E61226090B00F2708A /* ReferenceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */; };
 		5E3E87E71226090B00F2708A /* ReferenceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BB1226090B00F2708A /* ReferenceListView.xib */; };
-		5E3E87E81226090B00F2708A /* ReferenceModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BC1226090B00F2708A /* ReferenceModalView.xib */; };
 		5E3E87E91226090B00F2708A /* ReferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BD1226090B00F2708A /* ReferenceView.xib */; };
 		5E3E880D122609B600F2708A /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3E8805122609B600F2708A /* XMLParser.m */; };
 		5E3F48EA12FD103C00B4B4EC /* ChoiceInitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3F48E812FD103C00B4B4EC /* ChoiceInitViewController.m */; };
@@ -273,6 +272,7 @@
 		5E480861137E4E2500C1E0CF /* Moral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E480860137E4E2500C1E0CF /* Moral.m */; };
 		5E480D7616AD11190046855A /* thoughtbubble-medium2.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E480D7416AD11160046855A /* thoughtbubble-medium2.png */; };
 		5E480D7716AD11190046855A /* thoughtbubble-medium2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E480D7516AD11180046855A /* thoughtbubble-medium2@2x.png */; };
+		5E480D7916AE119A0046855A /* thoughtbubble-separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E480D7816AE11990046855A /* thoughtbubble-separator@2x.png */; };
 		5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E498ACA131C941000A13D11 /* acc-bottom-beard-braidblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */; };
@@ -1930,7 +1930,6 @@
 		5E3E87B91226090B00F2708A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceDetailView.xib; path = Resources/ReferenceDetailView.xib; sourceTree = "<group>"; };
 		5E3E87BB1226090B00F2708A /* ReferenceListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceListView.xib; path = Resources/ReferenceListView.xib; sourceTree = "<group>"; };
-		5E3E87BC1226090B00F2708A /* ReferenceModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceModalView.xib; path = Resources/ReferenceModalView.xib; sourceTree = "<group>"; };
 		5E3E87BD1226090B00F2708A /* ReferenceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceView.xib; path = Resources/ReferenceView.xib; sourceTree = "<group>"; };
 		5E3E8804122609B600F2708A /* XMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XMLParser.h; path = Common/XMLParser.h; sourceTree = "<group>"; };
 		5E3E8805122609B600F2708A /* XMLParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XMLParser.m; path = Common/XMLParser.m; sourceTree = "<group>"; };
@@ -1997,6 +1996,7 @@
 		5E480860137E4E2500C1E0CF /* Moral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Moral.m; sourceTree = "<group>"; };
 		5E480D7416AD11160046855A /* thoughtbubble-medium2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-medium2.png"; path = "Resources/images/interface/thoughtbubble-medium2.png"; sourceTree = "<group>"; };
 		5E480D7516AD11180046855A /* thoughtbubble-medium2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-medium2@2x.png"; path = "Resources/images/interface/thoughtbubble-medium2@2x.png"; sourceTree = "<group>"; };
+		5E480D7816AE11990046855A /* thoughtbubble-separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-separator@2x.png"; path = "Resources/images/interface/thoughtbubble-separator@2x.png"; sourceTree = "<group>"; };
 		5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAssetDAO.h; sourceTree = "<group>"; };
 		5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAssetDAO.m; sourceTree = "<group>"; };
 		5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblack.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblack.png"; sourceTree = "<group>"; };
@@ -3633,7 +3633,6 @@
 				5E3E87BD1226090B00F2708A /* ReferenceView.xib */,
 				5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */,
 				5E3E87BB1226090B00F2708A /* ReferenceListView.xib */,
-				5E3E87BC1226090B00F2708A /* ReferenceModalView.xib */,
 				5EB76148123EE9860063C15A /* ReportPieView.xib */,
 				5E9FEA81138E0A5000AB6645 /* Entitlements.plist */,
 			);
@@ -4733,6 +4732,7 @@
 				5E480D7516AD11180046855A /* thoughtbubble-medium2@2x.png */,
 				5E99BE60132872F9000D6F60 /* thoughtbubble-smallest.png */,
 				5E8DD01816A3ADB100D9C5EC /* thoughtbubble-separator.png */,
+				5E480D7816AE11990046855A /* thoughtbubble-separator@2x.png */,
 				5E99BE61132872F9000D6F60 /* thoughtbubble-smallest@2x.png */,
 				5E99BE62132872F9000D6F60 /* thoughtbubble-thin1.png */,
 				5E99BE63132872F9000D6F60 /* thoughtbubble-thin1@2x.png */,
@@ -5814,7 +5814,6 @@
 				5E3E87E51226090B00F2708A /* MainWindow.xib in Resources */,
 				5E3E87E61226090B00F2708A /* ReferenceDetailView.xib in Resources */,
 				5E3E87E71226090B00F2708A /* ReferenceListView.xib in Resources */,
-				5E3E87E81226090B00F2708A /* ReferenceModalView.xib in Resources */,
 				5E3E87E91226090B00F2708A /* ReferenceView.xib in Resources */,
 				5EB5A318122624E800879E11 /* ConscienceAccessoryView.xib in Resources */,
 				5EE1B50412273DE000639CAF /* body-eye8.svg in Resources */,
@@ -7235,6 +7234,7 @@
 				5E3CED3016AC69EB0022AA65 /* acc-top-shanda-sm.png in Resources */,
 				5E480D7616AD11190046855A /* thoughtbubble-medium2.png in Resources */,
 				5E480D7716AD11190046855A /* thoughtbubble-medium2@2x.png in Resources */,
+				5E480D7916AE119A0046855A /* thoughtbubble-separator@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
