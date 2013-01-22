@@ -119,6 +119,46 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+	wwwLinkButton.alpha = 0;
+	quoteButton.alpha = 0;
+	referencePictureView.alpha = 0;
+	referenceSmallPictureView.alpha = 0;
+	moralPictureView.alpha = 0;
+	cardView.alpha = 0;
+	referenceNameLabel.alpha = 0;
+	referenceDateLabel.alpha = 0;
+	referenceOriginLabel.alpha = 0;
+	referenceShortDescriptionLabel.alpha = 0;
+	cardNumberLabel.alpha = 0;
+	referenceLongDescriptionTextView.alpha = 0;
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        wwwLinkButton.alpha = 1;
+        quoteButton.alpha = 1;
+        referencePictureView.alpha = 1;
+        referenceSmallPictureView.alpha = 1;
+        moralPictureView.alpha = 1;
+        cardView.alpha = 1;
+        referenceNameLabel.alpha = 1;
+        referenceDateLabel.alpha = 1;
+        referenceOriginLabel.alpha = 1;
+        referenceShortDescriptionLabel.alpha = 1;
+        cardNumberLabel.alpha = 1;
+        referenceLongDescriptionTextView.alpha = 1;
+
+    }];
+
+    self.navigationItem.hidesBackButton = YES;
+
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStylePlain target:self action:@selector(popReference)];
+    [self.navigationItem setRightBarButtonItem:referenceBarButton];
+
+}
+
 -(void) viewWillDisappear:(BOOL)animated{	
 
     if (referenceKey != nil) {
@@ -131,6 +171,28 @@ Determine which fields and UI elements should be presented depending up on Refer
 
     }
 
+}
+
+- (void)popReference {
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        wwwLinkButton.alpha = 0;
+        quoteButton.alpha = 0;
+        referencePictureView.alpha = 0;
+        referenceSmallPictureView.alpha = 0;
+        moralPictureView.alpha = 0;
+        cardView.alpha = 0;
+        referenceNameLabel.alpha = 0;
+        referenceDateLabel.alpha = 0;
+        referenceOriginLabel.alpha = 0;
+        referenceShortDescriptionLabel.alpha = 0;
+        cardNumberLabel.alpha = 0;
+        referenceLongDescriptionTextView.alpha = 0;
+        
+    } completion:^(BOOL finished){
+        [self.navigationController popViewControllerAnimated:NO];
+    }];
 }
 
 #pragma mark -

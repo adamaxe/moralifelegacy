@@ -113,7 +113,23 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	
 	if (selection)
 		[referencesTableView deselectRowAtIndexPath:selection animated:YES];
-	
+
+
+    referenceSearchBar.alpha = 0;
+    referencesTableView.alpha = 0;
+    
+    [UIView animateWithDuration:0.5 animations:^{
+
+        referenceSearchBar.alpha = 1;
+        referencesTableView.alpha = 1;
+
+    }];
+
+    self.navigationItem.hidesBackButton = YES;
+
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(popReference)];
+    [self.navigationItem setRightBarButtonItem:referenceBarButton];
+
 	[referencesTableView reloadData];
 }
 
@@ -126,6 +142,18 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 		
 	}
 	
+}
+
+- (void)popReference {
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        referenceSearchBar.alpha = 0;
+        referencesTableView.alpha = 0;
+
+    } completion:^(BOOL finished){
+        [self.navigationController popViewControllerAnimated:NO];
+    }];
 }
 
 #pragma mark -
@@ -219,12 +247,20 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel];
 
-    [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
+    [UIView animateWithDuration:0.5 animations:^{
 
-	[self.navigationController pushViewController:detailViewCont animated:YES];
+        referenceSearchBar.alpha = 0;
+        referencesTableView.alpha = 0;
+
+    }completion:^(BOOL finished) {
+
+        ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel];
+        [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
+        [self.navigationController pushViewController:detailViewCont animated:NO];
+    }];
+
+
 }
 
 #pragma mark -

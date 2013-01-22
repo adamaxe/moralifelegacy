@@ -67,6 +67,23 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void) viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    goodChoiceButton.alpha = 0;
+    goodChoiceLabelButton.alpha = 0;
+    badChoiceButton.alpha = 0;
+    badChoiceLabelButton.alpha = 0;
+    choiceListButton.alpha = 0;
+    choiceListLabelButton.alpha = 0;
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        goodChoiceButton.alpha = 1;
+        goodChoiceLabelButton.alpha = 1;
+        badChoiceButton.alpha = 1;
+        badChoiceLabelButton.alpha = 1;
+        choiceListButton.alpha = 1;
+        choiceListLabelButton.alpha = 1;
+
+    }];
 
 	//Setup repeating NSTimer to make the buttons animate randomly
 	[self refreshButtons];
@@ -153,20 +170,34 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	[prefs removeObjectForKey:@"moralImage"];
 	
 	[prefs setBool:isGood forKey:@"entryIsGood"];
-	
-	//Determine if List controller type or entry controller type is needed
-	if (!isList) {
 
-        ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
-        //Push view onto stack	
-        [self.navigationController pushViewController:choiceCont animated:YES];
-	} else {
+    [UIView animateWithDuration:0.5 animations:^{
 
-        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
-        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
-        [self.navigationController pushViewController:choiceListCont animated:YES];
-	}
-	
+        goodChoiceButton.alpha = 0;
+        goodChoiceLabelButton.alpha = 0;
+        badChoiceButton.alpha = 0;
+        badChoiceLabelButton.alpha = 0;
+        choiceListButton.alpha = 0;
+        choiceListLabelButton.alpha = 0;
+
+    } completion:^(BOOL finished){
+        
+        //Determine if List controller type or entry controller type is needed
+        if (!isList) {
+
+            ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
+            //Push view onto stack
+            [self.navigationController pushViewController:choiceCont animated:NO];
+        } else {
+
+            ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+            ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
+            [self.navigationController pushViewController:choiceListCont animated:NO];
+        }
+    }];
+
+
+
 }
 
 #pragma mark -

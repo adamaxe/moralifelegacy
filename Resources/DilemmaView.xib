@@ -76,23 +76,6 @@
 							<string key="NSResourceName">navbar-texture-bevel.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="813240962">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 410}, {320, 50}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="1040894430"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">background-modal-tabbar.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="1040894430">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
@@ -249,7 +232,7 @@
 												<int key="IBUIBaselineAdjustment">1</int>
 												<float key="IBUIMinimumFontSize">10</float>
 												<int key="IBUITextAlignment">2</int>
-												<object class="IBUIFontDescription" key="IBUIFontDescription" id="700394241">
+												<object class="IBUIFontDescription" key="IBUIFontDescription" id="520065858">
 													<string key="name">Helvetica-Bold</string>
 													<string key="family">Helvetica</string>
 													<int key="traits">2</int>
@@ -312,7 +295,7 @@
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">2</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="582688801">
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="1062010726">
 											<string key="name">Helvetica</string>
 											<string key="family">Helvetica</string>
 											<int key="traits">0</int>
@@ -385,7 +368,7 @@
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">1</int>
-										<reference key="IBUIFontDescription" ref="700394241"/>
+										<reference key="IBUIFontDescription" ref="520065858"/>
 										<reference key="IBUIFont" ref="405520096"/>
 									</object>
 								</object>
@@ -435,7 +418,7 @@
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">thoughtbubble-thin2.png</string>
 										</object>
-										<reference key="IBUIFontDescription" ref="700394241"/>
+										<reference key="IBUIFontDescription" ref="520065858"/>
 										<reference key="IBUIFont" ref="405520096"/>
 									</object>
 									<object class="IBUILabel" id="774993682">
@@ -460,7 +443,7 @@
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">1</int>
-										<reference key="IBUIFontDescription" ref="700394241"/>
+										<reference key="IBUIFontDescription" ref="520065858"/>
 										<reference key="IBUIFont" ref="405520096"/>
 									</object>
 									<object class="IBUIButton" id="390823874">
@@ -495,7 +478,7 @@
 											<string key="NSClassName">NSImage</string>
 											<string key="NSResourceName">thoughtbubble-thin1.png</string>
 										</object>
-										<reference key="IBUIFontDescription" ref="700394241"/>
+										<reference key="IBUIFontDescription" ref="520065858"/>
 										<reference key="IBUIFont" ref="405520096"/>
 									</object>
 									<object class="IBUIImageView" id="205696567">
@@ -561,11 +544,11 @@
 											<int key="IBUIAutocapitalizationType">2</int>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										</object>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="273058985">
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="775682546">
 											<int key="type">1</int>
 											<double key="pointSize">17</double>
 										</object>
-										<object class="NSFont" key="IBUIFont" id="893861466">
+										<object class="NSFont" key="IBUIFont" id="971716169">
 											<string key="NSName">Helvetica</string>
 											<double key="NSSize">17</double>
 											<int key="NSfFlags">16</int>
@@ -593,7 +576,7 @@
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
-										<reference key="IBUIFontDescription" ref="582688801"/>
+										<reference key="IBUIFontDescription" ref="1062010726"/>
 										<reference key="IBUIFont" ref="57846409"/>
 									</object>
 									<object class="IBUIImageView" id="941849708">
@@ -642,8 +625,8 @@
 											<int key="IBUIAutocapitalizationType">2</int>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										</object>
-										<reference key="IBUIFontDescription" ref="273058985"/>
-										<reference key="IBUIFont" ref="893861466"/>
+										<reference key="IBUIFontDescription" ref="775682546"/>
+										<reference key="IBUIFont" ref="971716169"/>
 									</object>
 									<object class="IBUILabel" id="71279312">
 										<reference key="NSNextResponder" ref="246192506"/>
@@ -700,7 +683,7 @@
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
-										<reference key="IBUIFontDescription" ref="582688801"/>
+										<reference key="IBUIFontDescription" ref="1062010726"/>
 										<reference key="IBUIFont" ref="57846409"/>
 									</object>
 									<object class="IBUIImageView" id="112961113">
@@ -753,7 +736,7 @@
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">1</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="191779190">
+										<object class="IBUIFontDescription" key="IBUIFontDescription" id="452906992">
 											<string key="name">Helvetica</string>
 											<string key="family">Helvetica</string>
 											<int key="traits">0</int>
@@ -787,8 +770,8 @@
 											<int key="IBUIAutocapitalizationType">2</int>
 											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 										</object>
-										<reference key="IBUIFontDescription" ref="273058985"/>
-										<reference key="IBUIFont" ref="893861466"/>
+										<reference key="IBUIFontDescription" ref="775682546"/>
+										<reference key="IBUIFont" ref="971716169"/>
 									</object>
 								</object>
 								<string key="NSFrameSize">{320, 460}</string>
@@ -841,7 +824,7 @@
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">1</int>
 										<int key="IBUILineBreakMode">0</int>
-										<reference key="IBUIFontDescription" ref="191779190"/>
+										<reference key="IBUIFontDescription" ref="452906992"/>
 										<reference key="IBUIFont" ref="535852548"/>
 									</object>
 									<object class="IBUIImageView" id="889601563">
@@ -886,7 +869,7 @@
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">2</int>
-										<reference key="IBUIFontDescription" ref="582688801"/>
+										<reference key="IBUIFontDescription" ref="1062010726"/>
 										<reference key="IBUIFont" ref="57846409"/>
 									</object>
 									<object class="IBUILabel" id="1014906623">
@@ -911,7 +894,7 @@
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
-										<reference key="IBUIFontDescription" ref="582688801"/>
+										<reference key="IBUIFontDescription" ref="1062010726"/>
 										<reference key="IBUIFont" ref="57846409"/>
 									</object>
 								</object>
@@ -937,7 +920,6 @@
 						<string key="NSFrame">{{252, 380}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<float key="IBUIAlpha">0.5</float>
 						<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
@@ -959,7 +941,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">interface-choicesprevious.png</string>
 						</object>
-						<object class="IBUIFontDescription" key="IBUIFontDescription" id="422424246">
+						<object class="IBUIFontDescription" key="IBUIFontDescription" id="364788970">
 							<string key="name">Helvetica-Bold</string>
 							<string key="family">Helvetica</string>
 							<int key="traits">2</int>
@@ -977,7 +959,7 @@
 						<string key="NSFrame">{{232, 340}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="813240962"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
 						<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
@@ -996,7 +978,7 @@
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">interface-choicesnext.png</string>
 						</object>
-						<reference key="IBUIFontDescription" ref="422424246"/>
+						<reference key="IBUIFontDescription" ref="364788970"/>
 						<reference key="IBUIFont" ref="983632218"/>
 					</object>
 					<object class="IBUIButton" id="304847281">
@@ -1016,7 +998,7 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
 						</object>
 						<reference key="IBUINormalTitleShadowColor" ref="906887797"/>
-						<reference key="IBUIFontDescription" ref="422424246"/>
+						<reference key="IBUIFontDescription" ref="364788970"/>
 						<reference key="IBUIFont" ref="983632218"/>
 					</object>
 				</object>
@@ -1412,7 +1394,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1050844288"/>
 							<reference ref="462409497"/>
-							<reference ref="813240962"/>
 							<reference ref="1040894430"/>
 							<reference ref="3759875"/>
 							<reference ref="538146265"/>
@@ -1461,11 +1442,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">8</int>
 						<reference key="object" ref="462409497"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">9</int>
-						<reference key="object" ref="813240962"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1801,7 +1777,6 @@
 					<string>80.IBPluginDependency</string>
 					<string>81.IBPluginDependency</string>
 					<string>88.IBPluginDependency</string>
-					<string>9.IBPluginDependency</string>
 					<string>95.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
@@ -1854,7 +1829,6 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<real value="1"/>
 					<real value="0.0"/>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -2221,7 +2195,6 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>background-modal-tabbar.png</string>
 				<string>background-wall.jpg</string>
 				<string>card-honesty.png</string>
 				<string>card-loyalty.png</string>
@@ -2237,7 +2210,6 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{320, 50}</string>
 				<string>{320, 480}</string>
 				<string>{128, 128}</string>
 				<string>{128, 128}</string>

@@ -78,23 +78,6 @@
 							<string key="NSResourceName">navbar-texture-bevel.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="319753830">
-						<reference key="NSNextResponder" ref="747400875"/>
-						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 410}, {320, 50}}</string>
-						<reference key="NSSuperview" ref="747400875"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="481687621"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">background-modal-tabbar.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="481687621">
 						<reference key="NSNextResponder" ref="747400875"/>
 						<int key="NSvFlags">256</int>
@@ -341,7 +324,7 @@
 						<string key="NSFrame">{{0, 380}, {180, 80}}</string>
 						<reference key="NSSuperview" ref="747400875"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="319753830"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -508,7 +491,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="435301871"/>
 							<reference ref="925342842"/>
-							<reference ref="319753830"/>
 							<reference ref="481687621"/>
 							<reference ref="734085815"/>
 							<reference ref="453499481"/>
@@ -529,12 +511,6 @@
 						<reference key="object" ref="925342842"/>
 						<reference key="parent" ref="747400875"/>
 						<string key="objectName">Image View - Faux Navbar</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">19</int>
-						<reference key="object" ref="319753830"/>
-						<reference key="parent" ref="747400875"/>
-						<string key="objectName">Image View - Faux Tabbar</string>
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">16</int>
@@ -622,7 +598,6 @@
 					<string>16.IBPluginDependency</string>
 					<string>17.IBPluginDependency</string>
 					<string>18.IBPluginDependency</string>
-					<string>19.IBPluginDependency</string>
 					<string>22.IBPluginDependency</string>
 					<string>26.IBPluginDependency</string>
 					<string>28.IBPluginDependency</string>
@@ -640,7 +615,6 @@
 					<string>ConscienceListViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -807,7 +781,6 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>background-modal-tabbar.png</string>
 				<string>background-wall.jpg</string>
 				<string>interface-choicesprevious.png</string>
 				<string>navbar-texture-bevel.png</string>
@@ -818,7 +791,6 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{320, 50}</string>
 				<string>{320, 480}</string>
 				<string>{90, 90}</string>
 				<string>{320, 56}</string>

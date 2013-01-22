@@ -20,6 +20,8 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "ConscienceAssetDAO.h"
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
+#import "ChoiceInitViewController.h"
+#import "ReferenceViewController.h"
 
 typedef enum {
     MLConscienceViewControllerVirtueButtonTag = 3030,
@@ -195,7 +197,7 @@ static int thoughtVersion = 0;
 //                                                     name: UIApplicationWillEnterForegroundNotification
 //                                                   object: nil];
 //	}
-                
+
 	initialConscienceView.alpha = 0;
 	
 	initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
@@ -252,11 +254,25 @@ static int thoughtVersion = 0;
         [NSTimer scheduledTimerWithTimeInterval:MLTransientInterval invocation:invocation repeats:NO];
         
     }
-    
+
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
+    [self.navigationItem setRightBarButtonItem:choiceBarButton];
+    [self.navigationItem setLeftBarButtonItem:referenceBarButton];
+
 	[consciencePlayground setNeedsDisplay];
     [self createWelcomeMessage];
     [self selectNextView:nil];
 	
+}
+
+- (void) pushJournal {
+    ChoiceInitViewController *choiceIntViewController1 = [[ChoiceInitViewController alloc] init];
+    [self.navigationController pushViewController:choiceIntViewController1 animated:YES];
+}
+
+- (void) pushReference {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 -(void)viewDidAppear:(BOOL)animated {
@@ -295,32 +311,17 @@ static int thoughtVersion = 0;
 -(void)showThought{
     
     thoughtBubbleView1.alpha = 0;
-//    thoughtBubbleView2.alpha = 0;
     conscienceStatus.alpha = 0;
     thoughtBubbleView1.hidden = FALSE;
-//    thoughtBubbleView2.hidden = FALSE;
     conscienceStatus.hidden = FALSE;
 
     [UIView animateWithDuration:0.35 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
         thoughtBubbleView1.alpha = 1;
-//        thoughtBubbleView2.alpha = 1;
         conscienceStatus.alpha = 1;
 
     }completion:^(BOOL finished) {
         isThoughtOnScreen = TRUE;
-//        thoughtBubbleView1.hidden = TRUE;
-//        thoughtBubbleView2.hidden = TRUE;
-//        conscienceStatus.hidden = TRUE;
     }];
-
-//    thoughtBubbleView1.alpha = 1.0;
-//    thoughtBubbleView2.alpha = 0.0;
-//    [UIView animateWithDuration:1.0 delay:0.0 options:(UIViewAnimationOptionAutoreverse | UIViewAnimationOptionRepeat | UIViewAnimationOptionCurveEaseInOut) animations:^{
-//        thoughtBubbleView1.alpha = 0.0;
-//        thoughtBubbleView2.alpha = 1.0;
-//    }completion:nil];
-
-//    thoughtBubbleView1.hidden = FALSE;
 
     //Dismiss the thought bubble after a time
     if (thoughtFadeTimer != nil) {
@@ -339,7 +340,6 @@ static int thoughtVersion = 0;
 
     [UIView animateWithDuration:0.35 delay:0 options:(UIViewAnimationOptionCurveEaseInOut | UIViewAnimationOptionBeginFromCurrentState) animations:^{
         thoughtBubbleView1.alpha = 0;
-//        thoughtBubbleView2.alpha = 0;
         conscienceStatus.alpha = 0;
 
     }completion:^(BOOL finished) {

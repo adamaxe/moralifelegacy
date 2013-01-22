@@ -169,6 +169,11 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 		isVirtue = TRUE;
 	}
 
+    self.navigationItem.hidesBackButton = YES;
+
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(popChoice)];
+    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -239,54 +244,116 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     moralHistoryButton.hidden = [choiceKey isEqualToString:@""] ? FALSE : TRUE;
     
 	//Set moral and cloud image to invisible, so viewDidAppear can make them fade in
-	[moralReferenceButton setAlpha:0];
-	[moralImageView setAlpha:0];
-	
+    moralReferenceButton.alpha = 0;
+    moralImageView.alpha = 0;
+	severityLabel.alpha = 0;
+	moralImageView.alpha = 0;
+	backgroundImageView.alpha = 0;
+	descriptionInnerShadow.alpha = 0;
+	choiceParametersView.alpha = 0;
+	choiceDescriptionView.alpha = 0;
+
+	hideKeyboardButton.alpha = 0;
+	doneButton.alpha = 0;
+	cancelButton.alpha = 0;
+	moralButton.alpha = 0;
+	moralReferenceButton.alpha = 0;
+
+    moralHistoryButton.alpha = 0;
+	choiceTextField.alpha = 0;
+	descriptionTextView.alpha = 0;
+	severitySlider.alpha = 0;
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        moralReferenceButton.alpha = 1;
+        moralImageView.alpha = 1;
+        severityLabel.alpha = 1;
+        moralImageView.alpha = 1;
+        backgroundImageView.alpha = 1;
+        descriptionInnerShadow.alpha = 1;
+        choiceParametersView.alpha = 1;
+        choiceDescriptionView.alpha = 1;
+
+        hideKeyboardButton.alpha = 1;
+        doneButton.alpha = 1;
+        cancelButton.alpha = 1;
+        moralButton.alpha = 1;
+        moralReferenceButton.alpha = 1;
+
+        moralHistoryButton.alpha = 1;
+        choiceTextField.alpha = 1;
+        descriptionTextView.alpha = 1;
+        severitySlider.alpha = 1;
+
+    }];
+
+}
+
+-(void)viewDidAppear:(BOOL)animated {
+
+    [super viewDidAppear:animated];
+
+    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    
+    
 }
 
 -(void) viewWillDisappear:(BOOL)animated{
-    
+
     [super viewWillDisappear:animated];
-	
+
 	//Save current state of form unless choice is finished
 	if (!isChoiceFinished) {
-		
+
 		//Do not save default help text
 		NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), nil);
-		
+
 		NSString *defaultTextViewText = NSLocalizedString(@"ChoiceScreenDescription",nil);
-        
+
 		if (![choiceTextField.text isEqualToString:@""] && ![choiceTextField.text isEqualToString:defaultTextFieldText]) {
-			[prefs setObject:choiceTextField.text forKey:@"entryShortDescription"];    
+			[prefs setObject:choiceTextField.text forKey:@"entryShortDescription"];
 		}
-        
+
 		if (![descriptionTextView.text isEqualToString:@""] && ![descriptionTextView.text isEqualToString:defaultTextViewText]) {
-            
-			[prefs setObject:descriptionTextView.text forKey:@"entryLongDescription"];    		
+
+			[prefs setObject:descriptionTextView.text forKey:@"entryLongDescription"];
 		}
-        
+
 		//Save off entries to NSUserDefaults
 		[prefs setObject:choiceKey forKey:@"entryKey"];
 		[prefs setFloat:severitySlider.value forKey:@"entrySeverity"];
 		[prefs setBool:isVirtue forKey:@"entryIsGood"];
 	}
-	
+
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    
-    [super viewDidAppear:animated];
+- (void)popChoice {
+    [UIView animateWithDuration:0.5 animations:^{
 
-	//Present Moral image as a fade in to provide distinction between Conscience elements and User entry elements
-	[UIView beginAnimations:@"showMoralImage" context:nil];
-	[UIView setAnimationDuration:0.5];
-	[moralReferenceButton setAlpha:1];
-	[moralImageView setAlpha:1];
-	[UIView commitAnimations];
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+        moralReferenceButton.alpha = 0;
+        moralImageView.alpha = 0;
+        severityLabel.alpha = 0;
+        moralImageView.alpha = 0;
+        backgroundImageView.alpha = 0;
+        descriptionInnerShadow.alpha = 0;
+        choiceParametersView.alpha = 0;
+        choiceDescriptionView.alpha = 0;
 
+        hideKeyboardButton.alpha = 0;
+        doneButton.alpha = 0;
+        cancelButton.alpha = 0;
+        moralButton.alpha = 0;
+        moralReferenceButton.alpha = 0;
+        moralHistoryButton.alpha = 0;
+        choiceTextField.alpha = 0;
+        descriptionTextView.alpha = 0;
+        severitySlider.alpha = 0;
 
+    } completion:^(BOOL finished) {
+
+        [self.navigationController popViewControllerAnimated:NO];
+    }];
 }
 
 #pragma mark -
@@ -314,12 +381,36 @@ Implementation: Show an initial help screen if this is the User's first use of t
 Implementation: Present ChoiceDetailViewController to User from UINavigationBar button
  */
 -(void) showChoiceDetailEntry{
-	
-	//Allow User to enter in more specific details
-	ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] init];
-	
-	[self.navigationController pushViewController:choiceDetailViewCont animated:YES];
-	
+
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        moralReferenceButton.alpha = 0;
+        moralImageView.alpha = 0;
+        severityLabel.alpha = 0;
+        moralImageView.alpha = 0;
+        backgroundImageView.alpha = 0;
+        descriptionInnerShadow.alpha = 0;
+        choiceParametersView.alpha = 0;
+        choiceDescriptionView.alpha = 0;
+
+        hideKeyboardButton.alpha = 0;
+        doneButton.alpha = 0;
+        cancelButton.alpha = 0;
+        moralButton.alpha = 0;
+        moralReferenceButton.alpha = 0;
+        moralHistoryButton.alpha = 0;
+        choiceTextField.alpha = 0;
+        descriptionTextView.alpha = 0;
+        severitySlider.alpha = 0;
+
+    } completion:^(BOOL finished) {
+
+        //Allow User to enter in more specific details
+        ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] init];
+        [self.navigationController pushViewController:choiceDetailViewCont animated:NO];
+    }];
+
 }
 
 /**
@@ -499,9 +590,34 @@ Implementation: Cancel all choice attributes, delete NSUserDefault values, dismi
 	[prefs removeObjectForKey:@"moralKey"];
 	[prefs removeObjectForKey:@"moralName"];
 	[prefs removeObjectForKey:@"moralImage"];
-	
-	[self.navigationController popViewControllerAnimated:TRUE];
-    
+
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        moralReferenceButton.alpha = 0;
+        moralImageView.alpha = 0;
+        severityLabel.alpha = 0;
+        moralImageView.alpha = 0;
+        backgroundImageView.alpha = 0;
+        descriptionInnerShadow.alpha = 0;
+        choiceParametersView.alpha = 0;
+        choiceDescriptionView.alpha = 0;
+
+        hideKeyboardButton.alpha = 0;
+        doneButton.alpha = 0;
+        cancelButton.alpha = 0;
+        moralButton.alpha = 0;
+        moralReferenceButton.alpha = 0;
+        moralHistoryButton.alpha = 0;
+        choiceTextField.alpha = 0;
+        descriptionTextView.alpha = 0;
+        severitySlider.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        
+        [self.navigationController popViewControllerAnimated:NO];
+    }];
+
 }
 
 #pragma mark -

@@ -76,23 +76,6 @@
 							<string key="NSResourceName">navbar-texture-bevel.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="790900003">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 410}, {320, 50}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="684936748"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">background-modal-tabbar.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="684936748">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
@@ -736,7 +719,7 @@
 						<string key="NSFrame">{{232, 340}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="790900003"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
 						<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
@@ -1037,7 +1020,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="583079907"/>
 							<reference ref="728981879"/>
-							<reference ref="790900003"/>
 							<reference ref="726026737"/>
 							<reference ref="251021906"/>
 							<reference ref="684936748"/>
@@ -1079,11 +1061,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">9</int>
 						<reference key="object" ref="728981879"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="790900003"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -1292,7 +1269,6 @@
 					<string>-2.CustomClassName</string>
 					<string>-2.IBPluginDependency</string>
 					<string>1.IBPluginDependency</string>
-					<string>10.IBPluginDependency</string>
 					<string>128.IBPluginDependency</string>
 					<string>130.IBPluginDependency</string>
 					<string>134.IBPluginDependency</string>
@@ -1331,7 +1307,6 @@
 					<string>ConscienceActionViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1650,7 +1625,6 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>background-modal-tabbar.png</string>
 				<string>background-wall.jpg</string>
 				<string>card-honesty.png</string>
 				<string>card-loyalty.png</string>
@@ -1663,7 +1637,6 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{320, 50}</string>
 				<string>{320, 480}</string>
 				<string>{128, 128}</string>
 				<string>{128, 128}</string>

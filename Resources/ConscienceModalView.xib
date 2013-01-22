@@ -75,23 +75,6 @@
 							<string key="NSResourceName">navbar-texture-bevel.png</string>
 						</object>
 					</object>
-					<object class="IBUIImageView" id="760708411">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">256</int>
-						<string key="NSFrame">{{0, 410}, {320, 50}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="864897863"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">background-modal-tabbar.png</string>
-						</object>
-					</object>
 					<object class="IBUIImageView" id="864897863">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">256</int>
@@ -397,7 +380,6 @@
 						<string key="NSFrame">{{252, 380}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
 							<string key="IBUIAccessibilityLabel">Previous</string>
@@ -424,7 +406,7 @@
 						<string key="NSFrame">{{0, 380}, {180, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="760708411"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -657,7 +639,6 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="465230102"/>
 							<reference ref="505595792"/>
-							<reference ref="760708411"/>
 							<reference ref="864897863"/>
 							<reference ref="378961383"/>
 							<reference ref="796952222"/>
@@ -755,11 +736,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">38</int>
-						<reference key="object" ref="760708411"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">43</int>
 						<reference key="object" ref="864897863"/>
 						<reference key="parent" ref="191373211"/>
@@ -798,7 +774,6 @@
 					<string>27.IBPluginDependency</string>
 					<string>30.IBPluginDependency</string>
 					<string>33.IBPluginDependency</string>
-					<string>38.IBPluginDependency</string>
 					<string>39.IBPluginDependency</string>
 					<string>43.IBPluginDependency</string>
 					<string>47.IBPluginDependency</string>
@@ -815,7 +790,6 @@
 					<string>ConscienceModalViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -1013,7 +987,6 @@
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>background-modal-tabbar.png</string>
 				<string>background-wall.jpg</string>
 				<string>icon-customization.png</string>
 				<string>icon-piechart.png</string>
@@ -1026,7 +999,6 @@
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{320, 50}</string>
 				<string>{320, 480}</string>
 				<string>{150, 150}</string>
 				<string>{150, 150}</string>

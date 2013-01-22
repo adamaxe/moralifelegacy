@@ -21,7 +21,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "ConscienceView.h"
 #import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
-#import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
 #import "UserCharacterDAO.h"
 #import "ConscienceMind.h"
@@ -29,11 +28,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 @interface MoraLifeAppDelegate () {
 
-	UITabBarController *mainMenuTabBarCont;	/**< UITabBarController along bottom of screens */
 	UINavigationController *navController1; /**< UINavController for first screen, Home */
-	UINavigationController *navController2; /**< UINavController for second screen, Choices */
-	UINavigationController *navController3; /**< UINavController for third screen, Reference */
-    
+
     NSManagedObjectContext *context;
     	
 }
@@ -122,35 +118,15 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     //Call method to create base Conscience.    
     [self createConscience];
     
-	mainMenuTabBarCont = [[UITabBarController alloc] init];
 	navController1 = [[UINavigationController alloc] init];
-	navController2 = [[UINavigationController alloc] init];
-	navController3 = [[UINavigationController alloc] init];
-	
+
 	ConscienceViewController *conscienceViewController1 = [[ConscienceViewController alloc] init];
-	ChoiceInitViewController *choiceIntViewController1 = [[ChoiceInitViewController alloc] init];
 	ReferenceViewController *referenceViewController1 = [[ReferenceViewController alloc] init];
-	
-	navController1.tabBarItem.title = NSLocalizedString(@"PrimaryNav1Title",nil);
-	navController1.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav1Hint",nil);
-	navController1.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav1Label",nil);	
-	navController1.tabBarItem.image = [UIImage imageNamed:@"tabbar-home.png"];
+
 	navController1.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	navController2.tabBarItem.title = NSLocalizedString(@"PrimaryNav2Title",nil);
-	navController2.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav2Hint",nil);
-	navController2.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav2Label",nil);
-	navController2.tabBarItem.image = [UIImage imageNamed:@"tabbar-quill.png"];	
-	navController2.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-	navController3.tabBarItem.title = NSLocalizedString(@"PrimaryNav3Title",nil);
-	navController3.tabBarItem.accessibilityHint = NSLocalizedString(@"PrimaryNav3Hint",nil);
-	navController3.tabBarItem.accessibilityLabel = NSLocalizedString(@"PrimaryNav3Label",nil);
-	navController3.tabBarItem.image = [UIImage imageNamed:@"tabbar-ref.png"];
-	navController3.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-		
+
+	[navController1	pushViewController:referenceViewController1 animated:NO];
 	[navController1 pushViewController:conscienceViewController1 animated:NO];
-    [navController2	pushViewController:choiceIntViewController1 animated:NO];
-	[navController3	pushViewController:referenceViewController1 animated:NO];
-	
 
 #if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
     
@@ -161,20 +137,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 #endif
 
-    //Menubar removal
-	CGFloat cgf = 0.8;
-	
-    // Override point for customization after application launch
-	[mainMenuTabBarCont setViewControllers:@[navController1, navController2, navController3]];
-	mainMenuTabBarCont.title = NSLocalizedString(@"PrimaryMenuTitle",nil);
-	mainMenuTabBarCont.accessibilityHint = NSLocalizedString(@"PrimaryMenuHint",nil);
-	mainMenuTabBarCont.accessibilityLabel = NSLocalizedString(@"PrimaryMenuLabel",nil);
-	//mainMenuTabBarCont.tabBar.opaque = YES;
-	//mainMenuTabBarCont.view.alpha = [NSNumber numberWithFloat:0.5];
-	[mainMenuTabBarCont.tabBar setAlpha:cgf];
-		
 	application.applicationSupportsShakeToEdit = YES;
-    [_window setRootViewController:mainMenuTabBarCont];
+    [_window setRootViewController:navController1];
 	[_window makeKeyAndVisible];
 	
 } 
