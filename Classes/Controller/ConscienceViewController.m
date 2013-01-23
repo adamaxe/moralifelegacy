@@ -178,7 +178,11 @@ static int thoughtVersion = 0;
     [conscienceStatus setShadowColor:[UIColor moraLifeChoiceLightGray]];
 
     [self createWelcomeMessage];
-    
+
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
+    [self.navigationItem setRightBarButtonItems:@[referenceBarButton, choiceBarButton] animated:FALSE];
+
     [self localizeUI];    
     
 }
@@ -255,12 +259,18 @@ static int thoughtVersion = 0;
         
     }
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
-    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
-    [self.navigationItem setRightBarButtonItems:@[referenceBarButton, choiceBarButton] animated:FALSE];
-
 	[consciencePlayground setNeedsDisplay];
     [self createWelcomeMessage];
+
+    UILabel* homeNavigationTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,30,self.view.frame.size.width/3,40)];
+    homeNavigationTitle.font = [UIFont boldSystemFontOfSize:22];
+    homeNavigationTitle.textColor = [UIColor whiteColor];
+    homeNavigationTitle.shadowColor = [UIColor blackColor];
+    homeNavigationTitle.shadowOffset = CGSizeMake(0, -1);
+    homeNavigationTitle.textAlignment = UITextAlignmentLeft;
+    homeNavigationTitle.backgroundColor = [UIColor clearColor];
+    homeNavigationTitle.text = self.navigationItem.title;
+    self.navigationItem.titleView = homeNavigationTitle;
     [self selectNextView:nil];
 	
 }
