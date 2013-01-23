@@ -257,8 +257,7 @@ static int thoughtVersion = 0;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
-    [self.navigationItem setRightBarButtonItem:choiceBarButton];
-    [self.navigationItem setLeftBarButtonItem:referenceBarButton];
+    [self.navigationItem setRightBarButtonItems:@[referenceBarButton, choiceBarButton] animated:FALSE];
 
 	[consciencePlayground setNeedsDisplay];
     [self createWelcomeMessage];
@@ -267,12 +266,14 @@ static int thoughtVersion = 0;
 }
 
 - (void) pushJournal {
-    ChoiceInitViewController *choiceIntViewController1 = [[ChoiceInitViewController alloc] init];
-    [self.navigationController pushViewController:choiceIntViewController1 animated:YES];
+    ChoiceInitViewController *choiceIntViewController = [[ChoiceInitViewController alloc] init];
+    [self.navigationController pushViewController:choiceIntViewController animated:YES];
 }
 
 - (void) pushReference {
-    [self.navigationController popViewControllerAnimated:YES];
+    ReferenceViewController *referenceViewController = [[ReferenceViewController alloc] init];
+    [self.navigationController pushViewController:referenceViewController animated:YES];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {

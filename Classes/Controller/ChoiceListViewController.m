@@ -157,7 +157,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
 - (void)popToHome {
 
-    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
 
 }
 

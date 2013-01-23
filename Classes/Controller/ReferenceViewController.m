@@ -70,8 +70,10 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    UIBarButtonItem *conscienceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(pushConscience)];
-    [self.navigationItem setRightBarButtonItem:conscienceBarButton];
+    self.navigationItem.hidesBackButton = YES;
+
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
     [self localizeUI];
 
@@ -80,24 +82,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void) viewWillAppear:(BOOL)animated{
 	
 	[self refreshButtons];
-
-    accessoriesButton.alpha = 0;
-    accessoriesLabelButton.alpha = 0;
-    peopleButton.alpha = 0;
-    peopleLabelButton.alpha = 0;
-    moralsButton.alpha = 0;
-    moralsLabelButton.alpha = 0;
-    
-    [UIView animateWithDuration:0.5 animations:^{
-
-        accessoriesButton.alpha = 1;
-        accessoriesLabelButton.alpha = 1;
-        peopleButton.alpha = 1;
-        peopleLabelButton.alpha = 1;
-        moralsButton.alpha = 1;
-        moralsLabelButton.alpha = 1;
-
-    }];
 
 	self.buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
 	
@@ -110,9 +94,10 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
 }
 
-- (void) pushConscience {
-    ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] init];
-    [self.navigationController pushViewController:conscienceViewController animated:YES];
+- (void)popToHome {
+
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
+    
 }
 
 #pragma mark -
@@ -157,20 +142,9 @@ Implementation: Determine which type of reference is requested by the User.
 
 	}
 
-    [UIView animateWithDuration:0.5 animations:^{
 
-        accessoriesButton.alpha = 0;
-        accessoriesLabelButton.alpha = 0;
-        peopleButton.alpha = 0;
-        peopleLabelButton.alpha = 0;
-        moralsButton.alpha = 0;
-        moralsLabelButton.alpha = 0;
-
-    }completion:^(BOOL finished) {
-
-        ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];
-        [self.navigationController pushViewController:referenceListViewCont animated:NO];
-    }];
+    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];
+    [self.navigationController pushViewController:referenceListViewCont animated:TRUE];
 
 }
 

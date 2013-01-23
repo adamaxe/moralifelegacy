@@ -115,6 +115,12 @@ Determine which fields and UI elements should be presented depending up on Refer
 	[self retrieveReference];
 	[self populateReferenceScreen];
 	[referenceLongDescriptionTextView flashScrollIndicators];
+
+    self.navigationItem.hidesBackButton = YES;
+
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    [self.navigationItem setLeftBarButtonItem:referenceBarButton];
+
     [self localizeUI];
 
 }
@@ -152,11 +158,6 @@ Determine which fields and UI elements should be presented depending up on Refer
 
     }];
 
-    self.navigationItem.hidesBackButton = YES;
-
-    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"List" style:UIBarButtonItemStylePlain target:self action:@selector(popReference)];
-    [self.navigationItem setRightBarButtonItem:referenceBarButton];
-
 }
 
 -(void) viewWillDisappear:(BOOL)animated{	
@@ -173,26 +174,10 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 }
 
-- (void)popReference {
+- (void)popToHome {
 
-    [UIView animateWithDuration:0.5 animations:^{
-
-        wwwLinkButton.alpha = 0;
-        quoteButton.alpha = 0;
-        referencePictureView.alpha = 0;
-        referenceSmallPictureView.alpha = 0;
-        moralPictureView.alpha = 0;
-        cardView.alpha = 0;
-        referenceNameLabel.alpha = 0;
-        referenceDateLabel.alpha = 0;
-        referenceOriginLabel.alpha = 0;
-        referenceShortDescriptionLabel.alpha = 0;
-        cardNumberLabel.alpha = 0;
-        referenceLongDescriptionTextView.alpha = 0;
-        
-    } completion:^(BOOL finished){
-        [self.navigationController popViewControllerAnimated:NO];
-    }];
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
+    
 }
 
 #pragma mark -

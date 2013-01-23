@@ -89,7 +89,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 - (void)popToHome {
 
-    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
     
 }
 

@@ -21,7 +21,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "ConscienceView.h"
 #import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
-#import "ReferenceViewController.h"
 #import "UserCharacterDAO.h"
 #import "ConscienceMind.h"
 #import "UserCollectableDAO.h"
@@ -120,13 +119,11 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     
 	navController1 = [[UINavigationController alloc] init];
 
-	ConscienceViewController *conscienceViewController1 = [[ConscienceViewController alloc] init];
-	ReferenceViewController *referenceViewController1 = [[ReferenceViewController alloc] init];
+	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] init];
 
 	navController1.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 
-	[navController1	pushViewController:referenceViewController1 animated:NO];
-	[navController1 pushViewController:conscienceViewController1 animated:NO];
+	[navController1 pushViewController:conscienceViewController animated:NO];
 
 #if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
     

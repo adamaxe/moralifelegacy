@@ -148,7 +148,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 - (void)popToHome {
 
-    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
     
 }
 

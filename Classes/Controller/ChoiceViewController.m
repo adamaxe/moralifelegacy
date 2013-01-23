@@ -296,7 +296,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
 - (void)popToHome {
 
-    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+    [self.navigationController popToRootViewControllerAnimated:TRUE];
 
 }
 
