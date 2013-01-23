@@ -61,29 +61,17 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+    self.navigationItem.hidesBackButton = YES;
+
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+
     [self localizeUI];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    goodChoiceButton.alpha = 0;
-    goodChoiceLabelButton.alpha = 0;
-    badChoiceButton.alpha = 0;
-    badChoiceLabelButton.alpha = 0;
-    choiceListButton.alpha = 0;
-    choiceListLabelButton.alpha = 0;
-
-    [UIView animateWithDuration:0.5 animations:^{
-
-        goodChoiceButton.alpha = 1;
-        goodChoiceLabelButton.alpha = 1;
-        badChoiceButton.alpha = 1;
-        badChoiceLabelButton.alpha = 1;
-        choiceListButton.alpha = 1;
-        choiceListLabelButton.alpha = 1;
-
-    }];
 
 	//Setup repeating NSTimer to make the buttons animate randomly
 	[self refreshButtons];
@@ -97,6 +85,12 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
+}
+
+- (void)popToHome {
+
+    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+    
 }
 
 #pragma mark -
@@ -171,34 +165,18 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	
 	[prefs setBool:isGood forKey:@"entryIsGood"];
 
-    [UIView animateWithDuration:0.5 animations:^{
+    //Determine if List controller type or entry controller type is needed
+    if (!isList) {
 
-        goodChoiceButton.alpha = 0;
-        goodChoiceLabelButton.alpha = 0;
-        badChoiceButton.alpha = 0;
-        badChoiceLabelButton.alpha = 0;
-        choiceListButton.alpha = 0;
-        choiceListLabelButton.alpha = 0;
+        ChoiceViewController *choiceViewController = [[ChoiceViewController alloc] init];
 
-    } completion:^(BOOL finished){
-        
-        //Determine if List controller type or entry controller type is needed
-        if (!isList) {
+        [self.navigationController pushViewController:choiceViewController animated:YES];
+    } else {
 
-            ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
-            //Push view onto stack
-//            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:choiceCont action:@selector(popChoice)];
-
-            [self.navigationController pushViewController:choiceCont animated:NO];
-        } else {
-
-            ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
-            ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
-            [self.navigationController pushViewController:choiceListCont animated:NO];
-        }
-    }];
-
-
+        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
+        [self.navigationController pushViewController:choiceListCont animated:YES];
+    }
 
 }
 

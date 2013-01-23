@@ -31,6 +31,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
     
 	IBOutlet UIButton *moralSortButton;		/**< button for sorting criteria */
 	IBOutlet UIButton *moralOrderButton;	/**< button for ordering criteria */
+	IBOutlet UIButton *cancelButton;        /**< button for returning to previous screen */
 
     //Refactor into model
 	NSMutableString *choiceSortDescriptor;	/**< sort descriptor for filtering Core Data */
@@ -104,7 +105,12 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	tableDataImages = [[NSMutableArray alloc] init];
 	tableDataKeys = [[NSMutableArray alloc] init];
 	tableDataDetails = [[NSMutableArray alloc] init];
-	
+
+    self.navigationItem.hidesBackButton = YES;
+
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+
     [self localizeUI];
 }
 
@@ -147,6 +153,12 @@ Refetches of table data are necessary when sorting and ordering are requested.
 		[prefs setObject:choiceSearchBar.text forKey:@"searchTextChoice"];
 		
 	}
+}
+
+- (void)popToHome {
+
+    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+
 }
 
 #pragma mark -
@@ -199,7 +211,12 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                 }
                 [self.choiceHistoryModel setIsAscending:isAscending];
             }
-                break;                 
+                break;
+        //Cancel requested, return to Choice Init
+            case 2:{
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+                break;
             default:
                 break;
         }

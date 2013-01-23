@@ -78,7 +78,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Choice" style:UIBarButtonItemStylePlain target:self action:@selector(popChoice)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
 	//Prevent keypress level changes over maxlength of field
@@ -116,36 +116,8 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	}
 
     influenceImageView.alpha = 0;
-    cloudImageView.alpha = 0;
-
-    influenceSlider.alpha = 0;
-    influenceLabel.alpha = 0;
-    justificationLabel.alpha = 0;
-    consequencesLabel.alpha = 0;
-	justificationTextField.alpha = 0;
-	consequencesTextField.alpha = 0;
-
-    doneButton.alpha = 0;
-    cancelButton.alpha = 0;
     influenceButton.alpha = 0;
-
-    [UIView animateWithDuration:0.5 animations:^{
-
-        influenceImageView.alpha = 1;
-        cloudImageView.alpha = 1;
-
-        influenceSlider.alpha = 1;
-        influenceLabel.alpha = 1;
-        justificationLabel.alpha = 1;
-        consequencesLabel.alpha = 1;
-        justificationTextField.alpha = 1;
-        consequencesTextField.alpha = 1;
-
-        doneButton.alpha = 1;
-        cancelButton.alpha = 1;
-        influenceButton.alpha = 1;
-
-    }];
+    cloudImageView.alpha = 0;
 
 }
 
@@ -153,13 +125,14 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     
     [super viewDidAppear:animated];
     
-    [UIView beginAnimations:@"showInfluenceImage" context:nil];
-    [UIView setAnimationDuration:0.5];
-    [influenceButton setAlpha:1];
-    [influenceImageView setAlpha:1];
-    [cloudImageView setAlpha:1];
-    [UIView commitAnimations];
-    
+    [UIView animateWithDuration:0.5 animations:^{
+
+        influenceImageView.alpha = 1;
+        influenceButton.alpha = 1;
+        cloudImageView.alpha = 1;
+        
+    }];
+
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
 }
@@ -173,28 +146,10 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 		
 }
 
-- (void)popChoice {
+- (void)popToHome {
+
+    [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
     
-    [UIView animateWithDuration:0.5 animations:^{
-
-        influenceImageView.alpha = 0;
-        cloudImageView.alpha = 0;
-
-        influenceSlider.alpha = 0;
-        influenceLabel.alpha = 0;
-        justificationLabel.alpha = 0;
-        consequencesLabel.alpha = 0;
-        justificationTextField.alpha = 0;
-        consequencesTextField.alpha = 0;
-
-        doneButton.alpha = 0;
-        cancelButton.alpha = 0;
-        influenceButton.alpha = 0;
-
-    } completion:^(BOOL finished) {
-
-        [self.navigationController popViewControllerAnimated:NO];
-    }];
 }
 
 #pragma mark -
@@ -245,28 +200,9 @@ Implementation: pop UIViewController from current navigationController
  */
 -(IBAction)doneTapped:(id) sender{
 
-    [UIView animateWithDuration:0.5 animations:^{
-
-        influenceImageView.alpha = 0;
-        cloudImageView.alpha = 0;
-
-        influenceSlider.alpha = 0;
-        influenceLabel.alpha = 0;
-        justificationLabel.alpha = 0;
-        consequencesLabel.alpha = 0;
-        justificationTextField.alpha = 0;
-        consequencesTextField.alpha = 0;
-
-        doneButton.alpha = 0;
-        cancelButton.alpha = 0;
-        influenceButton.alpha = 0;
-
-    } completion:^(BOOL finished) {
-
-        [self saveChoice];
-        //Return to previous view by popping current view off navigation controller
-        [self.navigationController popViewControllerAnimated:NO];
-    }];
+    [self saveChoice];
+    //Return to previous view by popping current view off navigation controller
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 
@@ -275,29 +211,9 @@ Implementation: pop UIViewController from current navigationController
  */
 -(IBAction)cancelTapped {
 
-    [UIView animateWithDuration:0.5 animations:^{
+    [self cancelChoice];
 
-        influenceImageView.alpha = 0;
-        cloudImageView.alpha = 0;
-
-        influenceSlider.alpha = 0;
-        influenceLabel.alpha = 0;
-        justificationLabel.alpha = 0;
-        consequencesLabel.alpha = 0;
-        justificationTextField.alpha = 0;
-        consequencesTextField.alpha = 0;
-
-        doneButton.alpha = 0;
-        cancelButton.alpha = 0;
-        influenceButton.alpha = 0;
-
-    } completion:^(BOOL finished) {
-
-        [self cancelChoice];
-
-        [self.navigationController popViewControllerAnimated:NO];
-    }];
-
+    [self.navigationController popViewControllerAnimated:YES];
 
 }
 

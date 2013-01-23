@@ -107,7 +107,7 @@
 	tableDataImages = [[NSMutableArray alloc] init];
 	tableDataKeys = [[NSMutableArray alloc] init];
 	tableDataDetails = [[NSMutableArray alloc] init];
-	
+
     [self localizeUI];
 }
 
