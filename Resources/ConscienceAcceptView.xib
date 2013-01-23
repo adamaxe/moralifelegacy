@@ -69,7 +69,6 @@
 								<string key="NSFrameSize">{320, 56}</string>
 								<reference key="NSSuperview" ref="488771816"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>

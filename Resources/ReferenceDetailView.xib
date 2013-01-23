@@ -281,7 +281,7 @@
 					<object class="IBUIButton" id="273195892">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{37, 365}, {75, 75}}</string>
+						<string key="NSFrame">{{123, 358}, {75, 75}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="905989631"/>
@@ -318,9 +318,10 @@
 					<object class="IBUIButton" id="905989631">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 365}, {75, 75}}</string>
+						<string key="NSFrame">{{28, 358}, {75, 75}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="579943938"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -393,6 +394,42 @@
 						<reference key="IBUIFontDescription" ref="288142205"/>
 						<reference key="IBUIFont" ref="1038836171"/>
 						<double key="preferredMaxLayoutWidth">32</double>
+					</object>
+					<object class="IBUIButton" id="579943938">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{206, 368}, {104, 55}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<int key="IBUITag">2</int>
+						<string key="IBUIContentStretch">{{1.3877799999999999e-17, 0}, {1, 1}}</string>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<double key="IBUIContentEdgeInsets.top">11</double>
+						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
+						<double key="IBUIContentEdgeInsets.left">13</double>
+						<double key="IBUIContentEdgeInsets.right">0.0</double>
+						<double key="IBUITitleEdgeInsets.top">0.0</double>
+						<double key="IBUITitleEdgeInsets.bottom">13</double>
+						<double key="IBUITitleEdgeInsets.left">0.0</double>
+						<double key="IBUITitleEdgeInsets.right">11</double>
+						<string key="IBUITitleShadowOffset">{0, -1}</string>
+						<string key="IBUINormalTitle">Cancel</string>
+						<reference key="IBUIHighlightedTitleColor" ref="262584206"/>
+						<reference key="IBUINormalTitleColor" ref="384391505"/>
+						<object class="NSColor" key="IBUINormalTitleShadowColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4wOTgwMzkyMTcyOSAwLjA5ODAzOTIxNzI5IDAuMDk4MDM5MjE3MjkAA</bytes>
+						</object>
+						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">button-normal-down.png</string>
+						</object>
+						<reference key="IBUIFontDescription" ref="985693582"/>
+						<reference key="IBUIFont" ref="831893534"/>
 					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
@@ -518,6 +555,14 @@
 					<int key="connectionID">77</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">cancelButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="579943938"/>
+					</object>
+					<int key="connectionID">80</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">showReferenceData:</string>
 						<reference key="source" ref="273195892"/>
@@ -534,6 +579,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">44</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">cancelReference:</string>
+						<reference key="source" ref="579943938"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">79</int>
 				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -555,8 +609,6 @@
 							<reference ref="813612911"/>
 							<reference ref="573351550"/>
 							<reference ref="550152200"/>
-							<reference ref="273195892"/>
-							<reference ref="905989631"/>
 							<reference ref="922339132"/>
 							<reference ref="1031572735"/>
 							<reference ref="465512877"/>
@@ -568,6 +620,9 @@
 							<reference ref="639815964"/>
 							<reference ref="370075455"/>
 							<reference ref="471213410"/>
+							<reference ref="579943938"/>
+							<reference ref="905989631"/>
+							<reference ref="273195892"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -675,6 +730,11 @@
 						<reference key="parent" ref="191373211"/>
 						<string key="objectName">resourceOriginLabel</string>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">78</int>
+						<reference key="object" ref="579943938"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -700,6 +760,7 @@
 					<string>71.IBPluginDependency</string>
 					<string>73.IBPluginDependency</string>
 					<string>75.IBPluginDependency</string>
+					<string>78.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
@@ -708,6 +769,7 @@
 					<string>ReferenceDetailViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -740,7 +802,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">80</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -791,6 +853,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelButton</string>
 							<string>cardNumberLabel</string>
 							<string>cardView</string>
 							<string>moralPictureView</string>
@@ -806,6 +869,7 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
@@ -824,6 +888,7 @@
 						<bool key="EncodedWithXMLCoder">YES</bool>
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<string>cancelButton</string>
 							<string>cardNumberLabel</string>
 							<string>cardView</string>
 							<string>moralPictureView</string>
@@ -839,6 +904,10 @@
 						</object>
 						<object class="NSArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<object class="IBToOneOutletInfo">
+								<string key="name">cancelButton</string>
+								<string key="candidateClassName">UIButton</string>
+							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">cardNumberLabel</string>
 								<string key="candidateClassName">UILabel</string>
@@ -913,6 +982,7 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>background-wall.jpg</string>
+				<string>button-normal-down.png</string>
 				<string>card-caprice.png</string>
 				<string>cardback-reference.png</string>
 				<string>icon-link.png</string>
@@ -923,6 +993,7 @@
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{320, 480}</string>
+				<string>{120, 60}</string>
 				<string>{128, 128}</string>
 				<string>{115, 152}</string>
 				<string>{150, 150}</string>

@@ -18,19 +18,20 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 
 @interface ReferenceListViewController () {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
+	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
 		
 	NSMutableArray *dataSource;			/**< array for storing of References populated from previous view*/
 	NSMutableArray *searchedData;
 	NSMutableArray *tableData;			/**< array for stored data displayed in table populated from dataSource */
-	NSMutableArray *tableDataImages;		/**< array for stored data images */
-	NSMutableArray *tableDataDetails;		/**< array for stored data details */
-	NSMutableArray *tableDataKeys;		/**< array for stored data primary keys */	
+	NSMutableArray *tableDataImages;	/**< array for stored data images */
+	NSMutableArray *tableDataDetails;	/**< array for stored data details */
+	NSMutableArray *tableDataKeys;		/**< array for stored data primary keys */
 	
 	IBOutlet UITableView *referencesTableView;	/**< table housing requested data */ 
-	IBOutlet UISearchBar *referenceSearchBar;		/**< search bar for limiting list */
+	IBOutlet UISearchBar *referenceSearchBar;	/**< search bar for limiting list */
 	IBOutlet UIView *namesView;
+    IBOutlet UIButton *cancelButton;            /**< button to remove to previous view */
 }
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
@@ -137,6 +138,12 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 
     [self.navigationController popToRootViewControllerAnimated:TRUE];
 
+}
+
+- (IBAction)cancelReference:(id)sender {
+
+    [self.navigationController popViewControllerAnimated:TRUE];
+    
 }
 
 #pragma mark -

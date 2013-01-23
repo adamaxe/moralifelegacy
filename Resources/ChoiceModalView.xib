@@ -200,7 +200,6 @@
 								<string key="NSFrameSize">{238, 44}</string>
 								<reference key="NSSuperview" ref="930290569"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<reference key="IBUIBackgroundColor" ref="45749004"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUIContentMode">3</int>

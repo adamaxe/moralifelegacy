@@ -19,32 +19,33 @@ Determine which fields and UI elements should be presented depending up on Refer
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
 	
 	IBOutlet UIButton *wwwLinkButton;			/**< button to allow Safari access to more info */
-	IBOutlet UIButton *quoteButton;			/**< button to push Quote modal window */
-	
-	IBOutlet UIImageView *referencePictureView;		/**< card surrounding reference image */
+	IBOutlet UIButton *quoteButton;             /**< button to push Quote modal window */
+    IBOutlet UIButton *cancelButton;            /**< button to remove to previous view */
+
+	IBOutlet UIImageView *referencePictureView;         /**< card surrounding reference image */
 	IBOutlet UIImageView *referenceSmallPictureView;	/**< card surrounding reference image */
-	IBOutlet UIImageView *moralPictureView;             	/**< moral image referencing asset's moral value*/
+	IBOutlet UIImageView *moralPictureView;             /**< moral image referencing asset's moral value*/
 	IBOutlet UIImageView *cardView;             	/**< moral image referencing asset's moral value*/
 	IBOutlet UILabel *referenceNameLabel;			/**< reference name */
 	IBOutlet UILabel *referenceDateLabel;			/**< reference date of birth/construction/publishment */
 	IBOutlet UILabel *referenceOriginLabel;			/**< reference's place of creation/birth/construction */
 	IBOutlet UILabel *referenceShortDescriptionLabel;	/**< text to appear under reference name */
-	IBOutlet UILabel *cardNumberLabel;                  	/**< text to appear over card */
+	IBOutlet UILabel *cardNumberLabel;                  /**< text to appear over card */
 	IBOutlet UITextView *referenceLongDescriptionTextView;	 /**< detailed reference text */
     
 	MLReferenceModelTypeEnum referenceType;			/**< which type of reference is being presented */
 	bool hasQuote;				/**< does reference have a quote */
 	bool hasLink;				/**< does reference have an external link */
 	
-	NSString *referenceName;			/**< display name of Reference */
-	NSString *referenceKey;				/**< reference pkey */
-	NSMutableString *referenceDate;		/**< reference origin date */
+	NSString *referenceName;                /**< display name of Reference */
+	NSString *referenceKey;                 /**< reference pkey */
+	NSMutableString *referenceDate;         /**< reference origin date */
 	NSMutableString *referenceDeathDate;	/**< reference death date */
-	NSString *referencePicture;			/**< picture of reference */
+	NSString *referencePicture;             /**< picture of reference */
 	NSString *referenceReferenceURL;		/**< URL of external reference text */
 	NSString *referenceShortDescription;	/**< description of reference */
 	NSString *referenceLongDescription;		/**< detailed account of reference */
-	NSString *referenceOrigin;			/**< place of reference origin */
+	NSString *referenceOrigin;              /**< place of reference origin */
     
 	NSString *referenceOrientation;
 	NSString *referenceMoral; 			/**< moral assigned to reference */
@@ -110,7 +111,8 @@ Determine which fields and UI elements should be presented depending up on Refer
 	}
 
     [referenceNameLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-    [referenceNameLabel setShadowColor:[UIColor moraLifeChoiceGray]];
+    [referenceNameLabel setShadowColor:[UIColor whiteColor]];
+    [referenceNameLabel setShadowOffset:CGSizeMake(0, 2)];
 
 	[self retrieveReference];
 	[self populateReferenceScreen];
@@ -122,41 +124,6 @@ Determine which fields and UI elements should be presented depending up on Refer
     [self.navigationItem setLeftBarButtonItem:referenceBarButton];
 
     [self localizeUI];
-
-}
-
--(void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-
-	wwwLinkButton.alpha = 0;
-	quoteButton.alpha = 0;
-	referencePictureView.alpha = 0;
-	referenceSmallPictureView.alpha = 0;
-	moralPictureView.alpha = 0;
-	cardView.alpha = 0;
-	referenceNameLabel.alpha = 0;
-	referenceDateLabel.alpha = 0;
-	referenceOriginLabel.alpha = 0;
-	referenceShortDescriptionLabel.alpha = 0;
-	cardNumberLabel.alpha = 0;
-	referenceLongDescriptionTextView.alpha = 0;
-
-    [UIView animateWithDuration:0.5 animations:^{
-
-        wwwLinkButton.alpha = 1;
-        quoteButton.alpha = 1;
-        referencePictureView.alpha = 1;
-        referenceSmallPictureView.alpha = 1;
-        moralPictureView.alpha = 1;
-        cardView.alpha = 1;
-        referenceNameLabel.alpha = 1;
-        referenceDateLabel.alpha = 1;
-        referenceOriginLabel.alpha = 1;
-        referenceShortDescriptionLabel.alpha = 1;
-        cardNumberLabel.alpha = 1;
-        referenceLongDescriptionTextView.alpha = 1;
-
-    }];
 
 }
 
@@ -178,6 +145,12 @@ Determine which fields and UI elements should be presented depending up on Refer
 
     [self.navigationController popToRootViewControllerAnimated:TRUE];
     
+}
+
+- (IBAction)cancelReference:(id)sender {
+
+    [self.navigationController popViewControllerAnimated:TRUE];
+
 }
 
 #pragma mark -
@@ -304,11 +277,6 @@ Implementation: Determine which type of image to show to User in reference card.
 	if (!hasQuote) {
 		
 		quoteButton.hidden = TRUE;
-		
-		if (hasLink) {
-			
-			wwwLinkButton.center = CGPointMake(167, wwwLinkButton.center.y);
-		}
 
 	} else {
 		quoteButton.hidden = FALSE;
@@ -318,12 +286,7 @@ Implementation: Determine which type of image to show to User in reference card.
 	if (!hasLink) {
 		
 		wwwLinkButton.hidden = TRUE;
-		
-		if (hasLink) {
-			
-			quoteButton.center = CGPointMake(167, quoteButton.center.y);
-		}
-		
+				
 	} else {
 		wwwLinkButton.hidden = FALSE;
 	}
