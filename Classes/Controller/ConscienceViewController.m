@@ -254,6 +254,14 @@ static int thoughtVersion = 0;
         [NSTimer scheduledTimerWithTimeInterval:MLTransientInterval invocation:invocation repeats:NO];
         
     }
+//    UIView *barButtonView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+//    UIImageView *barImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"interface-choiceicon"]];
+//    [barButtonView addSubview:barImageView];
+//
+//    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc]initWithCustomView:barButtonView];
+//
+////    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"interface-choiceicon"] style:UIBarButtonItemStyleBordered target:self action:@selector(pushJournal)];
+//    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"interface-homeicon"] style:UIBarButtonItemStyleBordered target:self action:@selector(pushReference)];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];

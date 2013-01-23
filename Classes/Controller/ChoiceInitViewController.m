@@ -187,6 +187,8 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 
             ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
             //Push view onto stack
+//            self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStyleBordered target:choiceCont action:@selector(popChoice)];
+
             [self.navigationController pushViewController:choiceCont animated:NO];
         } else {
 

@@ -171,7 +171,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(popChoice)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
 }
@@ -328,32 +328,34 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
 }
 
-- (void)popChoice {
-    [UIView animateWithDuration:0.5 animations:^{
+- (void)popToHome {
+//    [UIView animateWithDuration:0.5 animations:^{
+//
+//        moralReferenceButton.alpha = 0;
+//        moralImageView.alpha = 0;
+//        severityLabel.alpha = 0;
+//        moralImageView.alpha = 0;
+//        backgroundImageView.alpha = 0;
+//        descriptionInnerShadow.alpha = 0;
+//        choiceParametersView.alpha = 0;
+//        choiceDescriptionView.alpha = 0;
+//
+//        hideKeyboardButton.alpha = 0;
+//        doneButton.alpha = 0;
+//        cancelButton.alpha = 0;
+//        moralButton.alpha = 0;
+//        moralReferenceButton.alpha = 0;
+//        moralHistoryButton.alpha = 0;
+//        choiceTextField.alpha = 0;
+//        descriptionTextView.alpha = 0;
+//        severitySlider.alpha = 0;
+//
+//    } completion:^(BOOL finished) {
 
-        moralReferenceButton.alpha = 0;
-        moralImageView.alpha = 0;
-        severityLabel.alpha = 0;
-        moralImageView.alpha = 0;
-        backgroundImageView.alpha = 0;
-        descriptionInnerShadow.alpha = 0;
-        choiceParametersView.alpha = 0;
-        choiceDescriptionView.alpha = 0;
+//        [self.navigationController popViewControllerAnimated:NO];
 
-        hideKeyboardButton.alpha = 0;
-        doneButton.alpha = 0;
-        cancelButton.alpha = 0;
-        moralButton.alpha = 0;
-        moralReferenceButton.alpha = 0;
-        moralHistoryButton.alpha = 0;
-        choiceTextField.alpha = 0;
-        descriptionTextView.alpha = 0;
-        severitySlider.alpha = 0;
-
-    } completion:^(BOOL finished) {
-
-        [self.navigationController popViewControllerAnimated:NO];
-    }];
+        [self.navigationController popToViewController:self.navigationController.viewControllers[1] animated:YES];
+//    }];
 }
 
 #pragma mark -
