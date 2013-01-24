@@ -16,7 +16,7 @@ UIALogger.logMessage(testSuiteName + " Testing Begins");
 
 testCaseName = testSuiteName + " choiceTextField Clear";
 
-app.tabBar().buttons()["Journal"].tap();
+app.navigationBar().buttons()["Journal"].tap();
 window.buttons()["Moral Choice"].tap();
 window.textFields()["Choice"].tap();
 
@@ -140,4 +140,4 @@ window.sliders()["Influence"].dragToValue(moralInfluenceCancel);
 
 window.buttons()["Cancel"].tap();
 window.buttons()["Cancel"].tap();
-app.tabBar().buttons()["Home"].tap();
+app.navigationBar().buttons()["Home"].tap();

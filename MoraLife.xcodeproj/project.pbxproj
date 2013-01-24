@@ -3049,9 +3049,9 @@
 		5EA1D22A130E38A200BA81D6 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		5EA1D22C130E38A200BA81D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5EA1D22E130E38A200BA81D6 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralcancel.js; sourceTree = "<group>"; };
-		5EA26D5A1583A0E700CDA802 /* choiceimmoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralentry.js; sourceTree = "<group>"; };
-		5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoralverify.js; sourceTree = "<group>"; };
+		5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoralcancel.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		5EA26D5A1583A0E700CDA802 /* choiceimmoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoralentry.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoralverify.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		5EA26D641584351500CDA802 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelManager.h; path = Model/ModelManager.h; sourceTree = "<group>"; };
 		5EA26D651584351500CDA802 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelManager.m; path = Model/ModelManager.m; sourceTree = "<group>"; };
 		5EA26D7215843DB600CDA802 /* TestModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestModelManager.m; path = Model/TestModelManager.m; sourceTree = "<group>"; };
@@ -3205,10 +3205,10 @@
 		5EC5543A15774064004BF692 /* uiajsinclude.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = uiajsinclude.js; sourceTree = "<group>"; };
 		5EC5543B15774064004BF692 /* uiautomationstyle.xslt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = uiautomationstyle.xslt; sourceTree = "<group>"; };
 		5EC5543C15774064004BF692 /* mainnavigation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mainnavigation.js; sourceTree = "<group>"; };
-		5EC55446157748FF004BF692 /* choicemoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralcancel.js; sourceTree = "<group>"; };
+		5EC55446157748FF004BF692 /* choicemoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choicemoralcancel.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		5EC55447157748FF004BF692 /* choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoraldisplay.js; sourceTree = "<group>"; };
 		5EC55448157748FF004BF692 /* choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralentry.js; sourceTree = "<group>"; };
-		5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choiceimmoraldisplay.js; sourceTree = "<group>"; };
+		5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoraldisplay.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		5EC6462D15AD1268008E5CE3 /* UserChoiceDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserChoiceDAO.h; sourceTree = "<group>"; };
 		5EC6462E15AD1268008E5CE3 /* UserChoiceDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserChoiceDAO.m; sourceTree = "<group>"; };
 		5EC6463215AD1354008E5CE3 /* UserCharacterDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCharacterDAO.h; sourceTree = "<group>"; };

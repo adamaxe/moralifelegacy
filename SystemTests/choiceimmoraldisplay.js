@@ -14,7 +14,7 @@ var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-app.tabBar().buttons()["Journal"].tap();
+app.navigationBar().buttons()["Journal"].tap();
 window.buttons()["Immoral Choice"].tap();
 
 testCaseName = testSuiteName + " navigationBar Title Text";
@@ -84,4 +84,4 @@ window.buttons()["Cancel"].tap();
 
 
 window.buttons()["Cancel"].tap();
-app.tabBar().buttons()["Home"].tap();
+app.navigationBar().buttons()["Home"].tap();

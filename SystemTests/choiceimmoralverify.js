@@ -18,9 +18,9 @@ testCaseName = testSuiteName + " Verify Immoral Journal Entry";
 
 UIALogger.logStart(testCaseName + " Test");
 
-app.tabBar().buttons()["Journal"].tap();
+app.navigationBar().buttons()["Journal"].tap();
 
-if (app.tabBar().buttons()["Journal"].checkIsValid()){ 
+if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
     
     window.buttons()["All Choices"].tap();
         	

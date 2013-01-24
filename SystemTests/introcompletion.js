@@ -18,7 +18,7 @@ testCaseName = testSuiteName + " UITabBar unloaded";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (!app.tabBar().buttons()["Home"].checkIsValid()){
+if (!app.navigationBar().buttons()["Home"].checkIsValid()){
 	
 	UIALogger.logPass(testCaseName + " correctly."); 
 	
@@ -55,9 +55,9 @@ if (!app.tabBar().buttons()["Home"].checkIsValid()){
     testCaseName = testSuiteName + " UITabBar verification";
     UIALogger.logStart(testCaseName + " Test");
         
-    if (app.tabBar().buttons()["Home"].checkIsValid()){ 
+    if (app.navigationBar().buttons()["Home"].checkIsValid()){ 
         
-        app.tabBar().buttons()["Home"].tap();
+        app.navigationBar().buttons()["Home"].tap();
                 
         UIALogger.logPass(testCaseName + " passed."); 
         

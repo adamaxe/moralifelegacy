@@ -18,13 +18,13 @@ testCaseName = testSuiteName + " UITabBar loaded";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Home"].checkIsValid()){
+if (app.navigationBar().buttons()["Home"].checkIsValid()){
 
 	UIALogger.logPass(testCaseName + " correctly.");
 
     testCaseName = testSuiteName + " Conscience View Help Screen";
     UIALogger.logStart(testCaseName + " Test");
-    app.tabBar().buttons()["Home"].tap();
+    app.navigationBar().buttons()["Home"].tap();
     target.tap({x:130.00, y:300.00});
 
     testCaseName = testSuiteName + " Moral Report Help Screen";
@@ -96,7 +96,7 @@ if (app.tabBar().buttons()["Home"].checkIsValid()){
 	window.buttons()["Previous"].tap();
 	window.buttons()["Previous"].tap();
 
-    app.tabBar().buttons()["Home"].tap();
+    app.navigationBar().buttons()["Home"].tap();
 
 } else {
 	UIALogger.logFail(testCaseName + " incorrectly.");

@@ -18,9 +18,9 @@ testCaseName = testSuiteName + " Verify Default Accessories";
 
 UIALogger.logStart(testCaseName + " Test");
 
-app.tabBar().buttons()["Collection"].tap();
+app.navigationBar().buttons()["Collection"].tap();
 
-if (app.tabBar().buttons()["Collection"].checkIsValid()){ 
+if (app.navigationBar().buttons()["Collection"].checkIsValid()){ 
     
     window.buttons()["Accessories"].tap();
         	
@@ -176,4 +176,4 @@ app.navigationBar().leftButton().tap();
 
 
 target.delay(2.0);
-app.tabBar().buttons()["Home"].tap();
+app.navigationBar().buttons()["Home"].tap();

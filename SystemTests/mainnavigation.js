@@ -18,8 +18,8 @@ testCaseName = testSuiteName + " ConscienceView (Home)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Home"].checkIsValid()) {
-    app.tabBar().buttons()["Home"].tap();
+if (app.navigationBar().buttons()["Home"].checkIsValid()) {
+    app.navigationBar().buttons()["Home"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -66,9 +66,9 @@ testCaseName = testSuiteName + " ChoiceInit (Journal)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Journal"].checkIsValid()){ 
+if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
 
-    app.tabBar().buttons()["Journal"].tap();
+    app.navigationBar().buttons()["Journal"].tap();
     window.buttons()["Moral Choice"].tap();
     app.navigationBar().leftButton().tap();
         
@@ -87,8 +87,8 @@ testCaseName = testSuiteName + " Choice (Moral)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Journal"].checkIsValid()){ 
-    app.tabBar().buttons()["Journal"].tap();
+if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
+    app.navigationBar().buttons()["Journal"].tap();
     window.buttons()["Moral Choice"].tap();
     window.buttons()["Moral History"].tap();
     window.buttons()["Previous"].tap();
@@ -109,8 +109,8 @@ testCaseName = testSuiteName + " Choice (Immoral)";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Journal"].checkIsValid()){ 
-    app.tabBar().buttons()["Journal"].tap();    
+if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
+    app.navigationBar().buttons()["Journal"].tap();    
     
     window.buttons()["Immoral Choice"].tap();
     app.navigationBar().rightButton().tap();
@@ -126,8 +126,8 @@ testCaseName = testSuiteName + " All Choices Screen";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Journal"].checkIsValid()){ 
-    app.tabBar().buttons()["Journal"].tap();
+if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
+    app.navigationBar().buttons()["Journal"].tap();
     
     window.buttons()["All Choices"].tap();
     window.buttons()["Sort"].tap();
@@ -143,8 +143,8 @@ testCaseName = testSuiteName + " Collection Init";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.tabBar().buttons()["Collection"].checkIsValid()) {
-    app.tabBar().buttons()["Collection"].tap();
+if (app.navigationBar().buttons()["Collection"].checkIsValid()) {
+    app.navigationBar().buttons()["Collection"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -190,4 +190,4 @@ if (window.buttons()["Morals"].checkIsValid()){
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-app.tabBar().buttons()["Home"].tap();
+app.navigationBar().buttons()["Home"].tap();
