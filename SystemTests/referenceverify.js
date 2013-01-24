@@ -52,7 +52,7 @@ if(window.textViews()["Long Description"].value() == defaultReferenceAccessoryDe
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
 }
 
-app.navigationBar().leftButton().tap();
+window.buttons()["Cancel"].tap();
 window.tableViews()[0].cells()[1].tap();
 
 testCaseName = testSuiteName + " Verify 2nd Accessory fields";
@@ -76,11 +76,8 @@ if(window.textViews()["Long Description"].value() == defaultReferenceAccessoryDe
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
 }
 
-app.navigationBar().leftButton().tap();
-
-
-
-app.navigationBar().leftButton().tap();
+window.buttons()["Cancel"].tap();
+window.buttons()["Cancel"].tap();
 
 testCaseName = testSuiteName + " Figures Verification";
 UIALogger.logStart(testCaseName + " Test");
@@ -132,9 +129,8 @@ if(window.textViews()["Long Description"].value() == defaultReferenceFigureDescr
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
 }
 
-app.navigationBar().leftButton().tap();
-app.navigationBar().leftButton().tap();
-
+window.buttons()["Cancel"].tap();
+window.buttons()["Cancel"].tap();
 
 testCaseName = testSuiteName + " Figures Verification";
 UIALogger.logStart(testCaseName + " Test");
@@ -171,9 +167,8 @@ if(window.textViews()["Long Description"].value() == defaultReferenceMoralDescri
 	UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Long Description"].value());
 }
 
-app.navigationBar().leftButton().tap();
-app.navigationBar().leftButton().tap();
-
+window.buttons()["Cancel"].tap();
+window.buttons()["Cancel"].tap();
 
 target.delay(2.0);
-app.navigationBar().buttons()["Home"].tap();
+app.navigationBar().leftButton().tap();

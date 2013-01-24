@@ -58,13 +58,13 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
 
     app.navigationBar().buttons()["Journal"].tap();
     window.buttons()["Moral Choice"].tap();
-    app.navigationBar().leftButton().tap();
-        
+    window.buttons()["Cancel"].tap();
+
     window.buttons()["Immoral Choice"].tap();
-    app.navigationBar().leftButton().tap();    
-    
+    window.buttons()["Cancel"].tap();
+
     window.buttons()["All Choices"].tap();
-    app.navigationBar().leftButton().tap();
+    window.buttons()["Cancel"].tap();
 
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -86,7 +86,6 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
     window.buttons()["Previous"].tap();    
     app.navigationBar().rightButton().tap();
     app.navigationBar().leftButton().tap();
-    app.navigationBar().leftButton().tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
@@ -102,7 +101,6 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
     
     window.buttons()["Immoral Choice"].tap();
     app.navigationBar().rightButton().tap();
-    app.navigationBar().leftButton().tap();
     app.navigationBar().leftButton().tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
@@ -145,8 +143,8 @@ UIALogger.logStart(testCaseName + " Test");
 
 if (window.buttons()["Accessories"].checkIsValid()){ 
     window.buttons()["Accessories"].tap();
-    app.navigationBar().leftButton().tap();
-    
+    window.buttons()["Cancel"].tap();
+
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
     UIALogger.logFail(testCaseName + " NOT loaded"); 
@@ -158,8 +156,8 @@ UIALogger.logStart(testCaseName + " Test");
 
 if (window.buttons()["Figures"].checkIsValid()){ 
     window.buttons()["Figures"].tap();
-    app.navigationBar().leftButton().tap();
-    
+    window.buttons()["Cancel"].tap();
+
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
     UIALogger.logFail(testCaseName + " NOT loaded"); 
@@ -171,11 +169,11 @@ UIALogger.logStart(testCaseName + " Test");
 
 if (window.buttons()["Morals"].checkIsValid()){ 
     window.buttons()["Morals"].tap();
-    app.navigationBar().leftButton().tap();
+    window.buttons()["Cancel"].tap();
     
     UIALogger.logPass(testCaseName + " loaded"); 
 } else {
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
-app.navigationBar().buttons()["Home"].tap();
+app.navigationBar().leftButton().tap();

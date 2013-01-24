@@ -137,5 +137,5 @@ if (window.buttons()["Commissary"].checkIsValid()){
     window.buttons()["Previous"].tap();
 		
 } else {
-	UIALogger.logFail(testCaseName + " incorrect."); 
+	UIALogger.logFail(testCaseName + " incorrect. No commissary"); 
 }
