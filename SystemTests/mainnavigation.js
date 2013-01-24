@@ -71,6 +71,7 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
     UIALogger.logFail(testCaseName + " NOT loaded"); 
 }
 
+app.navigationBar().leftButton().tap();
 testCaseName = testSuiteName + " Choice (Moral)";
 
 UIALogger.logStart(testCaseName + " Test");
