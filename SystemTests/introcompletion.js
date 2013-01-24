@@ -14,11 +14,11 @@ var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-testCaseName = testSuiteName + " UITabBar unloaded";
+testCaseName = testSuiteName + " UINavigationBar unloaded";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (!app.navigationBar().buttons()["Home"].checkIsValid()){
+if (!app.navigationBar().buttons()["Journal"].checkIsValid()){
 	
 	UIALogger.logPass(testCaseName + " correctly."); 
 	
@@ -52,20 +52,45 @@ if (!app.navigationBar().buttons()["Home"].checkIsValid()){
 		
     target.delay(5.0);
 
-    testCaseName = testSuiteName + " UITabBar verification";
+    testCaseName = testSuiteName + " UINavigationBar Journal verification";
     UIALogger.logStart(testCaseName + " Test");
         
-    if (app.navigationBar().buttons()["Home"].checkIsValid()){ 
+    if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
         
-        app.navigationBar().buttons()["Home"].tap();
-                
+//        app.navigationBar().buttons()["Journal"].tap();
+
         UIALogger.logPass(testCaseName + " passed."); 
         
     } else {
         UIALogger.logFail(testCaseName + " failed."); 
     }
+
+//    testCaseName = testSuiteName + " UINavigationBar Home verification";
+//    UIALogger.logStart(testCaseName + " Test");
+//
+//    if (app.navigationBar().buttons()["Home"].checkIsValid()){
+//
+//        app.navigationBar().buttons()["Home"].tap();
+//
+//        UIALogger.logPass(testCaseName + " passed.");
+//
+//    } else {
+//        UIALogger.logFail(testCaseName + " failed.");
+//    }
+
+    testCaseName = testSuiteName + " UINavigationBar Collection verification";
+    UIALogger.logStart(testCaseName + " Test");
+
+    if (app.navigationBar().buttons()["Collection"].checkIsValid()){
+
+//        app.navigationBar().buttons()["Collection"].tap();
+
+        UIALogger.logPass(testCaseName + " passed.");
+
+    } else {
+        UIALogger.logFail(testCaseName + " failed.");
+    }
     
-		
 } else {
 	UIALogger.logFail(testCaseName + " incorrectly."); 
 }

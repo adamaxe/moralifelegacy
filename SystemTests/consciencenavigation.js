@@ -14,8 +14,6 @@ var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-app.navigationBar().buttons()["Home"].tap();
-
 testCaseName = testSuiteName + " Conscience Modal Entry";
 UIALogger.logStart(testCaseName + " Test");
 
@@ -137,8 +135,6 @@ if (window.buttons()["Commissary"].checkIsValid()){
     }
 
     window.buttons()["Previous"].tap();
-	app.navigationBar().buttons()["Home"].tap();
-	
 		
 } else {
 	UIALogger.logFail(testCaseName + " incorrect."); 

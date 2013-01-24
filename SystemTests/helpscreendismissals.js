@@ -14,11 +14,11 @@ var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-testCaseName = testSuiteName + " UITabBar loaded";
+testCaseName = testSuiteName + " UINavigationBar loaded";
 
 UIALogger.logStart(testCaseName + " Test");
 
-if (app.navigationBar().buttons()["Home"].checkIsValid()){
+if (app.navigationBar().buttons()["Journal"].checkIsValid()){
 	
 	UIALogger.logPass(testCaseName + " correctly."); 
 	

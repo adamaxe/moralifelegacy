@@ -9,22 +9,10 @@ Moralife UI Main Navigation traversal validation
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Main UITabBar Navigation";
+var testSuiteName = "Main UINavigationBar Navigation";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
-
-testCaseName = testSuiteName + " ConscienceView (Home)";
-
-UIALogger.logStart(testCaseName + " Test");
-
-if (app.navigationBar().buttons()["Home"].checkIsValid()) {
-    app.navigationBar().buttons()["Home"].tap();
-    
-    UIALogger.logPass(testCaseName + " loaded"); 
-} else {
-   UIALogger.logFail(testCaseName + " NOT loaded"); 
-} 
 
 testCaseName = testSuiteName + " rankButton";
 
