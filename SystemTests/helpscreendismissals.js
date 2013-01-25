@@ -56,6 +56,8 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
 
     testCaseName = testSuiteName + " Conscience View Help Screen";
     UIALogger.logStart(testCaseName + " Test");
+    target.delay(2.0);
+	
     target.tap({x:130.00, y:300.00});
     
     if (window.buttons()["Previous"].checkIsValid()){ 
@@ -129,9 +131,7 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
     } else {
         UIALogger.logFail(testCaseName + " incorrect."); 
     }
-    
-    app.navigationBar().buttons()["Home"].tap();
-		
+    		
 } else {
 	UIALogger.logFail(testCaseName + " incorrectly.");
 }

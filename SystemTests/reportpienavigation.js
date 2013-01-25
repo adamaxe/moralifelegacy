@@ -16,7 +16,7 @@ UIALogger.logMessage(testSuiteName + " Testing Begins");
 
 testCaseName = testSuiteName + " Conscience View Help Screen";
 UIALogger.logStart(testCaseName + " Test");
-app.navigationBar().buttons()["Home"].tap();
+
 target.tap({x:130.00, y:300.00});
 
 testCaseName = testSuiteName + " Moral Report Help Screen";
@@ -87,5 +87,3 @@ if(window.buttons()["Moral Order"].value() == "Asc") {
 
 window.buttons()["Previous"].tap();
 window.buttons()["Previous"].tap();
-
-app.navigationBar().buttons()["Home"].tap();

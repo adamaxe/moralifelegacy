@@ -77,4 +77,4 @@ var defaultReferenceFigureName = "You"
 var defaultReferenceFigureDescription = "Every hero is a regular person first.  You have chosen to take some responsibility for your actions by using MoraLife.  So, the only question now is how are you going to leave your mark on the world?"
 var defaultReferenceMoralName = "Responsibility"
 var defaultReferenceMoralDescription = 
-"Virtue: Dependability, Ownership, Reliability, Remembrance, Reverence, Respectfulness, Respectability, Trustworthiness"
+"Dependability, Ownership, Reliability, Remembrance, Reverence, Respectfulness, Respectability, Trustworthiness\n\nDefinition: Fulfillment of a particular burden of obligation."

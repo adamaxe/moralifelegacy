@@ -152,7 +152,7 @@ target.delay(2.0);
 testCaseName = testSuiteName + " Moral Title Verification";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.staticTexts()["Reference Name"].value() == defaultReferenceMoral) {
+if(window.staticTexts()["Reference Name"].value() == defaultReferenceMoralName) {
 	UIALogger.logPass(testCaseName + " verified");
 } else {
 	UIALogger.logFail(testCaseName + " not verified: " + window.staticTexts()["Reference Name"].value());
