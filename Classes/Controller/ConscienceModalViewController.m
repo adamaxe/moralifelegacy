@@ -296,8 +296,8 @@ Determines if current screen should change or if another UIViewController needs 
 //			case 11:currentState = 12;[self changeSelectionScreen];break;			
 			case 8:[self selectController:choiceIndex];break;
 			case 9:[self selectController:choiceIndex];break;
-//			case 10:[self selectController:choiceIndex];break;			
-//			case 11:[self selectController:choiceIndex];break;
+			case 10:[self selectController:choiceIndex];break;			
+			case 11:[self selectController:choiceIndex];break;
 			case 12:/*[self selectController:choiceIndex];*/break;
 			case 20:[self selectController:choiceIndex];break;
 			case 21:[self selectController:choiceIndex];break;
@@ -456,24 +456,24 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a DilemmaListViewController
 	if (isDilemmaViewControllerNeeded) {
 
-		//Determine if User has completed the first Campaign
-		//If not, present help view.
-		if((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) {
-            
-            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-            [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-            [conscienceHelpViewCont setNumberOfScreens:3];
-            [self presentModalViewController:conscienceHelpViewCont animated:NO];
-			
-    } else {
+//		//Determine if User has completed the first Campaign
+//		//If not, present help view.
+//		if((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) {
+//            
+//            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+//            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
+//            [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+//            [conscienceHelpViewCont setNumberOfScreens:3];
+//            [self presentModalViewController:conscienceHelpViewCont animated:NO];
+//			
+//        } else {
 
-		DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] init];
+            DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] init];
 
-		[prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
+            [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
 
-		[self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-		}
+            [self.navigationController pushViewController:dilemmaListViewCont animated:NO];
+//		}
 	}
 }
 
