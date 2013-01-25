@@ -33,6 +33,7 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
         window.buttons()["Previous"].tap();
         app.navigationBar().rightButton().tap();
         window.buttons()["Previous"].tap();
+        app.navigationBar().buttons()["Home"].tap();
         app.navigationBar().buttons()["Collection"].tap();
         window.buttons()["Previous"].tap();
 
