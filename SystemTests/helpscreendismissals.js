@@ -22,7 +22,7 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
 	
 	UIALogger.logPass(testCaseName + " correctly."); 
 	
-    testCaseName = testSuiteName + " Journal Help Screens";
+    testCaseName = testSuiteName + " Navbar Help Screens";
     UIALogger.logStart(testCaseName + " Test");
         
     if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
@@ -36,16 +36,26 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
         app.navigationBar().buttons()["Home"].tap();
         app.navigationBar().buttons()["Collection"].tap();
         window.buttons()["Previous"].tap();
+        target.delay(2.0);
+        app.navigationBar().buttons()["Home"].tap();
 
         UIALogger.logPass(testCaseName + " passed."); 
         
     } else {
         UIALogger.logFail(testCaseName + " incorrect."); 
     }
-        
+} else {
+	UIALogger.logFail(testCaseName + " incorrectly.");
+}
+
+testCaseName = testSuiteName + " UINavigationBar loaded";
+
+UIALogger.logStart(testCaseName + " Test");
+
+if (app.navigationBar().buttons()["Journal"].checkIsValid()){
+
     testCaseName = testSuiteName + " Conscience View Help Screen";
     UIALogger.logStart(testCaseName + " Test");
-    app.navigationBar().buttons()["Home"].tap();        
     target.tap({x:130.00, y:300.00});
     
     if (window.buttons()["Previous"].checkIsValid()){ 
@@ -123,5 +133,5 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
     app.navigationBar().buttons()["Home"].tap();
 		
 } else {
-	UIALogger.logFail(testCaseName + " incorrectly."); 
+	UIALogger.logFail(testCaseName + " incorrectly.");
 }

@@ -18,10 +18,10 @@ testCaseName = testSuiteName + " Verify Default Accessories";
 
 UIALogger.logStart(testCaseName + " Test");
 
-app.navigationBar().buttons()["Collection"].tap();
+if (app.navigationBar().buttons()["Collection"].checkIsValid()){
 
-if (app.navigationBar().buttons()["Collection"].checkIsValid()){ 
-    
+    app.navigationBar().buttons()["Collection"].tap();
+
     window.buttons()["Accessories"].tap();
         	
     window.tableViews()[0].cells()[0].tap();
