@@ -61,7 +61,7 @@
 					<object class="IBUIImageView" id="871445338">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">-2147483392</int>
-						<string key="NSFrameSize">{320, 56}</string>
+						<string key="NSFrame">{{0, -4}, {320, 56}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="33702729"/>
@@ -72,7 +72,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">navbar-texture-bevel.png</string>
+							<string key="NSResourceName">faux-navbar.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="986740698">
@@ -241,7 +241,7 @@
 						<string key="NSFrame">{{32, 352}, {48, 48}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="669353895"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -285,22 +285,6 @@
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
 							<string key="NSResourceName">interface-choicesnext.png</string>
-						</object>
-					</object>
-					<object class="IBUIImageView" id="669353895">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">-2147483392</int>
-						<string key="NSFrame">{{0, 411}, {320, 50}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<int key="IBUIContentMode">4</int>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">interface-tabbaricons.jpg</string>
 						</object>
 					</object>
 				</object>
@@ -420,14 +404,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tabBarImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="669353895"/>
-					</object>
-					<int key="connectionID">87</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">downButtonImage</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="322777229"/>
@@ -474,7 +450,6 @@
 							<reference ref="33702729"/>
 							<reference ref="986740698"/>
 							<reference ref="948669513"/>
-							<reference ref="669353895"/>
 							<reference ref="322777229"/>
 							<reference ref="898294545"/>
 							<reference ref="883578939"/>
@@ -561,11 +536,6 @@
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
-						<int key="objectID">86</int>
-						<reference key="object" ref="669353895"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
 						<int key="objectID">88</int>
 						<reference key="object" ref="322777229"/>
 						<reference key="parent" ref="191373211"/>
@@ -592,7 +562,6 @@
 					<string>74.IBPluginDependency</string>
 					<string>80.IBPluginDependency</string>
 					<string>82.IBPluginDependency</string>
-					<string>86.IBPluginDependency</string>
 					<string>88.IBPluginDependency</string>
 				</object>
 				<object class="NSArray" key="dict.values">
@@ -600,7 +569,6 @@
 					<string>IntroViewController</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -681,7 +649,6 @@
 							<string>navBarImage</string>
 							<string>nextButton</string>
 							<string>nextButtonImage</string>
-							<string>tabBarImage</string>
 							<string>teamAxeLogoImage</string>
 							<string>thoughtArea</string>
 							<string>thoughtBubbleView1</string>
@@ -696,7 +663,6 @@
 							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UIButton</string>
-							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UIImageView</string>
 							<string>UIView</string>
@@ -716,7 +682,6 @@
 							<string>navBarImage</string>
 							<string>nextButton</string>
 							<string>nextButtonImage</string>
-							<string>tabBarImage</string>
 							<string>teamAxeLogoImage</string>
 							<string>thoughtArea</string>
 							<string>thoughtBubbleView1</string>
@@ -757,10 +722,6 @@
 								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
-								<string key="name">tabBarImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
 								<string key="name">teamAxeLogoImage</string>
 								<string key="candidateClassName">UIImageView</string>
 							</object>
@@ -798,11 +759,10 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>background-wall.jpg</string>
+				<string>faux-navbar.png</string>
 				<string>interface-choicesdown.png</string>
 				<string>interface-choicesnext.png</string>
-				<string>interface-tabbaricons.jpg</string>
 				<string>moralifelogo.png</string>
-				<string>navbar-texture-bevel.png</string>
 				<string>teamaxebevel.jpg</string>
 				<string>thoughtbubble-small1.png</string>
 				<string>thoughtbubble-smallest.png</string>
@@ -810,11 +770,10 @@
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{320, 480}</string>
-				<string>{90, 90}</string>
-				<string>{90, 90}</string>
 				<string>{320, 50}</string>
+				<string>{90, 90}</string>
+				<string>{90, 90}</string>
 				<string>{251, 70}</string>
-				<string>{320, 56}</string>
 				<string>{280, 232}</string>
 				<string>{320, 150}</string>
 				<string>{64, 64}</string>

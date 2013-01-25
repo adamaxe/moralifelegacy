@@ -24,7 +24,6 @@ the application.
 	IBOutlet UIImageView *thoughtBubbleView1;	/**< bubble surrounding Conscience's thought */
 	IBOutlet UIImageView *backgroundImage;		/**< background image manipulation */
 	IBOutlet UIImageView *navBarImage;			/**< image that will appear once interaction is done */
-	IBOutlet UIImageView *tabBarImage;			/**< image that will appear once interaction is done */
 	IBOutlet UIImageView *teamAxeLogoImage;		/**< Team Axe Logo */
 	IBOutlet UIImageView *moraLifeLogoImage;	/**< MoraLife Logo */
     IBOutlet UIImageView *nextButtonImage;      /**< image for Next arrow */
@@ -563,10 +562,8 @@ the application.
 -(void) switchText10{
     
     downButtonImage.alpha = 0;
-    tabBarImage.alpha = 0;
     navBarImage.alpha = 0;
     downButtonImage.hidden = FALSE;
-    tabBarImage.hidden = FALSE;
     navBarImage.hidden = FALSE;
 
     [self animateStatusText];
@@ -576,7 +573,6 @@ the application.
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
-    tabBarImage.alpha = 1;
     navBarImage.alpha = 1;
     conscienceStatus.alpha = 1;
         
@@ -619,7 +615,6 @@ the application.
 -(void) switchText12{
     
     [self animateStatusText];
-    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons2.jpg"]];
     [conscienceStatus setText:@"Tapping on the Journal Tab Bar icon lets you enter in moral or immoral Choices."];
     
 	[UIView beginAnimations:@"labelFade11" context:nil];
@@ -646,7 +641,6 @@ the application.
     
     [self animateStatusText];
 
-    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons3.jpg"]];
     [conscienceStatus setText:@"Tap that Collection Tab Bar icon to review the things that you've bought or received in Morathology."];
     
 	[UIView beginAnimations:@"labelFade12" context:nil];
@@ -672,7 +666,6 @@ the application.
 
     [self animateStatusText];
 
-    [tabBarImage setImage:[UIImage imageNamed:@"interface-tabbaricons.jpg"]];
     [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to dismiss it."];
     
 	[UIView beginAnimations:@"labelFade13" context:nil];

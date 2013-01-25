@@ -168,7 +168,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">card-grace.png</string>
+							<string key="NSResourceName">card-creativity.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="353972455">
@@ -245,6 +245,7 @@
 						<string key="NSFrame">{{172, 390}, {80, 22}}</string>
 						<reference key="NSSuperview" ref="457160686"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">7</int>
@@ -1003,7 +1004,7 @@
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>acc-sec-rank1-sm.png</string>
 				<string>background-wall.jpg</string>
-				<string>card-grace.png</string>
+				<string>card-creativity.png</string>
 				<string>card-lust.png</string>
 				<string>navbar-texture-bevel.png</string>
 				<string>pictureframe-home.png</string>
