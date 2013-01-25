@@ -528,10 +528,10 @@ Implementation: Shift UITextView up to top of screen, hide elements underneath, 
 	CGRect descriptionFrame = choiceDescriptionView.frame; 
 	if (viewNumber == 0) {
 		choiceParametersView.alpha = 1.0;
-		descriptionFrame.origin.y += 145;
+		descriptionFrame.origin.y += 165;
 	}else {
 		choiceParametersView.alpha = 0.0;		
-		descriptionFrame.origin.y -= 145;
+		descriptionFrame.origin.y -= 165;
 	}
 	choiceDescriptionView.frame = descriptionFrame;
 	[UIView commitAnimations];
