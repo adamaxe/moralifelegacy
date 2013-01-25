@@ -589,15 +589,16 @@ the application.
     
     downButtonImage.alpha = 0;
     downButtonImage.hidden = FALSE;    
-    downButtonImage.center = CGPointMake(48, 362);
+    downButtonImage.center = CGPointMake(38, 52);
     
     [self animateStatusText];
-    [conscienceStatus setText:@"You can tap on the Home Tab Bar icon to return to this screen anytime."];
+    [conscienceStatus setText:@"This Navigation bar will allow you to access the other features in MoraLife."];
     
 	[UIView beginAnimations:@"labelFade10" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
-    
+
+    downButtonImage.transform = CGAffineTransformMakeRotation (M_PI);
     conscienceStatus.alpha = 1;
     downButtonImage.alpha = 1;
     
@@ -615,14 +616,15 @@ the application.
 -(void) switchText12{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"Tapping on the Journal Tab Bar icon lets you enter in moral or immoral Choices."];
+    [conscienceStatus setText:@"Tapping on the Journal Button lets you enter in moral or immoral Choices."];
     
 	[UIView beginAnimations:@"labelFade11" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
-    
+    downButtonImage.transform = CGAffineTransformMakeRotation (-M_PI/2);
+
     downButtonImage.alpha = 1;
-    downButtonImage.center = CGPointMake(166, downButtonImage.center.y);
+    downButtonImage.center = CGPointMake(126, 21);
     conscienceStatus.alpha = 1;
         
 	[UIView commitAnimations];
@@ -641,14 +643,15 @@ the application.
     
     [self animateStatusText];
 
-    [conscienceStatus setText:@"Tap that Collection Tab Bar icon to review the things that you've bought or received in Morathology."];
+    [conscienceStatus setText:@"Tap that Collection Button to review the things that you've bought or received in Morathology."];
     
 	[UIView beginAnimations:@"labelFade12" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
-    
+
+    downButtonImage.transform = CGAffineTransformMakeRotation (M_PI);
     downButtonImage.alpha = 1;
-    downButtonImage.center = CGPointMake(263, downButtonImage.center.y);
+    downButtonImage.center = CGPointMake(283, 62);
     conscienceStatus.alpha = 1;
     
 	[UIView commitAnimations];
@@ -673,8 +676,8 @@ the application.
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
     downButtonImage.alpha = 1;
-    downButtonImage.transform = CGAffineTransformMakeRotation (3.14);
-    downButtonImage.center = CGPointMake(243, downButtonImage.center.y-155);
+    downButtonImage.transform = CGAffineTransformMakeRotation (0.5*M_PI);
+    downButtonImage.center = CGPointMake(283, 135);
     conscienceStatus.alpha = 1;
     
 	[UIView commitAnimations];
@@ -702,7 +705,6 @@ the application.
     conscienceStatus.alpha = 1;
         
 	[UIView commitAnimations];
-	downButtonImage.transform = CGAffineTransformMakeRotation (-3.14);
 
     messageState = 15;
     
