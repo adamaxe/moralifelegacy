@@ -630,24 +630,20 @@ static int thoughtVersion = 0;
     
     if (isChoice) {
         
-        if (![searchString isEqualToString:@""]) {
-
-            [UIView animateWithDuration:0.5 animations:^{
-                conscienceStatus.alpha = 0;
-            }completion:^(BOOL finished) {
-                [conscienceStatus setText:searchString];
-                [UIView animateWithDuration:0.5 animations:^{
-                    conscienceStatus.alpha = 1;
-                }];
-            }];
-
-
-        } else {
-            
-            [conscienceStatus setText:@"You haven't entered a moral, yet.  Go to your Journal and enter in a Choice!"];
-            
+        if ([searchString isEqualToString:@""]) {
+            searchString = @"You haven't entered a moral, yet.  Go to your Journal and enter in a Choice!";
         }
-        
+
+        [UIView animateWithDuration:0.5 animations:^{
+            conscienceStatus.alpha = 0;
+        }completion:^(BOOL finished) {
+            [conscienceStatus setText:searchString];
+            [UIView animateWithDuration:0.5 animations:^{
+                conscienceStatus.alpha = 1;
+            }];
+        }];
+
+
 
     }
 

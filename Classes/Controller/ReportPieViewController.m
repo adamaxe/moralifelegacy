@@ -137,7 +137,9 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 		[self presentModalViewController:conscienceHelpViewCont animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstPie"];
-        
+
+        [prefs synchronize];
+
     }
 }
 
