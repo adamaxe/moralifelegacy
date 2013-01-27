@@ -624,7 +624,7 @@ the application.
     downButtonImage.transform = CGAffineTransformMakeRotation (-M_PI/2);
 
     downButtonImage.alpha = 1;
-    downButtonImage.center = CGPointMake(126, 21);
+    downButtonImage.center = CGPointMake(140, 21);
     conscienceStatus.alpha = 1;
         
 	[UIView commitAnimations];
