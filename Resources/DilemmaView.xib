@@ -382,7 +382,7 @@
 							</object>
 							<object class="IBUIView" id="34480304">
 								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">292</int>
+								<int key="NSvFlags">-2147483356</int>
 								<object class="NSMutableArray" key="NSSubviews">
 									<bool key="EncodedWithXMLCoder">YES</bool>
 									<object class="IBUIButton" id="356814167">

@@ -648,7 +648,7 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
 				[tableDataImages addObject:choiceImages[counter]];
 				[tableDataDetails addObject:choiceDetails[counter]];
 				[tableDataKeys addObject:choiceNames[counter]];
-            [tableDataTypes addObject:choiceTypes[counter]];
+                [tableDataTypes addObject:choiceTypes[counter]];
 
 				//}
 			}

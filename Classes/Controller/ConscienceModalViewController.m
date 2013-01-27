@@ -106,7 +106,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	tempButtonImages = @[@"icon-features.png", @"icon-palette.png", @"icon-accessories.png", @" "];
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
 	
-	tempButtonLabels = @[@"Orientation", @"Atlantic", @"Coming Soon!", @"Coming Soon!"];
+	tempButtonLabels = @[@"Orientation", @"Atlantic", @"Eastern", @"Coming Soon!"];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	
 	tempButtonImages = @[@"icon-placesani1.png", @"icon-placesani2.png", @"icon-placesani3.png", @"icon-placesani4.png"];
