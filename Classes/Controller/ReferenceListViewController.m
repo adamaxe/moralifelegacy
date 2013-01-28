@@ -15,8 +15,9 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferenceTextDAO.h"
 #import "MoralDAO.h"
 #import "ReferenceTableViewCell.h"
+#import "ViewControllerLocalization.h"
 
-@interface ReferenceListViewController () {
+@interface ReferenceListViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
@@ -77,9 +78,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	referenceSearchBar.showsCancelButton = NO;
 	referencesTableView.delegate = self;
 	referencesTableView.dataSource = self;
-    
-    [self setTitle:@"List"];
-	
+    	
 	dataSource = [[NSMutableArray alloc] init];
 	searchedData = [[NSMutableArray alloc] init];
 	tableData = [[NSMutableArray alloc] init];
@@ -91,6 +90,8 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:referenceBarButton];
+
+    [self localizeUI];
 
 }
 
@@ -362,6 +363,32 @@ Implementation: Iterate through searchData looking for instances of searchText
 	}
 	
 	[referencesTableView reloadData];
+}
+
+-(void)localizeUI {
+
+    NSString *controllerTitle;
+
+    switch (self.referenceModel.referenceType) {
+        case MLReferenceModelTypeMoral:
+            controllerTitle =  NSLocalizedString(@"ReferenceScreenMoralsTitle",nil);
+            break;
+        case MLReferenceModelTypePerson:
+            controllerTitle = NSLocalizedString(@"ReferenceScreenPeopleTitle",nil);
+            break;
+        case MLReferenceModelTypeConscienceAsset:
+            controllerTitle = NSLocalizedString(@"ReferenceScreenAccessoriesTitle",nil);
+            break;
+        case MLReferenceModelTypeReferenceAsset:
+            controllerTitle = NSLocalizedString(@"ReferenceScreenAccessoriesTitle",nil);
+            break;
+        default:
+            controllerTitle = @"List";
+            break;
+    }
+    
+    [self setTitle:controllerTitle];
+
 }
 
 #pragma mark -
