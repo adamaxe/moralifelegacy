@@ -383,8 +383,6 @@ Construct antagonist Conscience
 			[currentUserChoicePreReqDAO setPredicates:@[userChoicePred]];
        
 			if ([currentUserChoicePreReqDAO count] == 0) {
-                NSLog(@"couldn't find relevant choice");
-
 				isRequirementOwned = FALSE;
 			} else {
                 NSTimeInterval secondsPast = -3600;
@@ -402,11 +400,10 @@ Construct antagonist Conscience
                     [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
                     [conscienceHelpViewCont setNumberOfScreens:1];
                     [self presentModalViewController:conscienceHelpViewCont animated:NO];
-
+                    [self.navigationController popViewControllerAnimated:NO];
                 }
 			}
             
-
 		} else {
 		
 			if ([[appDelegate userCollection] containsObject:actionKey]) {
