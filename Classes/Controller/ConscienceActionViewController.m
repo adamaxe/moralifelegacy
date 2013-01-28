@@ -29,6 +29,7 @@ Implementation:  UIViewController changes state of UI depending upon which stage
 #import "UserCharacterDAO.h"
 #import "UserChoiceDAO.h"
 #import "ViewControllerLocalization.h"
+#import "ConscienceHelpViewController.h"
 
 @interface ConscienceActionViewController () <ViewControllerLocalization> {
     
@@ -376,25 +377,33 @@ Construct antagonist Conscience
 		if(keyIsMoral) {
 
 			//Determine if User has requirement to pass
-            UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-            NSTimeInterval secondsPast = -3600;
-
-            NSDate *oneHourOld = [NSDate dateWithTimeInterval:secondsPast sinceDate:[NSDate date]];
-
-			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@) AND (entryCreationDate < %@)", actionKey, @"dile-", oneHourOld];
-//			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, @"dile-"];
-
+            UserChoiceDAO *currentUserChoicePreReqDAO = [[UserChoiceDAO alloc] initWithKey:@""];
+			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, @"dile-"];
     
-			[currentUserChoiceDAO setPredicates:@[userChoicePred]];
+			[currentUserChoicePreReqDAO setPredicates:@[userChoicePred]];
        
-			if ([currentUserChoiceDAO count] == 0) {
+			if ([currentUserChoicePreReqDAO count] == 0) {
                 NSLog(@"couldn't find relevant choice");
 
 				isRequirementOwned = FALSE;
 			} else {
-                UserChoice *relevantChoice = [currentUserChoiceDAO readAll][0];
-                NSLog(@"userChoiceDate:%@, name:%@, key:%@, moral:%@", relevantChoice.entryCreationDate, relevantChoice.entryShortDescription, relevantChoice.entryKey, relevantChoice.choiceMoral);
-				isRequirementOwned = TRUE;
+                NSTimeInterval secondsPast = -3600;
+                NSDate *oneHourOld = [NSDate dateWithTimeInterval:secondsPast sinceDate:[NSDate date]];
+                NSPredicate *userChoicePreReqPred = [NSPredicate predicateWithFormat:@"(entryCreationDate < %@)", oneHourOld];
+
+                NSArray *possibleChoices = [currentUserChoicePreReqDAO readAll];
+                NSArray *filteredArray = [possibleChoices filteredArrayUsingPredicate:userChoicePreReqPred];
+
+                if (filteredArray.count > 0) {
+                    isRequirementOwned = TRUE;
+                } else {
+                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
+                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+                    [conscienceHelpViewCont setNumberOfScreens:1];
+                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+
+                }
 			}
             
 
