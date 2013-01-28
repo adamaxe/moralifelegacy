@@ -102,7 +102,7 @@
 							<object class="IBUITableView" id="796975220">
 								<reference key="NSNextResponder" ref="259868846"/>
 								<int key="NSvFlags">274</int>
-								<string key="NSFrame">{{38, 38}, {243, 340}}</string>
+								<string key="NSFrame">{{38, 38}, {243, 335}}</string>
 								<reference key="NSSuperview" ref="259868846"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="820026278"/>
