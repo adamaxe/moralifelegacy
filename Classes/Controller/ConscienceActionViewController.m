@@ -392,16 +392,16 @@ Construct antagonist Conscience
                 NSArray *possibleChoices = [currentUserChoicePreReqDAO readAll];
                 NSArray *filteredArray = [possibleChoices filteredArrayUsingPredicate:userChoicePreReqPred];
 
-                if (filteredArray.count > 0) {
+//                if (filteredArray.count > 0) {
                     isRequirementOwned = TRUE;
-                } else {
-                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
-                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-                    [conscienceHelpViewCont setNumberOfScreens:1];
-                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
-                    [self.navigationController popViewControllerAnimated:NO];
-                }
+//                } else {
+//                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+//                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
+//                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+//                    [conscienceHelpViewCont setNumberOfScreens:1];
+//                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+//                    [self.navigationController popViewControllerAnimated:NO];
+//                }
 			}
             
 		} else {
@@ -557,9 +557,8 @@ Calculate changes to User's ethicals.  Limit to 999.
         ReferencePerson *currentPerson = [currentPersonDAO read:@""];
         
         [moralSelectedRewardLabel setText:[NSString stringWithString:currentPerson.displayNameReference]];
-        
-		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentPerson.imageNameReference]]];
 
+		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentPerson.imageNameReference]]];
                 
 		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         

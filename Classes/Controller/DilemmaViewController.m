@@ -124,7 +124,7 @@ typedef enum {
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
-        
+
 		//Setup default values
         reward1 = [[NSMutableString alloc] init];
         reward2 = [[NSMutableString alloc] init];
@@ -613,7 +613,6 @@ Calculate changes to User's ethicals.  Limit to 999.
         
 		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentPerson.imageNameReference]]];
         
-
 		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
 		[currentUserCollectable setCollectableCreationDate:[NSDate date]];

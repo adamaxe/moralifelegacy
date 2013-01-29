@@ -361,7 +361,7 @@ the application.
 	[UIView beginAnimations:@"labelFade2b" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
-
+    moraLifeLogoImage.alpha = 0;
     conscienceStatus.alpha = 1;
 
     [UIView commitAnimations];

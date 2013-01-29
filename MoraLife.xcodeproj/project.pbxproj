@@ -926,6 +926,8 @@
 		5E50744712B711730087DE2F /* sur-office.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E50744112B711730087DE2F /* sur-office.png */; };
 		5E51651616B248ED00144780 /* faux-navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E51651416B248ED00144780 /* faux-navbar.png */; };
 		5E51651716B248ED00144780 /* faux-navbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E51651516B248ED00144780 /* faux-navbar@2x.png */; };
+		5E51652316B7891C00144780 /* ref-aristotle-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E51652116B7891100144780 /* ref-aristotle-sm.png */; };
+		5E51652416B7891C00144780 /* ref-aristotle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E51652216B7891500144780 /* ref-aristotle.jpg */; };
 		5E5184091321D39D00AFCD5D /* card-dignity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5184011321D39D00AFCD5D /* card-dignity.png */; };
 		5E51840A1321D39D00AFCD5D /* card-forgiveness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5184021321D39D00AFCD5D /* card-forgiveness.png */; };
 		5E51840B1321D39D00AFCD5D /* card-ingratitude.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E5184031321D39D00AFCD5D /* card-ingratitude.png */; };
@@ -1139,8 +1141,6 @@
 		5E7A1133124C4E9400E061C2 /* ref-albertusmagnus.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A10FF124C4E9400E061C2 /* ref-albertusmagnus.jpg */; };
 		5E7A1134124C4E9400E061C2 /* ref-amaterasu-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A1100124C4E9400E061C2 /* ref-amaterasu-sm.png */; };
 		5E7A1135124C4E9400E061C2 /* ref-amaterasu.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A1101124C4E9400E061C2 /* ref-amaterasu.jpg */; };
-		5E7A1136124C4E9400E061C2 /* ref-aristotle-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A1102124C4E9400E061C2 /* ref-aristotle-sm.png */; };
-		5E7A1137124C4E9400E061C2 /* ref-aristotle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A1103124C4E9400E061C2 /* ref-aristotle.jpg */; };
 		5E7A1138124C4E9400E061C2 /* ref-augustecomte-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A1104124C4E9400E061C2 /* ref-augustecomte-sm.png */; };
 		5E7A1139124C4E9400E061C2 /* ref-augustecomte.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A1105124C4E9400E061C2 /* ref-augustecomte.jpg */; };
 		5E7A113A124C4E9400E061C2 /* ref-averroes-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7A1106124C4E9400E061C2 /* ref-averroes-sm.png */; };
@@ -2646,6 +2646,8 @@
 		5E50744112B711730087DE2F /* sur-office.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-office.png"; sourceTree = "<group>"; };
 		5E51651416B248ED00144780 /* faux-navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "faux-navbar.png"; path = "Resources/images/interface/faux-navbar.png"; sourceTree = "<group>"; };
 		5E51651516B248ED00144780 /* faux-navbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "faux-navbar@2x.png"; path = "Resources/images/interface/faux-navbar@2x.png"; sourceTree = "<group>"; };
+		5E51652116B7891100144780 /* ref-aristotle-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-aristotle-sm.png"; path = "Resources/images/reference/ref-aristotle-sm.png"; sourceTree = "<group>"; };
+		5E51652216B7891500144780 /* ref-aristotle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-aristotle.jpg"; path = "Resources/images/reference/ref-aristotle.jpg"; sourceTree = "<group>"; };
 		5E5181F911F354BC00F9DDB2 /* MoraLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoraLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E5184011321D39D00AFCD5D /* card-dignity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-dignity.png"; path = "Resources/images/interface/cards/card-dignity.png"; sourceTree = "<group>"; };
 		5E5184021321D39D00AFCD5D /* card-forgiveness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-forgiveness.png"; path = "Resources/images/interface/cards/card-forgiveness.png"; sourceTree = "<group>"; };
@@ -2861,8 +2863,6 @@
 		5E7A10FF124C4E9400E061C2 /* ref-albertusmagnus.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-albertusmagnus.jpg"; path = "Resources/images/reference/ref-albertusmagnus.jpg"; sourceTree = "<group>"; };
 		5E7A1100124C4E9400E061C2 /* ref-amaterasu-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-amaterasu-sm.png"; path = "Resources/images/reference/ref-amaterasu-sm.png"; sourceTree = "<group>"; };
 		5E7A1101124C4E9400E061C2 /* ref-amaterasu.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-amaterasu.jpg"; path = "Resources/images/reference/ref-amaterasu.jpg"; sourceTree = "<group>"; };
-		5E7A1102124C4E9400E061C2 /* ref-aristotle-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-aristotle-sm.png"; path = "Resources/images/reference/ref-aristotle-sm.png"; sourceTree = "<group>"; };
-		5E7A1103124C4E9400E061C2 /* ref-aristotle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-aristotle.jpg"; path = "Resources/images/reference/ref-aristotle.jpg"; sourceTree = "<group>"; };
 		5E7A1104124C4E9400E061C2 /* ref-augustecomte-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-augustecomte-sm.png"; path = "Resources/images/reference/ref-augustecomte-sm.png"; sourceTree = "<group>"; };
 		5E7A1105124C4E9400E061C2 /* ref-augustecomte.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-augustecomte.jpg"; path = "Resources/images/reference/ref-augustecomte.jpg"; sourceTree = "<group>"; };
 		5E7A1106124C4E9400E061C2 /* ref-averroes-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-averroes-sm.png"; path = "Resources/images/reference/ref-averroes-sm.png"; sourceTree = "<group>"; };
@@ -4977,8 +4977,8 @@
 				5E7A10FF124C4E9400E061C2 /* ref-albertusmagnus.jpg */,
 				5E7A1100124C4E9400E061C2 /* ref-amaterasu-sm.png */,
 				5E7A1101124C4E9400E061C2 /* ref-amaterasu.jpg */,
-				5E7A1102124C4E9400E061C2 /* ref-aristotle-sm.png */,
-				5E7A1103124C4E9400E061C2 /* ref-aristotle.jpg */,
+				5E51652116B7891100144780 /* ref-aristotle-sm.png */,
+				5E51652216B7891500144780 /* ref-aristotle.jpg */,
 				5E7A1104124C4E9400E061C2 /* ref-augustecomte-sm.png */,
 				5E7A1105124C4E9400E061C2 /* ref-augustecomte.jpg */,
 				5E7A1106124C4E9400E061C2 /* ref-averroes-sm.png */,
@@ -5952,8 +5952,6 @@
 				5E7A1133124C4E9400E061C2 /* ref-albertusmagnus.jpg in Resources */,
 				5E7A1134124C4E9400E061C2 /* ref-amaterasu-sm.png in Resources */,
 				5E7A1135124C4E9400E061C2 /* ref-amaterasu.jpg in Resources */,
-				5E7A1136124C4E9400E061C2 /* ref-aristotle-sm.png in Resources */,
-				5E7A1137124C4E9400E061C2 /* ref-aristotle.jpg in Resources */,
 				5E7A1138124C4E9400E061C2 /* ref-augustecomte-sm.png in Resources */,
 				5E7A1139124C4E9400E061C2 /* ref-augustecomte.jpg in Resources */,
 				5E7A113A124C4E9400E061C2 /* ref-averroes-sm.png in Resources */,
@@ -7219,6 +7217,8 @@
 				5E480D7916AE119A0046855A /* thoughtbubble-separator@2x.png in Resources */,
 				5E51651616B248ED00144780 /* faux-navbar.png in Resources */,
 				5E51651716B248ED00144780 /* faux-navbar@2x.png in Resources */,
+				5E51652316B7891C00144780 /* ref-aristotle-sm.png in Resources */,
+				5E51652416B7891C00144780 /* ref-aristotle.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
