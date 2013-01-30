@@ -8,7 +8,6 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 
 #import "DilemmaViewController.h"
 #import "MoraLifeAppDelegate.h"
-#import "ModelManager.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceMind.h"
@@ -25,6 +24,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "UserCharacterDAO.h"
 #import "UserChoiceDAO.h"
 #import "ViewControllerLocalization.h"
+#import "ConscienceHelpViewController.h"
 
 typedef enum {
     MLViewToAnimateVersus,
@@ -35,7 +35,7 @@ typedef enum {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-    
+
 	IBOutlet UIImageView *surroundingsBackground;		/**< background image provided by dilemma */
 	IBOutlet UIImageView *versusImage;				/**< animated versus decoration image */
 	IBOutlet UIImageView *moral1Image;				/**< initial MoralA image decoration above vs. */
@@ -60,37 +60,42 @@ typedef enum {
 	IBOutlet UIView *thoughtModalArea;		/**< area in which Conscience floats */
 	IBOutlet UIView *screen1View;			/**< intro screen with moral vs. moral */
 	IBOutlet UIView *screen2View;			/**< description of dilemma */
-	IBOutlet UIView *screen3View;			/**< description of Moral choice A */			
+	IBOutlet UIView *screen3View;			/**< description of Moral choice A */		
 	IBOutlet UIView *screen4View;			/**< description of Moral choice B */
 	IBOutlet UIView *screen5View;			/**< Moral section screen */
 	IBOutlet UIView *screen6View;			/**< reward screen */
 	IBOutlet UIView *rewardView;			/**< reward card containing decorations */
     
-	IBOutlet UILabel *dilemmaTitle;		/**< title of Dilemma */
+	IBOutlet UILabel *dilemmaTitle;         /**< title of Dilemma */
 	IBOutlet UILabel *dilemmaTitleText;		/**< 2nd viewing of title of Dilemma */
+	IBOutlet UITextView *introText;			/**< first text introduction */
 	IBOutlet UITextView *dilemmaText;		/**< dilemma presented to User */
 	IBOutlet UILabel *dilemmaMoralLabel1;	/**< MoralA associated with dilemma */
 	IBOutlet UILabel *dilemmaMoralLabel2;	/**< MoralB associated with dilemma */
 	IBOutlet UITextView *choiceText1;		/**< MoralA description */
 	IBOutlet UITextView *choiceText2;		/**< MoralB description */
-	IBOutlet UIButton *previousButton;		/**< return to previous page in dilemma */
-	IBOutlet UIButton *nextButton;		/**< proceed to next page in dilemma */
 	IBOutlet UIButton *selectionButton1;	/**< select Moral A */
 	IBOutlet UIButton *selectionButton2;	/**< select Moral B */
-	
-	Dilemma *currentDilemma;			/**< information about the dilemma */
-    
-	NSMutableString *reward1;		/**< reward for choosing ChoiceA */
-	NSMutableString *reward2;		/**< reward for choosing ChoiceB */
+	IBOutlet UIButton *previousButton;		/**< return to previous page in dilemma */
+	IBOutlet UIButton *nextButton;          /**< proceed to next page in dilemma */
+
+	Dilemma *currentDilemma;                /**< information about the dilemma */
     NSMutableString *dilemmaName;          /**< name of dilemma used for record retention */
-    NSMutableString *moralAName;    /**< name of Moral A */
-    NSMutableString *moralBName;    /**< name of Moral B */    
-    NSMutableString *moralADescription;    /**< description of Moral A */    
-    NSMutableString *moralBDescription;    /**< description of Moral B */    
-    
+    NSMutableString *moralAName;            /**< name of Moral A */
+    NSMutableString *moralBName;            /**< name of Moral B */
+    NSMutableString *moralADescription;    /**< description of Moral A */
+    NSMutableString *moralBDescription;    /**< description of Moral B */
+
+	NSMutableString *reward1;               /**< reward for choosing ChoiceA */
+	NSMutableString *reward2;               /**< reward for choosing ChoiceB */
+	NSString *actionKey;					/**< pkey for choice entry into Core Data */
+
 	BOOL isChoiceA;				/**< is ChoiceA selected */
-    
+	BOOL isRequirementOwned;	/**< does User have key necessary to pass */
+
 }
+
+@property (nonatomic) BOOL isAction;
 
 - (void) animateViewDetail: (MLViewToAnimate) viewToAnimateIndex atBeginning: (BOOL) isBeginning;
 
@@ -120,7 +125,9 @@ typedef enum {
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-        
+
+        _isAction = ([nibNameOrNil isEqualToString:@"ConscienceActionView"]);
+
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
@@ -133,6 +140,7 @@ typedef enum {
         moralBName = [[NSMutableString alloc] init];
         moralADescription = [[NSMutableString alloc] init];
         moralBDescription = [[NSMutableString alloc] init];
+		isRequirementOwned = FALSE;
         
     }
     return self;
@@ -140,10 +148,11 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    	
+
+	//Get relevant dilemma information
     [self loadDilemma];
     
-    isChoiceA = FALSE;
+    isChoiceA = self.isAction;
     
     [self localizeUI];    
 
@@ -161,7 +170,10 @@ typedef enum {
     versusImage.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
 
     [self animateViewDetail: MLViewToAnimateVersus atBeginning: TRUE];    
-    
+
+    rewardView.alpha = 0;
+	rewardView.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
+
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
 	
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
@@ -183,7 +195,6 @@ typedef enum {
 	[UIView commitAnimations];
     
     [self animateViewDetail: MLViewToAnimateReward atBeginning: TRUE];    
-
 	
 	[appDelegate.userConscienceView setNeedsDisplay];
 	
@@ -201,35 +212,54 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
 	//Change options accordingly
 	
     BOOL isReadyToCommit = FALSE;
-    
-	if ([sender isKindOfClass:[UIButton class]]) {
-		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
-		
-        if (choiceIndex == 6) {
+
+    if ([sender isKindOfClass:[UIButton class]]) {
+        UIButton *senderButton = sender;
+        int choiceIndex = senderButton.tag;
+
+        if (self.isAction) {
             [moralSelectedImage setImage:moral1ChoiceImage.image];
             [moralSelectedChoiceLabel setText:moral1ChoiceLabel.text];
 
-            isChoiceA = TRUE;
-            isReadyToCommit = TRUE;
-        } else if (choiceIndex == 7) {
-            [moralSelectedImage setImage:moral2ChoiceImage.image];
-            [moralSelectedChoiceLabel setText:moral2ChoiceLabel.text];
+            if (choiceIndex == 4) {
 
-            isChoiceA = FALSE;
-            isReadyToCommit = TRUE;
+            	isReadyToCommit = TRUE;
+            }
 
-        }
-        
-        if (isReadyToCommit) {
+            if (isReadyToCommit) {
+
+            	[self commitDilemma];
+            }
             
-            [self commitDilemma];
+            [self changeScreen:choiceIndex];
+
+        } else {
+
+            if (choiceIndex == 6) {
+                [moralSelectedImage setImage:moral1ChoiceImage.image];
+                [moralSelectedChoiceLabel setText:moral1ChoiceLabel.text];
+
+                isChoiceA = TRUE;
+                isReadyToCommit = TRUE;
+            } else if (choiceIndex == 7) {
+                [moralSelectedImage setImage:moral2ChoiceImage.image];
+                [moralSelectedChoiceLabel setText:moral2ChoiceLabel.text];
+
+                isChoiceA = FALSE;
+                isReadyToCommit = TRUE;
+
+            }
+
+            if (isReadyToCommit) {
+                
+                [self commitDilemma];
+            }
+            
+            [self changeScreen:choiceIndex];
+            
         }
-        
-		[self changeScreen:choiceIndex];
-		
-	}
-	
+
+    }
 	
 }
 
@@ -256,66 +286,160 @@ Show reward views once User has completed dilemma and refuse access to previous 
 	screen6View.alpha = 0;	
 	nextButton.hidden = FALSE;			
 	previousButton.hidden = FALSE;
-		
-	/** @bug determine why screen2 doesn't fade */
-	//Depending upon which screen is requested
-	//Setup variables to hide views, change Next/Previous button and move Conscience
-	switch (screenVersion){
-		case 0:	[self.navigationController popViewControllerAnimated:NO];
-				break;
-		case 1:viewSelection = screen1View;buttonFactor = 0;break;
-		case 2:viewSelection = screen2View;buttonFactor = 1;break;
-		case 3:viewSelection = screen3View;buttonFactor = 2;break;
-		case 4:viewSelection = screen4View;buttonFactor = 3;break;
-		case 5:viewSelection = screen5View;buttonFactor = 4;nextButton.hidden = TRUE;break;	
-		case 6:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;
-		case 7:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;            
-		case 8:[self.navigationController popViewControllerAnimated:NO];break;
-		default:break;
-			
-	}
-	
-	//Change the active view except in the case of dismissing the entire ViewController
-	if (screenVersion > 0 && screenVersion <= 7) {
 
-		//Animated changes to the ViewController
-		//Show/Hide relevant subview
-		//Move Conscience to appropriate place on screen
-		[UIView beginAnimations:@"ScreenChange" context:nil];
-		[UIView setAnimationDuration:0.5];
-		[UIView setAnimationBeginsFromCurrentState:YES];
-	
-		viewSelection.alpha = 1;
-		viewSelection.hidden = FALSE;
+    if (self.isAction) {
+        /** @bug determine why screen2 doesn't fade */
+        //Depending upon which screen is requested
+        //Setup variables to hide views, change Next/Previous button and move Conscience
+        switch (screenVersion){
+            case 0:	[self.navigationController popViewControllerAnimated:NO];
+                break;
+            case 1:viewSelection = screen1View;buttonFactor = 0;break;
+            case 2:viewSelection = screen2View;buttonFactor = 1;break;
+            case 3:viewSelection = screen3View;buttonFactor = 2;break;
+            case 4:viewSelection = screen4View;buttonFactor = 3;[previousButton setHidden:TRUE];break;
+            case 5:[self.navigationController popViewControllerAnimated:NO];break;
+            default:break;
 
-		[UIView commitAnimations];
-		
-		[dilemmaText flashScrollIndicators];
-		[choiceText1 flashScrollIndicators];
-		[choiceText2 flashScrollIndicators];
+        }
 
-        //Change Button tag in order to determine which "screen" is active
-		nextButton.tag = 2 + buttonFactor;
-		previousButton.tag = buttonFactor;
+
+        //Change the active view except in the case of dismissing the entire ViewController
+        if (screenVersion > 0 && screenVersion <= 4) {
+
+            //Animated changes to the ViewController
+            //Show/Hide relevant subview
+            //Move Conscience to appropriate place on screen
+            [UIView beginAnimations:@"ScreenChange" context:nil];
+            [UIView setAnimationDuration:0.5];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+
+            viewSelection.alpha = 1;
+            viewSelection.hidden = FALSE;
+
+            [UIView commitAnimations];
+
+            [dilemmaText flashScrollIndicators];
+            [choiceText1 flashScrollIndicators];
+
+            //Change Button tag in order to determine which "screen" is active
+            nextButton.tag = 2 + buttonFactor;
+            previousButton.tag = buttonFactor;
+
+            /** @todo determine new collection checking for non-dilemma entries */
+            //Determine if User is in possession of requirement for success
+            if (screenVersion == 3){
+
+                //			//Ensure that User must enter in a new choice after reading Dilemma
+                //			BOOL isRewardAllowed = FALSE;
+                //
+                //			NSString *restoreRequirement = [prefs objectForKey:@"firstTimeRequirement"];
+                //			if (restoreRequirement != nil) {
+                //				[prefs removeObjectForKey:@"firstTimeRequirement"];
+                //				isRewardAllowed = TRUE;
+                //			} else {
+                //				[prefs setBool:FALSE forKey:@"firstTimeRequirement"];
+                //			}
+                //
+                //			if(!isRequirementOwned && !isRewardAllowed){
+                if(!isRequirementOwned){
+
+                    //Skip the reward screen as requirement has not been met
+                    nextButton.tag = 5;
+                    previousButton.tag = 2;
+                }
+            }
+
+            //Delay appearance of score to draw attention
+            if (screenVersion == 4) {
+
+	            nextButton.tag = 5;
+                
+                //Spin reward card onto screen
+                [UIView beginAnimations:@"RewardChange" context:nil];
+                [UIView setAnimationDuration:1];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                
+	            rewardView.alpha = 1;
+                rewardView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+                
+                [UIView commitAnimations];
+                
+                //Show moral reward fade            
+                [UIView beginAnimations:@"ScoreChange" context:nil];
+                [UIView setAnimationDuration:3];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                
+                moralRewardLabel.alpha = 1;            
+                
+                [UIView commitAnimations];
+                
+            }
+            
+        }
+
+    } else {
+
+        /** @bug determine why screen2 doesn't fade */
+        //Depending upon which screen is requested
+        //Setup variables to hide views, change Next/Previous button and move Conscience
+        switch (screenVersion){
+            case 0:	[self.navigationController popViewControllerAnimated:NO];
+                    break;
+            case 1:viewSelection = screen1View;buttonFactor = 0;break;
+            case 2:viewSelection = screen2View;buttonFactor = 1;break;
+            case 3:viewSelection = screen3View;buttonFactor = 2;break;
+            case 4:viewSelection = screen4View;buttonFactor = 3;break;
+            case 5:viewSelection = screen5View;buttonFactor = 4;nextButton.hidden = TRUE;break;	
+            case 6:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;
+            case 7:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;            
+            case 8:[self.navigationController popViewControllerAnimated:NO];break;
+            default:break;
+                
+        }
         
-		//Delay appearance of score to draw attention
-		if ((screenVersion == 6) || (screenVersion == 7)) {
-			
-            nextButton.tag = 8;
+        //Change the active view except in the case of dismissing the entire ViewController
+        if (screenVersion > 0 && screenVersion <= 7) {
+
+            //Animated changes to the ViewController
+            //Show/Hide relevant subview
+            //Move Conscience to appropriate place on screen
+            [UIView beginAnimations:@"ScreenChange" context:nil];
+            [UIView setAnimationDuration:0.5];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+        
+            viewSelection.alpha = 1;
+            viewSelection.hidden = FALSE;
+
+            [UIView commitAnimations];
             
-            [self animateViewDetail: MLViewToAnimateReward atBeginning: FALSE];    
+            [dilemmaText flashScrollIndicators];
+            [choiceText1 flashScrollIndicators];
+            [choiceText2 flashScrollIndicators];
+
+            //Change Button tag in order to determine which "screen" is active
+            nextButton.tag = 2 + buttonFactor;
+            previousButton.tag = buttonFactor;
             
-			[UIView beginAnimations:@"ScoreChange" context:nil];
-			[UIView setAnimationDuration:3];
-			[UIView setAnimationBeginsFromCurrentState:YES];
-			
-			moralRewardLabel.alpha = 1;            
-			
-			[UIView commitAnimations];
-			
-		}
-		
-	}
+            //Delay appearance of score to draw attention
+            if ((screenVersion == 6) || (screenVersion == 7)) {
+                
+                nextButton.tag = 8;
+                
+                [self animateViewDetail: MLViewToAnimateReward atBeginning: FALSE];    
+                
+                [UIView beginAnimations:@"ScoreChange" context:nil];
+                [UIView setAnimationDuration:3];
+                [UIView setAnimationBeginsFromCurrentState:YES];
+                
+                moralRewardLabel.alpha = 1;            
+                
+                [UIView commitAnimations];
+                
+            }
+            
+        }
+    }
 
 }
 
@@ -435,6 +559,9 @@ Construct antagonist Conscience
         [moralADescription setString:[[currentDilemma moralChoiceA] shortDescriptionMoral]];
         [moralBDescription setString:[[currentDilemma moralChoiceB] shortDescriptionMoral]];
 		surroundingsBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [currentDilemma surrounding]]];
+
+		//Setup relevant dilemma text
+        [introText setText:[currentDilemma choiceB]];
 		[dilemmaTitle setText:[currentDilemma displayNameDilemma]];
 		[dilemmaTitleText setText:[dilemmaTitle text]];
 		[dilemmaText setText:[currentDilemma dilemmaText]];
@@ -443,8 +570,57 @@ Construct antagonist Conscience
         
 		NSString *moral1Text = [[NSString alloc] initWithString:[[currentDilemma moralChoiceA] displayNameMoral]];
 		NSString *moral2Text = [[NSString alloc] initWithString:[[currentDilemma moralChoiceB] displayNameMoral]];
+        
 		UIImage *moral1ImageFull = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[currentDilemma moralChoiceA] imageNameMoral]]];
 		UIImage *moral2ImageFull = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[currentDilemma moralChoiceB] imageNameMoral]]];
+
+		BOOL keyIsMoral = FALSE;
+		//Determine if criteria for success is going to be
+		if ([[currentDilemma rewardADilemma] isEqualToString:[currentDilemma rewardBDilemma]]) {
+			actionKey = [[NSString alloc] initWithString:[[currentDilemma moralChoiceA] nameMoral]];
+			keyIsMoral = TRUE;
+		} else {
+			actionKey = [[NSString alloc] initWithString:[currentDilemma rewardADilemma]];
+		}
+
+		//Determine if User is in possession of item/moral needed to pass Action
+		if(keyIsMoral) {
+
+			//Determine if User has requirement to pass
+            UserChoiceDAO *currentUserChoicePreReqDAO = [[UserChoiceDAO alloc] initWithKey:@""];
+			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, @"dile-"];
+
+			[currentUserChoicePreReqDAO setPredicates:@[userChoicePred]];
+
+			if ([currentUserChoicePreReqDAO count] == 0) {
+				isRequirementOwned = FALSE;
+			} else {
+                NSTimeInterval secondsPast = -3600;
+                NSDate *oneHourOld = [NSDate dateWithTimeInterval:secondsPast sinceDate:[NSDate date]];
+                NSPredicate *userChoicePreReqPred = [NSPredicate predicateWithFormat:@"(entryCreationDate < %@)", oneHourOld];
+
+                NSArray *possibleChoices = [currentUserChoicePreReqDAO readAll];
+                NSArray *filteredArray = [possibleChoices filteredArrayUsingPredicate:userChoicePreReqPred];
+                if (filteredArray.count > 0) {
+                    isRequirementOwned = TRUE;
+                } else {
+                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
+                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+                    [conscienceHelpViewCont setNumberOfScreens:1];
+                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+                    [self.navigationController popViewControllerAnimated:NO];
+                }
+			}
+
+		} else {
+
+			if ([[appDelegate userCollection] containsObject:actionKey]) {
+				isRequirementOwned = TRUE;
+			} else {
+				isRequirementOwned = FALSE;
+			}
+		}
         
 		moral1Image.image = moral1ImageFull;
 		moral2Image.image = moral2ImageFull;
@@ -460,12 +636,12 @@ Construct antagonist Conscience
 		moral2ButtonImage.image = moral2ImageFull;
         
 		[selectionButton1 setTitle:moral1Text forState:UIControlStateNormal];
-		[selectionButton2 setTitle:moral2Text forState:UIControlStateNormal];
-        
+		[selectionButton2 setTitle:moral2Text forState:UIControlStateNormal];        
         
 		[reward1 appendString:[currentDilemma rewardADilemma]];
 		[reward2 appendString:[currentDilemma rewardBDilemma]];
-        
+
+        //Instantiate Conscience facets for use throughout class
         ConscienceBody *antagonistConscienceBody = [[ConscienceBody alloc] init];
         ConscienceAccessories *antagonistConscienceAccessories = [[ConscienceAccessories alloc] init];
         ConscienceMind *antagonistConscienceMind = [[ConscienceMind alloc] init];        
@@ -535,7 +711,6 @@ Calculate changes to User's ethicals.  Limit to 999.
     
         
     NSString *dilemmaKey = [NSString stringWithFormat:@"%@%@", currentDTS, dilemmaName];
-    
     UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] init];
     
     UserDilemma *currentUserDilemma = [currentUserDilemmaDAO create];
@@ -584,7 +759,9 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableValue:@1.0f];
                 
 		[appDelegate.userCollection addObject:moralKey];
-        
+
+        [currentUserCollectableDAO update];
+
 	}
     
 	//Determine which reward should be given
@@ -596,11 +773,13 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[selectedReward appendString:reward2];
 	}
 
-	//Determine type of reward given    
+	//Determine if reward is ethicals or a Reference/ConscienceAsset
+	//@todo localize reward
 	if ([selectedReward rangeOfString:MLCollectableEthicals].location != NSNotFound) {
 		//Ethicals are rewarded, process
 		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:MLCollectableEthicals]];
 		[moralSelectedRewardLabel setText:@"Have some Ethicals!"];
+
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
         
 		//ReferencePerson rewarded, process, use large moralRewardImage
@@ -642,7 +821,8 @@ Calculate changes to User's ethicals.  Limit to 999.
                 
 		[appDelegate.userCollection addObject:selectedReward];
 	}
-    
+
+	//Update User's ethicals
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
 	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
@@ -650,10 +830,16 @@ Calculate changes to User's ethicals.  Limit to 999.
 	int ethicalIncrease = [[currentUserCollectable collectableValue] intValue];
 
 	[moralRewardLabel setText:@"+1"];
-    //append epsilon to score
+
+	//If reward was NOFAIL, add 5 ethicals
+	if([selectedReward isEqualToString:@""]){
+		[selectedReward setString:@"5"];
+	}
+
+    //Append epsilon character
 	[ethicalRewardLabel setText:[NSString stringWithFormat:@"+%dε", [selectedReward intValue]]];
     
-	//Limit total ethicals to 999
+	//Set limit to amount of Ethicals User can earn
 	//@todo make constant
 	if (ethicalIncrease >= 999) {
 		ethicalIncrease = 999;
@@ -669,9 +855,10 @@ Calculate changes to User's ethicals.  Limit to 999.
     
 	//Create a User Choice so that User's Moral report is affected
 	//Prefix with dile- on a User prohibited field to ensure that entry is never shown on ConscienceListViewController
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
 
-	UserChoice *currentUserChoice = [currentUserChoiceDAO create];    
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
+	UserChoice *currentUserChoice = [currentUserChoiceDAO create];
+    
 	[currentUserChoice setEntryCreationDate:[NSDate date]];
     
 	NSMutableString *moralType = [[NSMutableString alloc] initWithString:@""];
@@ -689,7 +876,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 		isGood = TRUE;
 	}
 
-    
 	//Commit UserChoice
 	[currentUserChoice setEntryShortDescription:dilemmaName];
 	[currentUserChoice setEntryLongDescription:@""];
@@ -702,7 +888,6 @@ Calculate changes to User's ethicals.  Limit to 999.
 	[currentUserChoice setEntryIsGood:@(isGood)];
 	[currentUserChoice setChoiceConsequences:@""];
     
-
 	if (isGood) {
 		[currentUserChoice setChoiceWeight:@0.2f];  
 	} else {
@@ -753,25 +938,5 @@ Calculate changes to User's ethicals.  Limit to 999.
 	nextButton.accessibilityLabel =  NSLocalizedString(@"NextButtonLabel",nil);
     
 }
-
-#pragma mark -
-#pragma mark Memory management
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-
-
 
 @end

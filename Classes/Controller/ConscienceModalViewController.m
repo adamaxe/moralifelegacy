@@ -13,7 +13,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ConscienceModalViewController.h"
 #import "ConscienceAccessoryViewController.h"
 #import "ConscienceListViewController.h"
-#import "ConscienceActionViewController.h"
 #import "DilemmaListViewController.h"
 #import "ConscienceAsset.h"
 #import "ConscienceHelpViewController.h"

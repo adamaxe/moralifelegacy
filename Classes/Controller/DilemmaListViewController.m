@@ -14,7 +14,6 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "UserDilemmaDAO.h"
 #import "Moral.h"
 #import "UserCollectableDAO.h"
-#import "ConscienceActionViewController.h"
 #import "ConscienceHelpViewController.h"
 #import "DilemmaTableViewCell.h"
 
@@ -347,13 +346,21 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             [prefs setObject:selectedRowKey forKey:@"dilemmaKey"];
             
 
+//            if ([tableDataTypes[indexPath.row] boolValue]){
+//                DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] init];
+//                [self.navigationController pushViewController:dilemmaViewCont animated:NO];
+//            } else {
+//                ConscienceActionViewController *actionViewCont = [[ConscienceActionViewController alloc] init];
+//                [self.navigationController pushViewController:actionViewCont animated:NO];
+//            }
             if ([tableDataTypes[indexPath.row] boolValue]){
-                DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] init];
+                DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil];
                 [self.navigationController pushViewController:dilemmaViewCont animated:NO];
             } else {
-                ConscienceActionViewController *actionViewCont = [[ConscienceActionViewController alloc] init];
-                [self.navigationController pushViewController:actionViewCont animated:NO];
+                DilemmaViewController *dilemmaViewCont = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil];
+                [self.navigationController pushViewController:dilemmaViewCont animated:NO];
             }
+
         }
         
     }
