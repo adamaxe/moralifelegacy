@@ -670,55 +670,6 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
 }
 
 #pragma mark -
-#pragma mark Table view edit
-
-/** 
-Implementation - Delete
-@todo v2.0 determine a good path for Dilemma retries 
- */
-
-//- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    //Generate array of all keys in User Dictionary
-//    NSArray *allUserChoices = [[NSArray alloc] initWithArray:[userChoices allKeys]];
-//    BOOL isDeletable = FALSE;
-//    
-//    //If User has not completed dilemma, disallow deletion
-//    if ([allUserChoices containsObject:[tableDataKeys objectAtIndex:indexPath.row]]) {
-//        isDeletable = TRUE;
-//    } 
-//    
-//    [allUserChoices release];
-//    
-//    if (isDeletable) {
-//        return UITableViewCellEditingStyleDelete;
-//    } else {
-//        return UITableViewCellEditingStyleNone;
-//    }
-//    
-//    
-//}
-//
-//-(void)tableView:(UITableView*)tableView willBeginEditingRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//}
-//
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//	
-//	NSMutableString *selectedRow = [[NSMutableString alloc] initWithString:[tableDataKeys objectAtIndex:indexPath.row]];
-//	
-//	[self deleteChoice:selectedRow];
-//	
-//	[selectedRow release];
-//	
-//	[self retrieveAllDilemmas];
-//	[dilemmaListTableView reloadData];
-//	
-//}
-
-#pragma mark -
 #pragma mark ViewControllerLocalization Protocol
 
 - (void) localizeUI {

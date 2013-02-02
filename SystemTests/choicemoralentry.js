@@ -21,7 +21,7 @@ window.buttons()["Moral Choice"].tap();
 testCaseName = testSuiteName + " choiceTextField Required Field";
 UIALogger.logStart(testCaseName + " Test");
 
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 if(window.buttons()["Previous"].checkIsValid()) {
     window.buttons()["Previous"].tap();
@@ -52,7 +52,7 @@ testCaseName = testSuiteName + " Virtue moralButton Required Field";
 UIALogger.logStart(testCaseName + " Test");
 
 target.delay(2.0);
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 if(window.buttons()["Previous"].checkIsValid()) {
     window.buttons()["Previous"].tap();
@@ -100,7 +100,7 @@ for (i = 0; i < moralDescription.length; i++) {
     app.keyboard().typeString(strChar);
 }
 
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 if(window.textViews()["Description"].value() == moralDescription) {
        UIALogger.logPass(testCaseName + " correct."); 
@@ -158,7 +158,7 @@ if(window.sliders()["Influence"].value() == moralInfluenceSliderValue) {
        UIALogger.logFail(testCaseName + " incorrectly: " + window.sliders()["Influence"].value());
 }
 
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 UIALogger.logMessage("Details Save Test");
 
@@ -205,7 +205,7 @@ if(hasError){
 window.textFields()["Justification"].tap();
 app.keyboard().typeString("\n");
 
-window.buttons()["Done"].tap();
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
+window.buttons()["Save"].tap();
 
 app.navigationBar().buttons()["Home"].tap();

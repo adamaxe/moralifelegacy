@@ -21,7 +21,7 @@ window.buttons()["Immoral Choice"].tap();
 testCaseName = testSuiteName + " choiceTextField Required Field";
 UIALogger.logStart(testCaseName + " Test");
 
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 if(window.buttons()["Previous"].checkIsValid()) {
     window.buttons()["Previous"].tap();
@@ -52,7 +52,7 @@ testCaseName = testSuiteName + " Vice moralButton Required Field";
 UIALogger.logStart(testCaseName + " Test");
 
 target.delay(2.0);
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 if(window.buttons()["Previous"].checkIsValid()) {
     window.buttons()["Previous"].tap();
@@ -99,7 +99,7 @@ for (i = 0; i < immoralDescription.length; i++) {
     app.keyboard().typeString(strChar);
 }
 
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 if(window.textViews()["Description"].value() == immoralDescription) {
        UIALogger.logPass(testCaseName + " correct."); 
@@ -157,7 +157,7 @@ if(window.sliders()["Influence"].value() == immoralInfluenceSliderValue) {
        UIALogger.logFail(testCaseName + " incorrectly: " + window.sliders()["Influence"].value());
 }
 
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
 
 UIALogger.logMessage("Details Save Test");
 
@@ -206,7 +206,7 @@ app.keyboard().typeString("\n");
 
 target.delay(2.0);
 
-window.buttons()["Done"].tap();
-window.buttons()["Done"].tap();
+window.buttons()["Save"].tap();
+window.buttons()["Save"].tap();
 
 app.navigationBar().buttons()["Home"].tap();
