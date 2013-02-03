@@ -25,6 +25,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "UserChoiceDAO.h"
 #import "ViewControllerLocalization.h"
 #import "ConscienceHelpViewController.h"
+#import "UIColor+Utility.h"
 
 typedef enum {
     MLViewToAnimateVersus,
@@ -153,7 +154,19 @@ typedef enum {
     [self loadDilemma];
     
     isChoiceA = self.isAction;
-    
+    ethicalRewardLabel.textColor = [UIColor moraLifeChoiceGreen];
+    moralRewardLabel.textColor = [UIColor moraLifeChoiceGreen];
+    moralSelectedChoiceLabel.textColor = [UIColor moraLifeChoiceGreen];
+    moralSelectedRewardLabel.textColor = [UIColor moraLifeBrown];
+    dilemmaTitle.textColor = [UIColor moraLifeChoiceGreen];
+    dilemmaTitleText.textColor = [UIColor moraLifeChoiceGreen];
+    moral1ChoiceLabel.textColor = [UIColor moraLifeChoiceGreen];
+    moral2ChoiceLabel.textColor = [UIColor moraLifeChoiceGreen];
+    dilemmaMoralLabel1.textColor = [UIColor moraLifeChoiceGreen];
+    dilemmaMoralLabel2.textColor = [UIColor moraLifeChoiceGreen];
+    [selectionButton1 setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
+    [selectionButton2 setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
+
     [self localizeUI];    
 
 }
@@ -330,19 +343,18 @@ Show reward views once User has completed dilemma and refuse access to previous 
             //Determine if User is in possession of requirement for success
             if (screenVersion == 3){
 
-                //			//Ensure that User must enter in a new choice after reading Dilemma
-                //			BOOL isRewardAllowed = FALSE;
-                //
-                //			NSString *restoreRequirement = [prefs objectForKey:@"firstTimeRequirement"];
-                //			if (restoreRequirement != nil) {
-                //				[prefs removeObjectForKey:@"firstTimeRequirement"];
-                //				isRewardAllowed = TRUE;
-                //			} else {
-                //				[prefs setBool:FALSE forKey:@"firstTimeRequirement"];
-                //			}
-                //
-                //			if(!isRequirementOwned && !isRewardAllowed){
-                if(!isRequirementOwned){
+                //Ensure that User must enter in a new choice after reading Dilemma
+                BOOL isRewardAllowed = FALSE;
+
+                NSString *restoreRequirement = [prefs objectForKey:@"firstTimeRequirement"];
+                if (restoreRequirement != nil) {
+                    [prefs removeObjectForKey:@"firstTimeRequirement"];
+                    isRewardAllowed = TRUE;
+                } else {
+                    [prefs setBool:FALSE forKey:@"firstTimeRequirement"];
+                }
+
+                if(!isRequirementOwned && !isRewardAllowed){
 
                     //Skip the reward screen as requirement has not been met
                     nextButton.tag = 5;
@@ -595,22 +607,22 @@ Construct antagonist Conscience
 			if ([currentUserChoicePreReqDAO count] == 0) {
 				isRequirementOwned = FALSE;
 			} else {
-                NSTimeInterval secondsPast = -3600;
-                NSDate *oneHourOld = [NSDate dateWithTimeInterval:secondsPast sinceDate:[NSDate date]];
-                NSPredicate *userChoicePreReqPred = [NSPredicate predicateWithFormat:@"(entryCreationDate < %@)", oneHourOld];
-
-                NSArray *possibleChoices = [currentUserChoicePreReqDAO readAll];
-                NSArray *filteredArray = [possibleChoices filteredArrayUsingPredicate:userChoicePreReqPred];
-                if (filteredArray.count > 0) {
+//                NSTimeInterval secondsPast = -3600;
+//                NSDate *oneHourOld = [NSDate dateWithTimeInterval:secondsPast sinceDate:[NSDate date]];
+//                NSPredicate *userChoicePreReqPred = [NSPredicate predicateWithFormat:@"(entryCreationDate < %@)", oneHourOld];
+//
+//                NSArray *possibleChoices = [currentUserChoicePreReqDAO readAll];
+//                NSArray *filteredArray = [possibleChoices filteredArrayUsingPredicate:userChoicePreReqPred];
+//                if (filteredArray.count > 0) {
                     isRequirementOwned = TRUE;
-                } else {
-                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
-                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-                    [conscienceHelpViewCont setNumberOfScreens:1];
-                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
-                    [self.navigationController popViewControllerAnimated:NO];
-                }
+//                } else {
+//                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+//                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
+//                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+//                    [conscienceHelpViewCont setNumberOfScreens:1];
+//                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+//                    [self.navigationController popViewControllerAnimated:NO];
+//                }
 			}
 
 		} else {
