@@ -60,7 +60,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 		helpTitle = [[UILabel alloc] initWithFrame:CGRectZero];
 		[helpTitle setTextAlignment:UITextAlignmentCenter];
-		[helpTitle setTextColor: [UIColor moraLifeBrightGreen]];
+		[helpTitle setTextColor: [UIColor moraLifeChoiceGreen]];
 		[helpTitle setFont:[UIFont boldSystemFontOfSize:24.0]];
 		[helpTitle setMinimumFontSize:8.0];
 		[helpTitle setNumberOfLines:1];

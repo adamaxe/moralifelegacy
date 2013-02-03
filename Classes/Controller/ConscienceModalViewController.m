@@ -455,24 +455,24 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a DilemmaListViewController
 	if (isDilemmaViewControllerNeeded) {
 
-//		//Determine if User has completed the first Campaign
-//		//If not, present help view.
-//		if((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) {
-//            
-//            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-//            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-//            [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-//            [conscienceHelpViewCont setNumberOfScreens:3];
-//            [self presentModalViewController:conscienceHelpViewCont animated:NO];
-//			
-//        } else {
+		//Determine if User has completed the first Campaign
+		//If not, present help view.
+		if(((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) && ((requestedCampaign == 3) && ![[appDelegate userCollection] containsObject:@"asse-rank4"]) && ((requestedCampaign == 4) && ![[appDelegate userCollection] containsObject:@"asse-rank6"])){
+            
+            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
+            [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+            [conscienceHelpViewCont setNumberOfScreens:3];
+            [self presentModalViewController:conscienceHelpViewCont animated:NO];
+			
+        } else {
 
             DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] init];
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
 
             [self.navigationController pushViewController:dilemmaListViewCont animated:NO];
-//		}
+		}
 	}
 }
 

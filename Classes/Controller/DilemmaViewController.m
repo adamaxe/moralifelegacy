@@ -607,22 +607,22 @@ Construct antagonist Conscience
 			if ([currentUserChoicePreReqDAO count] == 0) {
 				isRequirementOwned = FALSE;
 			} else {
-//                NSTimeInterval secondsPast = -3600;
-//                NSDate *oneHourOld = [NSDate dateWithTimeInterval:secondsPast sinceDate:[NSDate date]];
-//                NSPredicate *userChoicePreReqPred = [NSPredicate predicateWithFormat:@"(entryCreationDate < %@)", oneHourOld];
-//
-//                NSArray *possibleChoices = [currentUserChoicePreReqDAO readAll];
-//                NSArray *filteredArray = [possibleChoices filteredArrayUsingPredicate:userChoicePreReqPred];
-//                if (filteredArray.count > 0) {
+                NSTimeInterval secondsPast = -3600;
+                NSDate *oneHourOld = [NSDate dateWithTimeInterval:secondsPast sinceDate:[NSDate date]];
+                NSPredicate *userChoicePreReqPred = [NSPredicate predicateWithFormat:@"(entryCreationDate < %@)", oneHourOld];
+
+                NSArray *possibleChoices = [currentUserChoicePreReqDAO readAll];
+                NSArray *filteredArray = [possibleChoices filteredArrayUsingPredicate:userChoicePreReqPred];
+                if (filteredArray.count > 0) {
                     isRequirementOwned = TRUE;
-//                } else {
-//                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-//                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
-//                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-//                    [conscienceHelpViewCont setNumberOfScreens:1];
-//                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
-//                    [self.navigationController popViewControllerAnimated:NO];
-//                }
+                } else {
+                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
+                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
+                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
+                    [conscienceHelpViewCont setNumberOfScreens:1];
+                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+                    [self.navigationController popViewControllerAnimated:NO];
+                }
 			}
 
 		} else {

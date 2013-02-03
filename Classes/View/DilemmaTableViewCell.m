@@ -14,19 +14,16 @@
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
-        
-
+        self.imageView.alpha = 1.0f;
     }
     return self;
 }
 
 - (void)setCurrentCellState:(DilemmaTableViewCellState)currentCellState {
-    if (_currentCellState != currentCellState) {
-        [self styleCellForState:currentCellState];
-    }
-
     _currentCellState = currentCellState;
-        
+
+    [self styleCellForState:currentCellState];
+
 }
 
 - (void)setDilemmaImage:(UIImage *)dilemmaImage {
@@ -34,6 +31,16 @@
         [self.imageView setImage:dilemmaImage];
         _dilemmaImage = dilemmaImage;
     }
+}
+
+-(void)prepareForReuse {
+    [super prepareForReuse];
+    [self styleCellForState:DilemmaTableViewCellStateUnavailable];
+}
+
+#pragma mark - Cell Configuration
+- (void)setupDefaultCellState {
+
 }
 
 - (void)styleCellForState:(DilemmaTableViewCellState)cellState {
@@ -44,6 +51,7 @@
             [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
             [self.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+            self.imageView.alpha = 0.3f;
 
         } break;
         case DilemmaTableViewCellStateAvailable: {
@@ -52,14 +60,16 @@
             [self.textLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
             [self.textLabel setTextColor:[UIColor moraLifeChoiceRed]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+            self.imageView.alpha = 1.0f;
 
         } break;
         case DilemmaTableViewCellStateUnavailable: {
-            [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
-            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
-
             self.accessoryType = UITableViewCellAccessoryNone;
             self.selectionStyle = UITableViewCellSelectionStyleNone;
+            [self.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+            [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
+            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
+            self.imageView.alpha = 1.0f;
 
         } break;
 
