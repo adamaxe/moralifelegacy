@@ -14,6 +14,8 @@
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
+        self.textLabel.alpha = 1.0f;
+        self.detailTextLabel.alpha = 1.0f;
         self.imageView.alpha = 1.0f;
     }
     return self;
@@ -51,7 +53,9 @@
             [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
             [self.textLabel setFont:[UIFont systemFontOfSize:12.0]];
-            self.imageView.alpha = 0.3f;
+            self.textLabel.alpha = 0.6f;
+            self.detailTextLabel.alpha = 0.6f;
+            self.imageView.alpha = 0.2f;
 
         } break;
         case DilemmaTableViewCellStateAvailable: {
@@ -60,6 +64,8 @@
             [self.textLabel setFont:[UIFont boldSystemFontOfSize:14.0]];
             [self.textLabel setTextColor:[UIColor moraLifeChoiceRed]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+            self.textLabel.alpha = 1.0f;
+            self.detailTextLabel.alpha = 1.0f;
             self.imageView.alpha = 1.0f;
 
         } break;
@@ -69,6 +75,8 @@
             [self.textLabel setFont:[UIFont systemFontOfSize:12.0]];
             [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
+            self.textLabel.alpha = 1.0f;
+            self.detailTextLabel.alpha = 1.0f;
             self.imageView.alpha = 1.0f;
 
         } break;

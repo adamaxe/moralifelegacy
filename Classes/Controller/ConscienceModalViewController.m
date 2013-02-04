@@ -20,6 +20,14 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ReportPieModel.h"
 #import "UIColor+Utility.h"
 
+typedef enum {
+    MLRequestedMorathologyAdventure0,
+    MLRequestedMorathologyAdventure1,
+    MLRequestedMorathologyAdventure2,
+    MLRequestedMorathologyAdventure3,
+    MLRequestedMorathologyAdventure4
+} MLRequestedMorathologyAdventure;
+
 @interface ConscienceModalViewController () {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
@@ -404,7 +412,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	BOOL isListViewControllerNeeded = FALSE;
 	BOOL isDilemmaViewControllerNeeded = FALSE;
 	int requestedAccessorySlot = 0;
-	int requestedCampaign = 0;
+	MLRequestedMorathologyAdventure requestedCampaign = MLRequestedMorathologyAdventure0;
 	
 	//Determine if a new view controller has been requested
 	if (controllerID > 0) {
@@ -427,10 +435,10 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
                 
-			case 8:requestedCampaign=1;isDilemmaViewControllerNeeded = TRUE;break;
-			case 9:requestedCampaign=2;isDilemmaViewControllerNeeded = TRUE;break;
-			case 10:requestedCampaign=3;isDilemmaViewControllerNeeded = TRUE;break;
-			case 11:requestedCampaign=4;isDilemmaViewControllerNeeded = TRUE;break;                
+			case 8:requestedCampaign=MLRequestedMorathologyAdventure1;isDilemmaViewControllerNeeded = TRUE;break;
+			case 9:requestedCampaign=MLRequestedMorathologyAdventure2;isDilemmaViewControllerNeeded = TRUE;break;
+			case 10:requestedCampaign=MLRequestedMorathologyAdventure3;isDilemmaViewControllerNeeded = TRUE;break;
+			case 11:requestedCampaign=MLRequestedMorathologyAdventure4;isDilemmaViewControllerNeeded = TRUE;break;
 			case 12:[self removeUserData];break;                
 			case 20:requestedAccessorySlot = 4;isListViewControllerNeeded = TRUE;break;
 			case 21:requestedAccessorySlot = 5;isListViewControllerNeeded = TRUE;break;
@@ -455,9 +463,29 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a DilemmaListViewController
 	if (isDilemmaViewControllerNeeded) {
 
+        NSString *adventureRequirement;
 		//Determine if User has completed the first Campaign
 		//If not, present help view.
-		if(((requestedCampaign == 2) && ![[appDelegate userCollection] containsObject:@"asse-rank2b"]) && ((requestedCampaign == 3) && ![[appDelegate userCollection] containsObject:@"asse-rank4"]) && ((requestedCampaign == 4) && ![[appDelegate userCollection] containsObject:@"asse-rank6"])){
+        switch (requestedCampaign) {
+            case MLRequestedMorathologyAdventure1:
+                adventureRequirement = @"ethical";
+                break;
+            case MLRequestedMorathologyAdventure2:
+                adventureRequirement = @"asse-rank2b";
+                break;
+            case MLRequestedMorathologyAdventure3:
+                adventureRequirement = @"asse-rank4";
+                break;
+            case MLRequestedMorathologyAdventure4:
+                adventureRequirement = @"asse-rank6";
+                break;
+            default:
+                break;
+        }
+        
+        BOOL campaignRejected = ![[appDelegate userCollection] containsObject:adventureRequirement];
+
+		if(campaignRejected){
             
             ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
             [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        

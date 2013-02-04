@@ -32,6 +32,13 @@ typedef enum {
     MLViewToAnimateReward
 } MLViewToAnimate;
 
+typedef enum {
+    MLDilemmaTypeMoralChoice,
+    MLDilemmaTypeInformation,
+    MLDilemmaTypePurchase,
+    MLDilemmaTypeMoralEntry
+} MLDilemmaType;
+
 @interface DilemmaViewController () <ViewControllerLocalization> {
     
 	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
@@ -234,7 +241,7 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
             [moralSelectedImage setImage:moral1ChoiceImage.image];
             [moralSelectedChoiceLabel setText:moral1ChoiceLabel.text];
 
-            if (choiceIndex == 4) {
+            if ((choiceIndex == 4) && isRequirementOwned) {
 
             	isReadyToCommit = TRUE;
             }
@@ -347,7 +354,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
                 BOOL isRewardAllowed = FALSE;
 
                 NSString *restoreRequirement = [prefs objectForKey:@"firstTimeRequirement"];
-                if (restoreRequirement != nil) {
+                if (restoreRequirement != nil && restoreRequirement.boolValue) {
                     [prefs removeObjectForKey:@"firstTimeRequirement"];
                     isRewardAllowed = TRUE;
                 } else {
@@ -779,7 +786,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//Determine which reward should be given
 	NSMutableString *selectedReward = [[NSMutableString alloc] init];
     
-	if (isChoiceA) {
+	if (isChoiceA && !self.isAction) {
 		[selectedReward appendString:reward1];
 	} else {
 		[selectedReward appendString:reward2];
