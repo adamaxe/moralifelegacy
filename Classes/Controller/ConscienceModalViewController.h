@@ -19,6 +19,8 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 
 @interface ConscienceModalViewController : UIViewController 
 
+@property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
 /**
 Accepts User input to change the state of the screen.
 @param sender id of object which requested method

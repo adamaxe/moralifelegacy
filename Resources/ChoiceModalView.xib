@@ -42,13 +42,13 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="743780141">
+					<object class="IBUIImageView" id="777242075">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrameSize">{320, 460}</string>
+						<string key="NSFrame">{{0, -20}, {320, 480}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="1038537844"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -139,7 +139,7 @@
 								<string key="NSFrame">{{252, 380}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="1038537844"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="743780141"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
 									<string key="IBUIAccessibilityLabel">Previous</string>
@@ -243,7 +243,7 @@
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="1038537844"/>
+				<reference key="NSNextKeyView" ref="777242075"/>
 				<reference key="IBUIBackgroundColor" ref="45749004"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -311,7 +311,7 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">previousScreen</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="743780141"/>
+						<reference key="destination" ref="777242075"/>
 					</object>
 					<int key="connectionID">31</int>
 				</object>
@@ -342,7 +342,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="1038537844"/>
-							<reference ref="743780141"/>
+							<reference ref="777242075"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -422,7 +422,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">30</int>
-						<reference key="object" ref="743780141"/>
+						<reference key="object" ref="777242075"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>

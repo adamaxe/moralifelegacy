@@ -58,7 +58,9 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	
+
+    self.previousScreen.image = _screenshot;
+
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];

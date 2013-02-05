@@ -22,6 +22,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UIColor+Utility.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
+#import "UIViewController+Screenshot.h"
 
 typedef enum {
     MLConscienceViewControllerVirtueButtonTag = 3030,
@@ -203,7 +204,8 @@ static int thoughtVersion = 0;
 //	}
 
 	initialConscienceView.alpha = 0;
-	
+    thoughtArea.hidden = FALSE;
+
 	initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
     
 	[consciencePlayground addSubview:initialConscienceView];
@@ -379,6 +381,8 @@ static int thoughtVersion = 0;
 	// navigation bar.
     
 	ConscienceModalViewController *conscienceModalViewController1 = [[ConscienceModalViewController alloc] init];
+    thoughtArea.hidden = TRUE;
+    conscienceModalViewController1.screenshot = [self takeScreenshot];
 	
     [modalNavController1 pushViewController:conscienceModalViewController1 animated:NO];
 	

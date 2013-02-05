@@ -12,6 +12,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "ViewControllerLocalization.h"
 #import "ReportPieModel.h"
 #import "ReportMoralTableViewCell.h"
+#import "UIViewController+Screenshot.h"
 
 @interface ReportPieViewController () <ViewControllerLocalization> {
     
@@ -32,7 +33,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 @property (nonatomic, assign) BOOL isGood;		/**< is current view for Virtues or Vices */
 @property (nonatomic, assign) BOOL isAscending;		/**< current order type */
 @property (nonatomic, assign) BOOL isAlphabetical;	/**< current sort type */
-
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 /**
  Convert UserData into graphable data, create a GraphView
@@ -51,6 +52,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
         _isGood = TRUE;
         _isAlphabetical = FALSE;
         _isAscending = FALSE;
+
     }
 
     return self;
@@ -61,8 +63,8 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     //appDelegate needed to place Conscience on screen
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
-    
+    _previousScreen.image = _screenshot;
+
     [self generateGraph];
     
     [self localizeUI];    
@@ -116,6 +118,13 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     }
 }
 
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
+}
+
 #pragma mark -
 #pragma mark UI Interaction
 
@@ -130,11 +139,13 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     if (firstPieCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setNumberOfScreens:1];
-		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+		conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        conscienceHelpViewController.numberOfScreens = 1;
+
+        conscienceHelpViewController.screenshot = [self takeScreenshot];
+		[self presentModalViewController:conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstPie"];
 
@@ -227,6 +238,8 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 
 	//Add new graph to view
 	[thoughtModalArea addSubview:graph];
+    [thoughtModalArea bringSubviewToFront:moralTypeButton];
+    [thoughtModalArea bringSubviewToFront:moralType];
     
 	//Refresh tableview with new data
 	[reportTableView reloadData];

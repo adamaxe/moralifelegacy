@@ -53,6 +53,8 @@ typedef enum {
 	int currentState;					/**< current state of the screen (which button names, etc.) */
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
+
 /**
  Implementation:  Ensure Conscience is placed correctly.
  */
@@ -89,6 +91,8 @@ typedef enum {
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+    self.previousScreen.image = _screenshot;
 
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -216,12 +220,15 @@ typedef enum {
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    
+
+    thoughtModalArea.alpha = 0.0;
+
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationBeginsFromCurrentState:NO];
     appDelegate.userConscienceView.alpha = 0;
-    
+    thoughtModalArea.alpha = 1.0;
+
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
     
@@ -229,6 +236,13 @@ typedef enum {
     
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+}
+
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
 }
 
 #pragma mark - UI Interaction
@@ -422,6 +436,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			case 2:{
                 ReportPieModel *reportPieModel = [[ReportPieModel alloc] init];
 				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel];
+                reportPieViewCont.screenshot = [self takeScreenshot];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
 				[self.navigationController pushViewController:reportPieViewCont animated:NO];
