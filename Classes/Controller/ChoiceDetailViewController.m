@@ -171,11 +171,11 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     //If this is the first time that the app, then show the initial help
     NSObject *firstChoiceEntryCheck = [prefs objectForKey:@"firstChoiceDetailEntry"];
 
-    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
     if (firstChoiceEntryCheck == nil) {
         
         self.conscienceHelpViewController.numberOfScreens = 1;
+        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
 		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
         

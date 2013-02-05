@@ -12,6 +12,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "MenuScreenAnimations.h"
 #import "ViewControllerLocalization.h"
 #import "ConscienceViewController.h"
+#import "UIViewController+Screenshot.h"
 
 @interface ReferenceViewController () <MenuScreenAnimations, ViewControllerLocalization> {
         
@@ -116,11 +117,14 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
     if (firstReferenceCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        [conscienceHelpViewCont setNumberOfScreens:1];
-		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+		conscienceHelpViewController.isConscienceOnScreen = FALSE;
+        conscienceHelpViewController.numberOfScreens = 1;
+
+        conscienceHelpViewController.screenshot = [self takeScreenshot];
+
+		[self presentModalViewController:conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstReference"];
         

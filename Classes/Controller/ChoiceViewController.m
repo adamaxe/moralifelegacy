@@ -312,12 +312,10 @@ Implementation: Show an initial help screen if this is the User's first use of t
     //If this is the first time that the app, then show the intro
     NSObject *firstChoiceEntryCheck = [prefs objectForKey:@"firstChoiceEntry"];
 
-    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-
     if (firstChoiceEntryCheck == nil) {
         
         self.conscienceHelpViewController.numberOfScreens = 1;
-
+        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
@@ -358,22 +356,15 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
  */
 -(IBAction)showChoiceModal:(id)sender {
 		
-	// Create the root view controller for the navigation controller
-	// The new view controller configures a Cancel and Done button for the
-	// navigation bar.
 	ChoiceModalViewController *virtueViceViewController = [[ChoiceModalViewController alloc] init];
 
 	[moralReferenceButton setAlpha:0];
 	[moralImageView setAlpha:0];
     	
 	[prefs setBool:isVirtue forKey:@"entryIsGood"];
-        
+    virtueViceViewController.screenshot = [self takeScreenshot];
 	[self presentModalViewController:virtueViceViewController animated:NO];
-	
-	// The navigation controller is now owned by the current view controller
-	// and the root view controller is owned by the navigation controller,
-	// so both objects should be released to prevent over-retention.
-	
+		
 }
 
 /**
@@ -381,22 +372,16 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
  */
 -(IBAction)showHistoryModal:(id)sender {
     
-	// Create the root view controller for the navigation controller
-	// The new view controller configures a Cancel and Done button for the
-	// navigation bar.
     ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
 	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel];
+    historyViewController.screenshot = [self takeScreenshot];
 
 	[moralReferenceButton setAlpha:0];
 	[moralImageView setAlpha:0];
-    
+
 	[prefs setBool:isVirtue forKey:@"entryIsGood"];
-    
+
 	[self presentModalViewController:historyViewController animated:NO];
-	
-	// The navigation controller is now owned by the current view controller
-	// and the root view controller is owned by the navigation controller,
-	// so both objects should be released to prevent over-retention.
 	
 }
 

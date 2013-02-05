@@ -13,6 +13,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 #import "UserCollectableDAO.h"
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
+#import "UIViewController+Screenshot.h"
 
 @interface ReferenceDetailViewController () <ViewControllerLocalization> {
     
@@ -169,20 +170,17 @@ Implementation: Show Conscience thoughtbubble containing Quote
     
     NSArray *titles = @[NSLocalizedString(helpTitleName,nil)];
     
-    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-    
-
+    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
     NSString *quoteFormatted = [[NSString alloc] initWithString:[referenceQuote stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
     
     NSArray *texts = @[quoteFormatted];
+    
+    conscienceHelpViewController.helpTitles = titles;
+    conscienceHelpViewController.helpTexts = texts;
+    conscienceHelpViewController.isConscienceOnScreen = FALSE;
+    conscienceHelpViewController.screenshot = [self takeScreenshot];
 
-    
-    [conscienceHelpViewCont setHelpTitles:titles];
-    [conscienceHelpViewCont setHelpTexts:texts];
-    [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-    
-    
-    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+    [self presentModalViewController:conscienceHelpViewController animated:NO];
 	
 }
 

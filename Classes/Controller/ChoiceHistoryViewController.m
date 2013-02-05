@@ -38,6 +38,9 @@
 
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
+@property (nonatomic) IBOutlet UIView *modalContentView;
+
 @property (nonatomic, strong) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
 
 /**
@@ -138,12 +141,14 @@
 	}
     
     thoughtArea.alpha = 0;
+    self.modalContentView.alpha = 0.0;
     
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
+    self.modalContentView.alpha = 1.0;
 	thoughtArea.alpha = 1;
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
 	
@@ -167,6 +172,14 @@
 	}
 }
 
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
+}
+
+
 #pragma mark -
 #pragma mark UI Interaction
 
@@ -180,6 +193,7 @@
 	[UIView beginAnimations:@"ReplaceConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
+    self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	

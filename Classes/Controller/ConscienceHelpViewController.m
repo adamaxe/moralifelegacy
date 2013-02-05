@@ -134,7 +134,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     }
 	
 	[thoughtModalArea addSubview:appDelegate.userConscienceView];
-	
+
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     helpTitle.hidden = TRUE;

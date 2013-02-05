@@ -15,6 +15,8 @@
 
 @interface ChoiceHistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> 
 
+@property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
 /**
  Dependency injection constructor to pass model
  @param choiceHistoryModel ChoiceHistoryModel handling business logic

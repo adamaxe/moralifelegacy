@@ -13,6 +13,8 @@ Third screen in Moral Entry Workflow.  User can either Virtue or Vice depending 
 
 @interface ChoiceModalViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
+@property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
 /**
 Accepts User Input to remove modal screen
  

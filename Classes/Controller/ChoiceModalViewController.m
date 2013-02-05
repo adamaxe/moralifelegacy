@@ -41,6 +41,9 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
+@property (nonatomic) IBOutlet UIView *modalContentView;
+
 /**
  Retrieve all available Morals
  */
@@ -91,6 +94,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+    self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
     
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
@@ -98,6 +102,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
+    self.modalContentView.alpha = 1.0;
 	thoughtArea.alpha = 1;
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
 	
@@ -121,6 +126,13 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	
 }
 
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
+}
+
 #pragma mark - 
 #pragma mark - UI Interaction
 /**
@@ -133,6 +145,7 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
 	[UIView beginAnimations:@"ReplaceConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
+    self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	
@@ -240,7 +253,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+
 	//Commit selected Moral to NSUserDefaults for retrieval from ChoiceViewController
 	[prefs setObject:tableDataKeys[indexPath.row] forKey:@"moralKey"];
 	[prefs setObject:tableData[indexPath.row] forKey:@"moralName"];

@@ -19,6 +19,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ReportPieViewController.h"
 #import "ReportPieModel.h"
 #import "UIColor+Utility.h"
+#import "UIViewController+Screenshot.h"
 
 typedef enum {
     MLRequestedMorathologyAdventure0,
