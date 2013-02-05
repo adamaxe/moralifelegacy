@@ -9,6 +9,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 #import "StructuredTextField.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
+#import "UIViewController+Screenshot.h"
 
 @interface ChoiceDetailViewController () <ViewControllerLocalization> {
     
@@ -33,6 +34,8 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     
 	BOOL isChoiceCancelled;		/**< is Choice being cancelled, don't save */
 }
+
+@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 
 /**
  Limit a text field for each key press
@@ -83,6 +86,11 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
+
+    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+    conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+    conscienceHelpViewController.isConscienceOnScreen = FALSE;
+    self.conscienceHelpViewController = conscienceHelpViewController;
 
     [self localizeUI];
 }
@@ -162,14 +170,14 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     
     //If this is the first time that the app, then show the initial help
     NSObject *firstChoiceEntryCheck = [prefs objectForKey:@"firstChoiceDetailEntry"];
-    
+
+    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+
     if (firstChoiceEntryCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-		[conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-        [conscienceHelpViewCont setNumberOfScreens:1];
-		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+        self.conscienceHelpViewController.numberOfScreens = 1;
+
+		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
         
@@ -258,12 +266,10 @@ Implementation: pop UIViewController from current navigationController
  */
 -(IBAction)selectInfluence:(id) sender{
     
-    
-    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-    [conscienceHelpViewCont setIsConscienceOnScreen:FALSE];
-    [conscienceHelpViewCont setNumberOfScreens:2];
-    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+
+    self.conscienceHelpViewController.numberOfScreens = 2;
+    [self presentModalViewController:self.conscienceHelpViewController animated:NO];
 }
 
 #pragma mark -

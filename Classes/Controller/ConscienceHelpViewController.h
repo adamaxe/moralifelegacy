@@ -12,9 +12,10 @@ Conscience modular Help screen.  View controller for Conscience helping User wit
 
 @property(nonatomic, strong) NSString *viewControllerClassName;
 
+@property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 @property(nonatomic, strong) NSArray *helpTitles;		/**< title for each page */
 @property(nonatomic, strong) NSArray *helpTexts;		/**< text for each page */
-@property(nonatomic, assign) int numberOfScreens;           /**< the help screen requested */
+@property(nonatomic, assign) int numberOfScreens;       /**< the help screen requested */
 @property(nonatomic, assign) BOOL isConscienceOnScreen;	/**< is Conscience already on screen */
 
 /**

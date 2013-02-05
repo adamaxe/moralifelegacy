@@ -47,7 +47,6 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{0, -10}, {320, 480}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1037612294"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -64,7 +63,6 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrameSize">{320, 56}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="711562029"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -82,7 +80,6 @@
 						<int key="NSvFlags">256</int>
 						<string key="NSFrame">{{5, 0}, {320, 460}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="475753934"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -104,7 +101,6 @@
 								<int key="NSvFlags">274</int>
 								<string key="NSFrame">{{36, 224}, {250, 163}}</string>
 								<reference key="NSSuperview" ref="711562029"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="918657856"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="1011712311">
 									<int key="NSColorSpace">3</int>
@@ -128,7 +124,6 @@
 								<int key="NSvFlags">256</int>
 								<string key="NSFrame">{{0, 307}, {40, 40}}</string>
 								<reference key="NSSuperview" ref="711562029"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="313731884"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -145,7 +140,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{214, 130}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="711562029"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="226996344"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -175,7 +169,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{214, 32}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="711562029"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="594025013"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -200,7 +193,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{68, 197}, {100, 21}}</string>
 								<reference key="NSSuperview" ref="711562029"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="844707340"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -224,7 +216,6 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{17, 192}, {320, 50}}</string>
 								<reference key="NSSuperview" ref="711562029"/>
-								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="717482531"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -237,7 +228,6 @@
 						</object>
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="71037045"/>
 						<reference key="IBUIBackgroundColor" ref="1011712311"/>
 						<bool key="IBUIOpaque">NO</bool>
@@ -248,7 +238,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{252, 380}, {45, 45}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
 							<string key="IBUIAccessibilityLabel">Previous</string>
@@ -289,7 +278,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{87, 84}, {64, 64}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="68907873"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -313,7 +301,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{204, 48}, {64, 64}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="447775414"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">1</int>
@@ -349,7 +336,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{204, 146}, {64, 64}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="125541994"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<int key="IBUITag">2</int>
@@ -376,7 +362,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, 383}, {180, 80}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -395,7 +380,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{103, 100}, {32, 32}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1043632339"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -407,7 +391,6 @@
 				</object>
 				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
 				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="369326342"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>

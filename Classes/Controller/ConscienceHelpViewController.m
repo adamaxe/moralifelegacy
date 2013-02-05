@@ -25,6 +25,10 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
+@property (nonatomic) IBOutlet UIView *helpContentView;
+
+
 /**
  Animate the back or previous button to show User if more text is available.
  
@@ -91,7 +95,9 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 -(void) viewWillAppear:(BOOL)animated{
 	
 	[super viewWillAppear:animated];
+
     helpTitle.frame = CGRectMake(38, 37, 240, 35);
+    self.helpContentView.alpha = 0.0;
 
     previousButton.alpha = 1.0;
     nextButton.alpha = 1.0;
@@ -139,7 +145,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
-	thoughtModalArea.alpha = 1;
+
+    self.helpContentView.alpha = 1.0;
 	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
 
 	//Determine if Conscience is already on screen
@@ -154,6 +161,13 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	[appDelegate.userConscienceView setNeedsDisplay];
     
 	[self changeScreen:1];
+}
+
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
 }
 
 #pragma mark -
@@ -277,7 +291,8 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	} else {
         appDelegate.userConscienceView.center = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	}
-	
+    self.helpContentView.alpha = 0.0;
+
 	helpTitle.alpha = 0;
     helpText.alpha = 0;
     nextButton.hidden = TRUE;

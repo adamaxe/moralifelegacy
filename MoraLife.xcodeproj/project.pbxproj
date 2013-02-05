@@ -214,6 +214,7 @@
 		5E3E87E91226090B00F2708A /* ReferenceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BD1226090B00F2708A /* ReferenceView.xib */; };
 		5E3E880D122609B600F2708A /* XMLParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3E8805122609B600F2708A /* XMLParser.m */; };
 		5E3F48EA12FD103C00B4B4EC /* ChoiceInitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3F48E812FD103C00B4B4EC /* ChoiceInitViewController.m */; };
+		5E3F7A0916BF879200002E85 /* UIViewController+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3F7A0816BF879200002E85 /* UIViewController+Screenshot.m */; };
 		5E4108DA125C1BFB00C9C60F /* card-abstinence.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E410856125C1BFA00C9C60F /* card-abstinence.png */; };
 		5E4108DB125C1BFB00C9C60F /* card-aptitude.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E410857125C1BFA00C9C60F /* card-aptitude.png */; };
 		5E4108DC125C1BFB00C9C60F /* card-austerity.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E410858125C1BFA00C9C60F /* card-austerity.png */; };
@@ -1933,6 +1934,8 @@
 		5E3F48E812FD103C00B4B4EC /* ChoiceInitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceInitViewController.m; sourceTree = "<group>"; };
 		5E3F48EB12FD14FC00B4B4EC /* ChoiceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceListViewController.h; sourceTree = "<group>"; };
 		5E3F48F112FD162200B4B4EC /* ChoiceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceViewController.h; sourceTree = "<group>"; };
+		5E3F7A0716BF879200002E85 /* UIViewController+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIViewController+Screenshot.h"; path = "Common/UIViewController+Screenshot.h"; sourceTree = "<group>"; };
+		5E3F7A0816BF879200002E85 /* UIViewController+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIViewController+Screenshot.m"; path = "Common/UIViewController+Screenshot.m"; sourceTree = "<group>"; };
 		5E410856125C1BFA00C9C60F /* card-abstinence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-abstinence.png"; path = "Resources/images/interface/cards/card-abstinence.png"; sourceTree = "<group>"; };
 		5E410857125C1BFA00C9C60F /* card-aptitude.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-aptitude.png"; path = "Resources/images/interface/cards/card-aptitude.png"; sourceTree = "<group>"; };
 		5E410858125C1BFA00C9C60F /* card-austerity.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-austerity.png"; path = "Resources/images/interface/cards/card-austerity.png"; sourceTree = "<group>"; };
@@ -3655,6 +3658,8 @@
 				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
 				5EAA72EC15E19FA500656390 /* UIColor+Utility.h */,
 				5EAA72ED15E19FA500656390 /* UIColor+Utility.m */,
+				5E3F7A0716BF879200002E85 /* UIViewController+Screenshot.h */,
+				5E3F7A0816BF879200002E85 /* UIViewController+Screenshot.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -7336,6 +7341,7 @@
 				5EAB7A4E169E98B300623A48 /* ReportMoralTableViewCell.m in Sources */,
 				5EAB7A51169E9B4800623A48 /* DilemmaTableViewCell.m in Sources */,
 				5EAB7A7516A29AB300623A48 /* MoralTableViewCell.m in Sources */,
+				5E3F7A0916BF879200002E85 /* UIViewController+Screenshot.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

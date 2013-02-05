@@ -21,6 +21,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "ChoiceHistoryViewController.h"
 #import "ChoiceHistoryModel.h"
 #import "ViewControllerLocalization.h"
+#import "UIViewController+Screenshot.h"
 
 @interface ChoiceViewController () <ViewControllerLocalization> {
     
@@ -114,8 +115,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         severityLabelDescriptions = [[NSMutableArray alloc] init];
 
         ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewController setViewControllerClassName:NSStringFromClass([self class])];
-        [conscienceHelpViewController setIsConscienceOnScreen:FALSE];
+        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+        conscienceHelpViewController.isConscienceOnScreen = FALSE;
         self.conscienceHelpViewController = conscienceHelpViewController;
 
     }
@@ -310,10 +311,13 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     //If this is the first time that the app, then show the intro
     NSObject *firstChoiceEntryCheck = [prefs objectForKey:@"firstChoiceEntry"];
-    
+
+    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+
     if (firstChoiceEntryCheck == nil) {
         
-        [self.conscienceHelpViewController setNumberOfScreens:1];
+        self.conscienceHelpViewController.numberOfScreens = 1;
+
 		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
@@ -400,10 +404,11 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 Implementation: Present ConscienceHelpViewController that shows User extended definition of Moral selected.
  */
 -(IBAction)selectMoralReference:(id) sender{
-    
+
+    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+
 	//If User has selected a Moral, display the extended description.  Otherwise, ask them to fill in Moral.
 	if (moralKey != nil) {
-        
         //Create help text and controller for presentation
         NSMutableArray *titles = [[NSMutableArray alloc] init];
         NSMutableArray *texts = [[NSMutableArray alloc] init];        
@@ -415,14 +420,14 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", currentMoral.definitionMoral, currentMoral.longDescriptionMoral]];
 
         //Set help title and verbiage
-        [self.conscienceHelpViewController setHelpTitles:titles];
-        [self.conscienceHelpViewController setHelpTexts:texts];
-        
+        self.conscienceHelpViewController.helpTitles = titles;
+        self.conscienceHelpViewController.helpTexts = texts;
+
         [self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
 	} else {
-     
-        [self.conscienceHelpViewController setNumberOfScreens:4];
+
+        self.conscienceHelpViewController.numberOfScreens = 4;
         [self presentModalViewController:self.conscienceHelpViewController animated:NO];
 
 	}
@@ -442,10 +447,12 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
     
 	//Do not save default help text
 	NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), nil);
-    
+
+    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+
 	if ([choiceFirst isEqualToString:@""] || [choiceFirst isEqualToString:defaultTextFieldText]) {
 
-        [self.conscienceHelpViewController setNumberOfScreens:2];
+        self.conscienceHelpViewController.numberOfScreens = 2;
 		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
 
 	} else {
@@ -459,7 +466,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
         
         if (choiceMoral == nil){
 
-            [self.conscienceHelpViewController setNumberOfScreens:3];
+            self.conscienceHelpViewController.numberOfScreens = 3;
             [self presentModalViewController:self.conscienceHelpViewController animated:NO];
             
             isReadyToCommit = FALSE;
