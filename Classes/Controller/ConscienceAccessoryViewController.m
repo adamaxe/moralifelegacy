@@ -36,6 +36,8 @@ int const MLConscienceCenterY = 165;
     int accessorySlot;
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
+
 -(void) moveConscienceToCenter;
 
 -(void) createList;
@@ -49,6 +51,8 @@ int const MLConscienceCenterY = 165;
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    self.previousScreen.image = _screenshot;
+
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
     prefs = [NSUserDefaults standardUserDefaults];
     
@@ -88,6 +92,13 @@ int const MLConscienceCenterY = 165;
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToCenter)];
     
     [UIView commitAnimations];
+}
+
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
 }
 
 #pragma mark -

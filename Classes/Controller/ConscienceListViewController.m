@@ -19,6 +19,7 @@ User can filter list by only things that are affordable to currentFunds.
 #import "AccessoryTableViewCell.h"
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
+#import "UIViewController+Screenshot.h"
 
 @interface ConscienceListViewController () <ViewControllerLocalization> {
     
@@ -55,6 +56,8 @@ User can filter list by only things that are affordable to currentFunds.
     int searchViewFilter;                    /**< which view to show */
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
+
 /**
  Retrieve all available ConscienceAssets
  */
@@ -74,7 +77,9 @@ User can filter list by only things that are affordable to currentFunds.
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    
+
+    self.previousScreen.image = _screenshot;
+
 	//Set default filtering to show all ConscienceAssets
 	isLessThanCost = FALSE;
     searchViewFilter = 0;
@@ -134,6 +139,13 @@ User can filter list by only things that are affordable to currentFunds.
     
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+}
+
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
 }
 
 #pragma mark - 
@@ -515,15 +527,21 @@ Implementation: Retrieve User's current ethicals from UserData
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	//Create next view to accept, review or reject purchase	
-	ConscienceAcceptViewController *conscienceAcceptCont = [[ConscienceAcceptViewController alloc] init];
+	ConscienceAcceptViewController *conscienceAcceptController = [[ConscienceAcceptViewController alloc] init];
                 
 	NSMutableString *selectedRow = [NSMutableString stringWithString:tableDataKeys[indexPath.row]];
 
 	//Alert following ConscienceAcceptViewController to type and key of requested ConscienceAsset
-	[conscienceAcceptCont setAssetSelection:selectedRow];
-	[conscienceAcceptCont setAccessorySlot:_accessorySlot];
-		
-	[self.navigationController pushViewController:conscienceAcceptCont animated:NO];
+	[conscienceAcceptController setAssetSelection:selectedRow];
+	[conscienceAcceptController setAccessorySlot:_accessorySlot];
+
+    [UIView animateWithDuration:0.5 animations:^{
+        appDelegate.userConscienceView.alpha = 0;
+    }completion:^(BOOL finished) {
+
+        conscienceAcceptController.screenshot = [self takeScreenshot];
+        [self.navigationController pushViewController:conscienceAcceptController animated:NO];
+    }];
         
 }
 

@@ -37,8 +37,9 @@ typedef enum {
 	NSMutableDictionary *buttonLabels;		/**< various button labels for the screens of UI */
 	NSMutableDictionary *buttonImages;		/**< various button image filenames for the screens of UI */
 	NSArray *screenTitles;				/**< various screen titles for the pages of UI */
-	
+
 	IBOutlet UIView *thoughtModalArea;		/**< area in which user ConscienceView can float */
+	IBOutlet UIImageView *thoughtBubble;	/**< thought bubble surrounding choices */
 	IBOutlet UILabel *statusMessage1;		/**< title at top of screen */
 	IBOutlet UIButton *labelButton1;		/**< label button for menu choice button 1 */
 	IBOutlet UIButton *labelButton2;		/**< label button for menu choice button 2 */
@@ -93,6 +94,7 @@ typedef enum {
 	[super viewDidLoad];
 
     self.previousScreen.image = _screenshot;
+    thoughtBubble.alpha = 0;
 
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -191,6 +193,7 @@ typedef enum {
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	thoughtModalArea.alpha = 1;
+    thoughtBubble.alpha = 1;
 
 	[UIView commitAnimations];
     
@@ -412,8 +415,9 @@ Implementation:  Set the Status message at top of screen and the image and label
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(showSelectionChoices)];
 
-    thoughtModalArea.alpha = 0;    
-    
+    thoughtModalArea.alpha = 0;
+//    thoughtBubble.alpha = 0;
+
     [UIView commitAnimations];
 
 }
@@ -445,9 +449,15 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
 			case 6:{
-				ConscienceAccessoryViewController *conscienceAccessoryCont = [[ConscienceAccessoryViewController alloc] init];
-                
-				[self.navigationController pushViewController:conscienceAccessoryCont animated:NO];
+				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] init];
+                [UIView animateWithDuration:0.5 animations:^{
+                    appDelegate.userConscienceView.alpha = 0;
+                }completion:^(BOOL finished) {
+
+                    conscienceAccessoryController.screenshot = [self takeScreenshot];
+                    [self.navigationController pushViewController:conscienceAccessoryController animated:NO];
+                }];
+
 			}
 				break;
                 
@@ -471,9 +481,16 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a list of choices for accessories	
 	if (isListViewControllerNeeded) {
 
-		ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] init];
-		[conscienceListCont setAccessorySlot:requestedAccessorySlot];
-		[self.navigationController pushViewController:conscienceListCont animated:NO];
+		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] init];
+		[conscienceListController setAccessorySlot:requestedAccessorySlot];
+        [UIView animateWithDuration:0.5 animations:^{
+            appDelegate.userConscienceView.alpha = 0;
+        }completion:^(BOOL finished) {
+
+            conscienceListController.screenshot = [self takeScreenshot];
+            [self.navigationController pushViewController:conscienceListController animated:NO];
+        }];
+
 	}
 
 	//Present a DilemmaListViewController

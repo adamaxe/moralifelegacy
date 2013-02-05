@@ -51,6 +51,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
+
 /**
  Accepts User input to return to ConscienceModalViewController
  */
@@ -105,6 +107,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.previousScreen.image = _screenshot;
 
 	/** 
 	@todo utilize consistent localization string references 
@@ -222,6 +225,13 @@ User can return to the previous screen:  return to ConscienceListViewController 
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToCenter)];
     
     [UIView commitAnimations];
+}
+
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
 }
 
 #pragma mark -

@@ -41,13 +41,13 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="853154433">
+					<object class="IBUIImageView" id="586612397">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, -20}, {320, 480}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="864897863"/>
+						<reference key="NSNextKeyView" ref="796952222"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -58,7 +58,7 @@
 						<string key="NSFrame">{{5, 0}, {320, 460}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="796952222"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<int key="IBUIContentMode">4</int>
@@ -345,7 +345,7 @@
 								<string key="NSFrame">{{252, 380}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="796952222"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="864897863"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
 									<string key="IBUIAccessibilityLabel">Previous</string>
@@ -402,7 +402,7 @@
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="853154433"/>
+				<reference key="NSNextKeyView" ref="586612397"/>
 				<reference key="IBUIBackgroundColor" ref="905022733"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -510,9 +510,17 @@
 					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">previousScreen</string>
 						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="853154433"/>
+						<reference key="destination" ref="586612397"/>
 					</object>
 					<int key="connectionID">103</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">thoughtBubble</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="864897863"/>
+					</object>
+					<int key="connectionID">104</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -622,7 +630,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="796952222"/>
-							<reference ref="853154433"/>
+							<reference ref="586612397"/>
 							<reference ref="864897863"/>
 						</object>
 						<reference key="parent" ref="0"/>
@@ -727,7 +735,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">102</int>
-						<reference key="object" ref="853154433"/>
+						<reference key="object" ref="586612397"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -798,7 +806,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">103</int>
+			<int key="maxID">104</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -860,6 +868,7 @@
 							<string>previousButton</string>
 							<string>previousScreen</string>
 							<string>statusMessage1</string>
+							<string>thoughtBubble</string>
 							<string>thoughtModalArea</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -875,6 +884,7 @@
 							<string>UIButton</string>
 							<string>UIImageView</string>
 							<string>UILabel</string>
+							<string>UIImageView</string>
 							<string>UIView</string>
 						</object>
 					</object>
@@ -893,6 +903,7 @@
 							<string>previousButton</string>
 							<string>previousScreen</string>
 							<string>statusMessage1</string>
+							<string>thoughtBubble</string>
 							<string>thoughtModalArea</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -940,6 +951,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">statusMessage1</string>
 								<string key="candidateClassName">UILabel</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">thoughtBubble</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">thoughtModalArea</string>

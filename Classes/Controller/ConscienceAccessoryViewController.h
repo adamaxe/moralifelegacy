@@ -13,6 +13,8 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 
 @interface ConscienceAccessoryViewController : UIViewController
 
+@property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
 /**
 Accepts User input to select a ConscienceAsset for review
 @param id Object which requested method

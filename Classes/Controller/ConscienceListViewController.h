@@ -14,6 +14,7 @@ Secondary Conscience interaction screen.  Most other Conscience interactions req
 
 @interface ConscienceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
+@property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 @property (nonatomic, assign) int accessorySlot;	/**< which slot is ConscienceAsset, set from ConscienceAccessoryViewController */
 
 /**
