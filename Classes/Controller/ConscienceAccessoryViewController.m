@@ -12,6 +12,7 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 #import "ConscienceAsset.h"
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
+#import "UIViewController+Screenshot.h"
 
 int const MLConscienceCenterX = 145;
 int const MLConscienceCenterY = 165;
@@ -157,12 +158,12 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 
 -(void)createList{
     
-    ConscienceListViewController *conscienceListCont = [[ConscienceListViewController alloc] init];
+    ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] init];
+    conscienceListController.screenshot = [self takeScreenshot];
+    [conscienceListController setAccessorySlot:accessorySlot];
     
-    [conscienceListCont setAccessorySlot:accessorySlot];
     
-    
-    [self.navigationController pushViewController:conscienceListCont animated:NO];
+    [self.navigationController pushViewController:conscienceListController animated:NO];
 }
 
 /**
