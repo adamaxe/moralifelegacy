@@ -11,6 +11,8 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
 
 @interface DilemmaViewController : UIViewController
 
+@property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
 /**
 Accepts User input to change the presently displayed UIView and possibly commit Choice
 @param id Object which requested method

@@ -530,11 +530,12 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			
         } else {
 
-            DilemmaListViewController *dilemmaListViewCont = [[DilemmaListViewController alloc] init];
+            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] init];
+            dilemmaListViewController.screenshot = [self takeScreenshot];
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
 
-            [self.navigationController pushViewController:dilemmaListViewCont animated:NO];
+            [self.navigationController pushViewController:dilemmaListViewController animated:NO];
 		}
 	}
 }

@@ -104,6 +104,7 @@ typedef enum {
 
 }
 
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) BOOL isAction;
 
 - (void) animateViewDetail: (MLViewToAnimate) viewToAnimateIndex atBeginning: (BOOL) isBeginning;
@@ -157,6 +158,8 @@ typedef enum {
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.previousScreen.image = _screenshot;
 
 	//Get relevant dilemma information
     [self loadDilemma];
@@ -219,6 +222,13 @@ typedef enum {
 	
 	[appDelegate.userConscienceView setNeedsDisplay];
 	
+}
+
+-(void)setScreenshot:(UIImage *)screenshot {
+    if (_screenshot != screenshot) {
+        _screenshot = screenshot;
+        self.previousScreen.image = screenshot;
+    }
 }
 
 #pragma mark -

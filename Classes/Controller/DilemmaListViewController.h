@@ -13,6 +13,8 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 
 @interface DilemmaListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
+@property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
 /**
 Remove DilemmaList screen and reset requested Dilemma Campaign
 @param id Object which requested method
