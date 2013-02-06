@@ -41,13 +41,13 @@
 				<int key="NSvFlags">274</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="130921644">
+					<object class="IBUIImageView" id="739863295">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{0, -20}, {320, 480}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="136742653"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -290,7 +290,6 @@
 								<string key="NSFrame">{{252, 383}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="136742653"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="130921644"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">2</int>
 								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
@@ -395,7 +394,7 @@
 				<string key="NSFrameSize">{320, 460}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="136742653"/>
+				<reference key="NSNextKeyView" ref="739863295"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -506,6 +505,14 @@
 					<int key="connectionID">66</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">previousScreen</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="739863295"/>
+					</object>
+					<int key="connectionID">68</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">acceptThoughtModal:</string>
 						<reference key="source" ref="503252289"/>
@@ -559,7 +566,7 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="136742653"/>
-							<reference ref="130921644"/>
+							<reference ref="739863295"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -670,7 +677,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">67</int>
-						<reference key="object" ref="130921644"/>
+						<reference key="object" ref="739863295"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</object>
@@ -736,7 +743,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">67</int>
+			<int key="maxID">68</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -769,6 +776,7 @@
 							<string>insufficientEthicalsLabel</string>
 							<string>moralImageView</string>
 							<string>previousButton</string>
+							<string>previousScreen</string>
 							<string>thoughtModalArea</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -783,6 +791,7 @@
 							<string>UILabel</string>
 							<string>UIImageView</string>
 							<string>UIButton</string>
+							<string>UIImageView</string>
 							<string>UIView</string>
 						</object>
 					</object>
@@ -800,6 +809,7 @@
 							<string>insufficientEthicalsLabel</string>
 							<string>moralImageView</string>
 							<string>previousButton</string>
+							<string>previousScreen</string>
 							<string>thoughtModalArea</string>
 						</object>
 						<object class="NSArray" key="dict.values">
@@ -843,6 +853,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">previousButton</string>
 								<string key="candidateClassName">UIButton</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">previousScreen</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">thoughtModalArea</string>

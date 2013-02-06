@@ -520,11 +520,12 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 
 		if(campaignRejected){
             
-            ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-            [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-            [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-            [conscienceHelpViewCont setNumberOfScreens:3];
-            [self presentModalViewController:conscienceHelpViewCont animated:NO];
+            ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+            conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+            conscienceHelpViewController.isConscienceOnScreen = TRUE;
+            conscienceHelpViewController.numberOfScreens = 3;
+            conscienceHelpViewController.screenshot = [self takeScreenshot];
+            [self presentModalViewController:conscienceHelpViewController animated:NO];
 			
         } else {
 

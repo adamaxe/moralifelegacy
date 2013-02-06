@@ -285,13 +285,13 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	[UIView setAnimationBeginsFromCurrentState:YES];
 
 	//If Conscience wasn't on screen, place it offscreen, otherwise place it centrally.
-	if (!_isConscienceOnScreen) {
+	if (self.isConscienceOnScreen) {
+        appDelegate.userConscienceView.center = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
+	} else {
 		appDelegate.userConscienceView.center = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
         appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-	} else {
-        appDelegate.userConscienceView.center = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
+        self.helpContentView.alpha = 0.0;
 	}
-    self.helpContentView.alpha = 0.0;
 
 	helpTitle.alpha = 0;
     helpText.alpha = 0;

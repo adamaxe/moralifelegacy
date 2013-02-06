@@ -70,13 +70,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	modalSearchBar.showsCancelButton = NO;
 	modalTableView.delegate = self;
 	modalTableView.dataSource = self;
-    
-	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
-	
-	[thoughtArea addSubview:appDelegate.userConscienceView];
-	
-	appDelegate.userConscienceView.center = centerPoint;
-        
+            
     //User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
 	NSObject *boolCheck = [prefs objectForKey:@"entryIsGood"];
@@ -87,7 +81,8 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	}else {
 		isVirtue = TRUE;
 	}
-    
+
+    [thoughtArea addSubview:appDelegate.userConscienceView];
     [self retrieveAllSelections];
 
     [self localizeUI];    
@@ -98,8 +93,11 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	[super viewWillAppear:animated];
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
-    
-	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
+
+    CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
+	appDelegate.userConscienceView.center = centerPoint;
+
+	centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
