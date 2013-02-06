@@ -260,11 +260,12 @@ typedef enum {
     
     if (firstConscienceModalCheck == nil) {
         
-		ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-		[conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setNumberOfScreens:1];
-		[self presentModalViewController:conscienceHelpViewCont animated:NO];
+		ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+		conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        conscienceHelpViewController.numberOfScreens = 1;
+        conscienceHelpViewController.screenshot = [self takeScreenshot];
+		[self presentModalViewController:conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
         
@@ -661,11 +662,11 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
         [prefs removeObjectForKey:@"isReadyToRemove"];
     } else {
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-        [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setNumberOfScreens:2];
-        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+        conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        conscienceHelpViewController.numberOfScreens = 2;
+        [self presentModalViewController:conscienceHelpViewController animated:NO];
         
         [prefs setBool:TRUE forKey:@"isReadyToRemove"];    
         

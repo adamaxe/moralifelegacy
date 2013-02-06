@@ -16,6 +16,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "UserCollectableDAO.h"
 #import "ConscienceHelpViewController.h"
 #import "DilemmaTableViewCell.h"
+#import "UIViewController+Screenshot.h"
 
 @interface DilemmaListViewController () {
     
@@ -185,11 +186,12 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     
     if (firstMorathologyCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-        [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];        
-        [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-        [conscienceHelpViewCont setNumberOfScreens:1];
-        [self presentModalViewController:conscienceHelpViewCont animated:NO];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+        conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        conscienceHelpViewController.numberOfScreens = 1;
+        conscienceHelpViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstMorathology"];
         

@@ -26,6 +26,7 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "ViewControllerLocalization.h"
 #import "ConscienceHelpViewController.h"
 #import "UIColor+Utility.h"
+#import "UIViewController+Screenshot.h"
 
 typedef enum {
     MLViewToAnimateVersus,
@@ -623,11 +624,12 @@ Construct antagonist Conscience
                 if (filteredArray.count > 0) {
                     isRequirementOwned = TRUE;
                 } else {
-                    ConscienceHelpViewController *conscienceHelpViewCont = [[ConscienceHelpViewController alloc] init];
-                    [conscienceHelpViewCont setViewControllerClassName:NSStringFromClass([self class])];
-                    [conscienceHelpViewCont setIsConscienceOnScreen:TRUE];
-                    [conscienceHelpViewCont setNumberOfScreens:1];
-                    [self presentModalViewController:conscienceHelpViewCont animated:NO];
+                    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+                    conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+                    conscienceHelpViewController.isConscienceOnScreen = TRUE;
+                    conscienceHelpViewController.numberOfScreens = 1;
+                    conscienceHelpViewController.screenshot = [self takeScreenshot];
+                    [self presentModalViewController:conscienceHelpViewController animated:NO];
                     [self.navigationController popViewControllerAnimated:NO];
                 }
 			}
