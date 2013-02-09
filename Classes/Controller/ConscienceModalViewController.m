@@ -511,7 +511,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
                 adventureRequirement = @"asse-rank4";
                 break;
             case MLRequestedMorathologyAdventure4:
-                adventureRequirement = @"asse-rank6";
+                adventureRequirement = @"asse-rank10";
                 break;
             default:
                 break;
