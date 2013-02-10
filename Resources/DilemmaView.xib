@@ -64,7 +64,7 @@
 								<string key="NSFrame">{{5, 0}, {320, 460}}</string>
 								<reference key="NSSuperview" ref="538146265"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="145869420"/>
+								<reference key="NSNextKeyView" ref="509523287"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">4</int>
@@ -81,7 +81,7 @@
 								<string key="NSFrame">{{31, 33}, {253, 100}}</string>
 								<reference key="NSSuperview" ref="538146265"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="186923266"/>
+								<reference key="NSNextKeyView" ref="145869420"/>
 								<object class="NSColor" key="IBUIBackgroundColor" id="62652147">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MCAwAA</bytes>
@@ -290,10 +290,7 @@
 											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
 										</object>
 										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<object class="NSColor" key="IBUIShadowColor" id="1018336614">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
-										</object>
+										<reference key="IBUIShadowColor" ref="683198306"/>
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
@@ -328,7 +325,10 @@
 											<bytes key="NSRGB">MC41MDE5NjA4MTQgMC4yNTA5ODA0MDcgMAA</bytes>
 										</object>
 										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<reference key="IBUIShadowColor" ref="1018336614"/>
+										<object class="NSColor" key="IBUIShadowColor" id="1018336614">
+											<int key="NSColorSpace">3</int>
+											<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
+										</object>
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
@@ -693,10 +693,7 @@
 											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
 										</object>
 										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<object class="NSColor" key="IBUIShadowColor" id="957235249">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MAA</bytes>
-										</object>
+										<reference key="IBUIShadowColor" ref="683198306"/>
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
@@ -783,8 +780,8 @@
 											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
 										</object>
 										<reference key="IBUIHighlightedColor" ref="1018336614"/>
-										<reference key="IBUIShadowColor" ref="957235249"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
+										<reference key="IBUIShadowColor" ref="683198306"/>
+										<string key="IBUIShadowOffset">{0, 0}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
 										<int key="IBUITextAlignment">1</int>
@@ -843,7 +840,7 @@
 										<string key="NSFrame">{{79, 299}, {206, 29}}</string>
 										<reference key="NSSuperview" ref="230133056"/>
 										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="509523287"/>
+										<reference key="NSNextKeyView" ref="186923266"/>
 										<bool key="IBUIOpaque">NO</bool>
 										<bool key="IBUIClipsSubviews">YES</bool>
 										<int key="IBUIContentMode">7</int>

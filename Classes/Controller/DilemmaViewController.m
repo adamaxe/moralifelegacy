@@ -165,12 +165,25 @@ typedef enum {
     [self loadDilemma];
     
     isChoiceA = self.isAction;
+
+    [dilemmaTitle setFont:[UIFont fontWithName:@"Cochin-Bold" size:24.0]];
+    [dilemmaTitle setNumberOfLines:1];
+    [dilemmaTitle setAdjustsFontSizeToFitWidth:TRUE];
+    [dilemmaTitle setTextColor:[UIColor moraLifeChoiceBlue]];
+
+    [dilemmaTitleText setFont:[UIFont fontWithName:@"Cochin-Bold" size:24.0]];
+    [dilemmaTitleText setNumberOfLines:1];
+    [dilemmaTitleText setAdjustsFontSizeToFitWidth:TRUE];
+    [dilemmaTitleText setTextColor:[UIColor moraLifeChoiceBlue]];
+
+    [moralSelectedChoiceLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:24.0]];
+    [moralSelectedChoiceLabel setNumberOfLines:1];
+    [moralSelectedChoiceLabel setAdjustsFontSizeToFitWidth:TRUE];
+    [moralSelectedChoiceLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+
     ethicalRewardLabel.textColor = [UIColor moraLifeChoiceGreen];
     moralRewardLabel.textColor = [UIColor moraLifeChoiceGreen];
-    moralSelectedChoiceLabel.textColor = [UIColor moraLifeChoiceGreen];
     moralSelectedRewardLabel.textColor = [UIColor moraLifeBrown];
-    dilemmaTitle.textColor = [UIColor moraLifeChoiceGreen];
-    dilemmaTitleText.textColor = [UIColor moraLifeChoiceGreen];
     moral1ChoiceLabel.textColor = [UIColor moraLifeChoiceGreen];
     moral2ChoiceLabel.textColor = [UIColor moraLifeChoiceGreen];
     dilemmaMoralLabel1.textColor = [UIColor moraLifeChoiceGreen];
