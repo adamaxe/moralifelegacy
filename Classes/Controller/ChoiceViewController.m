@@ -134,6 +134,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     choiceTextField.maxLength = MLChoiceTextFieldLength;
     descriptionTextView.delegate = self;
 
+    severityLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+
 	if (!isChoiceFinished) {
 		isChoiceFinished = FALSE;
 	}

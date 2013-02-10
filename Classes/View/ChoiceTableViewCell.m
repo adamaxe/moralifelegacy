@@ -12,7 +12,13 @@
         [self.textLabel setMinimumFontSize:12.0];
 
         //Set cell content wrapping
-        [self.textLabel setFont:[UIFont systemFontOfSize:18.0]];
+//        [self.textLabel setFont:[UIFont systemFontOfSize:18.0]];
+        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+        [self.textLabel setShadowColor:[UIColor lightGrayColor]];
+        [self.textLabel setShadowOffset:CGSizeMake(1, 1)];
+        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:18.0]];
+
+
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
 

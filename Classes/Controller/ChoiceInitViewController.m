@@ -63,6 +63,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	[super viewDidLoad];
 
     self.navigationItem.hidesBackButton = YES;
+    goodChoiceLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    badChoiceLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    choiceListLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
