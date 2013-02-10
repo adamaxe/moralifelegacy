@@ -74,7 +74,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.previousScreen.image = _screenshot;    
+    self.previousScreen.image = _screenshot;
+    modalSearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
     
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];

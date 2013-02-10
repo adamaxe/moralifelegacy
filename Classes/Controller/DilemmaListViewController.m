@@ -95,6 +95,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     [super viewDidLoad];
 
     self.previousScreen.image = _screenshot;
+    dilemmaSearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
 
 	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];

@@ -76,9 +76,10 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	referenceSearchBar.barStyle = UIBarStyleBlack;
 	referenceSearchBar.delegate = self;
 	referenceSearchBar.showsCancelButton = NO;
+    referenceSearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
 	referencesTableView.delegate = self;
 	referencesTableView.dataSource = self;
-    	
+
 	dataSource = [[NSMutableArray alloc] init];
 	searchedData = [[NSMutableArray alloc] init];
 	tableData = [[NSMutableArray alloc] init];

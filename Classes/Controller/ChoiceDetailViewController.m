@@ -228,17 +228,12 @@ Implementation: pop UIViewController from current navigationController
 - (void)saveChoice {
     
     if (!isChoiceCancelled) {
-        
-        //Do not save default help text
-        NSString *defaultTextJustification = [[NSString alloc] initWithString:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",nil)];
-        NSString *defaultTextConsequences = [[NSString alloc] initWithString:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",nil)];
-        
-        
-        if (![justificationTextField.text isEqualToString:@""] && ![justificationTextField.text isEqualToString:defaultTextJustification]) {
+                
+        if (![justificationTextField.text isEqualToString:@""]) {
             [prefs setObject:justificationTextField.text forKey:@"choiceJustification"];    
         }
         
-        if (![consequencesTextField.text isEqualToString:@""] && ![consequencesTextField.text isEqualToString:defaultTextConsequences]) {
+        if (![consequencesTextField.text isEqualToString:@""]) {
             
             [prefs setObject:consequencesTextField.text forKey:@"choiceConsequence"];    		
         }
@@ -285,20 +280,6 @@ Implementation: pop UIViewController from current navigationController
 	//Setup active field for other callbacks, typecast to custom text field for max length property
 	activeField = (StructuredTextField *) textField;
 	
-	//If text in field is default, then clear it	
-	if (textField.tag > 0) {
-
-		if ([activeField.text isEqualToString:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",nil)]) {
-			activeField.text = @"";
-			
-		}
-		
-	}else {
-		if ([activeField.text isEqualToString:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",nil)]) {
-			activeField.text = @"";
-			
-		}
-	}
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -357,8 +338,8 @@ Implementation:  Truncate the field on each keypress if length is greater
 	[cancelButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenCancelButtonTitleLabel",nil) forState:UIControlStateHighlighted];
 	cancelButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenCancelButtonHint",nil);	
 	cancelButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenCancelButtonLabel",nil);	
-    [justificationTextField setText:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",nil)];
-    [consequencesTextField setText:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",nil)];
+    [justificationTextField setPlaceholder:NSLocalizedString(@"ChoiceDetailsScreenJustificationText",nil)];
+    [consequencesTextField setPlaceholder:NSLocalizedString(@"ChoiceDetailsScreenConsequenceText",nil)];
 
 }
 

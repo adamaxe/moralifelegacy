@@ -80,7 +80,8 @@ Refetches of table data are necessary when sorting and ordering are requested.
     [super viewDidLoad];
     
 	prefs = [NSUserDefaults standardUserDefaults];
-    
+    choiceSearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
+
 	//Set default listing and sort order
 	isAscending = FALSE;
 	choiceSortDescriptor = [[NSMutableString alloc] initWithString:MLChoiceListSortDate];

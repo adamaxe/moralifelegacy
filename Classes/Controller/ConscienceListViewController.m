@@ -79,6 +79,7 @@ User can filter list by only things that are affordable to currentFunds.
 	[super viewDidLoad];
 
     self.previousScreen.image = _screenshot;
+    accessorySearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
 
 	//Set default filtering to show all ConscienceAssets
 	isLessThanCost = FALSE;

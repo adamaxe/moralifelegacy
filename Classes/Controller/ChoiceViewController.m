@@ -133,6 +133,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     choiceTextField.delegate = self;
     choiceTextField.maxLength = MLChoiceTextFieldLength;
     descriptionTextView.delegate = self;
+    descriptionTextView.alpha = 0.7;
 
 	if (!isChoiceFinished) {
 		isChoiceFinished = FALSE;
@@ -274,11 +275,9 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	if (!isChoiceFinished) {
 
 		//Do not save default help text
-		NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), nil);
-
 		NSString *defaultTextViewText = NSLocalizedString(@"ChoiceScreenDescription",nil);
 
-		if (![choiceTextField.text isEqualToString:@""] && ![choiceTextField.text isEqualToString:defaultTextFieldText]) {
+		if (![choiceTextField.text isEqualToString:@""]) {
 			[prefs setObject:choiceTextField.text forKey:@"entryShortDescription"];
 		}
 
@@ -430,12 +429,9 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 	//If user hasn't typed anything in, prompt them
 	NSString *choiceFirst = choiceTextField.text;
     
-	//Do not save default help text
-	NSString *defaultTextFieldText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]), nil);
-
     self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
-	if ([choiceFirst isEqualToString:@""] || [choiceFirst isEqualToString:defaultTextFieldText]) {
+	if ([choiceFirst isEqualToString:@""]) {
 
         self.conscienceHelpViewController.numberOfScreens = 2;
 		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
@@ -574,7 +570,7 @@ Implementation: Resign first responder and return the views to original location
 	//If text in view is default, then clear it
 	if ([textView.text isEqualToString:NSLocalizedString(@"ChoiceScreenDescription",nil)]) {
 		textView.text = @"";
-		
+		textView.alpha = 1.0;
 	}
 	
 }
@@ -583,15 +579,6 @@ Implementation: Resign first responder and return the views to original location
 {
     activeField = (StructuredTextField *) textField;
 
-    //Determine which default text is being utilized.
-    NSString *defaultText = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]),nil);
-    
-	//If text in field is default, then clear it
-	if ([activeField.text isEqualToString:defaultText]) {
-		activeField.text = @"";
-		
-	}
-    
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField
@@ -881,7 +868,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%dd", isVirtue]),nil)];
     [severityLabelDescriptions addObject:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenSeverityLabel%de", isVirtue]),nil)];    
 
-	[choiceTextField setText:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]),nil)];
+	[choiceTextField setPlaceholder:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenChoice%dLabel", isVirtue]),nil)];
     
 	[moralButton setTitle:NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dLabel", isVirtue]),nil) forState:UIControlStateNormal];
 	moralButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ChoiceScreenMoral%dHint", isVirtue]),nil);
