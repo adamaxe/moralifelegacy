@@ -24,15 +24,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	IBOutlet UIButton *goodChoiceButton;		/**< Button for Good Choice entry selection */
 	IBOutlet UIButton *badChoiceButton;			/**< Button for Bad Choice entry selection */
 	IBOutlet UIButton *choiceListButton;		/**< Button for All Choice listing selection */
-	
-	IBOutlet UIButton *goodLuckLabelButton;		/**< Label for Good Choice entry selection */
-	IBOutlet UIButton *badLuckLabelButton;		/**< Label for Bad Choice entry selection */
-	IBOutlet UIButton *luckListLabelButton;		/**< Label for All Choice listing selection */
-	
-	IBOutlet UIButton *goodLuckButton;		/**< Button for Good Choice entry selection */
-	IBOutlet UIButton *badLuckButton;		/**< Button for Bad Choice entry selection */
-	IBOutlet UIButton *luckListButton;		/**< Button for All Choice listing selection */
-    
+	    
 	NSArray *buttonNames;		/**< button image names */
 	NSTimer *buttonTimer;		/**< Timer for animating buttons */
 }
@@ -52,7 +44,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		prefs = [NSUserDefaults standardUserDefaults];
 		
 		//Array to hold button names for random animations
-		buttonNames = @[@"choicegood", @"choicebad", @"luckgood", @"luckbad", @"choicelist", @"lucklist"];
+		buttonNames = @[@"choicegood", @"choicebad", @"choicelist"];
 
 	}
     
@@ -63,6 +55,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	[super viewDidLoad];
 
     self.navigationItem.hidesBackButton = YES;
+    goodChoiceLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:20];
+    badChoiceLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:20];
+    choiceListLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:20];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
@@ -138,9 +133,6 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 			case 0:isGood = TRUE;break;
 			case 1:isGood = FALSE;break;
 			case 2:isList = TRUE;break;				
-			case 3:isGood = TRUE;break;
-			case 4:isGood = FALSE;break;				
-			case 5:isList = TRUE;break;
 			default:break;
 		}
 		
@@ -208,19 +200,6 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	badChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",nil);
 	choiceListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",nil);
 	
-	[goodLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",nil) forState: UIControlStateNormal];
-	[badLuckLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",nil) forState: UIControlStateNormal];
-	[luckListLabelButton setTitle:NSLocalizedString(@"ChoiceInitScreenLuckListLabel",nil) forState: UIControlStateNormal];
-	goodLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",nil);
-	badLuckLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",nil);
-	luckListLabelButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",nil);		
-	
-	goodLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckGoodLabel",nil);
-	badLuckButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckBadLabel",nil);
-	luckListButton.accessibilityLabel = NSLocalizedString(@"ChoiceInitScreenLuckListLabel",nil);
-	goodLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckGoodHint",nil);
-	badLuckButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckBadHint",nil);
-	luckListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenLuckListHint",nil);    
 }
 
 
@@ -233,10 +212,10 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 - (void) refreshButtons{
 
     //Determine which set of four buttons will be animated
-	[self buttonAnimate:@(arc4random()%6)];
-	[self buttonAnimate:@(arc4random()%6)];
-	[self buttonAnimate:@(arc4random()%6)];
-	[self buttonAnimate:@(arc4random()%6)];
+	[self buttonAnimate:@(arc4random()%3)];
+	[self buttonAnimate:@(arc4random()%3)];
+	[self buttonAnimate:@(arc4random()%3)];
+	[self buttonAnimate:@(arc4random()%3)];
 }
 
 /**
@@ -267,10 +246,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	switch ([buttonNumber intValue]){
 		case 0: [goodChoiceButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[goodChoiceButton addSubview:animation1];break;
 		case 1: [badChoiceButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[badChoiceButton addSubview:animation1];break;
-		case 2: [goodLuckButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[goodLuckButton addSubview:animation1];break;
-		case 3: [badLuckButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[badLuckButton addSubview:animation1];break;
-		case 4: [choiceListButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[choiceListButton addSubview:animation1];break;
-		case 5: [luckListButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[luckListButton addSubview:animation1];break;
+		case 2: [choiceListButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[choiceListButton addSubview:animation1];break;
 		default:break;
 	}
 	
@@ -295,10 +271,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	switch ([buttonNumber intValue]){
 		case 0: [goodChoiceButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
 		case 1: [badChoiceButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		case 2: [goodLuckButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		case 3: [badLuckButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		case 4: [choiceListButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		case 5: [luckListButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
+		case 2: [choiceListButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
 		default:break;
 	}
 }

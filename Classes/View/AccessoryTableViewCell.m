@@ -10,11 +10,10 @@
 
         self.isAffordable = FALSE;
         //Configure cell text
-        [self.textLabel setFont:[UIFont systemFontOfSize:12.0]];
+        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:16.0]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-        [self.textLabel setShadowColor:[UIColor moraLifeChoiceGray]];
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         //Configure cell subtitle text

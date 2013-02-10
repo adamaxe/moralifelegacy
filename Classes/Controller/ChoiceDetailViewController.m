@@ -66,6 +66,10 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	
 	//Reference serialized User state retention
 	prefs = [NSUserDefaults standardUserDefaults];
+
+    justificationLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    consequencesLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    influenceLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
     
 	//Set maximum lengths for User-entry to textfields
 	justificationTextField.delegate = self;

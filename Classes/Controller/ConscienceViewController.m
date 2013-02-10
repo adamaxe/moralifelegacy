@@ -158,6 +158,9 @@ static int thoughtVersion = 0;
     [virtueButton setTag:MLConscienceViewControllerVirtueButtonTag];    
     [viceButton setTag:MLConscienceViewControllerViceButtonTag];
     [rankButton setTag:MLConscienceViewControllerRankButtonTag];
+    virtueLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    viceLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    rankLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
 
 	animationDuration = 1.0;
     

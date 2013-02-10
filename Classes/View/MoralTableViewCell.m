@@ -29,10 +29,8 @@ CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
     if (self) {
 
         [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-        [self.textLabel setShadowColor:[UIColor lightGrayColor]];
-        [self.textLabel setShadowOffset:CGSizeMake(1, 1)];
 
-        [self.textLabel setFont:[UIFont systemFontOfSize:MoralTableViewCellTextLabelFontSize]];
+        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:MoralTableViewCellTextLabelFontSize]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.textLabel sizeToFit];

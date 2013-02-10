@@ -135,6 +135,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     descriptionTextView.delegate = self;
     descriptionTextView.alpha = 0.7;
 
+    severityLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+
 	if (!isChoiceFinished) {
 		isChoiceFinished = FALSE;
 	}

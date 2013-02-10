@@ -150,8 +150,13 @@ typedef enum {
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
-    [statusMessage1 setTextColor:[UIColor darkGrayColor]];
-    [statusMessage1 setShadowColor:[UIColor moraLifeChoiceBlue]];
+    [statusMessage1 setTextAlignment:UITextAlignmentCenter];
+    [statusMessage1 setTextColor: [UIColor moraLifeChoiceGreen]];
+    statusMessage1.font = [UIFont fontWithName:@"Cochin-Bold" size:24.0f];
+
+    [statusMessage1 setMinimumFontSize:8.0];
+    [statusMessage1 setNumberOfLines:1];
+    [statusMessage1 setAdjustsFontSizeToFitWidth:TRUE];
 
     [labelButton1 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
     [labelButton1 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
@@ -311,11 +316,11 @@ Determines if current screen should change or if another UIViewController needs 
 //			case 1:[self selectController:choiceIndex];break;
 			case 1:currentState = 2;[self changeSelectionScreen];break;
 			case 2:[self selectController:choiceIndex];break;
-			case 3:currentState = 4;[self changeSelectionScreen];break;
+//			case 3:currentState = 4;[self changeSelectionScreen];break;
 			case 4:currentState = 5;[self changeSelectionScreen];break;
 			case 5:currentState = 6;[self changeSelectionScreen];break;
 			case 6:[self selectController:choiceIndex];break;
-			case 7:currentState = 8;[self changeSelectionScreen];break;
+//			case 7:currentState = 8;[self changeSelectionScreen];break;
 //			case 8:currentState = 9;[self changeSelectionScreen];break;
 //			case 9:currentState = 10;[self changeSelectionScreen];break;
 //			case 10:currentState = 11;[self changeSelectionScreen];break;			
@@ -445,7 +450,6 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
 				[self.navigationController pushViewController:reportPieViewCont animated:NO];
-                
 
 			}
 				break;

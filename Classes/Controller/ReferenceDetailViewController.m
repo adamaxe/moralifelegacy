@@ -110,10 +110,14 @@ Determine which fields and UI elements should be presented depending up on Refer
 	}else{
         referenceKey = @"";
 	}
+    referenceNameLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:22.0];
 
+    [referenceNameLabel setAdjustsFontSizeToFitWidth:YES];
+    [referenceNameLabel setLineBreakMode:NSLineBreakByWordWrapping];
     [referenceNameLabel setTextColor:[UIColor moraLifeChoiceBlue]];
     [referenceNameLabel setShadowColor:[UIColor whiteColor]];
-    [referenceNameLabel setShadowOffset:CGSizeMake(0, 2)];
+    [referenceNameLabel setShadowOffset:CGSizeMake(0, 1)];
+
 
 	[self retrieveReference];
 	[self populateReferenceScreen];
