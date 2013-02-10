@@ -29,7 +29,7 @@ CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
     if (self) {
 
         [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-        [self.textLabel setShadowColor:[UIColor lightGrayColor]];
+        [self.textLabel setShadowColor:[UIColor moraLifeChoiceGray]];
         [self.textLabel setShadowOffset:CGSizeMake(1, 1)];
 
         [self.textLabel setFont:[UIFont systemFontOfSize:MoralTableViewCellTextLabelFontSize]];

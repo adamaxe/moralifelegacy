@@ -22,10 +22,12 @@ int const ReferenceTableViewCellHeightFigure = 88;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        [self.textLabel setFont:[UIFont systemFontOfSize:18.0]];
+        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+        [self.textLabel setShadowColor:[UIColor moraLifeChoiceGray]];
+        [self.textLabel setShadowOffset:CGSizeMake(1, 1)];
+        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:18.0]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
-        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
 
         UIView *figureImageFrame = [[UIView alloc] initWithFrame:self.imageView.frame];
         figureImageFrame.backgroundColor = [UIColor clearColor];
