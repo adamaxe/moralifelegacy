@@ -160,7 +160,7 @@ User can filter list by only things that are affordable to currentFunds.
     NSObject *firstConscienceListCheck = [prefs objectForKey:@"firstConscienceList"];
     
     if (firstConscienceListCheck == nil) {
-        
+
         ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
 		conscienceHelpViewController.isConscienceOnScreen = TRUE;
