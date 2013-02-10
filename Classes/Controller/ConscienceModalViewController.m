@@ -150,8 +150,13 @@ typedef enum {
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
-    [statusMessage1 setTextColor:[UIColor darkGrayColor]];
-    [statusMessage1 setShadowColor:[UIColor moraLifeChoiceBlue]];
+    [statusMessage1 setTextAlignment:UITextAlignmentCenter];
+    [statusMessage1 setTextColor: [UIColor moraLifeChoiceGreen]];
+    statusMessage1.font = [UIFont fontWithName:@"Cochin-Bold" size:24.0f];
+
+    [statusMessage1 setMinimumFontSize:8.0];
+    [statusMessage1 setNumberOfLines:1];
+    [statusMessage1 setAdjustsFontSizeToFitWidth:TRUE];
 
     [labelButton1 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
     [labelButton1 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
