@@ -69,9 +69,15 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	prefs = [NSUserDefaults standardUserDefaults];
 
     justificationLabel.font = [UIFont fontForTextLabels];
+    [justificationLabel setShadowColor:[UIColor whiteColor]];
+    [justificationLabel setShadowOffset:CGSizeMake(0, 1)];
     consequencesLabel.font = [UIFont fontForTextLabels];
+    [consequencesLabel setShadowColor:[UIColor whiteColor]];
+    [consequencesLabel setShadowOffset:CGSizeMake(0, 1)];
     influenceLabel.font = [UIFont fontForTextLabels];
-    
+    [influenceLabel setShadowColor:[UIColor whiteColor]];
+    [influenceLabel setShadowOffset:CGSizeMake(0, 1)];
+
 	//Set maximum lengths for User-entry to textfields
 	justificationTextField.delegate = self;
 	justificationTextField.maxLength = MLChoiceTextFieldLength;

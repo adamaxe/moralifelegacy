@@ -144,7 +144,10 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 	//Place inner shadow around flat UITextView
 	[descriptionInnerShadow setImage:[UIImage imageNamed:@"textview-innershadow.png"]];
-    
+
+    [severityLabel setShadowColor:[UIColor whiteColor]];
+    [severityLabel setShadowOffset:CGSizeMake(0, 1)];
+
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];
     

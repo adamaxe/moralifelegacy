@@ -119,6 +119,12 @@ Determine which fields and UI elements should be presented depending up on Refer
     [referenceNameLabel setShadowColor:[UIColor whiteColor]];
     [referenceNameLabel setShadowOffset:CGSizeMake(0, 1)];
 
+    [referenceDateLabel setShadowColor:[UIColor whiteColor]];
+    [referenceDateLabel setShadowOffset:CGSizeMake(0, 1)];
+    [referenceOriginLabel setShadowColor:[UIColor whiteColor]];
+    [referenceOriginLabel setShadowOffset:CGSizeMake(0, 1)];
+    [referenceShortDescriptionLabel setShadowColor:[UIColor whiteColor]];
+    [referenceShortDescriptionLabel setShadowOffset:CGSizeMake(0, 1)];
 
 	[self retrieveReference];
 	[self populateReferenceScreen];
