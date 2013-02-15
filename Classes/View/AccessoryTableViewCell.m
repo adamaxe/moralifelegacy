@@ -1,5 +1,6 @@
 #import "AccessoryTableViewCell.h"
 #import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 @implementation AccessoryTableViewCell
 
@@ -10,14 +11,14 @@
 
         self.isAffordable = FALSE;
         //Configure cell text
-        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:16.0]];
+        [self.textLabel setFont:[UIFont fontForTableViewCellText]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         //Configure cell subtitle text
-        [self.detailTextLabel setFont:[UIFont systemFontOfSize:12.0]];
+        [self.detailTextLabel setFont:[UIFont fontForTableViewCellDetailText]];
         [self.detailTextLabel setNumberOfLines:1];
         [self.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.detailTextLabel setMinimumFontSize:8.0];

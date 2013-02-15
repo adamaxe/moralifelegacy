@@ -12,8 +12,9 @@ Determine which fields and UI elements should be presented depending up on Refer
 #import "ConscienceHelpViewController.h"
 #import "UserCollectableDAO.h"
 #import "ViewControllerLocalization.h"
-#import "UIColor+Utility.h"
 #import "UIViewController+Screenshot.h"
+#import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 @interface ReferenceDetailViewController () <ViewControllerLocalization> {
     
@@ -110,7 +111,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 	}else{
         referenceKey = @"";
 	}
-    referenceNameLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:22.0];
+    referenceNameLabel.font = [UIFont fontForScreenButtons];
 
     [referenceNameLabel setAdjustsFontSizeToFitWidth:YES];
     [referenceNameLabel setLineBreakMode:NSLineBreakByWordWrapping];

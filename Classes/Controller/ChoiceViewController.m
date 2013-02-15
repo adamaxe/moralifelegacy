@@ -22,6 +22,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "ChoiceHistoryModel.h"
 #import "ViewControllerLocalization.h"
 #import "UIViewController+Screenshot.h"
+#import "UIFont+Utility.h"
 
 @interface ChoiceViewController () <ViewControllerLocalization> {
     
@@ -135,7 +136,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     descriptionTextView.delegate = self;
     descriptionTextView.alpha = 0.7;
 
-    severityLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    severityLabel.font = [UIFont fontForTextLabels];
 
 	if (!isChoiceFinished) {
 		isChoiceFinished = FALSE;

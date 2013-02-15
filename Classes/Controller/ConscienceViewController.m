@@ -19,10 +19,11 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UserCharacterDAO.h"
 #import "ConscienceAssetDAO.h"
 #import "ViewControllerLocalization.h"
-#import "UIColor+Utility.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
 #import "UIViewController+Screenshot.h"
+#import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 typedef enum {
     MLConscienceViewControllerVirtueButtonTag = 3030,
@@ -158,9 +159,9 @@ static int thoughtVersion = 0;
     [virtueButton setTag:MLConscienceViewControllerVirtueButtonTag];    
     [viceButton setTag:MLConscienceViewControllerViceButtonTag];
     [rankButton setTag:MLConscienceViewControllerRankButtonTag];
-    virtueLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
-    viceLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
-    rankLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    virtueLabel.font = [UIFont fontForHomeScreenButtons];
+    viceLabel.font = [UIFont fontForHomeScreenButtons];
+    rankLabel.font = [UIFont fontForHomeScreenButtons];
 
 	animationDuration = 1.0;
     
@@ -268,7 +269,7 @@ static int thoughtVersion = 0;
     [self createWelcomeMessage];
 
     UILabel* homeNavigationTitle = [[UILabel alloc] initWithFrame:CGRectMake(0,30,self.view.frame.size.width/3,40)];
-    homeNavigationTitle.font = [UIFont boldSystemFontOfSize:22];
+    homeNavigationTitle.font = [UIFont fontForNavigationBarTitle];
     homeNavigationTitle.textColor = [UIColor whiteColor];
     homeNavigationTitle.shadowColor = [UIColor blackColor];
     homeNavigationTitle.shadowOffset = CGSizeMake(0, -1);

@@ -25,8 +25,9 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "UserChoiceDAO.h"
 #import "ViewControllerLocalization.h"
 #import "ConscienceHelpViewController.h"
-#import "UIColor+Utility.h"
 #import "UIViewController+Screenshot.h"
+#import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 typedef enum {
     MLViewToAnimateVersus,
@@ -166,17 +167,17 @@ typedef enum {
     
     isChoiceA = self.isAction;
 
-    [dilemmaTitle setFont:[UIFont fontWithName:@"Cochin-Bold" size:24.0]];
+    [dilemmaTitle setFont:[UIFont fontForConscienceHeader]];
     [dilemmaTitle setNumberOfLines:1];
     [dilemmaTitle setAdjustsFontSizeToFitWidth:TRUE];
     [dilemmaTitle setTextColor:[UIColor moraLifeChoiceBlue]];
 
-    [dilemmaTitleText setFont:[UIFont fontWithName:@"Cochin-Bold" size:24.0]];
+    [dilemmaTitleText setFont:[UIFont fontForConscienceHeader]];
     [dilemmaTitleText setNumberOfLines:1];
     [dilemmaTitleText setAdjustsFontSizeToFitWidth:TRUE];
     [dilemmaTitleText setTextColor:[UIColor moraLifeChoiceBlue]];
 
-    [moralSelectedChoiceLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:24.0]];
+    [moralSelectedChoiceLabel setFont:[UIFont fontForConscienceHeader]];
     [moralSelectedChoiceLabel setNumberOfLines:1];
     [moralSelectedChoiceLabel setAdjustsFontSizeToFitWidth:TRUE];
     [moralSelectedChoiceLabel setTextColor:[UIColor moraLifeChoiceBlue]];

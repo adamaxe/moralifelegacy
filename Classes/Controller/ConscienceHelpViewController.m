@@ -10,6 +10,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 #import "ConscienceView.h"
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 @interface ConscienceHelpViewController () <ViewControllerLocalization> {
 	
@@ -64,7 +65,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 		helpTitle = [[UILabel alloc] initWithFrame:CGRectZero];
 		[helpTitle setTextAlignment:UITextAlignmentCenter];
 		[helpTitle setTextColor: [UIColor moraLifeChoiceGreen]];
-        helpTitle.font = [UIFont fontWithName:@"Cochin-Bold" size:24.0f];
+        helpTitle.font = [UIFont fontForConscienceHeader];
 
 		[helpTitle setMinimumFontSize:8.0];
 		[helpTitle setNumberOfLines:1];

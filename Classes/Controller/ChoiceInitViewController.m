@@ -12,6 +12,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "MenuScreenAnimations.h"
 #import "ViewControllerLocalization.h"
 #import "UIViewController+Screenshot.h"
+#import "UIFont+Utility.h"
 
 @interface ChoiceInitViewController () <MenuScreenAnimations, ViewControllerLocalization> {
 	
@@ -55,9 +56,16 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	[super viewDidLoad];
 
     self.navigationItem.hidesBackButton = YES;
-    goodChoiceLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:20];
-    badChoiceLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:20];
-    choiceListLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:20];
+    goodChoiceLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
+    [goodChoiceLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [goodChoiceLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    badChoiceLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
+    [badChoiceLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [badChoiceLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    choiceListLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
+    [choiceListLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [choiceListLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];

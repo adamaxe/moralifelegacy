@@ -1,4 +1,5 @@
 #import "ReportMoralTableViewCell.h"
+#import "UIFont+Utility.h"
 
 @implementation ReportMoralTableViewCell
 
@@ -10,7 +11,7 @@
         [self.textLabel setShadowColor:[UIColor lightGrayColor]];
         [self.textLabel setShadowOffset:CGSizeMake(1, 1)];
 
-        [self.textLabel setFont:[UIFont systemFontOfSize:18.0]];
+        [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];

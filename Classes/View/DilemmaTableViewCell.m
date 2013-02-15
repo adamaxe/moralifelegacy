@@ -1,5 +1,6 @@
 #import "DilemmaTableViewCell.h"
 #import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 @implementation DilemmaTableViewCell
 
@@ -10,7 +11,7 @@
 
         //Setup cell text visuals
         [self.detailTextLabel setTextColor:[UIColor moraLifeBrightGreen]];
-        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:16.0]];
+        [self.textLabel setFont:[UIFont fontForTableViewCellText]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
@@ -52,7 +53,7 @@
             self.selectionStyle = UITableViewCellSelectionStyleNone;
             [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
-            [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:16.0]];
+            [self.textLabel setFont:[UIFont fontForTableViewCellText]];
 
             self.textLabel.alpha = 0.6f;
             self.detailTextLabel.alpha = 0.6f;
@@ -62,7 +63,7 @@
         case DilemmaTableViewCellStateAvailable: {
             self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             self.selectionStyle = UITableViewCellSelectionStyleGray;
-            [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:18.0]];
+            [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
 
             [self.textLabel setTextColor:[UIColor moraLifeChoiceRed]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceBlue]];
@@ -74,7 +75,7 @@
         case DilemmaTableViewCellStateUnavailable: {
             self.accessoryType = UITableViewCellAccessoryNone;
             self.selectionStyle = UITableViewCellSelectionStyleNone;
-            [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:16.0]];
+            [self.textLabel setFont:[UIFont fontForTableViewCellText]];
 
             [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
             [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGray]];

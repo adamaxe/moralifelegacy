@@ -1,5 +1,6 @@
 #import "ChoiceTableViewCell.h"
 #import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 @implementation ChoiceTableViewCell
 
@@ -13,7 +14,7 @@
 
         //Set cell content wrapping
         [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:18.0]];
+        [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.textLabel sizeToFit];

@@ -13,6 +13,7 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
 #import "UIViewController+Screenshot.h"
+#import "UIFont+Utility.h"
 
 int const MLConscienceCenterX = 145;
 int const MLConscienceCenterY = 165;
@@ -61,7 +62,7 @@ int const MLConscienceCenterY = 165;
 
     [statusMessage1 setTextAlignment:UITextAlignmentCenter];
     [statusMessage1 setTextColor: [UIColor moraLifeChoiceGreen]];
-    statusMessage1.font = [UIFont fontWithName:@"Cochin-Bold" size:24.0f];
+    statusMessage1.font = [UIFont fontForConscienceHeader];
 
     [statusMessage1 setMinimumFontSize:8.0];
     [statusMessage1 setNumberOfLines:1];

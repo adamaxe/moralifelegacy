@@ -10,6 +10,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
 #import "UIViewController+Screenshot.h"
+#import "UIFont+Utility.h"
 
 @interface ChoiceDetailViewController () <ViewControllerLocalization> {
     
@@ -67,9 +68,9 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	//Reference serialized User state retention
 	prefs = [NSUserDefaults standardUserDefaults];
 
-    justificationLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
-    consequencesLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
-    influenceLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:18];
+    justificationLabel.font = [UIFont fontForTextLabels];
+    consequencesLabel.font = [UIFont fontForTextLabels];
+    influenceLabel.font = [UIFont fontForTextLabels];
     
 	//Set maximum lengths for User-entry to textfields
 	justificationTextField.delegate = self;

@@ -276,6 +276,7 @@
 		5E480D7916AE119A0046855A /* thoughtbubble-separator@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E480D7816AE11990046855A /* thoughtbubble-separator@2x.png */; };
 		5E4828AB1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
 		5E4828AC1596CD840011CCD5 /* ConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */; };
+		5E4847FB16CDF5ED00B9F66A /* UIFont+Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4847FA16CDF5ED00B9F66A /* UIFont+Utility.m */; };
 		5E498ACA131C941000A13D11 /* acc-bottom-beard-braidblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */; };
 		5E498ACB131C941000A13D11 /* acc-bottom-beard-braidblonde.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */; };
 		5E498ACC131C941000A13D11 /* acc-bottom-beard-braidbrown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */; };
@@ -1998,6 +1999,8 @@
 		5E480D7816AE11990046855A /* thoughtbubble-separator@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-separator@2x.png"; path = "Resources/images/interface/thoughtbubble-separator@2x.png"; sourceTree = "<group>"; };
 		5E4828A91596CD840011CCD5 /* ConscienceAssetDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAssetDAO.h; sourceTree = "<group>"; };
 		5E4828AA1596CD840011CCD5 /* ConscienceAssetDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAssetDAO.m; sourceTree = "<group>"; };
+		5E4847F916CDF5ED00B9F66A /* UIFont+Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIFont+Utility.h"; path = "Common/UIFont+Utility.h"; sourceTree = "<group>"; };
+		5E4847FA16CDF5ED00B9F66A /* UIFont+Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIFont+Utility.m"; path = "Common/UIFont+Utility.m"; sourceTree = "<group>"; };
 		5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblack.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblack.png"; sourceTree = "<group>"; };
 		5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblonde.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblonde.png"; sourceTree = "<group>"; };
 		5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidbrown.png"; path = "Resources/images/accessories/acc-bottom-beard-braidbrown.png"; sourceTree = "<group>"; };
@@ -3658,6 +3661,8 @@
 				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
 				5EAA72EC15E19FA500656390 /* UIColor+Utility.h */,
 				5EAA72ED15E19FA500656390 /* UIColor+Utility.m */,
+				5E4847F916CDF5ED00B9F66A /* UIFont+Utility.h */,
+				5E4847FA16CDF5ED00B9F66A /* UIFont+Utility.m */,
 				5E3F7A0716BF879200002E85 /* UIViewController+Screenshot.h */,
 				5E3F7A0816BF879200002E85 /* UIViewController+Screenshot.m */,
 			);
@@ -7342,6 +7347,7 @@
 				5EAB7A51169E9B4800623A48 /* DilemmaTableViewCell.m in Sources */,
 				5EAB7A7516A29AB300623A48 /* MoralTableViewCell.m in Sources */,
 				5E3F7A0916BF879200002E85 /* UIViewController+Screenshot.m in Sources */,
+				5E4847FB16CDF5ED00B9F66A /* UIFont+Utility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

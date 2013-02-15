@@ -2,6 +2,7 @@
 #import <CoreGraphics/CoreGraphics.h>
 #import "ReferenceTableViewCell.h"
 #import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 CGFloat const ReferenceTableViewCellImageBorderMargin = 1.1;
 int const ReferenceTableViewCellTextMargin = 5;
@@ -23,7 +24,7 @@ int const ReferenceTableViewCellHeightFigure = 88;
     if (self) {
 
         [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:18.0]];
+        [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
 

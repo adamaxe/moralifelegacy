@@ -13,6 +13,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "ViewControllerLocalization.h"
 #import "ConscienceViewController.h"
 #import "UIViewController+Screenshot.h"
+#import "UIFont+Utility.h"
 
 @interface ReferenceViewController () <MenuScreenAnimations, ViewControllerLocalization> {
         
@@ -72,10 +73,15 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     [super viewDidLoad];
 
     self.navigationItem.hidesBackButton = YES;
-    peopleLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:22];
-    moralsLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:22];
-    accessoriesLabelButton.titleLabel.font = [UIFont fontWithName:@"Cochin-Bold" size:22];
-
+    peopleLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
+    [peopleLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [peopleLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    moralsLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
+    [moralsLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [moralsLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
+    accessoriesLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
+    [accessoriesLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [accessoriesLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];

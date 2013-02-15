@@ -1,5 +1,6 @@
 #import "MoralTableViewCell.h"
 #import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 //Externalized constants
 int const MoralTableViewCellRowTextPaddingVertical = 3;
@@ -10,14 +11,12 @@ int const MoralTableViewCellMaximumLineNumber = 5;
 int const MoralTableViewCellRowTextWidth = 200;
 int const MoralTableViewCellRowTextPaddingHorizontal = 10;
 CGFloat const MoralTableViewCellRowImageDimension = 40.0;
-CGFloat const MoralTableViewCellTextLabelFontSize = 18.0;
-CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
 
 @implementation MoralTableViewCell
 
 + (CGFloat)heightForDetailTextLabel:(NSString *)text {
 
-    UIFont *detailTextFont = [UIFont systemFontOfSize:MoralTableViewCellDetailTextLabelFontSize];
+    UIFont *detailTextFont = [UIFont fontForTableViewCellDetailText];
     CGSize constraintSize = CGSizeMake(MoralTableViewCellRowTextWidth, CGFLOAT_MAX);
     CGFloat textHeight = [text sizeWithFont:detailTextFont constrainedToSize:constraintSize].height;
     return MIN(textHeight, (detailTextFont.pointSize * MoralTableViewCellMaximumLineNumber) + MoralTableViewCellRowTextPaddingVertical);
@@ -30,12 +29,12 @@ CGFloat const MoralTableViewCellDetailTextLabelFontSize = 14.0;
 
         [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
 
-        [self.textLabel setFont:[UIFont fontWithName:@"Cochin-Bold" size:MoralTableViewCellTextLabelFontSize]];
+        [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
         [self.textLabel setNumberOfLines:1];
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.textLabel sizeToFit];
 
-        [self.detailTextLabel setFont:[UIFont systemFontOfSize:MoralTableViewCellDetailTextLabelFontSize]];
+        [self.detailTextLabel setFont:[UIFont fontForTableViewCellDetailText]];
         [self.detailTextLabel setNumberOfLines:0];
         [self.detailTextLabel sizeToFit];
 

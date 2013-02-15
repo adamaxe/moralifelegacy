@@ -18,8 +18,9 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ConscienceHelpViewController.h"
 #import "ReportPieViewController.h"
 #import "ReportPieModel.h"
-#import "UIColor+Utility.h"
 #import "UIViewController+Screenshot.h"
+#import "UIColor+Utility.h"
+#import "UIFont+Utility.h"
 
 typedef enum {
     MLRequestedMorathologyAdventure0,
@@ -152,7 +153,7 @@ typedef enum {
 
     [statusMessage1 setTextAlignment:UITextAlignmentCenter];
     [statusMessage1 setTextColor: [UIColor moraLifeChoiceGreen]];
-    statusMessage1.font = [UIFont fontWithName:@"Cochin-Bold" size:24.0f];
+    statusMessage1.font = [UIFont fontForConscienceHeader];
 
     [statusMessage1 setMinimumFontSize:8.0];
     [statusMessage1 setNumberOfLines:1];
