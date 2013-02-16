@@ -16,7 +16,11 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "UIFont+Utility.h"
 
 @interface ReferenceViewController () <MenuScreenAnimations, ViewControllerLocalization> {
-        
+
+    IBOutlet UIView *accessoriesView;    /**< view for Accessories */
+    IBOutlet UIView *peopleView;        /**< view for People */
+    IBOutlet UIView *moralsView;        /**< view for Morals */
+
 	IBOutlet UIButton *peopleLabelButton;		/**< label for People button */
 	IBOutlet UIButton *moralsLabelButton;		/**< label for Morals button */
 	IBOutlet UIButton *booksLabelButton;		/**< label for Books button */
@@ -72,6 +76,10 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    accessoriesView.alpha = 0;
+    peopleView.alpha = 0;
+    moralsView.alpha = 0;
+
     self.navigationItem.hidesBackButton = YES;
     peopleLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
     [peopleLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -99,6 +107,13 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 }
 
 -(void)viewDidAppear:(BOOL)animated {
+
+    [UIView animateWithDuration:0.25 animations:^{
+
+        accessoriesView.alpha = 1.0;
+        peopleView.alpha = 1.0;
+        moralsView.alpha = 1.0;
+    }];
     
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
