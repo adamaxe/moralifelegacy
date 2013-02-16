@@ -234,11 +234,11 @@ Implementation: A single view controller is utilized for both Good and Bad choic
     //Get button image base filename
 	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", buttonNames[[buttonNumber intValue]]];
 
-    //Build 4 frames of animation for selected button
-	UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
-	UIImage *iconani2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@2.png", iconFileName]];
-	UIImage *iconani3 = [UIImage imageNamed:[NSString stringWithFormat:@"%@3.png", iconFileName]];
-	UIImage *iconani4 = [UIImage imageNamed:[NSString stringWithFormat:@"%@4.png", iconFileName]];
+//    //Build 4 frames of animation for selected button
+//	UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
+//	UIImage *iconani2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@2.png", iconFileName]];
+//	UIImage *iconani3 = [UIImage imageNamed:[NSString stringWithFormat:@"%@3.png", iconFileName]];
+//	UIImage *iconani4 = [UIImage imageNamed:[NSString stringWithFormat:@"%@4.png", iconFileName]];
 
     //Setup placeholder for image setup
 	UIImage *iconBlank = [UIImage imageNamed:@""];
@@ -247,9 +247,22 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	UIImageView *animation1 = [[UIImageView alloc] init];
 	animation1.frame = CGRectMake(0,0,75,75);
 	
-	NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
-	animation1.animationImages = images;
+//	NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
 
+    NSMutableArray *imageFrames = [[NSMutableArray alloc] initWithCapacity:60];
+    int imageFileNameIncrement = 1;
+    for (int i = 0; i < 60; i++) {
+
+        UIImage *imageFrame = [UIImage imageNamed:[NSString stringWithFormat:@"%@%d.png", iconFileName, imageFileNameIncrement]];
+        if (imageFrame) {
+            [imageFrames addObject:imageFrame];
+            imageFileNameIncrement += (i < 30) ? 1 : -1;
+        }
+    }
+
+//	animation1.animationImages = images;
+	animation1.animationImages = imageFrames;
+    
     //Determine which button to animate
 	switch ([buttonNumber intValue]){
 		case 0: [goodChoiceButton setBackgroundImage:iconBlank forState:UIControlStateNormal];[goodChoiceButton addSubview:animation1];break;
