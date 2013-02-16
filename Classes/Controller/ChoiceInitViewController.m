@@ -17,7 +17,11 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 @interface ChoiceInitViewController () <MenuScreenAnimations, ViewControllerLocalization> {
 	
 	NSUserDefaults *prefs;                      /**< serialized state retention */
-	
+
+    IBOutlet UIView *goodChoiceView;                /**< Container view for Good Choice */
+    IBOutlet UIView *badChoiceView;                /**< Container view for Good Choice */
+    IBOutlet UIView *choiceListView;                /**< Container view for Good Choice */
+
 	IBOutlet UIButton *goodChoiceLabelButton;		/**< Label for Good Choice entry selection */
 	IBOutlet UIButton *badChoiceLabelButton;		/**< Label for Bad Choice entry selection */
 	IBOutlet UIButton *choiceListLabelButton;		/**< Label for All Choice listing selection */
@@ -55,6 +59,10 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+    goodChoiceView.alpha = 0;
+    badChoiceView.alpha = 0;
+    choiceListView.alpha = 0;
+
     self.navigationItem.hidesBackButton = YES;
     goodChoiceLabelButton.titleLabel.font = [UIFont fontForScreenButtons];
     [goodChoiceLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -86,6 +94,13 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
+
+    [UIView animateWithDuration:0.5 animations:^{
+
+        goodChoiceView.alpha = 1.0;
+        badChoiceView.alpha = 1.0;
+        choiceListView.alpha = 1.0;
+    }];
 
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
@@ -234,11 +249,11 @@ Implementation: A single view controller is utilized for both Good and Bad choic
     //Get button image base filename
 	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", buttonNames[[buttonNumber intValue]]];
 
-//    //Build 4 frames of animation for selected button
-//	UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
-//	UIImage *iconani2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@2.png", iconFileName]];
-//	UIImage *iconani3 = [UIImage imageNamed:[NSString stringWithFormat:@"%@3.png", iconFileName]];
-//	UIImage *iconani4 = [UIImage imageNamed:[NSString stringWithFormat:@"%@4.png", iconFileName]];
+    //Build 4 frames of animation for selected button
+	UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
+	UIImage *iconani2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@2.png", iconFileName]];
+	UIImage *iconani3 = [UIImage imageNamed:[NSString stringWithFormat:@"%@3.png", iconFileName]];
+	UIImage *iconani4 = [UIImage imageNamed:[NSString stringWithFormat:@"%@4.png", iconFileName]];
 
     //Setup placeholder for image setup
 	UIImage *iconBlank = [UIImage imageNamed:@""];
@@ -247,21 +262,9 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	UIImageView *animation1 = [[UIImageView alloc] init];
 	animation1.frame = CGRectMake(0,0,75,75);
 	
-//	NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
+	NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
 
-    NSMutableArray *imageFrames = [[NSMutableArray alloc] initWithCapacity:60];
-    int imageFileNameIncrement = 1;
-    for (int i = 0; i < 60; i++) {
-
-        UIImage *imageFrame = [UIImage imageNamed:[NSString stringWithFormat:@"%@%d.png", iconFileName, imageFileNameIncrement]];
-        if (imageFrame) {
-            [imageFrames addObject:imageFrame];
-            imageFileNameIncrement += (i < 30) ? 1 : -1;
-        }
-    }
-
-//	animation1.animationImages = images;
-	animation1.animationImages = imageFrames;
+	animation1.animationImages = images;
     
     //Determine which button to animate
 	switch ([buttonNumber intValue]){
