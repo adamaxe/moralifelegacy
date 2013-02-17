@@ -95,7 +95,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
     [super viewDidAppear:animated];
 
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.35 animations:^{
 
         goodChoiceView.alpha = 1.0;
         badChoiceView.alpha = 1.0;

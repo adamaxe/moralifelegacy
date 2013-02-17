@@ -62,6 +62,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 }
 
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
+@property (nonatomic) int previousSeverity;
 
 /**
  Shift UI elements to move UITextView to top of screen to accomodate keyboard
@@ -112,6 +113,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
 
         self.navigationItem.rightBarButtonItem = barButtonItem;
+        self.previousSeverity = 0;
 
         severityLabelDescriptions = [[NSMutableArray alloc] init];
 
@@ -348,12 +350,26 @@ Implementation: Set Choice Severity and reflect change in UI
         
 		UISlider *slider = (UISlider *) sender;
 		int severityAsInt = (int)(slider.value);
-        
-		[severityLabel setText:(NSString *)severityLabelDescriptions[severityAsInt-1]];
-		severityLabel.accessibilityLabel = severityLabel.text;
-        
+        if ((severityAsInt != self.previousSeverity) && severityAsInt <= 5 && severityAsInt >= 1) {
+
+            [UIView animateWithDuration:0.25 animations:^{
+                severityLabel.alpha = 0.0;
+            }completion:^(BOOL finished){
+                [severityLabel setText:(NSString *)severityLabelDescriptions[severityAsInt-1]];
+                severityLabel.accessibilityLabel = severityLabel.text;
+
+                [UIView animateWithDuration:0.25 animations:^{
+                    severityLabel.alpha = 1.0;
+                }];
+
+            }];
+
+            self.previousSeverity = severityAsInt;
+
+        }
+
 	}
-	
+
 }
 
 /**
@@ -362,14 +378,19 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 -(IBAction)showChoiceModal:(id)sender {
 		
 	ChoiceModalViewController *virtueViceViewController = [[ChoiceModalViewController alloc] init];
-
-	[moralReferenceButton setAlpha:0];
-	[moralImageView setAlpha:0];
     	
 	[prefs setBool:isVirtue forKey:@"entryIsGood"];
-    virtueViceViewController.screenshot = [self takeScreenshot];
-	[self presentModalViewController:virtueViceViewController animated:NO];
-		
+
+    [UIView animateWithDuration:0.25 animations:^{
+
+        moralReferenceButton.alpha = 0;
+        moralImageView.alpha = 0;
+        
+    } completion:^(BOOL finished) {
+        virtueViceViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:virtueViceViewController animated:NO];
+    }];
+
 }
 
 /**
@@ -381,12 +402,17 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel];
     historyViewController.screenshot = [self takeScreenshot];
 
-	[moralReferenceButton setAlpha:0];
-	[moralImageView setAlpha:0];
-
 	[prefs setBool:isVirtue forKey:@"entryIsGood"];
 
-	[self presentModalViewController:historyViewController animated:NO];
+    [UIView animateWithDuration:0.25 animations:^{
+
+        moralReferenceButton.alpha = 0;
+        moralImageView.alpha = 0;
+
+    } completion:^(BOOL finished) {
+        historyViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:historyViewController animated:NO];
+    }];
 	
 }
 
@@ -395,7 +421,6 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
  */
 -(IBAction)selectMoralReference:(id) sender{
 
-    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
 	//If User has selected a Moral, display the extended description.  Otherwise, ask them to fill in Moral.
 	if (moralKey != nil) {
@@ -412,15 +437,20 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         //Set help title and verbiage
         self.conscienceHelpViewController.helpTitles = titles;
         self.conscienceHelpViewController.helpTexts = texts;
-
-        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
-        
 	} else {
-
         self.conscienceHelpViewController.numberOfScreens = 4;
-        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
-
 	}
+
+    [UIView animateWithDuration:0.25 animations:^{
+
+        moralReferenceButton.alpha = 0;
+        moralImageView.alpha = 0;
+
+    } completion:^(BOOL finished) {
+        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+    }];
+
 
 }
 
@@ -434,13 +464,21 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
     
 	//If user hasn't typed anything in, prompt them
 	NSString *choiceFirst = choiceTextField.text;
-    
-    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
 	if ([choiceFirst isEqualToString:@""]) {
 
         self.conscienceHelpViewController.numberOfScreens = 2;
-		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
+
+
+        [UIView animateWithDuration:0.25 animations:^{
+
+            moralReferenceButton.alpha = 0;
+            moralImageView.alpha = 0;
+
+        } completion:^(BOOL finished) {
+            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+        }];
 
 	} else {
 		isReadyToCommit = TRUE;
@@ -454,7 +492,17 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
         if (choiceMoral == nil){
 
             self.conscienceHelpViewController.numberOfScreens = 3;
-            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+
+            [UIView animateWithDuration:0.25 animations:^{
+
+                moralReferenceButton.alpha = 0;
+                moralImageView.alpha = 0;
+
+            } completion:^(BOOL finished) {
+                self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+                [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+            }];
+
             
             isReadyToCommit = FALSE;
         }

@@ -108,7 +108,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 -(void)viewDidAppear:(BOOL)animated {
 
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.35 animations:^{
 
         accessoriesView.alpha = 1.0;
         peopleView.alpha = 1.0;

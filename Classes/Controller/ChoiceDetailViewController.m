@@ -37,6 +37,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 }
 
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
+@property (nonatomic) int previousInfluence;
 
 /**
  Limit a text field for each key press
@@ -89,6 +90,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 	//Setting to determine if details are being cancelled
 	isChoiceCancelled = FALSE;
+    self.previousInfluence = 0;
 
     self.navigationItem.hidesBackButton = YES;
 
@@ -203,13 +205,26 @@ Implementation: change the influence value and update the influence Label
 	//Ensure that sender is the right input
 	if ([sender isKindOfClass:[UISlider class]]) {
 
-		//Set influence
 		UISlider *slider = (UISlider *) sender;
-		int influenceAsInt =(int)(slider.value);
+		int influenceAsInt = (int)(slider.value);
+        if ((influenceAsInt != self.previousInfluence) && influenceAsInt <= 5 && influenceAsInt >= 1) {
 
-		//Change slider description to current localized value.	
-		[influenceLabel setText:(NSString *)influenceLabelDescriptions[influenceAsInt-1]];
-//        [influenceSlider setValue:influenceAsInt];
+            [UIView animateWithDuration:0.25 animations:^{
+                influenceLabel.alpha = 0.0;
+            }completion:^(BOOL finished){
+                [influenceLabel setText:(NSString *)influenceLabelDescriptions[influenceAsInt-1]];
+                influenceLabel.accessibilityLabel = influenceLabel.text;
+
+                [UIView animateWithDuration:0.25 animations:^{
+                    influenceLabel.alpha = 1.0;
+                }];
+
+            }];
+            
+            self.previousInfluence = influenceAsInt;
+            
+        }
+
 	}
 	
 }
@@ -248,7 +263,7 @@ Implementation: pop UIViewController from current navigationController
             
             [prefs setObject:consequencesTextField.text forKey:@"choiceConsequence"];    		
         }
-        
+
         [prefs setFloat:influenceSlider.value forKey:@"choiceInfluence"];
         
         [prefs synchronize];
