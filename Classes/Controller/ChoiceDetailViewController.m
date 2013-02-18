@@ -37,7 +37,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 }
 
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
-@property (nonatomic) int previousInfluence;
 
 /**
  Limit a text field for each key press
@@ -90,7 +89,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 	//Setting to determine if details are being cancelled
 	isChoiceCancelled = FALSE;
-    self.previousInfluence = 0;
 
     self.navigationItem.hidesBackButton = YES;
 
@@ -197,6 +195,20 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     }
 }
 
+- (void)changeInfluenceLabel:(int)influenceAsInt {
+    [UIView animateWithDuration:0.25 animations:^{
+        influenceLabel.alpha = 0.0;
+    }completion:^(BOOL finished){
+        [influenceLabel setText:(NSString *)influenceLabelDescriptions[influenceAsInt-1]];
+        influenceLabel.accessibilityLabel = influenceLabel.text;
+
+        [UIView animateWithDuration:0.25 animations:^{
+            influenceLabel.alpha = 1.0;
+        }];
+
+    }];
+}
+
 /**
 Implementation: change the influence value and update the influence Label
  */
@@ -207,24 +219,13 @@ Implementation: change the influence value and update the influence Label
 
 		UISlider *slider = (UISlider *) sender;
 		int influenceAsInt = (int)(slider.value);
-        if ((influenceAsInt != self.previousInfluence) && influenceAsInt <= 5 && influenceAsInt >= 1) {
 
-            [UIView animateWithDuration:0.25 animations:^{
-                influenceLabel.alpha = 0.0;
-            }completion:^(BOOL finished){
-                [influenceLabel setText:(NSString *)influenceLabelDescriptions[influenceAsInt-1]];
-                influenceLabel.accessibilityLabel = influenceLabel.text;
+        BOOL isInfluenceLabelIncorrect = ![influenceLabel.text isEqualToString:influenceLabelDescriptions[influenceAsInt - 1]];
 
-                [UIView animateWithDuration:0.25 animations:^{
-                    influenceLabel.alpha = 1.0;
-                }];
+        if (isInfluenceLabelIncorrect && (influenceAsInt <= 5 && influenceAsInt >= 1)){
 
-            }];
-            
-            self.previousInfluence = influenceAsInt;
-            
+            [self changeInfluenceLabel:influenceAsInt];
         }
-
 	}
 	
 }

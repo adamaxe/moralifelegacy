@@ -62,7 +62,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 }
 
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
-@property (nonatomic) int previousSeverity;
 
 /**
  Shift UI elements to move UITextView to top of screen to accomodate keyboard
@@ -113,7 +112,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
 
         self.navigationItem.rightBarButtonItem = barButtonItem;
-        self.previousSeverity = 0;
 
         severityLabelDescriptions = [[NSMutableArray alloc] init];
 
@@ -340,6 +338,20 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
     [self.navigationController pushViewController:choiceDetailViewCont animated:YES];
 }
 
+- (void)changeSeverityLabel:(int)severityAsInt {
+    [UIView animateWithDuration:0.25 animations:^{
+        severityLabel.alpha = 0.0;
+    }completion:^(BOOL finished){
+        [severityLabel setText:(NSString *)severityLabelDescriptions[severityAsInt-1]];
+        severityLabel.accessibilityLabel = severityLabel.text;
+
+        [UIView animateWithDuration:0.25 animations:^{
+            severityLabel.alpha = 1.0;
+        }];
+
+    }];
+}
+
 /**
 Implementation: Set Choice Severity and reflect change in UI
  */
@@ -350,22 +362,12 @@ Implementation: Set Choice Severity and reflect change in UI
         
 		UISlider *slider = (UISlider *) sender;
 		int severityAsInt = (int)(slider.value);
-        if ((severityAsInt != self.previousSeverity) && severityAsInt <= 5 && severityAsInt >= 1) {
 
-            [UIView animateWithDuration:0.25 animations:^{
-                severityLabel.alpha = 0.0;
-            }completion:^(BOOL finished){
-                [severityLabel setText:(NSString *)severityLabelDescriptions[severityAsInt-1]];
-                severityLabel.accessibilityLabel = severityLabel.text;
+        BOOL isSeverityLabelIncorrect = ![severityLabel.text isEqualToString:severityLabelDescriptions[severityAsInt - 1]];
 
-                [UIView animateWithDuration:0.25 animations:^{
-                    severityLabel.alpha = 1.0;
-                }];
-
-            }];
-
-            self.previousSeverity = severityAsInt;
-
+        if (isSeverityLabelIncorrect && (severityAsInt <= 5 && severityAsInt >= 1)){
+        
+            [self changeSeverityLabel:severityAsInt];
         }
 
 	}
