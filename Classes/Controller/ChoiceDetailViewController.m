@@ -193,14 +193,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
             influenceImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
-            CGRect screenshotFrame = screenshotView.frame;
-            screenshotFrame.origin.y -= 20;
-
-            screenshotView.frame = screenshotFrame;
-
-            [self.conscienceHelpViewController.view addSubview:screenshotView];
-            [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
+            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
             [self presentModalViewController:self.conscienceHelpViewController animated:NO];
         }];
         
@@ -310,14 +303,7 @@ Implementation: pop UIViewController from current navigationController
         influenceImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
-        CGRect screenshotFrame = screenshotView.frame;
-        screenshotFrame.origin.y -= 20;
-
-        screenshotView.frame = screenshotFrame;
-
-        [self.conscienceHelpViewController.view addSubview:screenshotView];
-        [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
+        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
         [self presentModalViewController:self.conscienceHelpViewController animated:NO];
     }];
 
