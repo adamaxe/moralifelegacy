@@ -129,8 +129,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    
-	/** @bug fix slider bar in iOS3*/
 
     //choiceTextField is a custom StructuredTextField with max length.
     choiceTextField.delegate = self;
@@ -184,12 +182,14 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
+    [self localizeUI];
+
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	
 	[super viewWillAppear:animated];
-    [self localizeUI];
     
 	//Restore state of prior view if applicable	
 	NSString *restoreShortDescription = [prefs objectForKey:@"entryShortDescription"];
