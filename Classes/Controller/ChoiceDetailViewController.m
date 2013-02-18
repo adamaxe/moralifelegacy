@@ -203,7 +203,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 }
 
 - (void)changeInfluenceLabel:(int)influenceAsInt {
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.35 animations:^{
         influenceLabel.alpha = 0.0;
     }completion:^(BOOL finished){
         [influenceLabel setText:(NSString *)influenceLabelDescriptions[influenceAsInt-1]];

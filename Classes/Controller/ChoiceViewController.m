@@ -339,7 +339,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 }
 
 - (void)changeSeverityLabel:(int)severityAsInt {
-    [UIView animateWithDuration:0.25 animations:^{
+    [UIView animateWithDuration:0.35 animations:^{
         severityLabel.alpha = 0.0;
     }completion:^(BOOL finished){
         [severityLabel setText:(NSString *)severityLabelDescriptions[severityAsInt-1]];
