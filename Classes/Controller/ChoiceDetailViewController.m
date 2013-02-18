@@ -184,11 +184,25 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 
     if (firstChoiceEntryCheck == nil) {
-        
-        self.conscienceHelpViewController.numberOfScreens = 1;
-        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
-		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
+        self.conscienceHelpViewController.numberOfScreens = 1;
+
+        [UIView animateWithDuration:0.25 animations:^{
+
+            influenceButton.alpha = 0;
+            influenceImageView.alpha = 0;
+
+        } completion:^(BOOL finished) {
+            UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+            CGRect screenshotFrame = screenshotView.frame;
+            screenshotFrame.origin.y -= 20;
+
+            screenshotView.frame = screenshotFrame;
+
+            [self.conscienceHelpViewController.view addSubview:screenshotView];
+            [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
+            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+        }];
         
         [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
         
@@ -287,11 +301,26 @@ Implementation: pop UIViewController from current navigationController
  Implementation: Present ConscienceHelpViewController that shows User purpose of the Influence button.
  */
 -(IBAction)selectInfluence:(id) sender{
-    
-    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
     self.conscienceHelpViewController.numberOfScreens = 2;
-    [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+
+    [UIView animateWithDuration:0.25 animations:^{
+
+        influenceButton.alpha = 0;
+        influenceImageView.alpha = 0;
+
+    } completion:^(BOOL finished) {
+        UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+        CGRect screenshotFrame = screenshotView.frame;
+        screenshotFrame.origin.y -= 20;
+
+        screenshotView.frame = screenshotFrame;
+
+        [self.conscienceHelpViewController.view addSubview:screenshotView];
+        [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
+        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+    }];
+
 }
 
 #pragma mark -

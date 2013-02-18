@@ -214,16 +214,9 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	}else {
 		[choiceKey setString:@""];
 	}
-    
-	if (restoreSeverity > 0) {
-		severitySlider.value = restoreSeverity;
-        
-	}
-	
-	if (restoreSeverity < 0) {
-		severitySlider.value = restoreSeverity * -1;
-	}
-    
+
+    severitySlider.value = (restoreSeverity > 0) ? restoreSeverity : restoreSeverity * -1;
+            
 	[self severityChange:severitySlider];
 	
 	[prefs removeObjectForKey:@"entrySeverity"];
@@ -268,7 +261,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
     }];
 
-    [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+    [self showInitialHelpScreen];
     
     
 }
@@ -318,10 +311,24 @@ Implementation: Show an initial help screen if this is the User's first use of t
     NSObject *firstChoiceEntryCheck = [prefs objectForKey:@"firstChoiceEntry"];
 
     if (firstChoiceEntryCheck == nil) {
-        
+
         self.conscienceHelpViewController.numberOfScreens = 1;
-        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
+        [UIView animateWithDuration:0.25 animations:^{
+
+            moralReferenceButton.alpha = 0;
+            moralImageView.alpha = 0;
+
+        } completion:^(BOOL finished) {
+            UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+            CGRect screenshotFrame = screenshotView.frame;
+            screenshotFrame.origin.y -= 20;
+
+            screenshotView.frame = screenshotFrame;
+
+            [self.conscienceHelpViewController.view addSubview:screenshotView];
+            [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
+            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+        }];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
         
@@ -389,7 +396,14 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
         moralImageView.alpha = 0;
         
     } completion:^(BOOL finished) {
-        virtueViceViewController.screenshot = [self takeScreenshot];
+        UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+        CGRect screenshotFrame = screenshotView.frame;
+        screenshotFrame.origin.y -= 20;
+
+        screenshotView.frame = screenshotFrame;
+        
+        [virtueViceViewController.view addSubview:screenshotView];
+        [virtueViceViewController.view sendSubviewToBack:screenshotView];
         [self presentModalViewController:virtueViceViewController animated:NO];
     }];
 
@@ -402,7 +416,6 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
     
     ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
 	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel];
-    historyViewController.screenshot = [self takeScreenshot];
 
 	[prefs setBool:isVirtue forKey:@"entryIsGood"];
 
@@ -412,8 +425,16 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
         moralImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        historyViewController.screenshot = [self takeScreenshot];
+        UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+        CGRect screenshotFrame = screenshotView.frame;
+        screenshotFrame.origin.y -= 20;
+
+        screenshotView.frame = screenshotFrame;
+
+        [historyViewController.view addSubview:screenshotView];
+        [historyViewController.view sendSubviewToBack:screenshotView];
         [self presentModalViewController:historyViewController animated:NO];
+
     }];
 	
 }
@@ -449,8 +470,16 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         moralImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+        UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+        CGRect screenshotFrame = screenshotView.frame;
+        screenshotFrame.origin.y -= 20;
+
+        screenshotView.frame = screenshotFrame;
+
+        [self.conscienceHelpViewController.view addSubview:screenshotView];
+        [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
         [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+
     }];
 
 
@@ -478,8 +507,16 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
             moralImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+            UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+            CGRect screenshotFrame = screenshotView.frame;
+            screenshotFrame.origin.y -= 20;
+
+            screenshotView.frame = screenshotFrame;
+
+            [self.conscienceHelpViewController.view addSubview:screenshotView];
+            [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
             [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+
         }];
 
 	} else {
@@ -501,8 +538,16 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
                 moralImageView.alpha = 0;
 
             } completion:^(BOOL finished) {
-                self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+                UIImageView *screenshotView = [[UIImageView alloc] initWithImage:[self takeScreenshot]];
+                CGRect screenshotFrame = screenshotView.frame;
+                screenshotFrame.origin.y -= 20;
+
+                screenshotView.frame = screenshotFrame;
+
+                [self.conscienceHelpViewController.view addSubview:screenshotView];
+                [self.conscienceHelpViewController.view sendSubviewToBack:screenshotView];
                 [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+
             }];
 
             
