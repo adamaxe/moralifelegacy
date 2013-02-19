@@ -13,6 +13,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ConscienceModalViewController.h"
 #import "ConscienceAccessoryViewController.h"
 #import "ConscienceListViewController.h"
+#import "DilemmaModel.h"
 #import "DilemmaListViewController.h"
 #import "ConscienceAsset.h"
 #import "ConscienceHelpViewController.h"
@@ -21,14 +22,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "UIViewController+Screenshot.h"
 #import "UIColor+Utility.h"
 #import "UIFont+Utility.h"
-
-typedef enum {
-    MLRequestedMorathologyAdventure0,
-    MLRequestedMorathologyAdventure1,
-    MLRequestedMorathologyAdventure2,
-    MLRequestedMorathologyAdventure3,
-    MLRequestedMorathologyAdventure4
-} MLRequestedMorathologyAdventure;
 
 @interface ConscienceModalViewController () {
     
@@ -535,7 +528,8 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			
         } else {
 
-            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] init];
+            DilemmaModel *dilemmaModel = [[DilemmaModel alloc] initWithCampaign:requestedCampaign];
+            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaModel];
             dilemmaListViewController.screenshot = [self takeScreenshot];
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];

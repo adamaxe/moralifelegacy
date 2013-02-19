@@ -10,10 +10,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #import "ModelManager.h"
 #import "ConscienceView.h"
 #import "DilemmaViewController.h"
-#import "DilemmaDAO.h"
-#import "UserDilemmaDAO.h"
-#import "Moral.h"
-#import "UserCollectableDAO.h"
+#import "DilemmaModel.h"
 #import "ConscienceHelpViewController.h"
 #import "DilemmaTableViewCell.h"
 #import "UIViewController+Screenshot.h"
@@ -40,8 +37,8 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	NSMutableArray *choiceDetails;          /**< tableRowCell detailText */
     NSMutableArray *choiceTypes;            /**< tableRowCell detailText */
     
-	NSMutableDictionary *userChoices;		/**< dictionary to hold Dilemmas already completed by User */
-	NSMutableDictionary *moralNames;		/**< dictionary to hold names of selected Morals */
+	NSDictionary *userChoices;              /**< dictionary to hold Dilemmas already completed by User */
+	NSDictionary *moralNames;		/**< dictionary to hold names of selected Morals */
     
     IBOutlet UIButton *previousButton;
 	IBOutlet UISearchBar *dilemmaSearchBar;	/**< ui element for limiting choices in table */
@@ -52,22 +49,13 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 }
 
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
+@property (nonatomic, strong) DilemmaModel *dilemmaModel;   /**< Model to handle data/business logic */
 
-/**
- Load User data to determine which Dilemmas have already been completed
- */
-- (void) loadUserData;
 
 /**
  Load Dilemma data from Core Data for table
  */
 - (void) retrieveAllDilemmas;
-
-/**
- VERSION 2.0
- Allow limited ability to rechoose dilemma
- */
-- (void) deleteChoice:(NSString *) choiceKey;
 
 /**
  Remove entries from tableview that don't correspond to being searched
@@ -82,12 +70,22 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
+
+- (id)initWithModel:(DilemmaModel *)dilemmaModel {
+    self = [super init];
+
     if (self) {
-        // Custom initialization
+        _dilemmaModel = dilemmaModel;
     }
+
     return self;
 }
 
@@ -108,8 +106,8 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	choiceDetails = [[NSMutableArray alloc] init];
 	choiceTypes = [[NSMutableArray alloc] init];
 	choiceDisplayNames = [[NSMutableArray alloc] init];
-	userChoices = [[NSMutableDictionary alloc] init];
-	moralNames = [[NSMutableDictionary alloc] init];
+	userChoices = [[NSDictionary alloc] init];
+	moralNames = [[NSDictionary alloc] init];
 
     
 	//Setup search bar information
@@ -439,179 +437,31 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 - (void) retrieveAllDilemmas{
     
 	//Setup permanent holders, table does not key on these, it keys on tabledata which is affected by searchbar
-	//tabledatas are reloaded from these master arrays
-	[choiceNames removeAllObjects];			
-	[choiceImages removeAllObjects];	
-	[choiceDetails removeAllObjects];	
-	[choiceDisplayNames removeAllObjects];	
-	[choiceTypes removeAllObjects];	
-	[userChoices removeAllObjects];	
-    
+	//tabledatas are reloaded from these master arrays    
 	[dataSource removeAllObjects];	
 	[searchedData removeAllObjects];	
 	[tableData removeAllObjects];	
-	[tableDataImages removeAllObjects];	
+	[tableDataImages removeAllObjects];
 	[tableDataDetails removeAllObjects];	
 	[tableDataKeys removeAllObjects];
 	[tableDataTypes removeAllObjects];
 
-	BOOL isDilemma = TRUE;
-	NSObject *boolCheck = [prefs objectForKey:@"dilemmaCampaign"];
-//	NSInteger dilemmaCampaign;
-    
-	if (boolCheck != nil) {
-		dilemmaCampaign = [prefs integerForKey:@"dilemmaCampaign"];
-	}else {
-		dilemmaCampaign = 0;
-	}
-    
-	//Retrieve all available Dilemmas, sort by name, limit to currently requested Campaign
-    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] init];
+    for (int i = 0; i < self.dilemmaModel.dilemmaKeys.count; i++) {
 
-	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
+        [dataSource addObject:(self.dilemmaModel.dilemmas)[i]];
+        [tableData addObject:(self.dilemmaModel.dilemmas)[i]];
+        [tableDataImages addObject:(self.dilemmaModel.dilemmaImages)[i]];
+        [tableDataKeys addObject:(self.dilemmaModel.dilemmaKeys)[i]];
+        [tableDataDetails addObject:(self.dilemmaModel.dilemmaDetails)[i]];
+        [tableDataTypes addObject:(self.dilemmaModel.dilemmaTypes)[i]];
+    }
 
-	if (dilemmaCampaign > 0) {
-		[currentDilemmaDAO setPredicates:@[pred]];
-	}
-    
-	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameDilemma" ascending:YES];
-	NSArray* sortDescriptors = @[sortDescriptor];
-	[currentDilemmaDAO setSorts:sortDescriptors];
+    moralNames = self.dilemmaModel.moralNames;
+    userChoices = self.dilemmaModel.userChoices;
 	
-	NSArray *objects = [currentDilemmaDAO readAll];
-    
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-	} else {
-		
-        //Add dilemmas to list, concatenate two morals together for detail text
-		for (Dilemma *match in objects){
-            
-			[choiceNames addObject:[match nameDilemma]];
-			[choiceImages addObject:[match surrounding]];
-			[choiceDisplayNames addObject:[match displayNameDilemma]];
-            
-            NSString *dilemmaDescription;
-            
-            if ([[[match moralChoiceA] nameMoral] isEqualToString:[[match moralChoiceB] nameMoral]]) {
-                dilemmaDescription = [[NSString alloc] initWithString:[[match moralChoiceA] displayNameMoral]];
-                isDilemma = FALSE;
-            } else {
-                dilemmaDescription = [[NSString alloc] initWithFormat:@"%@ vs. %@", [[match moralChoiceA] displayNameMoral], [[match moralChoiceB] displayNameMoral]];
-                isDilemma = TRUE;
-            }
-
-            [moralNames setValue:[[match moralChoiceA] displayNameMoral] forKey:[[match moralChoiceA] nameMoral]];
-            [moralNames setValue:[[match moralChoiceB] displayNameMoral] forKey:[[match moralChoiceB] nameMoral]];
-            [choiceTypes addObject:@(isDilemma)];
-			[choiceDetails addObject:dilemmaDescription];			
-			
-		}
-	}
-	
-    
-	[self loadUserData];
-	//End CoreData Retrieval
-    
-	[dataSource addObjectsFromArray:choiceDisplayNames];
-	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:choiceImages];
-	[tableDataKeys addObjectsFromArray:choiceNames];
-	[tableDataDetails addObjectsFromArray:choiceDetails];
-	[tableDataTypes addObjectsFromArray:choiceTypes];
-
 	[dilemmaListTableView reloadData];
     
 }
-
-/**
-Implementation: Load User data to determine which Dilemmas have already been completed
- */
-- (void) loadUserData {
-	[userChoices removeAllObjects];
-    
-    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] init];
-    
-    NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey contains[cd] %@", dilemmaPredicate];
-    
-    currentUserDilemmaDAO.predicates = @[pred];
-    
-	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
-	NSArray* sortDescriptors = @[sortDescriptor];
-
-    currentUserDilemmaDAO.sorts = sortDescriptors;
-    
-    NSArray *objects = [currentUserDilemmaDAO readAll];
-    
-	if ([objects count] == 0) {
-		
-        //User has not completed a single choice
-        //populate array to prevent npe
-        [userChoices setValue:@"" forKey:@"noUserEntries"];
-        
-	} else {
-        
-		//Populate dictionary with dilemmaName (key) and moral that was chosen
-		for(UserDilemma * match in objects) {
-			[userChoices setValue:match.entryLongDescription forKey:match.entryShortDescription];
-            
-		}
-        
-	}
-	
-    
-}
-
-/**
-Implementation: Determine what effects to rollback from an already completed dilemma.  Delete dilemma
- */
-- (void) deleteChoice:(NSString *) choiceKey {
-	
-	//Begin CoreData Retrieval			
-    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] initWithKey:@""];
-    
-	if (choiceKey != nil) {
-		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryShortDescription == %@", choiceKey];
-        currentUserDilemmaDAO.predicates = @[pred];
-    }
-	
-	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryCreationDate" ascending:YES];
-	NSArray* sortDescriptors = @[sortDescriptor];
-    currentUserDilemmaDAO.sorts = sortDescriptors;    
-    UserDilemma *match = [currentUserDilemmaDAO read:@""];
-    
-    NSString *moralKey = [match entryLongDescription];
-    
-    //See if moral has been rewarded before
-    //Cannot assume that first instance of UserDilemma implies no previous reward
-    if ([appDelegate.userCollection containsObject:moralKey]) {
-        
-        
-        UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:moralKey];
-
-        UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
-        
-        //Increase the moral's value
-        float moralDecrease = [[currentUserCollectable collectableValue] floatValue];
-        
-        if (moralDecrease <= 1.0) {
-            [context deleteObject:currentUserCollectable];
-            
-        } else {
-            moralDecrease -= 1.0;
-            [currentUserCollectable setValue:@(moralDecrease) forKey:@"collectableValue"];
-        }
-        
-        
-    }
-    
-    [currentUserDilemmaDAO delete:match];		
-	
-	
-}
-
 
 /**
 Implementation: Tableview must be refreshed on appear, as returning from detail view must return user to filtered list

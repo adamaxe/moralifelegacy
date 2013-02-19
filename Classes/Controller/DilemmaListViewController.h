@@ -11,9 +11,18 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 @file
  */
 
+@class DilemmaModel;
+
 @interface DilemmaListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
+/**
+ Dependency injection constructor to pass model
+ @param referenceModel ReferenceModel handling business logic
+ @return id instance of ReferenceModel
+ */
+- (id)initWithModel:(DilemmaModel *) dilemmaModel;
 
 /**
 Remove DilemmaList screen and reset requested Dilemma Campaign
