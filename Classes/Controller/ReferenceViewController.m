@@ -91,7 +91,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     [accessoriesLabelButton setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [accessoriesLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
     [self localizeUI];
@@ -117,12 +117,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
-    
-}
-
-- (void)popToHome {
-
-    [self.navigationController popToRootViewControllerAnimated:TRUE];
     
 }
 

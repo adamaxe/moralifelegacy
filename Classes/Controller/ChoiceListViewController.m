@@ -109,7 +109,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
     [self localizeUI];
@@ -154,12 +154,6 @@ Refetches of table data are necessary when sorting and ordering are requested.
 		[prefs setObject:choiceSearchBar.text forKey:@"searchTextChoice"];
 		
 	}
-}
-
-- (void)popToHome {
-
-    [self.navigationController popToRootViewControllerAnimated:TRUE];
-
 }
 
 #pragma mark -

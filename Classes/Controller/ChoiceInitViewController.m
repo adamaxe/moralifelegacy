@@ -75,7 +75,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     [choiceListLabelButton.titleLabel setShadowOffset:CGSizeMake(0, 1)];
 
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
     [self localizeUI];
@@ -104,12 +104,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
-}
-
-- (void)popToHome {
-
-    [self.navigationController popToRootViewControllerAnimated:YES];
-    
 }
 
 #pragma mark -
@@ -163,7 +157,6 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	
 	//User can back out of Choice Entry screen and state will be saved
 	//unless a new choice is requested
-	/** @todo refactor into new function */
 	
 	//Remove all state information
 	[prefs removeObjectForKey:@"entryShortDescription"];
@@ -315,13 +308,10 @@ Implementation: A single view controller is utilized for both Good and Bad choic
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
-    // Release any cached data, images, etc that aren't in use.
 }
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 

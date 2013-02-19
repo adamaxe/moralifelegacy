@@ -156,8 +156,4 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 
 }
 
-#pragma mark -
-#pragma mark Memory management
-
-
 @end

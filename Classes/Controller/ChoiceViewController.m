@@ -177,7 +177,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
     [self localizeUI];
@@ -290,12 +290,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 		[prefs setFloat:severitySlider.value forKey:@"entrySeverity"];
 		[prefs setBool:isVirtue forKey:@"entryIsGood"];
 	}
-
-}
-
-- (void)popToHome {
-
-    [self.navigationController popToRootViewControllerAnimated:TRUE];
 
 }
 

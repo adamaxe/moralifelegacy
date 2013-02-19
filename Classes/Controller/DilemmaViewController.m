@@ -275,8 +275,12 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
 
             	[self commitDilemma];
             }
-            
-            [self changeScreen:choiceIndex];
+
+            if (self.isAction) {
+                [self changeActionScreen:choiceIndex];
+            } else {
+                [self changeScreen:choiceIndex];
+            }
 
         } else {
 
@@ -312,7 +316,7 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
 Implementation: Hide or show a screen depending upon which page the User currently resides.
 Show reward views once User has completed dilemma and refuse access to previous screen versions.
  */
--(void)changeScreen:(int) screenVersion {
+-(void)changeActionScreen:(int) screenVersion {
     
 	UIView *viewSelection;
 	int buttonFactor = 0;
@@ -325,167 +329,185 @@ Show reward views once User has completed dilemma and refuse access to previous 
 	screen3View.alpha = 0;
 	screen4View.hidden = TRUE;
 	screen4View.alpha = 0;
-	screen5View.hidden = TRUE;
-	screen5View.alpha = 0;
-	screen6View.hidden = TRUE;
-	screen6View.alpha = 0;	
 	nextButton.hidden = FALSE;			
 	previousButton.hidden = FALSE;
 
-    if (self.isAction) {
-        /** @bug determine why screen2 doesn't fade */
-        //Depending upon which screen is requested
-        //Setup variables to hide views, change Next/Previous button and move Conscience
-        switch (screenVersion){
-            case 0:	[self.navigationController popViewControllerAnimated:NO];
-                break;
-            case 1:viewSelection = screen1View;buttonFactor = 0;break;
-            case 2:viewSelection = screen2View;buttonFactor = 1;break;
-            case 3:viewSelection = screen3View;buttonFactor = 2;break;
-            case 4:viewSelection = screen4View;buttonFactor = 3;[previousButton setHidden:TRUE];break;
-            case 5:[self.navigationController popViewControllerAnimated:NO];break;
-            default:break;
+    /** @bug determine why screen2 doesn't fade */
+    //Depending upon which screen is requested
+    //Setup variables to hide views, change Next/Previous button and move Conscience
+    switch (screenVersion){
+        case 0:	[self.navigationController popViewControllerAnimated:NO];
+            break;
+        case 1:viewSelection = screen1View;buttonFactor = 0;break;
+        case 2:viewSelection = screen2View;buttonFactor = 1;break;
+        case 3:viewSelection = screen3View;buttonFactor = 2;break;
+        case 4:viewSelection = screen4View;buttonFactor = 3;[previousButton setHidden:TRUE];break;
+        case 5:[self.navigationController popViewControllerAnimated:NO];break;
+        default:break;
 
+    }
+
+
+    //Change the active view except in the case of dismissing the entire ViewController
+    if (screenVersion > 0 && screenVersion <= 4) {
+
+        //Animated changes to the ViewController
+        //Show/Hide relevant subview
+        //Move Conscience to appropriate place on screen
+        [UIView beginAnimations:@"ScreenChange" context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+
+        viewSelection.alpha = 1;
+        viewSelection.hidden = FALSE;
+
+        [UIView commitAnimations];
+
+        [dilemmaText flashScrollIndicators];
+        [choiceText1 flashScrollIndicators];
+
+        //Change Button tag in order to determine which "screen" is active
+        nextButton.tag = 2 + buttonFactor;
+        previousButton.tag = buttonFactor;
+
+        /** @todo determine new collection checking for non-dilemma entries */
+        //Determine if User is in possession of requirement for success
+        if (screenVersion == 3){
+
+            //Ensure that User must enter in a new choice after reading Dilemma
+            BOOL isRewardAllowed = FALSE;
+
+            NSString *restoreRequirement = [prefs objectForKey:@"firstTimeRequirement"];
+            if (restoreRequirement != nil && restoreRequirement.boolValue) {
+                [prefs removeObjectForKey:@"firstTimeRequirement"];
+                isRewardAllowed = TRUE;
+            } else {
+                [prefs setBool:FALSE forKey:@"firstTimeRequirement"];
+            }
+
+            if(!isRequirementOwned && !isRewardAllowed){
+
+                //Skip the reward screen as requirement has not been met
+                nextButton.tag = 5;
+                previousButton.tag = 2;
+            }
         }
 
+        //Delay appearance of score to draw attention
+        if (screenVersion == 4) {
 
-        //Change the active view except in the case of dismissing the entire ViewController
-        if (screenVersion > 0 && screenVersion <= 4) {
-
-            //Animated changes to the ViewController
-            //Show/Hide relevant subview
-            //Move Conscience to appropriate place on screen
-            [UIView beginAnimations:@"ScreenChange" context:nil];
-            [UIView setAnimationDuration:0.5];
-            [UIView setAnimationBeginsFromCurrentState:YES];
-
-            viewSelection.alpha = 1;
-            viewSelection.hidden = FALSE;
-
-            [UIView commitAnimations];
-
-            [dilemmaText flashScrollIndicators];
-            [choiceText1 flashScrollIndicators];
-
-            //Change Button tag in order to determine which "screen" is active
-            nextButton.tag = 2 + buttonFactor;
-            previousButton.tag = buttonFactor;
-
-            /** @todo determine new collection checking for non-dilemma entries */
-            //Determine if User is in possession of requirement for success
-            if (screenVersion == 3){
-
-                //Ensure that User must enter in a new choice after reading Dilemma
-                BOOL isRewardAllowed = FALSE;
-
-                NSString *restoreRequirement = [prefs objectForKey:@"firstTimeRequirement"];
-                if (restoreRequirement != nil && restoreRequirement.boolValue) {
-                    [prefs removeObjectForKey:@"firstTimeRequirement"];
-                    isRewardAllowed = TRUE;
-                } else {
-                    [prefs setBool:FALSE forKey:@"firstTimeRequirement"];
-                }
-
-                if(!isRequirementOwned && !isRewardAllowed){
-
-                    //Skip the reward screen as requirement has not been met
-                    nextButton.tag = 5;
-                    previousButton.tag = 2;
-                }
-            }
-
-            //Delay appearance of score to draw attention
-            if (screenVersion == 4) {
-
-	            nextButton.tag = 5;
-                
-                //Spin reward card onto screen
-                [UIView beginAnimations:@"RewardChange" context:nil];
-                [UIView setAnimationDuration:1];
-                [UIView setAnimationBeginsFromCurrentState:YES];
-                
-	            rewardView.alpha = 1;
-                rewardView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-                
-                [UIView commitAnimations];
-                
-                //Show moral reward fade            
-                [UIView beginAnimations:@"ScoreChange" context:nil];
-                [UIView setAnimationDuration:3];
-                [UIView setAnimationBeginsFromCurrentState:YES];
-                
-                moralRewardLabel.alpha = 1;            
-                
-                [UIView commitAnimations];
-                
-            }
+            nextButton.tag = 5;
             
-        }
-
-    } else {
-
-        /** @bug determine why screen2 doesn't fade */
-        //Depending upon which screen is requested
-        //Setup variables to hide views, change Next/Previous button and move Conscience
-        switch (screenVersion){
-            case 0:	[self.navigationController popViewControllerAnimated:NO];
-                    break;
-            case 1:viewSelection = screen1View;buttonFactor = 0;break;
-            case 2:viewSelection = screen2View;buttonFactor = 1;break;
-            case 3:viewSelection = screen3View;buttonFactor = 2;break;
-            case 4:viewSelection = screen4View;buttonFactor = 3;break;
-            case 5:viewSelection = screen5View;buttonFactor = 4;nextButton.hidden = TRUE;break;	
-            case 6:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;
-            case 7:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;            
-            case 8:[self.navigationController popViewControllerAnimated:NO];break;
-            default:break;
-                
-        }
-        
-        //Change the active view except in the case of dismissing the entire ViewController
-        if (screenVersion > 0 && screenVersion <= 7) {
-
-            //Animated changes to the ViewController
-            //Show/Hide relevant subview
-            //Move Conscience to appropriate place on screen
-            [UIView beginAnimations:@"ScreenChange" context:nil];
-            [UIView setAnimationDuration:0.5];
+            //Spin reward card onto screen
+            [UIView beginAnimations:@"RewardChange" context:nil];
+            [UIView setAnimationDuration:1];
             [UIView setAnimationBeginsFromCurrentState:YES];
-        
-            viewSelection.alpha = 1;
-            viewSelection.hidden = FALSE;
-
+            
+            rewardView.alpha = 1;
+            rewardView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            
             [UIView commitAnimations];
             
-            [dilemmaText flashScrollIndicators];
-            [choiceText1 flashScrollIndicators];
-            [choiceText2 flashScrollIndicators];
-
-            //Change Button tag in order to determine which "screen" is active
-            nextButton.tag = 2 + buttonFactor;
-            previousButton.tag = buttonFactor;
+            //Show moral reward fade            
+            [UIView beginAnimations:@"ScoreChange" context:nil];
+            [UIView setAnimationDuration:3];
+            [UIView setAnimationBeginsFromCurrentState:YES];
             
-            //Delay appearance of score to draw attention
-            if ((screenVersion == 6) || (screenVersion == 7)) {
-                
-                nextButton.tag = 8;
-                
-                [self animateViewDetail: MLViewToAnimateReward atBeginning: FALSE];    
-                
-                [UIView beginAnimations:@"ScoreChange" context:nil];
-                [UIView setAnimationDuration:3];
-                [UIView setAnimationBeginsFromCurrentState:YES];
-                
-                moralRewardLabel.alpha = 1;            
-                
-                [UIView commitAnimations];
-                
-            }
+            moralRewardLabel.alpha = 1;            
+            
+            [UIView commitAnimations];
             
         }
+        
     }
 
 }
+
+/**
+ Implementation: Hide or show a screen depending upon which page the User currently resides.
+ Show reward views once User has completed dilemma and refuse access to previous screen versions.
+ */
+-(void)changeScreen:(int) screenVersion {
+
+	UIView *viewSelection;
+	int buttonFactor = 0;
+
+	screen1View.hidden = TRUE;
+	screen1View.alpha = 0;
+	screen2View.hidden = TRUE;
+	screen2View.alpha = 0;
+	screen3View.hidden = TRUE;
+	screen3View.alpha = 0;
+	screen4View.hidden = TRUE;
+	screen4View.alpha = 0;
+	screen5View.hidden = TRUE;
+	screen5View.alpha = 0;
+	screen6View.hidden = TRUE;
+	screen6View.alpha = 0;
+	nextButton.hidden = FALSE;
+	previousButton.hidden = FALSE;
+
+    //Depending upon which screen is requested
+    //Setup variables to hide views, change Next/Previous button and move Conscience
+    switch (screenVersion){
+        case 0:	[self.navigationController popViewControllerAnimated:NO];
+            break;
+        case 1:viewSelection = screen1View;buttonFactor = 0;break;
+        case 2:viewSelection = screen2View;buttonFactor = 1;break;
+        case 3:viewSelection = screen3View;buttonFactor = 2;break;
+        case 4:viewSelection = screen4View;buttonFactor = 3;break;
+        case 5:viewSelection = screen5View;buttonFactor = 4;nextButton.hidden = TRUE;break;
+        case 6:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;
+        case 7:viewSelection = screen6View;buttonFactor = 5;nextButton.hidden = FALSE;previousButton.hidden = TRUE;break;
+        case 8:[self.navigationController popViewControllerAnimated:NO];break;
+        default:break;
+
+    }
+
+    //Change the active view except in the case of dismissing the entire ViewController
+    if (screenVersion > 0 && screenVersion <= 7) {
+
+        //Animated changes to the ViewController
+        //Show/Hide relevant subview
+        //Move Conscience to appropriate place on screen
+        [UIView beginAnimations:@"ScreenChange" context:nil];
+        [UIView setAnimationDuration:0.5];
+        [UIView setAnimationBeginsFromCurrentState:YES];
+
+        viewSelection.alpha = 1;
+        viewSelection.hidden = FALSE;
+
+        [UIView commitAnimations];
+
+        [dilemmaText flashScrollIndicators];
+        [choiceText1 flashScrollIndicators];
+        [choiceText2 flashScrollIndicators];
+
+        //Change Button tag in order to determine which "screen" is active
+        nextButton.tag = 2 + buttonFactor;
+        previousButton.tag = buttonFactor;
+
+        //Delay appearance of score to draw attention
+        if ((screenVersion == 6) || (screenVersion == 7)) {
+
+            nextButton.tag = 8;
+
+            [self animateViewDetail: MLViewToAnimateReward atBeginning: FALSE];
+
+            [UIView beginAnimations:@"ScoreChange" context:nil];
+            [UIView setAnimationDuration:3];
+            [UIView setAnimationBeginsFromCurrentState:YES];
+            
+            moralRewardLabel.alpha = 1;            
+            
+            [UIView commitAnimations];
+            
+        }
+        
+    }
+
+}
+
 
 /**
  Implementation: Signals User desire to return to ConscienceModalViewController

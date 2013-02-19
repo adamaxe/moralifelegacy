@@ -92,7 +92,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self action:@selector(popToHome)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
 	//Prevent keypress level changes over maxlength of field
@@ -163,12 +163,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     
 	[self saveChoice];
 		
-}
-
-- (void)popToHome {
-
-    [self.navigationController popToRootViewControllerAnimated:TRUE];
-    
 }
 
 #pragma mark -
@@ -388,18 +382,6 @@ Implementation:  Truncate the field on each keypress if length is greater
 #pragma mark -
 #pragma mark Memory management
 
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-    // Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
 
 - (void)dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self name: UITextFieldTextDidChangeNotification object:activeField];

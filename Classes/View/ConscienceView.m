@@ -1180,10 +1180,6 @@ Release init'ed objects, deallocate super.
 - (void)dealloc {
     
 	[self stopTimers];
-    
-	
-    
-    
 
 }
 
