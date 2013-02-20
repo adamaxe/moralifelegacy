@@ -25,7 +25,6 @@ typedef enum {
 
 @property (nonatomic, readonly, strong) NSArray *dilemmas;			/**< dilemma names */
 @property (nonatomic, readonly, strong) NSArray *dilemmaDisplayNames;			/**< dilemma names */
-@property (nonatomic, readonly, strong) NSArray *dilemmaKeys;     	/**< pkeys for dilemmas */
 @property (nonatomic, readonly, strong) NSArray *dilemmaDetails;			/**< description of Reference */
 @property (nonatomic, readonly, strong) NSArray *dilemmaTypes;				/**< associated images */
 @property (nonatomic, readonly, strong) NSArray *dilemmaImages;			/**< images for Dilemma */

@@ -31,11 +31,6 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     NSMutableArray *tableDataTypes;			/**< array for stored data primary keys */
     
 	NSMutableArray *searchedData;			/**< array for matched data from User search */
-	NSMutableArray *choiceNames;			/**< these arrays house origial queried data to be re-entered into search results */
-	NSMutableArray *choiceDisplayNames;		/**< name to be shown to User */
-	NSMutableArray *choiceImages;			/**< image in tableRowCell */
-	NSMutableArray *choiceDetails;          /**< tableRowCell detailText */
-    NSMutableArray *choiceTypes;            /**< tableRowCell detailText */
     
 	NSDictionary *userChoices;              /**< dictionary to hold Dilemmas already completed by User */
 	NSDictionary *moralNames;		/**< dictionary to hold names of selected Morals */
@@ -101,11 +96,6 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     
 	//Setup permanent holders, table does not key on these, it keys on tabledata which is affected by searchbar
 	//tabledatas are reloaded from these master arrays
-	choiceNames = [[NSMutableArray alloc] init];			
-	choiceImages = [[NSMutableArray alloc] init];			
-	choiceDetails = [[NSMutableArray alloc] init];
-	choiceTypes = [[NSMutableArray alloc] init];
-	choiceDisplayNames = [[NSMutableArray alloc] init];
 	userChoices = [[NSDictionary alloc] init];
 	moralNames = [[NSDictionary alloc] init];
 
@@ -281,7 +271,7 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 
     /** @todo check for empty arrays */
 	//Generate array of all keys in User Dictionary
-	NSArray *allUserChoices = [[NSArray alloc] initWithArray:[userChoices allKeys]];
+	NSArray *allUserChoices = [userChoices allKeys];
     
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
@@ -330,7 +320,7 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     //If User has already completed Dilemma, prevent User from selecting it
-    NSArray *allUserChoices = [[NSArray alloc] initWithArray:[userChoices allKeys]];
+    NSArray *allUserChoices = [userChoices allKeys];
     
     int previousRow = indexPath.row;
         
@@ -403,14 +393,12 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 	[tableDataDetails removeAllObjects];
 	[tableDataKeys removeAllObjects];
     [tableDataTypes removeAllObjects];
-
     
 	[tableData addObjectsFromArray:dataSource];
-	[tableDataImages addObjectsFromArray:choiceImages];
-	[tableDataDetails addObjectsFromArray:choiceDetails];
-	[tableDataKeys addObjectsFromArray:choiceNames];
-    [tableDataTypes addObjectsFromArray:choiceTypes];
-
+	[tableDataImages addObjectsFromArray:self.dilemmaModel.dilemmaImages];
+	[tableDataDetails addObjectsFromArray:self.dilemmaModel.dilemmaDetails];
+	[tableDataKeys addObjectsFromArray:self.dilemmaModel.dilemmas];
+    [tableDataTypes addObjectsFromArray:self.dilemmaModel.dilemmaTypes];
     
 	@try{
 		[dilemmaListTableView reloadData];
@@ -446,15 +434,12 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[tableDataKeys removeAllObjects];
 	[tableDataTypes removeAllObjects];
 
-    for (int i = 0; i < self.dilemmaModel.dilemmaKeys.count; i++) {
-
-        [dataSource addObject:(self.dilemmaModel.dilemmas)[i]];
-        [tableData addObject:(self.dilemmaModel.dilemmas)[i]];
-        [tableDataImages addObject:(self.dilemmaModel.dilemmaImages)[i]];
-        [tableDataKeys addObject:(self.dilemmaModel.dilemmaKeys)[i]];
-        [tableDataDetails addObject:(self.dilemmaModel.dilemmaDetails)[i]];
-        [tableDataTypes addObject:(self.dilemmaModel.dilemmaTypes)[i]];
-    }
+    [dataSource addObjectsFromArray:self.dilemmaModel.dilemmaDisplayNames];
+    [tableData addObjectsFromArray:self.dilemmaModel.dilemmaDisplayNames];
+    [tableDataImages addObjectsFromArray:self.dilemmaModel.dilemmaImages];
+    [tableDataKeys addObjectsFromArray:self.dilemmaModel.dilemmas];
+    [tableDataDetails addObjectsFromArray:self.dilemmaModel.dilemmaDetails];
+    [tableDataTypes addObjectsFromArray:self.dilemmaModel.dilemmaTypes];
 
     moralNames = self.dilemmaModel.moralNames;
     userChoices = self.dilemmaModel.userChoices;
@@ -492,7 +477,7 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
 			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[choiceDetails[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRangeDetails = [[self.dilemmaModel.dilemmaDetails[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
         
 			
 			//A match was found
@@ -510,10 +495,10 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
 				//{			
 				//Add back cell.textLabel, cell.detailTextLabel and cell.imageView
 				[tableData addObject:name];
-				[tableDataImages addObject:choiceImages[counter]];
-				[tableDataDetails addObject:choiceDetails[counter]];
-				[tableDataKeys addObject:choiceNames[counter]];
-                [tableDataTypes addObject:choiceTypes[counter]];
+                [tableDataImages addObjectsFromArray:self.dilemmaModel.dilemmaImages];
+                [tableDataDetails addObjectsFromArray:self.dilemmaModel.dilemmaDetails];
+                [tableDataKeys addObjectsFromArray:self.dilemmaModel.dilemmas];
+                [tableDataTypes addObjectsFromArray:self.dilemmaModel.dilemmaTypes];
 
 				//}
 			}

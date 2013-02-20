@@ -12,7 +12,6 @@
 }
 
 @property (nonatomic, readwrite, strong) NSArray *dilemmas;
-@property (nonatomic, readwrite, strong) NSArray *dilemmaKeys;
 @property (nonatomic, readwrite, strong) NSArray *dilemmaDetails;
 @property (nonatomic, readwrite, strong) NSArray *dilemmaImages;
 @property (nonatomic, readwrite, strong) NSArray *dilemmaTypes;
@@ -43,7 +42,6 @@
 
         _dilemmaKey = @"";
         self.dilemmas = [[NSArray alloc] init];
-        self.dilemmaKeys = [[NSArray alloc] init];
         self.dilemmaDetails = [[NSArray alloc] init];
         self.dilemmaImages = [[NSArray alloc] init];
         self.dilemmaTypes = [[NSArray alloc] init];
@@ -162,7 +160,7 @@
  Implementation: Load User data to determine which Dilemmas have already been completed
  */
 - (void) loadUserData {
-	NSMutableArray *derivedUserChoices = [[NSMutableArray alloc] init];
+	NSMutableDictionary *derivedUserChoices = [[NSMutableDictionary alloc] init];
 
     UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] init];
 
