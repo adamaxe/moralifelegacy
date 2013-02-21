@@ -62,7 +62,6 @@
 		5E1ACE201551AC9A00DBDE6E /* TestMoral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE1F1551AC9A00DBDE6E /* TestMoral.m */; };
 		5E1ACE2215521A0700DBDE6E /* TestUserChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */; };
 		5E1ACE2415523C1900DBDE6E /* TestUserDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */; };
-		5E1ACE2615523E2900DBDE6E /* TestUserLuck.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2515523E2800DBDE6E /* TestUserLuck.m */; };
 		5E1C81551573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = 5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */; };
 		5E1C81561573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata in Resources */ = {isa = PBXBuildFile; fileRef = 5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */; };
 		5E1D107A1267FCAE003381CF /* card-despair.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E1D10661267FCAE003381CF /* card-despair.png */; };
@@ -1827,7 +1826,6 @@
 		5E1ACE1F1551AC9A00DBDE6E /* TestMoral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMoral.m; sourceTree = "<group>"; };
 		5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserChoice.m; sourceTree = "<group>"; };
 		5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserDilemma.m; sourceTree = "<group>"; };
-		5E1ACE2515523E2800DBDE6E /* TestUserLuck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserLuck.m; sourceTree = "<group>"; };
 		5E1B3C3F12FDA196006E4582 /* ChoiceModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceModalViewController.h; sourceTree = "<group>"; };
 		5E1C81541573E3890060DBA4 /* org.teamaxe.moralife-nointrohelp.xcappdata */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = "org.teamaxe.moralife-nointrohelp.xcappdata"; sourceTree = "<group>"; };
 		5E1D10661267FCAE003381CF /* card-despair.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-despair.png"; path = "Resources/images/interface/cards/card-despair.png"; sourceTree = "<group>"; };
@@ -5459,7 +5457,6 @@
 				5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */,
 				5EA108DA154E3234008A7936 /* TestUserCollectable.m */,
 				5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */,
-				5E1ACE2515523E2800DBDE6E /* TestUserLuck.m */,
 			);
 			name = Generated;
 			path = Model/Generated;
@@ -7536,7 +7533,6 @@
 				5E1ACE201551AC9A00DBDE6E /* TestMoral.m in Sources */,
 				5E1ACE2215521A0700DBDE6E /* TestUserChoice.m in Sources */,
 				5E1ACE2415523C1900DBDE6E /* TestUserDilemma.m in Sources */,
-				5E1ACE2615523E2900DBDE6E /* TestUserLuck.m in Sources */,
 				5EB5D9DA155F67DC00B0C061 /* XMLParser.m in Sources */,
 				5EB5D9DB155F67E100B0C061 /* ConscienceBuilder.m in Sources */,
 				5EB5D9DC155F67F000B0C061 /* ConscienceAccessories.m in Sources */,

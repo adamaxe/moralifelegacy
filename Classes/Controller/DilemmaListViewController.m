@@ -65,15 +65,6 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #pragma mark -
 #pragma mark View lifecycle
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
-
 - (id)initWithModel:(DilemmaModel *)dilemmaModel {
     self = [super init];
 
@@ -265,11 +256,8 @@ Implementation: Signals User desire to return to ConscienceModalViewController
     [rowImageName appendString:@"-sm"];
     
     UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:rowImageName ofType:@"png"]];
-    //	[[cell imageView] setImage:[UIImage imageNamed:rowImageName]];
     cell.dilemmaImage = rowImage;
 
-
-    /** @todo check for empty arrays */
 	//Generate array of all keys in User Dictionary
 	NSArray *allUserChoices = [userChoices allKeys];
     
@@ -291,7 +279,7 @@ Implementation: Signals User desire to return to ConscienceModalViewController
 			isSelectable = TRUE;
 		}
 	}
-        
+
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
 	if ([allUserChoices containsObject:tableDataKeys[indexPath.row]]) {
@@ -303,16 +291,12 @@ Implementation: Signals User desire to return to ConscienceModalViewController
         
 		if (isSelectable) {
             cell.currentCellState = DilemmaTableViewCellStateAvailable;
-            [cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
 		} else {
             cell.currentCellState = DilemmaTableViewCellStateUnavailable;
-
-            [cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
-            
 		}
-        
+        [cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
+
 	}
-    
     
 	return cell;
 }
@@ -443,7 +427,7 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 
     moralNames = self.dilemmaModel.moralNames;
     userChoices = self.dilemmaModel.userChoices;
-	
+
 	[dilemmaListTableView reloadData];
     
 }

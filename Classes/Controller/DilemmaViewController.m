@@ -347,7 +347,6 @@ Show reward views once User has completed dilemma and refuse access to previous 
 
     }
 
-
     //Change the active view except in the case of dismissing the entire ViewController
     if (screenVersion > 0 && screenVersion <= 4) {
 

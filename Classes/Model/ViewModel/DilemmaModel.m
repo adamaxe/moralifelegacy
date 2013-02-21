@@ -72,6 +72,11 @@
     }
 }
 
+- (NSDictionary *)userChoices {
+    [self loadUserData];
+    return _userChoices;
+}
+
 /**
  Implementation: Retrieve all User-received references, and then populate a working set of data containers upon which to filter.
  */
