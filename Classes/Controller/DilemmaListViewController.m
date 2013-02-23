@@ -418,6 +418,8 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
 	[tableDataKeys removeAllObjects];
 	[tableDataTypes removeAllObjects];
 
+    moralNames = self.dilemmaModel.moralNames;
+    userChoices = self.dilemmaModel.userChoices;
     [dataSource addObjectsFromArray:self.dilemmaModel.dilemmaDisplayNames];
     [tableData addObjectsFromArray:self.dilemmaModel.dilemmaDisplayNames];
     [tableDataImages addObjectsFromArray:self.dilemmaModel.dilemmaImages];
@@ -425,8 +427,6 @@ Implementation: Dilemma retrieval moved to function as controller must reload da
     [tableDataDetails addObjectsFromArray:self.dilemmaModel.dilemmaDetails];
     [tableDataTypes addObjectsFromArray:self.dilemmaModel.dilemmaTypes];
 
-    moralNames = self.dilemmaModel.moralNames;
-    userChoices = self.dilemmaModel.userChoices;
 
 	[dilemmaListTableView reloadData];
     

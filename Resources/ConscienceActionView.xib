@@ -439,10 +439,7 @@
 											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
 										</object>
 										<reference key="IBUIHighlightedColor" ref="372449416"/>
-										<object class="NSColor" key="IBUIShadowColor" id="557433003">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MAA</bytes>
-										</object>
+										<reference key="IBUIShadowColor" ref="372449416"/>
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
@@ -515,7 +512,7 @@
 											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
 										</object>
 										<reference key="IBUIHighlightedColor" ref="528072719"/>
-										<reference key="IBUIShadowColor" ref="557433003"/>
+										<reference key="IBUIShadowColor" ref="372449416"/>
 										<string key="IBUIShadowOffset">{1, 1}</string>
 										<int key="IBUIBaselineAdjustment">1</int>
 										<float key="IBUIMinimumFontSize">10</float>
@@ -602,7 +599,6 @@
 								<string key="NSFrame">{{252, 380}, {45, 45}}</string>
 								<reference key="NSSuperview" ref="726026737"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<float key="IBUIAlpha">0.5</float>
 								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">

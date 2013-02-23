@@ -92,22 +92,14 @@
 	NSMutableArray *derivedDilemmaTypes = [[NSMutableArray alloc] init];
 
 	BOOL isDilemma = TRUE;
-	NSObject *boolCheck = [preferences objectForKey:@"dilemmaCampaign"];
-	NSInteger dilemmaCampaign;
-
-	if (boolCheck != nil) {
-		dilemmaCampaign = [preferences integerForKey:@"dilemmaCampaign"];
-	}else {
-		dilemmaCampaign = 0;
-	}
 
 	//Retrieve all available Dilemmas, sort by name, limit to currently requested Campaign
     DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] init];
 
-	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", dilemmaCampaign];
+	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", self.dilemmaCampaign];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
 
-	if (dilemmaCampaign > 0) {
+	if (self.dilemmaCampaign > 0) {
 		[currentDilemmaDAO setPredicates:@[pred]];
 	}
 
