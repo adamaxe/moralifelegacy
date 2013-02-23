@@ -1809,7 +1809,6 @@
 		5E0C900116685B3F00BCD5EF /* referenceverify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = referenceverify.js; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
-		5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MenuScreenAnimations.h; path = Common/MenuScreenAnimations.h; sourceTree = "<group>"; };
 		5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-zodiac-scorpio-sm.png"; path = "Resources/images/conscience/icons/con-zodiac-scorpio-sm.png"; sourceTree = "<group>"; };
 		5E12074B15AB9564006A0F8C /* DilemmaDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DilemmaDAO.h; sourceTree = "<group>"; };
 		5E12074C15AB9564006A0F8C /* DilemmaDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DilemmaDAO.m; sourceTree = "<group>"; };
@@ -3725,7 +3724,6 @@
 				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
 				5E3E8804122609B600F2708A /* XMLParser.h */,
 				5E3E8805122609B600F2708A /* XMLParser.m */,
-				5E0EC2401572885B00CEECCC /* MenuScreenAnimations.h */,
 				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
 				5EAA72EC15E19FA500656390 /* UIColor+Utility.h */,
 				5EAA72ED15E19FA500656390 /* UIColor+Utility.m */,

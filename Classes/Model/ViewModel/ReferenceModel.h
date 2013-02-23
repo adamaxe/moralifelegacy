@@ -17,10 +17,10 @@
  */
 typedef enum {
 	MLReferenceModelTypeConscienceAsset,
-	MLReferenceModelTypeBelief,
-	MLReferenceModelTypeText,
 	MLReferenceModelTypePerson,
 	MLReferenceModelTypeMoral,
+	MLReferenceModelTypeBelief,
+	MLReferenceModelTypeText,
 	MLReferenceModelTypeReferenceAsset
 } MLReferenceModelTypeEnum;
 

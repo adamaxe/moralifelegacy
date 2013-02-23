@@ -9,12 +9,11 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "ChoiceHistoryModel.h"
 #import "ChoiceViewController.h"
 #import "ConscienceHelpViewController.h"
-#import "MenuScreenAnimations.h"
 #import "ViewControllerLocalization.h"
 #import "UIViewController+Screenshot.h"
 #import "UIFont+Utility.h"
 
-@interface ChoiceInitViewController () <MenuScreenAnimations, ViewControllerLocalization> {
+@interface ChoiceInitViewController () <ViewControllerLocalization> {
 	
 	NSUserDefaults *prefs;                      /**< serialized state retention */
 
@@ -194,22 +193,6 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	badChoiceButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceBadHint",nil);
 	choiceListButton.accessibilityHint = NSLocalizedString(@"ChoiceInitScreenChoiceListHint",nil);
 	
-}
-
-/**
- Implementation: Return the button's icon to default after animation finishes
- */
-- (void) buttonAnimationDone:(NSNumber *) buttonNumber{
-	
-    //Return button to default state
-	NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani1.png", buttonNames[[buttonNumber intValue]]];
-
-	switch ([buttonNumber intValue]){
-		case 0: [goodChoiceButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		case 1: [badChoiceButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		case 2: [choiceListButton setBackgroundImage:[UIImage imageNamed:iconFileName] forState:UIControlStateNormal];break;
-		default:break;
-	}
 }
 
 #pragma mark -
