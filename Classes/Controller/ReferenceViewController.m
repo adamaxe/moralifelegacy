@@ -37,6 +37,8 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 }
 
+@property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
+
 @end
 
 @implementation ReferenceViewController
@@ -64,7 +66,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
     [self localizeUI];
-    [self buttonAnimate:0];
 
 }
 
@@ -72,7 +73,10 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
-    
+
+    [self refreshButtons];
+	self.buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
+
 }
 
 #pragma mark -
@@ -126,28 +130,66 @@ Implementation: Determine which type of reference is requested by the User.
 }
 
 /**
+ Implementation: Only animate at most 4 buttons at a time.  Otherwise, too visually distracting
+ */
+- (void) refreshButtons{
+    static BOOL isForward = TRUE;
+
+    NSArray *images = [self animationFramesForButtonName:@"accessories" withDirection: isForward];
+
+    accessoriesImageView.animationImages = images;
+    accessoriesImageView.image = [images lastObject];
+	accessoriesImageView.animationDuration = 0.5;
+	accessoriesImageView.animationRepeatCount = 1;
+	[accessoriesImageView startAnimating];
+
+    images = [self animationFramesForButtonName:@"figures" withDirection: isForward];
+	peopleImageView.animationImages = images;
+    peopleImageView.image = [images lastObject];
+	peopleImageView.animationDuration = 0.5;
+	peopleImageView.animationRepeatCount = 1;
+	[peopleImageView startAnimating];
+
+    images = [self animationFramesForButtonName:@"choicebad" withDirection: isForward];
+	moralsImageView.animationImages = images;
+    moralsImageView.image = [images lastObject];
+	moralsImageView.animationDuration = 0.5;
+	moralsImageView.animationRepeatCount = 1;
+	[moralsImageView startAnimating];
+
+    isForward = !isForward;
+}
+
+/**
  Implementation: Build animated UIImage from sequential icon files
  */
-- (void) buttonAnimate:(NSNumber *) buttonNumber{
-    UIImageView *animation1 = [[UIImageView alloc] init];
-    animation1.frame = CGRectMake(30, 30, 95, 84);
-
+- (NSArray *)animationFramesForButtonName:(NSString *)buttonName withDirection:(BOOL)isForward {
     NSMutableArray *images = [[NSMutableArray alloc] init];
 
-    for (int i = 1; i <= 60; i++) {
-        NSString *iconFileName = [NSString stringWithFormat:@"figures-ani%d.png", i];
-        UIImage *iconani = [UIImage imageNamed:iconFileName];
-        [images addObject:iconani];
+    if (isForward) {
+        for (int i = 1; i <= 60; i++) {
+            NSString *iconFileName = [NSString stringWithFormat:@"%@-ani%d.png", buttonName, i];
+            NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+            NSString *filePath = [bundlePath stringByAppendingPathComponent:iconFileName];
+            if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                UIImage *iconani = [UIImage imageNamed:iconFileName];
+                [images addObject:iconani];
+            }
 
+        }
+    } else {
+        for (int i = 60; i > 0; i--) {
+            NSString *iconFileName = [NSString stringWithFormat:@"%@-ani%d.png", buttonName, i];
+            NSString *bundlePath = [[NSBundle mainBundle] bundlePath];
+            NSString *filePath = [bundlePath stringByAppendingPathComponent:iconFileName];
+            if([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                UIImage *iconani = [UIImage imageNamed:iconFileName];
+                [images addObject:iconani];
+            }
+        }
     }
 
-	animation1.animationImages = images;
-    animation1.image = [images lastObject];
-    [peopleView addSubview:animation1];
-
-	animation1.animationDuration = 1;
-	animation1.animationRepeatCount = 1;
-	[animation1 startAnimating];
+    return (NSArray *)images;
 
 }
 
