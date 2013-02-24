@@ -28,8 +28,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	IBOutlet UIButton *goodChoiceButton;		/**< Button for Good Choice entry selection */
 	IBOutlet UIButton *badChoiceButton;			/**< Button for Bad Choice entry selection */
 	IBOutlet UIButton *choiceListButton;		/**< Button for All Choice listing selection */
-	    
-	NSArray *buttonNames;		/**< button image names */
 }
 
 @end
@@ -46,9 +44,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		//Create NSUserDefaults for serialized state retention
 		prefs = [NSUserDefaults standardUserDefaults];
 		
-		//Array to hold button names for random animations
-		buttonNames = @[@"choicegood", @"choicebad", @"choicelist"];
-
 	}
     
 	return self;
