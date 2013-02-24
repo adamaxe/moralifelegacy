@@ -16,6 +16,10 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 @interface ReferenceViewController () <ViewControllerLocalization> {
 
+    IBOutlet UIImageView *accessoriesImageView;    /**< view for Accessories */
+    IBOutlet UIImageView *peopleImageView;        /**< view for People */
+    IBOutlet UIImageView *moralsImageView;        /**< view for Morals */
+
     IBOutlet UIView *accessoriesView;    /**< view for Accessories */
     IBOutlet UIView *peopleView;        /**< view for People */
     IBOutlet UIView *moralsView;        /**< view for Morals */
@@ -60,6 +64,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
 
     [self localizeUI];
+    [self buttonAnimate:0];
 
 }
 
@@ -117,6 +122,32 @@ Implementation: Determine which type of reference is requested by the User.
 
     ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];
     [self.navigationController pushViewController:referenceListViewCont animated:TRUE];
+
+}
+
+/**
+ Implementation: Build animated UIImage from sequential icon files
+ */
+- (void) buttonAnimate:(NSNumber *) buttonNumber{
+    UIImageView *animation1 = [[UIImageView alloc] init];
+    animation1.frame = CGRectMake(30, 30, 95, 84);
+
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+
+    for (int i = 1; i <= 60; i++) {
+        NSString *iconFileName = [NSString stringWithFormat:@"figures-ani%d.png", i];
+        UIImage *iconani = [UIImage imageNamed:iconFileName];
+        [images addObject:iconani];
+
+    }
+
+	animation1.animationImages = images;
+    animation1.image = [images lastObject];
+    [peopleView addSubview:animation1];
+
+	animation1.animationDuration = 1;
+	animation1.animationRepeatCount = 1;
+	[animation1 startAnimating];
 
 }
 
