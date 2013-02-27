@@ -4944,9 +4944,17 @@
 			name = reference;
 			sourceTree = "<group>";
 		};
-		5E7A0D3A124C4B6400E061C2 /* icons */ = {
+		5E7A0D99124C4BDA00E061C2 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				5E73B191125968DE0039A577 /* cards */,
+				5EF58A5413820BEB0034BF2B /* body-mouth6-sm.png */,
+				5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */,
+				5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */,
+				5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */,
+				5E45467A1304E91E00A53B8C /* con-glasses-shades-sm.png */,
+				5EF10DBA12DD457E000D5F72 /* con-bindi-sm.png */,
+				5E9DCD1812824213001D926E /* con-crescent-sm.png */,
 				5E0B2239139AC27A002A8664 /* icon-rank.png */,
 				5E54DBB41384C5E4005D1754 /* icon-piechart.png */,
 				5E07EA04130B7AD200007A36 /* icon-resetapp.png */,
@@ -4979,22 +4987,6 @@
 				5E73B1DC12596A880039A577 /* icon-sliderseveritygood.png */,
 				5E73B1DD12596A880039A577 /* icon-symbol.png */,
 				5E73B1DE12596A880039A577 /* icon-world.png */,
-			);
-			name = icons;
-			sourceTree = "<group>";
-		};
-		5E7A0D99124C4BDA00E061C2 /* icons */ = {
-			isa = PBXGroup;
-			children = (
-				5E73B191125968DE0039A577 /* cards */,
-				5E7A0D3A124C4B6400E061C2 /* icons */,
-				5EF58A5413820BEB0034BF2B /* body-mouth6-sm.png */,
-				5E29039F131DE1250048DFC8 /* con-eighthnote-sm.png */,
-				5E2903A0131DE1250048DFC8 /* con-sports-soccerball-sm.png */,
-				5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */,
-				5E45467A1304E91E00A53B8C /* con-glasses-shades-sm.png */,
-				5EF10DBA12DD457E000D5F72 /* con-bindi-sm.png */,
-				5E9DCD1812824213001D926E /* con-crescent-sm.png */,
 				5E7A0EA9124C4DDF00E061C2 /* body-eye1-sm.png */,
 				5E7A0EAA124C4DDF00E061C2 /* body-eye2-sm.png */,
 				5E7A0EAB124C4DDF00E061C2 /* body-eye3-sm.png */,
