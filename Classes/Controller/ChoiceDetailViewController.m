@@ -130,6 +130,8 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	
 	if (restoreInfluence >= 0) {
 		influenceSlider.value = restoreInfluence;
+        int sliderValue = (int)influenceSlider.value;
+        [self changeInfluenceLabel:sliderValue];
 		[prefs removeObjectForKey:@"choiceInfluence"];
 		
 	}
