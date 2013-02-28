@@ -128,7 +128,6 @@
     testMoral = [testModelManager create:Moral.class];
     testMoral2 = [testModelManager create:Moral.class];
     
-
     testMoral.imageNameMoral = imageNameMoral;
     testMoral.colorMoral = colorMoral;
     testMoral.displayNameMoral = displayNameMoral;
@@ -254,7 +253,6 @@
     testDilemma.antagonist = testCharacter;
     testDilemma.moralChoiceA = testMoral;  
     testDilemma.moralChoiceB = testMoral2;    
-    
     
     STAssertNoThrow([testModelManager saveContext], @"Dilemma/Character/Moral relationships can't be created for RI Delete test");
     

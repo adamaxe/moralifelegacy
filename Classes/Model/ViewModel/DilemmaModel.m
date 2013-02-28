@@ -7,7 +7,7 @@
 @interface DilemmaModel () {
     NSUserDefaults *preferences;            /**< User defaults to write to file system */
     NSArray *currentUserCollection;                /**< collection of owned Assets */
-    ModelManager *moralModelManager;    
+    ModelManager *dilemmaModelManager;
 
 }
 
@@ -18,7 +18,7 @@
 @property (nonatomic, readwrite, strong) NSArray *dilemmaDisplayNames;
 @property (nonatomic, readwrite, strong) NSDictionary *moralNames;
 @property (nonatomic, readwrite, strong) NSDictionary *userChoices;
-@property (nonatomic) int dilemmaCampaign;
+@property (nonatomic) MLRequestedMorathologyAdventure dilemmaCampaign;
 
 /**
  Retrieve all References
@@ -28,6 +28,10 @@
 @end
 
 @implementation DilemmaModel
+
+- (id)init {
+    return [self initWithCampaign:MLRequestedMorathologyAdventure0];
+}
 
 - (id)initWithCampaign:(MLRequestedMorathologyAdventure)campaign {
     MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -51,7 +55,7 @@
 
         preferences = prefs;
         self.dilemmaCampaign = campaign;
-        moralModelManager = modelManager;
+        dilemmaModelManager = modelManager;
 
     }
 
@@ -94,7 +98,7 @@
 	BOOL isDilemma = TRUE;
 
 	//Retrieve all available Dilemmas, sort by name, limit to currently requested Campaign
-    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] init];
+    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] initWithKey:@"" andModelManager:dilemmaModelManager];
 
 	NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", self.dilemmaCampaign];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
@@ -159,7 +163,7 @@
 - (void) loadUserData {
 	NSMutableDictionary *derivedUserChoices = [[NSMutableDictionary alloc] init];
 
-    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] init];
+    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] initWithKey:@"" andModelManager:dilemmaModelManager];
 
     NSString *dilemmaPredicate = [[NSString alloc] initWithFormat:@"dile-%d-", self.dilemmaCampaign];
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey contains[cd] %@", dilemmaPredicate];

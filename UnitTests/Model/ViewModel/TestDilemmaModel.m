@@ -17,6 +17,7 @@
     
     DilemmaModel *testingSubject;
     ModelManager *testModelManager;
+    Dilemma *testDilemma1;
     id userDefaultsMock;
     NSArray *userCollection;
 
@@ -26,22 +27,43 @@
 
 @implementation TestDilemmaModel
 
-//- (void)setUp {
-//    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
-//    userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
-//
-//    [testModelManager saveContext];
-//
-//    testingSubject = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentDilemma:0];
-//
-//}
-//
-//- (void)testReferenceModelCanBeCreated {
-//
-//    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentDilemma:0];
-//
-//    STAssertNotNil(testingSubjectCreate, @"DilemmaModel can't be created.");
-//}
+- (void)setUp {
+    testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
+    userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
+
+    testDilemma1 = [self createDilemmaWithName:@"dile-1-01" withModelManager:testModelManager];
+
+    [testModelManager saveContext];
+
+    testingSubject = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
+
+}
+
+- (void)testDilemmaModelCanBeCreated {
+
+    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
+
+    STAssertNotNil(testingSubjectCreate, @"DilemmaModel can't be created.");
+}
+
+- (Dilemma *)createDilemmaWithName:(NSString *)dilemmaName withModelManager:(ModelManager *)modelManager{
+
+    Dilemma *testDilemmaLocal1 = [modelManager create:Dilemma.class];
+
+    testDilemmaLocal1.nameDilemma = dilemmaName;
+    testDilemmaLocal1.rewardADilemma = @"dilemma reward";
+    testDilemmaLocal1.choiceB = @"choiceB";
+    testDilemmaLocal1.moodDilemma = @1.0f;
+    testDilemmaLocal1.displayNameDilemma = @"displayNameDilemma";
+    testDilemmaLocal1.surrounding = @"surrounding";
+    testDilemmaLocal1.rewardBDilemma = @"rewardBDilemma";
+    testDilemmaLocal1.choiceA = @"choiceA";
+    testDilemmaLocal1.enthusiasmDilemma = @1.0f;
+    testDilemmaLocal1.dilemmaText = @"dilemmaText";
+    [modelManager saveContext];
+
+    return testDilemmaLocal1;
+}
 
 @end
 
