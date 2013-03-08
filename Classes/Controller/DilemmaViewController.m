@@ -626,12 +626,12 @@ Construct antagonist Conscience
 		surroundingsBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [currentDilemma surrounding]]];
 
 		//Setup relevant dilemma text
-        [introText setText:[currentDilemma choiceB]];
+        [introText setText:[[currentDilemma choiceB] stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
 		[dilemmaTitle setText:[currentDilemma displayNameDilemma]];
 		[dilemmaTitleText setText:[dilemmaTitle text]];
-		[dilemmaText setText:[currentDilemma dilemmaText]];
-		[choiceText1 setText:[currentDilemma choiceA]];
-		[choiceText2 setText:[currentDilemma choiceB]];
+		[dilemmaText setText:[[currentDilemma dilemmaText] stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
+		[choiceText1 setText:[[currentDilemma choiceA] stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
+		[choiceText2 setText:[[currentDilemma choiceB] stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
         
 		NSString *moral1Text = [[NSString alloc] initWithString:[[currentDilemma moralChoiceA] displayNameMoral]];
 		NSString *moral2Text = [[NSString alloc] initWithString:[[currentDilemma moralChoiceB] displayNameMoral]];
