@@ -295,7 +295,45 @@ static int thoughtVersion = 0;
 -(void)viewDidAppear:(BOOL)animated {
     
 	[super viewDidAppear:animated];
+//    [self floatingAnimation];
     [self becomeFirstResponder];
+}
+
+- (void)floatingAnimation {
+    int randomAnimationCurve = arc4random() % 4;
+    int randomDurationSeed = arc4random() % 200;
+    float randomDuration = (75.0f + (float)randomDurationSeed)/100.0f;
+    CGFloat x = (CGFloat) random()/(CGFloat) RAND_MAX * consciencePlayground.bounds.size.width;
+    CGFloat y = (CGFloat) random()/(CGFloat) RAND_MAX * consciencePlayground.bounds.size.height;
+
+    CGPoint consciencePosition = CGPointMake(y, x);
+
+    switch (randomAnimationCurve) {
+        case 0:
+            randomAnimationCurve = UIViewAnimationCurveEaseIn;
+            break;
+        case 1:
+            randomAnimationCurve = UIViewAnimationCurveEaseOut;
+            break;
+        case 2:
+            randomAnimationCurve = UIViewAnimationCurveEaseInOut;
+            break;
+        case 3:
+            randomAnimationCurve = UIViewAnimationCurveLinear;
+            break;
+        default:
+            break;
+    }
+
+    [UIView transitionWithView:appDelegate.userConscienceView
+                      duration:randomDuration
+                       options:randomAnimationCurve
+                    animations:^(void) {
+                        appDelegate.userConscienceView.center = consciencePosition;
+                    }
+                    completion:^(BOOL finished) {
+                        [self floatingAnimation];
+                    }];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

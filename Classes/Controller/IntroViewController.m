@@ -107,7 +107,7 @@ the application.
 	appDelegate.userConscienceAccessories.bottomAccessory = MLBottomAccessoryFileNameResourceDefault;
 	appDelegate.userConscienceBody.symbolName = MLSymbolFileNameResourceDefault;    
     
-	[consciencePlayground addSubview:appDelegate.userConscienceView];
+	[self.view addSubview:appDelegate.userConscienceView];
     
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
@@ -202,7 +202,7 @@ the application.
         [UIView setAnimationBeginsFromCurrentState:NO];
         
         backgroundImage.alpha = 1;
-        appDelegate.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY-40);        
+        appDelegate.userConscienceView.center = CGPointMake(MLConscienceIntroX, MLConscienceIntroY-40);
                 
         [UIView commitAnimations];
         [appDelegate.userConscienceView setNeedsDisplay];
@@ -215,7 +215,7 @@ the application.
         messageState = 0;
         thoughtArea.alpha = 0;
         
-        CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY-120);
+        CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftXIntro, MLConscienceLowerLeftYIntro);
 
         appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
         
@@ -258,7 +258,7 @@ the application.
  */
 -(void) startIntro{
     
-    CGPoint centerPoint = CGPointMake(MLConscienceHomeX, MLConscienceHomeY-40);
+    CGPoint centerPoint = CGPointMake(MLConscienceIntroX, MLConscienceIntroY);
 
 	//Move Monitor onscreen, resize to simulate moving into background
     [UIView beginAnimations:@"CenterConscience" context:nil];
