@@ -220,7 +220,7 @@ the application.
         appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
         
         [UIView beginAnimations:@"BottomUpConscience" context:nil];
-        [UIView setAnimationDuration:1.75];
+        [UIView setAnimationDuration:1.00];
         [UIView setAnimationBeginsFromCurrentState:NO];
         
         backgroundImage.alpha = 1;
