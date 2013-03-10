@@ -5,9 +5,8 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
  */
 
 #import "ReportPieViewController.h"
+#import "UserConscience.h"
 #import "GraphView.h"
-#import "ConscienceView.h"
-#import "MoraLifeAppDelegate.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
 #import "ReportPieModel.h"
@@ -15,8 +14,6 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 #import "UIViewController+Screenshot.h"
 
 @interface ReportPieViewController () <ViewControllerLocalization> {
-    
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 
 	IBOutlet UIView *thoughtModalArea;
 	
@@ -34,6 +31,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 @property (nonatomic, assign) BOOL isAscending;		/**< current order type */
 @property (nonatomic, assign) BOOL isAlphabetical;	/**< current sort type */
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
+@property (nonatomic) UserConscience *userConscience;
 
 /**
  Convert UserData into graphable data, create a GraphView
@@ -44,14 +42,15 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 @implementation ReportPieViewController
 
-- (id)initWithModel:(ReportPieModel *)reportPieModel {
+- (id)initWithModel:(ReportPieModel *)reportPieModel andConscience:(UserConscience *)userConscience {
     self = [super init];
 
     if (self) {
-        _reportPieModel = reportPieModel;
-        _isGood = TRUE;
-        _isAlphabetical = FALSE;
-        _isAscending = FALSE;
+        self.reportPieModel = reportPieModel;
+        self.userConscience = userConscience;
+        self.isGood = TRUE;
+        self.isAlphabetical = FALSE;
+        self.isAscending = FALSE;
 
     }
 
@@ -61,9 +60,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //appDelegate needed to place Conscience on screen
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    _previousScreen.image = _screenshot;
+    self.previousScreen.image = self.screenshot;
 
     [self generateGraph];
     
@@ -84,9 +81,9 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     //Add User Conscience to view
-    [self.view addSubview:appDelegate.userConscienceView];
+    [self.view addSubview:self.userConscience.userConscienceView];
     
-    appDelegate.userConscienceView.center = centerPoint;
+    self.userConscience.userConscienceView.center = centerPoint;
 
     
 }

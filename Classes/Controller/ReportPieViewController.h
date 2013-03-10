@@ -9,7 +9,7 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 @file
  */
 
-@class ReportPieModel;
+@class ReportPieModel, UserConscience;
 
 @interface ReportPieViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> 
 
@@ -18,9 +18,10 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 /**
  Dependency injection constructor to pass model
  @param reportPieModel ReportPieModel handling business logic
+ @param userConscience UserConscience for modals and help screens
  @return id instance of ReportPieViewController
  */
-- (id)initWithModel:(ReportPieModel *)reportPieModel;
+- (id)initWithModel:(ReportPieModel *)reportPieModel andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to graph display type (sort/order/virtue/vice)  

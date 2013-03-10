@@ -190,19 +190,6 @@ static int thoughtVersion = 0;
 
 -(void) viewWillAppear:(BOOL)animated{
 
-    //Setup notifications for rest of application to catch backgrounding
-//    if ([appDelegate isCurrentIOS]) { 
-//		[[NSNotificationCenter defaultCenter] addObserver: self
-//                                                 selector: @selector(stopTimers) 
-//                                                     name: UIApplicationDidEnterBackgroundNotification
-//                                                   object: nil];
-//        
-//		[[NSNotificationCenter defaultCenter] addObserver: self
-//                                                 selector: @selector(setTimers) 
-//                                                     name: UIApplicationWillEnterForegroundNotification
-//                                                   object: nil];
-//	}
-
 	self.userConscience.userConscienceView.alpha = 0;
     thoughtArea.hidden = FALSE;
 
@@ -366,20 +353,20 @@ static int thoughtVersion = 0;
  */
 -(void)setupModalWorkflow{
     
-    UINavigationController *modalNavController1 = [[UINavigationController alloc] init];
+    UINavigationController *modalNavController = [[UINavigationController alloc] init];
 	
 	NSString *modalNavTitle1 = @"Customization";
 	
-	modalNavController1.tabBarItem.title = modalNavTitle1;
-	[modalNavController1 setNavigationBarHidden:YES];
+	modalNavController.tabBarItem.title = modalNavTitle1;
+	[modalNavController setNavigationBarHidden:YES];
 	    
 	ConscienceModalViewController *conscienceModalViewController = [[ConscienceModalViewController alloc] initWithConscience:self.userConscience];
     thoughtArea.hidden = TRUE;
     conscienceModalViewController.screenshot = [self takeScreenshot];
 	
-    [modalNavController1 pushViewController:conscienceModalViewController animated:NO];
+    [modalNavController pushViewController:conscienceModalViewController animated:NO];
 	
-	[self presentModalViewController:modalNavController1 animated:NO];
+	[self presentModalViewController:modalNavController animated:NO];
 	
 }
 

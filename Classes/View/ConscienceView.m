@@ -9,7 +9,6 @@ Actual facial changes are requested by ViewController.
 
 #import <QuartzCore/QuartzCore.h>
 #import "ConscienceView.h"
-#import "MoraLifeAppDelegate.h"
 #import "ConscienceBody.h"
 #import "ConscienceGradient.h"
 #import "ConscienceLayer.h"
@@ -198,9 +197,7 @@ typedef enum {
 } MLExpressionBags;
 
 @interface ConscienceView () {
-    
-	MoraLifeAppDelegate *appDelegate;               /**< delegate for application level callbacks */
-    
+
     //Conscience visual display
 	ConscienceBubbleView *animatedBubbleView;		/**< External animated bubble */
 	ConscienceObjectView *conscienceEyeLeftView;	/**< Conscience left eye (right-most eye on screen) */
@@ -309,9 +306,6 @@ withMind: (ConscienceMind *) argMind{
         browExpressions = @[@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited"];
         lidExpressions = @[@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder"];
 
-        
-        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-        
 		//Setup initial views
 		_directionFacing = MLDirectionFacingLeft;
 		self.contentMode = UIViewContentModeScaleAspectFit;

@@ -51,14 +51,9 @@ User selection causes selectChoice to be called which sets the currentState vari
 @property (nonatomic) UserConscience *userConscience;
 
 /**
- Implementation:  Ensure Conscience is placed correctly.
- */
--(void) moveConscienceToBottom;
-
-/**
  Makes selection choices reappear 
  */
-- (void) showSelectionChoices;
+- (void) refreshSelectionChoices;
 
 /**
  Changes the display of the UIViewController without additional XIB load
@@ -178,30 +173,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-    
-    //Move Conscience to center of boxes
-	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-    self.userConscience.userConscienceView.center = centerPoint;
-    
-	[UIView beginAnimations:@"FadeInView" context:nil];
-	[UIView setAnimationDuration:0.5];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	thoughtModalArea.alpha = 1;
-    thoughtBubble.alpha = 1;
 
-	[UIView commitAnimations];
-    
-    [UIView beginAnimations:@"conscienceHide" context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationBeginsFromCurrentState:NO];
-    self.userConscience.userConscienceView.alpha = 0;
-    
-    [UIView setAnimationDelegate:self]; // self is a view controller
-    [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
-    
-    [UIView commitAnimations];
-    
-    
     //Determine if previous UIViewController is requesting to reset the home screen
     NSObject *homeResetCheck = [prefs objectForKey:@"conscienceModalReset"];
     
@@ -211,26 +183,31 @@ User selection causes selectChoice to be called which sets the currentState vari
         currentState = 0;
     }
 
-    //Call showSelectionChoices directly in order to avoid double fade-in
-    [self showSelectionChoices];
-	 
+
 }
 
 -(void)viewDidAppear:(BOOL)animated {
 
     thoughtModalArea.alpha = 0.0;
 
-    [UIView beginAnimations:@"conscienceHide" context:nil];
-    [UIView setAnimationDuration:0.25];
-    [UIView setAnimationBeginsFromCurrentState:NO];
-    self.userConscience.userConscienceView.alpha = 0;
-    thoughtModalArea.alpha = 1.0;
+    //Move Conscience to center of boxes
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
-    [UIView setAnimationDelegate:self]; // self is a view controller
-    [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
-    
+    [UIView beginAnimations:@"conscienceRestore" context:nil];
+    [UIView setAnimationDuration:0.25];
+
+    [UIView setAnimationBeginsFromCurrentState:YES];
+    self.userConscience.userConscienceView.alpha = 1;
+    self.userConscience.userConscienceView.center = centerPoint;
+
+    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+    thoughtModalArea.alpha = 1.0;
+    thoughtBubble.alpha = 1.0;
     [UIView commitAnimations];
-    
+
+    //Call refreshSelectionChoices directly in order to avoid double fade-in
+    [self refreshSelectionChoices];
+
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 }
@@ -263,27 +240,6 @@ User selection causes selectChoice to be called which sets the currentState vari
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
         
     }
-}
-
-/**
-Implementation:  Sometimes the Conscience can be put in the wrong section of the screen depending upon screen prior to this one. 
-  We must ensure that the Conscience doesn't take up the whole screen.
-*/
--(void) moveConscienceToBottom{
-    
-    //Move Conscience to center of boxes
-	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-    self.userConscience.userConscienceView.center = centerPoint;
-    
-    [UIView beginAnimations:@"conscienceRestore" context:nil];
-    [UIView setAnimationDuration:0.25];
-    
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 1;
-    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
-    
-    [UIView commitAnimations];
-    
 }
 
 /**
@@ -332,7 +288,7 @@ Determines if current screen should change or if another UIViewController needs 
 	
 }
 
-- (void) showSelectionChoices{
+- (void) refreshSelectionChoices{
     
     //Change buttons and status bar for appropriate requested screen
 	statusMessage1.text = (NSString *)screenTitles[currentState];
@@ -407,10 +363,9 @@ Implementation:  Set the Status message at top of screen and the image and label
     [UIView setAnimationDuration:0.1];
     [UIView setAnimationBeginsFromCurrentState:YES];
     [UIView setAnimationDelegate:self]; // self is a view controller
-    [UIView setAnimationDidStopSelector:@selector(showSelectionChoices)];
+    [UIView setAnimationDidStopSelector:@selector(refreshSelectionChoices)];
 
     thoughtModalArea.alpha = 0;
-//    thoughtBubble.alpha = 0;
 
     [UIView commitAnimations];
 
@@ -433,7 +388,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 		switch (controllerID) {
 			case 2:{
                 ReportPieModel *reportPieModel = [[ReportPieModel alloc] init];
-				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel];
+				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel andConscience:self.userConscience];
                 reportPieViewCont.screenshot = [self takeScreenshot];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
