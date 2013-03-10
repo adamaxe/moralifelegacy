@@ -537,7 +537,7 @@ Implementation: Retrieve User's current ethicals from UserData
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	//Create next view to accept, review or reject purchase	
-	ConscienceAcceptViewController *conscienceAcceptController = [[ConscienceAcceptViewController alloc] init];
+	ConscienceAcceptViewController *conscienceAcceptController = [[ConscienceAcceptViewController alloc] initWithConscience:self.userConscience];
                 
 	NSMutableString *selectedRow = [NSMutableString stringWithString:tableDataKeys[indexPath.row]];
 

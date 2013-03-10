@@ -12,11 +12,20 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 @date 08/25/2010
  */
 
+@class UserConscience;
+
 @interface ConscienceAcceptViewController : UIViewController
 
 @property (nonatomic, assign) int accessorySlot;		/**< which slot is ConscienceAsset, set from ConscienceListViewController */
 @property (nonatomic, strong) NSString *assetSelection;	/**< which ConscienceAsset, set from ConscienceListViewController */
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
+/**
+ Creates the viewController with the User's Conscience
+ @param userConscience UserConscience for modals and help screens
+ @return id instance of ConscienceAcceptViewController
+ */
+-(id)initWithConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to commit the choice of ConscienceAsset to persistence.  Returns User to ConscienceViewController.

@@ -212,7 +212,7 @@ typedef enum {
     rewardView.alpha = 0;
 	rewardView.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
 
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
+	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
 	
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
@@ -220,7 +220,7 @@ typedef enum {
 	[UIView beginAnimations:@"MoveConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
     
 	screen1View.alpha = 1;
 	
@@ -228,13 +228,13 @@ typedef enum {
     
     [self animateViewDetail: MLViewToAnimateVersus atBeginning: FALSE];
     
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
     
     [self animateViewDetail: MLViewToAnimateReward atBeginning: TRUE];    
 	
-	[appDelegate.userConscienceView setNeedsDisplay];
+	[self.userConscience.userConscienceView setNeedsDisplay];
 	
 }
 
@@ -964,23 +964,23 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     /** @todo refactor into ConscienceMind
      */
-    float newMood = appDelegate.userConscienceMind.mood + 0.5;
-    float newEnthusiasm = appDelegate.userConscienceMind.enthusiasm + 0.5;
+    float newMood = self.userConscience.userConscienceMind.mood + 0.5;
+    float newEnthusiasm = self.userConscience.userConscienceMind.enthusiasm + 0.5;
     
     if (newMood > 90) {
-        appDelegate.userConscienceMind.mood = 10.0;
+        self.userConscience.userConscienceMind.mood = 10.0;
     } else if (newMood < 10) {
-        appDelegate.userConscienceMind.mood = 10.0;
+        self.userConscience.userConscienceMind.mood = 10.0;
     } else {
-        appDelegate.userConscienceMind.mood = newMood;        
+        self.userConscience.userConscienceMind.mood = newMood;        
     }
     
     if (newEnthusiasm > 90) {
-        appDelegate.userConscienceMind.enthusiasm = 90.0;
+        self.userConscience.userConscienceMind.enthusiasm = 90.0;
     } else if (newEnthusiasm < 10) {
-        appDelegate.userConscienceMind.enthusiasm = 10.0;
+        self.userConscience.userConscienceMind.enthusiasm = 10.0;
     } else {
-        appDelegate.userConscienceMind.enthusiasm = newEnthusiasm;        
+        self.userConscience.userConscienceMind.enthusiasm = newEnthusiasm;        
     }
     
     UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];

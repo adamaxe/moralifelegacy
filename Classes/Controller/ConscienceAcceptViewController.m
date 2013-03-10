@@ -7,9 +7,9 @@ User can return to the previous screen:  return to ConscienceListViewController 
  */
 
 #import "ConscienceAcceptViewController.h"
+#import "UserConscience.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ConscienceView.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
 #import "ConscienceAssetDAO.h"
@@ -51,6 +51,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 /**
@@ -86,9 +87,11 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #pragma mark ViewController lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+-(id)initWithConscience:(UserConscience *)userConscience {
 
+    if (self = [super init]) {
+
+        self.userConscience = userConscience;
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
@@ -147,28 +150,28 @@ User can return to the previous screen:  return to ConscienceListViewController 
     
     //Add requested ConscienceAsset to duplicate ConscienceView for review
 	switch (_accessorySlot) {
-		case 0:{[resetFeature setString:appDelegate.userConscienceAccessories.topAccessory];appDelegate.userConscienceAccessories.topAccessory = currentFeature;}break;
-		case 1:{[resetFeature setString:appDelegate.userConscienceAccessories.primaryAccessory];appDelegate.userConscienceAccessories.primaryAccessory = currentFeature;}break;
-		case 2:{[resetFeature setString:appDelegate.userConscienceAccessories.bottomAccessory];appDelegate.userConscienceAccessories.bottomAccessory = currentFeature;}break;
-		case 3:{[resetFeature setString:appDelegate.userConscienceAccessories.secondaryAccessory];appDelegate.userConscienceAccessories.secondaryAccessory = currentFeature;}break;
-		case 4:{[resetFeature setString:appDelegate.userConscienceBody.eyeName];appDelegate.userConscienceBody.eyeName = currentFeature;}break;
-		case 5:{[resetFeature setString:appDelegate.userConscienceBody.symbolName];appDelegate.userConscienceBody.symbolName = currentFeature;}break;
-		case 6:{[resetFeature setString:appDelegate.userConscienceBody.mouthName];appDelegate.userConscienceBody.mouthName = currentFeature;}break;
-		case 7:{[resetFeature setString:appDelegate.userConscienceBody.eyeColor];appDelegate.userConscienceBody.eyeColor = currentFeature;}break;
-		case 8:{[resetFeature setString:appDelegate.userConscienceBody.browColor];appDelegate.userConscienceBody.browColor = currentFeature;}break;
-		case 9:{[resetFeature setString:appDelegate.userConscienceBody.bubbleColor];appDelegate.userConscienceBody.bubbleColor = currentFeature;}break;
+		case 0:{[resetFeature setString:self.userConscience.userConscienceAccessories.topAccessory];self.userConscience.userConscienceAccessories.topAccessory = currentFeature;}break;
+		case 1:{[resetFeature setString:self.userConscience.userConscienceAccessories.primaryAccessory];self.userConscience.userConscienceAccessories.primaryAccessory = currentFeature;}break;
+		case 2:{[resetFeature setString:self.userConscience.userConscienceAccessories.bottomAccessory];self.userConscience.userConscienceAccessories.bottomAccessory = currentFeature;}break;
+		case 3:{[resetFeature setString:self.userConscience.userConscienceAccessories.secondaryAccessory];self.userConscience.userConscienceAccessories.secondaryAccessory = currentFeature;}break;
+		case 4:{[resetFeature setString:self.userConscience.userConscienceBody.eyeName];self.userConscience.userConscienceBody.eyeName = currentFeature;}break;
+		case 5:{[resetFeature setString:self.userConscience.userConscienceBody.symbolName];self.userConscience.userConscienceBody.symbolName = currentFeature;}break;
+		case 6:{[resetFeature setString:self.userConscience.userConscienceBody.mouthName];self.userConscience.userConscienceBody.mouthName = currentFeature;}break;
+		case 7:{[resetFeature setString:self.userConscience.userConscienceBody.eyeColor];self.userConscience.userConscienceBody.eyeColor = currentFeature;}break;
+		case 8:{[resetFeature setString:self.userConscience.userConscienceBody.browColor];self.userConscience.userConscienceBody.browColor = currentFeature;}break;
+		case 9:{[resetFeature setString:self.userConscience.userConscienceBody.bubbleColor];self.userConscience.userConscienceBody.bubbleColor = currentFeature;}break;
 		case 10:{
-            [resetFeature setString:[NSString stringWithFormat:@"%d", appDelegate.userConscienceBody.bubbleType]];
+            [resetFeature setString:[NSString stringWithFormat:@"%d", self.userConscience.userConscienceBody.bubbleType]];
             
             NSString *bubbleType = [currentFeature substringFromIndex:11];
-            appDelegate.userConscienceBody.bubbleType = [bubbleType intValue];
+            self.userConscience.userConscienceBody.bubbleType = [bubbleType intValue];
 
         }break;            
 		default: break;
 	}
 	
     if ((_accessorySlot > 3) && (_accessorySlot < 7)) {
-        [ConscienceBuilder buildConscience:appDelegate.userConscienceBody];
+        [ConscienceBuilder buildConscience:self.userConscience.userConscienceBody];
 
     }
 
@@ -188,8 +191,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[super viewWillAppear:animated];
 
 	//Add User's actual Conscience to lower-left of screen
-	[consciencePlayground addSubview:appDelegate.userConscienceView];
-	[appDelegate.userConscienceView setNeedsDisplay];
+	[consciencePlayground addSubview:self.userConscience.userConscienceView];
+	[self.userConscience.userConscienceView setNeedsDisplay];
 
     [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];    
 	//Inform/restrict User's ability to actually purchase ConscienceAsset
@@ -217,10 +220,9 @@ User can return to the previous screen:  return to ConscienceListViewController 
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    appDelegate.userConscienceView.alpha = 0;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    self.userConscience.userConscienceView.alpha = 0;
+    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
     
-    //    appDelegate.userConscienceView.center = centerPoint;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToCenter)];
     
@@ -241,14 +243,14 @@ User can return to the previous screen:  return to ConscienceListViewController 
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(160, 160);
-    appDelegate.userConscienceView.center = centerPoint;
+    self.userConscience.userConscienceView.center = centerPoint;
     
     [UIView beginAnimations:@"conscienceRestore" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    appDelegate.userConscienceView.alpha = 1;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+    self.userConscience.userConscienceView.alpha = 1;
+    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
     
     [UIView commitAnimations];
     
@@ -283,10 +285,9 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             [UIView setAnimationDuration:0.25];
             
             [UIView setAnimationBeginsFromCurrentState:YES];
-            appDelegate.userConscienceView.alpha = 0;
-            appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            self.userConscience.userConscienceView.alpha = 0;
+            self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
             
-            //    appDelegate.userConscienceView.center = centerPoint;
             [UIView setAnimationDelegate:self]; // self is a view controller
             [UIView setAnimationDidStopSelector:@selector(returnToHome)];
                             
@@ -294,22 +295,22 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
 		} else {
             
             switch (_accessorySlot) {
-                case 0:appDelegate.userConscienceAccessories.topAccessory = resetFeature;break;
-                case 1:appDelegate.userConscienceAccessories.primaryAccessory = resetFeature;break;
-                case 2:appDelegate.userConscienceAccessories.bottomAccessory = resetFeature;break;
-                case 3:appDelegate.userConscienceAccessories.secondaryAccessory = resetFeature;break;
-                case 4:appDelegate.userConscienceBody.eyeName = resetFeature;break;
-                case 5:appDelegate.userConscienceBody.symbolName = resetFeature;break;
-                case 6:appDelegate.userConscienceBody.mouthName = resetFeature;break;
-                case 7:appDelegate.userConscienceBody.eyeColor = resetFeature;break;
-                case 8:appDelegate.userConscienceBody.browColor = resetFeature;break;
-                case 9:appDelegate.userConscienceBody.bubbleColor = resetFeature;break;
-                case 10:appDelegate.userConscienceBody.bubbleType = [resetFeature intValue];break;                    
+                case 0:self.userConscience.userConscienceAccessories.topAccessory = resetFeature;break;
+                case 1:self.userConscience.userConscienceAccessories.primaryAccessory = resetFeature;break;
+                case 2:self.userConscience.userConscienceAccessories.bottomAccessory = resetFeature;break;
+                case 3:self.userConscience.userConscienceAccessories.secondaryAccessory = resetFeature;break;
+                case 4:self.userConscience.userConscienceBody.eyeName = resetFeature;break;
+                case 5:self.userConscience.userConscienceBody.symbolName = resetFeature;break;
+                case 6:self.userConscience.userConscienceBody.mouthName = resetFeature;break;
+                case 7:self.userConscience.userConscienceBody.eyeColor = resetFeature;break;
+                case 8:self.userConscience.userConscienceBody.browColor = resetFeature;break;
+                case 9:self.userConscience.userConscienceBody.bubbleColor = resetFeature;break;
+                case 10:self.userConscience.userConscienceBody.bubbleType = [resetFeature intValue];break;                    
                 default: break;
             }
             
             if ((_accessorySlot > 3) && (_accessorySlot < 7)) {
-                [ConscienceBuilder buildConscience:appDelegate.userConscienceBody];
+                [ConscienceBuilder buildConscience:self.userConscience.userConscienceBody];
                 
             }
                         
@@ -317,8 +318,8 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             [UIView setAnimationDuration:0.25];
             
             [UIView setAnimationBeginsFromCurrentState:YES];
-            appDelegate.userConscienceView.alpha = 0;
-            appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            self.userConscience.userConscienceView.alpha = 0;
+            self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
             
             [UIView setAnimationDelegate:self]; // self is a view controller
             
@@ -403,23 +404,23 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     
     /** @todo refactor into ConscienceMind
      */
-    float newMood = appDelegate.userConscienceMind.mood + 1;
-    float newEnthusiasm = appDelegate.userConscienceMind.enthusiasm + 1;
+    float newMood = self.userConscience.userConscienceMind.mood + 1;
+    float newEnthusiasm = self.userConscience.userConscienceMind.enthusiasm + 1;
     
     if (newMood > 90) {
-        appDelegate.userConscienceMind.mood = 90.0;
+        self.userConscience.userConscienceMind.mood = 90.0;
     } else if (newMood < 10) {
-        appDelegate.userConscienceMind.mood = 10.0;
+        self.userConscience.userConscienceMind.mood = 10.0;
     } else {
-        appDelegate.userConscienceMind.mood = newMood;        
+        self.userConscience.userConscienceMind.mood = newMood;        
     }
     
     if (newEnthusiasm > 90) {
-        appDelegate.userConscienceMind.enthusiasm = 90.0;
+        self.userConscience.userConscienceMind.enthusiasm = 90.0;
     } else if (newEnthusiasm < 10) {
-        appDelegate.userConscienceMind.enthusiasm = 10.0;
+        self.userConscience.userConscienceMind.enthusiasm = 10.0;
     } else {
-        appDelegate.userConscienceMind.enthusiasm = newEnthusiasm;        
+        self.userConscience.userConscienceMind.enthusiasm = newEnthusiasm;        
     }
 
     //Setup a transient expression for Conscience in response to entry
