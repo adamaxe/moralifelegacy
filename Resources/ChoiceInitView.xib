@@ -164,10 +164,6 @@
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">icon-choicesgood.png</string>
-								</object>
 							</object>
 						</object>
 						<string key="NSFrame">{{0, 44}, {160, 230}}</string>
@@ -241,13 +237,10 @@
 								<string key="NSFrame">{{43, 60}, {75, 75}}</string>
 								<reference key="NSSuperview" ref="708182127"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">icon-choicesbad.png</string>
-								</object>
 							</object>
 						</object>
 						<string key="NSFrame">{{160, 44}, {160, 230}}</string>
@@ -289,17 +282,13 @@
 							<object class="IBUIImageView" id="388896770">
 								<reference key="NSNextResponder" ref="682608101"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{41, 58}, {75, 75}}</string>
+								<string key="NSFrame">{{43, 58}, {75, 75}}</string>
 								<reference key="NSSuperview" ref="682608101"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="387265954"/>
 								<string key="NSReuseIdentifierKey">_NS:9</string>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">icon-choicesall.png</string>
-								</object>
 							</object>
 							<object class="IBUILabel" id="387265954">
 								<reference key="NSNextResponder" ref="682608101"/>
@@ -365,30 +354,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">goodChoiceView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="546700804"/>
-					</object>
-					<int key="connectionID">100</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">badChoiceView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="708182127"/>
-					</object>
-					<int key="connectionID">101</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">choiceListView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="682608101"/>
-					</object>
-					<int key="connectionID">102</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">goodChoiceLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="767607919"/>
@@ -434,6 +399,30 @@
 						<reference key="destination" ref="290344847"/>
 					</object>
 					<int key="connectionID">125</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">goodChoiceView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="555013925"/>
+					</object>
+					<int key="connectionID">126</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">badChoiceView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="345283059"/>
+					</object>
+					<int key="connectionID">127</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">choiceListView</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="388896770"/>
+					</object>
+					<int key="connectionID">128</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -648,7 +637,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">125</int>
+			<int key="maxID">128</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -685,13 +674,13 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UILabel</string>
-							<string>UIView</string>
+							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
-							<string>UIView</string>
+							<string>UIImageView</string>
 							<string>UIButton</string>
 							<string>UILabel</string>
-							<string>UIView</string>
+							<string>UIImageView</string>
 						</object>
 					</object>
 					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -720,7 +709,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">badChoiceView</string>
-								<string key="candidateClassName">UIView</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">choiceListButton</string>
@@ -732,7 +721,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">choiceListView</string>
-								<string key="candidateClassName">UIView</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">goodChoiceButton</string>
@@ -744,7 +733,7 @@
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">goodChoiceView</string>
-								<string key="candidateClassName">UIView</string>
+								<string key="candidateClassName">UIImageView</string>
 							</object>
 						</object>
 					</object>
@@ -768,18 +757,12 @@
 			<object class="NSArray" key="dict.sortedKeys">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>background-wall.jpg</string>
-				<string>icon-choicesall.png</string>
-				<string>icon-choicesbad.png</string>
-				<string>icon-choicesgood.png</string>
 				<string>navbar-texture-bevel.png</string>
 				<string>pictureframe-landscape.png</string>
 			</object>
 			<object class="NSArray" key="dict.values">
 				<bool key="EncodedWithXMLCoder">YES</bool>
 				<string>{320, 480}</string>
-				<string>{150, 150}</string>
-				<string>{150, 150}</string>
-				<string>{150, 150}</string>
 				<string>{320, 56}</string>
 				<string>{331, 279}</string>
 			</object>

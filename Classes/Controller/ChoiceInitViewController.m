@@ -14,13 +14,23 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "UIViewController+Screenshot.h"
 #import "UIFont+Utility.h"
 
+/**
+ Possible Reference Types
+ typedef utilized to avoid having to use enum declaration
+ */
+typedef enum {
+	MLChoiceTypeChoiceGood,
+	MLChoiceTypeChoiceBad,
+	MLChoiceTypeChoiceList
+} MLChoiceTypeChoice;
+
 @interface ChoiceInitViewController () <ViewControllerLocalization> {
 	
 	NSUserDefaults *prefs;                      /**< serialized state retention */
 
-    IBOutlet UIView *goodChoiceView;                /**< Container view for Good Choice */
-    IBOutlet UIView *badChoiceView;                /**< Container view for Good Choice */
-    IBOutlet UIView *choiceListView;                /**< Container view for Good Choice */
+    IBOutlet UIImageView *goodChoiceView;                /**< Container view for Good Choice */
+    IBOutlet UIImageView *badChoiceView;                /**< Container view for Good Choice */
+    IBOutlet UIImageView *choiceListView;                /**< Container view for Good Choice */
 
 	IBOutlet UILabel *goodChoiceLabel;		/**< Label for Good Choice entry selection */
 	IBOutlet UILabel *badChoiceLabel;		/**< Label for Bad Choice entry selection */
@@ -29,9 +39,14 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	IBOutlet UIButton *goodChoiceButton;		/**< Button for Good Choice entry selection */
 	IBOutlet UIButton *badChoiceButton;			/**< Button for Bad Choice entry selection */
 	IBOutlet UIButton *choiceListButton;		/**< Button for All Choice listing selection */
+
+    NSArray *buttonNames;
+
 }
 
 @property (nonatomic) UserConscience *userConscience;
+@property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
+
 
 @end
 
@@ -47,7 +62,8 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		//Create NSUserDefaults for serialized state retention
 		prefs = [NSUserDefaults standardUserDefaults];
         self.userConscience = userConscience;
-		
+		buttonNames = @[@"choicegood", @"choicebad", @"choicelist"];
+
 	}
     
 	return self;
@@ -56,11 +72,14 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+    goodChoiceButton.tag = MLChoiceTypeChoiceGood;
+    badChoiceButton.tag = MLChoiceTypeChoiceBad;
+    choiceListButton.tag = MLChoiceTypeChoiceList;
+
+    self.navigationItem.hidesBackButton = YES;
     goodChoiceLabel.font = [UIFont fontForHomeScreenButtons];
     badChoiceLabel.font = [UIFont fontForHomeScreenButtons];
     choiceListLabel.font = [UIFont fontForHomeScreenButtons];
-
-    self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:choiceBarButton];
@@ -68,15 +87,13 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     [self localizeUI];
 }
 
-- (void) viewWillAppear:(BOOL)animated{
-
-    [super viewWillAppear:animated];
-
-}
-
 -(void)viewDidAppear:(BOOL)animated {
     
     [super viewDidAppear:animated];
+    [self buildButtons];
+	[self refreshButtons];
+
+	self.buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
 
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
@@ -166,6 +183,62 @@ Implementation: A single view controller is utilized for both Good and Bad choic
         [self.navigationController pushViewController:choiceListCont animated:YES];
     }
 
+}
+
+#pragma mark -
+#pragma mark Menu Screen Animations
+
+/**
+ Implementation: Only animate at most 2 buttons at a time.  Otherwise, too visually distracting
+ */
+- (void) refreshButtons{
+
+	[self buttonAnimate:@(arc4random()%3)];
+	[self buttonAnimate:@(arc4random()%3)];
+}
+
+/**
+ Implementation: Build animated UIImage from sequential icon files
+ */
+- (void) buildButtons{
+
+    CGFloat animationDuration = 0.75;
+    int animationRepeatCount = 1;
+
+    for (int i = 0; i < 3; i++) {
+
+        NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", buttonNames[i]];
+
+        UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
+        UIImage *iconani2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@2.png", iconFileName]];
+        UIImage *iconani3 = [UIImage imageNamed:[NSString stringWithFormat:@"%@3.png", iconFileName]];
+        UIImage *iconani4 = [UIImage imageNamed:[NSString stringWithFormat:@"%@4.png", iconFileName]];
+
+        NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
+
+        switch (i){
+            case 0: goodChoiceView.image = iconani1;goodChoiceView.animationImages = images;goodChoiceView.animationDuration = animationDuration;goodChoiceView.animationRepeatCount = animationRepeatCount;break;
+            case 1: badChoiceView.image = iconani1;badChoiceView.animationImages = images;badChoiceView.animationDuration = animationDuration;badChoiceView.animationRepeatCount = animationRepeatCount;break;
+            case 2: choiceListView.image = iconani1;choiceListView.animationImages = images;choiceListView.animationDuration = animationDuration;choiceListView.animationRepeatCount = animationRepeatCount;break;
+            default:break;
+        }
+
+    }
+}
+
+/**
+ Implementation: Build animated UIImage from sequential icon files
+ */
+- (void) buttonAnimate:(NSNumber *) buttonNumber{
+
+	switch ([buttonNumber intValue]){
+
+        case 0: [goodChoiceView startAnimating];break;
+        case 1: [badChoiceView startAnimating];break;
+        case 2: [choiceListView startAnimating];break;
+        default:break;
+	}
+    
 }
 
 #pragma mark -

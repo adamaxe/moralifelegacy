@@ -17,9 +17,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 @interface ReferenceViewController () <ViewControllerLocalization> {
 
-    IBOutlet UIView *accessoriesView;    /**< view for Accessories */
-    IBOutlet UIView *peopleView;        /**< view for People */
-    IBOutlet UIView *moralsView;        /**< view for Morals */
+    IBOutlet UIImageView *accessoriesView;    /**< view for Accessories */
+    IBOutlet UIImageView *peopleView;        /**< view for People */
+    IBOutlet UIImageView *moralsView;        /**< view for Morals */
 
 	IBOutlet UILabel *peopleLabel;		/**< label for People button */
 	IBOutlet UILabel *moralsLabel;		/**< label for Morals button */
@@ -32,9 +32,12 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	IBOutlet UIButton *reportsButton;		/**< label for Reports button */
 	IBOutlet UIButton *accessoriesButton;	/**< label for Accessories button */
 
+    NSArray *buttonNames;
+
 }
 
 @property (nonatomic) UserConscience *userConscience;
+@property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
 
 @end
 
@@ -46,6 +49,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 -(id)initWithConscience:(UserConscience *)userConscience {
 	if ((self = [super init])) {
         self.userConscience = userConscience;
+		//Array to hold button names for random animations
+		buttonNames = @[@"accessories", @"people", @"choicelist"];
+
 	}
 
 	return self;
@@ -55,12 +61,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     [super viewDidLoad];
 
     //Assign buttons to reference Types
+    accessoriesButton.tag = MLReferenceModelTypeConscienceAsset;
     peopleButton.tag = MLReferenceModelTypePerson;
     moralsButton.tag = MLReferenceModelTypeMoral;
-    booksButton.tag = MLReferenceModelTypeText;
-    beliefsButton.tag = MLReferenceModelTypeBelief;
-    reportsButton.tag = MLReferenceModelTypeReferenceAsset;
-    accessoriesButton.tag = MLReferenceModelTypeConscienceAsset;
 
     self.navigationItem.hidesBackButton = YES;
     peopleLabel.font = [UIFont fontForScreenButtons];
@@ -75,7 +78,13 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    
+    [super viewDidAppear:animated];
+
+    [self buildButtons];
+	[self refreshButtons];
+
+	self.buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
+
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
     
@@ -129,6 +138,62 @@ Implementation: Determine which type of reference is requested by the User.
     ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel andConscience:self.userConscience];
     [self.navigationController pushViewController:referenceListViewCont animated:TRUE];
 
+}
+
+#pragma mark -
+#pragma mark Menu Screen Animations
+
+/**
+ Implementation: Only animate at most 2 buttons at a time.  Otherwise, too visually distracting
+ */
+- (void) refreshButtons{
+
+	[self buttonAnimate:@(arc4random()%3)];
+	[self buttonAnimate:@(arc4random()%3)];
+}
+
+/**
+ Implementation: Build animated UIImage from sequential icon files
+ */
+- (void) buildButtons{
+
+    CGFloat animationDuration = 0.75;
+    int animationRepeatCount = 1;
+    
+    for (int i = 0; i < 3; i++) {
+
+        NSString *iconFileName = [NSString stringWithFormat:@"icon-%@ani", buttonNames[i]];
+
+        UIImage *iconani1 = [UIImage imageNamed:[NSString stringWithFormat:@"%@1.png", iconFileName]];
+        UIImage *iconani2 = [UIImage imageNamed:[NSString stringWithFormat:@"%@2.png", iconFileName]];
+        UIImage *iconani3 = [UIImage imageNamed:[NSString stringWithFormat:@"%@3.png", iconFileName]];
+        UIImage *iconani4 = [UIImage imageNamed:[NSString stringWithFormat:@"%@4.png", iconFileName]];
+
+        NSArray *images = @[iconani1, iconani2, iconani3, iconani4];
+
+        switch (i){
+            case 0: accessoriesView.image = iconani1;accessoriesView.animationImages = images;accessoriesView.animationDuration = animationDuration;accessoriesView.animationRepeatCount = animationRepeatCount;break;
+            case 1: peopleView.image = iconani1;peopleView.animationImages = images;peopleView.animationDuration = animationDuration;peopleView.animationRepeatCount = animationRepeatCount;break;
+            case 2: moralsView.image = iconani1;moralsView.animationImages = images;moralsView.animationDuration = animationDuration;moralsView.animationRepeatCount = animationRepeatCount;break;
+            default:break;
+        }
+        
+    }
+}
+
+/**
+ Implementation: Build animated UIImage from sequential icon files
+ */
+- (void) buttonAnimate:(NSNumber *) buttonNumber{
+
+	switch ([buttonNumber intValue]){
+
+        case 0: [accessoriesView startAnimating];break;
+        case 1: [peopleView startAnimating];break;
+        case 2: [moralsView startAnimating];break;
+        default:break;
+	}
+    
 }
 
 #pragma mark -
