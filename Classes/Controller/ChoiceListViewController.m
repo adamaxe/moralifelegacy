@@ -326,7 +326,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	
 	//Push view onto stack
 	[self.navigationController pushViewController:choiceCont animated:YES];
-    	
+
 }
 
 #pragma mark -

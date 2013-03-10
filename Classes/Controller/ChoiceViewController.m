@@ -107,6 +107,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
         context = [appDelegate.moralModelManager readWriteManagedObjectContext];
+        self.userConscience = userConscience;
 
         choiceKey = [[NSMutableString alloc] init];
 
@@ -117,7 +118,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
         severityLabelDescriptions = [[NSMutableArray alloc] init];
 
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
         conscienceHelpViewController.isConscienceOnScreen = FALSE;
         self.conscienceHelpViewController = conscienceHelpViewController;
@@ -330,7 +331,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 -(void) showChoiceDetailEntry{
 
     //Allow User to enter in more specific details
-    ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] init];
+    ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] initWithConscience:self.userConscience];
     [self.navigationController pushViewController:choiceDetailViewCont animated:YES];
 }
 

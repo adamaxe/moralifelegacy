@@ -6,6 +6,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 */
 
 #import "ChoiceDetailViewController.h"
+#import "UserConscience.h"
 #import "StructuredTextField.h"
 #import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
@@ -36,6 +37,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	BOOL isChoiceCancelled;		/**< is Choice being cancelled, don't save */
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 
 /**
@@ -61,6 +63,16 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 #pragma mark -
 #pragma mark View lifecycle
+
+-(id)initWithConscience:(UserConscience *)userConscience {
+    self = [super init];
+
+    if (self) {
+        self.userConscience = userConscience;
+    }
+
+    return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -98,7 +110,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
 
-    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
     conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
     conscienceHelpViewController.isConscienceOnScreen = FALSE;
     self.conscienceHelpViewController = conscienceHelpViewController;

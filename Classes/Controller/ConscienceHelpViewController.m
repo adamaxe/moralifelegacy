@@ -60,7 +60,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     self = [super init];
     if (self) {
         self.userConscience = userConscience;
-        _viewControllerClassName = [[NSString alloc] init];
+        self.viewControllerClassName = [[NSString alloc] init];
 
 		helpTitle = [[UILabel alloc] initWithFrame:CGRectZero];
 		[helpTitle setTextAlignment:UITextAlignmentCenter];
@@ -100,14 +100,14 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
     previousButton.alpha = 1.0;
     nextButton.alpha = 1.0;
 
-    if (!_helpTexts.count) {
+    if (!self.helpTexts.count) {
 
         NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
         NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
 
         for (int i = 0; i < 6; i++) {
-            [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", _viewControllerClassName, self.numberOfScreens - 1, i+1]];
-            [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", _viewControllerClassName, self.numberOfScreens - 1, i+1]];
+            [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", self.viewControllerClassName, self.numberOfScreens - 1, i+1]];
+            [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", self.viewControllerClassName, self.numberOfScreens - 1, i+1]];
         }
         
         NSMutableArray *helpAllTitles = [[NSMutableArray alloc] init];
@@ -126,13 +126,11 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
             }
         }
         
-        _helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
-        _helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
+        self.helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
+        self.helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
         
     }
 	
-	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
-
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     helpTitle.hidden = TRUE;
@@ -148,7 +146,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
 
 	//Determine if Conscience is already on screen
-	if (!_isConscienceOnScreen) {
+	if (!self.isConscienceOnScreen) {
 		self.userConscience.userConscienceView.center = centerPoint;
 	}
 
@@ -223,8 +221,8 @@ Show reward views once User has completed dilemma and refuse access to previous 
         } completion:^(BOOL finished) {
             helpTitle.hidden = FALSE;
             helpText.hidden = FALSE;
-            helpTitle.text = _helpTitles[screenVersion - 1];
-            helpText.text = _helpTexts[screenVersion - 1];
+            helpTitle.text = self.helpTitles[screenVersion - 1];
+            helpText.text = self.helpTexts[screenVersion - 1];
 
             [UIView animateWithDuration:0.5 animations:^{
                 helpTitle.alpha = 1;
@@ -239,7 +237,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
         [self dismissThoughtModal:placeHolder];
     }
     
-    int screenMaximum = [_helpTitles count];
+    int screenMaximum = [self.helpTitles count];
 	
 	//Animate button that User should use
 	if (screenVersion >= screenMaximum){
@@ -311,8 +309,8 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
 
-    _helpTitles = @[];
-    _helpTexts = @[];
+    self.helpTitles = @[];
+    self.helpTexts = @[];
 }
 
 #pragma mark -

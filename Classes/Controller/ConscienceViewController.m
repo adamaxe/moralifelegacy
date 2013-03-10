@@ -288,7 +288,7 @@ static int thoughtVersion = 0;
 }
 
 - (void) pushJournal {
-    ChoiceInitViewController *choiceIntViewController = [[ChoiceInitViewController alloc] init];
+    ChoiceInitViewController *choiceIntViewController = [[ChoiceInitViewController alloc] initWithConscience:self.userConscience];
     [self.navigationController pushViewController:choiceIntViewController animated:YES];
 }
 
