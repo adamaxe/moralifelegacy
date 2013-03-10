@@ -91,7 +91,6 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 		isVirtue = TRUE;
 	}
 
-    [thoughtArea addSubview:self.userConscience.userConscienceView];
     [self retrieveAllSelections];
 
     [self localizeUI];    
@@ -100,7 +99,9 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-    
+
+    [thoughtArea addSubview:self.userConscience.userConscienceView];
+
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
 
@@ -134,7 +135,9 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	id placeHolderID = nil;
 	
 	[self dismissChoiceModal:placeHolderID];
-	
+
+    [self.userConscience.userConscienceView removeFromSuperview];
+
 }
 
 -(void)setScreenshot:(UIImage *)screenshot {

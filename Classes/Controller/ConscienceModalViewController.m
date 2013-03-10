@@ -164,15 +164,18 @@ User selection causes selectChoice to be called which sets the currentState vari
     [labelButton4 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
     [labelButton4 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
 
-	//Add User Conscience to view
-    [self.view addSubview:self.userConscience.userConscienceView];
-
     self.conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
 
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+
+	//Add User Conscience to view
+    [self.view addSubview:self.userConscience.userConscienceView];
+    //Move Conscience to center of boxes
+	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
+    self.userConscience.userConscienceView.center = centerPoint;
 
     //Determine if previous UIViewController is requesting to reset the home screen
     NSObject *homeResetCheck = [prefs objectForKey:@"conscienceModalReset"];
@@ -190,7 +193,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 
     thoughtModalArea.alpha = 0.0;
 
-    //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     [UIView beginAnimations:@"conscienceRestore" context:nil];
@@ -210,6 +212,11 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.userConscience.userConscienceView removeFromSuperview];
 }
 
 -(void)setScreenshot:(UIImage *)screenshot {
