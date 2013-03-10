@@ -24,6 +24,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UIViewController+Screenshot.h"
 #import "UIColor+Utility.h"
 #import "UIFont+Utility.h"
+#import "UserConscience.h"
 
 typedef enum {
     MLConscienceViewControllerVirtueButtonTag = 3030,
@@ -71,6 +72,8 @@ float const MLThoughtInterval = 5;
     BOOL isThoughtOnScreen;             /**< whether Conscience Thought bubble is visible */
     
 }
+
+@property (nonatomic) UserConscience *userConscience;
 
 /**
  Present a thought bubble to the User, suggesting that the UserConscience is talking
@@ -129,16 +132,19 @@ static int thoughtVersion = 0;
 #pragma mark ViewController lifecycle
 
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    
-	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
-		//Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+//    
+//	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+-(id)initWithConscience:(UserConscience *)userConscience {
+	if ((self = [super init])) {
+        //Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
 
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];
         highestRankName = [[NSMutableString alloc] init];
+        self.userConscience = userConscience;
 
 	}
     
@@ -150,7 +156,7 @@ static int thoughtVersion = 0;
     
     [super viewDidLoad];
     
-    initialConscienceView = appDelegate.userConscienceView;
+    initialConscienceView = self.userConscience.userConscienceView;
     
     virtueImage.alpha = 0;
     viceImage.alpha = 0;
@@ -236,13 +242,13 @@ static int thoughtVersion = 0;
 		transientMood = [prefs floatForKey:@"transientMind"];
         
         //store previous mood
-        float restoreMood = appDelegate.userConscienceMind.mood;
-        float restoreEnthusiasm = appDelegate.userConscienceMind.enthusiasm;
+        float restoreMood = self.userConscience.userConscienceMind.mood;
+        float restoreEnthusiasm = self.userConscience.userConscienceMind.enthusiasm;
         
         //set new mood
-        appDelegate.userConscienceMind.mood = transientMood;
-        appDelegate.userConscienceMind.enthusiasm = 100.0;
-        [appDelegate.userConscienceView setIsExpressionForced:TRUE];
+        self.userConscience.userConscienceMind.mood = transientMood;
+        self.userConscience.userConscienceMind.enthusiasm = 100.0;
+        [self.userConscience.userConscienceView setIsExpressionForced:TRUE];
 
         
         //Setup invocation for delayed mood reset
@@ -558,7 +564,7 @@ static int thoughtVersion = 0;
     
     int randomResponse = arc4random()%3;
 
-    if (appDelegate.userConscienceMind.mood > 45) {
+    if (self.userConscience.userConscienceMind.mood > 45) {
         if (randomResponse == 0) {
             [conscienceStatus setText:@"Wee!"];
         } else if (randomResponse == 1){
@@ -579,7 +585,7 @@ static int thoughtVersion = 0;
         
     }
 
-    [appDelegate.userConscienceView setIsExpressionForced:TRUE];        
+    [self.userConscience.userConscienceView setIsExpressionForced:TRUE];
     [initialConscienceView setNeedsDisplay];
             
 }
@@ -588,8 +594,8 @@ static int thoughtVersion = 0;
     
     UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
-    appDelegate.userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
-    appDelegate.userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
+    self.userConscience.userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
+    self.userConscience.userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
     
     [currentUserCharacterDAO update];
     
@@ -695,7 +701,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     
     NSString *mood = @"Good";
     
-    if ((appDelegate.userConscienceMind.enthusiasm < 50) || (appDelegate.userConscienceMind.mood < 50)) {
+    if ((self.userConscience.userConscienceMind.enthusiasm < 50) || (self.userConscience.userConscienceMind.mood < 50)) {
         mood = @"Bad";
     }
     
@@ -730,8 +736,8 @@ Implementation:  Determine time of day, and which thought should be displayed.  
         }
         case 2:{
             
-            int moodIndex = [@(appDelegate.userConscienceMind.mood) intValue];
-            int enthusiasmIndex = [@(appDelegate.userConscienceMind.enthusiasm) intValue];
+            int moodIndex = [@(self.userConscience.userConscienceMind.mood) intValue];
+            int enthusiasmIndex = [@(self.userConscience.userConscienceMind.enthusiasm) intValue];
 
             [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", conscienceMood[moodIndex/10], conscienceEnthusiasm[enthusiasmIndex/10]];
             
@@ -895,8 +901,8 @@ Change the Rank picture and description.
     [UIView setAnimationBeginsFromCurrentState:YES];
     
     initialConscienceView.alpha = 0;
-    appDelegate.userConscienceMind.mood = originalMood;
-    appDelegate.userConscienceMind.enthusiasm = originalEnthusiasm;    
+    self.userConscience.userConscienceMind.mood = originalMood;
+    self.userConscience.userConscienceMind.enthusiasm = originalEnthusiasm;    
     [initialConscienceView setNeedsDisplay];
     
     [UIView setAnimationDelegate:initialConscienceView]; // self is a view controller

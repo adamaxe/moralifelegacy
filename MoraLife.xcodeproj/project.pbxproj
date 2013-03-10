@@ -23,6 +23,7 @@
 		5E06413312FCE28F0051F4B1 /* card-helplessness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E06412612FCE28F0051F4B1 /* card-helplessness.png */; };
 		5E06413512FCE28F0051F4B1 /* card-irrationality.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E06412712FCE28F0051F4B1 /* card-irrationality.png */; };
 		5E06413712FCE28F0051F4B1 /* card-wantonness.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E06412812FCE28F0051F4B1 /* card-wantonness.png */; };
+		5E06560E16EC09B80045B8F3 /* UserConscience.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E06560D16EC09B80045B8F3 /* UserConscience.m */; };
 		5E06F8AA11DDA71900CA5A3B /* background-wall@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E06F8A711DDA71900CA5A3B /* background-wall@2x.jpg */; };
 		5E076858137A22BC0023E250 /* acc-bottom-necktie-gray.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E076857137A22BC0023E250 /* acc-bottom-necktie-gray.png */; };
 		5E07E9F8130B587C00007A36 /* sur-chichenitza.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E07E9F4130B587C00007A36 /* sur-chichenitza.png */; };
@@ -1711,6 +1712,8 @@
 		5E06412612FCE28F0051F4B1 /* card-helplessness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-helplessness.png"; path = "Resources/images/interface/cards/card-helplessness.png"; sourceTree = "<group>"; };
 		5E06412712FCE28F0051F4B1 /* card-irrationality.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-irrationality.png"; path = "Resources/images/interface/cards/card-irrationality.png"; sourceTree = "<group>"; };
 		5E06412812FCE28F0051F4B1 /* card-wantonness.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-wantonness.png"; path = "Resources/images/interface/cards/card-wantonness.png"; sourceTree = "<group>"; };
+		5E06560C16EC09B80045B8F3 /* UserConscience.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserConscience.h; path = Common/UserConscience.h; sourceTree = "<group>"; };
+		5E06560D16EC09B80045B8F3 /* UserConscience.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserConscience.m; path = Common/UserConscience.m; sourceTree = "<group>"; };
 		5E06F8A711DDA71900CA5A3B /* background-wall@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "background-wall@2x.jpg"; path = "Resources/images/interface/background-wall@2x.jpg"; sourceTree = "<group>"; };
 		5E071E641550CBE9009A5357 /* TestDilemma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDilemma.m; sourceTree = "<group>"; };
 		5E076857137A22BC0023E250 /* acc-bottom-necktie-gray.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-necktie-gray.png"; path = "Resources/images/accessories/acc-bottom-necktie-gray.png"; sourceTree = "<group>"; };
@@ -3573,6 +3576,8 @@
 				5E4847FA16CDF5ED00B9F66A /* UIFont+Utility.m */,
 				5E3F7A0716BF879200002E85 /* UIViewController+Screenshot.h */,
 				5E3F7A0816BF879200002E85 /* UIViewController+Screenshot.m */,
+				5E06560C16EC09B80045B8F3 /* UserConscience.h */,
+				5E06560D16EC09B80045B8F3 /* UserConscience.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -7157,6 +7162,7 @@
 				5E3F7A0916BF879200002E85 /* UIViewController+Screenshot.m in Sources */,
 				5E4847FB16CDF5ED00B9F66A /* UIFont+Utility.m in Sources */,
 				5E48489216D3323900B9F66A /* DilemmaModel.m in Sources */,
+				5E06560E16EC09B80045B8F3 /* UserConscience.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,7 +10,11 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 @file
 */
 
+@class UserConscience;
+
 @interface ConscienceViewController : UIViewController
+
+-(id)initWithConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input in order to determine which thought Bubble to dislay or ConscienceModalViewController
