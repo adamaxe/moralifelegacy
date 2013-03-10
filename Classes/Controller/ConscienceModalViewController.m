@@ -90,7 +90,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-    self.previousScreen.image = _screenshot;
+    self.previousScreen.image = self.screenshot;
     thoughtBubble.alpha = 0;
 
 	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
@@ -120,7 +120,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 	tempButtonLabels = @[@"Orientation", @"Atlantic", @"Eastern", @"Coming Soon!"];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	
-	tempButtonImages = @[@"icon-placesani1.png", @"icon-placesani2.png", @"icon-placesani3.png", @"icon-placesani4.png"];
+	tempButtonImages = @[@"icon-places1.png", @"icon-places2.png", @"icon-places3.png", @"icon-places4.png"];
 	[buttonImages setValue:tempButtonImages forKey:@"2"];
 	
 	tempButtonLabels = @[@"Features", @"Colors", @"Accessories", @" "];
