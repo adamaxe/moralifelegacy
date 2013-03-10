@@ -5,15 +5,10 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
  */
 
 #import "ReferenceListViewController.h"
+#import "UserConscience.h"
 #import "ReferenceDetailViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "ReferenceModel.h"
-#import "ConscienceAssetDAO.h"
-#import "ReferenceAssetDAO.h"
-#import "ReferenceBeliefDAO.h"
-#import "ReferencePersonDAO.h"
-#import "ReferenceTextDAO.h"
-#import "MoralDAO.h"
 #import "ReferenceTableViewCell.h"
 #import "ViewControllerLocalization.h"
 
@@ -36,7 +31,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 }
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
-
+@property (nonatomic) UserConscience *userConscience;
 
 /**
  Load Reference data from Core Data for table
@@ -56,11 +51,13 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ReferenceModel *)referenceModel {
+- (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience {
+
     self = [super init];
 
     if (self) {
-        _referenceModel = referenceModel;
+        self.referenceModel = referenceModel;
+        self.userConscience = userConscience;
     }
 
     return self;
@@ -234,7 +231,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel];
+    ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel andConscience:self.userConscience];
     [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
     [self.navigationController pushViewController:detailViewCont animated:TRUE];
 

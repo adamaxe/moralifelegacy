@@ -131,10 +131,6 @@ static int thoughtVersion = 0;
 #pragma mark -
 #pragma mark ViewController lifecycle
 
-
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-//    
-//	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 -(id)initWithConscience:(UserConscience *)userConscience {
 	if ((self = [super init])) {
         //Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
@@ -150,7 +146,6 @@ static int thoughtVersion = 0;
     
 	return self;
 }
-
 
 - (void)viewDidLoad {
     
@@ -293,7 +288,7 @@ static int thoughtVersion = 0;
 }
 
 - (void) pushReference {
-    ReferenceViewController *referenceViewController = [[ReferenceViewController alloc] init];
+    ReferenceViewController *referenceViewController = [[ReferenceViewController alloc] initWithConscience:self.userConscience];
     [self.navigationController pushViewController:referenceViewController animated:YES];
 
 }

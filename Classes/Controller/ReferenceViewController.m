@@ -5,6 +5,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
  */
 
 #import "MoraLifeAppDelegate.h"
+#import "UserConscience.h"
 #import "ReferenceViewController.h"
 #import "ReferenceListViewController.h"
 #import "ReferenceModel.h"
@@ -33,12 +34,22 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 }
 
+@property (nonatomic) UserConscience *userConscience;
+
 @end
 
 @implementation ReferenceViewController
 
 #pragma mark -
 #pragma mark View lifecycle
+
+-(id)initWithConscience:(UserConscience *)userConscience {
+	if ((self = [super init])) {
+        self.userConscience = userConscience;
+	}
+
+	return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -86,7 +97,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
     if (firstReferenceCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
 		conscienceHelpViewController.isConscienceOnScreen = FALSE;
         conscienceHelpViewController.numberOfScreens = 1;
@@ -115,7 +126,7 @@ Implementation: Determine which type of reference is requested by the User.
 
 	}
 
-    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel];
+    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel andConscience:self.userConscience];
     [self.navigationController pushViewController:referenceListViewCont animated:TRUE];
 
 }

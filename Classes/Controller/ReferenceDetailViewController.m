@@ -6,6 +6,7 @@ Determine which fields and UI elements should be presented depending up on Refer
  */
 
 #import "ReferenceDetailViewController.h"
+#import "UserConscience.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ReferenceModel.h"
@@ -56,6 +57,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 }
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
+@property (nonatomic) UserConscience *userConscience;
 
 /**
  Create a date view for a reference
@@ -84,11 +86,12 @@ Determine which fields and UI elements should be presented depending up on Refer
 #pragma mark -
 #pragma mark ViewController Lifecycle
 
-- (id)initWithModel:(ReferenceModel *)referenceModel {
+- (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience {
     self = [super init];
 
     if (self) {
         self.referenceModel = referenceModel;
+        self.userConscience = userConscience;
     }
 
     return self;
@@ -175,7 +178,7 @@ Implementation: Show Conscience thoughtbubble containing Quote
     
     NSArray *titles = @[NSLocalizedString(helpTitleName,nil)];
     
-    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
     NSString *quoteFormatted = [[NSString alloc] initWithString:[referenceQuote stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
     
     NSArray *texts = @[quoteFormatted];

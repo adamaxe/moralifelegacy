@@ -12,7 +12,15 @@ Primary screen of Reference selection Workflow.  User can select what type of Re
 @todo rename to ReferenceInitViewController
 */
 
+@class UserConscience;
+
 @interface ReferenceViewController : UIViewController
+
+/**
+ Creates the viewController with the User's Conscience
+ @param userConscience UserConscience for modals and help screens
+ */
+-(id)initWithConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to determine type of Reference requested
