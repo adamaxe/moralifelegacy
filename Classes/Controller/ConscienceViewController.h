@@ -17,6 +17,7 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
+ @return id instance of ConscienceViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 

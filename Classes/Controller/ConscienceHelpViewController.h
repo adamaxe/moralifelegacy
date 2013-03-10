@@ -23,6 +23,7 @@ Conscience modular Help screen.  View controller for Conscience helping User wit
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
+ @return id instance of ConscienceHelpViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 

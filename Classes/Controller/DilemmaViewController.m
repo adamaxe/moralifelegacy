@@ -7,13 +7,11 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
  */
 
 #import "DilemmaViewController.h"
-#import "MoraLifeAppDelegate.h"
+#import "UserConscience.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
-#import "ConscienceMind.h"
-#import "ConscienceView.h"
-#import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
+#import "MoraLifeAppDelegate.h"
 #import "DilemmaDAO.h"
 #import "Character.h"
 #import "Moral.h"
@@ -105,6 +103,7 @@ typedef enum {
 
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) BOOL isAction;
 
@@ -134,10 +133,11 @@ typedef enum {
 #pragma mark ViewController Lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andConscience:(UserConscience *)userConscience{
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
 
-        _isAction = ([nibNameOrNil isEqualToString:@"ConscienceActionView"]);
+        self.userConscience = userConscience;
+        self.isAction = ([nibNameOrNil isEqualToString:@"ConscienceActionView"]);
 
 		//Create appDelegate and CD context for Conscience and data
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
@@ -160,7 +160,7 @@ typedef enum {
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.previousScreen.image = _screenshot;
+    self.previousScreen.image = self.screenshot;
 
 	//Get relevant dilemma information
     [self loadDilemma];
@@ -669,7 +669,7 @@ Construct antagonist Conscience
                 if (filteredArray.count > 0) {
                     isRequirementOwned = TRUE;
                 } else {
-                    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+                    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
                     conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
                     conscienceHelpViewController.isConscienceOnScreen = TRUE;
                     conscienceHelpViewController.numberOfScreens = 1;

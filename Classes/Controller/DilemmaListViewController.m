@@ -329,11 +329,11 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             [prefs setObject:selectedRowKey forKey:@"dilemmaKey"];
             
             if ([tableDataTypes[indexPath.row] boolValue]){
-                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil];
+                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil andConscience:self.userConscience];
                 dilemmaViewController.screenshot = [self takeScreenshot];
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             } else {
-                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil];
+                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil andConscience:self.userConscience];
                 dilemmaViewController.screenshot = [self takeScreenshot];                
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             }

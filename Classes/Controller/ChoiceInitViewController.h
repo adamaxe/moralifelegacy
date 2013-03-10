@@ -17,6 +17,7 @@ Primary screen in Choice/Luck Entry and Listing Workflows.  Allows for selection
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
+ @return id instance of ChoiceInitViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 

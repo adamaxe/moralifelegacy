@@ -21,7 +21,7 @@
  Dependency injection constructor to pass model
  @param choiceHistoryModel ChoiceHistoryModel handling business logic
  @param userConscience UserConscience for modals and help screens
- @return id instance of ChoiceHistoryModel
+ @return id instance of ChoiceHistoryViewController
  */
 - (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience  *)userConscience;
 

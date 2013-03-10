@@ -20,7 +20,7 @@ Second screen in Choice/Luck Listing Workflow.  User can select a Choice for rev
  Dependency injection constructor to pass model
  @param choiceHistoryModel ChoiceHistoryModel handling business logic
  @param userConscience UserConscience for modals and help screens
- @return id instance of ChoiceHistoryModel
+ @return id instance of ChoiceListViewController
  */
 - (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience *)userConscience;
 

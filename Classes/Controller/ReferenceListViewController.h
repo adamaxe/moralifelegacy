@@ -22,7 +22,7 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic
  @param userConscience UserConscience for modals and help screens
- @return id instance of ReferenceModel
+ @return id instance of ReferenceListViewController
  */
 - (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience;
 

@@ -21,6 +21,7 @@ Second screen in Moral Entry Workflow.  User can either Virtue or Vice depending
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
+ @return id instance of ChoiceViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 

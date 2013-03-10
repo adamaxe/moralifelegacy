@@ -20,7 +20,7 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic
  @param userConscience UserConscience for modals and help screens
- @return id instance of ReferenceModel
+ @return id instance of ReferenceDetailViewController
  */
 - (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience;
 

@@ -11,7 +11,7 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 @file
  */
 
-@class DilemmaModel;
+@class DilemmaModel, UserConscience;
 
 @interface DilemmaListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -21,7 +21,7 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic
  @param userConscience UserConscience for modals and help screens
- @return id instance of ReferenceModel
+ @return id instance of DilemmaListViewController
  */
 - (id)initWithModel:(DilemmaModel *) dilemmaModel andConscience:(UserConscience *)userConscience;
 

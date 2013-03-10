@@ -20,7 +20,7 @@ Third screen in Moral Entry Workflow.  User can either Virtue or Vice depending 
 /**
  Dependency injection constructor to pass model
  @param userConscience UserConscience for modals and help screens
- @return id instance of ChoiceHistoryModel
+ @return id instance of ChoiceModalViewController
  */
 - (id)initWithConscience:(UserConscience  *)userConscience;
 

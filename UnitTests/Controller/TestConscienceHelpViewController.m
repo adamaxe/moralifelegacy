@@ -18,6 +18,7 @@
     ConscienceHelpViewController *testingSubject;
     BOOL isConscienceOnScreenTest;
     UIView *testingView;
+    id userConscience;
     
 }
 
@@ -32,7 +33,7 @@
     [super setUp];
     delegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
-    testingSubject = [[ConscienceHelpViewController alloc] init];
+    testingSubject = [[ConscienceHelpViewController alloc] initWithConscience:userConscience];
 
     testingView = [testingSubject view];
     isConscienceOnScreenTest = FALSE;
@@ -47,15 +48,15 @@
     
 }
 
-#if USE_APPLICATION_UNIT_TEST     // all code under test is in the iPhone Application
-
-- (void)testAppDelegate {
-        
-    STAssertNotNil(delegate, @"UIApplication failed to find the AppDelegate.");
-    
-}
-
-#else                           // all code under test must be linked into the Unit Test bundle
+//#if USE_APPLICATION_UNIT_TEST     // all code under test is in the iPhone Application
+//
+//- (void)testAppDelegate {
+//        
+//    STAssertNotNil(delegate, @"UIApplication failed to find the AppDelegate.");
+//    
+//}
+//
+//#else                           // all code under test must be linked into the Unit Test bundle
 
 /**
  Ensure that the UIViewController was able to init.
@@ -102,6 +103,6 @@
 //    STAssertEqualObjects(testText, [testingSubject helpTexts][0], @"Title setter/getter inaccurate.");
 //}
 
-#endif
+//#endif
 
 @end

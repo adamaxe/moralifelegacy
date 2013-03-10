@@ -19,6 +19,7 @@ Last screen in Choice/Luck Entry Workflow.
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
+ @return id instance of ChoiceDetailViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 

@@ -19,6 +19,7 @@ Primary screen of Reference selection Workflow.  User can select what type of Re
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
+ @return id instance of ReferenceViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 

@@ -26,6 +26,7 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
+ @return id instance of ConscienceModalViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 
