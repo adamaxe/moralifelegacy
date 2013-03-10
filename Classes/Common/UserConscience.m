@@ -1,11 +1,9 @@
 #import "UserConscience.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
-#import "ConscienceView.h"
 #import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
 #import "UserCharacterDAO.h"
-#import "ConscienceMind.h"
 
 @interface UserConscience ()
 /**

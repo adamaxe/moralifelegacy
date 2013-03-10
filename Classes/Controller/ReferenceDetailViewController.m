@@ -58,6 +58,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
 @property (nonatomic) UserConscience *userConscience;
+@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 
 /**
  Create a date view for a reference
@@ -138,6 +139,11 @@ Determine which fields and UI elements should be presented depending up on Refer
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:referenceBarButton];
 
+    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
+    conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+    conscienceHelpViewController.isConscienceOnScreen = FALSE;
+    self.conscienceHelpViewController = conscienceHelpViewController;
+
     [self localizeUI];
 
 }
@@ -178,17 +184,16 @@ Implementation: Show Conscience thoughtbubble containing Quote
     
     NSArray *titles = @[NSLocalizedString(helpTitleName,nil)];
     
-    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
     NSString *quoteFormatted = [[NSString alloc] initWithString:[referenceQuote stringByReplacingOccurrencesOfString:@"\\n" withString:@"\n"]];
     
     NSArray *texts = @[quoteFormatted];
     
-    conscienceHelpViewController.helpTitles = titles;
-    conscienceHelpViewController.helpTexts = texts;
-    conscienceHelpViewController.isConscienceOnScreen = FALSE;
-    conscienceHelpViewController.screenshot = [self takeScreenshot];
+    self.conscienceHelpViewController.helpTitles = titles;
+    self.conscienceHelpViewController.helpTexts = texts;
+    self.conscienceHelpViewController.isConscienceOnScreen = FALSE;
+    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
 
-    [self presentModalViewController:conscienceHelpViewController animated:NO];
+    [self presentModalViewController:self.conscienceHelpViewController animated:NO];
 	
 }
 

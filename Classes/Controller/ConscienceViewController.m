@@ -15,9 +15,8 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UserChoiceDAO.h"
 #import "UserCollectableDAO.h"
 #import "MoralDAO.h"
-#import "IntroViewController.h"
-#import "UserCharacterDAO.h"
 #import "ConscienceAssetDAO.h"
+#import "IntroViewController.h"
 #import "ViewControllerLocalization.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
@@ -43,7 +42,6 @@ float const MLThoughtInterval = 5;
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
 	IBOutlet UILabel *conscienceStatus;				/**< Conscience's thought presented in bubble */
-	IBOutlet ConscienceView *initialConscienceView;		/**< pointer to UserConscienceView */
 	IBOutlet UIImageView *thoughtBubbleView1;			/**< bubble surrounding Conscience's thought */
 	IBOutlet UIImageView *thoughtBubbleView2;			/**< bubble surrounding Conscience's thought */
 	IBOutlet UIView *consciencePlayground;			/**< area in which custom ConscienceView can float */
@@ -118,7 +116,6 @@ float const MLThoughtInterval = 5;
 -(void) resetMood:(float) originalMood andEnthusiasm:(float) originalEnthusiasm;
 
 -(void) createMovementReaction;
--(void) endMovementReaction;
 -(void) setupModalWorkflow;
 
 @end
@@ -150,9 +147,7 @@ static int thoughtVersion = 0;
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    initialConscienceView = self.userConscience.userConscienceView;
-    
+        
     virtueImage.alpha = 0;
     viceImage.alpha = 0;
     rankImage.alpha = 0;
@@ -208,20 +203,20 @@ static int thoughtVersion = 0;
 //                                                   object: nil];
 //	}
 
-	initialConscienceView.alpha = 0;
+	self.userConscience.userConscienceView.alpha = 0;
     thoughtArea.hidden = FALSE;
 
-	initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
     
-	[consciencePlayground addSubview:initialConscienceView];
+	[consciencePlayground addSubview:self.userConscience.userConscienceView];
 	
-    initialConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY);
+    self.userConscience.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY);
     
 	[UIView beginAnimations:@"ShowConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
-	initialConscienceView.alpha = 1;
+	self.userConscience.userConscienceView.alpha = 1;
     
 	[UIView commitAnimations];
         
@@ -244,7 +239,6 @@ static int thoughtVersion = 0;
         self.userConscience.userConscienceMind.mood = transientMood;
         self.userConscience.userConscienceMind.enthusiasm = 100.0;
         [self.userConscience.userConscienceView setIsExpressionForced:TRUE];
-
         
         //Setup invocation for delayed mood reset
         SEL selector = @selector(resetMood:andEnthusiasm:);
@@ -260,7 +254,7 @@ static int thoughtVersion = 0;
         
         //remove transient mood
         [prefs removeObjectForKey:@"transientMind"];
-        [initialConscienceView setNeedsDisplay];
+        [self.userConscience.userConscienceView setNeedsDisplay];
         
         [NSTimer scheduledTimerWithTimeInterval:MLTransientInterval invocation:invocation repeats:NO];
         
@@ -302,17 +296,15 @@ static int thoughtVersion = 0;
 - (void)viewWillDisappear:(BOOL)animated {
     
     //Remove observers in case of backgrounding
-	if ([appDelegate isCurrentIOS]) { 
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:UIApplicationDidEnterBackgroundNotification
-                                                      object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationDidEnterBackgroundNotification
+                                                  object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:UIApplicationWillEnterForegroundNotification
+                                                  object:nil];
         
-		[[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:UIApplicationWillEnterForegroundNotification
-                                                      object:nil];
-	}
-        
-    NSString *conscienceCenter = NSStringFromCGPoint(initialConscienceView.center);    
+    NSString *conscienceCenter = NSStringFromCGPoint(self.userConscience.userConscienceView.center);
     [prefs setObject:conscienceCenter forKey:@"conscienceCenter"];
     
     [self resignFirstResponder];
@@ -380,23 +372,15 @@ static int thoughtVersion = 0;
 	
 	modalNavController1.tabBarItem.title = modalNavTitle1;
 	[modalNavController1 setNavigationBarHidden:YES];
-	
-	// Create the root view controller for the navigation controller
-	// The new view controller configures a Cancel and Done button for the
-	// navigation bar.
-    
-	ConscienceModalViewController *conscienceModalViewController1 = [[ConscienceModalViewController alloc] init];
+	    
+	ConscienceModalViewController *conscienceModalViewController = [[ConscienceModalViewController alloc] initWithConscience:self.userConscience];
     thoughtArea.hidden = TRUE;
-    conscienceModalViewController1.screenshot = [self takeScreenshot];
+    conscienceModalViewController.screenshot = [self takeScreenshot];
 	
-    [modalNavController1 pushViewController:conscienceModalViewController1 animated:NO];
+    [modalNavController1 pushViewController:conscienceModalViewController animated:NO];
 	
 	[self presentModalViewController:modalNavController1 animated:NO];
 	
-	// The navigation controller is now owned by the current view controller
-	// and the root view controller is owned by the navigation controller,
-	// so both objects should be released to prevent over-retention.
-
 }
 
 /**
@@ -410,7 +394,7 @@ static int thoughtVersion = 0;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(setupModalWorkflow)];
 
-	initialConscienceView.alpha = 0;
+	self.userConscience.userConscienceView.alpha = 0;
     
 	[UIView commitAnimations];
 }
@@ -421,7 +405,7 @@ static int thoughtVersion = 0;
  */
 -(void)showIntroView{
     
-    IntroViewController *introViewCont = [[IntroViewController alloc] init];
+    IntroViewController *introViewCont = [[IntroViewController alloc] initWithConscience:self.userConscience];
     
     [self presentModalViewController:introViewCont animated:NO];
 }
@@ -453,7 +437,7 @@ static int thoughtVersion = 0;
 	NSInvocation *shakeInvocation = [NSInvocation invocationWithMethodSignature:shakeSignature];
 	NSInvocation *shakeEndInvocation = [NSInvocation invocationWithMethodSignature:shakeEndSignature];
 	
-	[shakeInvocation setTarget:initialConscienceView];
+	[shakeInvocation setTarget:self.userConscience.userConscienceView];
 	[shakeInvocation setSelector:shakeSelector];
 	[shakeEndInvocation setTarget:self];
 	[shakeEndInvocation setSelector:shakeEndSelector];	
@@ -471,7 +455,7 @@ static int thoughtVersion = 0;
             
 		}
 
-        [initialConscienceView.layer addAnimation:(CAAnimation *)[initialConscienceView shakeAnimation] forKey:@"position"];
+        [self.userConscience.userConscienceView.layer addAnimation:(CAAnimation *)[self.userConscience.userConscienceView shakeAnimation] forKey:@"position"];
         
     }
 }
@@ -505,7 +489,7 @@ static int thoughtVersion = 0;
 				[UIView beginAnimations:@"ResizeConscienceSmall" context:nil];
 				[UIView setAnimationDuration:0.2];
 				[UIView setAnimationBeginsFromCurrentState:YES];
-				initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+				self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
 				[UIView commitAnimations];
 				
                 [self createMovementReaction];
@@ -528,12 +512,10 @@ static int thoughtVersion = 0;
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	
-	initialConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 
 	[UIView commitAnimations];
-    
-    [self endMovementReaction];
-    
+        
     NSSet *allTouches = [event allTouches];
     UITouch *touch = [allTouches allObjects][0];
 
@@ -550,8 +532,6 @@ static int thoughtVersion = 0;
 - (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
 	    
 	[self touchesEnded:touches withEvent:event];
-    
-    [self endMovementReaction];
 
 }
 
@@ -581,20 +561,8 @@ static int thoughtVersion = 0;
     }
 
     [self.userConscience.userConscienceView setIsExpressionForced:TRUE];
-    [initialConscienceView setNeedsDisplay];
+    [self.userConscience.userConscienceView setNeedsDisplay];
             
-}
-
--(void) endMovementReaction {
-    
-    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
-    UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
-    self.userConscience.userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
-    self.userConscience.userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
-    
-    [currentUserCharacterDAO update];
-    
-    
 }
 
 #pragma mark -
@@ -895,12 +863,12 @@ Change the Rank picture and description.
     
     [UIView setAnimationBeginsFromCurrentState:YES];
     
-    initialConscienceView.alpha = 0;
+    self.userConscience.userConscienceView.alpha = 0;
     self.userConscience.userConscienceMind.mood = originalMood;
     self.userConscience.userConscienceMind.enthusiasm = originalEnthusiasm;
-    [initialConscienceView setNeedsDisplay];
+    [self.userConscience.userConscienceView setNeedsDisplay];
     
-    [UIView setAnimationDelegate:initialConscienceView];
+    [UIView setAnimationDelegate:self.userConscience.userConscienceView];
     [UIView setAnimationDidStopSelector:@selector(makeConscienceVisible)];
     
     [UIView commitAnimations];

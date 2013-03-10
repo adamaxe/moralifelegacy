@@ -8,14 +8,12 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ConscienceBody.h"
-#import "ConscienceView.h"
+#import "UserConscience.h"
 #import "ConscienceModalViewController.h"
 #import "ConscienceAccessoryViewController.h"
 #import "ConscienceListViewController.h"
 #import "DilemmaModel.h"
 #import "DilemmaListViewController.h"
-#import "ConscienceAsset.h"
 #import "ConscienceHelpViewController.h"
 #import "ReportPieViewController.h"
 #import "ReportPieModel.h"
@@ -49,6 +47,8 @@ User selection causes selectChoice to be called which sets the currentState vari
 }
 
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
+@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
+@property (nonatomic) UserConscience *userConscience;
 
 /**
  Implementation:  Ensure Conscience is placed correctly.
@@ -83,6 +83,14 @@ User selection causes selectChoice to be called which sets the currentState vari
 @implementation ConscienceModalViewController
 
 #pragma mark - View lifecycle
+
+-(id)initWithConscience:(UserConscience *)userConscience {
+	if ((self = [super init])) {
+        self.userConscience = userConscience;
+	}
+
+	return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -161,32 +169,19 @@ User selection causes selectChoice to be called which sets the currentState vari
     [labelButton4 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
     [labelButton4 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
 
+	//Add User Conscience to view
+    [self.view addSubview:self.userConscience.userConscienceView];
+
+    self.conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
 
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
-	
-	//Add User Conscience to view
-    [self.view addSubview:appDelegate.userConscienceView];
-	
-	//Flip Conscience direction if facing left
-	if (appDelegate.userConscienceView.directionFacing == MLDirectionFacingLeft) {
-		
-		[UIView beginAnimations:@"conscienceFlipper" context:nil];
-		[UIView setAnimationDuration:0.25];
-	
-		[UIView setAnimationBeginsFromCurrentState:YES];
-		appDelegate.userConscienceView.alpha = 0;
-		[UIView setAnimationDelegate:appDelegate.userConscienceView]; // self is a view controller
-		[UIView setAnimationDidStopSelector:@selector(removeConscienceInvisibility)];
-	
-		[UIView commitAnimations];
-	}
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-    appDelegate.userConscienceView.center = centerPoint;
+    self.userConscience.userConscienceView.center = centerPoint;
     
 	[UIView beginAnimations:@"FadeInView" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -199,7 +194,7 @@ User selection causes selectChoice to be called which sets the currentState vari
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationBeginsFromCurrentState:NO];
-    appDelegate.userConscienceView.alpha = 0;
+    self.userConscience.userConscienceView.alpha = 0;
     
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToBottom)];
@@ -215,7 +210,7 @@ User selection causes selectChoice to be called which sets the currentState vari
         [prefs  removeObjectForKey:@"conscienceModalReset"];
         currentState = 0;
     }
-    
+
     //Call showSelectionChoices directly in order to avoid double fade-in
     [self showSelectionChoices];
 	 
@@ -228,7 +223,7 @@ User selection causes selectChoice to be called which sets the currentState vari
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     [UIView setAnimationBeginsFromCurrentState:NO];
-    appDelegate.userConscienceView.alpha = 0;
+    self.userConscience.userConscienceView.alpha = 0;
     thoughtModalArea.alpha = 1.0;
 
     [UIView setAnimationDelegate:self]; // self is a view controller
@@ -259,12 +254,11 @@ User selection causes selectChoice to be called which sets the currentState vari
     
     if (firstConscienceModalCheck == nil) {
         
-		ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
-        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-		conscienceHelpViewController.isConscienceOnScreen = TRUE;
-        conscienceHelpViewController.numberOfScreens = 1;
-        conscienceHelpViewController.screenshot = [self takeScreenshot];
-		[self presentModalViewController:conscienceHelpViewController animated:NO];
+        self.conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+		self.conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        self.conscienceHelpViewController.numberOfScreens = 1;
+        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
         
@@ -279,14 +273,14 @@ Implementation:  Sometimes the Conscience can be put in the wrong section of the
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-    appDelegate.userConscienceView.center = centerPoint;
+    self.userConscience.userConscienceView.center = centerPoint;
     
     [UIView beginAnimations:@"conscienceRestore" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    appDelegate.userConscienceView.alpha = 1;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+    self.userConscience.userConscienceView.alpha = 1;
+    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
     
     [UIView commitAnimations];
     
@@ -450,7 +444,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			case 6:{
 				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] init];
                 [UIView animateWithDuration:0.5 animations:^{
-                    appDelegate.userConscienceView.alpha = 0;
+                    self.userConscience.userConscienceView.alpha = 0;
                 }completion:^(BOOL finished) {
 
                     conscienceAccessoryController.screenshot = [self takeScreenshot];
@@ -483,7 +477,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] init];
 		[conscienceListController setAccessorySlot:requestedAccessorySlot];
         [UIView animateWithDuration:0.5 animations:^{
-            appDelegate.userConscienceView.alpha = 0;
+            self.userConscience.userConscienceView.alpha = 0;
         }completion:^(BOOL finished) {
 
             conscienceListController.screenshot = [self takeScreenshot];
@@ -519,12 +513,11 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 
 		if(campaignRejected){
             
-            ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
-            conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-            conscienceHelpViewController.isConscienceOnScreen = TRUE;
-            conscienceHelpViewController.numberOfScreens = 3;
-            conscienceHelpViewController.screenshot = [self takeScreenshot];
-            [self presentModalViewController:conscienceHelpViewController animated:NO];
+            self.conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+            self.conscienceHelpViewController.isConscienceOnScreen = TRUE;
+            self.conscienceHelpViewController.numberOfScreens = 3;
+            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
 			
         } else {
 
@@ -550,8 +543,8 @@ Implementation: Revert Conscience to homescreen position, dismiss UIViewControll
 		[UIView setAnimationDuration:0.5];
 		[UIView setAnimationBeginsFromCurrentState:YES];
 		thoughtModalArea.alpha = 0;
-		appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-        appDelegate.userConscienceView.alpha = 0;
+		self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        self.userConscience.userConscienceView.alpha = 0;
 		
 		[UIView commitAnimations];
 		
@@ -662,11 +655,11 @@ Implementation:  Delete entire UserData persistentStore.  Must recreate default 
         [prefs removeObjectForKey:@"isReadyToRemove"];
     } else {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
-        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-        conscienceHelpViewController.isConscienceOnScreen = TRUE;
-        conscienceHelpViewController.numberOfScreens = 2;
-        [self presentModalViewController:conscienceHelpViewController animated:NO];
+        self.conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+        self.conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        self.conscienceHelpViewController.numberOfScreens = 2;
+        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
         
         [prefs setBool:TRUE forKey:@"isReadyToRemove"];    
         

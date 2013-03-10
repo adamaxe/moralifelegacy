@@ -17,9 +17,17 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 @file
  */
 
+@class UserConscience;
+
 @interface ConscienceModalViewController : UIViewController 
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
+/**
+ Creates the viewController with the User's Conscience
+ @param userConscience UserConscience for modals and help screens
+ */
+-(id)initWithConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to change the state of the screen.

@@ -30,7 +30,6 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 @property (nonatomic, strong) ConscienceView *userConscienceView;   /**< Visual representation of User's Conscience+Accessories */
 @property (nonatomic, strong) ConscienceMind *userConscienceMind;   /**< Representation of User's Mental State */
 @property (nonatomic, strong) NSMutableArray *userCollection;       /**< Currently owned items */
-@property (nonatomic, assign) BOOL isCurrentIOS;
 @property (nonatomic, strong) ModelManager *moralModelManager;
 
 /**

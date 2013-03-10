@@ -9,7 +9,15 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 @file
  */
 
+@class UserConscience;
+
 @interface IntroViewController : UIViewController
+
+/**
+ Creates the viewController with the User's Conscience
+ @param userConscience UserConscience for modals and help screens
+ */
+-(id)initWithConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to select the last choice in the Introduction
@@ -17,6 +25,7 @@ Accepts User input to select the last choice in the Introduction
 @return IBAction method available from Interface Builder
  */
 -(IBAction)switchLast:(id)sender;
+
 /**
 Accepts User input to advance the Intro one screen
 @param id Object which requested method

@@ -82,56 +82,30 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
-	self.userConscience.userConscienceView.center = centerPoint;
 
+    helpTitle.frame = CGRectMake(38, 37, 240, 35);
     [self localizeUI];
 	
 }
 
 -(void) viewWillAppear:(BOOL)animated{
-	
 	[super viewWillAppear:animated];
 
-    helpTitle.frame = CGRectMake(38, 37, 240, 35);
     self.helpContentView.alpha = 0.0;
+
+	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
+	self.userConscience.userConscienceView.center = centerPoint;
 
     previousButton.alpha = 1.0;
     nextButton.alpha = 1.0;
 
     if (!self.helpTexts.count) {
 
-        NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
-        NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];    
-
-        for (int i = 0; i < 6; i++) {
-            [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", self.viewControllerClassName, self.numberOfScreens - 1, i+1]];
-            [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", self.viewControllerClassName, self.numberOfScreens - 1, i+1]];
-        }
-        
-        NSMutableArray *helpAllTitles = [[NSMutableArray alloc] init];
-        NSMutableArray *helpAllTexts = [[NSMutableArray alloc] init];    
-        
-        for (int i = 0; i < 6; i++) {
-            NSString *tempTitle = [[NSString alloc] initWithString:NSLocalizedString(helpTitleNames[i],nil)];
-            NSString *tempText = [[NSString alloc] initWithString:NSLocalizedString(helpTextNames[i],nil)];
-            
-            if (![tempText isEqualToString:helpTextNames[i]]) {
-                [helpAllTexts addObject:tempText];
-            }
-            
-            if (![tempTitle isEqualToString:helpTitleNames[i]]) {
-                [helpAllTitles addObject:tempTitle];
-            }
-        }
-        
-        self.helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
-        self.helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
-        
+        [self generateHelpText];
     }
 	
-	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
+	centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     helpTitle.hidden = TRUE;
 	helpTitle.alpha = 0;
@@ -164,6 +138,40 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         _screenshot = screenshot;
         self.previousScreen.image = screenshot;
     }
+}
+
+#pragma mark -
+#pragma mark Helper methods
+
+- (void)generateHelpText {
+
+    NSMutableArray *helpTitleNames = [[NSMutableArray alloc] init];
+    NSMutableArray *helpTextNames = [[NSMutableArray alloc] init];
+
+    for (int i = 0; i < 6; i++) {
+        [helpTitleNames addObject:[NSString stringWithFormat:@"Help%@%dTitle%d", self.viewControllerClassName, self.numberOfScreens - 1, i+1]];
+        [helpTextNames addObject:[NSString stringWithFormat:@"Help%@%dText%d", self.viewControllerClassName, self.numberOfScreens - 1, i+1]];
+    }
+
+    NSMutableArray *helpAllTitles = [[NSMutableArray alloc] init];
+    NSMutableArray *helpAllTexts = [[NSMutableArray alloc] init];
+
+    for (int i = 0; i < 6; i++) {
+        NSString *tempTitle = [[NSString alloc] initWithString:NSLocalizedString(helpTitleNames[i],nil)];
+        NSString *tempText = [[NSString alloc] initWithString:NSLocalizedString(helpTextNames[i],nil)];
+
+        if (![tempText isEqualToString:helpTextNames[i]]) {
+            [helpAllTexts addObject:tempText];
+        }
+
+        if (![tempTitle isEqualToString:helpTitleNames[i]]) {
+            [helpAllTitles addObject:tempTitle];
+        }
+    }
+
+    self.helpTitles = [[NSArray alloc] initWithArray:helpAllTitles];
+    self.helpTexts = [[NSArray alloc] initWithArray:helpAllTexts];
+
 }
 
 #pragma mark -

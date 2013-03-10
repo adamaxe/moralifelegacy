@@ -1,3 +1,6 @@
+#import "ConscienceView.h"
+#import "ConscienceMind.h"
+
 @class ConscienceBody, ConscienceAccessories, ConscienceView, ConscienceMind;
 @interface UserConscience : NSObject
 

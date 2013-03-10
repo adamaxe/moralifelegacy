@@ -64,6 +64,10 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
+@property (nonatomic) ChoiceModalViewController *virtueViceViewController;
+@property (nonatomic) ChoiceDetailViewController *choiceDetailViewController;
+@property (nonatomic) ChoiceHistoryViewController *historyViewController;
+
 
 /**
  Shift UI elements to move UITextView to top of screen to accomodate keyboard
@@ -118,10 +122,16 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
         severityLabelDescriptions = [[NSMutableArray alloc] init];
 
+        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+
         ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
         conscienceHelpViewController.isConscienceOnScreen = FALSE;
         self.conscienceHelpViewController = conscienceHelpViewController;
+
+        self.virtueViceViewController = [[ChoiceModalViewController alloc] initWithConscience:self.userConscience];
+        self.choiceDetailViewController = [[ChoiceDetailViewController alloc] initWithConscience:self.userConscience];
+        self.historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel andConscience:self.userConscience];
 
     }
 
@@ -331,8 +341,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 -(void) showChoiceDetailEntry{
 
     //Allow User to enter in more specific details
-    ChoiceDetailViewController *choiceDetailViewCont = [[ChoiceDetailViewController alloc] initWithConscience:self.userConscience];
-    [self.navigationController pushViewController:choiceDetailViewCont animated:YES];
+    [self.navigationController pushViewController:self.choiceDetailViewController animated:YES];
 }
 
 - (void)changeSeverityLabel:(int)severityAsInt {
@@ -375,9 +384,7 @@ Implementation: Set Choice Severity and reflect change in UI
 Implementation: Present ChoiceModalViewController to all User to enter in Choice Moral
  */
 -(IBAction)showChoiceModal:(id)sender {
-		
-	ChoiceModalViewController *virtueViceViewController = [[ChoiceModalViewController alloc] init];
-    	
+		    	
 	[prefs setBool:isVirtue forKey:@"entryIsGood"];
 
     [UIView animateWithDuration:0.25 animations:^{
@@ -386,8 +393,8 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
         moralImageView.alpha = 0;
         
     } completion:^(BOOL finished) {
-        virtueViceViewController.screenshot = [self takeScreenshot];
-        [self presentModalViewController:virtueViceViewController animated:NO];
+        self.virtueViceViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:self.virtueViceViewController animated:NO];
     }];
 
 }
@@ -397,9 +404,6 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
  */
 -(IBAction)showHistoryModal:(id)sender {
     
-    ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
-	ChoiceHistoryViewController *historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel];
-
 	[prefs setBool:isVirtue forKey:@"entryIsGood"];
 
     [UIView animateWithDuration:0.25 animations:^{
@@ -408,8 +412,8 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
         moralImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        historyViewController.screenshot = [self takeScreenshot];
-        [self presentModalViewController:historyViewController animated:NO];
+        self.historyViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:self.historyViewController animated:NO];
 
     }];
 	
@@ -419,7 +423,6 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 Implementation: Present ConscienceHelpViewController that shows User extended definition of Moral selected.
  */
 -(IBAction)selectMoralReference:(id) sender{
-
 
 	//If User has selected a Moral, display the extended description.  Otherwise, ask them to fill in Moral.
 	if (moralKey != nil) {

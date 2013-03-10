@@ -9,16 +9,15 @@
  */
 
 #import "ChoiceHistoryViewController.h"
-#import "MoraLifeAppDelegate.h"
+#import "UserConscience.h"
 #import "ChoiceViewController.h"
 #import "ConscienceView.h"
 #import "ChoiceHistoryModel.h"
 #import "ChoiceTableViewCell.h"
 #import "ViewControllerLocalization.h"
 
-@interface ChoiceHistoryViewController () <ViewControllerLocalization> {
+@interface ChoiceHistoryViewController () <ViewControllerLocalization, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> {
 	
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
 
 	IBOutlet UISearchBar *modalSearchBar;	/**< ui element for limiting choices in table */
@@ -38,6 +37,7 @@
 
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) IBOutlet UIView *modalContentView;
 
@@ -61,11 +61,13 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel {
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience  *)userConscience {
+    //This viewController shares a XIB with ChoiceModalViewController
     self = [super initWithNibName:@"ChoiceModalView" bundle:nil];
 
     if (self) {
-        _choiceHistoryModel = choiceHistoryModel;
+        self.choiceHistoryModel = choiceHistoryModel;
+        self.userConscience = userConscience;
     }
 
     return self;
@@ -74,11 +76,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.previousScreen.image = _screenshot;
+    self.previousScreen.image = self.screenshot;
     modalSearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
     
-	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Set default listing and sort order    
@@ -90,9 +90,9 @@
     
     CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
-	[thoughtArea addSubview:appDelegate.userConscienceView];
+	[thoughtArea addSubview:self.userConscience.userConscienceView];
 	
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
     
     //User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
@@ -153,13 +153,13 @@
 	[UIView setAnimationBeginsFromCurrentState:NO];
     self.modalContentView.alpha = 1.0;
 	thoughtArea.alpha = 1;
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
 	
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	
-	[appDelegate.userConscienceView setNeedsDisplay];
+	[self.userConscience.userConscienceView setNeedsDisplay];
     modalTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
     modalSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
 }
@@ -198,9 +198,9 @@
 	[UIView setAnimationBeginsFromCurrentState:YES];
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	

@@ -53,7 +53,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
     
-    [_moralModelManager saveContext];
+    [self.moralModelManager saveContext];
 }
 
 
@@ -77,7 +77,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  applicationWillTerminate: saves changes in the application's managed object context before the application terminates.
  */
 - (void)applicationWillTerminate:(UIApplication *)application {
-    [_moralModelManager saveContext];
+    [self.moralModelManager saveContext];
 }
 
 
@@ -87,19 +87,17 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  @see ConscienceAccessories
  */
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
+    
+    self.moralModelManager = [[ModelManager alloc] init];
 
-    _isCurrentIOS = (&UIApplicationDidEnterBackgroundNotification != NULL);
-    
-    _moralModelManager = [[ModelManager alloc] init];
-    
 	context = [self.moralModelManager readWriteManagedObjectContext];
 
 	navController1 = [[UINavigationController alloc] init];
 
     UserConscience *userConscience = [[UserConscience alloc] init];
 
-    if (!_userCollection) {
-        _userCollection = [[NSMutableArray alloc] init];
+    if (!self.userCollection) {
+        self.userCollection = [[NSMutableArray alloc] init];
 
     }
     [self configureCollection];
@@ -121,8 +119,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #endif
 
 	application.applicationSupportsShakeToEdit = YES;
-    [_window setRootViewController:navController1];
-	[_window makeKeyAndVisible];
+    [self.window setRootViewController:navController1];
+	[self.window makeKeyAndVisible];
 	
 } 
 
@@ -154,7 +152,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     //Populate dictionary with dilemmaName (key) and moral that was chosen
     for (UserCollectable *match in objects) {
         
-        [_userCollection addObject:[match collectableName]];
+        [self.userCollection addObject:[match collectableName]];
     }
                 
 }

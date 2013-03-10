@@ -5,7 +5,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
  */
 
 #import "ChoiceModalViewController.h"
-#import "MoraLifeAppDelegate.h"
+#import "UserConscience.h"
 #import "ModelManager.h"
 #import "ConscienceView.h"
 #import "MoralDAO.h"
@@ -14,7 +14,6 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 @interface ChoiceModalViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
 	
 	IBOutlet UISearchBar *modalSearchBar;	/**< ui element for limiting choices in table */
@@ -41,6 +40,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) IBOutlet UIView *modalContentView;
 
@@ -56,14 +56,22 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 #pragma mark - 
 #pragma mark - View lifecycle
 
+- (id)initWithConscience:(UserConscience  *)userConscience {
+    self = [super init];
+
+    if (self) {
+        self.userConscience = userConscience;
+    }
+
+    return self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     self.previousScreen.image = _screenshot;
     modalSearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
 
-	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	modalSearchBar.barStyle = UIBarStyleBlack;
@@ -83,7 +91,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 		isVirtue = TRUE;
 	}
 
-    [thoughtArea addSubview:appDelegate.userConscienceView];
+    [thoughtArea addSubview:self.userConscience.userConscienceView];
     [self retrieveAllSelections];
 
     [self localizeUI];    
@@ -92,26 +100,28 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+    
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
 
     CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
 
 	centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
 	[UIView beginAnimations:@"BottomUpConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
+    
     self.modalContentView.alpha = 1.0;
 	thoughtArea.alpha = 1;
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
 	
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	
-	[appDelegate.userConscienceView setNeedsDisplay];
+	[self.userConscience.userConscienceView setNeedsDisplay];
 
     modalTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
     modalSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
@@ -148,9 +158,9 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
 	[UIView setAnimationBeginsFromCurrentState:YES];
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	
