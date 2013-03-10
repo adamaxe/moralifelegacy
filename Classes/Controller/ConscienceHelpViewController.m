@@ -82,7 +82,6 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
 
     helpTitle.frame = CGRectMake(38, 37, 240, 35);
     [self localizeUI];
@@ -91,6 +90,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 -(void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
+	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
 
     self.helpContentView.alpha = 0.0;
 
@@ -131,6 +131,11 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	[self.userConscience.userConscienceView setNeedsDisplay];
     
 	[self changeScreen:1];
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    [self.userConscience.userConscienceView removeFromSuperview];
 }
 
 -(void)setScreenshot:(UIImage *)screenshot {

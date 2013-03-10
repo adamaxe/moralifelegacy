@@ -89,9 +89,7 @@
 	modalTableView.dataSource = self;
     
     CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
-	
-	[thoughtArea addSubview:self.userConscience.userConscienceView];
-	
+		
 	self.userConscience.userConscienceView.center = centerPoint;
     
     //User can back out of Choice Entry screen and state will be saved
@@ -120,7 +118,8 @@
 - (void)viewWillAppear:(BOOL)animated {
     
 	[super viewWillAppear:animated];
-    
+    [thoughtArea addSubview:self.userConscience.userConscienceView];
+
 	//Refresh Data in case something changed since last time onscreen
 	[self retrieveAllChoices];
 	
@@ -173,6 +172,8 @@
 		[prefs setObject:modalSearchBar.text forKey:@"searchTextChoice"];
 		
 	}
+    [self.userConscience.userConscienceView removeFromSuperview];
+
 }
 
 -(void)setScreenshot:(UIImage *)screenshot {

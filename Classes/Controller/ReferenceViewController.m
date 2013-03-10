@@ -77,10 +77,15 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 }
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    [self buildButtons];
+}
+
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
 
-    [self buildButtons];
 	[self refreshButtons];
 
 	self.buttonTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(refreshButtons) userInfo:nil repeats:YES];
