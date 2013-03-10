@@ -11,9 +11,18 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 @date 08/25/2010
  */
 
+@class UserConscience;
+
 @interface ConscienceAccessoryViewController : UIViewController
 
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
+
+/**
+ Creates the viewController with the User's Conscience
+ @param userConscience UserConscience for modals and help screens
+ @return ConscienceAccessoryViewController
+ */
+-(id)initWithConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to select a ConscienceAsset for review

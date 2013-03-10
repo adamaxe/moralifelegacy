@@ -397,7 +397,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
 			case 6:{
-				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] init];
+				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] initWithConscience:self.userConscience];
                 [UIView animateWithDuration:0.5 animations:^{
                     self.userConscience.userConscienceView.alpha = 0;
                 }completion:^(BOOL finished) {

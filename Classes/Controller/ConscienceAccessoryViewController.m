@@ -5,11 +5,8 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
  */
 
 #import "ConscienceAccessoryViewController.h"
-#import "MoraLifeAppDelegate.h"
-#import "ConscienceView.h"
+#import "UserConscience.h"
 #import "ConscienceListViewController.h"
-#import "ConscienceAccessories.h"
-#import "ConscienceAsset.h"
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
 #import "UIViewController+Screenshot.h"
@@ -19,7 +16,6 @@ int const MLConscienceCenterX = 145;
 int const MLConscienceCenterY = 165;
 
 @interface ConscienceAccessoryViewController () <ViewControllerLocalization> {
-	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
 	IBOutlet UIView *consciencePlayground;		/**< ui for Conscience to sit */
@@ -38,6 +34,7 @@ int const MLConscienceCenterY = 165;
     int accessorySlot;
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 -(void) moveConscienceToCenter;
@@ -51,11 +48,18 @@ int const MLConscienceCenterY = 165;
 #pragma mark -
 #pragma mark ViewController lifecycle
 
+-(id)initWithConscience:(UserConscience *)userConscience {
+	if ((self = [super init])) {
+        self.userConscience = userConscience;
+	}
+
+	return self;
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
     self.previousScreen.image = _screenshot;
 
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
     prefs = [NSUserDefaults standardUserDefaults];
     
     accessorySlot = 0;
@@ -86,14 +90,14 @@ int const MLConscienceCenterY = 165;
 
 	[super viewWillAppear:animated];
 
-	[consciencePlayground addSubview:appDelegate.userConscienceView];
+	[consciencePlayground addSubview:self.userConscience.userConscienceView];
 
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    appDelegate.userConscienceView.alpha = 0;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    self.userConscience.userConscienceView.alpha = 0;
+    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToCenter)];
@@ -115,14 +119,14 @@ int const MLConscienceCenterY = 165;
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(MLConscienceCenterX, MLConscienceCenterY);
-    appDelegate.userConscienceView.center = centerPoint;
+    self.userConscience.userConscienceView.center = centerPoint;
     
     [UIView beginAnimations:@"conscienceRestore" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    appDelegate.userConscienceView.alpha = 1;
-    appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    self.userConscience.userConscienceView.alpha = 1;
+    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         
     [UIView commitAnimations];
     
@@ -142,8 +146,8 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
         [UIView setAnimationDuration:0.25];
         
         [UIView setAnimationBeginsFromCurrentState:YES];
-        appDelegate.userConscienceView.alpha = 0;
-        appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        self.userConscience.userConscienceView.alpha = 0;
+        self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         
         [UIView setAnimationDelegate:self]; // self is a view controller
     
