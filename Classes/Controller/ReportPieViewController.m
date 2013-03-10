@@ -136,7 +136,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     if (firstPieCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
 		conscienceHelpViewController.isConscienceOnScreen = TRUE;
         conscienceHelpViewController.numberOfScreens = 1;

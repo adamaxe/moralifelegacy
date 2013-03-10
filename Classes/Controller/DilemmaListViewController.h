@@ -20,9 +20,10 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 /**
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic
+ @param userConscience UserConscience for modals and help screens
  @return id instance of ReferenceModel
  */
-- (id)initWithModel:(DilemmaModel *) dilemmaModel;
+- (id)initWithModel:(DilemmaModel *) dilemmaModel andConscience:(UserConscience *)userConscience;
 
 /**
 Remove DilemmaList screen and reset requested Dilemma Campaign

@@ -6,9 +6,8 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
  */
 
 #import "DilemmaListViewController.h"
-#import "MoraLifeAppDelegate.h"
+#import "UserConscience.h"
 #import "ModelManager.h"
-#import "ConscienceView.h"
 #import "DilemmaViewController.h"
 #import "DilemmaModel.h"
 #import "ConscienceHelpViewController.h"
@@ -17,9 +16,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 
 @interface DilemmaListViewController () {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;                  /**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
 	
 	IBOutlet UITableView *dilemmaListTableView;  	/**< table referenced by IB */
     
@@ -43,8 +40,9 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     
 }
 
-@property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic, strong) DilemmaModel *dilemmaModel;   /**< Model to handle data/business logic */
+@property (nonatomic) UserConscience *userConscience;
+@property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 
 /**
@@ -65,11 +63,12 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(DilemmaModel *)dilemmaModel {
+- (id)initWithModel:(DilemmaModel *) dilemmaModel andConscience:(UserConscience *)userConscience {
     self = [super init];
 
     if (self) {
-        _dilemmaModel = dilemmaModel;
+        self.dilemmaModel = dilemmaModel;
+        self.userConscience = userConscience;
     }
 
     return self;
@@ -78,12 +77,10 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.previousScreen.image = _screenshot;
+    self.previousScreen.image = self.screenshot;
     dilemmaSearchBar.placeholder = NSLocalizedString(@"SearchBarPlaceholderText", nil);
 
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
     
 	//Setup permanent holders, table does not key on these, it keys on tabledata which is affected by searchbar
 	//tabledatas are reloaded from these master arrays
@@ -129,9 +126,9 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	//Position Conscience in lower-left of screen
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
+	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
 	
-	appDelegate.userConscienceView.center = centerPoint;
+	self.userConscience.userConscienceView.center = centerPoint;
 	
 	//The scrollbars won't flash unless the tableview is long enough.
 	[dilemmaListTableView flashScrollIndicators];
@@ -177,7 +174,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     
     if (firstMorathologyCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
         conscienceHelpViewController.isConscienceOnScreen = TRUE;
         conscienceHelpViewController.numberOfScreens = 1;
