@@ -28,18 +28,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 }
 
 /**
- Create base Monitor before personalization re-instatement
- */
-- (void)createConscience;
-/**
- Remove Monitor for memory-restricted conditions
- */
-- (void)destroyConscience;
-/**
- Apply User's changes to base Monitor
- */
-- (void)configureConscience;
-/**
  Retrieve all User's current possessions/interview questions from persistent store.
  */
 - (void)configureCollection;

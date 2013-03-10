@@ -902,10 +902,10 @@ Change the Rank picture and description.
     
     initialConscienceView.alpha = 0;
     self.userConscience.userConscienceMind.mood = originalMood;
-    self.userConscience.userConscienceMind.enthusiasm = originalEnthusiasm;    
+    self.userConscience.userConscienceMind.enthusiasm = originalEnthusiasm;
     [initialConscienceView setNeedsDisplay];
     
-    [UIView setAnimationDelegate:initialConscienceView]; // self is a view controller
+    [UIView setAnimationDelegate:initialConscienceView];
     [UIView setAnimationDidStopSelector:@selector(makeConscienceVisible)];
     
     [UIView commitAnimations];

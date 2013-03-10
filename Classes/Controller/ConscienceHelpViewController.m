@@ -6,6 +6,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
  */
 
 #import "MoraLifeAppDelegate.h"
+#import "UserConscience.h"
 #import "ConscienceHelpViewController.h"
 #import "ConscienceView.h"
 #import "ViewControllerLocalization.h"
@@ -13,9 +14,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 #import "UIFont+Utility.h"
 
 @interface ConscienceHelpViewController () <ViewControllerLocalization> {
-	
-	MoraLifeAppDelegate *appDelegate;			/**< delegate for application level callbacks */
-    
+	    
 	IBOutlet UIView *thoughtModalArea;			/**< area in which Conscience floats */
     
 	IBOutlet UIButton *previousButton;		/**< return to previous page */
@@ -26,6 +25,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) IBOutlet UIView *helpContentView;
 
@@ -56,10 +56,10 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 #pragma mark -
 #pragma mark ViewController lifecycle
 
--(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+-(id)initWithConscience:(UserConscience *)userConscience {
+    self = [super init];
     if (self) {
-        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+        self.userConscience = userConscience;
         _viewControllerClassName = [[NSString alloc] init];
 
 		helpTitle = [[UILabel alloc] initWithFrame:CGRectZero];
@@ -82,10 +82,9 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-	//appDelegate needed to reference Conscience and to get Core Data Context and prefs to save state
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
-	appDelegate.userConscienceView.center = centerPoint;
+	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
+	self.userConscience.userConscienceView.center = centerPoint;
 
     [self localizeUI];
 	
@@ -132,7 +131,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         
     }
 	
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
+	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
 
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
@@ -146,18 +145,18 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	[UIView setAnimationBeginsFromCurrentState:NO];
 
     self.helpContentView.alpha = 1.0;
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
 
 	//Determine if Conscience is already on screen
 	if (!_isConscienceOnScreen) {
-		appDelegate.userConscienceView.center = centerPoint;
+		self.userConscience.userConscienceView.center = centerPoint;
 	}
 
 	[UIView commitAnimations];
 
 	//This center point is not redundant if Conscience is already onscreen
-	appDelegate.userConscienceView.center = centerPoint;
-	[appDelegate.userConscienceView setNeedsDisplay];
+	self.userConscience.userConscienceView.center = centerPoint;
+	[self.userConscience.userConscienceView setNeedsDisplay];
     
 	[self changeScreen:1];
 }
@@ -285,10 +284,10 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 
 	//If Conscience wasn't on screen, place it offscreen, otherwise place it centrally.
 	if (self.isConscienceOnScreen) {
-        appDelegate.userConscienceView.center = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
+        self.userConscience.userConscienceView.center = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	} else {
-		appDelegate.userConscienceView.center = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
-        appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+		self.userConscience.userConscienceView.center = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
+        self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         self.helpContentView.alpha = 0.0;
 	}
 

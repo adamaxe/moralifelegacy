@@ -5,6 +5,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 */
 
 #import "ChoiceInitViewController.h"
+#import "UserConscience.h"
 #import "ChoiceListViewController.h"
 #import "ChoiceHistoryModel.h"
 #import "ChoiceViewController.h"
@@ -30,6 +31,8 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 	IBOutlet UIButton *choiceListButton;		/**< Button for All Choice listing selection */
 }
 
+@property (nonatomic) UserConscience *userConscience;
+
 @end
 
 @implementation ChoiceInitViewController
@@ -38,11 +41,12 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #pragma mark View lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    
-	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+-(id)initWithConscience:(UserConscience *)userConscience {
+
+	if ((self = [super init])) {
 		//Create NSUserDefaults for serialized state retention
 		prefs = [NSUserDefaults standardUserDefaults];
+        self.userConscience = userConscience;
 		
 	}
     
