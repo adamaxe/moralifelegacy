@@ -8,11 +8,10 @@ User can filter list by only things that are affordable to currentFunds.
  */
 
 #import "ConscienceListViewController.h"
+#import "UserConscience.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ConscienceView.h"
 #import "ConscienceAcceptViewController.h"
-#import "ConscienceAsset.h"
 #import "UserCollectableDAO.h"
 #import "ConscienceHelpViewController.h"
 #import "ConscienceAssetDAO.h"
@@ -56,6 +55,7 @@ User can filter list by only things that are affordable to currentFunds.
     int searchViewFilter;                    /**< which view to show */
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 /**
@@ -74,6 +74,14 @@ User can filter list by only things that are affordable to currentFunds.
 
 #pragma mark - 
 #pragma mark View lifecycle
+
+-(id)initWithConscience:(UserConscience *)userConscience {
+	if ((self = [super init])) {
+        self.userConscience = userConscience;
+	}
+
+	return self;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -116,17 +124,17 @@ User can filter list by only things that are affordable to currentFunds.
 
     [fundsButton setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
 	//Add Conscience to lower-left screen
-	[thoughtModalArea addSubview:appDelegate.userConscienceView];
+	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-	appDelegate.userConscienceView.center = centerPoint;    
+	self.userConscience.userConscienceView.center = centerPoint;    
 	[UIView beginAnimations:@"MoveConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	appDelegate.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
-    appDelegate.userConscienceView.alpha = 1;
+	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+    self.userConscience.userConscienceView.alpha = 1;
 	[UIView commitAnimations];
 	
-	[appDelegate.userConscienceView setNeedsDisplay];
+	[self.userConscience.userConscienceView setNeedsDisplay];
     
 	[choicesTableView reloadData];
 
@@ -538,7 +546,7 @@ Implementation: Retrieve User's current ethicals from UserData
 	[conscienceAcceptController setAccessorySlot:_accessorySlot];
 
     [UIView animateWithDuration:0.5 animations:^{
-        appDelegate.userConscienceView.alpha = 0;
+        self.userConscience.userConscienceView.alpha = 0;
     }completion:^(BOOL finished) {
 
         conscienceAcceptController.screenshot = [self takeScreenshot];

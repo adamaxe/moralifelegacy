@@ -429,7 +429,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a list of choices for accessories	
 	if (isListViewControllerNeeded) {
 
-		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] init];
+		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithConscience:self.userConscience];
 		[conscienceListController setAccessorySlot:requestedAccessorySlot];
         [UIView animateWithDuration:0.5 animations:^{
             self.userConscience.userConscienceView.alpha = 0;

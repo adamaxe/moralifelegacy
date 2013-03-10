@@ -20,7 +20,7 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens
- @return ConscienceAccessoryViewController
+ @return id instance of ConscienceAccessoryViewController
  */
 -(id)initWithConscience:(UserConscience *)userConscience;
 
