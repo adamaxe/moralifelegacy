@@ -7,6 +7,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
  */
 
 #import "ChoiceViewController.h"
+#import "UserConscience.h"
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ConscienceMind.h"
@@ -61,6 +62,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 }
 
+@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 
 /**
@@ -96,7 +98,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #pragma mark -
 #pragma mark View lifecycle
 
--(id)init {
+-(id)initWithConscience:(UserConscience *)userConscience {
     self = [super init];
     if (self) {
 
@@ -755,23 +757,23 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         /** @todo refactor into ConscienceMind
          */
-        float newMood = appDelegate.userConscienceMind.mood + choiceCalculatedWeight/3;
-        float newEnthusiasm = appDelegate.userConscienceMind.enthusiasm + choiceWeightFilledFields/2;
+        float newMood = self.userConscience.userConscienceMind.mood + choiceCalculatedWeight/3;
+        float newEnthusiasm = self.userConscience.userConscienceMind.enthusiasm + choiceWeightFilledFields/2;
         
         if (newMood > 90) {
-            appDelegate.userConscienceMind.mood = 90.0;
+            self.userConscience.userConscienceMind.mood = 90.0;
         } else if (newMood < 10) {
-            appDelegate.userConscienceMind.mood = 10.0;
+            self.userConscience.userConscienceMind.mood = 10.0;
         } else {
-            appDelegate.userConscienceMind.mood = newMood;        
+            self.userConscience.userConscienceMind.mood = newMood;
         }
         
         if (newEnthusiasm > 90) {
-            appDelegate.userConscienceMind.enthusiasm = 90.0;
+            self.userConscience.userConscienceMind.enthusiasm = 90.0;
         } else if (newEnthusiasm < 10) {
-            appDelegate.userConscienceMind.enthusiasm = 10.0;
+            self.userConscience.userConscienceMind.enthusiasm = 10.0;
         } else {
-            appDelegate.userConscienceMind.enthusiasm = newEnthusiasm;        
+            self.userConscience.userConscienceMind.enthusiasm = newEnthusiasm;
         }
         
         UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];

@@ -12,17 +12,17 @@ Second screen in Choice/Luck Listing Workflow.  User can select a Choice for rev
 @file
  */
 
-@class ChoiceHistoryModel;
+@class ChoiceHistoryModel, UserConscience;
 
 @interface ChoiceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 /**
  Dependency injection constructor to pass model
  @param choiceHistoryModel ChoiceHistoryModel handling business logic
+ @param userConscience UserConscience for modals and help screens
  @return id instance of ChoiceHistoryModel
  */
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel;
-
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to selects the data sort and order types

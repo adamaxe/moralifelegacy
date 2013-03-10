@@ -95,7 +95,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     if (firstChoiceCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] init];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
 		conscienceHelpViewController.isConscienceOnScreen = FALSE;
         conscienceHelpViewController.numberOfScreens = 1;
@@ -156,13 +156,13 @@ Implementation: A single view controller is utilized for both Good and Bad choic
     //Determine if List controller type or entry controller type is needed
     if (!isList) {
 
-        ChoiceViewController *choiceViewController = [[ChoiceViewController alloc] init];
+        ChoiceViewController *choiceViewController = [[ChoiceViewController alloc] initWithConscience:self.userConscience];
 
         [self.navigationController pushViewController:choiceViewController animated:YES];
     } else {
 
         ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
-        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel];
+        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel andConscience:self.userConscience];
         [self.navigationController pushViewController:choiceListCont animated:YES];
     }
 

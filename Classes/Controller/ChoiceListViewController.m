@@ -39,6 +39,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 }
 
 @property (nonatomic, strong) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
+@property (nonatomic) UserConscience *userConscience;
 
 /**
  Retrieve all User entered Choices
@@ -65,12 +66,13 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel {
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience *)userConscience {
     self = [super init];
 
     if (self) {
-        _choiceHistoryModel = choiceHistoryModel;
-        _choiceHistoryModel.choiceType = MLChoiceHistoryModelTypeAll;
+        self.userConscience = userConscience;
+        self.choiceHistoryModel = choiceHistoryModel;
+        self.choiceHistoryModel.choiceType = MLChoiceHistoryModelTypeAll;
     }
 
     return self;
@@ -320,13 +322,11 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	
 	//Create subsequent view controller to be pushed onto stack
 	//ChoiceViewController gets data from NSUserDefaults
-	ChoiceViewController *choiceCont = [[ChoiceViewController alloc] init];
+	ChoiceViewController *choiceCont = [[ChoiceViewController alloc] initWithConscience:self.userConscience];
 	
 	//Push view onto stack
 	[self.navigationController pushViewController:choiceCont animated:YES];
-    
-	//[self dismissModalViewControllerAnimated:NO];	
-	
+    	
 }
 
 #pragma mark -

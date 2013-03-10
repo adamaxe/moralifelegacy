@@ -14,7 +14,15 @@ Second screen in Moral Entry Workflow.  User can either Virtue or Vice depending
 @file
 */
 
+@class UserConscience;
+
 @interface ChoiceViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
+
+/**
+ Creates the viewController with the User's Conscience
+ @param userConscience UserConscience for modals and help screens
+ */
+-(id)initWithConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to present ChoiceDetailViewController for User to enter in additional details.
