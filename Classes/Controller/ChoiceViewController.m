@@ -8,7 +8,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
 #import "ChoiceViewController.h"
 #import "UserConscience.h"
-#import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ConscienceMind.h"
 #import "ChoiceDetailViewController.h"
@@ -27,9 +26,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
 @interface ChoiceViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
 	
 	IBOutlet UILabel *severityLabel;					/**< UILabel for UISlider of choice's severity */
 	IBOutlet UIImageView *moralImageView;				/**< moral image */
@@ -106,11 +103,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     self = [super init];
     if (self) {
 
-        //appDelegate needed to pass information from modal views (virtues/vices) to primary view
-        //and to get Core Data Context and prefs to save state
-        appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
-        context = [appDelegate.moralModelManager readWriteManagedObjectContext];
         self.userConscience = userConscience;
 
         choiceKey = [[NSMutableString alloc] init];
@@ -791,7 +784,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         //See if moral has been rewarded before
         //Cannot assume that first instance of UserChoice implies no previous reward
-        if ([appDelegate.userCollection containsObject:moralKey]) {
+        if ([self.userConscience.conscienceCollection containsObject:moralKey]) {
 
             UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", moralKey];
@@ -821,7 +814,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             [currentUserCollectable setCollectableName:moralKey];
             [currentUserCollectable setCollectableValue:@1.0f];
                         
-            [appDelegate.userCollection addObject:moralKey];
+            [self.userConscience.conscienceCollection addObject:moralKey];
             
             [currentUserCollectableDAO update];
 

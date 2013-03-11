@@ -1,11 +1,16 @@
 #import "UserConscience.h"
+#import "ModelManager.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceAsset.h"
 #import "ConscienceBuilder.h"
 #import "UserCharacterDAO.h"
+#import "UserCollectableDAO.h"
 
 @interface UserConscience ()
+
+@property (nonatomic) ModelManager *modelManager;
+
 /**
  Create base Monitor before personalization re-instatement
  */
@@ -19,14 +24,43 @@
 
 @implementation UserConscience
 
--(id)init {
+-(id)initWithModelManager:(ModelManager *)modelManager {
+
     self = [super init];
 
     if (self) {
+        self.modelManager = modelManager;
         [self createConscience];
+
+        if (!self.conscienceCollection) {
+            self.conscienceCollection = [[NSMutableArray alloc] init];
+
+        }
+        
+        [self configureCollection];
     }
 
     return self;
+}
+
+#pragma mark -
+#pragma mark Conscience Setup
+
+/**
+ Implementation: Retrieve User-entries such as questions/responses.
+ */
+- (void)configureCollection{
+
+    //Retrieve  assets already earned by user
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+
+    NSArray *objects = [currentUserCollectableDAO readAll];
+    //Populate dictionary with dilemmaName (key) and moral that was chosen
+    for (UserCollectable *match in objects) {
+
+        [self.conscienceCollection addObject:[match collectableName]];
+    }
+
 }
 
 /**
@@ -66,7 +100,7 @@
  Implementation: Retrieve User-customizations to Monitor from Core Data.  Then build physical traits (eyes/mouth/face/mind).
  */
 - (void)configureConscience{
-    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
 
     //Populate User Conscience

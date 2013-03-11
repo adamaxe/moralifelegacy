@@ -1,7 +1,7 @@
 /**
 Implementation: Presents a series of updated screens to User prompting the User to select one or the other.
 Allows for backwards perusal to reread certain parts of entry as long as choice hasn't been made.
-Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate::userCollection
+Commits choice to UserData, updates ethicals, adds reward to UserConscience::userCollection
  
 @class DilemmaViewController DilemmaViewController.h
  */
@@ -11,7 +11,6 @@ Commits choice to UserData, updates ethicals, adds reward to MoraLifeAppDelegate
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
-#import "MoraLifeAppDelegate.h"
 #import "DilemmaDAO.h"
 #import "Character.h"
 #import "Moral.h"
@@ -41,7 +40,6 @@ typedef enum {
 
 @interface DilemmaViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
 
 	IBOutlet UIImageView *surroundingsBackground;		/**< background image provided by dilemma */
@@ -139,8 +137,6 @@ typedef enum {
         self.userConscience = userConscience;
         self.isAction = ([nibNameOrNil isEqualToString:@"ConscienceActionView"]);
 
-		//Create appDelegate and CD context for Conscience and data
-		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
         prefs = [NSUserDefaults standardUserDefaults];
 
 		//Setup default values
@@ -681,7 +677,7 @@ Construct antagonist Conscience
 
 		} else {
 
-			if ([[appDelegate userCollection] containsObject:actionKey]) {
+			if ([[self.userConscience conscienceCollection] containsObject:actionKey]) {
 				isRequirementOwned = TRUE;
 			} else {
 				isRequirementOwned = FALSE;
@@ -763,7 +759,7 @@ Construct antagonist Conscience
 Implementation: Determine which choice was selected.
 Determine if Moral was already rewarded and add if it wasn't.  Update otherwise.
 Add UserChoice to UserData and append it with key to remove from ChoiceListViewController.  Dilemma must affect User's Moral Report.
-Add reward ConscienceAsset or ReferenceAsset to MoraLifeAppDelegate::userCollection.
+Add reward ConscienceAsset or ReferenceAsset to UserConscience::userCollection.
 Calculate changes to User's ethicals.  Limit to 999.
 @todo refactor into multiple functions
  */
@@ -800,7 +796,7 @@ Calculate changes to User's ethicals.  Limit to 999.
     UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
     //See if moral has been rewarded before
     //Cannot assume that first instance of UserChoice implies no previous reward
-    if ([appDelegate.userCollection containsObject:moralKey]) {
+    if ([self.userConscience.conscienceCollection containsObject:moralKey]) {
         
         UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:moralKey];
 
@@ -824,7 +820,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableName:moralKey];
 		[currentUserCollectable setCollectableValue:@1.0f];
                 
-		[appDelegate.userCollection addObject:moralKey];
+		[self.userConscience.conscienceCollection addObject:moralKey];
 
         [currentUserCollectableDAO update];
 
@@ -864,7 +860,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
 		[currentUserCollectable setCollectableName:selectedReward];
                 
-		[appDelegate.userCollection addObject:selectedReward];
+		[self.userConscience.conscienceCollection addObject:selectedReward];
 
 	} else if ([selectedReward rangeOfString:@"asse-"].location != NSNotFound) {
       
@@ -885,7 +881,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
 		[currentUserCollectable setCollectableName:selectedReward];
                 
-		[appDelegate.userCollection addObject:selectedReward];
+		[self.userConscience.conscienceCollection addObject:selectedReward];
 	}
 
 	//Update User's ethicals

@@ -17,7 +17,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "ModelManager.h"
 #import "ConscienceViewController.h"
 #import "UserConscience.h"
-#import "UserCollectableDAO.h"
 
 @interface MoraLifeAppDelegate () {
 
@@ -25,11 +24,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     NSManagedObjectContext *context;
     	
 }
-
-/**
- Retrieve all User's current possessions/interview questions from persistent store.
- */
-- (void)configureCollection;
 
 @end
 
@@ -93,14 +87,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 	navController1 = [[UINavigationController alloc] init];
 
-    UserConscience *userConscience = [[UserConscience alloc] init];
-
-    if (!self.userCollection) {
-        self.userCollection = [[NSMutableArray alloc] init];
-
-    }
-    [self configureCollection];
-
+    UserConscience *userConscience = [[UserConscience alloc] initWithModelManager:self.moralModelManager];
 
 	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] initWithConscience:userConscience];
 
@@ -133,27 +120,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 	
 	//Working
 	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-}
-
-#pragma mark -
-#pragma mark Conscience Setup
-
-
-/**
- Implementation: Retrieve User-entries such as questions/responses.
- */
-- (void)configureCollection{
-        
-    //Retrieve  assets already earned by user
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
-
-    NSArray *objects = [currentUserCollectableDAO readAll];
-    //Populate dictionary with dilemmaName (key) and moral that was chosen
-    for (UserCollectable *match in objects) {
-        
-        [self.userCollection addObject:[match collectableName]];
-    }
-                
 }
 
 #pragma mark -

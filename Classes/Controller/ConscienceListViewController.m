@@ -9,7 +9,6 @@ User can filter list by only things that are affordable to currentFunds.
 
 #import "ConscienceListViewController.h"
 #import "UserConscience.h"
-#import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ConscienceAcceptViewController.h"
 #import "UserCollectableDAO.h"
@@ -22,10 +21,8 @@ User can filter list by only things that are affordable to currentFunds.
 
 @interface ConscienceListViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;		/**< Core Data context */
-    
+
 	IBOutlet UITableView *choicesTableView;	/**< tableview of choices */
     IBOutlet UIButton *previousButton;
     IBOutlet UIView *searchArea;			/**< area in which search bubble appears */
@@ -93,10 +90,7 @@ User can filter list by only things that are affordable to currentFunds.
 	isLessThanCost = FALSE;
     searchViewFilter = 0;
 
-	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
-	context = [appDelegate.moralModelManager readWriteManagedObjectContext];
     
 	//Create search bar
 	accessorySearchBar.barStyle = UIBarStyleBlack;
@@ -321,7 +315,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
         
         //Determine if item is already owned, display owned, or cost if unowned
         //@todo localize
-        if ([appDelegate.userCollection containsObject:match.nameReference]){
+        if ([self.userConscience.conscienceCollection containsObject:match.nameReference]){
             [choiceSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", match.shortDescriptionReference]];
         } else {
             [choiceSubtitles addObject:[NSString stringWithFormat:@"%dε - %@", [match.costAsset intValue], match.shortDescriptionReference]];

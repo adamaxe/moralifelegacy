@@ -19,7 +19,7 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 
 /**
  Dependency injection constructor to pass model
- @param referenceModel ReferenceModel handling business logic
+ @param dilemmaModel DilemmaModel handling business logic
  @param userConscience UserConscience for modals and help screens
  @return id instance of DilemmaListViewController
  */

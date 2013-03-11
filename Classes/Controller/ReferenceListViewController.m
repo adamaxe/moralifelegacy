@@ -7,14 +7,12 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #import "ReferenceListViewController.h"
 #import "UserConscience.h"
 #import "ReferenceDetailViewController.h"
-#import "MoraLifeAppDelegate.h"
 #import "ReferenceModel.h"
 #import "ReferenceTableViewCell.h"
 #import "ViewControllerLocalization.h"
 
 @interface ReferenceListViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
 		
 	NSMutableArray *dataSource;			/**< array for storing of References populated from previous view*/
@@ -66,8 +64,6 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-	//appDelegate needed to retrieve User ownership, prefs used to save form state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	referenceSearchBar.barStyle = UIBarStyleBlack;
@@ -156,7 +152,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     
     for (int i = 0; i < self.referenceModel.referenceKeys.count; i++) {
 
-        if([appDelegate.userCollection containsObject:(self.referenceModel.referenceKeys)[i]]){
+        if([self.userConscience.conscienceCollection containsObject:(self.referenceModel.referenceKeys)[i]]){
 
             [dataSource addObject:(self.referenceModel.references)[i]];
             [tableData addObject:(self.referenceModel.references)[i]];

@@ -6,10 +6,9 @@ User selection causes selectChoice to be called which sets the currentState vari
 @class ConscienceModalViewController ConscienceModalViewController.h
  */
 
-#import "MoraLifeAppDelegate.h"
+#import "ConscienceModalViewController.h"
 #import "ModelManager.h"
 #import "UserConscience.h"
-#import "ConscienceModalViewController.h"
 #import "ConscienceAccessoryViewController.h"
 #import "ConscienceListViewController.h"
 #import "DilemmaModel.h"
@@ -23,7 +22,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 @interface ConscienceModalViewController () {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
 	NSMutableDictionary *buttonLabels;		/**< various button labels for the screens of UI */
@@ -66,13 +64,6 @@ User selection causes selectChoice to be called which sets the currentState vari
  */
 -(void)selectController:(int) controllerID;
 
-/**
- VERSION 2.0 FEATURE
- Allows the deletion of all User content.
- @todo implement delete capability
- */
--(void)removeUserData;
-
 @end
 
 @implementation ConscienceModalViewController
@@ -93,8 +84,6 @@ User selection causes selectChoice to be called which sets the currentState vari
     self.previousScreen.image = self.screenshot;
     thoughtBubble.alpha = 0;
 
-	//appDelegate needed to retrieve CoreData Context, prefs used to save form state
-	appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 	prefs = [NSUserDefaults standardUserDefaults];
 
 	/** @todo change hardcoded selection descriptions into localized strings */
@@ -420,7 +409,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			case 9:requestedCampaign=MLRequestedMorathologyAdventure2;isDilemmaViewControllerNeeded = TRUE;break;
 			case 10:requestedCampaign=MLRequestedMorathologyAdventure3;isDilemmaViewControllerNeeded = TRUE;break;
 			case 11:requestedCampaign=MLRequestedMorathologyAdventure4;isDilemmaViewControllerNeeded = TRUE;break;
-			case 12:[self removeUserData];break;                
+			case 12:break;                
 			case 20:requestedAccessorySlot = 4;isListViewControllerNeeded = TRUE;break;
 			case 21:requestedAccessorySlot = 5;isListViewControllerNeeded = TRUE;break;
 			case 22:requestedAccessorySlot = 6;isListViewControllerNeeded = TRUE;break;
@@ -471,7 +460,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
                 break;
         }
         
-        BOOL campaignRejected = ![[appDelegate userCollection] containsObject:adventureRequirement];
+        BOOL campaignRejected = ![[self.userConscience conscienceCollection] containsObject:adventureRequirement];
 
 		if(campaignRejected){
             
@@ -567,70 +556,6 @@ Implementation: Determine what type of dismissal is appropriate depending on ver
 	
     [self returnConscience];
     
-}
-
-#pragma mark -
-#pragma mark Data Manipulation
-
-/**
-VERSION 2.0 FEATURE
-Implementation:  Delete entire UserData persistentStore.  Must recreate default UserData entries.
-@see Utility
- */
-- (void)removeUserData {
-        
-    NSObject *boolCheck = [prefs objectForKey:@"isReadyToRemove"];
-    BOOL isReadyToRemove;
-    
-    if (boolCheck != nil) {
-        isReadyToRemove = [prefs boolForKey:@"isReadyToRemove"];
-    }else {
-        isReadyToRemove = FALSE;
-    }
-    
-    if (isReadyToRemove) {
-        
-        //Delete all User data
-        /** @todo figure out deletion */
-        NSManagedObjectContext *context = [appDelegate.moralModelManager managedObjectContext];
-        
-        //Retrieve readwrite Documents directory
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = paths[0];
-        NSString *userData =  [documentsDirectory stringByAppendingPathComponent:@"UserData.sqlite"];
-        NSURL *storeURL = [NSURL fileURLWithPath:userData];
-        
-        NSPersistentStoreCoordinator *currentCoordinator = [context persistentStoreCoordinator];
-        
-        NSPersistentStore *readWriteStore = [currentCoordinator persistentStoreForURL:storeURL];
-        
-        NSError *error = nil;
-        //    @try {
-        [[context persistentStoreCoordinator] removePersistentStore:readWriteStore error:&error];
-        [[NSFileManager defaultManager] removeItemAtPath:readWriteStore.URL.path error:&error];
-        //    }
-        //    @catch (NSException *exception) {
-        
-        //    }
-        
-        NSLog(@"removing");
-        [prefs removeObjectForKey:@"isReadyToRemove"];
-    } else {
-        
-        self.conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-        self.conscienceHelpViewController.isConscienceOnScreen = TRUE;
-        self.conscienceHelpViewController.numberOfScreens = 2;
-        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
-        
-        [prefs setBool:TRUE forKey:@"isReadyToRemove"];    
-        
-    }
-    
-    id placeholderID = nil;
-    
-    [self dismissThoughtModal:placeholderID];
-
 }
 
 #pragma mark -

@@ -41,18 +41,12 @@
 
 @implementation ReferenceModel
 
-- (id)init {
-    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-    return [self initWithModelManager:[appDelegate moralModelManager] andDefaults:[NSUserDefaults standardUserDefaults] andUserCollection:appDelegate.userCollection];
-}
-
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andUserCollection:(NSArray *) userCollection{
 
     self = [super init];
     if (self) {
 
-        _referenceKey = @"";
+        self.referenceKey = @"";
         self.hasLink = TRUE;
         self.hasQuote = TRUE;
         self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",nil);

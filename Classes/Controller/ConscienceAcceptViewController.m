@@ -8,7 +8,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
 
 #import "ConscienceAcceptViewController.h"
 #import "UserConscience.h"
-#import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
@@ -24,10 +23,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
 
 @interface ConscienceAcceptViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;	/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
-	NSManagedObjectContext *context;	/**< Core Data context */
-	
+
 	NSString *currentFeature;           /**< filename of ConscienceAsset image */
     NSMutableString *resetFeature;
     
@@ -92,10 +89,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
     if (self = [super init]) {
 
         self.userConscience = userConscience;
-		//Create appDelegate and CD context for Conscience and data
-		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
+
         prefs = [NSUserDefaults standardUserDefaults];
-		context = [appDelegate.moralModelManager readWriteManagedObjectContext];
         
         resetFeature = [[NSMutableString alloc] init];
         
@@ -118,7 +113,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	*/
 
 	//Set ownership boolean
-	if ([appDelegate.userCollection containsObject:_assetSelection]){
+	if ([self.userConscience.conscienceCollection containsObject:self.assetSelection]){
 		isOwned = TRUE;
 	}
 
@@ -460,7 +455,7 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
     
 	//Check to see if ConscienceAsset has already been collected
 	if (!isOwned){
-		[appDelegate.userCollection addObject:_assetSelection];
+		[self.userConscience.conscienceCollection addObject:self.assetSelection];
 	}
     
 	//Retrieve User's ethicals

@@ -4,9 +4,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 @class ReferenceViewController ReferenceViewController.h
  */
 
+#import "ReferenceViewController.h"
 #import "MoraLifeAppDelegate.h"
 #import "UserConscience.h"
-#import "ReferenceViewController.h"
 #import "ReferenceListViewController.h"
 #import "ReferenceModel.h"
 #import "ConscienceHelpViewController.h"
@@ -131,8 +131,10 @@ Implementation: Determine which type of reference is requested by the User.
 - (IBAction) selectReferenceType:(id) sender{
 	
 	//Create view controller to be pushed upon navigation stack
-    ReferenceModel *referenceModel = [[ReferenceModel alloc] init];
+    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 
+    ReferenceModel *referenceModel = [[ReferenceModel alloc] initWithModelManager:[appDelegate moralModelManager] andDefaults:[NSUserDefaults standardUserDefaults] andUserCollection:self.userConscience.conscienceCollection];
+    
 	//Determine which choice was selected
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
