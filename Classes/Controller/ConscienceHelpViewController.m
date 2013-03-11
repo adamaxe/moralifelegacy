@@ -133,9 +133,9 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 	[self changeScreen:1];
 }
 
--(void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-//    [self.userConscience.userConscienceView removeFromSuperview];
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self.userConscience.userConscienceView removeFromSuperview];
 }
 
 -(void)setScreenshot:(UIImage *)screenshot {
