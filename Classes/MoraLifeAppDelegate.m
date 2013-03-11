@@ -22,7 +22,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 @interface MoraLifeAppDelegate () {
 
 	UINavigationController *navController1; /**< UINavController for first screen, Home */
-
     NSManagedObjectContext *context;
     	
 }
