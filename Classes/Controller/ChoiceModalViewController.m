@@ -40,6 +40,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) IBOutlet UIView *modalContentView;
@@ -56,10 +57,11 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 #pragma mark - 
 #pragma mark - View lifecycle
 
-- (id)initWithConscience:(UserConscience  *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     self = [super init];
 
     if (self) {
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
     }
 
@@ -200,7 +202,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
         pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Vice"];
 	}
     
-    MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     currentMoralDAO.predicates = @[pred];
     
     NSArray *morals = [currentMoralDAO readAll];

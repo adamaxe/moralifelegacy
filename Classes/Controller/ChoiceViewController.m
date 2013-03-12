@@ -124,7 +124,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         conscienceHelpViewController.isConscienceOnScreen = FALSE;
         self.conscienceHelpViewController = conscienceHelpViewController;
 
-        self.virtueViceViewController = [[ChoiceModalViewController alloc] initWithConscience:self.userConscience];
+        self.virtueViceViewController = [[ChoiceModalViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
         self.choiceDetailViewController = [[ChoiceDetailViewController alloc] initWithConscience:self.userConscience];
         self.historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel andConscience:self.userConscience];
 
@@ -425,7 +425,7 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         NSMutableArray *titles = [[NSMutableArray alloc] init];
         NSMutableArray *texts = [[NSMutableArray alloc] init];        
         
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralKey];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralKey andModelManager:self.modelManager];
         Moral *currentMoral = [currentMoralDAO read:@""];
         
         [titles addObject:currentMoral.displayNameMoral];

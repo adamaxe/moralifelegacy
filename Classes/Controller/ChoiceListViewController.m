@@ -257,25 +257,6 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	
 }
 
-///**
-//Implementation:  VERSION 2.0 Delete selected choice and remove its influence from calculations and reports
-//@todo determine best deletion affect
-// */
-//- (void) deleteChoice:(NSString *) choiceKey {
-//	
-//    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@""];
-//	
-//	if (choiceKey != nil) {
-//		NSPredicate *pred = [NSPredicate predicateWithFormat:@"entryKey == %@", choiceKey];
-//        currentUserChoiceDAO.predicates = @[pred];
-//	}
-//	
-//    [currentUserChoiceDAO delete:nil];
-//    		
-//	[currentUserChoiceDAO release];
-//	
-//}
-
 #pragma mark -
 #pragma mark Table view data source
 

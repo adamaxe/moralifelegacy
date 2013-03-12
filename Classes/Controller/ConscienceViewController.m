@@ -769,7 +769,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
         NSString *value = reversedPercentages[0];
 
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] init];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
         Moral *currentMoral = [currentMoralDAO read:value];
 
         if (currentMoral) {
