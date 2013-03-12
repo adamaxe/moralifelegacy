@@ -59,6 +59,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 @property (nonatomic) ChoiceModalViewController *virtueViceViewController;
@@ -99,11 +100,12 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #pragma mark -
 #pragma mark View lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     self = [super init];
     if (self) {
 
         prefs = [NSUserDefaults standardUserDefaults];
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 
         choiceKey = [[NSMutableString alloc] init];
@@ -115,7 +117,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
         severityLabelDescriptions = [[NSMutableArray alloc] init];
 
-        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] initWithModelManager:self.modelManager andDefaults:prefs];
 
         ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);

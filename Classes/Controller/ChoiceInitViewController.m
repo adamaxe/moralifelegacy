@@ -180,13 +180,13 @@ Implementation: A single view controller is utilized for both Good and Bad choic
     //Determine if List controller type or entry controller type is needed
     if (!isList) {
 
-        ChoiceViewController *choiceViewController = [[ChoiceViewController alloc] initWithConscience:self.userConscience];
+        ChoiceViewController *choiceViewController = [[ChoiceViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
 
         [self.navigationController pushViewController:choiceViewController animated:YES];
     } else {
 
         ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] initWithModelManager:self.modelManager andDefaults:prefs];
-        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel andConscience:self.userConscience];
+        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModelManager:self.modelManager model:choiceHistoryModel andConscience:self.userConscience];
         [self.navigationController pushViewController:choiceListCont animated:YES];
     }
 
