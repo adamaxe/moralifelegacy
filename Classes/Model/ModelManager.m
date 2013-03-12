@@ -49,15 +49,15 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     
     if (self) {
         if (isTransient) {
-            _currentBundle = [NSBundle bundleForClass:self.class];
-            _storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
+            self.currentBundle = [NSBundle bundleForClass:self.class];
+            self.storeType = [[NSString alloc] initWithString:NSInMemoryStoreType];
         } else {
-            _currentBundle = [NSBundle mainBundle];
-            _storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
+            self.currentBundle = [NSBundle mainBundle];
+            self.storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
         }
         
-        _managedObjectContext = [self managedObjectContext];
-        _readWriteManagedObjectContext = [self readWriteManagedObjectContext];
+        self.managedObjectContext = [self managedObjectContext];
+        self.readWriteManagedObjectContext = [self readWriteManagedObjectContext];
         
     }
     

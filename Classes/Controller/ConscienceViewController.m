@@ -71,6 +71,7 @@ float const MLThoughtInterval = 5;
     
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 
 /**
@@ -128,8 +129,9 @@ static int thoughtVersion = 0;
 #pragma mark -
 #pragma mark ViewController lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
-	if ((self = [super init])) {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+
+    if ((self = [super init])) {
         //Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
 		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
@@ -137,6 +139,7 @@ static int thoughtVersion = 0;
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];
         highestRankName = [[NSMutableString alloc] init];
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 
 	}
@@ -216,7 +219,7 @@ static int thoughtVersion = 0;
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
 	self.userConscience.userConscienceView.alpha = 1;
-    
+
 	[UIView commitAnimations];
         
     //Determine if transient facial expression has been requested
@@ -267,12 +270,12 @@ static int thoughtVersion = 0;
 }
 
 - (void) pushJournal {
-    ChoiceInitViewController *choiceIntViewController = [[ChoiceInitViewController alloc] initWithConscience:self.userConscience];
+    ChoiceInitViewController *choiceIntViewController = [[ChoiceInitViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
     [self.navigationController pushViewController:choiceIntViewController animated:YES];
 }
 
 - (void) pushReference {
-    ReferenceViewController *referenceViewController = [[ReferenceViewController alloc] initWithConscience:self.userConscience];
+    ReferenceViewController *referenceViewController = [[ReferenceViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
     [self.navigationController pushViewController:referenceViewController animated:YES];
 
 }

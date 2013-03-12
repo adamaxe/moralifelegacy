@@ -10,16 +10,17 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 @file
 */
 
-@class UserConscience;
+@class ModelManager, UserConscience;
 
 @interface ConscienceViewController : UIViewController
 
 /**
  Creates the viewController with the User's Conscience
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ConscienceViewController
  */
--(id)initWithConscience:(UserConscience *)userConscience;
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input in order to determine which thought Bubble to dislay or ConscienceModalViewController

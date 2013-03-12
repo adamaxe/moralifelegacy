@@ -21,8 +21,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 @interface MoraLifeAppDelegate () {
 
 	UINavigationController *navController1; /**< UINavController for first screen, Home */
-    NSManagedObjectContext *context;
-    	
+
 }
 
 @end
@@ -83,13 +82,11 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     
     self.moralModelManager = [[ModelManager alloc] init];
 
-	context = [self.moralModelManager readWriteManagedObjectContext];
-
 	navController1 = [[UINavigationController alloc] init];
 
     UserConscience *userConscience = [[UserConscience alloc] initWithModelManager:self.moralModelManager];
 
-	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] initWithConscience:userConscience];
+	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] initWithModelManager:self.moralModelManager andConscience:userConscience];
 
 	navController1.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 

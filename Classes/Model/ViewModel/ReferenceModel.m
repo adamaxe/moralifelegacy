@@ -11,10 +11,10 @@
 @interface ReferenceModel () {
     NSUserDefaults *preferences;            /**< User defaults to write to file system */
     NSArray *currentUserCollection;                /**< collection of owned Assets */
-    ModelManager *moralModelManager;    
 
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic, readwrite, strong) NSString *title;
 @property (nonatomic, readwrite) BOOL hasQuote;
 @property (nonatomic, readwrite) BOOL hasLink;
@@ -46,7 +46,7 @@
     self = [super init];
     if (self) {
 
-        self.referenceKey = @"";
+        _referenceKey = @"";
         self.hasLink = TRUE;
         self.hasQuote = TRUE;
         self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",nil);
@@ -67,7 +67,7 @@
 
         preferences = prefs;
         currentUserCollection = userCollection;
-        moralModelManager = modelManager;
+        self.modelManager = modelManager;
 
     }
 
@@ -127,31 +127,31 @@
 			self.title = NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",nil);
 			self.hasQuote = FALSE;
 			self.hasLink = FALSE;
-			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
+			currentDAO = [[ConscienceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:self.modelManager];
 			break;
 		case MLReferenceModelTypeBelief:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenBeliefsTitle",nil);            
-			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
+			currentDAO = [[ReferenceBeliefDAO alloc] initWithKey:self.referenceKey andModelManager:self.modelManager];
 			break;
 		case MLReferenceModelTypeText:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenBooksTitle",nil);
-			currentDAO = [[ReferenceTextDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
+			currentDAO = [[ReferenceTextDAO alloc] initWithKey:self.referenceKey andModelManager:self.modelManager];
 			break;
 		case MLReferenceModelTypePerson:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenPeopleTitle",nil);
-			currentDAO = [[ReferencePersonDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
+			currentDAO = [[ReferencePersonDAO alloc] initWithKey:self.referenceKey andModelManager:self.modelManager];
 			break;
 		case MLReferenceModelTypeMoral:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenMoralsTitle",nil);
 			self.hasQuote = FALSE;
-			currentDAO = [[MoralDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
+			currentDAO = [[MoralDAO alloc] initWithKey:self.referenceKey andModelManager:self.modelManager];
 			break;
         case MLReferenceModelTypeReferenceAsset:
-            currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
+            currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:self.modelManager];
             break;
 		default:
 			self.title = NSLocalizedString(@"ReferenceDetailScreenDefaultTitle",nil);
-			currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:moralModelManager];
+			currentDAO = [[ReferenceAssetDAO alloc] initWithKey:self.referenceKey andModelManager:self.modelManager];
 			break;
 	}
 

@@ -44,6 +44,7 @@ typedef enum {
 
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
 
@@ -56,11 +57,12 @@ typedef enum {
 #pragma mark View lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
--(id)initWithConscience:(UserConscience *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
 	if ((self = [super init])) {
 		//Create NSUserDefaults for serialized state retention
 		prefs = [NSUserDefaults standardUserDefaults];
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 		buttonNames = @[@"choicegood", @"choicebad", @"choicelist"];
 
@@ -183,7 +185,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
         [self.navigationController pushViewController:choiceViewController animated:YES];
     } else {
 
-        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] init];
+        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] initWithModelManager:self.modelManager andDefaults:prefs];
         ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel andConscience:self.userConscience];
         [self.navigationController pushViewController:choiceListCont animated:YES];
     }

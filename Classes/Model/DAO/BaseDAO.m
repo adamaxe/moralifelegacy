@@ -46,25 +46,25 @@ NSString* const MLContextReadWrite = @"readWrite";
     if (self) {
 
         if ([classType isEqualToString:MLContextReadWrite]) {
-            _context = [moralModelManager readWriteManagedObjectContext];
+            self.context = [moralModelManager readWriteManagedObjectContext];
         } else {
-            _context = [moralModelManager managedObjectContext];            
+            self.context = [moralModelManager managedObjectContext];
         }
         
-        _classType = [[NSString alloc] initWithString:classType];
-        _sorts = [[NSArray alloc] init];
-        _predicates = [[NSArray alloc] init];
-        _predicateDefaultName = [[NSMutableString alloc] initWithString:@""];
-        _sortDefaultName = [[NSMutableString alloc] initWithString:@""];
-        _managedObjectClassName = [[NSMutableString alloc] initWithString:@""];        
+        self.classType = [[NSString alloc] initWithString:classType];
+        self.sorts = [[NSArray alloc] init];
+        self.predicates = [[NSArray alloc] init];
+        self.predicateDefaultName = [[NSMutableString alloc] initWithString:@""];
+        self.sortDefaultName = [[NSMutableString alloc] initWithString:@""];
+        self.managedObjectClassName = [[NSMutableString alloc] initWithString:@""];        
         
         if (key) {
-            _currentKey = [[NSString alloc] initWithString:key];
+            self.currentKey = [[NSString alloc] initWithString:key];
         } else {
-            _currentKey = @"";
+            self.currentKey = @"";
         }
                 
-        _persistedObjects = [[NSMutableArray alloc] init];
+        self.persistedObjects = [[NSMutableArray alloc] init];
         
     }
     
@@ -76,7 +76,7 @@ NSString* const MLContextReadWrite = @"readWrite";
  Implementation: Insert an NSManagedObject into the ReadWrite store, otherwise, cancel the create
  */
 - (id)createObject {
-    if ([_classType isEqualToString:MLContextReadWrite]) {
+    if ([self.classType isEqualToString:MLContextReadWrite]) {
         return [NSEntityDescription insertNewObjectForEntityForName:self.managedObjectClassName inManagedObjectContext:self.context];   
     } else {
         return nil;
@@ -109,8 +109,8 @@ NSString* const MLContextReadWrite = @"readWrite";
 
         NSError *error = nil;
         
-        if ([_context hasChanges]) {
-            [_context save:&error];
+        if ([self.context hasChanges]) {
+            [self.context save:&error];
         }
         
         isUpdateSuccessful = error ? TRUE : FALSE;
@@ -128,18 +128,18 @@ NSString* const MLContextReadWrite = @"readWrite";
 
     BOOL isDeleteSuccessful = FALSE;
     
-    if ([_classType isEqualToString:MLContextReadWrite]) {
+    if ([self.classType isEqualToString:MLContextReadWrite]) {
 
         NSError *error = nil;
         
         if (objectToDelete) {
-            [_context delete:objectToDelete];
+            [self.context delete:objectToDelete];
         } else {
-            [_context delete:[self findPersistedObject:self.currentKey]];
+            [self.context delete:[self findPersistedObject:self.currentKey]];
         }
         
-        if ([_context hasChanges]) {
-            [_context save:&error];
+        if ([self.context hasChanges]) {
+            [self.context save:&error];
         }
         
         isDeleteSuccessful = error ? TRUE : FALSE;

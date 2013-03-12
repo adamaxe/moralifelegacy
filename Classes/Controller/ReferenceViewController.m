@@ -5,7 +5,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
  */
 
 #import "ReferenceViewController.h"
-#import "MoraLifeAppDelegate.h"
 #import "UserConscience.h"
 #import "ReferenceListViewController.h"
 #import "ReferenceModel.h"
@@ -36,6 +35,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
 
@@ -46,8 +46,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #pragma mark -
 #pragma mark View lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 	if ((self = [super init])) {
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 		//Array to hold button names for random animations
 		buttonNames = @[@"accessories", @"people", @"choicelist"];
@@ -130,10 +131,7 @@ Implementation: Determine which type of reference is requested by the User.
  */
 - (IBAction) selectReferenceType:(id) sender{
 	
-	//Create view controller to be pushed upon navigation stack
-    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-    ReferenceModel *referenceModel = [[ReferenceModel alloc] initWithModelManager:[appDelegate moralModelManager] andDefaults:[NSUserDefaults standardUserDefaults] andUserCollection:self.userConscience.conscienceCollection];
+    ReferenceModel *referenceModel = [[ReferenceModel alloc] initWithModelManager:self.modelManager andDefaults:[NSUserDefaults standardUserDefaults] andUserCollection:self.userConscience.conscienceCollection];
     
 	//Determine which choice was selected
 	if ([sender isKindOfClass:[UIButton class]]) {
