@@ -360,7 +360,7 @@ static int thoughtVersion = 0;
 	modalNavController.tabBarItem.title = modalNavTitle1;
 	[modalNavController setNavigationBarHidden:YES];
 	    
-	ConscienceModalViewController *conscienceModalViewController = [[ConscienceModalViewController alloc] initWithConscience:self.userConscience];
+	ConscienceModalViewController *conscienceModalViewController = [[ConscienceModalViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
     thoughtArea.hidden = TRUE;
     conscienceModalViewController.screenshot = [self takeScreenshot];
 	

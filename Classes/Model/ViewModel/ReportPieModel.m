@@ -44,12 +44,6 @@
 
 @implementation ReportPieModel
 
-- (id)init {
-    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-    return [self initWithModelManager:[appDelegate moralModelManager]];
-}
-
 - (id)initWithModelManager:(ModelManager *) modelManager {
 
     self = [super init];
@@ -58,11 +52,11 @@
         _isAlphabetical = FALSE;
         _isAscending = FALSE;
 
-        _reportNames = [[NSArray alloc] init];
-        _pieValues = [[NSArray alloc] init];
-        _pieColors = [[NSArray alloc] init];
-        _moralNames = [[NSArray alloc] init];
-        _moralImageNames = [[NSDictionary alloc] init];
+        self.reportNames = [[NSArray alloc] init];
+        self.pieValues = [[NSArray alloc] init];
+        self.pieColors = [[NSArray alloc] init];
+        self.moralNames = [[NSArray alloc] init];
+        self.moralImageNames = [[NSDictionary alloc] init];
         reportValues = [[NSMutableDictionary alloc] init];
         moralDisplayNames = [[NSMutableDictionary alloc] init];
         moralColors = [[NSMutableDictionary alloc] init];

@@ -17,7 +17,7 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 @file
  */
 
-@class UserConscience;
+@class ModelManager, UserConscience;
 
 @interface ConscienceModalViewController : UIViewController 
 
@@ -25,10 +25,11 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 
 /**
  Creates the viewController with the User's Conscience
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ConscienceModalViewController
  */
--(id)initWithConscience:(UserConscience *)userConscience;
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to change the state of the screen.

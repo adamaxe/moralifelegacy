@@ -46,6 +46,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 
 /**
@@ -70,8 +71,9 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 #pragma mark - View lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 	if ((self = [super init])) {
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 	}
 
@@ -383,7 +385,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 
 		switch (controllerID) {
 			case 2:{
-                ReportPieModel *reportPieModel = [[ReportPieModel alloc] init];
+                ReportPieModel *reportPieModel = [[ReportPieModel alloc] initWithModelManager:self.modelManager];
 				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel andConscience:self.userConscience];
                 reportPieViewCont.screenshot = [self takeScreenshot];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
