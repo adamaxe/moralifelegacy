@@ -1,4 +1,3 @@
-#import "MoraLifeAppDelegate.h"
 #import "ReferenceModel.h"
 #import "UserChoiceDAO.h"
 #import "ConscienceAssetDAO.h"

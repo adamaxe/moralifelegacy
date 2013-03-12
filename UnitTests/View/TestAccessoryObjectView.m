@@ -39,17 +39,6 @@
     
 }
 
-#if USE_APPLICATION_UNIT_TEST     // all code under test is in the iPhone Application
-
-- (void)testAppDelegate {
-        
-    id yourApplicationDelegate = [[UIApplication sharedApplication] delegate];
-    STAssertNotNil(yourApplicationDelegate, @"UIApplication failed to find the AppDelegate");
-    
-}
-
-#else                           // all code under test must be linked into the Unit Test bundle
-
 /**
  Ensure that the AccessoryObjectView was able to init.
  */
@@ -77,7 +66,5 @@
     
     STAssertEqualObjects(testFilename, [testingSubject accessoryFilename], @"Filename setter/getter inaccurate.");
 }
-
-#endif
 
 @end

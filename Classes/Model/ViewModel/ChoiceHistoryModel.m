@@ -1,4 +1,3 @@
-#import "MoraLifeAppDelegate.h"
 #import "ChoiceHistoryModel.h"
 #import "ModelManager.h"
 #import "UserChoiceDAO.h"
@@ -34,12 +33,6 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
 @end
 
 @implementation ChoiceHistoryModel
-
-- (id)init {
-    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-    return [self initWithModelManager:[appDelegate moralModelManager] andDefaults:[NSUserDefaults standardUserDefaults]];
-}
 
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs{
 

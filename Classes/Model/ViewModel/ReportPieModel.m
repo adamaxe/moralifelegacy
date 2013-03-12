@@ -4,8 +4,8 @@
  @class ReportPieModel ReportPieModel.h
  */
 
-#import "MoraLifeAppDelegate.h"
 #import "ReportPieModel.h"
+#import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
 #import "UserChoiceDAO.h"
 #import "MoralDAO.h"

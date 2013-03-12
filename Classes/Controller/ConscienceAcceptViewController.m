@@ -1,5 +1,5 @@
 /**
-Implementation:  User can accept the choice: ConscienceAsset added to ConscienceBody/ConscienceAccessories and MoraLifeAppDelegate::userCollection, ethicals subtracted from MoraLifeAppDelegate::userCollection, conscienceView being updated and User returned to ConscienceModalViewController.
+Implementation:  User can accept the choice: ConscienceAsset added to ConscienceBody/ConscienceAccessories and userCollection, ethicals subtracted from userCollection, conscienceView being updated and User returned to ConscienceModalViewController.
 User can cancel entire Accessory workflow: return to ConscienceViewController.
 User can return to the previous screen:  return to ConscienceListViewController to select another ConscienceAsset.
  
@@ -41,7 +41,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	IBOutlet UIButton *backButton;					/**< button used to reject new ConscienceAsset */
     
     IBOutlet UIButton *previousButton;              /**< button used to cancel choice workflow */
- 	int currentFunds;		/**< current amount of ethicals from MoraLifeAppDelegate::userCollection */
+ 	int currentFunds;		/**< current amount of ethicals from userCollection */
 	int assetCost;          /**< cost of ConscienceAsset */
 
 	BOOL isOwned;		/**< is ConscienceAsset already owned by User */
@@ -62,12 +62,12 @@ User can return to the previous screen:  return to ConscienceListViewController 
 -(void)returnToHome;
 
 /**
- Retrieve how many ethicals User currently has from MoraLifeAppDelegate::userCollection.
+ Retrieve how many ethicals User currently has from userCollection.
  */
 -(void)retrieveCurrentFunds;
 
 /**
- Subtract cost of ConscienceAsset from MoraLifeAppDelegate::userCollection.
+ Subtract cost of ConscienceAsset from userCollection.
  */
 -(void)processCollection;
 
@@ -356,7 +356,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
 #pragma mark Data Manipulation
 
 /**
-Implementation: Internal function to retrieve how many ethicals User currently has from MoraLifeAppDelegate::userCollection.
+Implementation: Internal function to retrieve how many ethicals User currently has from userCollection.
  */
 -(void)retrieveCurrentFunds{
     
@@ -430,7 +430,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
 }
 
 /**
-Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from ethicals and add ConscienceAsset as a collectable.  
+Implementation: Changes userCollection.  Subtract cost from ethicals and add ConscienceAsset as a collectable.
  */
 -(void)processCollection{
         
@@ -442,7 +442,7 @@ Implementation: Changes MoraLifeAppDelegate::userCollection.  Subtract cost from
     
     
 	//Create a new UserCollectable
-	//It has already been determined to not exist in MoraLifeAppDelegate::userCollection, no need to test
+	//It has already been determined to not exist in userCollection, no need to test
 
     UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
     

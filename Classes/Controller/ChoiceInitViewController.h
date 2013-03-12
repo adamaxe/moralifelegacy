@@ -4,7 +4,6 @@ Choice Initialization View Controller.  Home Screen for Choice Tabbar menu selec
 Primary screen in Choice/Luck Entry and Listing Workflows.  Allows for selection of entry type of a Good or Bad Choice, or the listing of all entered choices.
  
 @class ChoiceInitViewController
-@see MoraLifeAppDelegate
 
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 08/18/2010

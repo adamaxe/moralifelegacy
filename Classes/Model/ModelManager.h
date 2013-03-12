@@ -1,7 +1,6 @@
 /**
  Moralife Model Manager.  This class handles the setup and destruction of backing store.
   
- @see MoraLifeAppDelegate
  @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
  @class ModelManager
  @date 06/09/2012

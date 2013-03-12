@@ -5,10 +5,8 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 @class ConscienceHelpViewController ConscienceHelpViewController.h
  */
 
-#import "MoraLifeAppDelegate.h"
-#import "UserConscience.h"
 #import "ConscienceHelpViewController.h"
-#import "ConscienceView.h"
+#import "UserConscience.h"
 #import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
 #import "UIFont+Utility.h"

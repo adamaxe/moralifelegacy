@@ -6,9 +6,8 @@ Determine which fields and UI elements should be presented depending up on Refer
  */
 
 #import "ReferenceDetailViewController.h"
-#import "UserConscience.h"
-#import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
+#import "UserConscience.h"
 #import "ReferenceModel.h"
 #import "ConscienceHelpViewController.h"
 #import "UserCollectableDAO.h"

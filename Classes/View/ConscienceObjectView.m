@@ -7,7 +7,6 @@ ConscienceObjectView draws via Core Graphics these points when provided the draw
  */
 
 #import "ConscienceObjectView.h"
-#import "MoralifeAppDelegate.h"
 #import "ConscienceLayer.h"
 #import "ConsciencePath.h"
 #import "ConscienceGradient.h"

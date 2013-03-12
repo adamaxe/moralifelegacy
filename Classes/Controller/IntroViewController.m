@@ -8,11 +8,8 @@ the application.
 
 #import "IntroViewController.h"
 #import "UserConscience.h"
-#import "MoraLifeAppDelegate.h"
-#import "ConscienceView.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBody.h"
-#import "ConscienceMind.h"
 #import "ConscienceBubbleFactory.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ViewControllerLocalization.h"

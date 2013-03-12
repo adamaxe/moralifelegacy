@@ -6,12 +6,10 @@ All other Conscience-based UIViewControllers are launched from this starting poi
  */
 
 #import "ConscienceViewController.h"
-#import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
-#import "ConscienceView.h"
+#import "UserConscience.h"
 #import "ConscienceModalViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ConscienceMind.h"
 #import "UserChoiceDAO.h"
 #import "UserCollectableDAO.h"
 #import "MoralDAO.h"
@@ -23,7 +21,6 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UIViewController+Screenshot.h"
 #import "UIColor+Utility.h"
 #import "UIFont+Utility.h"
-#import "UserConscience.h"
 
 typedef enum {
     MLConscienceViewControllerVirtueButtonTag = 3030,
@@ -38,7 +35,6 @@ float const MLThoughtInterval = 5;
 
 @interface ConscienceViewController () <ViewControllerLocalization> {
     
-	MoraLifeAppDelegate *appDelegate;		/**< delegate for application level callbacks */
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
 	IBOutlet UILabel *conscienceStatus;				/**< Conscience's thought presented in bubble */
@@ -132,8 +128,6 @@ static int thoughtVersion = 0;
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     if ((self = [super init])) {
-        //Create appDelegate and referebce NSUserDefaults for Conscience and serialized state retention
-		appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
 		prefs = [NSUserDefaults standardUserDefaults];
 
         homeVirtueDisplayName = [[NSMutableString alloc] init];
