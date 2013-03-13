@@ -475,7 +475,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
         } else {
 
             DilemmaModel *dilemmaModel = [[DilemmaModel alloc] initWithCampaign:requestedCampaign];
-            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaModel andConscience:self.userConscience];
+            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaModel modelManager:self.modelManager andConscience:self.userConscience];
             dilemmaListViewController.screenshot = [self takeScreenshot];
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];

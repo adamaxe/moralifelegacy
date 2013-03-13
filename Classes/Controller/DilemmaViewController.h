@@ -9,7 +9,7 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
 @file
  */
 
-@class UserConscience;
+@class ModelManager, UserConscience;
 
 @interface DilemmaViewController : UIViewController
 
@@ -19,10 +19,11 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
  Creates the viewController with the User's Conscience
  @param nibNameOrNil name of XIB
  @param nibBundleOrNil bundle in which to locate XIB
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of DilemmaViewController
  */
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil andConscience:(UserConscience *)userConscience;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to change the presently displayed UIView and possibly commit Choice

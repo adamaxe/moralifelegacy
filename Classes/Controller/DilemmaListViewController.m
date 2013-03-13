@@ -6,8 +6,8 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
  */
 
 #import "DilemmaListViewController.h"
-#import "UserConscience.h"
 #import "ModelManager.h"
+#import "UserConscience.h"
 #import "DilemmaViewController.h"
 #import "DilemmaModel.h"
 #import "ConscienceHelpViewController.h"
@@ -41,6 +41,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 }
 
 @property (nonatomic, strong) DilemmaModel *dilemmaModel;   /**< Model to handle data/business logic */
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
@@ -63,11 +64,12 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(DilemmaModel *) dilemmaModel andConscience:(UserConscience *)userConscience {
+- (id)initWithModel:(DilemmaModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     self = [super init];
 
     if (self) {
         self.dilemmaModel = dilemmaModel;
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
     }
 
@@ -329,11 +331,11 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             [prefs setObject:selectedRowKey forKey:@"dilemmaKey"];
             
             if ([tableDataTypes[indexPath.row] boolValue]){
-                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil andConscience:self.userConscience];
+                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil modelManager:self.modelManager andConscience:self.userConscience];
                 dilemmaViewController.screenshot = [self takeScreenshot];
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             } else {
-                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil andConscience:self.userConscience];
+                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil modelManager:self.modelManager andConscience:self.userConscience];
                 dilemmaViewController.screenshot = [self takeScreenshot];                
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             }
