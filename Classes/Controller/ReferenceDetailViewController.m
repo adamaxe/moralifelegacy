@@ -56,6 +56,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 }
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 
@@ -86,11 +87,13 @@ Determine which fields and UI elements should be presented depending up on Refer
 #pragma mark -
 #pragma mark ViewController Lifecycle
 
-- (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience {
+- (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+
     self = [super init];
 
     if (self) {
         self.referenceModel = referenceModel;
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
     }
 
@@ -314,7 +317,7 @@ Implementation: Find value of reference from UserCollection in case of Morals
     UserCollectableDAO *currentUserCollectableDAO;
 
     if (referenceType == MLReferenceModelTypeMoral) {
-        currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", referenceKey];
         currentUserCollectableDAO.predicates = @[pred];
     } else {

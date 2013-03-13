@@ -12,17 +12,18 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
 @todo rename to ReferenceViewController
  */
 
-@class ReferenceModel, UserConscience;
+@class ReferenceModel, ModelManager, UserConscience;
 
 @interface ReferenceDetailViewController : UIViewController <UIActionSheetDelegate>
 
 /**
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ReferenceDetailViewController
  */
-- (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience;
+- (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to ask for a Quote from reference.
