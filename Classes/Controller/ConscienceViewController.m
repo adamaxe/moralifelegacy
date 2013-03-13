@@ -656,7 +656,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     }
     
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
@@ -718,7 +718,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
  */
 - (void) retrieveBiggestChoice:(BOOL) isVirtue{
     
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] init];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     NSPredicate *pred;
     
     if (isVirtue) {
@@ -803,7 +803,7 @@ Change the Rank picture and description.
 - (void) retrieveHighestRank {
     
 	//Begin CoreData Retrieval to find all Ranks in possession.
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName contains[cd] %@", @"asse-rank"];
 	currentUserCollectableDAO.predicates = @[pred];
@@ -826,7 +826,7 @@ Change the Rank picture and description.
 	if ([objects count] > 0) {
         
         NSString *value = [objects[0] collectableName];
-        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] init];
+        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
         ConscienceAsset *currentAsset = [currentAssetDAO read:value];
         
         if (currentAsset) {

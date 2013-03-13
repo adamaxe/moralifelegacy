@@ -740,7 +740,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     float choiceCalculatedWeight = 0;
     choiceCalculatedWeight = (choiceWeightFilledFields/2 + severityConversion) * choiceInfluence;
     
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:choiceKey];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:choiceKey andModelManager:self.modelManager];
 
     
     //Save the choice record to CoreData
@@ -775,7 +775,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             self.userConscience.userConscienceMind.enthusiasm = newEnthusiasm;
         }
         
-        UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+        UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
         UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
         [currentUserCharacter setCharacterMood:@(newMood)];    
@@ -788,7 +788,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         //Cannot assume that first instance of UserChoice implies no previous reward
         if ([self.userConscience.conscienceCollection containsObject:moralKey]) {
 
-            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", moralKey];
             currentUserCollectableDAO.predicates = @[pred];
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
@@ -806,7 +806,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             
         } else {
             
-            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
+            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
          
             //Create a new moral reward
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
@@ -854,7 +854,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
  */
 -(void)increaseEthicals{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     
     //Update User's ethicals
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];

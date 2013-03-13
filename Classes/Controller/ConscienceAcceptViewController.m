@@ -105,7 +105,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.previousScreen.image = _screenshot;
+    self.previousScreen.image = self.screenshot;
 
 	/** 
 	@todo utilize consistent localization string references 
@@ -126,7 +126,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[self retrieveCurrentFunds];
 	[currentFundsLabel setText:[NSString stringWithFormat:@"%dε", currentFunds]];
     
-    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:_assetSelection];
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:self.assetSelection];
     ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
     
     //Set UI labels
@@ -144,7 +144,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	currentFeature = [[NSString alloc] initWithString:assetFileName];
     
     //Add requested ConscienceAsset to duplicate ConscienceView for review
-	switch (_accessorySlot) {
+	switch (self.accessorySlot) {
 		case 0:{[resetFeature setString:self.userConscience.userConscienceAccessories.topAccessory];self.userConscience.userConscienceAccessories.topAccessory = currentFeature;}break;
 		case 1:{[resetFeature setString:self.userConscience.userConscienceAccessories.primaryAccessory];self.userConscience.userConscienceAccessories.primaryAccessory = currentFeature;}break;
 		case 2:{[resetFeature setString:self.userConscience.userConscienceAccessories.bottomAccessory];self.userConscience.userConscienceAccessories.bottomAccessory = currentFeature;}break;
@@ -165,7 +165,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		default: break;
 	}
 	
-    if ((_accessorySlot > 3) && (_accessorySlot < 7)) {
+    if ((self.accessorySlot > 3) && (self.accessorySlot < 7)) {
         [ConscienceBuilder buildConscience:self.userConscience.userConscienceBody];
 
     }
@@ -289,7 +289,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             [UIView commitAnimations];
 		} else {
             
-            switch (_accessorySlot) {
+            switch (self.accessorySlot) {
                 case 0:self.userConscience.userConscienceAccessories.topAccessory = resetFeature;break;
                 case 1:self.userConscience.userConscienceAccessories.primaryAccessory = resetFeature;break;
                 case 2:self.userConscience.userConscienceAccessories.bottomAccessory = resetFeature;break;
@@ -304,7 +304,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
                 default: break;
             }
             
-            if ((_accessorySlot > 3) && (_accessorySlot < 7)) {
+            if ((self.accessorySlot > 3) && (self.accessorySlot < 7)) {
                 [ConscienceBuilder buildConscience:self.userConscience.userConscienceBody];
                 
             }
@@ -382,7 +382,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
 	//Assign current ConscienceAsset to UserCharacter
-	switch (_accessorySlot) {
+	switch (self.accessorySlot) {
 		case 0:[currentUserCharacter setCharacterAccessoryTop:currentFeature];break;
 		case 1:[currentUserCharacter setCharacterAccessoryPrimary:currentFeature];break;
 		case 2:[currentUserCharacter setCharacterAccessoryBottom:currentFeature];break;
@@ -450,8 +450,8 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
     UserCollectable *currentUserAssetCollectable = [currentUserCollectableDAO create];
 	
     [currentUserAssetCollectable setCollectableCreationDate:[NSDate date]];
-	[currentUserAssetCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, _assetSelection]];
-	[currentUserAssetCollectable setCollectableName:_assetSelection];
+	[currentUserAssetCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, self.assetSelection]];
+	[currentUserAssetCollectable setCollectableName:self.assetSelection];
     
 	//Check to see if ConscienceAsset has already been collected
 	if (!isOwned){
