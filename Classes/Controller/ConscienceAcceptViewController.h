@@ -12,7 +12,7 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 @date 08/25/2010
  */
 
-@class UserConscience;
+@class ModelManager, UserConscience;
 
 @interface ConscienceAcceptViewController : UIViewController
 
@@ -22,10 +22,11 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 
 /**
  Creates the viewController with the User's Conscience
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ConscienceAcceptViewController
  */
--(id)initWithConscience:(UserConscience *)userConscience;
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to commit the choice of ConscienceAsset to persistence.  Returns User to ConscienceViewController.

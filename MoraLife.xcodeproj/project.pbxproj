@@ -1623,7 +1623,6 @@
 		5EEBBC7812FD23D1002E2C1E /* ChoiceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7712FD23CF002E2C1E /* ChoiceDetailViewController.m */; };
 		5EEBBC7B12FD24EF002E2C1E /* ConscienceModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */; };
 		5EEBBC7E12FD2542002E2C1E /* ConscienceAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7D12FD253E002E2C1E /* ConscienceAccessoryViewController.m */; };
-		5EEBBC8A12FD917D002E2C1E /* ConscienceDeckViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC8912FD9177002E2C1E /* ConscienceDeckViewController.m */; };
 		5EEE0FF412224ABE00073A5D /* thoughtbubble-large1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EEE0FF012224ABE00073A5D /* thoughtbubble-large1@2x.png */; };
 		5EEE11381223524C00073A5D /* con-sports-tennisball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EEE10581223524C00073A5D /* con-sports-tennisball.svg */; };
 		5EEE11391223524C00073A5D /* con-sports-rugbyball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EEE10591223524C00073A5D /* con-sports-rugbyball.svg */; };
@@ -3375,8 +3374,6 @@
 		5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceModalViewController.m; sourceTree = "<group>"; };
 		5EEBBC7C12FD253C002E2C1E /* ConscienceAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAccessoryViewController.h; sourceTree = "<group>"; };
 		5EEBBC7D12FD253E002E2C1E /* ConscienceAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAccessoryViewController.m; sourceTree = "<group>"; };
-		5EEBBC8812FD9174002E2C1E /* ConscienceDeckViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceDeckViewController.h; sourceTree = "<group>"; };
-		5EEBBC8912FD9177002E2C1E /* ConscienceDeckViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceDeckViewController.m; sourceTree = "<group>"; };
 		5EEE0FF012224ABE00073A5D /* thoughtbubble-large1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-large1@2x.png"; path = "Resources/images/interface/thoughtbubble-large1@2x.png"; sourceTree = "<group>"; };
 		5EEE10581223524C00073A5D /* con-sports-tennisball.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-sports-tennisball.svg"; path = "Resources/images/conscience/con-sports-tennisball.svg"; sourceTree = "<group>"; };
 		5EEE10591223524C00073A5D /* con-sports-rugbyball.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-sports-rugbyball.svg"; path = "Resources/images/conscience/con-sports-rugbyball.svg"; sourceTree = "<group>"; };
@@ -5460,8 +5457,6 @@
 				5E5DB58512FD97DC007F85FA /* ConscienceAcceptViewController.m */,
 				5EEBBC7C12FD253C002E2C1E /* ConscienceAccessoryViewController.h */,
 				5EEBBC7D12FD253E002E2C1E /* ConscienceAccessoryViewController.m */,
-				5EEBBC8812FD9174002E2C1E /* ConscienceDeckViewController.h */,
-				5EEBBC8912FD9177002E2C1E /* ConscienceDeckViewController.m */,
 				5EEBBC7312FD22B4002E2C1E /* ConscienceHelpViewController.h */,
 				5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */,
 				5EEBBC7912FD24EB002E2C1E /* ConscienceModalViewController.h */,
@@ -7213,7 +7208,6 @@
 				5EEBBC7812FD23D1002E2C1E /* ChoiceDetailViewController.m in Sources */,
 				5EEBBC7B12FD24EF002E2C1E /* ConscienceModalViewController.m in Sources */,
 				5EEBBC7E12FD2542002E2C1E /* ConscienceAccessoryViewController.m in Sources */,
-				5EEBBC8A12FD917D002E2C1E /* ConscienceDeckViewController.m in Sources */,
 				5E2A7F1712FD9540001ADB66 /* ConscienceListViewController.m in Sources */,
 				5E5DB58612FD97DC007F85FA /* ConscienceAcceptViewController.m in Sources */,
 				5EAA21221307451000C1DB02 /* DilemmaViewController.m in Sources */,

@@ -11,7 +11,7 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 @date 08/25/2010
  */
 
-@class UserConscience;
+@class ModelManager, UserConscience;
 
 @interface ConscienceAccessoryViewController : UIViewController
 
@@ -19,10 +19,11 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 
 /**
  Creates the viewController with the User's Conscience
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ConscienceAccessoryViewController
  */
--(id)initWithConscience:(UserConscience *)userConscience;
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to select a ConscienceAsset for review

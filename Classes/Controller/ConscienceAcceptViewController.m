@@ -48,6 +48,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
@@ -84,10 +85,11 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #pragma mark ViewController lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
--(id)initWithConscience:(UserConscience *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     if (self = [super init]) {
 
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 
         prefs = [NSUserDefaults standardUserDefaults];
@@ -126,7 +128,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[self retrieveCurrentFunds];
 	[currentFundsLabel setText:[NSString stringWithFormat:@"%dε", currentFunds]];
     
-    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:self.assetSelection];
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:self.assetSelection andModelManager:self.modelManager];
     ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
     
     //Set UI labels
@@ -360,7 +362,7 @@ Implementation: Internal function to retrieve how many ethicals User currently h
  */
 -(void)retrieveCurrentFunds{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
 
@@ -378,7 +380,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
 -(void)saveConscience{
 	
 	//Retrieve User's UserCharacter		
-    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] init];
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
 	//Assign current ConscienceAsset to UserCharacter
@@ -444,7 +446,7 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
 	//Create a new UserCollectable
 	//It has already been determined to not exist in userCollection, no need to test
 
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@""];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     
     //Create a new moral reward
     UserCollectable *currentUserAssetCollectable = [currentUserCollectableDAO create];

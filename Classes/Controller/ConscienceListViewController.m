@@ -52,6 +52,7 @@ User can filter list by only things that are affordable to currentFunds.
     int searchViewFilter;                    /**< which view to show */
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
@@ -72,8 +73,9 @@ User can filter list by only things that are affordable to currentFunds.
 #pragma mark - 
 #pragma mark View lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 	if ((self = [super init])) {
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 	}
 
@@ -238,7 +240,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
  */
 - (void) retrieveAllSelections{
     
-    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] init];
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     
     NSMutableArray *predicateArguments = [[NSMutableArray alloc] init];
     
@@ -342,7 +344,7 @@ Implementation: Retrieve User's current ethicals from UserData
  */
 -(void)retrieveCurrentFunds{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] init];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
@@ -531,7 +533,7 @@ Implementation: Retrieve User's current ethicals from UserData
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	//Create next view to accept, review or reject purchase	
-	ConscienceAcceptViewController *conscienceAcceptController = [[ConscienceAcceptViewController alloc] initWithConscience:self.userConscience];
+	ConscienceAcceptViewController *conscienceAcceptController = [[ConscienceAcceptViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
                 
 	NSMutableString *selectedRow = [NSMutableString stringWithString:tableDataKeys[indexPath.row]];
 
@@ -575,15 +577,6 @@ Implementation: Retrieve User's current ethicals from UserData
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (void)dealloc
-{
-	choices = nil;
-	choiceImages = nil;
-	choiceImages = nil;
-	choiceSubtitles = nil;	
-	choiceCosts = nil;
 }
 
 @end

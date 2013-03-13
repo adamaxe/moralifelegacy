@@ -12,7 +12,7 @@ Secondary Conscience interaction screen.  Most other Conscience interactions req
 @file
  */
 
-@class UserConscience;
+@class ModelManager, UserConscience;
 
 @interface ConscienceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -21,10 +21,11 @@ Secondary Conscience interaction screen.  Most other Conscience interactions req
 
 /**
  Creates the viewController with the User's Conscience
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ConscienceListViewController
  */
--(id)initWithConscience:(UserConscience *)userConscience;
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to filter list of ConscienceAssets.

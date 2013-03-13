@@ -395,7 +395,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
 			case 6:{
-				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] initWithConscience:self.userConscience];
+				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
                 [UIView animateWithDuration:0.5 animations:^{
                     self.userConscience.userConscienceView.alpha = 0;
                 }completion:^(BOOL finished) {
@@ -427,7 +427,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a list of choices for accessories	
 	if (isListViewControllerNeeded) {
 
-		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithConscience:self.userConscience];
+		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
 		[conscienceListController setAccessorySlot:requestedAccessorySlot];
         [UIView animateWithDuration:0.5 animations:^{
             self.userConscience.userConscienceView.alpha = 0;

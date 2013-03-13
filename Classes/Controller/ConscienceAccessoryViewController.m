@@ -5,6 +5,7 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
  */
 
 #import "ConscienceAccessoryViewController.h"
+#import "ModelManager.h"
 #import "UserConscience.h"
 #import "ConscienceListViewController.h"
 #import "ViewControllerLocalization.h"
@@ -34,6 +35,7 @@ int const MLConscienceCenterY = 165;
     int accessorySlot;
 }
 
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
@@ -48,8 +50,9 @@ int const MLConscienceCenterY = 165;
 #pragma mark -
 #pragma mark ViewController lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
+-(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 	if ((self = [super init])) {
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
 	}
 
@@ -168,7 +171,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 
 -(void)createList{
     
-    ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithConscience:self.userConscience];
+    ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
     conscienceListController.screenshot = [self takeScreenshot];
     [conscienceListController setAccessorySlot:accessorySlot];
     
