@@ -38,6 +38,7 @@ Create method to insert an NSManagedObject into the store
 
 /**
  Read method to fetch an NSManagedObject from the store
+ @param NSString key to designate which NSManagedObject to return (optional)
  @return NSManagedObject Return will be typecast by DAO subclass
  */
 - (NSManagedObject *)readObject:(NSString *)key;

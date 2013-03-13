@@ -12,9 +12,19 @@
 
 @interface ReferencePersonDAO : BaseDAO
 
-- (id)initWithKey:(NSString *)key;
+/**
+ Overloaded init to provide dependency injection of ModelManager for both release and testing
+ @param NSString key to designate which NSManagedObject to return (optional)
+ @param ModelManager which persistence stack to reference (release file system or test in-memory)
+ @return id ReferencePersonDAO created for designated Model
+ */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+/**
+ Read method to fetch an ReferencePerson from the store
+ @param NSString key to designate which ReferencePerson to return (optional)
+ @return ReferencePerson NSManagedObject to be returned
+ */
 - (ReferencePerson *)read:(NSString *)key;
 
 @end

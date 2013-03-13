@@ -1,5 +1,4 @@
 #import "MoralDAO.h"
-#import "MoraLifeAppDelegate.h"
 
 @implementation MoralDAO 
 

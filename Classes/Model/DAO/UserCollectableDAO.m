@@ -1,19 +1,8 @@
 #import "UserCollectableDAO.h"
-#import "MoraLifeAppDelegate.h"
 
 NSString* const MLCollectableEthicals = @"ethical";
 
 @implementation UserCollectableDAO
-
-- (id) init {
-    return [self initWithKey:nil];
-}
-
-- (id)initWithKey:(NSString *)key {
-    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-    return [self initWithKey:key andModelManager:[appDelegate moralModelManager]];
-}
 
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
 

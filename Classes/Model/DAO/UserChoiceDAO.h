@@ -12,10 +12,25 @@
 
 @interface UserChoiceDAO : BaseDAO
 
-- (id)initWithKey:(NSString *)key;
+/**
+ Overloaded init to provide dependency injection of ModelManager for both release and testing
+ @param NSString key to designate which NSManagedObject to return (optional)
+ @param ModelManager which persistence stack to reference (release file system or test in-memory)
+ @return id UserChoiceDAO created for designated Model
+ */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
+/**
+ Read method to create an UserChoice in the store
+ @return UserChoice Created NSManagedObject to be returned
+ */
 - (UserChoice *)create;
+
+/**
+ Read method to fetch an UserChoice from the store
+ @param NSString key to designate which UserChoice to return (optional)
+ @return UserChoice NSManagedObject to be returned
+ */
 - (UserChoice *)read:(NSString *)key;
 
 @end

@@ -24,15 +24,6 @@
 NSString* const MLContextReadOnly = @"readOnly";
 NSString* const MLContextReadWrite = @"readWrite";
 
-/**
- Implementation: In case of base init is called, forward call to default constructor to utilize rw context
- */
-- (id) init {
-    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-    
-    return [self initWithKey:nil andModelManager:[appDelegate moralModelManager] andClassType:MLContextReadWrite];
-}
-
 #pragma mark -
 #pragma mark Public API
 
