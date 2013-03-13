@@ -33,13 +33,6 @@ typedef enum {
 
 /**
  Builds model with dependency injection
- @param dilemmaCampaign int of requested campaign
- @return id DilemmaModel
- */
-- (id)initWithCampaign:(MLRequestedMorathologyAdventure)campaign;
-
-/**
- Builds model with dependency injection
  @param modelManager ModelManager for either production or testing
  @param prefs NSUserDefaults for dependency injection
  @param dilemmaCampaign int of requested campaign

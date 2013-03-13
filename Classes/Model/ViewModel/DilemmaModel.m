@@ -1,4 +1,3 @@
-#import "MoraLifeAppDelegate.h"
 #import "DilemmaModel.h"
 #import "UserDilemmaDAO.h"
 #import "DilemmaDAO.h"
@@ -28,16 +27,6 @@
 @end
 
 @implementation DilemmaModel
-
-- (id)init {
-    return [self initWithCampaign:MLRequestedMorathologyAdventure0];
-}
-
-- (id)initWithCampaign:(MLRequestedMorathologyAdventure)campaign {
-    MoraLifeAppDelegate *appDelegate = (MoraLifeAppDelegate *)[[UIApplication sharedApplication] delegate];
-
-    return [self initWithModelManager:[appDelegate moralModelManager] andDefaults:[NSUserDefaults standardUserDefaults] andCurrentCampaign:campaign];
-}
 
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andCurrentCampaign:(MLRequestedMorathologyAdventure) campaign {
 

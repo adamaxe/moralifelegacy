@@ -1,11 +1,4 @@
-/**
- Implementation:  Present a GraphView of piechart type with accompanying data descriptors.
-
- @class BaseDAO BaseDAO.h
- */
-
 #import "BaseDAO.h"
-#import "MoraLifeAppDelegate.h"
 
 @interface BaseDAO () 
 
