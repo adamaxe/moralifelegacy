@@ -140,7 +140,7 @@ Implementation: Determine which type of reference is requested by the User.
 
 	}
 
-    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel andConscience:self.userConscience];
+    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel modelManager:self.modelManager andConscience:self.userConscience];
     [self.navigationController pushViewController:referenceListViewCont animated:TRUE];
 
 }

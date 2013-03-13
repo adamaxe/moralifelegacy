@@ -321,7 +321,7 @@ Implementation: Find value of reference from UserCollection in case of Morals
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", referenceKey];
         currentUserCollectableDAO.predicates = @[pred];
     } else {
-        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:referenceKey];
+        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:referenceKey andModelManager:self.modelManager];
     }
 
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];

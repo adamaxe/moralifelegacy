@@ -5,6 +5,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
  */
 
 #import "ReferenceListViewController.h"
+#import "ModelManager.h"
 #import "UserConscience.h"
 #import "ReferenceDetailViewController.h"
 #import "ReferenceModel.h"
@@ -29,6 +30,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 }
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
+@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic) UserConscience *userConscience;
 
 /**
@@ -49,12 +51,13 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience {
+- (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     self = [super init];
 
     if (self) {
         self.referenceModel = referenceModel;
+        self.modelManager = modelManager;
         self.userConscience = userConscience;
     }
 
@@ -227,7 +230,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel andConscience:self.userConscience];
+    ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel modelManager:self.modelManager andConscience:self.userConscience];
     [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
     [self.navigationController pushViewController:detailViewCont animated:TRUE];
 

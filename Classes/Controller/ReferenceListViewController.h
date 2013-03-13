@@ -12,7 +12,7 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
 
 #import "ReferenceModel.h"
 
-@class UserConscience;
+@class ModelManager, UserConscience;
 
 @interface ReferenceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
@@ -21,10 +21,11 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
 /**
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ReferenceListViewController
  */
-- (id)initWithModel:(ReferenceModel *) referenceModel andConscience:(UserConscience *)userConscience;
+- (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 
 @end
