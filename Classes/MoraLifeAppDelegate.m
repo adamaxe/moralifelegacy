@@ -24,6 +24,14 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 }
 
+@property (nonatomic, strong) ModelManager *moralModelManager;
+
+/**
+ Retrieve current sandbox Documents directory
+ @return Documents NSURL of sandboxed application writable Doc directory
+ */
+- (NSURL *)applicationDocumentsDirectory;
+
 @end
 
 @implementation MoraLifeAppDelegate
@@ -115,7 +123,6 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  */
 - (NSURL *)applicationDocumentsDirectory {
 	
-	//Working
 	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 

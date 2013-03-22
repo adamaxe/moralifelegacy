@@ -25,13 +25,6 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 @interface MoraLifeAppDelegate : NSObject <UIApplicationDelegate>
 
 @property (nonatomic, strong) IBOutlet UIWindow *window;
-@property (nonatomic, strong) ModelManager *moralModelManager;
-
-/**
- Retrieve current sandbox Documents directory
- @return Documents NSURL of sandboxed application writable Doc directory
- */
-- (NSURL *)applicationDocumentsDirectory;
 
 @end
 
