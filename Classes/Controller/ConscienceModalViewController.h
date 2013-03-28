@@ -17,19 +17,12 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 @file
  */
 
-@class ModelManager, UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface ConscienceModalViewController : UIViewController 
+@interface ConscienceModalViewController : MoraLifeViewController
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 
-/**
- Creates the viewController with the User's Conscience
- @param modelManager ModelManager data persistence
- @param userConscience UserConscience for modals and help screens
- @return id instance of ConscienceModalViewController
- */
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to change the state of the screen.

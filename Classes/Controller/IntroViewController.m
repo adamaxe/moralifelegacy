@@ -7,12 +7,10 @@ the application.
  */
 
 #import "IntroViewController.h"
-#import "UserConscience.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBody.h"
 #import "ConscienceBubbleFactory.h"
 #import <QuartzCore/QuartzCore.h>
-#import "ViewControllerLocalization.h"
 
 NSString* const MLBubbleColorIntroAngel = @"00FF00";
 NSString* const MLBubbleColorIntroDevil = @"FF0000";
@@ -46,7 +44,6 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 }
 
 @property (nonatomic, strong) NSTimer *thoughtChangeTimer;		/**< determines when Conscience thought disappears */
-@property (nonatomic) UserConscience *userConscience;
 
 /**
  In case of interruption, return Intro to saved state
@@ -96,31 +93,23 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 #pragma mark -
 #pragma mark ViewController lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
-	if ((self = [super init])) {
-        self.userConscience = userConscience;
-	}
-
-	return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
 
 	prefs = [NSUserDefaults standardUserDefaults];
     
 	//Setup the default Conscience
-	self.userConscience.userConscienceAccessories.primaryAccessory = MLPrimaryAccessoryFileNameResourceDefault;
-	self.userConscience.userConscienceAccessories.secondaryAccessory = MLSecondaryAccessoryFileNameResourceDefault;
-	self.userConscience.userConscienceAccessories.topAccessory = MLTopAccessoryFileNameResourceDefault;
-	self.userConscience.userConscienceAccessories.bottomAccessory = MLBottomAccessoryFileNameResourceDefault;
-	self.userConscience.userConscienceBody.symbolName = MLSymbolFileNameResourceDefault;
+	_userConscience.userConscienceAccessories.primaryAccessory = MLPrimaryAccessoryFileNameResourceDefault;
+	_userConscience.userConscienceAccessories.secondaryAccessory = MLSecondaryAccessoryFileNameResourceDefault;
+	_userConscience.userConscienceAccessories.topAccessory = MLTopAccessoryFileNameResourceDefault;
+	_userConscience.userConscienceAccessories.bottomAccessory = MLBottomAccessoryFileNameResourceDefault;
+	_userConscience.userConscienceBody.symbolName = MLSymbolFileNameResourceDefault;
     
-	[consciencePlayground addSubview:self.userConscience.userConscienceView];
+	[consciencePlayground addSubview:_userConscience.userConscienceView];
     
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 	[conscienceStatus setText:@"Hello there!  Welcome to..."];
 
 	backgroundImage.alpha = 0;
@@ -205,10 +194,10 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
         [UIView setAnimationBeginsFromCurrentState:NO];
         
         backgroundImage.alpha = 1;
-        self.userConscience.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY-40);        
+        _userConscience.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY-40);        
                 
         [UIView commitAnimations];
-        [self.userConscience.userConscienceView setNeedsDisplay];
+        [_userConscience.userConscienceView setNeedsDisplay];
         
         [self switchNow:placeholderID];
         
@@ -220,7 +209,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
         
         CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY-120);
 
-        self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+        _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
         
         [UIView beginAnimations:@"BottomUpConscience" context:nil];
         [UIView setAnimationDuration:1.75];
@@ -229,10 +218,10 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
         backgroundImage.alpha = 1;
         teamAxeLogoImage.alpha = 1;
 
-        self.userConscience.userConscienceView.center = centerPoint;
+        _userConscience.userConscienceView.center = centerPoint;
         
         [UIView commitAnimations];
-        [self.userConscience.userConscienceView setNeedsDisplay];
+        [_userConscience.userConscienceView setNeedsDisplay];
                 
         self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(startIntro) userInfo:nil repeats:NO];
     }
@@ -267,14 +256,14 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     [UIView beginAnimations:@"CenterConscience" context:nil];
 	[UIView setAnimationDuration:1.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
-    self.userConscience.userConscienceView.center = centerPoint;
+    _userConscience.userConscienceView.center = centerPoint;
     
     thoughtArea.alpha = 1;
     teamAxeLogoImage.alpha = 0;
-    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceSizeDefault, MLConscienceSizeDefault);
+    _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceSizeDefault, MLConscienceSizeDefault);
 	
 	[UIView commitAnimations];
-    [self.userConscience.userConscienceView setNeedsDisplay];
+    [_userConscience.userConscienceView setNeedsDisplay];
     messageState = 0;
     
     self.thoughtChangeTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(switchText) userInfo:nil repeats:NO];
@@ -295,7 +284,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     moraLifeLogoImage.alpha = 1;
 	
 	[UIView commitAnimations];
-    [self.userConscience.userConscienceView setNeedsDisplay];
+    [_userConscience.userConscienceView setNeedsDisplay];
     
     messageState = 1;
     
@@ -414,18 +403,18 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
 
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceMind.mood = 80;
-    self.userConscience.userConscienceMind.enthusiasm = 80;
+    _userConscience.userConscienceMind.mood = 80;
+    _userConscience.userConscienceMind.enthusiasm = 80;
 
-    self.userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceView.alpha = 0;
     
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(makeAngel)];
     
     [UIView commitAnimations];
     
-	[self.userConscience.userConscienceView setIsExpressionForced:TRUE];
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	[_userConscience.userConscienceView setIsExpressionForced:TRUE];
+	[_userConscience.userConscienceView setNeedsDisplay];
     
     messageState = 4; 
     
@@ -472,18 +461,18 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
     [UIView setAnimationBeginsFromCurrentState:YES];
 
-    self.userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceView.alpha = 0;
     
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(makeDevil)];
     
     [UIView commitAnimations];
     
-    self.userConscience.userConscienceMind.mood = 35;
-    self.userConscience.userConscienceMind.enthusiasm = 80;
+    _userConscience.userConscienceMind.mood = 35;
+    _userConscience.userConscienceMind.enthusiasm = 80;
 
-	[self.userConscience.userConscienceView setIsExpressionForced:TRUE];
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	[_userConscience.userConscienceView setIsExpressionForced:TRUE];
+	[_userConscience.userConscienceView setNeedsDisplay];
     
     messageState = 6;
     
@@ -495,8 +484,8 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText7{
     
     [self animateStatusText];
-    self.userConscience.userConscienceMind.mood = 60;
-    self.userConscience.userConscienceMind.enthusiasm = 60;
+    _userConscience.userConscienceMind.mood = 60;
+    _userConscience.userConscienceMind.enthusiasm = 60;
     [conscienceStatus setText:@"You can think of me as your ethical accountant."];
     
     [UIView beginAnimations:@"conscienceFlip" context:nil];
@@ -504,7 +493,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
     [UIView setAnimationBeginsFromCurrentState:YES];
 
-    self.userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceView.alpha = 0;
     
     conscienceStatus.alpha = 1;
     
@@ -513,7 +502,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
     [UIView commitAnimations];
     
-    [self.userConscience.userConscienceView setNeedsDisplay];
+    [_userConscience.userConscienceView setNeedsDisplay];
     
     messageState = 7;
     
@@ -755,12 +744,12 @@ Implementation:  Accessorize Conscience with Angel accessories
  */
 -(void) makeAngel{
     
-    self.userConscience.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-crook";
-    self.userConscience.userConscienceAccessories.secondaryAccessory = MLSecondaryAccessoryFileNameResourceDefault;
-    self.userConscience.userConscienceAccessories.topAccessory = @"acc-top-halo";
-    self.userConscience.userConscienceAccessories.bottomAccessory = @"acc-bottom-beard-longgray";
-    self.userConscience.userConscienceBody.bubbleColor = MLBubbleColorIntroAngel;
-    self.userConscience.userConscienceBody.bubbleType = MLBubbleTypePuffyTall;
+    _userConscience.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-crook";
+    _userConscience.userConscienceAccessories.secondaryAccessory = MLSecondaryAccessoryFileNameResourceDefault;
+    _userConscience.userConscienceAccessories.topAccessory = @"acc-top-halo";
+    _userConscience.userConscienceAccessories.bottomAccessory = @"acc-bottom-beard-longgray";
+    _userConscience.userConscienceBody.bubbleColor = MLBubbleColorIntroAngel;
+    _userConscience.userConscienceBody.bubbleType = MLBubbleTypePuffyTall;
     [self revealConscience];
 
 }
@@ -770,12 +759,12 @@ Implementation:  Accessorize Conscience with Devil accessories
  */
 -(void) makeDevil{
     
-    self.userConscience.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-trident";
-    self.userConscience.userConscienceAccessories.secondaryAccessory = @"acc-sec-tail-bifurcated";
-    self.userConscience.userConscienceAccessories.topAccessory = @"acc-top-horns";
-    self.userConscience.userConscienceAccessories.bottomAccessory = @"acc-bottom-beard-pointblack";
-    self.userConscience.userConscienceBody.bubbleColor = MLBubbleColorIntroDevil;
-    self.userConscience.userConscienceBody.bubbleType = MLBubbleTypeStarNormal;
+    _userConscience.userConscienceAccessories.primaryAccessory = @"acc-pri-weapon-trident";
+    _userConscience.userConscienceAccessories.secondaryAccessory = @"acc-sec-tail-bifurcated";
+    _userConscience.userConscienceAccessories.topAccessory = @"acc-top-horns";
+    _userConscience.userConscienceAccessories.bottomAccessory = @"acc-bottom-beard-pointblack";
+    _userConscience.userConscienceBody.bubbleColor = MLBubbleColorIntroDevil;
+    _userConscience.userConscienceBody.bubbleType = MLBubbleTypeStarNormal;
 
     [self revealConscience];
     
@@ -786,12 +775,12 @@ Implementation:  Remove Conscience accessories
  */
 -(void) makeNormal{
     
-    self.userConscience.userConscienceAccessories.primaryAccessory = @"acc-nothing";
-    self.userConscience.userConscienceAccessories.secondaryAccessory = @"acc-nothing";
-    self.userConscience.userConscienceAccessories.topAccessory = @"acc-nothing";
-    self.userConscience.userConscienceAccessories.bottomAccessory = @"acc-nothing";
-    self.userConscience.userConscienceBody.bubbleColor = MLBubbleColorDefault;
-    self.userConscience.userConscienceBody.bubbleType = MLBubbleTypeDefault;
+    _userConscience.userConscienceAccessories.primaryAccessory = @"acc-nothing";
+    _userConscience.userConscienceAccessories.secondaryAccessory = @"acc-nothing";
+    _userConscience.userConscienceAccessories.topAccessory = @"acc-nothing";
+    _userConscience.userConscienceAccessories.bottomAccessory = @"acc-nothing";
+    _userConscience.userConscienceBody.bubbleColor = MLBubbleColorDefault;
+    _userConscience.userConscienceBody.bubbleType = MLBubbleTypeDefault;
 
     [self revealConscience];
     
@@ -807,8 +796,8 @@ Implementation:  Return conscience to view
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 1;
-    [self.userConscience.userConscienceView setNeedsDisplay];
+    _userConscience.userConscienceView.alpha = 1;
+    [_userConscience.userConscienceView setNeedsDisplay];
 
     [UIView commitAnimations];
     
@@ -882,7 +871,7 @@ Implementation:  Return conscience to view
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceView.alpha = 0;
     
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(makeNormal)];
@@ -917,8 +906,8 @@ Implementation:  Return conscience to view
     
 	[UIView commitAnimations];
     
-    self.userConscience.userConscienceMind.mood = 60;
-    self.userConscience.userConscienceMind.enthusiasm = 60;
+    _userConscience.userConscienceMind.mood = 60;
+    _userConscience.userConscienceMind.enthusiasm = 60;
 
     messageState = -1;
     if (self.thoughtChangeTimer) {
@@ -986,7 +975,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	thoughtArea.alpha = 0;
-    self.userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceView.alpha = 0;
     
 	[UIView commitAnimations];
 
@@ -1029,7 +1018,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	NSInvocation *shakeInvocation = [NSInvocation invocationWithMethodSignature:shakeSignature];
 	NSInvocation *shakeEndInvocation = [NSInvocation invocationWithMethodSignature:shakeEndSignature];
 	
-	[shakeInvocation setTarget:self.userConscience.userConscienceView];
+	[shakeInvocation setTarget:_userConscience.userConscienceView];
 	[shakeInvocation setSelector:shakeSelector];
 	[shakeEndInvocation setTarget:self];
 	[shakeEndInvocation setSelector:shakeEndSelector];	
@@ -1048,7 +1037,7 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
             
 		}
 		
-		[self.userConscience.userConscienceView.layer addAnimation:(CAAnimation *)[self.userConscience.userConscienceView shakeAnimation] forKey:@"position"];
+		[_userConscience.userConscienceView.layer addAnimation:(CAAnimation *)[_userConscience.userConscienceView shakeAnimation] forKey:@"position"];
         
     }
 }
@@ -1088,8 +1077,8 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 				[UIView beginAnimations:@"ResizeConscienceSmall" context:nil];
 				[UIView setAnimationDuration:0.2];
 				[UIView setAnimationBeginsFromCurrentState:YES];
-				self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-				[self.userConscience.userConscienceView setNeedsDisplay];	
+				_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+				[_userConscience.userConscienceView setNeedsDisplay];	
 				[UIView commitAnimations];
 								
 			}			
@@ -1112,8 +1101,8 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	[_userConscience.userConscienceView setNeedsDisplay];
 	[UIView commitAnimations];
     
 	

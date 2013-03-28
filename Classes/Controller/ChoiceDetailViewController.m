@@ -6,12 +6,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 */
 
 #import "ChoiceDetailViewController.h"
-#import "UserConscience.h"
 #import "StructuredTextField.h"
-#import "ConscienceHelpViewController.h"
-#import "ViewControllerLocalization.h"
-#import "UIViewController+Screenshot.h"
-#import "UIFont+Utility.h"
 
 @interface ChoiceDetailViewController () <ViewControllerLocalization> {
     
@@ -37,9 +32,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	BOOL isChoiceCancelled;		/**< is Choice being cancelled, don't save */
 }
 
-@property (nonatomic) UserConscience *userConscience;
-@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
-
 /**
  Limit a text field for each key press
  @param note NSNotification Allows system to check field length with every keypress
@@ -63,16 +55,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
 #pragma mark -
 #pragma mark View lifecycle
-
--(id)initWithConscience:(UserConscience *)userConscience {
-    self = [super init];
-
-    if (self) {
-        self.userConscience = userConscience;
-    }
-
-    return self;
-}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -110,10 +92,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
 
-    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-    conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-    conscienceHelpViewController.isConscienceOnScreen = FALSE;
-    self.conscienceHelpViewController = conscienceHelpViewController;
+    _conscienceHelpViewController.isConscienceOnScreen = FALSE;
 
     [self localizeUI];
 }
@@ -193,7 +172,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
     if (firstChoiceEntryCheck == nil) {
 
-        self.conscienceHelpViewController.numberOfScreens = 1;
+        _conscienceHelpViewController.numberOfScreens = 1;
 
         [UIView animateWithDuration:0.25 animations:^{
 
@@ -201,8 +180,8 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
             influenceImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            [self presentModalViewController:_conscienceHelpViewController animated:NO];
         }];
         
         [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
@@ -303,7 +282,7 @@ Implementation: pop UIViewController from current navigationController
  */
 -(IBAction)selectInfluence:(id) sender{
 
-    self.conscienceHelpViewController.numberOfScreens = 2;
+    _conscienceHelpViewController.numberOfScreens = 2;
 
     [UIView animateWithDuration:0.25 animations:^{
 
@@ -311,8 +290,8 @@ Implementation: pop UIViewController from current navigationController
         influenceImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:_conscienceHelpViewController animated:NO];
     }];
 
 }

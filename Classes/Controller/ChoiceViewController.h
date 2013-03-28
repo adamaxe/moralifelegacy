@@ -14,17 +14,8 @@ Second screen in Moral Entry Workflow.  User can either Virtue or Vice depending
 @file
 */
 
-@class ModelManager, UserConscience;
-
-@interface ChoiceViewController : UIViewController <UITextFieldDelegate, UITextViewDelegate>
-
-/**
- Creates the viewController with the User's Conscience
- @param modelManager ModelManager data persistence
- @param userConscience UserConscience for modals and help screens
- @return id instance of ChoiceViewController
- */
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+#import "MoraLifeViewController.h"
+@interface ChoiceViewController : MoraLifeViewController <UITextFieldDelegate, UITextViewDelegate>
 
 /**
 Accepts User input to present ChoiceDetailViewController for User to enter in additional details.

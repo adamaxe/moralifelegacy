@@ -9,20 +9,21 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 @file
  */
 
-@class ReportPieModel, UserConscience;
+@class ReportPieModel;
+#import "MoraLifeViewController.h"
 
-@interface ReportPieViewController : UIViewController <UITableViewDelegate, UITableViewDataSource> 
+@interface ReportPieViewController : MoraLifeViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 
 /**
  Dependency injection constructor to pass model
  @param reportPieModel ReportPieModel handling business logic
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ReportPieViewController
  */
-- (id)initWithModel:(ReportPieModel *)reportPieModel andConscience:(UserConscience *)userConscience;
-
+- (id)initWithModel:(ReportPieModel *)reportPieModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 /**
 Accepts User input to graph display type (sort/order/virtue/vice)  
 @param sender id of object which requested method

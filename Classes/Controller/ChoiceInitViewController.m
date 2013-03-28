@@ -5,14 +5,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 */
 
 #import "ChoiceInitViewController.h"
-#import "UserConscience.h"
 #import "ChoiceListViewController.h"
 #import "ChoiceHistoryModel.h"
 #import "ChoiceViewController.h"
-#import "ConscienceHelpViewController.h"
-#import "ViewControllerLocalization.h"
-#import "UIViewController+Screenshot.h"
-#import "UIFont+Utility.h"
 
 /**
  Possible Reference Types
@@ -44,10 +39,7 @@ typedef enum {
 
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
-
 
 @end
 
@@ -59,13 +51,10 @@ typedef enum {
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
-	if ((self = [super init])) {
+	if ((self = [super initWithModelManager:modelManager andConscience:userConscience])) {
 		//Create NSUserDefaults for serialized state retention
 		prefs = [NSUserDefaults standardUserDefaults];
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
 		buttonNames = @[@"choicegood", @"choicebad", @"choicelist"];
-
 	}
     
 	return self;
@@ -119,14 +108,11 @@ Implementation: Show an initial help screen if this is the User's first use of t
     
     if (firstChoiceCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-		conscienceHelpViewController.isConscienceOnScreen = FALSE;
-        conscienceHelpViewController.numberOfScreens = 1;
+		_conscienceHelpViewController.isConscienceOnScreen = FALSE;
+        _conscienceHelpViewController.numberOfScreens = 1;
+        _conscienceHelpViewController.screenshot = [self takeScreenshot];
 
-        conscienceHelpViewController.screenshot = [self takeScreenshot];
-
-        [self presentModalViewController:conscienceHelpViewController animated:NO];
+        [self presentModalViewController:_conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstChoice"];
         
@@ -180,13 +166,13 @@ Implementation: A single view controller is utilized for both Good and Bad choic
     //Determine if List controller type or entry controller type is needed
     if (!isList) {
 
-        ChoiceViewController *choiceViewController = [[ChoiceViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+        ChoiceViewController *choiceViewController = [[ChoiceViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
 
         [self.navigationController pushViewController:choiceViewController animated:YES];
     } else {
 
-        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] initWithModelManager:self.modelManager andDefaults:prefs];
-        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModelManager:self.modelManager model:choiceHistoryModel andConscience:self.userConscience];
+        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] initWithModelManager:_modelManager andDefaults:prefs];
+        ChoiceListViewController *choiceListCont = [[ChoiceListViewController alloc] initWithModel:choiceHistoryModel modelManager:_modelManager andConscience:_userConscience];
         [self.navigationController pushViewController:choiceListCont animated:YES];
     }
 

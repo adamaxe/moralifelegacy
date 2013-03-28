@@ -8,16 +8,11 @@ User can filter list by only things that are affordable to currentFunds.
  */
 
 #import "ConscienceListViewController.h"
-#import "UserConscience.h"
-#import "ModelManager.h"
 #import "ConscienceAcceptViewController.h"
 #import "UserCollectableDAO.h"
-#import "ConscienceHelpViewController.h"
 #import "ConscienceAssetDAO.h"
 #import "AccessoryTableViewCell.h"
-#import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
-#import "UIViewController+Screenshot.h"
 
 @interface ConscienceListViewController () <ViewControllerLocalization> {
     
@@ -52,8 +47,6 @@ User can filter list by only things that are affordable to currentFunds.
     int searchViewFilter;                    /**< which view to show */
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 /**
@@ -72,15 +65,6 @@ User can filter list by only things that are affordable to currentFunds.
 
 #pragma mark - 
 #pragma mark View lifecycle
-
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
-	if ((self = [super init])) {
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
-	}
-
-	return self;
-}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -120,17 +104,17 @@ User can filter list by only things that are affordable to currentFunds.
 
     [fundsButton setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
 	//Add Conscience to lower-left screen
-	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
+	[thoughtModalArea addSubview:_userConscience.userConscienceView];
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-	self.userConscience.userConscienceView.center = centerPoint;    
+	_userConscience.userConscienceView.center = centerPoint;    
 	[UIView beginAnimations:@"MoveConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
-    self.userConscience.userConscienceView.alpha = 1;
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+    _userConscience.userConscienceView.alpha = 1;
 	[UIView commitAnimations];
 	
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	[_userConscience.userConscienceView setNeedsDisplay];
     
 	[choicesTableView reloadData];
 
@@ -166,7 +150,7 @@ User can filter list by only things that are affordable to currentFunds.
     
     if (firstConscienceListCheck == nil) {
 
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:_userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
 		conscienceHelpViewController.isConscienceOnScreen = TRUE;
         conscienceHelpViewController.numberOfScreens = 1;
@@ -240,7 +224,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
  */
 - (void) retrieveAllSelections{
     
-    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     
     NSMutableArray *predicateArguments = [[NSMutableArray alloc] init];
     
@@ -317,7 +301,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
         
         //Determine if item is already owned, display owned, or cost if unowned
         //@todo localize
-        if ([self.userConscience.conscienceCollection containsObject:match.nameReference]){
+        if ([_userConscience.conscienceCollection containsObject:match.nameReference]){
             [choiceSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", match.shortDescriptionReference]];
         } else {
             [choiceSubtitles addObject:[NSString stringWithFormat:@"%dε - %@", [match.costAsset intValue], match.shortDescriptionReference]];
@@ -344,7 +328,7 @@ Implementation: Retrieve User's current ethicals from UserData
  */
 -(void)retrieveCurrentFunds{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
@@ -533,7 +517,7 @@ Implementation: Retrieve User's current ethicals from UserData
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	//Create next view to accept, review or reject purchase	
-	ConscienceAcceptViewController *conscienceAcceptController = [[ConscienceAcceptViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+	ConscienceAcceptViewController *conscienceAcceptController = [[ConscienceAcceptViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
                 
 	NSMutableString *selectedRow = [NSMutableString stringWithString:tableDataKeys[indexPath.row]];
 
@@ -542,7 +526,7 @@ Implementation: Retrieve User's current ethicals from UserData
 	[conscienceAcceptController setAccessorySlot:_accessorySlot];
 
     [UIView animateWithDuration:0.5 animations:^{
-        self.userConscience.userConscienceView.alpha = 0;
+        _userConscience.userConscienceView.alpha = 0;
     }completion:^(BOOL finished) {
 
         conscienceAcceptController.screenshot = [self takeScreenshot];

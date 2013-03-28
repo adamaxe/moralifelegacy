@@ -957,6 +957,7 @@
 		5E498D55131C941000A13D11 /* acc-top-wizardhat-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E498AC8131C941000A13D11 /* acc-top-wizardhat-sm.png */; };
 		5E498D56131C941000A13D11 /* acc-top-yarmulke-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E498AC9131C941000A13D11 /* acc-top-yarmulke-sm.png */; };
 		5E4CBAB0120A5C120090DC29 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E4CBAAF120A5C120090DC29 /* QuartzCore.framework */; };
+		5E4F414317040241005B0149 /* MoraLifeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4F414117040241005B0149 /* MoraLifeViewController.m */; };
 		5E50744612B711730087DE2F /* sur-battlefield.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E50744012B711730087DE2F /* sur-battlefield.png */; };
 		5E50744712B711730087DE2F /* sur-office.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E50744112B711730087DE2F /* sur-office.png */; };
 		5E51651616B248ED00144780 /* faux-navbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E51651416B248ED00144780 /* faux-navbar.png */; };
@@ -2660,6 +2661,8 @@
 		5E498AC8131C941000A13D11 /* acc-top-wizardhat-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-top-wizardhat-sm.png"; sourceTree = "<group>"; };
 		5E498AC9131C941000A13D11 /* acc-top-yarmulke-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-top-yarmulke-sm.png"; sourceTree = "<group>"; };
 		5E4CBAAF120A5C120090DC29 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5E4F414117040241005B0149 /* MoraLifeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoraLifeViewController.m; sourceTree = "<group>"; };
+		5E4F414217040241005B0149 /* MoraLifeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoraLifeViewController.h; sourceTree = "<group>"; };
 		5E50744012B711730087DE2F /* sur-battlefield.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-battlefield.png"; sourceTree = "<group>"; };
 		5E50744112B711730087DE2F /* sur-office.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sur-office.png"; sourceTree = "<group>"; };
 		5E51651416B248ED00144780 /* faux-navbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "faux-navbar.png"; path = "Resources/images/interface/faux-navbar.png"; sourceTree = "<group>"; };
@@ -5471,6 +5474,8 @@
 				5EAA21211307451000C1DB02 /* DilemmaViewController.m */,
 				5EBC9AD91352A42B001ACD7A /* IntroViewController.h */,
 				5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */,
+				5E4F414217040241005B0149 /* MoraLifeViewController.h */,
+				5E4F414117040241005B0149 /* MoraLifeViewController.m */,
 				5EB9BE9612FD200500584F67 /* ReferenceDetailViewController.h */,
 				5EB9BE9712FD200500584F67 /* ReferenceDetailViewController.m */,
 				5EB9BE9812FD200500584F67 /* ReferenceListViewController.h */,
@@ -7262,6 +7267,7 @@
 				5E4847FB16CDF5ED00B9F66A /* UIFont+Utility.m in Sources */,
 				5E48489216D3323900B9F66A /* DilemmaModel.m in Sources */,
 				5E06560E16EC09B80045B8F3 /* UserConscience.m in Sources */,
+				5E4F414317040241005B0149 /* MoraLifeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

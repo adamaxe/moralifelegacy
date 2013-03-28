@@ -11,9 +11,10 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 @file
  */
 
-@class DilemmaModel, ModelManager, UserConscience;
+@class DilemmaModel;
+#import "MoraLifeViewController.h"
 
-@interface DilemmaListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface DilemmaListViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 

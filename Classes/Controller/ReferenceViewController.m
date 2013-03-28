@@ -5,14 +5,8 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
  */
 
 #import "ReferenceViewController.h"
-#import "UserConscience.h"
 #import "ReferenceListViewController.h"
 #import "ReferenceModel.h"
-#import "ConscienceHelpViewController.h"
-#import "ViewControllerLocalization.h"
-#import "ConscienceViewController.h"
-#import "UIViewController+Screenshot.h"
-#import "UIFont+Utility.h"
 
 @interface ReferenceViewController () <ViewControllerLocalization> {
 
@@ -35,8 +29,6 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic, strong) NSTimer *buttonTimer;		/**< determines when Conscience thought disappears */
 
 @end
@@ -47,12 +39,9 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #pragma mark View lifecycle
 
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
-	if ((self = [super init])) {
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
+	if ((self = [super initWithModelManager:modelManager andConscience:userConscience])) {
 		//Array to hold button names for random animations
 		buttonNames = @[@"accessories", @"people", @"choicelist"];
-
 	}
 
 	return self;
@@ -112,7 +101,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
     if (firstReferenceCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
+        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:_userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
 		conscienceHelpViewController.isConscienceOnScreen = FALSE;
         conscienceHelpViewController.numberOfScreens = 1;
@@ -131,7 +120,7 @@ Implementation: Determine which type of reference is requested by the User.
  */
 - (IBAction) selectReferenceType:(id) sender{
 	
-    ReferenceModel *referenceModel = [[ReferenceModel alloc] initWithModelManager:self.modelManager andDefaults:[NSUserDefaults standardUserDefaults] andUserCollection:self.userConscience.conscienceCollection];
+    ReferenceModel *referenceModel = [[ReferenceModel alloc] initWithModelManager:_modelManager andDefaults:[NSUserDefaults standardUserDefaults] andUserCollection:_userConscience.conscienceCollection];
     
 	//Determine which choice was selected
 	if ([sender isKindOfClass:[UIButton class]]) {
@@ -140,7 +129,7 @@ Implementation: Determine which type of reference is requested by the User.
 
 	}
 
-    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel modelManager:self.modelManager andConscience:self.userConscience];
+    ReferenceListViewController *referenceListViewCont = [[ReferenceListViewController alloc] initWithModel:referenceModel modelManager:_modelManager andConscience:_userConscience];
     [self.navigationController pushViewController:referenceListViewCont animated:TRUE];
 
 }

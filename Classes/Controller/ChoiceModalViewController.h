@@ -11,19 +11,11 @@ Third screen in Moral Entry Workflow.  User can either Virtue or Vice depending 
 @file
  */
 
-@class ModelManager, UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface ChoiceModalViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface ChoiceModalViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
-
-/**
- Creates the viewController with the User's Conscience
- @param modelManager ModelManager data persistence
- @param userConscience UserConscience for modals and help screens
- @return id instance of ChoiceModalViewController
- */
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User Input to remove modal screen

@@ -7,8 +7,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
  */
 
 #import "ChoiceViewController.h"
-#import "UserConscience.h"
-#import "ModelManager.h"
 #import "ConscienceMind.h"
 #import "ChoiceDetailViewController.h"
 #import "ChoiceModalViewController.h"
@@ -16,13 +14,9 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #import "MoralDAO.h"
 #import "UserCharacterDAO.h"
 #import "UserChoiceDAO.h"
-#import "ConscienceHelpViewController.h"
 #import "UserCollectableDAO.h"
 #import "ChoiceHistoryViewController.h"
 #import "ChoiceHistoryModel.h"
-#import "ViewControllerLocalization.h"
-#import "UIViewController+Screenshot.h"
-#import "UIFont+Utility.h"
 
 @interface ChoiceViewController () <ViewControllerLocalization> {
     
@@ -59,9 +53,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
-@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 @property (nonatomic) ChoiceModalViewController *virtueViceViewController;
 @property (nonatomic) ChoiceDetailViewController *choiceDetailViewController;
 @property (nonatomic) ChoiceHistoryViewController *historyViewController;
@@ -101,13 +92,10 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #pragma mark View lifecycle
 
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
-    self = [super init];
+    self = [super initWithModelManager:modelManager andConscience:userConscience];
     if (self) {
 
         prefs = [NSUserDefaults standardUserDefaults];
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
-
         choiceKey = [[NSMutableString alloc] init];
 
         //Create input for requesting ChoiceDetailViewController
@@ -117,16 +105,13 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 
         severityLabelDescriptions = [[NSMutableArray alloc] init];
 
-        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] initWithModelManager:self.modelManager andDefaults:prefs];
+        ChoiceHistoryModel *choiceHistoryModel = [[ChoiceHistoryModel alloc] initWithModelManager:_modelManager andDefaults:prefs];
 
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-        conscienceHelpViewController.isConscienceOnScreen = FALSE;
-        self.conscienceHelpViewController = conscienceHelpViewController;
+        _conscienceHelpViewController.isConscienceOnScreen = FALSE;
 
-        self.virtueViceViewController = [[ChoiceModalViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
-        self.choiceDetailViewController = [[ChoiceDetailViewController alloc] initWithConscience:self.userConscience];
-        self.historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel andConscience:self.userConscience];
+        self.virtueViceViewController = [[ChoiceModalViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
+        self.choiceDetailViewController = [[ChoiceDetailViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
+        self.historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel andConscience:_userConscience];
 
     }
 
@@ -314,15 +299,15 @@ Implementation: Show an initial help screen if this is the User's first use of t
 
     if (firstChoiceEntryCheck == nil) {
 
-        self.conscienceHelpViewController.numberOfScreens = 1;
+        _conscienceHelpViewController.numberOfScreens = 1;
         [UIView animateWithDuration:0.25 animations:^{
 
             moralReferenceButton.alpha = 0;
             moralImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            [self presentModalViewController:_conscienceHelpViewController animated:NO];
         }];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
@@ -425,17 +410,17 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         NSMutableArray *titles = [[NSMutableArray alloc] init];
         NSMutableArray *texts = [[NSMutableArray alloc] init];        
         
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralKey andModelManager:self.modelManager];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:moralKey andModelManager:_modelManager];
         Moral *currentMoral = [currentMoralDAO read:@""];
         
         [titles addObject:currentMoral.displayNameMoral];
         [texts addObject:[NSString stringWithFormat:@"%@\n\nSynonym(s): %@", currentMoral.definitionMoral, currentMoral.longDescriptionMoral]];
 
         //Set help title and verbiage
-        self.conscienceHelpViewController.helpTitles = titles;
-        self.conscienceHelpViewController.helpTexts = texts;
+        _conscienceHelpViewController.helpTitles = titles;
+        _conscienceHelpViewController.helpTexts = texts;
 	} else {
-        self.conscienceHelpViewController.numberOfScreens = 4;
+        _conscienceHelpViewController.numberOfScreens = 4;
 	}
 
     [UIView animateWithDuration:0.25 animations:^{
@@ -444,8 +429,8 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         moralImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-        [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:_conscienceHelpViewController animated:NO];
 
     }];
 
@@ -465,7 +450,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 
 	if ([choiceFirst isEqualToString:@""]) {
 
-        self.conscienceHelpViewController.numberOfScreens = 2;
+        _conscienceHelpViewController.numberOfScreens = 2;
 
 
         [UIView animateWithDuration:0.25 animations:^{
@@ -474,8 +459,8 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
             moralImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            [self presentModalViewController:_conscienceHelpViewController animated:NO];
 
         }];
 
@@ -490,7 +475,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
         
         if (choiceMoral == nil){
 
-            self.conscienceHelpViewController.numberOfScreens = 3;
+            _conscienceHelpViewController.numberOfScreens = 3;
 
             [UIView animateWithDuration:0.25 animations:^{
 
@@ -498,8 +483,8 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
                 moralImageView.alpha = 0;
 
             } completion:^(BOOL finished) {
-                self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-                [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+                _conscienceHelpViewController.screenshot = [self takeScreenshot];
+                [self presentModalViewController:_conscienceHelpViewController animated:NO];
 
             }];
 
@@ -740,7 +725,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     float choiceCalculatedWeight = 0;
     choiceCalculatedWeight = (choiceWeightFilledFields/2 + severityConversion) * choiceInfluence;
     
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:choiceKey andModelManager:self.modelManager];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:choiceKey andModelManager:_modelManager];
 
     
     //Save the choice record to CoreData
@@ -756,26 +741,26 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         /** @todo refactor into ConscienceMind
          */
-        float newMood = self.userConscience.userConscienceMind.mood + choiceCalculatedWeight/3;
-        float newEnthusiasm = self.userConscience.userConscienceMind.enthusiasm + choiceWeightFilledFields/2;
+        float newMood = _userConscience.userConscienceMind.mood + choiceCalculatedWeight/3;
+        float newEnthusiasm = _userConscience.userConscienceMind.enthusiasm + choiceWeightFilledFields/2;
         
         if (newMood > 90) {
-            self.userConscience.userConscienceMind.mood = 90.0;
+            _userConscience.userConscienceMind.mood = 90.0;
         } else if (newMood < 10) {
-            self.userConscience.userConscienceMind.mood = 10.0;
+            _userConscience.userConscienceMind.mood = 10.0;
         } else {
-            self.userConscience.userConscienceMind.mood = newMood;
+            _userConscience.userConscienceMind.mood = newMood;
         }
         
         if (newEnthusiasm > 90) {
-            self.userConscience.userConscienceMind.enthusiasm = 90.0;
+            _userConscience.userConscienceMind.enthusiasm = 90.0;
         } else if (newEnthusiasm < 10) {
-            self.userConscience.userConscienceMind.enthusiasm = 10.0;
+            _userConscience.userConscienceMind.enthusiasm = 10.0;
         } else {
-            self.userConscience.userConscienceMind.enthusiasm = newEnthusiasm;
+            _userConscience.userConscienceMind.enthusiasm = newEnthusiasm;
         }
         
-        UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+        UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:_modelManager];
         UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
         [currentUserCharacter setCharacterMood:@(newMood)];    
@@ -786,9 +771,9 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         //See if moral has been rewarded before
         //Cannot assume that first instance of UserChoice implies no previous reward
-        if ([self.userConscience.conscienceCollection containsObject:moralKey]) {
+        if ([_userConscience.conscienceCollection containsObject:moralKey]) {
 
-            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", moralKey];
             currentUserCollectableDAO.predicates = @[pred];
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
@@ -806,7 +791,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             
         } else {
             
-            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+            UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
          
             //Create a new moral reward
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
@@ -816,7 +801,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             [currentUserCollectable setCollectableName:moralKey];
             [currentUserCollectable setCollectableValue:@1.0f];
                         
-            [self.userConscience.conscienceCollection addObject:moralKey];
+            [_userConscience.conscienceCollection addObject:moralKey];
             
             [currentUserCollectableDAO update];
 
@@ -854,7 +839,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
  */
 -(void)increaseEthicals{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     
     //Update User's ethicals
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];

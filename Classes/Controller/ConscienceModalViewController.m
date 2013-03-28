@@ -7,18 +7,13 @@ User selection causes selectChoice to be called which sets the currentState vari
  */
 
 #import "ConscienceModalViewController.h"
-#import "ModelManager.h"
-#import "UserConscience.h"
 #import "ConscienceAccessoryViewController.h"
 #import "ConscienceListViewController.h"
 #import "DilemmaModel.h"
 #import "DilemmaListViewController.h"
-#import "ConscienceHelpViewController.h"
 #import "ReportPieViewController.h"
 #import "ReportPieModel.h"
-#import "UIViewController+Screenshot.h"
 #import "UIColor+Utility.h"
-#import "UIFont+Utility.h"
 
 @interface ConscienceModalViewController () {
     
@@ -45,9 +40,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 }
 
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
-@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 
 /**
  Makes selection choices reappear 
@@ -70,15 +62,6 @@ User selection causes selectChoice to be called which sets the currentState vari
 @implementation ConscienceModalViewController
 
 #pragma mark - View lifecycle
-
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
-	if ((self = [super init])) {
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
-	}
-
-	return self;
-}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -155,18 +138,16 @@ User selection causes selectChoice to be called which sets the currentState vari
     [labelButton4 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
     [labelButton4 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
 
-    self.conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-
 }
 
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 
 	//Add User Conscience to view
-    [self.view addSubview:self.userConscience.userConscienceView];
+    [self.view addSubview:_userConscience.userConscienceView];
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
-    self.userConscience.userConscienceView.center = centerPoint;
+    _userConscience.userConscienceView.center = centerPoint;
 
     //Determine if previous UIViewController is requesting to reset the home screen
     NSObject *homeResetCheck = [prefs objectForKey:@"conscienceModalReset"];
@@ -190,10 +171,10 @@ User selection causes selectChoice to be called which sets the currentState vari
     [UIView setAnimationDuration:0.25];
 
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 1;
-    self.userConscience.userConscienceView.center = centerPoint;
+    _userConscience.userConscienceView.alpha = 1;
+    _userConscience.userConscienceView.center = centerPoint;
 
-    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+    _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
     thoughtModalArea.alpha = 1.0;
     thoughtBubble.alpha = 1.0;
     [UIView commitAnimations];
@@ -207,7 +188,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 -(void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    [self.userConscience.userConscienceView removeFromSuperview];
+    [_userConscience.userConscienceView removeFromSuperview];
 }
 
 -(void)setScreenshot:(UIImage *)screenshot {
@@ -229,11 +210,10 @@ User selection causes selectChoice to be called which sets the currentState vari
     
     if (firstConscienceModalCheck == nil) {
         
-        self.conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-		self.conscienceHelpViewController.isConscienceOnScreen = TRUE;
-        self.conscienceHelpViewController.numberOfScreens = 1;
-        self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-		[self presentModalViewController:self.conscienceHelpViewController animated:NO];
+		_conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        _conscienceHelpViewController.numberOfScreens = 1;
+        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+		[self presentModalViewController:_conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
         
@@ -385,8 +365,8 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 
 		switch (controllerID) {
 			case 2:{
-                ReportPieModel *reportPieModel = [[ReportPieModel alloc] initWithModelManager:self.modelManager];
-				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel andConscience:self.userConscience];
+                ReportPieModel *reportPieModel = [[ReportPieModel alloc] initWithModelManager:_modelManager];
+				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel modelManager:_modelManager andConscience:_userConscience];
                 reportPieViewCont.screenshot = [self takeScreenshot];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
@@ -395,9 +375,9 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			}
 				break;
 			case 6:{
-				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+				ConscienceAccessoryViewController *conscienceAccessoryController = [[ConscienceAccessoryViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
                 [UIView animateWithDuration:0.5 animations:^{
-                    self.userConscience.userConscienceView.alpha = 0;
+                    _userConscience.userConscienceView.alpha = 0;
                 }completion:^(BOOL finished) {
 
                     conscienceAccessoryController.screenshot = [self takeScreenshot];
@@ -427,10 +407,10 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	//Present a list of choices for accessories	
 	if (isListViewControllerNeeded) {
 
-		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
 		[conscienceListController setAccessorySlot:requestedAccessorySlot];
         [UIView animateWithDuration:0.5 animations:^{
-            self.userConscience.userConscienceView.alpha = 0;
+            _userConscience.userConscienceView.alpha = 0;
         }completion:^(BOOL finished) {
 
             conscienceListController.screenshot = [self takeScreenshot];
@@ -462,20 +442,19 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
                 break;
         }
         
-        BOOL campaignRejected = ![[self.userConscience conscienceCollection] containsObject:adventureRequirement];
+        BOOL campaignRejected = ![[_userConscience conscienceCollection] containsObject:adventureRequirement];
 
 		if(campaignRejected){
             
-            self.conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-            self.conscienceHelpViewController.isConscienceOnScreen = TRUE;
-            self.conscienceHelpViewController.numberOfScreens = 3;
-            self.conscienceHelpViewController.screenshot = [self takeScreenshot];
-            [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+            _conscienceHelpViewController.isConscienceOnScreen = TRUE;
+            _conscienceHelpViewController.numberOfScreens = 3;
+            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            [self presentModalViewController:_conscienceHelpViewController animated:NO];
 			
         } else {
 
-            DilemmaModel *dilemmaModel = [[DilemmaModel alloc] initWithModelManager:self.modelManager andDefaults:prefs andCurrentCampaign:requestedCampaign];
-            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaModel modelManager:self.modelManager andConscience:self.userConscience];
+            DilemmaModel *dilemmaModel = [[DilemmaModel alloc] initWithModelManager:_modelManager andDefaults:prefs andCurrentCampaign:requestedCampaign];
+            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaModel modelManager:_modelManager andConscience:_userConscience];
             dilemmaListViewController.screenshot = [self takeScreenshot];
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
@@ -496,8 +475,8 @@ Implementation: Revert Conscience to homescreen position, dismiss UIViewControll
 		[UIView setAnimationDuration:0.5];
 		[UIView setAnimationBeginsFromCurrentState:YES];
 		thoughtModalArea.alpha = 0;
-		self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-        self.userConscience.userConscienceView.alpha = 0;
+		_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        _userConscience.userConscienceView.alpha = 0;
 		
 		[UIView commitAnimations];
 		

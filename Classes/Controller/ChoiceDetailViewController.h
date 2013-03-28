@@ -11,17 +11,9 @@ Last screen in Choice/Luck Entry Workflow.
 @file
 */
 
-@class UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface ChoiceDetailViewController : UIViewController <UITextFieldDelegate>
-
-
-/**
- Creates the viewController with the User's Conscience
- @param userConscience UserConscience for modals and help screens
- @return id instance of ChoiceDetailViewController
- */
--(id)initWithConscience:(UserConscience *)userConscience;
+@interface ChoiceDetailViewController : MoraLifeViewController <UITextFieldDelegate>
 
 /**
 Accepts User input to change the description of the Influence slider

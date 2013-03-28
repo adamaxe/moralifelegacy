@@ -6,8 +6,6 @@ All other Conscience-based UIViewControllers are launched from this starting poi
  */
 
 #import "ConscienceViewController.h"
-#import "ModelManager.h"
-#import "UserConscience.h"
 #import "ConscienceModalViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UserChoiceDAO.h"
@@ -15,12 +13,9 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "MoralDAO.h"
 #import "ConscienceAssetDAO.h"
 #import "IntroViewController.h"
-#import "ViewControllerLocalization.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
-#import "UIViewController+Screenshot.h"
 #import "UIColor+Utility.h"
-#import "UIFont+Utility.h"
 
 typedef enum {
     MLConscienceViewControllerVirtueButtonTag = 3030,
@@ -66,9 +61,6 @@ float const MLThoughtInterval = 5;
     BOOL isThoughtOnScreen;             /**< whether Conscience Thought bubble is visible */
     
 }
-
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 
 /**
  Present a thought bubble to the User, suggesting that the UserConscience is talking
@@ -127,14 +119,12 @@ static int thoughtVersion = 0;
 
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
-    if ((self = [super init])) {
+    if ((self = [super initWithModelManager:modelManager andConscience:userConscience])) {
 		prefs = [NSUserDefaults standardUserDefaults];
 
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];
         highestRankName = [[NSMutableString alloc] init];
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
 
 	}
     
@@ -193,26 +183,26 @@ static int thoughtVersion = 0;
     homeNavigationTitle.text = self.navigationItem.title;
     self.navigationItem.titleView = homeNavigationTitle;
 
-    [self.userConscience.userConscienceView setNeedsDisplay];
+    [_userConscience.userConscienceView setNeedsDisplay];
 
 }
 
 -(void) viewWillAppear:(BOOL)animated{
 
-	self.userConscience.userConscienceView.alpha = 0;
+	_userConscience.userConscienceView.alpha = 0;
     thoughtArea.hidden = FALSE;
 
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
     
-	[consciencePlayground addSubview:self.userConscience.userConscienceView];
+	[consciencePlayground addSubview:_userConscience.userConscienceView];
 	
-    self.userConscience.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY);
+    _userConscience.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY);
     
 	[UIView beginAnimations:@"ShowConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
-	self.userConscience.userConscienceView.alpha = 1;
+	_userConscience.userConscienceView.alpha = 1;
 
 	[UIView commitAnimations];
         
@@ -228,13 +218,13 @@ static int thoughtVersion = 0;
 		transientMood = [prefs floatForKey:@"transientMind"];
         
         //store previous mood
-        float restoreMood = self.userConscience.userConscienceMind.mood;
-        float restoreEnthusiasm = self.userConscience.userConscienceMind.enthusiasm;
+        float restoreMood = _userConscience.userConscienceMind.mood;
+        float restoreEnthusiasm = _userConscience.userConscienceMind.enthusiasm;
         
         //set new mood
-        self.userConscience.userConscienceMind.mood = transientMood;
-        self.userConscience.userConscienceMind.enthusiasm = 100.0;
-        [self.userConscience.userConscienceView setIsExpressionForced:TRUE];
+        _userConscience.userConscienceMind.mood = transientMood;
+        _userConscience.userConscienceMind.enthusiasm = 100.0;
+        [_userConscience.userConscienceView setIsExpressionForced:TRUE];
         
         //Setup invocation for delayed mood reset
         SEL selector = @selector(resetMood:andEnthusiasm:);
@@ -250,7 +240,7 @@ static int thoughtVersion = 0;
         
         //remove transient mood
         [prefs removeObjectForKey:@"transientMind"];
-        [self.userConscience.userConscienceView setNeedsDisplay];
+        [_userConscience.userConscienceView setNeedsDisplay];
         
         [NSTimer scheduledTimerWithTimeInterval:MLTransientInterval invocation:invocation repeats:NO];
         
@@ -264,12 +254,12 @@ static int thoughtVersion = 0;
 }
 
 - (void) pushJournal {
-    ChoiceInitViewController *choiceIntViewController = [[ChoiceInitViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+    ChoiceInitViewController *choiceIntViewController = [[ChoiceInitViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     [self.navigationController pushViewController:choiceIntViewController animated:YES];
 }
 
 - (void) pushReference {
-    ReferenceViewController *referenceViewController = [[ReferenceViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+    ReferenceViewController *referenceViewController = [[ReferenceViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     [self.navigationController pushViewController:referenceViewController animated:YES];
 
 }
@@ -291,7 +281,7 @@ static int thoughtVersion = 0;
                                                     name:UIApplicationWillEnterForegroundNotification
                                                   object:nil];
         
-    NSString *conscienceCenter = NSStringFromCGPoint(self.userConscience.userConscienceView.center);
+    NSString *conscienceCenter = NSStringFromCGPoint(_userConscience.userConscienceView.center);
     [prefs setObject:conscienceCenter forKey:@"conscienceCenter"];
     
     [self resignFirstResponder];
@@ -360,7 +350,7 @@ static int thoughtVersion = 0;
 	modalNavController.tabBarItem.title = modalNavTitle1;
 	[modalNavController setNavigationBarHidden:YES];
 	    
-	ConscienceModalViewController *conscienceModalViewController = [[ConscienceModalViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+	ConscienceModalViewController *conscienceModalViewController = [[ConscienceModalViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     thoughtArea.hidden = TRUE;
     conscienceModalViewController.screenshot = [self takeScreenshot];
 	
@@ -381,7 +371,7 @@ static int thoughtVersion = 0;
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(setupModalWorkflow)];
 
-	self.userConscience.userConscienceView.alpha = 0;
+	_userConscience.userConscienceView.alpha = 0;
     
 	[UIView commitAnimations];
 }
@@ -392,7 +382,7 @@ static int thoughtVersion = 0;
  */
 -(void)showIntroView{
     
-    IntroViewController *introViewCont = [[IntroViewController alloc] initWithConscience:self.userConscience];
+    IntroViewController *introViewCont = [[IntroViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     
     [self presentModalViewController:introViewCont animated:NO];
 }
@@ -424,7 +414,7 @@ static int thoughtVersion = 0;
 	NSInvocation *shakeInvocation = [NSInvocation invocationWithMethodSignature:shakeSignature];
 	NSInvocation *shakeEndInvocation = [NSInvocation invocationWithMethodSignature:shakeEndSignature];
 	
-	[shakeInvocation setTarget:self.userConscience.userConscienceView];
+	[shakeInvocation setTarget:_userConscience.userConscienceView];
 	[shakeInvocation setSelector:shakeSelector];
 	[shakeEndInvocation setTarget:self];
 	[shakeEndInvocation setSelector:shakeEndSelector];	
@@ -442,7 +432,7 @@ static int thoughtVersion = 0;
             
 		}
 
-        [self.userConscience.userConscienceView.layer addAnimation:(CAAnimation *)[self.userConscience.userConscienceView shakeAnimation] forKey:@"position"];
+        [_userConscience.userConscienceView.layer addAnimation:(CAAnimation *)[_userConscience.userConscienceView shakeAnimation] forKey:@"position"];
         
     }
 }
@@ -476,7 +466,7 @@ static int thoughtVersion = 0;
 				[UIView beginAnimations:@"ResizeConscienceSmall" context:nil];
 				[UIView setAnimationDuration:0.2];
 				[UIView setAnimationBeginsFromCurrentState:YES];
-				self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+				_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
 				[UIView commitAnimations];
 				
                 [self createMovementReaction];
@@ -499,7 +489,7 @@ static int thoughtVersion = 0;
 	[UIView setAnimationDuration:0.2];
 	[UIView setAnimationBeginsFromCurrentState:YES];
 	
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 
 	[UIView commitAnimations];
         
@@ -526,7 +516,7 @@ static int thoughtVersion = 0;
     
     int randomResponse = arc4random()%3;
 
-    if (self.userConscience.userConscienceMind.mood > 45) {
+    if (_userConscience.userConscienceMind.mood > 45) {
         if (randomResponse == 0) {
             [conscienceStatus setText:@"Wee!"];
         } else if (randomResponse == 1){
@@ -547,8 +537,8 @@ static int thoughtVersion = 0;
         
     }
 
-    [self.userConscience.userConscienceView setIsExpressionForced:TRUE];
-    [self.userConscience.userConscienceView setNeedsDisplay];
+    [_userConscience.userConscienceView setIsExpressionForced:TRUE];
+    [_userConscience.userConscienceView setNeedsDisplay];
             
 }
 
@@ -651,12 +641,12 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     
     NSString *mood = @"Good";
     
-    if ((self.userConscience.userConscienceMind.enthusiasm < 50) || (self.userConscience.userConscienceMind.mood < 50)) {
+    if ((_userConscience.userConscienceMind.enthusiasm < 50) || (_userConscience.userConscienceMind.mood < 50)) {
         mood = @"Bad";
     }
     
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
@@ -686,8 +676,8 @@ Implementation:  Determine time of day, and which thought should be displayed.  
         }
         case 2:{
             
-            int moodIndex = [@(self.userConscience.userConscienceMind.mood) intValue];
-            int enthusiasmIndex = [@(self.userConscience.userConscienceMind.enthusiasm) intValue];
+            int moodIndex = [@(_userConscience.userConscienceMind.mood) intValue];
+            int enthusiasmIndex = [@(_userConscience.userConscienceMind.enthusiasm) intValue];
 
             [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", conscienceMood[moodIndex/10], conscienceEnthusiasm[enthusiasmIndex/10]];
             
@@ -718,7 +708,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
  */
 - (void) retrieveBiggestChoice:(BOOL) isVirtue{
     
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     NSPredicate *pred;
     
     if (isVirtue) {
@@ -769,7 +759,7 @@ Implementation:  Must iterate through every UserChoice entered and sum each like
         
         NSString *value = reversedPercentages[0];
 
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:_modelManager];
         Moral *currentMoral = [currentMoralDAO read:value];
 
         if (currentMoral) {
@@ -803,7 +793,7 @@ Change the Rank picture and description.
 - (void) retrieveHighestRank {
     
 	//Begin CoreData Retrieval to find all Ranks in possession.
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName contains[cd] %@", @"asse-rank"];
 	currentUserCollectableDAO.predicates = @[pred];
@@ -826,7 +816,7 @@ Change the Rank picture and description.
 	if ([objects count] > 0) {
         
         NSString *value = [objects[0] collectableName];
-        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:_modelManager];
         ConscienceAsset *currentAsset = [currentAssetDAO read:value];
         
         if (currentAsset) {
@@ -850,12 +840,12 @@ Change the Rank picture and description.
     
     [UIView setAnimationBeginsFromCurrentState:YES];
     
-    self.userConscience.userConscienceView.alpha = 0;
-    self.userConscience.userConscienceMind.mood = originalMood;
-    self.userConscience.userConscienceMind.enthusiasm = originalEnthusiasm;
-    [self.userConscience.userConscienceView setNeedsDisplay];
+    _userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceMind.mood = originalMood;
+    _userConscience.userConscienceMind.enthusiasm = originalEnthusiasm;
+    [_userConscience.userConscienceView setNeedsDisplay];
     
-    [UIView setAnimationDelegate:self.userConscience.userConscienceView];
+    [UIView setAnimationDelegate:_userConscience.userConscienceView];
     [UIView setAnimationDidStopSelector:@selector(makeConscienceVisible)];
     
     [UIView commitAnimations];

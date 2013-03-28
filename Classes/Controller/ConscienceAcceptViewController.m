@@ -7,8 +7,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
  */
 
 #import "ConscienceAcceptViewController.h"
-#import "UserConscience.h"
-#import "ModelManager.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
 #import "ConscienceAssetDAO.h"
@@ -18,7 +16,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #import "ConscienceMind.h"
 #import "Moral.h"
 #import "UserCollectableDAO.h"
-#import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
 
 @interface ConscienceAcceptViewController () <ViewControllerLocalization> {
@@ -48,8 +45,6 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 /**
@@ -87,10 +82,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
-    if (self = [super init]) {
-
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
+    if (self = [super initWithModelManager:modelManager andConscience:userConscience]) {
 
         prefs = [NSUserDefaults standardUserDefaults];
         
@@ -115,7 +107,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	*/
 
 	//Set ownership boolean
-	if ([self.userConscience.conscienceCollection containsObject:self.assetSelection]){
+	if ([_userConscience.conscienceCollection containsObject:self.assetSelection]){
 		isOwned = TRUE;
 	}
 
@@ -128,7 +120,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[self retrieveCurrentFunds];
 	[currentFundsLabel setText:[NSString stringWithFormat:@"%dε", currentFunds]];
     
-    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:self.assetSelection andModelManager:self.modelManager];
+    ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:self.assetSelection andModelManager:_modelManager];
     ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
     
     //Set UI labels
@@ -147,28 +139,28 @@ User can return to the previous screen:  return to ConscienceListViewController 
     
     //Add requested ConscienceAsset to duplicate ConscienceView for review
 	switch (self.accessorySlot) {
-		case 0:{[resetFeature setString:self.userConscience.userConscienceAccessories.topAccessory];self.userConscience.userConscienceAccessories.topAccessory = currentFeature;}break;
-		case 1:{[resetFeature setString:self.userConscience.userConscienceAccessories.primaryAccessory];self.userConscience.userConscienceAccessories.primaryAccessory = currentFeature;}break;
-		case 2:{[resetFeature setString:self.userConscience.userConscienceAccessories.bottomAccessory];self.userConscience.userConscienceAccessories.bottomAccessory = currentFeature;}break;
-		case 3:{[resetFeature setString:self.userConscience.userConscienceAccessories.secondaryAccessory];self.userConscience.userConscienceAccessories.secondaryAccessory = currentFeature;}break;
-		case 4:{[resetFeature setString:self.userConscience.userConscienceBody.eyeName];self.userConscience.userConscienceBody.eyeName = currentFeature;}break;
-		case 5:{[resetFeature setString:self.userConscience.userConscienceBody.symbolName];self.userConscience.userConscienceBody.symbolName = currentFeature;}break;
-		case 6:{[resetFeature setString:self.userConscience.userConscienceBody.mouthName];self.userConscience.userConscienceBody.mouthName = currentFeature;}break;
-		case 7:{[resetFeature setString:self.userConscience.userConscienceBody.eyeColor];self.userConscience.userConscienceBody.eyeColor = currentFeature;}break;
-		case 8:{[resetFeature setString:self.userConscience.userConscienceBody.browColor];self.userConscience.userConscienceBody.browColor = currentFeature;}break;
-		case 9:{[resetFeature setString:self.userConscience.userConscienceBody.bubbleColor];self.userConscience.userConscienceBody.bubbleColor = currentFeature;}break;
+		case 0:{[resetFeature setString:_userConscience.userConscienceAccessories.topAccessory];_userConscience.userConscienceAccessories.topAccessory = currentFeature;}break;
+		case 1:{[resetFeature setString:_userConscience.userConscienceAccessories.primaryAccessory];_userConscience.userConscienceAccessories.primaryAccessory = currentFeature;}break;
+		case 2:{[resetFeature setString:_userConscience.userConscienceAccessories.bottomAccessory];_userConscience.userConscienceAccessories.bottomAccessory = currentFeature;}break;
+		case 3:{[resetFeature setString:_userConscience.userConscienceAccessories.secondaryAccessory];_userConscience.userConscienceAccessories.secondaryAccessory = currentFeature;}break;
+		case 4:{[resetFeature setString:_userConscience.userConscienceBody.eyeName];_userConscience.userConscienceBody.eyeName = currentFeature;}break;
+		case 5:{[resetFeature setString:_userConscience.userConscienceBody.symbolName];_userConscience.userConscienceBody.symbolName = currentFeature;}break;
+		case 6:{[resetFeature setString:_userConscience.userConscienceBody.mouthName];_userConscience.userConscienceBody.mouthName = currentFeature;}break;
+		case 7:{[resetFeature setString:_userConscience.userConscienceBody.eyeColor];_userConscience.userConscienceBody.eyeColor = currentFeature;}break;
+		case 8:{[resetFeature setString:_userConscience.userConscienceBody.browColor];_userConscience.userConscienceBody.browColor = currentFeature;}break;
+		case 9:{[resetFeature setString:_userConscience.userConscienceBody.bubbleColor];_userConscience.userConscienceBody.bubbleColor = currentFeature;}break;
 		case 10:{
-            [resetFeature setString:[NSString stringWithFormat:@"%d", self.userConscience.userConscienceBody.bubbleType]];
+            [resetFeature setString:[NSString stringWithFormat:@"%d", _userConscience.userConscienceBody.bubbleType]];
             
             NSString *bubbleType = [currentFeature substringFromIndex:11];
-            self.userConscience.userConscienceBody.bubbleType = [bubbleType intValue];
+            _userConscience.userConscienceBody.bubbleType = [bubbleType intValue];
 
         }break;            
 		default: break;
 	}
 	
     if ((self.accessorySlot > 3) && (self.accessorySlot < 7)) {
-        [ConscienceBuilder buildConscience:self.userConscience.userConscienceBody];
+        [ConscienceBuilder buildConscience:_userConscience.userConscienceBody];
 
     }
 
@@ -188,8 +180,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[super viewWillAppear:animated];
 
 	//Add User's actual Conscience to lower-left of screen
-	[consciencePlayground addSubview:self.userConscience.userConscienceView];
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	[consciencePlayground addSubview:_userConscience.userConscienceView];
+	[_userConscience.userConscienceView setNeedsDisplay];
 
     [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];    
 	//Inform/restrict User's ability to actually purchase ConscienceAsset
@@ -217,8 +209,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 0;
-    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    _userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
     
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToCenter)];
@@ -240,14 +232,14 @@ User can return to the previous screen:  return to ConscienceListViewController 
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(160, 160);
-    self.userConscience.userConscienceView.center = centerPoint;
+    _userConscience.userConscienceView.center = centerPoint;
     
     [UIView beginAnimations:@"conscienceRestore" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 1;
-    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
+    _userConscience.userConscienceView.alpha = 1;
+    _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.8f, 0.8f);
     
     [UIView commitAnimations];
     
@@ -282,8 +274,8 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             [UIView setAnimationDuration:0.25];
             
             [UIView setAnimationBeginsFromCurrentState:YES];
-            self.userConscience.userConscienceView.alpha = 0;
-            self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            _userConscience.userConscienceView.alpha = 0;
+            _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
             
             [UIView setAnimationDelegate:self]; // self is a view controller
             [UIView setAnimationDidStopSelector:@selector(returnToHome)];
@@ -292,22 +284,22 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
 		} else {
             
             switch (self.accessorySlot) {
-                case 0:self.userConscience.userConscienceAccessories.topAccessory = resetFeature;break;
-                case 1:self.userConscience.userConscienceAccessories.primaryAccessory = resetFeature;break;
-                case 2:self.userConscience.userConscienceAccessories.bottomAccessory = resetFeature;break;
-                case 3:self.userConscience.userConscienceAccessories.secondaryAccessory = resetFeature;break;
-                case 4:self.userConscience.userConscienceBody.eyeName = resetFeature;break;
-                case 5:self.userConscience.userConscienceBody.symbolName = resetFeature;break;
-                case 6:self.userConscience.userConscienceBody.mouthName = resetFeature;break;
-                case 7:self.userConscience.userConscienceBody.eyeColor = resetFeature;break;
-                case 8:self.userConscience.userConscienceBody.browColor = resetFeature;break;
-                case 9:self.userConscience.userConscienceBody.bubbleColor = resetFeature;break;
-                case 10:self.userConscience.userConscienceBody.bubbleType = [resetFeature intValue];break;                    
+                case 0:_userConscience.userConscienceAccessories.topAccessory = resetFeature;break;
+                case 1:_userConscience.userConscienceAccessories.primaryAccessory = resetFeature;break;
+                case 2:_userConscience.userConscienceAccessories.bottomAccessory = resetFeature;break;
+                case 3:_userConscience.userConscienceAccessories.secondaryAccessory = resetFeature;break;
+                case 4:_userConscience.userConscienceBody.eyeName = resetFeature;break;
+                case 5:_userConscience.userConscienceBody.symbolName = resetFeature;break;
+                case 6:_userConscience.userConscienceBody.mouthName = resetFeature;break;
+                case 7:_userConscience.userConscienceBody.eyeColor = resetFeature;break;
+                case 8:_userConscience.userConscienceBody.browColor = resetFeature;break;
+                case 9:_userConscience.userConscienceBody.bubbleColor = resetFeature;break;
+                case 10:_userConscience.userConscienceBody.bubbleType = [resetFeature intValue];break;                    
                 default: break;
             }
             
             if ((self.accessorySlot > 3) && (self.accessorySlot < 7)) {
-                [ConscienceBuilder buildConscience:self.userConscience.userConscienceBody];
+                [ConscienceBuilder buildConscience:_userConscience.userConscienceBody];
                 
             }
                         
@@ -315,8 +307,8 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
             [UIView setAnimationDuration:0.25];
             
             [UIView setAnimationBeginsFromCurrentState:YES];
-            self.userConscience.userConscienceView.alpha = 0;
-            self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+            _userConscience.userConscienceView.alpha = 0;
+            _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
             
             [UIView setAnimationDelegate:self]; // self is a view controller
             
@@ -362,7 +354,7 @@ Implementation: Internal function to retrieve how many ethicals User currently h
  */
 -(void)retrieveCurrentFunds{
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
 
@@ -380,7 +372,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
 -(void)saveConscience{
 	
 	//Retrieve User's UserCharacter		
-    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
 	//Assign current ConscienceAsset to UserCharacter
@@ -401,23 +393,23 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     
     /** @todo refactor into ConscienceMind
      */
-    float newMood = self.userConscience.userConscienceMind.mood + 1;
-    float newEnthusiasm = self.userConscience.userConscienceMind.enthusiasm + 1;
+    float newMood = _userConscience.userConscienceMind.mood + 1;
+    float newEnthusiasm = _userConscience.userConscienceMind.enthusiasm + 1;
     
     if (newMood > 90) {
-        self.userConscience.userConscienceMind.mood = 90.0;
+        _userConscience.userConscienceMind.mood = 90.0;
     } else if (newMood < 10) {
-        self.userConscience.userConscienceMind.mood = 10.0;
+        _userConscience.userConscienceMind.mood = 10.0;
     } else {
-        self.userConscience.userConscienceMind.mood = newMood;        
+        _userConscience.userConscienceMind.mood = newMood;        
     }
     
     if (newEnthusiasm > 90) {
-        self.userConscience.userConscienceMind.enthusiasm = 90.0;
+        _userConscience.userConscienceMind.enthusiasm = 90.0;
     } else if (newEnthusiasm < 10) {
-        self.userConscience.userConscienceMind.enthusiasm = 10.0;
+        _userConscience.userConscienceMind.enthusiasm = 10.0;
     } else {
-        self.userConscience.userConscienceMind.enthusiasm = newEnthusiasm;        
+        _userConscience.userConscienceMind.enthusiasm = newEnthusiasm;        
     }
 
     //Setup a transient expression for Conscience in response to entry
@@ -446,7 +438,7 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
 	//Create a new UserCollectable
 	//It has already been determined to not exist in userCollection, no need to test
 
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     
     //Create a new moral reward
     UserCollectable *currentUserAssetCollectable = [currentUserCollectableDAO create];
@@ -457,7 +449,7 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
     
 	//Check to see if ConscienceAsset has already been collected
 	if (!isOwned){
-		[self.userConscience.conscienceCollection addObject:self.assetSelection];
+		[_userConscience.conscienceCollection addObject:self.assetSelection];
 	}
     
 	//Retrieve User's ethicals

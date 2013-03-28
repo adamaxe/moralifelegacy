@@ -12,17 +12,9 @@ Primary screen of Reference selection Workflow.  User can select what type of Re
 @todo rename to ReferenceInitViewController
 */
 
-@class ModelManager, UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface ReferenceViewController : UIViewController
-
-/**
- Creates the viewController with the User's Conscience
- @param modelManager ModelManager data persistence
- @param userConscience UserConscience for modals and help screens
- @return id instance of ReferenceViewController
- */
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+@interface ReferenceViewController : MoraLifeViewController
 
 /**
 Accepts User input to determine type of Reference requested

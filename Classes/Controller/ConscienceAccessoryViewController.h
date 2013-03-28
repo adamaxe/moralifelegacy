@@ -11,19 +11,11 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 @date 08/25/2010
  */
 
-@class ModelManager, UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface ConscienceAccessoryViewController : UIViewController
+@interface ConscienceAccessoryViewController : MoraLifeViewController
 
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
-
-/**
- Creates the viewController with the User's Conscience
- @param modelManager ModelManager data persistence
- @param userConscience UserConscience for modals and help screens
- @return id instance of ConscienceAccessoryViewController
- */
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to select a ConscienceAsset for review

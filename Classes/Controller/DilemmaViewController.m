@@ -7,8 +7,6 @@ Commits choice to UserData, updates ethicals, adds reward to UserConscience::use
  */
 
 #import "DilemmaViewController.h"
-#import "ModelManager.h"
-#import "UserConscience.h"
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceBuilder.h"
@@ -21,11 +19,7 @@ Commits choice to UserData, updates ethicals, adds reward to UserConscience::use
 #import "ReferenceAssetDAO.h"
 #import "UserCharacterDAO.h"
 #import "UserChoiceDAO.h"
-#import "ViewControllerLocalization.h"
-#import "ConscienceHelpViewController.h"
-#import "UIViewController+Screenshot.h"
 #import "UIColor+Utility.h"
-#import "UIFont+Utility.h"
 
 typedef enum {
     MLViewToAnimateVersus,
@@ -102,8 +96,6 @@ typedef enum {
 
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) BOOL isAction;
 
@@ -134,10 +126,8 @@ typedef enum {
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience{
-	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil modelManager:modelManager andConscience:userConscience])) {
 
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
         self.isAction = ([nibNameOrNil isEqualToString:@"ConscienceActionView"]);
 
         prefs = [NSUserDefaults standardUserDefaults];
@@ -211,7 +201,7 @@ typedef enum {
     rewardView.alpha = 0;
 	rewardView.transform = CGAffineTransformConcat(CGAffineTransformMakeScale(6.0f, 6.0f), CGAffineTransformMakeRotation(M_PI * -1));
 
-	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
+	[thoughtModalArea addSubview:_userConscience.userConscienceView];
 	
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
@@ -219,7 +209,7 @@ typedef enum {
 	[UIView beginAnimations:@"MoveConscience" context:nil];
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationBeginsFromCurrentState:YES];
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
     
 	screen1View.alpha = 1;
 	
@@ -227,13 +217,13 @@ typedef enum {
     
     [self animateViewDetail: MLViewToAnimateVersus atBeginning: FALSE];
     
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
     
     [self animateViewDetail: MLViewToAnimateReward atBeginning: TRUE];    
 	
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	[_userConscience.userConscienceView setNeedsDisplay];
 	
 }
 
@@ -612,7 +602,7 @@ Construct antagonist Conscience
 	}
 
 	//Retrieve Dilemma
-    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] initWithKey:restoreDilemmaKey andModelManager:self.modelManager];
+    DilemmaDAO *currentDilemmaDAO = [[DilemmaDAO alloc] initWithKey:restoreDilemmaKey andModelManager:_modelManager];
     currentDilemma = [currentDilemmaDAO read:@""];
     
 	if (currentDilemma) {    
@@ -651,7 +641,7 @@ Construct antagonist Conscience
 		if(keyIsMoral) {
 
 			//Determine if User has requirement to pass
-            UserChoiceDAO *currentUserChoicePreReqDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+            UserChoiceDAO *currentUserChoicePreReqDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:_modelManager];
 			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, @"dile-"];
 
 			[currentUserChoicePreReqDAO setPredicates:@[userChoicePred]];
@@ -668,19 +658,17 @@ Construct antagonist Conscience
                 if (filteredArray.count > 0) {
                     isRequirementOwned = TRUE;
                 } else {
-                    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-                    conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-                    conscienceHelpViewController.isConscienceOnScreen = TRUE;
-                    conscienceHelpViewController.numberOfScreens = 1;
-                    conscienceHelpViewController.screenshot = [self takeScreenshot];
-                    [self presentModalViewController:conscienceHelpViewController animated:NO];
+                    _conscienceHelpViewController.isConscienceOnScreen = TRUE;
+                    _conscienceHelpViewController.numberOfScreens = 1;
+                    _conscienceHelpViewController.screenshot = [self takeScreenshot];
+                    [self presentModalViewController:_conscienceHelpViewController animated:NO];
                     [self.navigationController popViewControllerAnimated:NO];
                 }
 			}
 
 		} else {
 
-			if ([[self.userConscience conscienceCollection] containsObject:actionKey]) {
+			if ([[_userConscience conscienceCollection] containsObject:actionKey]) {
 				isRequirementOwned = TRUE;
 			} else {
 				isRequirementOwned = FALSE;
@@ -776,7 +764,7 @@ Calculate changes to User's ethicals.  Limit to 999.
     
         
     NSString *dilemmaKey = [NSString stringWithFormat:@"%@%@", currentDTS, dilemmaName];
-    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserDilemmaDAO *currentUserDilemmaDAO = [[UserDilemmaDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     
     UserDilemma *currentUserDilemma = [currentUserDilemmaDAO create];
         
@@ -796,10 +784,10 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     [currentUserDilemma setEntryIsGood:@(isChoiceA)];
     
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     //See if moral has been rewarded before
     //Cannot assume that first instance of UserChoice implies no previous reward
-    if ([self.userConscience.conscienceCollection containsObject:moralKey]) {
+    if ([_userConscience.conscienceCollection containsObject:moralKey]) {
         
         UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:moralKey];
 
@@ -823,7 +811,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableName:moralKey];
 		[currentUserCollectable setCollectableValue:@1.0f];
                 
-		[self.userConscience.conscienceCollection addObject:moralKey];
+		[_userConscience.conscienceCollection addObject:moralKey];
 
         [currentUserCollectableDAO update];
 
@@ -850,7 +838,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		//ReferencePerson rewarded, process, use large moralRewardImage
 		[ethicalRewardLabel setAlpha:0];
         
-        ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:selectedReward andModelManager:self.modelManager];
+        ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:selectedReward andModelManager:_modelManager];
         ReferencePerson *currentPerson = [currentPersonDAO read:@""];
         
         [moralSelectedRewardLabel setText:[NSString stringWithString:currentPerson.displayNameReference]];
@@ -863,14 +851,14 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
 		[currentUserCollectable setCollectableName:selectedReward];
                 
-		[self.userConscience.conscienceCollection addObject:selectedReward];
+		[_userConscience.conscienceCollection addObject:selectedReward];
 
 	} else if ([selectedReward rangeOfString:@"asse-"].location != NSNotFound) {
       
 		//ConscienceAsset rewarded, process, use small moralRewardImage
 		[ethicalRewardLabel setAlpha:0];
         
-        ReferenceAssetDAO *currentReferenceDAO = [[ReferenceAssetDAO alloc] initWithKey:selectedReward andModelManager:self.modelManager];
+        ReferenceAssetDAO *currentReferenceDAO = [[ReferenceAssetDAO alloc] initWithKey:selectedReward andModelManager:_modelManager];
         ReferenceAsset *currentReference = [currentReferenceDAO read:@""];
         
 		[moralSelectedRewardLabel setText:[NSString stringWithString:currentReference.displayNameReference]];
@@ -884,7 +872,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
 		[currentUserCollectable setCollectableName:selectedReward];
                 
-		[self.userConscience.conscienceCollection addObject:selectedReward];
+		[_userConscience.conscienceCollection addObject:selectedReward];
 	}
 
 	//Update User's ethicals
@@ -921,7 +909,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//Create a User Choice so that User's Moral report is affected
 	//Prefix with dile- on a User prohibited field to ensure that entry is never shown on ConscienceListViewController
 
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:_modelManager];
 	UserChoice *currentUserChoice = [currentUserChoiceDAO create];
     
 	[currentUserChoice setEntryCreationDate:[NSDate date]];
@@ -963,26 +951,26 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     /** @todo refactor into ConscienceMind
      */
-    float newMood = self.userConscience.userConscienceMind.mood + 0.5;
-    float newEnthusiasm = self.userConscience.userConscienceMind.enthusiasm + 0.5;
+    float newMood = _userConscience.userConscienceMind.mood + 0.5;
+    float newEnthusiasm = _userConscience.userConscienceMind.enthusiasm + 0.5;
     
     if (newMood > 90) {
-        self.userConscience.userConscienceMind.mood = 10.0;
+        _userConscience.userConscienceMind.mood = 10.0;
     } else if (newMood < 10) {
-        self.userConscience.userConscienceMind.mood = 10.0;
+        _userConscience.userConscienceMind.mood = 10.0;
     } else {
-        self.userConscience.userConscienceMind.mood = newMood;        
+        _userConscience.userConscienceMind.mood = newMood;        
     }
     
     if (newEnthusiasm > 90) {
-        self.userConscience.userConscienceMind.enthusiasm = 90.0;
+        _userConscience.userConscienceMind.enthusiasm = 90.0;
     } else if (newEnthusiasm < 10) {
-        self.userConscience.userConscienceMind.enthusiasm = 10.0;
+        _userConscience.userConscienceMind.enthusiasm = 10.0;
     } else {
-        self.userConscience.userConscienceMind.enthusiasm = newEnthusiasm;        
+        _userConscience.userConscienceMind.enthusiasm = newEnthusiasm;        
     }
     
-    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
     [currentUserCharacter setCharacterMood:@(newMood)];    
     [currentUserCharacter setCharacterEnthusiasm:@(newEnthusiasm)];

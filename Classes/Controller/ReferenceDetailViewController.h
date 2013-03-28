@@ -12,9 +12,10 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
 @todo rename to ReferenceViewController
  */
 
-@class ReferenceModel, ModelManager, UserConscience;
+@class ReferenceModel;
+#import "MoraLifeViewController.h"
 
-@interface ReferenceDetailViewController : UIViewController <UIActionSheetDelegate>
+@interface ReferenceDetailViewController : MoraLifeViewController <UIActionSheetDelegate>
 
 /**
  Dependency injection constructor to pass model

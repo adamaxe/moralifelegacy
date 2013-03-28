@@ -5,13 +5,8 @@ Implementation:  User selects type of ConscienceAsset by tapping on appropriate 
  */
 
 #import "ConscienceAccessoryViewController.h"
-#import "ModelManager.h"
-#import "UserConscience.h"
 #import "ConscienceListViewController.h"
-#import "ViewControllerLocalization.h"
 #import "UIColor+Utility.h"
-#import "UIViewController+Screenshot.h"
-#import "UIFont+Utility.h"
 
 int const MLConscienceCenterX = 145;
 int const MLConscienceCenterY = 165;
@@ -35,8 +30,6 @@ int const MLConscienceCenterY = 165;
     int accessorySlot;
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 -(void) moveConscienceToCenter;
@@ -49,15 +42,6 @@ int const MLConscienceCenterY = 165;
 
 #pragma mark -
 #pragma mark ViewController lifecycle
-
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
-	if ((self = [super init])) {
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
-	}
-
-	return self;
-}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -93,14 +77,14 @@ int const MLConscienceCenterY = 165;
 
 	[super viewWillAppear:animated];
 
-	[consciencePlayground addSubview:self.userConscience.userConscienceView];
+	[consciencePlayground addSubview:_userConscience.userConscienceView];
 
     [UIView beginAnimations:@"conscienceHide" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 0;
-    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    _userConscience.userConscienceView.alpha = 0;
+    _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(moveConscienceToCenter)];
@@ -122,14 +106,14 @@ int const MLConscienceCenterY = 165;
     
     //Move Conscience to center of boxes
 	CGPoint centerPoint = CGPointMake(MLConscienceCenterX, MLConscienceCenterY);
-    self.userConscience.userConscienceView.center = centerPoint;
+    _userConscience.userConscienceView.center = centerPoint;
     
     [UIView beginAnimations:@"conscienceRestore" context:nil];
     [UIView setAnimationDuration:0.25];
     
     [UIView setAnimationBeginsFromCurrentState:YES];
-    self.userConscience.userConscienceView.alpha = 1;
-    self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+    _userConscience.userConscienceView.alpha = 1;
+    _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         
     [UIView commitAnimations];
     
@@ -149,8 +133,8 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
         [UIView setAnimationDuration:0.25];
         
         [UIView setAnimationBeginsFromCurrentState:YES];
-        self.userConscience.userConscienceView.alpha = 0;
-        self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+        _userConscience.userConscienceView.alpha = 0;
+        _userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
         
         [UIView setAnimationDelegate:self]; // self is a view controller
     
@@ -171,7 +155,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 
 -(void)createList{
     
-    ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+    ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     conscienceListController.screenshot = [self takeScreenshot];
     [conscienceListController setAccessorySlot:accessorySlot];
     

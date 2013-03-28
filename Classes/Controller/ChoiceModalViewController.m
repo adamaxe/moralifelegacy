@@ -5,11 +5,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
  */
 
 #import "ChoiceModalViewController.h"
-#import "UserConscience.h"
-#import "ModelManager.h"
-#import "ConscienceView.h"
 #import "MoralDAO.h"
-#import "ViewControllerLocalization.h"
 #import "MoralTableViewCell.h"
 
 @interface ChoiceModalViewController () <ViewControllerLocalization> {
@@ -40,8 +36,6 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
 }
 
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) IBOutlet UIView *modalContentView;
 
@@ -56,17 +50,6 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 
 #pragma mark - 
 #pragma mark - View lifecycle
-
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
-    self = [super init];
-
-    if (self) {
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
-    }
-
-    return self;
-}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -102,13 +85,13 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 - (void) viewWillAppear:(BOOL)animated{
 	[super viewWillAppear:animated];
 
-    [thoughtArea addSubview:self.userConscience.userConscienceView];
+    [thoughtArea addSubview:_userConscience.userConscienceView];
 
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
 
     CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 
 	centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
@@ -118,13 +101,13 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
     
     self.modalContentView.alpha = 1.0;
 	thoughtArea.alpha = 1;
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(MLConscienceLargeSizeX, MLConscienceLargeSizeY);
 	
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	[_userConscience.userConscienceView setNeedsDisplay];
 
     modalTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
     modalSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
@@ -138,7 +121,7 @@ Implementation:  Retrieve all Virtues/Vices, depending upon requested type.  Pre
 	
 	[self dismissChoiceModal:placeHolderID];
 
-    [self.userConscience.userConscienceView removeFromSuperview];
+    [_userConscience.userConscienceView removeFromSuperview];
 
 }
 
@@ -163,9 +146,9 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
 	[UIView setAnimationBeginsFromCurrentState:YES];
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	
@@ -202,7 +185,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
         pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", @"Vice"];
 	}
     
-    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+    MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     currentMoralDAO.predicates = @[pred];
     
     NSArray *morals = [currentMoralDAO readAll];

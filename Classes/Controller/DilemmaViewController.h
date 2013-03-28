@@ -9,21 +9,11 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
 @file
  */
 
-@class ModelManager, UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface DilemmaViewController : UIViewController
+@interface DilemmaViewController : MoraLifeViewController
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
-
-/**
- Creates the viewController with the User's Conscience
- @param nibNameOrNil name of XIB
- @param nibBundleOrNil bundle in which to locate XIB
- @param modelManager ModelManager data persistence
- @param userConscience UserConscience for modals and help screens
- @return id instance of DilemmaViewController
- */
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to change the presently displayed UIView and possibly commit Choice

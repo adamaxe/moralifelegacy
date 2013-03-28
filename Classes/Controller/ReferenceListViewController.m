@@ -5,12 +5,9 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
  */
 
 #import "ReferenceListViewController.h"
-#import "ModelManager.h"
-#import "UserConscience.h"
 #import "ReferenceDetailViewController.h"
 #import "ReferenceModel.h"
 #import "ReferenceTableViewCell.h"
-#import "ViewControllerLocalization.h"
 
 @interface ReferenceListViewController () <ViewControllerLocalization> {
     
@@ -30,8 +27,6 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 }
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 
 /**
  Load Reference data from Core Data for table
@@ -53,12 +48,10 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 
 - (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
-    self = [super init];
+    self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {
         self.referenceModel = referenceModel;
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
     }
 
     return self;
@@ -155,7 +148,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     
     for (int i = 0; i < self.referenceModel.referenceKeys.count; i++) {
 
-        if([self.userConscience.conscienceCollection containsObject:(self.referenceModel.referenceKeys)[i]]){
+        if([_userConscience.conscienceCollection containsObject:(self.referenceModel.referenceKeys)[i]]){
 
             [dataSource addObject:(self.referenceModel.references)[i]];
             [tableData addObject:(self.referenceModel.references)[i]];
@@ -230,7 +223,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel modelManager:self.modelManager andConscience:self.userConscience];
+    ReferenceDetailViewController *detailViewCont = [[ReferenceDetailViewController alloc] initWithModel:self.referenceModel modelManager:_modelManager andConscience:_userConscience];
     [self.referenceModel selectReference:tableDataKeys[indexPath.row]];
     [self.navigationController pushViewController:detailViewCont animated:TRUE];
 

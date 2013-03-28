@@ -11,10 +11,9 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
  */
 
 #import "ReferenceModel.h"
+#import "MoraLifeViewController.h"
 
-@class ModelManager, UserConscience;
-
-@interface ReferenceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface ReferenceListViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, assign) MLReferenceModelTypeEnum referenceType;	/**< int determining type of reference selection */
 

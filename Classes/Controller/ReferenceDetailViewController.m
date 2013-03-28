@@ -6,15 +6,9 @@ Determine which fields and UI elements should be presented depending up on Refer
  */
 
 #import "ReferenceDetailViewController.h"
-#import "ModelManager.h"
-#import "UserConscience.h"
 #import "ReferenceModel.h"
-#import "ConscienceHelpViewController.h"
 #import "UserCollectableDAO.h"
-#import "ViewControllerLocalization.h"
-#import "UIViewController+Screenshot.h"
 #import "UIColor+Utility.h"
-#import "UIFont+Utility.h"
 
 @interface ReferenceDetailViewController () <ViewControllerLocalization> {
     
@@ -56,9 +50,6 @@ Determine which fields and UI elements should be presented depending up on Refer
 }
 
 @property (nonatomic, strong) ReferenceModel *referenceModel;   /**< Model to handle data/business logic */
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
-@property (nonatomic) ConscienceHelpViewController *conscienceHelpViewController;
 
 /**
  Create a date view for a reference
@@ -89,12 +80,10 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 - (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
-    self = [super init];
+    self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {
         self.referenceModel = referenceModel;
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
     }
 
     return self;
@@ -141,10 +130,7 @@ Determine which fields and UI elements should be presented depending up on Refer
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     [self.navigationItem setLeftBarButtonItem:referenceBarButton];
 
-    ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-    conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-    conscienceHelpViewController.isConscienceOnScreen = FALSE;
-    self.conscienceHelpViewController = conscienceHelpViewController;
+    _conscienceHelpViewController.isConscienceOnScreen = FALSE;
 
     [self localizeUI];
 
@@ -190,12 +176,12 @@ Implementation: Show Conscience thoughtbubble containing Quote
     
     NSArray *texts = @[quoteFormatted];
     
-    self.conscienceHelpViewController.helpTitles = titles;
-    self.conscienceHelpViewController.helpTexts = texts;
-    self.conscienceHelpViewController.isConscienceOnScreen = FALSE;
-    self.conscienceHelpViewController.screenshot = [self takeScreenshot];
+    _conscienceHelpViewController.helpTitles = titles;
+    _conscienceHelpViewController.helpTexts = texts;
+    _conscienceHelpViewController.isConscienceOnScreen = FALSE;
+    _conscienceHelpViewController.screenshot = [self takeScreenshot];
 
-    [self presentModalViewController:self.conscienceHelpViewController animated:NO];
+    [self presentModalViewController:_conscienceHelpViewController animated:NO];
 	
 }
 
@@ -317,11 +303,11 @@ Implementation: Find value of reference from UserCollection in case of Morals
     UserCollectableDAO *currentUserCollectableDAO;
 
     if (referenceType == MLReferenceModelTypeMoral) {
-        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:self.modelManager];
+        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableKey ENDSWITH %@", referenceKey];
         currentUserCollectableDAO.predicates = @[pred];
     } else {
-        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:referenceKey andModelManager:self.modelManager];
+        currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:referenceKey andModelManager:_modelManager];
     }
 
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];

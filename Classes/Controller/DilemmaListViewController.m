@@ -6,13 +6,9 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
  */
 
 #import "DilemmaListViewController.h"
-#import "ModelManager.h"
-#import "UserConscience.h"
 #import "DilemmaViewController.h"
 #import "DilemmaModel.h"
-#import "ConscienceHelpViewController.h"
 #import "DilemmaTableViewCell.h"
-#import "UIViewController+Screenshot.h"
 
 @interface DilemmaListViewController () {
     
@@ -41,8 +37,6 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 }
 
 @property (nonatomic, strong) DilemmaModel *dilemmaModel;   /**< Model to handle data/business logic */
-@property (nonatomic) ModelManager *modelManager;
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 
@@ -65,12 +59,10 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #pragma mark View lifecycle
 
 - (id)initWithModel:(DilemmaModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
-    self = [super init];
+    self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {
         self.dilemmaModel = dilemmaModel;
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
     }
 
     return self;
@@ -128,9 +120,9 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	//Position Conscience in lower-left of screen
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 	
-	[thoughtModalArea addSubview:self.userConscience.userConscienceView];
+	[thoughtModalArea addSubview:_userConscience.userConscienceView];
 	
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 	
 	//The scrollbars won't flash unless the tableview is long enough.
 	[dilemmaListTableView flashScrollIndicators];
@@ -176,12 +168,10 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     
     if (firstMorathologyCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-        conscienceHelpViewController.isConscienceOnScreen = TRUE;
-        conscienceHelpViewController.numberOfScreens = 1;
-        conscienceHelpViewController.screenshot = [self takeScreenshot];
-        [self presentModalViewController:conscienceHelpViewController animated:NO];
+        _conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        _conscienceHelpViewController.numberOfScreens = 1;
+        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        [self presentModalViewController:_conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstMorathology"];
         
@@ -331,11 +321,11 @@ Implementation: Signals User desire to return to ConscienceModalViewController
             [prefs setObject:selectedRowKey forKey:@"dilemmaKey"];
             
             if ([tableDataTypes[indexPath.row] boolValue]){
-                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil modelManager:self.modelManager andConscience:self.userConscience];
+                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil modelManager:_modelManager andConscience:_userConscience];
                 dilemmaViewController.screenshot = [self takeScreenshot];
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             } else {
-                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil modelManager:self.modelManager andConscience:self.userConscience];
+                DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil modelManager:_modelManager andConscience:_userConscience];
                 dilemmaViewController.screenshot = [self takeScreenshot];                
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             }

@@ -11,19 +11,21 @@
  @file
  */
 
-@class ChoiceHistoryModel, UserConscience;
+@class ChoiceHistoryModel;
+#import "MoraLifeViewController.h"
 
-@interface ChoiceHistoryViewController : UIViewController
+@interface ChoiceHistoryViewController : MoraLifeViewController
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 
 /**
  Dependency injection constructor to pass model
  @param choiceHistoryModel ChoiceHistoryModel handling business logic
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ChoiceHistoryViewController
  */
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience  *)userConscience;
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience  *)userConscience;
 
 /**
  Accepts User Input to remove modal screen

@@ -9,12 +9,10 @@
  */
 
 #import "ChoiceHistoryViewController.h"
-#import "UserConscience.h"
 #import "ChoiceViewController.h"
 #import "ConscienceView.h"
 #import "ChoiceHistoryModel.h"
 #import "ChoiceTableViewCell.h"
-#import "ViewControllerLocalization.h"
 
 @interface ChoiceHistoryViewController () <ViewControllerLocalization, UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate> {
 	
@@ -37,7 +35,6 @@
 
 }
 
-@property (nonatomic) UserConscience *userConscience;
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 @property (nonatomic) IBOutlet UIView *modalContentView;
 
@@ -61,13 +58,13 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience  *)userConscience {
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience  *)userConscience {
+
     //This viewController shares a XIB with ChoiceModalViewController
-    self = [super initWithNibName:@"ChoiceModalView" bundle:nil];
+    self = [super initWithNibName:@"ChoiceModalView" bundle:nil modelManager:modelManager andConscience:userConscience];
 
     if (self) {
         self.choiceHistoryModel = choiceHistoryModel;
-        self.userConscience = userConscience;
     }
 
     return self;
@@ -90,7 +87,7 @@
     
     CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 		
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
     
     //User can back out of Choice Entry screen and state will be saved
 	//However, user should not be able to select a virtue, and then select a vice for entry
@@ -118,7 +115,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     
 	[super viewWillAppear:animated];
-    [thoughtArea addSubview:self.userConscience.userConscienceView];
+    [thoughtArea addSubview:_userConscience.userConscienceView];
 
 	//Refresh Data in case something changed since last time onscreen
 	[self retrieveAllChoices];
@@ -152,13 +149,13 @@
 	[UIView setAnimationBeginsFromCurrentState:NO];
     self.modalContentView.alpha = 1.0;
 	thoughtArea.alpha = 1;
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.25f, 1.25f);
 	
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	
-	[self.userConscience.userConscienceView setNeedsDisplay];
+	[_userConscience.userConscienceView setNeedsDisplay];
     modalTableView.contentInset = UIEdgeInsetsMake(15.0, 0.0, 0.0, 0.0);
     modalSearchBar.frame = CGRectMake(0, 0, searchArea.frame.size.width, searchArea.frame.size.height);
 }
@@ -172,7 +169,7 @@
 		[prefs setObject:modalSearchBar.text forKey:@"searchTextChoice"];
 		
 	}
-    [self.userConscience.userConscienceView removeFromSuperview];
+    [_userConscience.userConscienceView removeFromSuperview];
 
 }
 
@@ -199,9 +196,9 @@
 	[UIView setAnimationBeginsFromCurrentState:YES];
     self.modalContentView.alpha = 0.0;
 	thoughtArea.alpha = 0;
-	self.userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
+	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
 	
-	self.userConscience.userConscienceView.center = centerPoint;
+	_userConscience.userConscienceView.center = centerPoint;
 	
 	[UIView commitAnimations];
 	

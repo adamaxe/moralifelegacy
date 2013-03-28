@@ -5,13 +5,10 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
  */
 
 #import "ReportPieViewController.h"
-#import "UserConscience.h"
 #import "GraphView.h"
-#import "ConscienceHelpViewController.h"
 #import "ViewControllerLocalization.h"
 #import "ReportPieModel.h"
 #import "ReportMoralTableViewCell.h"
-#import "UIViewController+Screenshot.h"
 
 @interface ReportPieViewController () <ViewControllerLocalization> {
 
@@ -31,7 +28,6 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 @property (nonatomic, assign) BOOL isAscending;		/**< current order type */
 @property (nonatomic, assign) BOOL isAlphabetical;	/**< current sort type */
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
-@property (nonatomic) UserConscience *userConscience;
 
 /**
  Convert UserData into graphable data, create a GraphView
@@ -42,12 +38,11 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 @implementation ReportPieViewController
 
-- (id)initWithModel:(ReportPieModel *)reportPieModel andConscience:(UserConscience *)userConscience {
-    self = [super init];
+- (id)initWithModel:(ReportPieModel *)reportPieModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+    self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {
         self.reportPieModel = reportPieModel;
-        self.userConscience = userConscience;
         self.isGood = TRUE;
         self.isAlphabetical = FALSE;
         self.isAscending = FALSE;
@@ -81,9 +76,9 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
     //Add User Conscience to view
-    [self.view addSubview:self.userConscience.userConscienceView];
+    [self.view addSubview:_userConscience.userConscienceView];
     
-    self.userConscience.userConscienceView.center = centerPoint;
+    _userConscience.userConscienceView.center = centerPoint;
 
     
 }
@@ -136,13 +131,10 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
     
     if (firstPieCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:self.userConscience];
-        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-		conscienceHelpViewController.isConscienceOnScreen = TRUE;
-        conscienceHelpViewController.numberOfScreens = 1;
-
-        conscienceHelpViewController.screenshot = [self takeScreenshot];
-		[self presentModalViewController:conscienceHelpViewController animated:NO];
+		_conscienceHelpViewController.isConscienceOnScreen = TRUE;
+        _conscienceHelpViewController.numberOfScreens = 1;
+        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+		[self presentModalViewController:_conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstPie"];
 

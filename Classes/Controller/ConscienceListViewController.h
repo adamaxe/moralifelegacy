@@ -12,20 +12,12 @@ Secondary Conscience interaction screen.  Most other Conscience interactions req
 @file
  */
 
-@class ModelManager, UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface ConscienceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface ConscienceListViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 @property (nonatomic, assign) int accessorySlot;	/**< which slot is ConscienceAsset, set from ConscienceAccessoryViewController */
-
-/**
- Creates the viewController with the User's Conscience
- @param modelManager ModelManager data persistence
- @param userConscience UserConscience for modals and help screens
- @return id instance of ConscienceListViewController
- */
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to filter list of ConscienceAssets.

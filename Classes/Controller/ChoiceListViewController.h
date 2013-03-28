@@ -12,18 +12,19 @@ Second screen in Choice/Luck Listing Workflow.  User can select a Choice for rev
 @file
  */
 
-@class ModelManager, ChoiceHistoryModel, UserConscience;
+@class ChoiceHistoryModel;
+#import "MoraLifeViewController.h"
 
-@interface ChoiceListViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
+@interface ChoiceListViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 /**
  Dependency injection constructor to pass model
- @param modelManager ModelManager data persistence
  @param choiceHistoryModel ChoiceHistoryModel handling business logic
+ @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of ChoiceListViewController
  */
-- (id)initWithModelManager:(ModelManager *)modelManager model:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience *)userConscience;
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Accepts User input to selects the data sort and order types

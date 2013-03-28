@@ -10,7 +10,6 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #import "ChoiceViewController.h"
 #import "ChoiceHistoryModel.h"
 #import "ChoiceTableViewCell.h"
-#import "ViewControllerLocalization.h"
 
 @interface ChoiceListViewController () <ViewControllerLocalization> {
 	
@@ -38,9 +37,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	BOOL isAscending;					/**< is data ascending or descending order */
 }
 
-@property (nonatomic) ModelManager *modelManager;
 @property (nonatomic, strong) ChoiceHistoryModel *choiceHistoryModel;   /**< Model to handle data/business logic */
-@property (nonatomic) UserConscience *userConscience;
 
 /**
  Retrieve all User entered Choices
@@ -67,13 +64,11 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModelManager:(ModelManager *)modelManager model:(ChoiceHistoryModel *)choiceHistoryModel andConscience:(UserConscience *)userConscience {
+- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
-    self = [super init];
+    self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {
-        self.modelManager = modelManager;
-        self.userConscience = userConscience;
         self.choiceHistoryModel = choiceHistoryModel;
         self.choiceHistoryModel.choiceType = MLChoiceHistoryModelTypeAll;
     }
@@ -306,7 +301,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 	
 	//Create subsequent view controller to be pushed onto stack
 	//ChoiceViewController gets data from NSUserDefaults
-	ChoiceViewController *choiceCont = [[ChoiceViewController alloc] initWithModelManager:self.modelManager andConscience:self.userConscience];
+	ChoiceViewController *choiceCont = [[ChoiceViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
 	
 	//Push view onto stack
 	[self.navigationController pushViewController:choiceCont animated:YES];

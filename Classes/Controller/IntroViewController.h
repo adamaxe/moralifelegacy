@@ -9,16 +9,9 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 @file
  */
 
-@class UserConscience;
+#import "MoraLifeViewController.h"
 
-@interface IntroViewController : UIViewController
-
-/**
- Creates the viewController with the User's Conscience
- @param userConscience UserConscience for modals and help screens
- @return id instance of IntroViewController
- */
--(id)initWithConscience:(UserConscience *)userConscience;
+@interface IntroViewController : MoraLifeViewController
 
 /**
 Accepts User input to select the last choice in the Introduction
