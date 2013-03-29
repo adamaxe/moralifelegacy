@@ -6,6 +6,13 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 
 #import "MoraLifeViewController.h"
 
+@interface MoraLifeViewController () {
+    @private
+    NSArray *protectedInstanceVariables;
+}
+
+@end
+
 @implementation MoraLifeViewController
 
 #pragma mark -
@@ -18,22 +25,30 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
         _userConscience = userConscience;
         _conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:_userConscience];
         _conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-        NSLog(@"consciencehelpclass:%@", _conscienceHelpViewController.viewControllerClassName);
 
+        protectedInstanceVariables = @[@"_modelManager",@"_userConscience", @"_conscienceHelpViewController", @"protectedInstanceVariables"];
 	}
     
 	return self;
 
 }
 
-
-// The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     return [self initWithNibName:nil bundle:nil modelManager:modelManager andConscience:userConscience];
 }
 
--(void)localizeUI {
-    
+- (id)valueForKey:(NSString *)key {
+    return [protectedInstanceVariables containsObject:key]? nil : [super valueForKey:key];
+}
+
+- (void)setValue:(id)value forKey:(NSString *)key {
+    if (![protectedInstanceVariables containsObject:key]) {
+        [super setValue:value forKey:key];
+    }
+}
+
+- (void)localizeUI {
+
 }
 
 #pragma mark -

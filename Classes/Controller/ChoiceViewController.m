@@ -112,7 +112,6 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         self.virtueViceViewController = [[ChoiceModalViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
         self.choiceDetailViewController = [[ChoiceDetailViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
         self.historyViewController = [[ChoiceHistoryViewController alloc] initWithModel:choiceHistoryModel modelManager:_modelManager andConscience:_userConscience];
-
     }
 
     return self;
