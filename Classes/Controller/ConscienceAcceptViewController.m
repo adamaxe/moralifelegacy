@@ -183,10 +183,11 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[consciencePlayground addSubview:_userConscience.userConscienceView];
 	[_userConscience.userConscienceView setNeedsDisplay];
 
-    [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];    
+    [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];
+    
 	//Inform/restrict User's ability to actually purchase ConscienceAsset
 	//Flash assetCost is ConscienceAsset is unbuyable
-	if ((assetCost > currentFunds) && !isOwned) {
+	if (((assetCost > currentFunds) || (assetCost < 0)) && !isOwned) {
 		[buyButton setHidden:TRUE];
         [insufficientEthicalsLabel setHidden:FALSE];
         
@@ -484,7 +485,9 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
         buyButton.accessibilityLabel = NSLocalizedString(@"ConscienceAcceptBuyButtonUseLabel",nil);
         [buyButton.titleLabel setText:NSLocalizedString(@"ConscienceAcceptBuyButtonUseLabel",nil)];
     } else {
-        [accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %dε", assetCost]];
+        NSString *assetCostString = [NSString stringWithFormat:@"%d", assetCost];
+        NSString *actualAssetCost = [NSString stringWithFormat:@"%@ε", (assetCost < 0) ? @"∞ " : assetCostString];
+        [accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %@", actualAssetCost]];
         buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonBuyHint",nil);
         buyButton.accessibilityLabel = NSLocalizedString(@"ConscienceAcceptBuyButtonBuyLabel",nil);
         [buyButton.titleLabel setText:NSLocalizedString(@"ConscienceAcceptBuyButtonBuyLabel",nil)];

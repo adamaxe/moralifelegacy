@@ -889,16 +889,12 @@ Calculate changes to User's ethicals.  Limit to 999.
 		[selectedReward setString:@"5"];
 	}
 
-    //Append epsilon character
+    //Append epsilon character and change negative to infinity
 	[ethicalRewardLabel setText:[NSString stringWithFormat:@"+%dε", [selectedReward intValue]]];
     
 	//Set limit to amount of Ethicals User can earn
 	//@todo make constant
-	if (ethicalIncrease >= 999) {
-		ethicalIncrease = 999;
-	} else {
-		ethicalIncrease += [selectedReward intValue];
-	}
+    ethicalIncrease += [selectedReward intValue];
     
 	[currentUserCollectable setCollectableValue:@(ethicalIncrease)];
         

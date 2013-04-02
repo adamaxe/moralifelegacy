@@ -304,7 +304,8 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
         if ([_userConscience.conscienceCollection containsObject:match.nameReference]){
             [choiceSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", match.shortDescriptionReference]];
         } else {
-            [choiceSubtitles addObject:[NSString stringWithFormat:@"%dε - %@", [match.costAsset intValue], match.shortDescriptionReference]];
+            NSString *assetCost = [NSString stringWithFormat:@"%@ε", ([match.costAsset intValue] < 0) ? @"∞ " : match.costAsset];
+            [choiceSubtitles addObject:[NSString stringWithFormat:@"%@ - %@", assetCost, match.shortDescriptionReference]];
         }
         
     }
@@ -372,7 +373,9 @@ Implementation: Retrieve User's current ethicals from UserData
     
 	//Determine if User can actually equip ConscienceAsset by testing if enough ethicals are present, or it's already owned
 	//Adjust visual cues accordingly
-    cell.isAffordable = (([tableDataCosts[indexPath.row] floatValue] <= currentFunds) || ([tableDataDetails[indexPath.row] rangeOfString:@"Owned"].location != NSNotFound));
+    float cellCost = [tableDataCosts[indexPath.row] floatValue];
+    BOOL isAvailableForPurchase = (cellCost <= currentFunds) && (cellCost > 0);
+    cell.isAffordable = (isAvailableForPurchase || ([tableDataDetails[indexPath.row] rangeOfString:@"Owned"].location != NSNotFound));
 
 	cell.textLabel.text = tableData[indexPath.row];
 	cell.detailTextLabel.text = tableDataDetails[indexPath.row];
