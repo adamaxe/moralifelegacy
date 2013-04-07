@@ -1,5 +1,5 @@
 /**
-Moralife Conscience Modal Screen navigation
+Moralife Conscience Modal Screen navigation - Ensure that User can navigate through the entire ConscienceViewController workflow (Commissary, Morathology, Moral Report).
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife Conscience Modal Screen navigation
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Conscience Navigation (consciencenavigation)";
+var testSuiteName = "Conscience Navigation (consciencenavigation.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

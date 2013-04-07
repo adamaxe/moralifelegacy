@@ -1,5 +1,5 @@
 /**
-Moralife Help Screen dismissals
+Moralife Help Screen dismissals - Navigate through the app dismissing every help screen.
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife Help Screen dismissals
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Help Screen Dismissals (helpscreendismissals)";
+var testSuiteName = "Help Screen Dismissals (helpscreendismissals.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

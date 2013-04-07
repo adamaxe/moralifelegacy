@@ -1,5 +1,5 @@
 /**
-Moralife UI Choice Moral Display validation
+Moralife UI Choice Moral Display validation - Ensure that User sees the correct verbiage for a Moral Choice
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife UI Choice Moral Display validation
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice - Moral";
+var testSuiteName = "Choice Moral Display (choicemoraldisplay.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -75,3 +75,5 @@ window.buttons()["Cancel"].tap();
 
 window.buttons()["Cancel"].tap();
 app.navigationBar().buttons()["Home"].tap();
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

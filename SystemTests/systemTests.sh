@@ -5,7 +5,7 @@
 mkdir ~/Downloads/results
 
 #Setup script order
-scripts=( "introcompletion" "helpscreendismissals" "referenceverify" "reportpienavigation" "choicemoralentry" "choicemoralverify" "homenavigation" "consciencenavigation" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify"
+scripts=( "introcompletion" "helpscreendismissals" "referenceverify" "reportpienavigation" "choicemoralentry" "choicemoralverify" "mainnavigation" "consciencenavigation" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify"
 "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify")
 
 for i in "${scripts[@]}"

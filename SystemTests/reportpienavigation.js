@@ -1,5 +1,5 @@
 /**
- Moralife Report Screen navigation
+ Moralife Report Screen navigation - Verify that the User can navigate the report section
 
  @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Report Pie Navigation";
+var testSuiteName = "Report Pie Navigation (reportpienavigation.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -87,3 +87,5 @@ if(window.buttons()["Moral Order"].value() == "Asc") {
 
 window.buttons()["Previous"].tap();
 window.buttons()["Previous"].tap();
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

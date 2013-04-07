@@ -9,7 +9,7 @@ Moralife UI Choice Moral Entry Validation.  Test Data populated from uijsinclude
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice - Moral Entry";
+var testSuiteName = "Choice Moral Entry (choicemoralentry.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

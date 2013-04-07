@@ -1,5 +1,5 @@
 /**
- Moralife UI Choice Immoral Cancel validation
+ Moralife UI Choice Immoral Cancel validation - Ensure that User can cancel every choice and that nothing is retained.
  
  @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
  
@@ -9,7 +9,7 @@
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Immoral Choice - Cancel";
+var testSuiteName = "Choice Immoral Cancel (choiceimmoralcancel.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -139,3 +139,5 @@ window.sliders()["Influence"].dragToValue(immoralInfluenceCancel);
 window.buttons()["Cancel"].tap();
 window.buttons()["Cancel"].tap();
 app.navigationBar().buttons()["Home"].tap();
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

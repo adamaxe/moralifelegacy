@@ -1,15 +1,16 @@
 /**
-Moralife UI Choice Moral Entry Verification
+Moralife UI Choice Moral Entry Verification - Verify that choicemoralentry.js actually entered in data
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
+@see choicemoralentry.js
 @date 05/28/2012
 @file choicemoralverify.js
 */
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice - Moral Entry Verification";
+var testSuiteName = "Choice Moral Verify (choicemoralverify.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -110,3 +111,5 @@ window.buttons()["Cancel"].tap();
 target.delay(2.0);
 window.buttons()["Cancel"].tap();
 app.navigationBar().leftButton().tap();
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

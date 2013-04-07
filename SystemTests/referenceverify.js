@@ -1,5 +1,5 @@
 /**
-Moralife UI Choice Reference Section Verification
+Moralife UI Choice Reference Section Verification - Verify that the default application reference data is present
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife UI Choice Reference Section Verification
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Reference - Default Value Verification";
+var testSuiteName = "Reference Verify (referenceverify.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -172,3 +172,5 @@ window.buttons()["Cancel"].tap();
 
 target.delay(2.0);
 app.navigationBar().leftButton().tap();
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

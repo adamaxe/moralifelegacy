@@ -1,5 +1,5 @@
 /**
-Moralife Introduction completion
+Moralife Introduction completion - Conclude the introduction so that the rest of the test suite can progress.
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife Introduction completion
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Intro Completion (introcompletion)";
+var testSuiteName = "Introduction Completion (introcompletion.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

@@ -1,5 +1,5 @@
 /**
-Moralife UI Choice Immoral Display validation
+Moralife UI Choice Immoral Display validation - Ensure that User sees the correct verbiage for an Immoral Choice
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife UI Choice Immoral Display validation
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice - Immoral";
+var testSuiteName = "Choice Immoral Display (choiceimmoraldisplay.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -85,3 +85,5 @@ window.buttons()["Cancel"].tap();
 
 window.buttons()["Cancel"].tap();
 app.navigationBar().buttons()["Home"].tap();
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

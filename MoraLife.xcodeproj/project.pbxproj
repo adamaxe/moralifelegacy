@@ -3174,7 +3174,7 @@
 		5EC31C21131350F2000223C3 /* cardback-reference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardback-reference.png"; path = "Resources/images/interface/cards/cardback-reference.png"; sourceTree = "<group>"; };
 		5EC5543A15774064004BF692 /* uiajsinclude.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = uiajsinclude.js; sourceTree = "<group>"; };
 		5EC5543B15774064004BF692 /* uiautomationstyle.xslt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = uiautomationstyle.xslt; sourceTree = "<group>"; };
-		5EC5543C15774064004BF692 /* homenavigation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = homenavigation.js; sourceTree = "<group>"; };
+		5EC5543C15774064004BF692 /* mainnavigation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mainnavigation.js; sourceTree = "<group>"; };
 		5EC55446157748FF004BF692 /* choicemoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choicemoralcancel.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		5EC55447157748FF004BF692 /* choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoraldisplay.js; sourceTree = "<group>"; };
 		5EC55448157748FF004BF692 /* choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralentry.js; sourceTree = "<group>"; };
@@ -5307,7 +5307,7 @@
 				5EC5543915774064004BF692 /* include */,
 				5EA696DC157DFF440075115F /* introcompletion.js */,
 				5EA696DB157DFF440075115F /* helpscreendismissals.js */,
-				5EC5543C15774064004BF692 /* homenavigation.js */,
+				5EC5543C15774064004BF692 /* mainnavigation.js */,
 				5EA696DD15804A190075115F /* consciencenavigation.js */,
 				5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */,
 				5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */,

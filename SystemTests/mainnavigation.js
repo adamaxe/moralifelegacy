@@ -1,5 +1,5 @@
 /**
-Moralife UI Main Navigation traversal validation
+Moralife UI Main Navigation traversal validation - Ensure that every User can traverse the main workflow (Journal, Collection)
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife UI Main Navigation traversal validation
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Home Navigation (homenavigation)";
+var testSuiteName = "Main Navigation (mainnavigation.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
