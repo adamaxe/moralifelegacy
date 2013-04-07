@@ -6,7 +6,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 @class ConscienceModalViewController ConscienceModalViewController.h
  */
 
-#import "ConscienceModalViewController.h"
+#import "ConscienceViewController.h"
 #import "ConscienceAccessoryViewController.h"
 #import "ConscienceListViewController.h"
 #import "DilemmaModel.h"
@@ -15,7 +15,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ReportPieModel.h"
 #import "UIColor+Utility.h"
 
-@interface ConscienceModalViewController () {
+@interface ConscienceViewController () {
     
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
@@ -59,7 +59,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 @end
 
-@implementation ConscienceModalViewController
+@implementation ConscienceViewController
 
 #pragma mark - View lifecycle
 

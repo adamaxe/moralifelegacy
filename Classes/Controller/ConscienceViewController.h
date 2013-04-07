@@ -19,7 +19,7 @@ User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 
 #import "MoraLifeViewController.h"
 
-@interface ConscienceModalViewController : MoraLifeViewController
+@interface ConscienceViewController : MoraLifeViewController
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 

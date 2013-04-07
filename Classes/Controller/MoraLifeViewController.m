@@ -48,7 +48,7 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 }
 
 - (void)localizeUI {
-
+    //No op to suppress localizable protocol warnings.  Must be implemented by subclasses.
 }
 
 #pragma mark -

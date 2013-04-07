@@ -230,7 +230,7 @@
 		5E3E87E01226090B00F2708A /* ChoiceInitView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B41226090B00F2708A /* ChoiceInitView.xib */; };
 		5E3E87E11226090B00F2708A /* ChoiceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B51226090B00F2708A /* ChoiceListView.xib */; };
 		5E3E87E21226090B00F2708A /* ChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B61226090B00F2708A /* ChoiceView.xib */; };
-		5E3E87E31226090B00F2708A /* ConscienceModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B71226090B00F2708A /* ConscienceModalView.xib */; };
+		5E3E87E31226090B00F2708A /* ConscienceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B71226090B00F2708A /* ConscienceView.xib */; };
 		5E3E87E41226090B00F2708A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B81226090B00F2708A /* HomeView.xib */; };
 		5E3E87E51226090B00F2708A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B91226090B00F2708A /* MainWindow.xib */; };
 		5E3E87E61226090B00F2708A /* ReferenceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */; };
@@ -1622,7 +1622,7 @@
 		5EEB65E0122B6FBF00925B63 /* con-cross-orth.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EEB65DC122B6FBF00925B63 /* con-cross-orth.svg */; };
 		5EEBBC7512FD22B5002E2C1E /* ConscienceHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */; };
 		5EEBBC7812FD23D1002E2C1E /* ChoiceDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7712FD23CF002E2C1E /* ChoiceDetailViewController.m */; };
-		5EEBBC7B12FD24EF002E2C1E /* ConscienceModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */; };
+		5EEBBC7B12FD24EF002E2C1E /* ConscienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7A12FD24EC002E2C1E /* ConscienceViewController.m */; };
 		5EEBBC7E12FD2542002E2C1E /* ConscienceAccessoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EEBBC7D12FD253E002E2C1E /* ConscienceAccessoryViewController.m */; };
 		5EEE0FF412224ABE00073A5D /* thoughtbubble-large1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EEE0FF012224ABE00073A5D /* thoughtbubble-large1@2x.png */; };
 		5EEE11381223524C00073A5D /* con-sports-tennisball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EEE10581223524C00073A5D /* con-sports-tennisball.svg */; };
@@ -1927,7 +1927,7 @@
 		5E3E87B41226090B00F2708A /* ChoiceInitView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChoiceInitView.xib; path = Resources/ChoiceInitView.xib; sourceTree = "<group>"; };
 		5E3E87B51226090B00F2708A /* ChoiceListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChoiceListView.xib; path = Resources/ChoiceListView.xib; sourceTree = "<group>"; };
 		5E3E87B61226090B00F2708A /* ChoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChoiceView.xib; path = Resources/ChoiceView.xib; sourceTree = "<group>"; };
-		5E3E87B71226090B00F2708A /* ConscienceModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConscienceModalView.xib; path = Resources/ConscienceModalView.xib; sourceTree = "<group>"; };
+		5E3E87B71226090B00F2708A /* ConscienceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConscienceView.xib; path = Resources/ConscienceView.xib; sourceTree = "<group>"; };
 		5E3E87B81226090B00F2708A /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeView.xib; path = Resources/HomeView.xib; sourceTree = "<group>"; };
 		5E3E87B91226090B00F2708A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceDetailView.xib; path = Resources/ReferenceDetailView.xib; sourceTree = "<group>"; };
@@ -3373,8 +3373,8 @@
 		5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceHelpViewController.m; sourceTree = "<group>"; };
 		5EEBBC7612FD23CD002E2C1E /* ChoiceDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceDetailViewController.h; sourceTree = "<group>"; };
 		5EEBBC7712FD23CF002E2C1E /* ChoiceDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceDetailViewController.m; sourceTree = "<group>"; };
-		5EEBBC7912FD24EB002E2C1E /* ConscienceModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceModalViewController.h; sourceTree = "<group>"; };
-		5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceModalViewController.m; sourceTree = "<group>"; };
+		5EEBBC7912FD24EB002E2C1E /* ConscienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceViewController.h; sourceTree = "<group>"; };
+		5EEBBC7A12FD24EC002E2C1E /* ConscienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceViewController.m; sourceTree = "<group>"; };
 		5EEBBC7C12FD253C002E2C1E /* ConscienceAccessoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceAccessoryViewController.h; sourceTree = "<group>"; };
 		5EEBBC7D12FD253E002E2C1E /* ConscienceAccessoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceAccessoryViewController.m; sourceTree = "<group>"; };
 		5EEE0FF012224ABE00073A5D /* thoughtbubble-large1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-large1@2x.png"; path = "Resources/images/interface/thoughtbubble-large1@2x.png"; sourceTree = "<group>"; };
@@ -3582,7 +3582,7 @@
 				5E5694C41239EC3B00D03030 /* ConscienceActionView.xib */,
 				5EB9BE8D12FD1FEB00584F67 /* ConscienceHelpView.xib */,
 				5E4694F5130337C7004E695F /* ConscienceListView.xib */,
-				5E3E87B71226090B00F2708A /* ConscienceModalView.xib */,
+				5E3E87B71226090B00F2708A /* ConscienceView.xib */,
 				5E6858E612727E0D0080386B /* DilemmaView.xib */,
 				5EAA2128130749D700C1DB02 /* DilemmaListView.xib */,
 				5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */,
@@ -5462,8 +5462,8 @@
 				5EEBBC7D12FD253E002E2C1E /* ConscienceAccessoryViewController.m */,
 				5EEBBC7312FD22B4002E2C1E /* ConscienceHelpViewController.h */,
 				5EEBBC7412FD22B4002E2C1E /* ConscienceHelpViewController.m */,
-				5EEBBC7912FD24EB002E2C1E /* ConscienceModalViewController.h */,
-				5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */,
+				5EEBBC7912FD24EB002E2C1E /* ConscienceViewController.h */,
+				5EEBBC7A12FD24EC002E2C1E /* ConscienceViewController.m */,
 				5E2A7F1512FD9540001ADB66 /* ConscienceListViewController.h */,
 				5E2A7F1612FD9540001ADB66 /* ConscienceListViewController.m */,
 				5EAA21231307498200C1DB02 /* DilemmaListViewController.h */,
@@ -5746,7 +5746,7 @@
 				5E3E87E01226090B00F2708A /* ChoiceInitView.xib in Resources */,
 				5E3E87E11226090B00F2708A /* ChoiceListView.xib in Resources */,
 				5E3E87E21226090B00F2708A /* ChoiceView.xib in Resources */,
-				5E3E87E31226090B00F2708A /* ConscienceModalView.xib in Resources */,
+				5E3E87E31226090B00F2708A /* ConscienceView.xib in Resources */,
 				5E3E87E41226090B00F2708A /* HomeView.xib in Resources */,
 				5E3E87E51226090B00F2708A /* MainWindow.xib in Resources */,
 				5E3E87E61226090B00F2708A /* ReferenceDetailView.xib in Resources */,
@@ -7211,7 +7211,7 @@
 				5EB9BEA412FD200700584F67 /* ReferenceViewController.m in Sources */,
 				5EEBBC7512FD22B5002E2C1E /* ConscienceHelpViewController.m in Sources */,
 				5EEBBC7812FD23D1002E2C1E /* ChoiceDetailViewController.m in Sources */,
-				5EEBBC7B12FD24EF002E2C1E /* ConscienceModalViewController.m in Sources */,
+				5EEBBC7B12FD24EF002E2C1E /* ConscienceViewController.m in Sources */,
 				5EEBBC7E12FD2542002E2C1E /* ConscienceAccessoryViewController.m in Sources */,
 				5E2A7F1712FD9540001ADB66 /* ConscienceListViewController.m in Sources */,
 				5E5DB58612FD97DC007F85FA /* ConscienceAcceptViewController.m in Sources */,
