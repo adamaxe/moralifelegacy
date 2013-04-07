@@ -6,7 +6,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
  */
 
 #import "HomeViewController.h"
-#import "ConscienceModalViewController.h"
+#import "ConscienceViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UserChoiceDAO.h"
 #import "UserCollectableDAO.h"
@@ -47,7 +47,7 @@ float const MLThoughtInterval = 5;
     
 	IBOutlet UIButton *virtueButton;				/**< button surrounding picture frame to cue virtue thought */
 	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue vice thought */
-	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceModalViewController */
+	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceViewController */
     
 	NSTimer *shakeTimer;				/**< limits Conscience shake response */
 	NSTimer *thoughtFadeTimer;			/**< determines when Conscience thought disappears */
@@ -71,7 +71,7 @@ float const MLThoughtInterval = 5;
  */
 -(void) hideThought;
 /**
- Present the ConscienceModalViewController for Conscience interaction
+ Present the ConscienceViewController for Conscience interaction
  */
 -(void) showConscienceModal;
 /**
@@ -339,7 +339,7 @@ static int thoughtVersion = 0;
 }
 
 /**
- Implementation: Create the ConscienceModalViewController, present it.
+ Implementation: Create the ConscienceViewController, present it.
  */
 -(void)setupModalWorkflow{
     
@@ -350,11 +350,11 @@ static int thoughtVersion = 0;
 	modalNavController.tabBarItem.title = modalNavTitle1;
 	[modalNavController setNavigationBarHidden:YES];
 	    
-	ConscienceModalViewController *conscienceModalViewController = [[ConscienceModalViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
+	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     thoughtArea.hidden = TRUE;
-    conscienceModalViewController.screenshot = [self takeScreenshot];
+    conscienceViewController.screenshot = [self takeScreenshot];
 	
-    [modalNavController pushViewController:conscienceModalViewController animated:NO];
+    [modalNavController pushViewController:conscienceViewController animated:NO];
 	
 	[self presentModalViewController:modalNavController animated:NO];
 	

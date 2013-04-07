@@ -4,7 +4,7 @@ Conscience Listing screen.  View controller for accessing lists of available opt
 Secondary Conscience interaction screen.  Most other Conscience interactions request this screen to list things from Core Data.  
 
 @class ConscienceListViewController
-@see ConscienceModalViewController
+@see ConscienceViewController
 @see ConscienceAccessoryViewController
  
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
@@ -27,14 +27,14 @@ Accepts User input to filter list of ConscienceAssets.
 -(IBAction)filterByCost:(id)sender;
 
 /**
-Accepts User input to cancel the choice of ConscienceAsset.  Either returns User to ConscienceModalViewController in case of buttonNext or ConscienceListViewController in case of buttonNo.
+Accepts User input to cancel the choice of ConscienceAsset.  Either returns User to ConscienceViewController in case of buttonNext or ConscienceListViewController in case of buttonNo.
 @param sender id of object which requested method
 @return IBAction referenced from Interface Builder
  */
 -(IBAction)dismissThoughtModal:(id)sender;
 
 /**
- Accepts User input to return to ConscienceModalViewController
+ Accepts User input to return to ConscienceViewController
  @param id Object which requested method
  @return IBAction method available from Interface Builder
  */

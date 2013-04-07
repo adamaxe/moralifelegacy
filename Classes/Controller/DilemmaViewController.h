@@ -23,7 +23,7 @@ Accepts User input to change the presently displayed UIView and possibly commit 
 -(IBAction)selectChoice:(id)sender;
 
 /**
-Accepts User input to return to ConscienceModalViewController
+Accepts User input to return to ConscienceViewController
 @param id Object which requested method
 @return IBAction method available from Interface Builder
  */

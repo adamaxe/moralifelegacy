@@ -3,7 +3,7 @@ Implementation: Present a menu of options to User.
 Determine what information needs to be passed to subsequent UIViewController depending upon User Choice.
 User selection causes selectChoice to be called which sets the currentState variable to which version of the screen should be presented.
  
-@class ConscienceModalViewController ConscienceModalViewController.h
+@class ConscienceViewController ConscienceViewController.h
  */
 
 #import "ConscienceViewController.h"
@@ -531,7 +531,7 @@ Implementation: Determine what type of dismissal is appropriate depending on ver
 }
 
 /**
- Implementation: Signals User desire to return to ConscienceModalViewController
+ Implementation: Signals User desire to return to ConscienceViewController
  */
 -(IBAction)returnToHome:(id)sender{
 	

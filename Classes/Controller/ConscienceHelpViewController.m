@@ -199,7 +199,7 @@ Implementation: Ensure that actual button wishes to call changeScreen
 }
 
 /**
- Implementation: Signals User desire to return to ConscienceModalViewController
+ Implementation: Signals User desire to return to ConscienceViewController
  */
 -(IBAction)returnToHome:(id)sender{
 	

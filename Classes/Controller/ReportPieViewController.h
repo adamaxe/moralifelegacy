@@ -2,7 +2,7 @@
 Report view displaying pie chart.  Create GraphView and then displays contents of aggregated data from choice entries.
 
 @class ReportPieViewController
-@see ConscienceModalViewController
+@see ConscienceViewController
  
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 09/05/2010
@@ -32,7 +32,7 @@ Accepts User input to graph display type (sort/order/virtue/vice)
 - (IBAction) switchGraph:(id) sender;
 
 /**
-Accepts User input to return to ConscienceModalViewController  
+Accepts User input to return to ConscienceViewController  
 @param sender id of object which requested method
 @return IBAction referenced from Interface Builder
  */

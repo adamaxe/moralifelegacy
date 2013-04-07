@@ -498,7 +498,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
 
 
 /**
- Implementation: Signals User desire to return to ConscienceModalViewController
+ Implementation: Signals User desire to return to ConscienceViewController
  */
 -(IBAction)returnToHome:(id)sender{
 

@@ -5,7 +5,7 @@ Primary screen in the Conscience Interaction Workflow.  User experience changes 
 Only interaction with the Conscience is available from this workflow.
 User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 
-@class ConscienceModalViewController
+@class ConscienceViewController
 @see HomeViewController
 @see ConscienceListViewController
 @see ConscienceDilemmaListViewController

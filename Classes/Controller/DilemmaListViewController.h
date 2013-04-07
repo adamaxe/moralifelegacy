@@ -2,7 +2,7 @@
 List of available Dilemmas/Actions.  View Controller responsible for showing available dilemmas and progressing User through story.
 
 @class DilemmaListViewController
-@see ConscienceModalViewController
+@see ConscienceViewController
 @see DilemmaViewController
 @see ConscienceActionViewController
 
@@ -35,7 +35,7 @@ Remove DilemmaList screen and reset requested Dilemma Campaign
 -(IBAction)dismissDilemmaModal:(id)sender;
 
 /**
-Accepts User input to return to ConscienceModalViewController
+Accepts User input to return to ConscienceViewController
 @param id Object which requested method
 @return IBAction referenced from Interface Builder
  */

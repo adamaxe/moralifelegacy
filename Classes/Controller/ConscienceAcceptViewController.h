@@ -5,7 +5,7 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 
 @class ConscienceAcceptViewController
 @see ConscienceListViewController
-@see ConscienceModalViewController
+@see ConscienceViewController
 @see HomeViewController
 
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org

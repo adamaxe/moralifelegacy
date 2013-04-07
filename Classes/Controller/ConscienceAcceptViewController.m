@@ -1,5 +1,5 @@
 /**
-Implementation:  User can accept the choice: ConscienceAsset added to ConscienceBody/ConscienceAccessories and userCollection, ethicals subtracted from userCollection, conscienceView being updated and User returned to ConscienceModalViewController.
+Implementation:  User can accept the choice: ConscienceAsset added to ConscienceBody/ConscienceAccessories and userCollection, ethicals subtracted from userCollection, conscienceView being updated and User returned to ConscienceViewController.
 User can cancel entire Accessory workflow: return to HomeViewController.
 User can return to the previous screen:  return to ConscienceListViewController to select another ConscienceAsset.
  
@@ -48,12 +48,12 @@ User can return to the previous screen:  return to ConscienceListViewController 
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 /**
- Accepts User input to return to ConscienceModalViewController
+ Accepts User input to return to ConscienceViewController
  */
 -(void)dismissAcceptModal;
 
 /**
- Accepts User input to return to ConscienceModalViewController
+ Accepts User input to return to ConscienceViewController
  */
 -(void)returnToHome;
 
