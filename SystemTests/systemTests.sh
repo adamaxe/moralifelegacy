@@ -7,24 +7,6 @@ scripts=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencen
 #Determine if script is being run from workstation or CI box
 if [ -z "$JENKINS_SYSTEM_TESTS" ]; then
 
-    #Setup a place for the results to be copied to
-    RESULTS_DIRECTORY=~/Downloads/results
-    mkdir $RESULTS_DIRECTORY
-
-    #Iterate through every script
-    for i in "${scripts[@]}"
-    do
-
-#instruments -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $BUILT_PRODUCTS_DIR/$WRAPPER_NAME -e UIASCRIPT $SRCROOT/SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
-    instruments -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $BUILT_PRODUCTS_DIR/$WRAPPER_NAME -e UIASCRIPT /Users/aaxe/Documents/projects/teamaxe/code/moralife/SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
-
-    done
-
-    rm -Rf $RESULTS_DIRECTORY
-    exit 1
-
-else
-
     #Wipe the simulator
     rm -Rf ~/Library/Application\ Support/iPhone\ Simulator/
 
@@ -45,5 +27,22 @@ else
 
     done
 
+    exit 1
+
+else
+    #Setup a place for the results to be copied to
+    RESULTS_DIRECTORY=~/Downloads/results
+    mkdir $RESULTS_DIRECTORY
+
+    #Iterate through every script
+    for i in "${scripts[@]}"
+    do
+
+    #instruments -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $BUILT_PRODUCTS_DIR/$WRAPPER_NAME -e UIASCRIPT $SRCROOT/SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
+    instruments -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $BUILT_PRODUCTS_DIR/$WRAPPER_NAME -e UIASCRIPT /Users/aaxe/Documents/projects/teamaxe/code/moralife/SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
+
+    done
+
+    rm -Rf $RESULTS_DIRECTORY
     exit 1
 fi
