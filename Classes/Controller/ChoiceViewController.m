@@ -735,7 +735,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         [currentUserChoice setEntryCreationDate:[NSDate date]];
         
         //Setup a transient expression for Conscience in response to entry
-        //UserDefault will be picked up by ConscienceViewController
+        //UserDefault will be picked up by HomeViewController
         [prefs setFloat:((severityConversion * 10.0) + 50) forKey:@"transientMind"];
         
         /** @todo refactor into ConscienceMind

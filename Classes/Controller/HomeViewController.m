@@ -2,7 +2,7 @@
 Implementation:  UIViewController can present many versions of itself without having to render entirely new UIViewControllers.
 All other Conscience-based UIViewControllers are launched from this starting point.
 
-@class ConscienceViewController ConscienceViewController.h
+@class HomeViewController HomeViewController.h
  */
 
 #import "HomeViewController.h"
@@ -18,11 +18,11 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "UIColor+Utility.h"
 
 typedef enum {
-    MLConscienceViewControllerVirtueButtonTag = 3030,
-    MLConscienceViewControllerViceButtonTag = 3031,
-    MLConscienceViewControllerRankButtonTag = 3032,
-    MLConscienceViewControllerThoughtButtonTag = 3033
-} MLConscienceViewControllerTags;
+    MLHomeViewControllerVirtueButtonTag = 3030,
+    MLHomeViewControllerViceButtonTag = 3031,
+    MLHomeViewControllerRankButtonTag = 3032,
+    MLHomeViewControllerThoughtButtonTag = 3033
+} MLHomeViewControllerTags;
 
 float const MLTransientInterval = 7;
 int const MLThoughtIterations = 5;
@@ -139,9 +139,9 @@ static int thoughtVersion = 0;
     viceImage.alpha = 0;
     rankImage.alpha = 0;
     
-    [virtueButton setTag:MLConscienceViewControllerVirtueButtonTag];    
-    [viceButton setTag:MLConscienceViewControllerViceButtonTag];
-    [rankButton setTag:MLConscienceViewControllerRankButtonTag];
+    [virtueButton setTag:MLHomeViewControllerVirtueButtonTag];    
+    [viceButton setTag:MLHomeViewControllerViceButtonTag];
+    [rankButton setTag:MLHomeViewControllerRankButtonTag];
     virtueLabel.font = [UIFont fontForHomeScreenButtons];
     viceLabel.font = [UIFont fontForHomeScreenButtons];
     rankLabel.font = [UIFont fontForHomeScreenButtons];
@@ -559,19 +559,19 @@ static int thoughtVersion = 0;
 		int choiceIndex = senderButton.tag;
         
 		switch (choiceIndex){
-			case MLConscienceViewControllerVirtueButtonTag:{
+			case MLHomeViewControllerVirtueButtonTag:{
                 isChoice = TRUE;
                 if (![homeVirtueDisplayName isEqualToString:@""]) {
                     searchString = [NSString stringWithFormat:@"Your most developed Virtue is %@.", homeVirtueDisplayName];
                 }
             }break;
-			case MLConscienceViewControllerViceButtonTag:{
+			case MLHomeViewControllerViceButtonTag:{
                 isChoice = TRUE;
                 if (![homeViceDisplayName isEqualToString:@""]) {
                     searchString = [NSString stringWithFormat:@"Your most troublesome Vice is %@.", homeViceDisplayName];
                 }
             }break;
-			case MLConscienceViewControllerRankButtonTag:{
+			case MLHomeViewControllerRankButtonTag:{
                 isChoice = TRUE;
                 if (![highestRankName isEqualToString:@""]) {
                     searchString = [NSString stringWithFormat:@"Your current rank is %@.", highestRankName];

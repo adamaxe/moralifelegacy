@@ -2,7 +2,7 @@
 Application Introduction.  View controller for first time into app.  Only utilized on first boot.
 
 @class IntroViewController
-@see ConscienceViewController
+@see HomeViewController
  
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 10/9/2010

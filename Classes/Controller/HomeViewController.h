@@ -2,7 +2,7 @@
 MoraLife Home Screen.  Landing UIViewController for application.
 Primary screen for entire Application Workflow.  Provides high-level feedback for User review.
 
-@class ConscienceViewController
+@class HomeViewController
 @see ConscienceModalViewController
 
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org

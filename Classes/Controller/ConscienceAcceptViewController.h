@@ -6,7 +6,7 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 @class ConscienceAcceptViewController
 @see ConscienceListViewController
 @see ConscienceModalViewController
-@see ConscienceViewController
+@see HomeViewController
 
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @date 08/25/2010
@@ -21,7 +21,7 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 
 /**
-Accepts User input to commit the choice of ConscienceAsset to persistence.  Returns User to ConscienceViewController.
+Accepts User input to commit the choice of ConscienceAsset to persistence.  Returns User to HomeViewController.
 @param sender id of object which requested method
 @return IBAction referenced from Interface Builder
  */

@@ -6,7 +6,7 @@ Only interaction with the Conscience is available from this workflow.
 User can change Conscience, answer Morathology dilemmas and see Moral Reports.
 
 @class ConscienceModalViewController
-@see ConscienceViewController
+@see HomeViewController
 @see ConscienceListViewController
 @see ConscienceDilemmaListViewController
 @see ConscienceAccessoryViewController

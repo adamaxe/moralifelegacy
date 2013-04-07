@@ -1,6 +1,6 @@
 /**
 Implementation:  User can accept the choice: ConscienceAsset added to ConscienceBody/ConscienceAccessories and userCollection, ethicals subtracted from userCollection, conscienceView being updated and User returned to ConscienceModalViewController.
-User can cancel entire Accessory workflow: return to ConscienceViewController.
+User can cancel entire Accessory workflow: return to HomeViewController.
 User can return to the previous screen:  return to ConscienceListViewController to select another ConscienceAsset.
  
 @class ConscienceAcceptViewController ConscienceAcceptViewController.h
@@ -414,7 +414,7 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     }
 
     //Setup a transient expression for Conscience in response to entry
-    //UserDefault will be picked up by ConscienceViewController
+    //UserDefault will be picked up by HomeViewController
     [prefs setFloat:(85) forKey:@"transientMind"];
     
     [currentUserCharacter setCharacterMood:@(newMood)];    

@@ -94,11 +94,11 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
     UserConscience *userConscience = [[UserConscience alloc] initWithModelManager:self.moralModelManager];
 
-	HomeViewController *conscienceViewController = [[HomeViewController alloc] initWithModelManager:self.moralModelManager andConscience:userConscience];
+	HomeViewController *homeViewController = [[HomeViewController alloc] initWithModelManager:self.moralModelManager andConscience:userConscience];
 
 	navController1.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 
-	[navController1 pushViewController:conscienceViewController animated:NO];
+	[navController1 pushViewController:homeViewController animated:NO];
 
 #if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
     
