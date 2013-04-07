@@ -231,7 +231,7 @@
 		5E3E87E11226090B00F2708A /* ChoiceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B51226090B00F2708A /* ChoiceListView.xib */; };
 		5E3E87E21226090B00F2708A /* ChoiceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B61226090B00F2708A /* ChoiceView.xib */; };
 		5E3E87E31226090B00F2708A /* ConscienceModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B71226090B00F2708A /* ConscienceModalView.xib */; };
-		5E3E87E41226090B00F2708A /* ConscienceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B81226090B00F2708A /* ConscienceView.xib */; };
+		5E3E87E41226090B00F2708A /* HomeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B81226090B00F2708A /* HomeView.xib */; };
 		5E3E87E51226090B00F2708A /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87B91226090B00F2708A /* MainWindow.xib */; };
 		5E3E87E61226090B00F2708A /* ReferenceDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */; };
 		5E3E87E71226090B00F2708A /* ReferenceListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E3E87BB1226090B00F2708A /* ReferenceListView.xib */; };
@@ -1593,7 +1593,7 @@
 		5EE1B50D12273DE000639CAF /* con-sports-softball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EE1B50212273DE000639CAF /* con-sports-softball.svg */; };
 		5EE1B50E12273DE000639CAF /* con-sports-volleyball.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EE1B50312273DE000639CAF /* con-sports-volleyball.svg */; };
 		5EE1B6B712277DA900639CAF /* con-nothing.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EE1B6B612277DA900639CAF /* con-nothing.svg */; };
-		5EE2E182122608840091140B /* ConscienceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E155122608840091140B /* ConscienceViewController.m */; };
+		5EE2E182122608840091140B /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E155122608840091140B /* HomeViewController.m */; };
 		5EE2E29E12EB77B4009C94E9 /* thoughtbubble-connector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE2E29C12EB77B4009C94E9 /* thoughtbubble-connector@2x.png */; };
 		5EE2E2A712EB78EF009C94E9 /* thoughtbubble-connector.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EE2E2A512EB78EF009C94E9 /* thoughtbubble-connector.png */; };
 		5EE2E3FE12EC86B9009C94E9 /* MoraLifeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EE2E3FC12EC86B9009C94E9 /* MoraLifeAppDelegate.m */; };
@@ -1928,7 +1928,7 @@
 		5E3E87B51226090B00F2708A /* ChoiceListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChoiceListView.xib; path = Resources/ChoiceListView.xib; sourceTree = "<group>"; };
 		5E3E87B61226090B00F2708A /* ChoiceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ChoiceView.xib; path = Resources/ChoiceView.xib; sourceTree = "<group>"; };
 		5E3E87B71226090B00F2708A /* ConscienceModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConscienceModalView.xib; path = Resources/ConscienceModalView.xib; sourceTree = "<group>"; };
-		5E3E87B81226090B00F2708A /* ConscienceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ConscienceView.xib; path = Resources/ConscienceView.xib; sourceTree = "<group>"; };
+		5E3E87B81226090B00F2708A /* HomeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = HomeView.xib; path = Resources/HomeView.xib; sourceTree = "<group>"; };
 		5E3E87B91226090B00F2708A /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceDetailView.xib; path = Resources/ReferenceDetailView.xib; sourceTree = "<group>"; };
 		5E3E87BB1226090B00F2708A /* ReferenceListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReferenceListView.xib; path = Resources/ReferenceListView.xib; sourceTree = "<group>"; };
@@ -3340,8 +3340,8 @@
 		5EE1B50212273DE000639CAF /* con-sports-softball.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-sports-softball.svg"; path = "Resources/images/conscience/con-sports-softball.svg"; sourceTree = "<group>"; };
 		5EE1B50312273DE000639CAF /* con-sports-volleyball.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-sports-volleyball.svg"; path = "Resources/images/conscience/con-sports-volleyball.svg"; sourceTree = "<group>"; };
 		5EE1B6B612277DA900639CAF /* con-nothing.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-nothing.svg"; path = "Resources/images/conscience/con-nothing.svg"; sourceTree = "<group>"; };
-		5EE2E154122608840091140B /* ConscienceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConscienceViewController.h; sourceTree = "<group>"; };
-		5EE2E155122608840091140B /* ConscienceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConscienceViewController.m; sourceTree = "<group>"; };
+		5EE2E154122608840091140B /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		5EE2E155122608840091140B /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		5EE2E29C12EB77B4009C94E9 /* thoughtbubble-connector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-connector@2x.png"; path = "Resources/images/interface/thoughtbubble-connector@2x.png"; sourceTree = "<group>"; };
 		5EE2E2A512EB78EF009C94E9 /* thoughtbubble-connector.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-connector.png"; path = "Resources/images/interface/thoughtbubble-connector.png"; sourceTree = "<group>"; };
 		5EE2E3FC12EC86B9009C94E9 /* MoraLifeAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoraLifeAppDelegate.m; sourceTree = "<group>"; };
@@ -3575,7 +3575,7 @@
 				5E3E87B41226090B00F2708A /* ChoiceInitView.xib */,
 				5E3E87B51226090B00F2708A /* ChoiceListView.xib */,
 				5E3E87B61226090B00F2708A /* ChoiceView.xib */,
-				5E3E87B81226090B00F2708A /* ConscienceView.xib */,
+				5E3E87B81226090B00F2708A /* HomeView.xib */,
 				5E454D711288DFE400C12FF7 /* ConscienceAcceptView.xib */,
 				5E0B22331399C5E7002A8664 /* ChoiceModalView.xib */,
 				5EB5A317122624E800879E11 /* ConscienceAccessoryView.xib */,
@@ -5466,12 +5466,12 @@
 				5EEBBC7A12FD24EC002E2C1E /* ConscienceModalViewController.m */,
 				5E2A7F1512FD9540001ADB66 /* ConscienceListViewController.h */,
 				5E2A7F1612FD9540001ADB66 /* ConscienceListViewController.m */,
-				5EE2E154122608840091140B /* ConscienceViewController.h */,
-				5EE2E155122608840091140B /* ConscienceViewController.m */,
 				5EAA21231307498200C1DB02 /* DilemmaListViewController.h */,
 				5EAA21241307498200C1DB02 /* DilemmaListViewController.m */,
 				5EAA21201307451000C1DB02 /* DilemmaViewController.h */,
 				5EAA21211307451000C1DB02 /* DilemmaViewController.m */,
+				5EE2E154122608840091140B /* HomeViewController.h */,
+				5EE2E155122608840091140B /* HomeViewController.m */,
 				5EBC9AD91352A42B001ACD7A /* IntroViewController.h */,
 				5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */,
 				5E4F414217040241005B0149 /* MoraLifeViewController.h */,
@@ -5747,7 +5747,7 @@
 				5E3E87E11226090B00F2708A /* ChoiceListView.xib in Resources */,
 				5E3E87E21226090B00F2708A /* ChoiceView.xib in Resources */,
 				5E3E87E31226090B00F2708A /* ConscienceModalView.xib in Resources */,
-				5E3E87E41226090B00F2708A /* ConscienceView.xib in Resources */,
+				5E3E87E41226090B00F2708A /* HomeView.xib in Resources */,
 				5E3E87E51226090B00F2708A /* MainWindow.xib in Resources */,
 				5E3E87E61226090B00F2708A /* ReferenceDetailView.xib in Resources */,
 				5E3E87E71226090B00F2708A /* ReferenceListView.xib in Resources */,
@@ -7197,7 +7197,7 @@
 				5EF57BF21218DE770053B97B /* ConscienceAccessories.m in Sources */,
 				5E9104E3121A18E200423DE8 /* AccessoryObjectView.m in Sources */,
 				5E7191D412206AEF000A3508 /* UINavigationBar-Transparent.m in Sources */,
-				5EE2E182122608840091140B /* ConscienceViewController.m in Sources */,
+				5EE2E182122608840091140B /* HomeViewController.m in Sources */,
 				5E3E880D122609B600F2708A /* XMLParser.m in Sources */,
 				5ED61EBD122CAD3A00542453 /* ConscienceBubbleView.m in Sources */,
 				5E8CA931123469AE00461363 /* GraphView.m in Sources */,

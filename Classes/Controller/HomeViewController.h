@@ -12,7 +12,7 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 
 #import "MoraLifeViewController.h"
 
-@interface ConscienceViewController : MoraLifeViewController
+@interface HomeViewController : MoraLifeViewController
 
 /**
 Accepts User input in order to determine which thought Bubble to dislay or ConscienceModalViewController

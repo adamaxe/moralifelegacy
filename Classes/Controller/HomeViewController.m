@@ -5,7 +5,7 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 @class ConscienceViewController ConscienceViewController.h
  */
 
-#import "ConscienceViewController.h"
+#import "HomeViewController.h"
 #import "ConscienceModalViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "UserChoiceDAO.h"
@@ -28,7 +28,7 @@ float const MLTransientInterval = 7;
 int const MLThoughtIterations = 5;
 float const MLThoughtInterval = 5;
 
-@interface ConscienceViewController () <ViewControllerLocalization> {
+@interface HomeViewController () <ViewControllerLocalization> {
     
 	NSUserDefaults *prefs;				/**< serialized user settings/state retention */
     
@@ -109,7 +109,7 @@ float const MLThoughtInterval = 5;
 
 @end
 
-@implementation ConscienceViewController
+@implementation HomeViewController
 
 /** @todo externalize angle and shake functions if possible */
 static int thoughtVersion = 0;
@@ -229,7 +229,7 @@ static int thoughtVersion = 0;
         //Setup invocation for delayed mood reset
         SEL selector = @selector(resetMood:andEnthusiasm:);
         
-        NSMethodSignature *signature = [ConscienceViewController instanceMethodSignatureForSelector:selector];
+        NSMethodSignature *signature = [HomeViewController instanceMethodSignatureForSelector:selector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setSelector:selector];
         
