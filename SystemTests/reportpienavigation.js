@@ -9,7 +9,7 @@
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Report Pie Navigation (13reportpienavigation.js)";
+var testSuiteName = "Report Pie Navigation (reportpienavigation.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

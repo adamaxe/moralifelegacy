@@ -9,7 +9,7 @@ Moralife UI Choice Immoral Display validation - Ensure that User sees the correc
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice Immoral Display (9choiceimmoraldisplay.js)";
+var testSuiteName = "Choice Immoral Display (choiceimmoraldisplay.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

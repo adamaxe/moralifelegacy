@@ -1778,7 +1778,7 @@
 		5E0B222F1399C58C002A8664 /* ChoiceHistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryViewController.m; sourceTree = "<group>"; };
 		5E0B22331399C5E7002A8664 /* ChoiceModalView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ChoiceModalView.xib; path = Resources/ChoiceModalView.xib; sourceTree = "<group>"; };
 		5E0B2239139AC27A002A8664 /* icon-rank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rank.png"; path = "Resources/images/interface/icons/icon-rank.png"; sourceTree = "<group>"; };
-		5E0C900116685B3F00BCD5EF /* 14referenceverify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = 14referenceverify.js; sourceTree = "<group>"; };
+		5E0C900116685B3F00BCD5EF /* referenceverify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = referenceverify.js; sourceTree = "<group>"; };
 		5E0DFA57120BA66B00F77D70 /* ConscienceGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceGradient.h; path = Model/ConscienceGradient.h; sourceTree = "<group>"; };
 		5E0DFA58120BA66B00F77D70 /* ConscienceGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceGradient.m; path = Model/ConscienceGradient.m; sourceTree = "<group>"; };
 		5E0EFCA9130F7DFA00009BB6 /* con-zodiac-scorpio-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "con-zodiac-scorpio-sm.png"; path = "Resources/images/conscience/icons/con-zodiac-scorpio-sm.png"; sourceTree = "<group>"; };
@@ -3058,15 +3058,15 @@
 		5EA108DA154E3234008A7936 /* TestUserCollectable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCollectable.m; sourceTree = "<group>"; };
 		5EA108DC154F8848008A7936 /* TestUserCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserCharacter.m; sourceTree = "<group>"; };
 		5EA108DE154F8EE8008A7936 /* TestCharacter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCharacter.m; sourceTree = "<group>"; };
-		5EA12260162CFC13004B14E8 /* 13reportpienavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = 13reportpienavigation.js; sourceTree = "<group>"; };
+		5EA12260162CFC13004B14E8 /* reportpienavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = reportpienavigation.js; sourceTree = "<group>"; };
 		5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libSystem.dylib; path = usr/lib/libSystem.dylib; sourceTree = SDKROOT; };
 		5EA1D224130E38A200BA81D6 /* UnitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EA1D22A130E38A200BA81D6 /* UnitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTests-Info.plist"; sourceTree = "<group>"; };
 		5EA1D22C130E38A200BA81D6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5EA1D22E130E38A200BA81D6 /* UnitTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UnitTests-Prefix.pch"; sourceTree = "<group>"; };
-		5EA26D591583A0E700CDA802 /* 10choiceimmoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = 10choiceimmoralcancel.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
-		5EA26D5A1583A0E700CDA802 /* 11choiceimmoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = 11choiceimmoralentry.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
-		5EA26D5B1583A0E700CDA802 /* 12choiceimmoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = 12choiceimmoralverify.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoralcancel.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		5EA26D5A1583A0E700CDA802 /* choiceimmoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoralentry.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoralverify.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		5EA26D641584351500CDA802 /* ModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ModelManager.h; path = Model/ModelManager.h; sourceTree = "<group>"; };
 		5EA26D651584351500CDA802 /* ModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ModelManager.m; path = Model/ModelManager.m; sourceTree = "<group>"; };
 		5EA26D7215843DB600CDA802 /* TestModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestModelManager.m; path = Model/TestModelManager.m; sourceTree = "<group>"; };
@@ -3076,9 +3076,9 @@
 		5EA542291380BB13009077B7 /* Character.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Character.h; sourceTree = "<group>"; };
 		5EA5422A1380BB13009077B7 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		5EA639B612625D9100C72419 /* button-large-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-large-down.png"; path = "Resources/images/interface/button-large-down.png"; sourceTree = "<group>"; };
-		5EA696DB157DFF440075115F /* 2helpscreendismissals.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = 2helpscreendismissals.js; sourceTree = "<group>"; };
-		5EA696DC157DFF440075115F /* 1introcompletion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = 1introcompletion.js; sourceTree = "<group>"; };
-		5EA696DD15804A190075115F /* 4consciencenavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = 4consciencenavigation.js; sourceTree = "<group>"; };
+		5EA696DB157DFF440075115F /* helpscreendismissals.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = helpscreendismissals.js; sourceTree = "<group>"; };
+		5EA696DC157DFF440075115F /* introcompletion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = introcompletion.js; sourceTree = "<group>"; };
+		5EA696DD15804A190075115F /* consciencenavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = consciencenavigation.js; sourceTree = "<group>"; };
 		5EA83800160645BF00536C9E /* acc-top-lancercap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-top-lancercap.png"; path = "Resources/images/accessories/acc-top-lancercap.png"; sourceTree = "<group>"; };
 		5EA83803160645D400536C9E /* acc-top-lancercap-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-top-lancercap-sm.png"; sourceTree = "<group>"; };
 		5EAA21201307451000C1DB02 /* DilemmaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DilemmaViewController.h; sourceTree = "<group>"; };
@@ -3153,7 +3153,7 @@
 		5EB9BE9D12FD200600584F67 /* ReportPieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportPieViewController.m; sourceTree = "<group>"; };
 		5EB9BE9E12FD200600584F67 /* ReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceViewController.h; sourceTree = "<group>"; };
 		5EB9BE9F12FD200700584F67 /* ReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceViewController.m; sourceTree = "<group>"; };
-		5EBBDC781582E9D700355FDE /* 8choicemoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = 8choicemoralverify.js; sourceTree = "<group>"; };
+		5EBBDC781582E9D700355FDE /* choicemoralverify.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralverify.js; sourceTree = "<group>"; };
 		5EBC21ED121394F3005E4644 /* con-ahimsa.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-ahimsa.svg"; path = "Resources/images/conscience/con-ahimsa.svg"; sourceTree = "<group>"; };
 		5EBC21EE121394F3005E4644 /* con-aum.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-aum.svg"; path = "Resources/images/conscience/con-aum.svg"; sourceTree = "<group>"; };
 		5EBC21EF121394F3005E4644 /* con-cross.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-cross.svg"; path = "Resources/images/conscience/con-cross.svg"; sourceTree = "<group>"; };
@@ -3174,11 +3174,11 @@
 		5EC31C21131350F2000223C3 /* cardback-reference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "cardback-reference.png"; path = "Resources/images/interface/cards/cardback-reference.png"; sourceTree = "<group>"; };
 		5EC5543A15774064004BF692 /* uiajsinclude.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = uiajsinclude.js; sourceTree = "<group>"; };
 		5EC5543B15774064004BF692 /* uiautomationstyle.xslt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = uiautomationstyle.xslt; sourceTree = "<group>"; };
-		5EC5543C15774064004BF692 /* 3mainnavigation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = 3mainnavigation.js; sourceTree = "<group>"; };
-		5EC55446157748FF004BF692 /* 6choicemoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = 6choicemoralcancel.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
-		5EC55447157748FF004BF692 /* 5choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = 5choicemoraldisplay.js; sourceTree = "<group>"; };
-		5EC55448157748FF004BF692 /* 7choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = 7choicemoralentry.js; sourceTree = "<group>"; };
-		5EC55449157A58B9004BF692 /* 9choiceimmoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = 9choiceimmoraldisplay.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		5EC5543C15774064004BF692 /* mainnavigation.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mainnavigation.js; sourceTree = "<group>"; };
+		5EC55446157748FF004BF692 /* choicemoralcancel.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choicemoralcancel.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
+		5EC55447157748FF004BF692 /* choicemoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoraldisplay.js; sourceTree = "<group>"; };
+		5EC55448157748FF004BF692 /* choicemoralentry.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = choicemoralentry.js; sourceTree = "<group>"; };
+		5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; lineEnding = 0; path = choiceimmoraldisplay.js; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.javascript; };
 		5EC6462D15AD1268008E5CE3 /* UserChoiceDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserChoiceDAO.h; sourceTree = "<group>"; };
 		5EC6462E15AD1268008E5CE3 /* UserChoiceDAO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserChoiceDAO.m; sourceTree = "<group>"; };
 		5EC6463215AD1354008E5CE3 /* UserCharacterDAO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCharacterDAO.h; sourceTree = "<group>"; };
@@ -5305,20 +5305,20 @@
 			isa = PBXGroup;
 			children = (
 				5EC5543915774064004BF692 /* include */,
-				5EA696DC157DFF440075115F /* 1introcompletion.js */,
-				5EA696DB157DFF440075115F /* 2helpscreendismissals.js */,
-				5EC5543C15774064004BF692 /* 3mainnavigation.js */,
-				5EA696DD15804A190075115F /* 4consciencenavigation.js */,
-				5EC55447157748FF004BF692 /* 5choicemoraldisplay.js */,
-				5EC55446157748FF004BF692 /* 6choicemoralcancel.js */,
-				5EC55448157748FF004BF692 /* 7choicemoralentry.js */,
-				5EBBDC781582E9D700355FDE /* 8choicemoralverify.js */,
-				5EC55449157A58B9004BF692 /* 9choiceimmoraldisplay.js */,
-				5EA26D591583A0E700CDA802 /* 10choiceimmoralcancel.js */,
-				5EA26D5A1583A0E700CDA802 /* 11choiceimmoralentry.js */,
-				5EA26D5B1583A0E700CDA802 /* 12choiceimmoralverify.js */,
-				5EA12260162CFC13004B14E8 /* 13reportpienavigation.js */,
-				5E0C900116685B3F00BCD5EF /* 14referenceverify.js */,
+				5EA696DC157DFF440075115F /* introcompletion.js */,
+				5EA696DB157DFF440075115F /* helpscreendismissals.js */,
+				5EC5543C15774064004BF692 /* mainnavigation.js */,
+				5EA696DD15804A190075115F /* consciencenavigation.js */,
+				5E0C900116685B3F00BCD5EF /* referenceverify.js */,
+				5EC55447157748FF004BF692 /* choicemoraldisplay.js */,
+				5EC55446157748FF004BF692 /* choicemoralcancel.js */,
+				5EC55448157748FF004BF692 /* choicemoralentry.js */,
+				5EBBDC781582E9D700355FDE /* choicemoralverify.js */,
+				5EC55449157A58B9004BF692 /* choiceimmoraldisplay.js */,
+				5EA26D591583A0E700CDA802 /* choiceimmoralcancel.js */,
+				5EA26D5A1583A0E700CDA802 /* choiceimmoralentry.js */,
+				5EA26D5B1583A0E700CDA802 /* choiceimmoralverify.js */,
+				5EA12260162CFC13004B14E8 /* reportpienavigation.js */,
 				5E6BA4F215B920290008825D /* systemTests.sh */,
 			);
 			path = SystemTests;

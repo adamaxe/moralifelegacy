@@ -9,7 +9,7 @@
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice Immoral Cancel (10choiceimmoralcancel.js)";
+var testSuiteName = "Choice Immoral Cancel (choiceimmoralcancel.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

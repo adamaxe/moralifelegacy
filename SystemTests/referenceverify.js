@@ -1,5 +1,5 @@
 /**
-Moralife UI Choice Reference Section Verification - Verify that the default application reference data is present
+Moralife UI Choice Reference Section Verification - Verify that the default application reference data is present, must be done before any entry is committed.
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
@@ -9,7 +9,7 @@ Moralife UI Choice Reference Section Verification - Verify that the default appl
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Reference Verify (14referenceverify.js)";
+var testSuiteName = "Reference Verify (referenceverify.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
