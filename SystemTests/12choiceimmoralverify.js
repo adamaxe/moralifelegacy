@@ -1,21 +1,20 @@
 /**
-Moralife UI Choice Moral Entry Verification - Verify that choicemoralentry.js actually entered in data
+Moralife UI Choice Imoral Entry Verification - Verify that choiceimmoralentry.js actually entered in data
  
 @author Copyright 2012 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 
-@see choicemoralentry.js
 @date 05/28/2012
-@file choicemoralverify.js
+@file choiceimmoralverify.js
 */
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice Moral Verify (choicemoralverify.js)";
+var testSuiteName = "Choice Immoral Verify (12choiceimmoralverify.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-testCaseName = testSuiteName + " Verify Moral Journal Entry";
+testCaseName = testSuiteName + " Verify Immoral Journal Entry";
 
 UIALogger.logStart(testCaseName + " Test");
 
@@ -34,7 +33,7 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
 
 target.delay(2.0);
 
-if(app.navigationBar().name() == "Moral Choice") {
+if(app.navigationBar().name() == "Immoral Choice") {
 	UIALogger.logPass(testCaseName + " correct"); 
 } else {
 	UIALogger.logFail(testCaseName + " incorrect: " + app.navigationBar().name());
@@ -43,30 +42,30 @@ if(app.navigationBar().name() == "Moral Choice") {
 testCaseName = testSuiteName + " choiceTextField entry";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textFields()["Choice"].value() == moralName) {
+if(window.textFields()["Choice"].value() == immoralName) {
        UIALogger.logPass(testCaseName + " verified."); 
 } else {
        UIALogger.logFail(testCaseName + " not verified: " + window.textFields()["Choice"].value());
 }
 
-testCaseName = testSuiteName + " Virtue moralButton selection";
+testCaseName = testSuiteName + " Vice moralButton selection";
 target.delay(2.0);
 
-UIALogger.logMessage(window.buttons()["Select a Virtue"].name());
+UIALogger.logMessage(window.buttons()["Select a Vice"].name());
 
-testCaseName = testSuiteName + " Virtue severitySlider set";
+testCaseName = testSuiteName + " Vice severitySlider set";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.sliders()["Virtue Severity"].value() == virtueSeveritySliderValue) {
+if(window.sliders()["Vice Severity"].value() == viceSeveritySliderValue) {
        UIALogger.logPass(testCaseName + " verified"); 
 } else {
-       UIALogger.logFail(testCaseName + " not verified: " + window.sliders()["Virtue Severity"].value());
+       UIALogger.logFail(testCaseName + " not verified: " + window.sliders()["Vice Severity"].value());
 }
 
 testCaseName = testSuiteName + " Choice descriptionTextView entry";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textViews()["Description"].value() == moralDescription) {
+if(window.textViews()["Description"].value() == immoralDescription) {
        UIALogger.logPass(testCaseName + " verified."); 
 } else {
        UIALogger.logFail(testCaseName + " not verified: " + window.textViews()["Description"].value());
@@ -78,7 +77,7 @@ app.navigationBar().rightButton().tap();
 testCaseName = testSuiteName + " Details justificationTextField Entry";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textFields()["Justification"].value() == moralJustification) {
+if(window.textFields()["Justification"].value() == immoralJustification) {
        UIALogger.logPass(testCaseName + " verified."); 
 } else {
        UIALogger.logFail(testCaseName + " not verified: " + window.textFields()["Justification"].value());
@@ -87,7 +86,7 @@ if(window.textFields()["Justification"].value() == moralJustification) {
 testCaseName = testSuiteName + " Details consequenceTextField Entry";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.textFields()["Consequence"].value() == moralConsequence) {
+if(window.textFields()["Consequence"].value() == immoralConsequence) {
        UIALogger.logPass(testCaseName + " verified."); 
 } else {
        UIALogger.logFail(testCaseName + " not verified: " + window.textFields()["Consequence"].value());
@@ -96,7 +95,7 @@ if(window.textFields()["Consequence"].value() == moralConsequence) {
 testCaseName = testSuiteName + " Details influenceSlider Set";
 UIALogger.logStart(testCaseName + " Test");
 
-if(window.sliders()["Influence"].value() == moralInfluenceSliderValue) {
+if(window.sliders()["Influence"].value() == immoralInfluenceSliderValue) {
        UIALogger.logPass(testCaseName + " verified."); 
 } else {
        UIALogger.logFail(testCaseName + " not verified: " + window.sliders()["Influence"].value());

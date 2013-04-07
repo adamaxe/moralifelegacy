@@ -9,7 +9,7 @@ Moralife UI Choice Moral Cancel validation - Ensure that User can cancel every c
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Moral Choice Cancel (moralchoicecancel.js)";
+var testSuiteName = "Moral Choice Cancel (6moralchoicecancel.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

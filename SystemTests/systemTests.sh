@@ -1,8 +1,7 @@
 #! /bin/sh
 
 #Setup script order
-scripts=( "introcompletion" "helpscreendismissals" "referenceverify" "reportpienavigation" "choicemoralentry" "choicemoralverify" "mainnavigation" "consciencenavigation" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify"
-"choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify")
+scripts=( "1introcompletion" "2helpscreendismissals" "3mainnavigation" "4consciencenavigation" "5choicemoraldisplay" "6choicemoralcancel" "7choicemoralentry" "8choicemoralverify" "9choiceimmoraldisplay" "10choiceimmoralcancel" "11choiceimmoralentry" "12choiceimmoralverify" "13reportpienavigation" "14referenceverify")
 
 
 #Determine if script is being run from workstation or CI box

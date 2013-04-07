@@ -9,7 +9,7 @@ Moralife Conscience Modal Screen navigation - Ensure that User can navigate thro
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Conscience Navigation (consciencenavigation.js)";
+var testSuiteName = "Conscience Navigation (4consciencenavigation.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

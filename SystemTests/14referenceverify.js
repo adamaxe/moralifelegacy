@@ -9,7 +9,7 @@ Moralife UI Choice Reference Section Verification - Verify that the default appl
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Reference Verify (referenceverify.js)";
+var testSuiteName = "Reference Verify (14referenceverify.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

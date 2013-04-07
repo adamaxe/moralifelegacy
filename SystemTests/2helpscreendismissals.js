@@ -9,7 +9,7 @@ Moralife Help Screen dismissals - Navigate through the app dismissing every help
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Help Screen Dismissals (helpscreendismissals.js)";
+var testSuiteName = "Help Screen Dismissals (2helpscreendismissals.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

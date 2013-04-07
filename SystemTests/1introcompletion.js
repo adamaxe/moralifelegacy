@@ -9,7 +9,7 @@ Moralife Introduction completion - Conclude the introduction so that the rest of
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Introduction Completion (introcompletion.js)";
+var testSuiteName = "Introduction Completion (1introcompletion.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

@@ -9,7 +9,7 @@ Moralife UI Choice Imoral Entry Validation.  Test Data populated from uijsinclud
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Choice Immoral Entry (choiceimmoralentry.js)";
+var testSuiteName = "Choice Immoral Entry (11choiceimmoralentry.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");

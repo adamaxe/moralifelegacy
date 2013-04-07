@@ -9,7 +9,7 @@ Moralife UI Main Navigation traversal validation - Ensure that every User can tr
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Main Navigation (mainnavigation.js)";
+var testSuiteName = "Main Navigation (3mainnavigation.js)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
