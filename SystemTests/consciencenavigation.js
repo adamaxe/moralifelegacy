@@ -9,7 +9,7 @@ Moralife Conscience Modal Screen navigation
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Conscience Navigation";
+var testSuiteName = "Conscience Navigation (consciencenavigation)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -139,3 +139,5 @@ if (window.buttons()["Commissary"].checkIsValid()){
 } else {
 	UIALogger.logFail(testCaseName + " incorrect. No commissary"); 
 }
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

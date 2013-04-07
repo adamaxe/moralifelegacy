@@ -9,7 +9,7 @@ Moralife Help Screen dismissals
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Help Screen Dismissal";
+var testSuiteName = "Help Screen Dismissals (helpscreendismissals)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -135,3 +135,5 @@ if (app.navigationBar().buttons()["Journal"].checkIsValid()){
 } else {
 	UIALogger.logFail(testCaseName + " incorrectly.");
 }
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

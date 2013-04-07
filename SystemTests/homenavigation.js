@@ -9,7 +9,7 @@ Moralife UI Main Navigation traversal validation
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Main UINavigationBar Navigation";
+var testSuiteName = "Home Navigation (homenavigation)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -178,3 +178,5 @@ if (window.buttons()["Morals"].checkIsValid()){
 }
 
 app.navigationBar().leftButton().tap();
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");

@@ -9,7 +9,7 @@ Moralife Introduction completion
 
 #import "include/uiajsinclude.js"
 
-var testSuiteName = "Intro Completion";
+var testSuiteName = "Intro Completion (introcompletion)";
 var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
@@ -55,9 +55,7 @@ if (!app.navigationBar().buttons()["Journal"].checkIsValid()){
     testCaseName = testSuiteName + " UINavigationBar Journal verification";
     UIALogger.logStart(testCaseName + " Test");
         
-    if (app.navigationBar().buttons()["Journal"].checkIsValid()){ 
-        
-//        app.navigationBar().buttons()["Journal"].tap();
+    if (app.navigationBar().buttons()["Journal"].checkIsValid()){
 
         UIALogger.logPass(testCaseName + " passed."); 
         
@@ -65,25 +63,10 @@ if (!app.navigationBar().buttons()["Journal"].checkIsValid()){
         UIALogger.logFail(testCaseName + " failed."); 
     }
 
-//    testCaseName = testSuiteName + " UINavigationBar Home verification";
-//    UIALogger.logStart(testCaseName + " Test");
-//
-//    if (app.navigationBar().buttons()["Home"].checkIsValid()){
-//
-//        app.navigationBar().buttons()["Home"].tap();
-//
-//        UIALogger.logPass(testCaseName + " passed.");
-//
-//    } else {
-//        UIALogger.logFail(testCaseName + " failed.");
-//    }
-
     testCaseName = testSuiteName + " UINavigationBar Collection verification";
     UIALogger.logStart(testCaseName + " Test");
 
     if (app.navigationBar().buttons()["Collection"].checkIsValid()){
-
-//        app.navigationBar().buttons()["Collection"].tap();
 
         UIALogger.logPass(testCaseName + " passed.");
 
@@ -94,3 +77,5 @@ if (!app.navigationBar().buttons()["Journal"].checkIsValid()){
 } else {
 	UIALogger.logFail(testCaseName + " incorrectly."); 
 }
+
+UIALogger.logMessage(testSuiteName + " Testing Ends");
