@@ -14,7 +14,7 @@ var testCaseName;
 
 UIALogger.logMessage(testSuiteName + " Testing Begins");
 
-testCaseName = testSuiteName + " Conscience Modal Entry";
+testCaseName = testSuiteName + " Conscience Entry";
 UIALogger.logStart(testCaseName + " Test");
 
 target.tap({x:130.00, y:300.00});
