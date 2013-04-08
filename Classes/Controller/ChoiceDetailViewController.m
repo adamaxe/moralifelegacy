@@ -21,7 +21,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	IBOutlet UILabel *consequencesLabel;        /**< Consequences textField label */
 	NSArray *influenceLabelDescriptions;        /**< Array of NSLocalized Strings to display to User */
 	
-	IBOutlet UIButton *doneButton;		/**< Done Button */
+	IBOutlet UIButton *saveButton;		/**< Save Button */
 	IBOutlet UIButton *cancelButton;		/**< Cancel Button */
 	IBOutlet UIButton *influenceButton;		/**< Influence Button */	
     
@@ -227,7 +227,7 @@ Implementation: change the influence value and update the influence Label
 /**
 Implementation: pop UIViewController from current navigationController
  */
--(IBAction)doneTapped:(id) sender{
+-(IBAction)saveTapped:(id) sender{
 
     [self saveChoice];
     //Return to previous view by popping current view off navigation controller
@@ -358,10 +358,10 @@ Implementation:  Truncate the field on each keypress if length is greater
     [influenceLabel setText:NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel",nil)];
 	influenceLabelDescriptions = @[NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel1",nil), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel2",nil), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel3",nil), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel4",nil), NSLocalizedString(@"ChoiceDetailsScreenInfluenceLabel5",nil)];
     
-	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",nil) forState:UIControlStateNormal];
-	[doneButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenDoneButtonTitleLabel",nil) forState:UIControlStateHighlighted];
-	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenDoneButtonHint",nil);	
-	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenDoneButtonLabel",nil);	
+	[saveButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenSaveButtonTitleLabel",nil) forState:UIControlStateNormal];
+	[saveButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenSaveButtonTitleLabel",nil) forState:UIControlStateHighlighted];
+	saveButton.accessibilityHint = NSLocalizedString(@"ChoiceDetailsScreenSaveButtonHint",nil);
+	saveButton.accessibilityLabel = NSLocalizedString(@"ChoiceDetailsScreenSaveButtonLabel",nil);	
     
 	[cancelButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenCancelButtonTitleLabel",nil) forState:UIControlStateNormal];
 	[cancelButton setTitle:NSLocalizedString(@"ChoiceDetailsScreenCancelButtonTitleLabel",nil) forState:UIControlStateHighlighted];

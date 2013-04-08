@@ -27,7 +27,7 @@ Accepts User input to dismiss current UIViewController
 @param id Object which requested the view dismissal
 @return IBAction referenced from Interface Builder
  */
--(IBAction)doneTapped:(id) sender;
+-(IBAction)saveTapped:(id) sender;
 
 /**
 Accepts User input to remove all changes

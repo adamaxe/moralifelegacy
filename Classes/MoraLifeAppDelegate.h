@@ -9,11 +9,11 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 
 <br>For code walk purposes, please review MoraLifeAppDelegate which launches HomeViewController as the starting point.  IntroViewController is launched from there on first installation.  From this starting point, you can walk the entire code base by referencing the See Also: Tags.
  
-<br>Application has been tested on iPhone 1/3G/3GS/4 and iOS 3.1/4.2/4.3/5.0
+<br>Application has been tested on iPhone 3GS/4 and iOS 4.2/4.3/5.0
  
 @mainpage Moralife
 @see HomeViewController
-@version 1.0
+@version 1.3.4
 @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
 @class MoralifeAppDelegate
 @date 03/28/2010

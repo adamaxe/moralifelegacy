@@ -3615,9 +3615,6 @@
 			children = (
 				5EE7FD0B12E8B22200ABDBEC /* ConscienceBuilder.h */,
 				5EE7FD0C12E8B22200ABDBEC /* ConscienceBuilder.m */,
-				5E3E8804122609B600F2708A /* XMLParser.h */,
-				5E3E8805122609B600F2708A /* XMLParser.m */,
-				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
 				5EAA72EC15E19FA500656390 /* UIColor+Utility.h */,
 				5EAA72ED15E19FA500656390 /* UIColor+Utility.m */,
 				5E4847F916CDF5ED00B9F66A /* UIFont+Utility.h */,
@@ -3626,6 +3623,9 @@
 				5E3F7A0816BF879200002E85 /* UIViewController+Screenshot.m */,
 				5E06560C16EC09B80045B8F3 /* UserConscience.h */,
 				5E06560D16EC09B80045B8F3 /* UserConscience.m */,
+				5E9B66FA158D6C8100E6E2BB /* ViewControllerLocalization.h */,
+				5E3E8804122609B600F2708A /* XMLParser.h */,
+				5E3E8805122609B600F2708A /* XMLParser.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";

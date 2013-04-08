@@ -30,7 +30,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	IBOutlet UIView *choiceDescriptionView;				/**< UIView for shifting bottom parameter for keyboard */
 	
 	IBOutlet UIButton *hideKeyboardButton;			/**< done button for UITextView keyboard dismissal */
-	IBOutlet UIButton *doneButton;					/**< done button for ViewController dismissal */
+	IBOutlet UIButton *saveButton;					/**< save button for ViewController dismissal */
 	IBOutlet UIButton *cancelButton;				/**< cancel button for ViewController dismissal and entry deletion*/
 	IBOutlet UIButton *moralButton;					/**< moral button list selection for ViewController dismissal */
 	IBOutlet UIButton *moralReferenceButton;		/**< moral button which selects moral reference */
@@ -862,10 +862,10 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
 
 - (void) localizeUI {
     
-	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",nil) forState:UIControlStateNormal];
-	[doneButton setTitle:NSLocalizedString(@"ChoiceScreenDoneButtonTitleLabel",nil) forState:UIControlStateHighlighted];
-	doneButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenDoneButtonHint",nil);	
-	doneButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenDoneButtonLabel",nil);	
+	[saveButton setTitle:NSLocalizedString(@"ChoiceScreenSaveButtonTitleLabel",nil) forState:UIControlStateNormal];
+	[saveButton setTitle:NSLocalizedString(@"ChoiceScreenSaveButtonTitleLabel",nil) forState:UIControlStateHighlighted];
+	saveButton.accessibilityHint = NSLocalizedString(@"ChoiceScreenSaveButtonHint",nil);
+	saveButton.accessibilityLabel = NSLocalizedString(@"ChoiceScreenSaveButtonLabel",nil);
     
 	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",nil) forState:UIControlStateNormal];
 	[cancelButton setTitle:NSLocalizedString(@"ChoiceScreenCancelButtonTitleLabel",nil) forState:UIControlStateHighlighted];
