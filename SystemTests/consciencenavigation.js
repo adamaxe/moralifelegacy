@@ -34,8 +34,10 @@ if (window.buttons()["Commissary"].checkIsValid()){
 		target.delay(2.0);
         window.buttons()["Previous"].tap();		
         window.buttons()["Face"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
         window.buttons()["Mouth"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
         window.buttons()["Bubble"].tap();		
 		target.delay(2.0);

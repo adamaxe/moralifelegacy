@@ -92,7 +92,7 @@ float const MLThoughtInterval = 5;
  Calculate through all UserChoices which most prominent/troublesome virtue/vice is
  @param isVirtue bool representing whether virtue or vice was requested
  */
--(void) retrieveBiggestChoice:(BOOL) isVirtue;
+-(void) retrieveBiggestChoiceAsVirtue:(BOOL) isVirtue;
 /**
  Find highest rank
  */
@@ -343,20 +343,18 @@ static int thoughtVersion = 0;
  */
 -(void)setupModalWorkflow{
     
-    UINavigationController *modalNavController = [[UINavigationController alloc] init];
-	
-	NSString *modalNavTitle1 = @"Customization";
-	
-	modalNavController.tabBarItem.title = modalNavTitle1;
-	[modalNavController setNavigationBarHidden:YES];
+    UINavigationController *conscienceNavigationController = [[UINavigationController alloc] init];
+		
+	conscienceNavigationController.tabBarItem.title = @"Customization";
+	[conscienceNavigationController setNavigationBarHidden:YES];
 	    
 	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     thoughtArea.hidden = TRUE;
     conscienceViewController.screenshot = [self takeScreenshot];
 	
-    [modalNavController pushViewController:conscienceViewController animated:NO];
+    [conscienceNavigationController pushViewController:conscienceViewController animated:NO];
 	
-	[self presentModalViewController:modalNavController animated:NO];
+	[self presentModalViewController:conscienceNavigationController animated:NO];
 	
 }
 
@@ -613,8 +611,8 @@ Implementation:  Determine time of day, and which thought should be displayed.  
  */
 -(void) createWelcomeMessage{
     
-    [self retrieveBiggestChoice:TRUE];
-    [self retrieveBiggestChoice:FALSE];
+    [self retrieveBiggestChoiceAsVirtue:TRUE];
+    [self retrieveBiggestChoiceAsVirtue:FALSE];
     [self retrieveHighestRank];
 
     
@@ -706,7 +704,7 @@ Implementation:  Determine time of day, and which thought should be displayed.  
 /**
 Implementation:  Must iterate through every UserChoice entered and sum each like entry to determine most prominent/troublesome virtue/vice 
  */
-- (void) retrieveBiggestChoice:(BOOL) isVirtue{
+- (void) retrieveBiggestChoiceAsVirtue:(BOOL) isVirtue{
     
     UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     NSPredicate *pred;
