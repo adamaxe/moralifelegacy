@@ -81,9 +81,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
 	[influenceSlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];
 
-	//Setting to determine if details are being cancelled
-	isChoiceCancelled = FALSE;
-
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
@@ -100,8 +97,10 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 -(void) viewWillAppear:(BOOL)animated{
 	
     [super viewWillAppear:animated];
+	//Setting to determine if details are being cancelled
+	isChoiceCancelled = FALSE;
 
-	
+
 	//Restore state of prior view if applicable	
 	NSString *restoreJustification = [prefs objectForKey:@"choiceJustification"];
 	NSString *restoreConsequence = [prefs objectForKey:@"choiceConsequence"];
@@ -116,7 +115,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	if (restoreConsequence != nil) {
 		consequencesTextField.text = restoreConsequence;
 		[prefs removeObjectForKey:@"choiceConsequence"];
-		
 	}
 	
 	if (restoreInfluence >= 0) {
@@ -124,7 +122,6 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
         int sliderValue = (int)influenceSlider.value;
         [self changeInfluenceLabel:sliderValue];
 		[prefs removeObjectForKey:@"choiceInfluence"];
-		
 	}
 
     influenceImageView.alpha = 0;
@@ -154,8 +151,8 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	
     [super viewWillDisappear:animated];
     
-	[self saveChoice];
-		
+//	[self saveChoice];
+
 }
 
 #pragma mark -
@@ -267,12 +264,19 @@ Implementation: pop UIViewController from current navigationController
 }
 
 - (void)cancelChoice {
-    
-	//Remove ChoiceDetail state information
-    [prefs removeObjectForKey:@"choiceJustification"];
-	[prefs removeObjectForKey:@"choiceConsequence"];
-	[prefs removeObjectForKey:@"choiceInfluence"];	
-	
+
+    if ([prefs objectForKey:@"choiceJustification"]) {
+        justificationTextField.text = [prefs objectForKey:@"choiceJustification"];
+    } else {
+        justificationTextField.text = @"";
+    }
+
+    if ([prefs objectForKey:@"choiceConsequence"]) {
+        consequencesTextField.text = [prefs objectForKey:@"choiceConsequence"];
+    } else {
+        consequencesTextField.text = @"";
+    }
+
 	isChoiceCancelled = TRUE;
 }
 
