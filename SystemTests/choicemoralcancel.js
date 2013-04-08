@@ -47,7 +47,7 @@ window.buttons()["Cancel"].tap();
 window.buttons()["Moral Choice"].tap();
 
 if(window.sliders()["Virtue Severity"].value() == virtueSeveritySliderValueCancel) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().sliders()["Virtue Severity"].value());
+    UIALogger.logFail(testCaseName + " didn't clear: " + window.sliders()["Virtue Severity"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly");     
 }
@@ -68,7 +68,7 @@ window.buttons()["Cancel"].tap();
 window.buttons()["Moral Choice"].tap();
 
 if(window.textViews()["Description"].value() == moralDescriptionCancel) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().textViews()["Description"].value());
+    UIALogger.logFail(testCaseName + " didn't clear: " + window.textViews()["Description"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
@@ -94,7 +94,7 @@ window.buttons()["Cancel"].tap();
 app.navigationBar().rightButton().tap();
 
 if(window.textFields()["Justification"].value() == moralJustificationCancel) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().textFields()["Justification"].value());
+    UIALogger.logFail(testCaseName + " didn't clear: " + window.textFields()["Justification"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly");     
 }
@@ -117,7 +117,7 @@ window.buttons()["Cancel"].tap();
 app.navigationBar().rightButton().tap();
 
 if(window.textFields()["Consequence"].value() == moralConsequenceCancel) {
-	UIALogger.logFail(testCaseName + " cleared incorrectly: " + app.frontMostApp().mainWindow().textFields()["Consequence"].value());
+	UIALogger.logFail(testCaseName + " cleared incorrectly: " + window.textFields()["Consequence"].value());
 } else {
 	UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
@@ -131,7 +131,7 @@ window.buttons()["Cancel"].tap();
 app.navigationBar().rightButton().tap();
 
 if(window.sliders()["Influence"].value() == moralInfluenceSliderValueCancel) {
-    UIALogger.logFail(testCaseName + " didn't clear: " + app.frontMostApp().mainWindow().sliders()["Influence"].value());
+    UIALogger.logFail(testCaseName + " didn't clear: " + window.sliders()["Influence"].value());
 } else {
     UIALogger.logPass(testCaseName + " cleared correctly"); 
 }
