@@ -27,7 +27,7 @@ if [ -z "$JENKINS_SYSTEM_TESTS" ]; then
 
     done
 
-    exit 1
+    exit 0
 
 else
     #Setup a place for the results to be copied to
@@ -44,5 +44,5 @@ else
     done
 
     rm -Rf $RESULTS_DIRECTORY
-    exit 1
+    exit 0
 fi
