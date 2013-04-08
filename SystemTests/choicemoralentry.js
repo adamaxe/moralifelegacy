@@ -100,7 +100,7 @@ for (i = 0; i < moralDescription.length; i++) {
     app.keyboard().typeString(strChar);
 }
 
-window.buttons()["Save"].tap();
+window.buttons()["Done"].tap();
 
 if(window.textViews()["Description"].value() == moralDescription) {
        UIALogger.logPass(testCaseName + " correct."); 

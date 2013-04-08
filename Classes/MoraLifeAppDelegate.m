@@ -20,7 +20,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 @interface MoraLifeAppDelegate () {
 
-	UINavigationController *navController1; /**< UINavController for first screen, Home */
+	UINavigationController *homeNavigationController; /**< UINavController for first screen, Home */
 
 }
 
@@ -90,15 +90,15 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
     
     self.moralModelManager = [[ModelManager alloc] init];
 
-	navController1 = [[UINavigationController alloc] init];
+	homeNavigationController = [[UINavigationController alloc] init];
 
     UserConscience *userConscience = [[UserConscience alloc] initWithModelManager:self.moralModelManager];
 
 	HomeViewController *homeViewController = [[HomeViewController alloc] initWithModelManager:self.moralModelManager andConscience:userConscience];
 
-	navController1.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+	homeNavigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 
-	[navController1 pushViewController:homeViewController animated:NO];
+	[homeNavigationController pushViewController:homeViewController animated:NO];
 
 #if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
     
@@ -110,7 +110,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #endif
 
 	application.applicationSupportsShakeToEdit = YES;
-    [self.window setRootViewController:navController1];
+    [self.window setRootViewController:homeNavigationController];
 	[self.window makeKeyAndVisible];
 	
 } 

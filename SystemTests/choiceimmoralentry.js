@@ -99,7 +99,7 @@ for (i = 0; i < immoralDescription.length; i++) {
     app.keyboard().typeString(strChar);
 }
 
-window.buttons()["Save"].tap();
+window.buttons()["Done"].tap();
 
 if(window.textViews()["Description"].value() == immoralDescription) {
        UIALogger.logPass(testCaseName + " correct."); 

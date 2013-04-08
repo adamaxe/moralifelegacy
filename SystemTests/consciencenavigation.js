@@ -31,6 +31,7 @@ if (window.buttons()["Commissary"].checkIsValid()){
         
         window.buttons()["Features"].tap();
         window.buttons()["Eye"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();		
         window.buttons()["Face"].tap();
         window.buttons()["Previous"].tap();

@@ -62,7 +62,7 @@ for (i = 0; i < immoralDescriptionCancel.length; i++) {
     app.keyboard().typeString(strChar);
 }
 
-window.buttons()["Save"].tap();
+window.buttons()["Done"].tap();
 
 window.buttons()["Cancel"].tap();
 window.buttons()["Immoral Choice"].tap();
