@@ -58,11 +58,11 @@ if (window.buttons()["Commissary"].checkIsValid()){
 
         window.buttons()["Colors"].tap();
         window.buttons()["Eye"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
         window.buttons()["Brow"].tap();
-//        window.buttons()["Previous"].tap();
-//        window.buttons()["Bubble"].tap();
-        window.buttons()["Previous"].tap();      
+		target.delay(2.0);
+        window.buttons()["Previous"].tap();
         window.buttons()["Previous"].tap();
         
         UIALogger.logPass(testCaseName + " correct."); 
@@ -106,6 +106,7 @@ if (window.buttons()["Commissary"].checkIsValid()){
 
         window.buttons()["Morathology"].tap();
         window.buttons()["Orientation"].tap();
+		target.delay(2.0);
         window.buttons()["Previous"].tap();
         window.buttons()["Atlantic"].tap();
 		target.delay(2.0);		
