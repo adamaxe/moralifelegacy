@@ -1,13 +1,21 @@
 #! /bin/sh
 
 #Setup script order
-scripts=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
+#User can opt to just do one or more of the scripts
+if [ $# -gt 0 ]; then
+    scripts=("$@")
 
-#Wipe the simulator
-rm -Rf ~/Library/Application\ Support/iPhone\ Simulator
+else
+    scripts=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
+
+    #Wipe the simulator
+    rm -Rf ~/Library/Application\ Support/iPhone\ Simulator
+
+fi
 
 #Determine if script is being run from workstation or CI box
 if [ "$JENKINS_SYSTEM_TESTS" = "YES" ]; then
+#if [ -z "$JENKINS_SYSTEM_TESTS"]; then
 
     #Iterate through every script
     for i in "${scripts[@]}"
