@@ -3,12 +3,11 @@
 #Setup script order
 scripts=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
 
+#Wipe the simulator
+rm -Rf ~/Library/Application\ Support/iPhone\ Simulator
 
 #Determine if script is being run from workstation or CI box
-if [ -z "$JENKINS_SYSTEM_TESTS" ]; then
-
-    #Wipe the simulator
-    rm -Rf ~/Library/Application\ Support/iPhone\ Simulator/
+if [ "$JENKINS_SYSTEM_TESTS" = "YES" ]; then
 
     #Iterate through every script
     for i in "${scripts[@]}"
@@ -30,16 +29,20 @@ if [ -z "$JENKINS_SYSTEM_TESTS" ]; then
     exit 0
 
 else
+
     #Setup a place for the results to be copied to
     RESULTS_DIRECTORY=~/Downloads/results
+    rm -Rf $RESULTS_DIRECTORY
     mkdir $RESULTS_DIRECTORY
+
+    XCODEBUILD_BUILD_DIR=`xcodebuild -showBuildSettings |grep [^_]BUILD_DIR | awk '{print $3}'`
+    XCODEBUILD_WRAPPER_NAME=`xcodebuild -showBuildSettings |grep WRAPPER_NAME | awk '{print $3}'`
 
     #Iterate through every script
     for i in "${scripts[@]}"
     do
 
-    #instruments -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $BUILT_PRODUCTS_DIR/$WRAPPER_NAME -e UIASCRIPT $SRCROOT/SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
-    instruments -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $BUILT_PRODUCTS_DIR/$WRAPPER_NAME -e UIASCRIPT /Users/aaxe/Documents/projects/teamaxe/code/moralife/SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
+    instruments -D $RESULTS_DIRECTORY/$i-trace.trace -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $XCODEBUILD_BUILD_DIR/Release-iphonesimulator/$XCODEBUILD_WRAPPER_NAME -e UIASCRIPT ./SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
 
     done
 

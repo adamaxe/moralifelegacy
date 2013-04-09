@@ -25,7 +25,7 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
 }
 
 /**
- Nib version of Init that creats the viewController with the User's Conscience
+ Nib version of Init that creates the viewController with the User's Conscience
  @param nibName NSString signifying the XIB to load
  @param nibBundle NSBundle where the XIB is stored
  @param modelManager ModelManager data persistence

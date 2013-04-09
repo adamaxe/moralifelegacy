@@ -205,7 +205,9 @@ if(hasError){
 window.textFields()["Justification"].tap();
 app.keyboard().typeString("\n");
 
+target.delay(2.0);
 window.buttons()["Save"].tap();
 window.buttons()["Save"].tap();
 
 app.navigationBar().buttons()["Home"].tap();
+UIALogger.logMessage(testSuiteName + " Testing Ends");
