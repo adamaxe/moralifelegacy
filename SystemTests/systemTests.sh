@@ -3,6 +3,7 @@
 #Setup script order
 #User can opt to just do one or more of the scripts by passing command line arguments
 DEFAULT_SCRIPTS=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
+SCRIPT_MESSAGE="\nHere are the available scripts: ${DEFAULT_SCRIPTS[@]}"
 
 #If command line arguments are greater than 0, determine what user wants
 if [ $# -gt 0 ]; then
@@ -11,14 +12,36 @@ if [ $# -gt 0 ]; then
     for i in "$@"
     do
 
-    if [ "$i" = "-h" ] || [ "$i" = "--h" ] || [ "$i" = "-h" ] || [ "$i" = "/?" ] || [ "$i" = "help" ]; then
+        if [ "$i" = "-h" ] || [ "$i" = "--h" ] || [ "$i" = "-help" ] || [ "$i" = "/?" ] || [ "$i" = "help" ]; then
 
-        #Display current scripts
-        echo "Here are the available scripts:${DEFAULT_SCRIPTS[@]}"
-        exit 0
-    fi
+            #Display current scripts
+            echo "Welcome to MoraLife System Test Runner!"
+            echo "\nUsage:"
+            echo "cd <Moralife root directory>"
+            echo "To run all tests: ./SystemTests/systemTests.sh"
+            echo "To run specific test(s): ./SystemTests/systemTests.sh <test name>"
+            echo "To see a list of tests: ./SystemTests/systemTests.sh help"
+            echo $SCRIPT_MESSAGE
+            exit 0
+        fi
+
+        #Determine if user-supplied script is valid
+        isValid=no
+        for j in "${DEFAULT_SCRIPTS[@]}"
+        do
+
+            if [ "$j" = "$i" ]; then
+                isValid=yes
+            fi
+        done
 
     done
+
+    #If user provides incorrect script name, exit and show valid scripts
+    if [ "$isValid" = "no" ]; then
+        echo "That is not a valid script name. $SCRIPT_MESSAGE"
+        exit 0
+    fi
 
     #Otherwise, use the user provide list of scripts
     scripts=("$@")
