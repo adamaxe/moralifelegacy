@@ -14,7 +14,8 @@ else
 fi
 
 #Determine if script is being run from workstation or CI box
-if [ "$JENKINS_SYSTEM_TESTS" == "YES" ]; then
+#if [ $JENKINS_SYSTEM_TESTS == "YES" ]; then
+if [ "x$JENKINS_SYSTEM_TESTS" = "x" ]; then
 #if [ -z "$JENKINS_SYSTEM_TESTS"]; then
 
     #Iterate through every script
