@@ -1,12 +1,31 @@
 #! /bin/sh
 
 #Setup script order
-#User can opt to just do one or more of the scripts
+#User can opt to just do one or more of the scripts by passing command line arguments
+DEFAULT_SCRIPTS=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
+
+#If command line arguments are greater than 0, determine what user wants
 if [ $# -gt 0 ]; then
+
+    #Determine if user is looking for which scripts can run
+    for i in "$@"
+    do
+
+    if [ "$i" = "-h" ] || [ "$i" = "--h" ] || [ "$i" = "-h" ] || [ "$i" = "/?" ] || [ "$i" = "help" ]; then
+
+        #Display current scripts
+        echo "Here are the available scripts:${DEFAULT_SCRIPTS[@]}"
+        exit 0
+    fi
+
+    done
+
+    #Otherwise, use the user provide list of scripts
     scripts=("$@")
 
+#If there are no command line arguments, then wipe the sim and run the whole suite
 else
-    scripts=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
+    scripts=(${DEFAULT_SCRIPTS[@]})
 
     #Wipe the simulator
     rm -Rf ~/Library/Application\ Support/iPhone\ Simulator
@@ -14,9 +33,30 @@ else
 fi
 
 #Determine if script is being run from workstation or CI box
-#if [ $JENKINS_SYSTEM_TESTS == "YES" ]; then
 if [ "x$JENKINS_SYSTEM_TESTS" = "x" ]; then
-#if [ -z "$JENKINS_SYSTEM_TESTS"]; then
+
+    #Setup a place for the results to be copied to
+    RESULTS_DIRECTORY=~/Downloads/results
+    rm -Rf $RESULTS_DIRECTORY
+    mkdir $RESULTS_DIRECTORY
+
+    #Dynamically determine where the current build of the app resides
+    XCODEBUILD_BUILD_DIR=`xcodebuild -showBuildSettings |grep [^_]BUILD_DIR | awk '{print $3}'`
+    XCODEBUILD_WRAPPER_NAME=`xcodebuild -showBuildSettings |grep WRAPPER_NAME | awk '{print $3}'`
+
+    #Iterate through every script
+    for i in "${scripts[@]}"
+    do
+
+    instruments -D $RESULTS_DIRECTORY/$i-trace.trace -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $XCODEBUILD_BUILD_DIR/Release-iphonesimulator/$XCODEBUILD_WRAPPER_NAME -e UIASCRIPT ./SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
+
+    done
+
+    rm -Rf $RESULTS_DIRECTORY
+    exit 0
+
+
+else
 
     #Iterate through every script
     for i in "${scripts[@]}"
@@ -35,26 +75,5 @@ if [ "x$JENKINS_SYSTEM_TESTS" = "x" ]; then
 
     done
 
-    exit 0
-
-else
-
-    #Setup a place for the results to be copied to
-    RESULTS_DIRECTORY=~/Downloads/results
-    rm -Rf $RESULTS_DIRECTORY
-    mkdir $RESULTS_DIRECTORY
-
-    XCODEBUILD_BUILD_DIR=`xcodebuild -showBuildSettings |grep [^_]BUILD_DIR | awk '{print $3}'`
-    XCODEBUILD_WRAPPER_NAME=`xcodebuild -showBuildSettings |grep WRAPPER_NAME | awk '{print $3}'`
-
-    #Iterate through every script
-    for i in "${scripts[@]}"
-    do
-
-    instruments -D $RESULTS_DIRECTORY/$i-trace.trace -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $XCODEBUILD_BUILD_DIR/Release-iphonesimulator/$XCODEBUILD_WRAPPER_NAME -e UIASCRIPT ./SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
-
-    done
-
-    rm -Rf $RESULTS_DIRECTORY
     exit 0
 fi
