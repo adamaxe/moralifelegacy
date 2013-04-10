@@ -9,6 +9,7 @@
  */
 
 #import "DilemmaModel.h"
+#import "UserDilemma.h"
 #import "Dilemma.h"
 #import "UserCollectable.h"
 #import "OCMock/OCMock.h"
@@ -20,8 +21,17 @@
     Dilemma *testDilemma1;
     Dilemma *testDilemma2;
     Dilemma *testDilemma3;
+    UserDilemma *testUserDilemma;
+
+    NSString *nameUserDilemma1;
+    NSString *entryShortDescription;
+    NSNumber *entryIsGood;
+    NSString *entryKey;
+    NSString *entryLongDescription;
+    NSNumber *entrySeverity;
+    NSDate *entryCreationDate;
+
     id userDefaultsMock;
-    NSArray *userCollection;
 
     NSString *nameDilemma1;
     NSString *nameDilemma2;
@@ -59,11 +69,18 @@
     enthusiasmDilemma = @1.0f;
     dilemmaText = @"dilemmaText";
 
-    testDilemma1 = [self createDilemmaWithName:nameDilemma1 withModelManager:testModelManager];
-    testDilemma2 = [self createDilemmaWithName:nameDilemma2 withModelManager:testModelManager];
+    testDilemma1 = [self createDilemmaWithName:nameDilemma1];
+    testDilemma2 = [self createDilemmaWithName:nameDilemma2];
 
-    [testModelManager saveContext];
+    nameUserDilemma1 = @"dile-1-01";
+    entryShortDescription = @"entryShortDescription";
+    entryIsGood = @1;
+    entryKey = @"entryKey";
+    entryLongDescription = @"entryLongDescription";
+    entrySeverity =@5.0f;
+    entryCreationDate = [NSDate date];
 
+    testUserDilemma = [self createUserDilemmaWithName:nameUserDilemma1];
     testingSubject = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
 }
@@ -97,9 +114,64 @@
     STAssertTrue(testingSubjectCreate.dilemmas.count == 0, @"DilemmaModel returned dilemma it shouldn't have.");
 }
 
-- (Dilemma *)createDilemmaWithName:(NSString *)dilemmaName withModelManager:(ModelManager *)modelManager{
+- (void)testDilemmaModelReturnsASingleUserDilemmasIfCampaignIsWrong {
 
-    Dilemma *testDilemmaLocal1 = [modelManager create:Dilemma.class];
+
+    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure3];
+
+    NSArray *userDilemmaKeys = [testingSubjectCreate.userChoices allKeys];
+    NSArray *userDilemmaValues = [testingSubjectCreate.userChoices allValues];
+    STAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+    STAssertEqualObjects(userDilemmaKeys[0], @"noUserEntries", @"DilemmaModel didn't return correct empty key designation.");
+    STAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
+    STAssertEqualObjects(userDilemmaValues[0], @"", @"DilemmaModel didn't return correct empty value designation.");
+    
+}
+
+//- (void)testDilemmaModelReturnsCorrectUserDilemmaIfCampaignIsRight {
+//
+//    NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
+//    NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
+//    STAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+//    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct userDilemma key.");
+//    STAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
+//    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct userDilemma key.");
+//
+//}
+//
+//- (void)testDilemmaModelReturnsAMultipleUserDilemmasAreSortedCorrectly {
+//
+//    NSString *secondUserDilemma =  @"dile-1-02";
+//    NSString *entryShortDescription2 = @"entryShortDescription2";
+//
+//    UserDilemma *testUserDilemma2 = [self createUserDilemmaWithName:secondUserDilemma];
+//    testUserDilemma2.entryLongDescription = entryShortDescription2;
+//    [testModelManager saveContext];
+//
+//    NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
+//    NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
+//    STAssertTrue(userDilemmaKeys.count == 2, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+//    STAssertTrue(userDilemmaValues.count == 2, @"DilemmaModel didn't return correct userChoiceValues.");
+//    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct first userDilemma key.");
+//    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct first userDilemma value.");
+//    STAssertEqualObjects(userDilemmaKeys[1], testUserDilemma2.entryShortDescription, @"DilemmaModel didn't return correct second userDilemma key.");
+//    STAssertEqualObjects(userDilemmaValues[1], testUserDilemma2.entryLongDescription, @"DilemmaModel didn't return correct second userDilemma value.");
+//
+//
+//}
+
+- (void)testSelectDilemmaWritesToStandardUserDefaultsForViewing {
+
+    [[userDefaultsMock expect] setObject:nameDilemma1 forKey:@"dilemmaKey"];
+    [[userDefaultsMock expect] synchronize];
+
+    [testingSubject selectDilemma:nameDilemma1];
+
+    [userDefaultsMock verify];
+}
+
+- (Dilemma *)createDilemmaWithName:(NSString *)dilemmaName {
+    Dilemma *testDilemmaLocal1 = [testModelManager create:Dilemma.class];
 
     testDilemmaLocal1.nameDilemma = dilemmaName;
     testDilemmaLocal1.rewardADilemma = rewardADilemma;
@@ -111,9 +183,26 @@
     testDilemmaLocal1.choiceA = choiceA;
     testDilemmaLocal1.enthusiasmDilemma = enthusiasmDilemma;
     testDilemmaLocal1.dilemmaText = dilemmaText;
-    [modelManager saveContext];
+    [testModelManager saveContext];
 
     return testDilemmaLocal1;
+}
+
+- (UserDilemma *)createUserDilemmaWithName:(NSString *)userDilemmaName {
+
+    UserDilemma *testUserDilemmaLocal1 = [testModelManager create:UserDilemma.class];
+
+    testUserDilemmaLocal1.entryKey = userDilemmaName;
+    testUserDilemmaLocal1.entryShortDescription = entryShortDescription;
+    testUserDilemmaLocal1.entryIsGood = entryIsGood;
+    testUserDilemmaLocal1.entryKey = entryKey;
+    testUserDilemmaLocal1.entryLongDescription = entryLongDescription;
+    testUserDilemmaLocal1.entrySeverity = entrySeverity;
+    testUserDilemmaLocal1.entryCreationDate = entryCreationDate;
+
+    [testModelManager saveContext];
+    
+    return testUserDilemmaLocal1;
 }
 
 @end
