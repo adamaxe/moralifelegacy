@@ -9,7 +9,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 #import "ConscienceViewController.h"
 #import "ConscienceAccessoryViewController.h"
 #import "ConscienceListViewController.h"
-#import "DilemmaModel.h"
+#import "DilemmaListModel.h"
 #import "DilemmaListViewController.h"
 #import "ReportPieViewController.h"
 #import "ReportPieModel.h"
@@ -453,8 +453,8 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			
         } else {
 
-            DilemmaModel *dilemmaModel = [[DilemmaModel alloc] initWithModelManager:_modelManager andDefaults:prefs andCurrentCampaign:requestedCampaign];
-            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaModel modelManager:_modelManager andConscience:_userConscience];
+            DilemmaListModel *dilemmaListModel = [[DilemmaListModel alloc] initWithModelManager:_modelManager andDefaults:prefs andCurrentCampaign:requestedCampaign];
+            DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaListModel modelManager:_modelManager andConscience:_userConscience];
             dilemmaListViewController.screenshot = [self takeScreenshot];
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];

@@ -7,7 +7,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 
 #import "DilemmaListViewController.h"
 #import "DilemmaViewController.h"
-#import "DilemmaModel.h"
+#import "DilemmaListModel.h"
 #import "DilemmaTableViewCell.h"
 
 @interface DilemmaListViewController () {
@@ -36,7 +36,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     
 }
 
-@property (nonatomic, strong) DilemmaModel *dilemmaModel;   /**< Model to handle data/business logic */
+@property (nonatomic, strong) DilemmaListModel *dilemmaModel;   /**< Model to handle data/business logic */
 @property (nonatomic) IBOutlet UIImageView *previousScreen;
 
 
@@ -58,7 +58,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(DilemmaModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (id)initWithModel:(DilemmaListModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {

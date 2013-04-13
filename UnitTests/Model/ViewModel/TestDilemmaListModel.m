@@ -1,5 +1,5 @@
 /**
- Unit Test for DilemmaModel.  Test model interaction with peristed data for DilemmaViewController and DilemmaListViewController
+ Unit Test for DilemmaListModel.  Test model interaction with peristed data for DilemmaListViewController
  
  @class TestDilemmaModel
  
@@ -8,16 +8,16 @@
  @file
  */
 
-#import "DilemmaModel.h"
+#import "DilemmaListModel.h"
 #import "UserDilemma.h"
 #import "Dilemma.h"
 #import "Moral.h"
 #import "UserCollectable.h"
 #import "OCMock/OCMock.h"
 
-@interface TestDilemmaModel : SenTestCase {
+@interface TestDilemmaListModel : SenTestCase {
     
-    DilemmaModel *testingSubject;
+    DilemmaListModel *testingSubject;
     ModelManager *testModelManager;
     Dilemma *testDilemma1;
     Dilemma *testDilemma2;
@@ -60,7 +60,7 @@
 
 @end
 
-@implementation TestDilemmaModel
+@implementation TestDilemmaListModel
 
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
@@ -107,13 +107,13 @@
     testDilemma2.moralChoiceB = testMoralA;
 
     testUserDilemma = [self createUserDilemmaWithName:entryKey];
-    testingSubject = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
+    testingSubject = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
 }
 
 - (void)testDilemmaModelCanBeCreated {
 
-    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
+    DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
     STAssertNotNil(testingSubjectCreate, @"DilemmaModel can't be created.");
 }
@@ -145,7 +145,7 @@
 }
 
 - (void)testRetrievedDilemmaHasCorrectDerivedDataForAnActionType {
-    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
+    DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
 
     //test action dilemma
     STAssertEqualObjects(testingSubjectCreate.dilemmaDetails[0], testDilemma2.moralChoiceA.displayNameMoral, @"DilemmaDetails not correctly displayed as the moral.");
@@ -164,7 +164,7 @@
 
 - (void)testDilemmaModelCanFilterDilemmaGivenRequestedCampaign {
 
-    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
+    DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
 
     STAssertTrue(testingSubjectCreate.dilemmas.count == 1, @"DilemmaModel didn't return correct number of dilemmas.");
 
@@ -176,7 +176,7 @@
     NSString *nameDilemmaOrderedSecond = @"dile-1-02";
     Dilemma *testDilemmaOrderedSecond = [self createDilemmaWithName:nameDilemmaOrderedSecond];
 
-    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
+    DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
     STAssertTrue(testingSubjectCreate.dilemmas.count == 2, @"DilemmaModel didn't return correct number of dilemmas.");
 
@@ -192,7 +192,7 @@
 
 - (void)testDilemmaModelReturnsNoDilemmasIfCampaignIsWrong {
 
-    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure3];
+    DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure3];
 
     STAssertTrue(testingSubjectCreate.dilemmas.count == 0, @"DilemmaModel returned dilemma it shouldn't have.");
 }
@@ -200,7 +200,7 @@
 - (void)testDilemmaModelReturnsASingleUserDilemmaIfCampaignIsWrong {
 
 
-    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure3];
+    DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure3];
 
     NSArray *userDilemmaKeys = [testingSubjectCreate.userChoices allKeys];
     NSArray *userDilemmaValues = [testingSubjectCreate.userChoices allValues];

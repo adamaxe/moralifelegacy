@@ -11,7 +11,7 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 @file
  */
 
-@class DilemmaModel;
+@class DilemmaListModel;
 #import "MoraLifeViewController.h"
 
 @interface DilemmaListViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
@@ -25,7 +25,7 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
  @param userConscience UserConscience for modals and help screens
  @return id instance of DilemmaListViewController
  */
-- (id)initWithModel:(DilemmaModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (id)initWithModel:(DilemmaListModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
 Remove DilemmaList screen and reset requested Dilemma Campaign

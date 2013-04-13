@@ -307,9 +307,9 @@
 		5E48483D16CF4FF500B9F66A /* thoughtbubble-menu2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E48483B16CF4FF400B9F66A /* thoughtbubble-menu2@2x.png */; };
 		5E48484016CF51F600B9F66A /* thoughtbubble-menu3.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E48483E16CF51F500B9F66A /* thoughtbubble-menu3.png */; };
 		5E48484116CF51F600B9F66A /* thoughtbubble-menu3@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E48483F16CF51F500B9F66A /* thoughtbubble-menu3@2x.png */; };
-		5E48489216D3323900B9F66A /* DilemmaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E48489116D3323900B9F66A /* DilemmaModel.m */; };
-		5E48489316D3323900B9F66A /* DilemmaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E48489116D3323900B9F66A /* DilemmaModel.m */; };
-		5E48489516D3326700B9F66A /* TestDilemmaModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E48489416D3326700B9F66A /* TestDilemmaModel.m */; };
+		5E48489216D3323900B9F66A /* DilemmaListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E48489116D3323900B9F66A /* DilemmaListModel.m */; };
+		5E48489316D3323900B9F66A /* DilemmaListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E48489116D3323900B9F66A /* DilemmaListModel.m */; };
+		5E48489516D3326700B9F66A /* TestDilemmaListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E48489416D3326700B9F66A /* TestDilemmaListModel.m */; };
 		5E498ACA131C941000A13D11 /* acc-bottom-beard-braidblack.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */; };
 		5E498ACB131C941000A13D11 /* acc-bottom-beard-braidblonde.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */; };
 		5E498ACC131C941000A13D11 /* acc-bottom-beard-braidbrown.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */; };
@@ -2011,9 +2011,9 @@
 		5E48483B16CF4FF400B9F66A /* thoughtbubble-menu2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-menu2@2x.png"; path = "Resources/images/interface/thoughtbubble-menu2@2x.png"; sourceTree = "<group>"; };
 		5E48483E16CF51F500B9F66A /* thoughtbubble-menu3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-menu3.png"; path = "Resources/images/interface/thoughtbubble-menu3.png"; sourceTree = "<group>"; };
 		5E48483F16CF51F500B9F66A /* thoughtbubble-menu3@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-menu3@2x.png"; path = "Resources/images/interface/thoughtbubble-menu3@2x.png"; sourceTree = "<group>"; };
-		5E48489016D3323900B9F66A /* DilemmaModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DilemmaModel.h; sourceTree = "<group>"; };
-		5E48489116D3323900B9F66A /* DilemmaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DilemmaModel.m; sourceTree = "<group>"; };
-		5E48489416D3326700B9F66A /* TestDilemmaModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDilemmaModel.m; sourceTree = "<group>"; };
+		5E48489016D3323900B9F66A /* DilemmaListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DilemmaListModel.h; sourceTree = "<group>"; };
+		5E48489116D3323900B9F66A /* DilemmaListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DilemmaListModel.m; sourceTree = "<group>"; };
+		5E48489416D3326700B9F66A /* TestDilemmaListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestDilemmaListModel.m; sourceTree = "<group>"; };
 		5E49883C131C940E00A13D11 /* acc-bottom-beard-braidblack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblack.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblack.png"; sourceTree = "<group>"; };
 		5E49883D131C940E00A13D11 /* acc-bottom-beard-braidblonde.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidblonde.png"; path = "Resources/images/accessories/acc-bottom-beard-braidblonde.png"; sourceTree = "<group>"; };
 		5E49883E131C940E00A13D11 /* acc-bottom-beard-braidbrown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-bottom-beard-braidbrown.png"; path = "Resources/images/accessories/acc-bottom-beard-braidbrown.png"; sourceTree = "<group>"; };
@@ -5235,8 +5235,8 @@
 			children = (
 				5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */,
 				5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */,
-				5E48489016D3323900B9F66A /* DilemmaModel.h */,
-				5E48489116D3323900B9F66A /* DilemmaModel.m */,
+				5E48489016D3323900B9F66A /* DilemmaListModel.h */,
+				5E48489116D3323900B9F66A /* DilemmaListModel.m */,
 				5E23AA1215EB32880049BE87 /* ReferenceModel.h */,
 				5E23AA1315EB32880049BE87 /* ReferenceModel.m */,
 				5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */,
@@ -5250,7 +5250,7 @@
 			isa = PBXGroup;
 			children = (
 				5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */,
-				5E48489416D3326700B9F66A /* TestDilemmaModel.m */,
+				5E48489416D3326700B9F66A /* TestDilemmaListModel.m */,
 				5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */,
 				5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */,
 			);
@@ -7265,7 +7265,7 @@
 				5EAB7A7516A29AB300623A48 /* MoralTableViewCell.m in Sources */,
 				5E3F7A0916BF879200002E85 /* UIViewController+Screenshot.m in Sources */,
 				5E4847FB16CDF5ED00B9F66A /* UIFont+Utility.m in Sources */,
-				5E48489216D3323900B9F66A /* DilemmaModel.m in Sources */,
+				5E48489216D3323900B9F66A /* DilemmaListModel.m in Sources */,
 				5E06560E16EC09B80045B8F3 /* UserConscience.m in Sources */,
 				5E4F414317040241005B0149 /* MoraLifeViewController.m in Sources */,
 			);
@@ -7365,8 +7365,8 @@
 				5E23AA1115E85CEB0049BE87 /* TestChoiceHistoryModel.m in Sources */,
 				5E23AA1515EB32880049BE87 /* ReferenceModel.m in Sources */,
 				5E978A1315EC5BB400EB2ED1 /* TestReferenceModel.m in Sources */,
-				5E48489316D3323900B9F66A /* DilemmaModel.m in Sources */,
-				5E48489516D3326700B9F66A /* TestDilemmaModel.m in Sources */,
+				5E48489316D3323900B9F66A /* DilemmaListModel.m in Sources */,
+				5E48489516D3326700B9F66A /* TestDilemmaListModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

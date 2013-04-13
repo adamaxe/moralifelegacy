@@ -1,7 +1,7 @@
 /**
- Dilemma view model.  Generate the various dilemmas available to User.  Dilemmas are requested at init or upon setting the dilemmaKey.
+ Dilemma List view model.  Generate list of the various dilemmas available to User.  Dilemmas are requested at init or upon setting the dilemmaKey.
 
- @class DilemmaModel
+ @class DilemmaListModel
  @see DilemmaListViewController
 
  @author Copyright 2013 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
@@ -19,7 +19,7 @@ typedef enum {
     MLRequestedMorathologyAdventure4
 } MLRequestedMorathologyAdventure;
 
-@interface DilemmaModel : NSObject
+@interface DilemmaListModel : NSObject
 
 @property (nonatomic, strong) NSString *dilemmaKey; /**< pkey for requested asset */
 

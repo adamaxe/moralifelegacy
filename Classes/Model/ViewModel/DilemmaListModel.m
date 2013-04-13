@@ -1,9 +1,9 @@
-#import "DilemmaModel.h"
+#import "DilemmaListModel.h"
 #import "UserDilemmaDAO.h"
 #import "DilemmaDAO.h"
 #import "Moral.h"
 
-@interface DilemmaModel () {
+@interface DilemmaListModel () {
     NSUserDefaults *preferences;            /**< User defaults to write to file system */
     NSArray *currentUserCollection;                /**< collection of owned Assets */
     ModelManager *dilemmaModelManager;
@@ -26,7 +26,7 @@
 
 @end
 
-@implementation DilemmaModel
+@implementation DilemmaListModel
 
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andCurrentCampaign:(MLRequestedMorathologyAdventure) campaign {
 
