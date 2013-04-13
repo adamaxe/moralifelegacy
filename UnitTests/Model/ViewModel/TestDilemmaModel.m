@@ -11,6 +11,7 @@
 #import "DilemmaModel.h"
 #import "UserDilemma.h"
 #import "Dilemma.h"
+#import "Moral.h"
 #import "UserCollectable.h"
 #import "OCMock/OCMock.h"
 
@@ -21,6 +22,8 @@
     Dilemma *testDilemma1;
     Dilemma *testDilemma2;
     Dilemma *testDilemma3;
+    Moral *testMoralA;
+    Moral *testMoralB;
     UserDilemma *testUserDilemma;
 
     NSString *nameUserDilemma1;
@@ -46,6 +49,13 @@
     NSNumber *enthusiasmDilemma;
     NSString *dilemmaText;
 
+    NSString *moralTypeVirtue;
+    NSString *nameMoral1;
+    NSString *moralTypeVice;
+    NSString *nameMoral2;
+    NSString *moralTypeVirtueExtra;
+    NSString *nameMoral3;
+    NSString *moralTypeAll;
 }
 
 @end
@@ -79,6 +89,23 @@
     entrySeverity =@5.0f;
     entryCreationDate = [NSDate date];
 
+    moralTypeVirtue = @"Virtue";
+    nameMoral1 = @"Virtue Name1";
+    moralTypeVice = @"Vice";
+    nameMoral2 = @"Vice Name2";
+    moralTypeVirtueExtra = @"Virtue";
+    nameMoral3 = @"Virtue Name3";
+    moralTypeAll = @"all";
+
+    testMoralA = [self createMoralWithName:nameMoral1 withType:moralTypeVirtue withModelManager:testModelManager];
+    testMoralB = [self createMoralWithName:nameMoral2 withType:moralTypeVirtue withModelManager:testModelManager];
+
+    testDilemma1.moralChoiceA = testMoralA;
+    testDilemma1.moralChoiceB = testMoralB;
+
+    testDilemma2.moralChoiceA = testMoralA;
+    testDilemma2.moralChoiceB = testMoralA;
+
     testUserDilemma = [self createUserDilemmaWithName:entryKey];
     testingSubject = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
@@ -98,6 +125,41 @@
     STAssertEqualObjects(testingSubject.dilemmas[0], testDilemma1.nameDilemma, @"DilemmaName not correct.");
     STAssertEqualObjects(testingSubject.dilemmaDisplayNames[0], testDilemma1.displayNameDilemma, @"dilemmaDisplayName not correct.");
     STAssertEqualObjects(testingSubject.dilemmaImages[0], testDilemma1.surrounding, @"surrounding Image not correct.");
+}
+
+- (void)testRetrievedDilemmaHasCorrectDerivedDataForAChoiceType {
+
+    NSString *vsText = [NSString stringWithFormat:@"%@ vs. %@", testDilemma1.moralChoiceA.displayNameMoral, testDilemma1.moralChoiceB.displayNameMoral];
+
+    //test vs. dilemma
+    STAssertEqualObjects(testingSubject.dilemmaDetails[0], vsText, @"DilemmaDetails not correctly displayed as the moral vs. moral.");
+    STAssertTrue([testingSubject.dilemmaTypes[0] boolValue] == TRUE, @"dilemmaType not correct.");
+
+    NSArray *moralKeys = [testingSubject.moralNames allKeys];
+    NSArray *moralValues = [testingSubject.moralNames allValues];
+
+    STAssertTrue([moralKeys containsObject:testDilemma1.moralChoiceA.nameMoral], @"Dilemma moralNames doesn't contain moralA name");
+    STAssertTrue([moralValues containsObject:testDilemma1.moralChoiceA.displayNameMoral], @"Dilemma moralNames doesn't contain moralA name");
+    STAssertTrue([moralKeys containsObject:testDilemma1.moralChoiceB.nameMoral], @"Dilemma moralNames doesn't contain moralB name");
+    STAssertTrue([moralValues containsObject:testDilemma1.moralChoiceB.displayNameMoral], @"Dilemma moralNames doesn't contain moralB name");
+}
+
+- (void)testRetrievedDilemmaHasCorrectDerivedDataForAnActionType {
+    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
+
+    //test action dilemma
+    STAssertEqualObjects(testingSubjectCreate.dilemmaDetails[0], testDilemma2.moralChoiceA.displayNameMoral, @"DilemmaDetails not correctly displayed as the moral.");
+    STAssertTrue([testingSubjectCreate.dilemmaTypes[0] boolValue] == FALSE, @"dilemmaType not correct.");
+
+    NSArray *moralKeys = [testingSubjectCreate.moralNames allKeys];
+    NSArray *moralValues = [testingSubjectCreate.moralNames allValues];
+
+    STAssertTrue([moralKeys containsObject:testDilemma2.moralChoiceA.nameMoral], @"Dilemma moralNames doesn't contain moralA name");
+    STAssertTrue([moralValues containsObject:testDilemma2.moralChoiceA.displayNameMoral], @"Dilemma moralNames doesn't contain moralA name");
+
+    STAssertTrue(moralKeys.count == 1, @"Dilemma moralNames doesn't have a single entry (Morals aren't the same)");
+    STAssertTrue(moralValues.count == 1, @"Dilemma moralDisplayNames doesn't have a single entry (Morals aren't the same)");
+
 }
 
 - (void)testDilemmaModelCanFilterDilemmaGivenRequestedCampaign {
@@ -220,8 +282,31 @@
     testUserDilemmaLocal1.entryCreationDate = entryCreationDate;
 
     [testModelManager saveContext];
-    
+
     return testUserDilemmaLocal1;
+}
+
+- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
+
+    NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
+
+    Moral *testMoral1 = [modelManager create:Moral.class];
+
+    testMoral1.shortDescriptionMoral = type;
+    testMoral1.nameMoral = moralName;
+
+    testMoral1.imageNameMoral = imageName;
+    testMoral1.colorMoral = @"FF0000";
+    testMoral1.displayNameMoral = @"displayName";
+    testMoral1.longDescriptionMoral = @"longDescription";
+    testMoral1.component = @"component";
+    testMoral1.linkMoral = @"link";
+    testMoral1.definitionMoral = @"definition";
+
+    [modelManager saveContext];
+
+    return testMoral1;
+    
 }
 
 @end

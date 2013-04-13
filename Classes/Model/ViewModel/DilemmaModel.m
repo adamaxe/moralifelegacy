@@ -115,6 +115,7 @@
 
             NSString *dilemmaDescription;
 
+            //If the morals assigned are equal, then, this is not choice between two morals.  Change the description accordingly.
             if ([[[match moralChoiceA] nameMoral] isEqualToString:[[match moralChoiceB] nameMoral]]) {
                 dilemmaDescription = [[NSString alloc] initWithString:[[match moralChoiceA] displayNameMoral]];
                 isDilemma = FALSE;
@@ -129,6 +130,7 @@
             if ([match moralChoiceB]) {
                 [derivedMoralNames setValue:[[match moralChoiceB] displayNameMoral] forKey:[[match moralChoiceB] nameMoral]];
             }
+            
             [derivedDilemmaTypes addObject:@(isDilemma)];
 			[derivedDilemmaDetails addObject:dilemmaDescription];
 
