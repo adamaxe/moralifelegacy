@@ -72,15 +72,14 @@
     testDilemma1 = [self createDilemmaWithName:nameDilemma1];
     testDilemma2 = [self createDilemmaWithName:nameDilemma2];
 
-    nameUserDilemma1 = @"dile-1-01";
     entryShortDescription = @"entryShortDescription";
     entryIsGood = @1;
-    entryKey = @"entryKey";
+    entryKey = @"dile-1-01user";
     entryLongDescription = @"entryLongDescription";
     entrySeverity =@5.0f;
     entryCreationDate = [NSDate date];
 
-    testUserDilemma = [self createUserDilemmaWithName:nameUserDilemma1];
+    testUserDilemma = [self createUserDilemmaWithName:entryKey];
     testingSubject = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
 }
@@ -128,37 +127,36 @@
     
 }
 
-//- (void)testDilemmaModelReturnsCorrectUserDilemmaIfCampaignIsRight {
-//
-//    NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
-//    NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
-//    STAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
-//    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct userDilemma key.");
-//    STAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
-//    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct userDilemma key.");
-//
-//}
-//
-//- (void)testDilemmaModelReturnsAMultipleUserDilemmasAreSortedCorrectly {
-//
-//    NSString *secondUserDilemma =  @"dile-1-02";
-//    NSString *entryShortDescription2 = @"entryShortDescription2";
-//
-//    UserDilemma *testUserDilemma2 = [self createUserDilemmaWithName:secondUserDilemma];
-//    testUserDilemma2.entryLongDescription = entryShortDescription2;
-//    [testModelManager saveContext];
-//
-//    NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
-//    NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
-//    STAssertTrue(userDilemmaKeys.count == 2, @"DilemmaModel didn't return correct number of userChoiceKeys.");
-//    STAssertTrue(userDilemmaValues.count == 2, @"DilemmaModel didn't return correct userChoiceValues.");
-//    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct first userDilemma key.");
-//    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct first userDilemma value.");
-//    STAssertEqualObjects(userDilemmaKeys[1], testUserDilemma2.entryShortDescription, @"DilemmaModel didn't return correct second userDilemma key.");
-//    STAssertEqualObjects(userDilemmaValues[1], testUserDilemma2.entryLongDescription, @"DilemmaModel didn't return correct second userDilemma value.");
-//
-//
-//}
+- (void)testDilemmaModelReturnsCorrectUserDilemmaIfCampaignIsRight {
+
+    NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
+    NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
+    STAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct userDilemma key.");
+    STAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
+    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct userDilemma key.");
+
+}
+
+- (void)testDilemmaModelReturnsAMultipleUserDilemmasAreSortedCorrectly {
+
+    NSString *secondUserDilemma =  @"dile-1-02user";
+    NSString *entryShortDescription2 = @"entryShortDescription2";
+
+    UserDilemma *testUserDilemma2 = [self createUserDilemmaWithName:secondUserDilemma];
+    testUserDilemma2.entryShortDescription = entryShortDescription2;
+    [testModelManager saveContext];
+
+    NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
+    NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
+    STAssertTrue(userDilemmaKeys.count == 2, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+    STAssertTrue(userDilemmaValues.count == 2, @"DilemmaModel didn't return correct userChoiceValues.");
+    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct first userDilemma key.");
+    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct first userDilemma value.");
+    STAssertEqualObjects(userDilemmaKeys[1], testUserDilemma2.entryShortDescription, @"DilemmaModel didn't return correct second userDilemma key.");
+    STAssertEqualObjects(userDilemmaValues[1], testUserDilemma2.entryLongDescription, @"DilemmaModel didn't return correct second userDilemma value.");
+
+}
 
 - (void)testSelectDilemmaWritesToStandardUserDefaultsForViewing {
 
@@ -195,7 +193,6 @@
     testUserDilemmaLocal1.entryKey = userDilemmaName;
     testUserDilemmaLocal1.entryShortDescription = entryShortDescription;
     testUserDilemmaLocal1.entryIsGood = entryIsGood;
-    testUserDilemmaLocal1.entryKey = entryKey;
     testUserDilemmaLocal1.entryLongDescription = entryLongDescription;
     testUserDilemmaLocal1.entrySeverity = entrySeverity;
     testUserDilemmaLocal1.entryCreationDate = entryCreationDate;
