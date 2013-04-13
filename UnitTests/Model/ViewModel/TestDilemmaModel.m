@@ -95,15 +95,37 @@
 
     STAssertTrue(testingSubject.dilemmas.count == 1, @"DilemmaModel didn't return correct number of dilemmas.");
 
-    STAssertEqualObjects(testingSubject.dilemmas[0], nameDilemma1, @"DilemmaName not correct.");
-    STAssertEqualObjects(testingSubject.dilemmaDisplayNames[0], displayNameDilemma, @"dilemmaDisplayName not correct.");
-    STAssertEqualObjects(testingSubject.dilemmaImages[0], surrounding, @"surrounding Image not correct.");
+    STAssertEqualObjects(testingSubject.dilemmas[0], testDilemma1.nameDilemma, @"DilemmaName not correct.");
+    STAssertEqualObjects(testingSubject.dilemmaDisplayNames[0], testDilemma1.displayNameDilemma, @"dilemmaDisplayName not correct.");
+    STAssertEqualObjects(testingSubject.dilemmaImages[0], testDilemma1.surrounding, @"surrounding Image not correct.");
+}
+
+- (void)testDilemmaModelCanFilterDilemmaGivenRequestedCampaign {
 
     DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
 
     STAssertTrue(testingSubjectCreate.dilemmas.count == 1, @"DilemmaModel didn't return correct number of dilemmas.");
 
-    STAssertEqualObjects(testingSubjectCreate.dilemmas[0], nameDilemma2, @"DilemmaName not correct.");
+    STAssertEqualObjects(testingSubjectCreate.dilemmas[0], testDilemma2.nameDilemma, @"DilemmaName not correct.");
+}
+
+- (void)testDilemmaModelCanRetrieveCorrectlySortedDilemmasGivenRequestedCampaign {
+
+    NSString *nameDilemmaOrderedSecond = @"dile-1-02";
+    Dilemma *testDilemmaOrderedSecond = [self createDilemmaWithName:nameDilemmaOrderedSecond];
+
+    DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
+
+    STAssertTrue(testingSubjectCreate.dilemmas.count == 2, @"DilemmaModel didn't return correct number of dilemmas.");
+
+    STAssertEqualObjects(testingSubjectCreate.dilemmas[0], testDilemma1.nameDilemma, @"DilemmaName not correct order.");
+    STAssertEqualObjects(testingSubjectCreate.dilemmaDisplayNames[0], testDilemma1.displayNameDilemma, @"dilemmaDisplayName not correct order.");
+    STAssertEqualObjects(testingSubjectCreate.dilemmaImages[0], testDilemma1.surrounding, @"surrounding Image not correct order.");
+
+    STAssertEqualObjects(testingSubjectCreate.dilemmas[1], testDilemmaOrderedSecond.nameDilemma, @"DilemmaName not correct order.");
+    STAssertEqualObjects(testingSubjectCreate.dilemmaDisplayNames[1], testDilemmaOrderedSecond.displayNameDilemma, @"dilemmaDisplayName not correct order.");
+    STAssertEqualObjects(testingSubjectCreate.dilemmaImages[1], testDilemmaOrderedSecond.surrounding, @"surrounding Image not correct order.");
+
 }
 
 - (void)testDilemmaModelReturnsNoDilemmasIfCampaignIsWrong {
@@ -113,7 +135,7 @@
     STAssertTrue(testingSubjectCreate.dilemmas.count == 0, @"DilemmaModel returned dilemma it shouldn't have.");
 }
 
-- (void)testDilemmaModelReturnsASingleUserDilemmasIfCampaignIsWrong {
+- (void)testDilemmaModelReturnsASingleUserDilemmaIfCampaignIsWrong {
 
 
     DilemmaModel *testingSubjectCreate = [[DilemmaModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure3];

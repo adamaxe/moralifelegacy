@@ -1,5 +1,5 @@
 /**
- Dilemma view model.  Generate the various dilemmas available to User.
+ Dilemma view model.  Generate the various dilemmas available to User.  Dilemmas are requested at init or upon setting the dilemmaKey.
 
  @class DilemmaModel
  @see DilemmaListViewController
