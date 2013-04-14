@@ -23,7 +23,6 @@ typedef enum {
     MLHomeViewControllerThoughtButtonTag = 3033
 } MLHomeViewControllerTags;
 
-float const MLTransientInterval = 7;
 int const MLThoughtIterations = 5;
 float const MLThoughtInterval = 5;
 
@@ -203,33 +202,9 @@ static int thoughtVersion = 0;
 	if (moodCheck != nil) {
         
 		transientMood = [prefs floatForKey:@"transientMind"];
-        
-        //store previous mood
-        float restoreMood = _userConscience.userConscienceMind.mood;
-        float restoreEnthusiasm = _userConscience.userConscienceMind.enthusiasm;
-        
-        //set new mood
-        _userConscience.userConscienceMind.mood = transientMood;
-        _userConscience.userConscienceMind.enthusiasm = 100.0;
-        [_userConscience.userConscienceView setIsExpressionForced:TRUE];
-        
-        //Setup invocation for delayed mood reset
-        SEL selector = @selector(resetMood:andEnthusiasm:);
-        
-        NSMethodSignature *signature = [UserConscience instanceMethodSignatureForSelector:selector];
-        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setSelector:selector];
-        
-        //Set the arguments
-        [invocation setTarget:_userConscience];
-        [invocation setArgument:&restoreMood atIndex:2];
-        [invocation setArgument:&restoreEnthusiasm atIndex:3];        
-        
+        _userConscience.transientMood = transientMood;
         //remove transient mood
         [prefs removeObjectForKey:@"transientMind"];
-        [_userConscience.userConscienceView setNeedsDisplay];
-        
-        [NSTimer scheduledTimerWithTimeInterval:MLTransientInterval invocation:invocation repeats:NO];
         
     }
 

@@ -71,4 +71,5 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
  @return UIImage screenshot without the Conscience on screen
  */
 -(UIImage *)prepareScreenForScreenshot;
+
 @end

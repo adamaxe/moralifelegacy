@@ -19,6 +19,7 @@
 @property (nonatomic, strong) ConscienceView *userConscienceView;   /**< Visual representation of User's Conscience+Accessories */
 @property (nonatomic, strong) ConscienceMind *userConscienceMind;   /**< Representation of User's Mental State */
 @property (nonatomic, strong) NSMutableArray *conscienceCollection;       /**< Currently owned items */
+@property (nonatomic, unsafe_unretained) float transientMood; /**< set a mood temporarily */
 
 /**
  Dependency injection constructor to pass model

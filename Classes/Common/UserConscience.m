@@ -8,6 +8,8 @@
 #import "UserCharacterDAO.h"
 #import "UserCollectableDAO.h"
 
+float const MLTransientInterval = 7;
+
 @interface UserConscience ()
 
 @property (nonatomic) ModelManager *modelManager;
@@ -47,6 +49,40 @@
     }
 
     return self;
+}
+
+#pragma mark -
+#pragma mark overloaded setters
+
+- (void)setTransientMood:(float)transientMood {
+    if(_transientMood != transientMood) {
+
+        //store previous mood
+        float restoreMood = self.userConscienceMind.mood;
+        float restoreEnthusiasm = self.userConscienceMind.enthusiasm;
+
+        //set new mood
+        self.userConscienceMind.mood = transientMood;
+        self.userConscienceMind.enthusiasm = 100.0;
+        [self.userConscienceView setIsExpressionForced:TRUE];
+
+        //Setup invocation for delayed mood reset
+        SEL selector = @selector(resetMood:andEnthusiasm:);
+
+        NSMethodSignature *signature = [UserConscience instanceMethodSignatureForSelector:selector];
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
+        [invocation setSelector:selector];
+
+        //Set the arguments
+        [invocation setTarget:self];
+        [invocation setArgument:&restoreMood atIndex:2];
+        [invocation setArgument:&restoreEnthusiasm atIndex:3];
+
+        [self.userConscienceView setNeedsDisplay];
+
+        [NSTimer scheduledTimerWithTimeInterval:MLTransientInterval invocation:invocation repeats:NO];
+        
+    }
 }
 
 #pragma mark -
