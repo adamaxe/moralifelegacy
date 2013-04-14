@@ -337,7 +337,7 @@ static int thoughtVersion = 0;
 	    
 	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     thoughtArea.hidden = TRUE;
-    conscienceViewController.screenshot = [self takeScreenshot];
+    conscienceViewController.screenshot = [self prepareScreenForScreenshot];
 	
     [conscienceNavigationController pushViewController:conscienceViewController animated:NO];
 	
@@ -372,82 +372,8 @@ static int thoughtVersion = 0;
     [self presentModalViewController:introViewCont animated:NO];
 }
 
-
-/** Implementation:  Needs function due to invocation
- */
 -(void) refreshConscience{
 	[[consciencePlayground viewWithTag:MLConscienceViewTag] setNeedsDisplay];
-}
-
-#pragma mark -
-#pragma mark Touch Callbacks
-
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-	NSSet *allTouches = [event allTouches];
-    
-	switch ([allTouches count]) {
-		case 1: { //Single touch
-			
-			//Get the first touch.
-			UITouch *touch = [allTouches allObjects][0];
-						
-			CGPoint conscienceCenter = [touch locationInView:self.view];
-			UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];
-			
-			//Shrink the Conscience to emulate that User is pushing Conscience
-			//into background.  Only animate this if User is actually touching Conscience.
-			if (touchedView.tag==MLConscienceViewTag) {
-				                
-                /** @todo fix Conscience movement */
-				//Depress Conscience slightly to simulate actual contact
-				[UIView beginAnimations:@"ResizeConscienceSmall" context:nil];
-				[UIView setAnimationDuration:0.2];
-				[UIView setAnimationBeginsFromCurrentState:YES];
-				_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-				[UIView commitAnimations];
-				
-                [self createMovementReaction];
-				
-			}	
-
-		} break;
-		default:break;
-	}
-	
-	
-}
-
--(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-	
-    initialTapDistance = -1;
-		
-	//Return the Conscience to regular size in event of touched or zoomed
-	[UIView beginAnimations:@"ResizeConscienceBig" context:nil];
-	[UIView setAnimationDuration:0.2];
-	[UIView setAnimationBeginsFromCurrentState:YES];
-	
-	_userConscience.userConscienceView.conscienceBubbleView.transform = CGAffineTransformMakeScale(1.0f, 1.0f);
-
-	[UIView commitAnimations];
-        
-    NSSet *allTouches = [event allTouches];
-    UITouch *touch = [allTouches allObjects][0];
-
-    CGPoint conscienceCenter = [touch locationInView:self.view];
-
-    UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];
-
-    if (touchedView.tag==MLConscienceViewTag) {
-    
-        [self showConscienceModal];
-    }
-	
-}
-- (void) touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-	    
-	[self touchesEnded:touches withEvent:event];
-
 }
 
 -(void) createMovementReaction {
@@ -784,6 +710,18 @@ Change the Rank picture and description.
     [rankButton setAccessibilityLabel:NSLocalizedString(@"ConscienceScreenRankLabel",nil)];
     
 }
+
+#pragma mark -
+#pragma mark UserConscienceTouchProtocol
+
+-(void)userConscienceTouchBegan {
+    [self createMovementReaction];
+}
+
+-(void)userConscienceTouchEnded {
+    [self showConscienceModal];
+}
+
 
 #pragma mark -
 #pragma mark Memory management

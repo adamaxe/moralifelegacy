@@ -305,7 +305,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
             moralImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
             [self presentModalViewController:_conscienceHelpViewController animated:NO];
         }];
         
@@ -372,7 +372,7 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
         moralImageView.alpha = 0;
         
     } completion:^(BOOL finished) {
-        self.virtueViceViewController.screenshot = [self takeScreenshot];
+        self.virtueViceViewController.screenshot = [self prepareScreenForScreenshot];
         [self presentModalViewController:self.virtueViceViewController animated:NO];
     }];
 
@@ -391,7 +391,7 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
         moralImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        self.historyViewController.screenshot = [self takeScreenshot];
+        self.historyViewController.screenshot = [self prepareScreenForScreenshot];
         [self presentModalViewController:self.historyViewController animated:NO];
 
     }];
@@ -428,7 +428,7 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
         moralImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
         [self presentModalViewController:_conscienceHelpViewController animated:NO];
 
     }];
@@ -458,7 +458,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
             moralImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
             [self presentModalViewController:_conscienceHelpViewController animated:NO];
 
         }];
@@ -482,7 +482,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
                 moralImageView.alpha = 0;
 
             } completion:^(BOOL finished) {
-                _conscienceHelpViewController.screenshot = [self takeScreenshot];
+                _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
                 [self presentModalViewController:_conscienceHelpViewController animated:NO];
 
             }];

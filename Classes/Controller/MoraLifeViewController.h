@@ -16,7 +16,31 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
 #import "UIFont+Utility.h"
 #import "ViewControllerLocalization.h"
 
-@interface MoraLifeViewController : UIViewController <ViewControllerLocalization> {
+/**
+ User Conscience Touch Protocol.  User Conscience should handle the visualizations of what happens when a User touches it.  However, each ViewController that is presenting the UserConscience should elect to do something when the conscience is touched.
+
+ Copyright 2013 Team Axe, LLC. All rights reserved.
+
+ @class UserConscienceTouchProtocol
+ @author Team Axe, LLC. http://www.teamaxe.org
+ @date 04/14/2013
+ */
+
+@protocol UserConscienceTouchProtocol
+
+/**
+ Action when the User has began touching the Conscience
+ */
+- (void) userConscienceTouchBegan;
+
+/**
+ Action when the User has stopped touching the Conscience
+ */
+- (void) userConscienceTouchEnded;
+
+@end
+
+@interface MoraLifeViewController : UIViewController <ViewControllerLocalization, UserConscienceTouchProtocol> {
 
     @protected
         ModelManager *_modelManager;
@@ -42,4 +66,6 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
  */
 -(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
+
+-(UIImage *)prepareScreenForScreenshot;
 @end

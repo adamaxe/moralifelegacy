@@ -106,7 +106,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 		conscienceHelpViewController.isConscienceOnScreen = FALSE;
         conscienceHelpViewController.numberOfScreens = 1;
 
-        conscienceHelpViewController.screenshot = [self takeScreenshot];
+        conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 
 		[self presentModalViewController:conscienceHelpViewController animated:NO];
         

@@ -157,6 +157,9 @@
     
 }
 
+#pragma mark -
+#pragma mark Shake Handling
+
 /**
  Implementation: Randomize the position of the conscience and the eye positions for a time.  Stop the actual consciencePosition randomization, but continue the eye randomization for a time.
  */
@@ -196,7 +199,5 @@
 	self.shakeTimer = nil;
 
 }
-
-
 
 @end

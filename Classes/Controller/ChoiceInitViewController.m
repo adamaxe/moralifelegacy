@@ -110,7 +110,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
         
 		_conscienceHelpViewController.isConscienceOnScreen = FALSE;
         _conscienceHelpViewController.numberOfScreens = 1;
-        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 
         [self presentModalViewController:_conscienceHelpViewController animated:NO];
         

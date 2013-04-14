@@ -170,7 +170,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
         
         _conscienceHelpViewController.isConscienceOnScreen = TRUE;
         _conscienceHelpViewController.numberOfScreens = 1;
-        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
         [self presentModalViewController:_conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstMorathology"];
@@ -322,11 +322,11 @@ Implementation: Signals User desire to return to ConscienceViewController
             
             if ([tableDataTypes[indexPath.row] boolValue]){
                 DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"DilemmaView" bundle:nil modelManager:_modelManager andConscience:_userConscience];
-                dilemmaViewController.screenshot = [self takeScreenshot];
+                dilemmaViewController.screenshot = [self prepareScreenForScreenshot];
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             } else {
                 DilemmaViewController *dilemmaViewController = [[DilemmaViewController alloc] initWithNibName:@"ConscienceActionView" bundle:nil modelManager:_modelManager andConscience:_userConscience];
-                dilemmaViewController.screenshot = [self takeScreenshot];                
+                dilemmaViewController.screenshot = [self prepareScreenForScreenshot];                
                 [self.navigationController pushViewController:dilemmaViewController animated:NO];
             }
 

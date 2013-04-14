@@ -133,7 +133,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
         
 		_conscienceHelpViewController.isConscienceOnScreen = TRUE;
         _conscienceHelpViewController.numberOfScreens = 1;
-        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 		[self presentModalViewController:_conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstPie"];

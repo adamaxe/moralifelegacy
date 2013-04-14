@@ -212,7 +212,7 @@ User selection causes selectChoice to be called which sets the currentState vari
         
 		_conscienceHelpViewController.isConscienceOnScreen = TRUE;
         _conscienceHelpViewController.numberOfScreens = 1;
-        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 		[self presentModalViewController:_conscienceHelpViewController animated:NO];
         
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
@@ -367,7 +367,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 			case 2:{
                 ReportPieModel *reportPieModel = [[ReportPieModel alloc] initWithModelManager:_modelManager];
 				ReportPieViewController *reportPieViewCont = [[ReportPieViewController alloc] initWithModel:reportPieModel modelManager:_modelManager andConscience:_userConscience];
-                reportPieViewCont.screenshot = [self takeScreenshot];
+                reportPieViewCont.screenshot = [self prepareScreenForScreenshot];
 				[prefs setBool:TRUE forKey:@"reportIsGood"];
                 
 				[self.navigationController pushViewController:reportPieViewCont animated:NO];
@@ -380,7 +380,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
                     _userConscience.userConscienceView.alpha = 0;
                 }completion:^(BOOL finished) {
 
-                    conscienceAccessoryController.screenshot = [self takeScreenshot];
+                    conscienceAccessoryController.screenshot = [self prepareScreenForScreenshot];
                     [self.navigationController pushViewController:conscienceAccessoryController animated:NO];
                 }];
 
@@ -413,7 +413,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
             _userConscience.userConscienceView.alpha = 0;
         }completion:^(BOOL finished) {
 
-            conscienceListController.screenshot = [self takeScreenshot];
+            conscienceListController.screenshot = [self prepareScreenForScreenshot];
             [self.navigationController pushViewController:conscienceListController animated:NO];
         }];
 
@@ -448,14 +448,16 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
             
             _conscienceHelpViewController.isConscienceOnScreen = TRUE;
             _conscienceHelpViewController.numberOfScreens = 3;
-            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
             [self presentModalViewController:_conscienceHelpViewController animated:NO];
 			
         } else {
 
             DilemmaListModel *dilemmaListModel = [[DilemmaListModel alloc] initWithModelManager:_modelManager andDefaults:prefs andCurrentCampaign:requestedCampaign];
             DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaListModel modelManager:_modelManager andConscience:_userConscience];
-            dilemmaListViewController.screenshot = [self takeScreenshot];
+//            _userConscience.userConscienceView.alpha = 0;
+            dilemmaListViewController.screenshot = [self prepareScreenForScreenshot];
+//            _userConscience.userConscienceView.alpha = 1;
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
 

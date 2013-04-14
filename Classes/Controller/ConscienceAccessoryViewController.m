@@ -156,7 +156,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
 -(void)createList{
     
     ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
-    conscienceListController.screenshot = [self takeScreenshot];
+    conscienceListController.screenshot = [self prepareScreenForScreenshot];
     [conscienceListController setAccessorySlot:accessorySlot];
     
     

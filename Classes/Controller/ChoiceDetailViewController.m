@@ -177,7 +177,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
             influenceImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            _conscienceHelpViewController.screenshot = [self takeScreenshot];
+            _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
             [self presentModalViewController:_conscienceHelpViewController animated:NO];
         }];
         
@@ -294,7 +294,7 @@ Implementation: pop UIViewController from current navigationController
         influenceImageView.alpha = 0;
 
     } completion:^(BOOL finished) {
-        _conscienceHelpViewController.screenshot = [self takeScreenshot];
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
         [self presentModalViewController:_conscienceHelpViewController animated:NO];
     }];
 

@@ -154,7 +154,7 @@ User can filter list by only things that are affordable to currentFunds.
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
 		conscienceHelpViewController.isConscienceOnScreen = TRUE;
         conscienceHelpViewController.numberOfScreens = 1;
-        conscienceHelpViewController.screenshot = [self takeScreenshot];
+        conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 		[self presentModalViewController:conscienceHelpViewController animated:NO];
 
         [prefs setBool:FALSE forKey:@"firstConscienceList"];
@@ -532,7 +532,7 @@ Implementation: Retrieve User's current ethicals from UserData
         _userConscience.userConscienceView.alpha = 0;
     }completion:^(BOOL finished) {
 
-        conscienceAcceptController.screenshot = [self takeScreenshot];
+        conscienceAcceptController.screenshot = [self prepareScreenForScreenshot];
         [self.navigationController pushViewController:conscienceAcceptController animated:NO];
     }];
         

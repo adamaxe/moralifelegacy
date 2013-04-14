@@ -179,7 +179,7 @@ Implementation: Show Conscience thoughtbubble containing Quote
     _conscienceHelpViewController.helpTitles = titles;
     _conscienceHelpViewController.helpTexts = texts;
     _conscienceHelpViewController.isConscienceOnScreen = FALSE;
-    _conscienceHelpViewController.screenshot = [self takeScreenshot];
+    _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 
     [self presentModalViewController:_conscienceHelpViewController animated:NO];
 	

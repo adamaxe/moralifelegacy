@@ -1,3 +1,13 @@
+/**
+ UserConscience class.  A class representing the visual and emotional state of the User's Conscience.
+
+ Copyright 2012 Team Axe, LLC. All rights reserved.
+
+ @class UserConscience
+ @author Team Axe, LLC. http://www.teamaxe.org
+ @date 02/18/2013
+ */
+
 #import "ConscienceView.h"
 #import "ConscienceMind.h"
 
