@@ -17,4 +17,16 @@
  */
 -(id)initWithModelManager:(ModelManager *)modelManager;
 
+/**
+ User choices affect UserConscience immediately, must return Conscience to regular state
+ @param originalMood float representing overall Conscience mood
+ @param originalEnthusiasm float representing overall Conscience enthusiasm
+ */
+-(void) resetMood:(float) originalMood andEnthusiasm:(float) originalEnthusiasm;
+
+/**
+ Cancel all of shooken UserConscience behavior
+ */
+-(void) shakeConscience;
+
 @end

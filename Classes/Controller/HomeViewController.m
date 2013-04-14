@@ -7,7 +7,6 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 
 #import "HomeViewController.h"
 #import "ConscienceViewController.h"
-#import <QuartzCore/QuartzCore.h>
 #import "UserChoiceDAO.h"
 #import "UserCollectableDAO.h"
 #import "MoralDAO.h"
@@ -49,7 +48,6 @@ float const MLThoughtInterval = 5;
 	IBOutlet UIButton *viceButton;                  /**< button surrounding picture frame to cue vice thought */
 	IBOutlet UIButton *rankButton;                  /**< picture frame to launch ConscienceViewController */
     
-	NSTimer *shakeTimer;				/**< limits Conscience shake response */
 	NSTimer *thoughtFadeTimer;			/**< determines when Conscience thought disappears */
     
 	CGFloat animationDuration;			/**< assists in gesture recognition */	
@@ -81,10 +79,6 @@ float const MLThoughtInterval = 5;
 
 -(void) refreshConscience;
 /**
- Cancel all of shooken UserConscience behavior
- */
--(void) shakeEnd;
-/**
  Create welcome message thought bubble for UserConscience
  */
 -(void) createWelcomeMessage;
@@ -97,13 +91,6 @@ float const MLThoughtInterval = 5;
  Find highest rank
  */
 -(void) retrieveHighestRank;
-/**
- User choices affect UserConscience immediately, must return Conscience to regular state
- @param originalMood float representing overall Conscience mood
- @param originalEnthusiasm float representing overall Conscience enthusiasm
- */
--(void) resetMood:(float) originalMood andEnthusiasm:(float) originalEnthusiasm;
-
 -(void) createMovementReaction;
 -(void) setupModalWorkflow;
 
@@ -229,12 +216,12 @@ static int thoughtVersion = 0;
         //Setup invocation for delayed mood reset
         SEL selector = @selector(resetMood:andEnthusiasm:);
         
-        NSMethodSignature *signature = [HomeViewController instanceMethodSignatureForSelector:selector];
+        NSMethodSignature *signature = [UserConscience instanceMethodSignatureForSelector:selector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
         [invocation setSelector:selector];
         
         //Set the arguments
-        [invocation setTarget:self];
+        [invocation setTarget:_userConscience];
         [invocation setArgument:&restoreMood atIndex:2];
         [invocation setArgument:&restoreEnthusiasm atIndex:3];        
         
@@ -392,55 +379,8 @@ static int thoughtVersion = 0;
 	[[consciencePlayground viewWithTag:MLConscienceViewTag] setNeedsDisplay];
 }
 
-//Implement Shaking response
--(BOOL)canBecomeFirstResponder {
-    return YES;
-}
-
 #pragma mark -
 #pragma mark Touch Callbacks
-
-- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
-{
-	SEL shakeSelector = @selector(changeEyeDirection);
-	SEL shakeEndSelector = @selector(shakeEnd);
-	
-	// create a singature from the selector
-	NSMethodSignature *shakeSignature = [[ConscienceView class] instanceMethodSignatureForSelector:shakeSelector];
-	NSMethodSignature *shakeEndSignature = [[self class] instanceMethodSignatureForSelector:shakeEndSelector];
-	
-	NSInvocation *shakeInvocation = [NSInvocation invocationWithMethodSignature:shakeSignature];
-	NSInvocation *shakeEndInvocation = [NSInvocation invocationWithMethodSignature:shakeEndSignature];
-	
-	[shakeInvocation setTarget:_userConscience.userConscienceView];
-	[shakeInvocation setSelector:shakeSelector];
-	[shakeEndInvocation setTarget:self];
-	[shakeEndInvocation setSelector:shakeEndSelector];	
-    
-    if (motion == UIEventSubtypeMotionShake)
-    {
-		//Stop the conscience from moving
-		if(shakeTimer != nil){
-			
-			[shakeTimer invalidate];
-			shakeTimer = nil;
-		}else {
-			shakeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 invocation:shakeInvocation repeats:YES];
-			[NSTimer scheduledTimerWithTimeInterval:1.5 invocation:shakeEndInvocation repeats:NO];
-            
-		}
-
-        [_userConscience.userConscienceView.layer addAnimation:(CAAnimation *)[_userConscience.userConscienceView shakeAnimation] forKey:@"position"];
-        
-    }
-}
-
-- (void) shakeEnd
-{
-	[shakeTimer invalidate];
-	shakeTimer = nil;
-	
-}
 
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
@@ -651,7 +591,6 @@ Implementation:  Determine time of day, and which thought should be displayed.  
     int ethicals = 0;
     //Increase the moral's value
     ethicals = [[currentUserCollectable collectableValue] intValue];		
-    
         
     NSString *welcomeTextName =[[NSString alloc] initWithFormat:@"%@Welcome%@%@",NSStringFromClass([self class]), timeOfDay, mood ];
     NSString *welcomeText = [[NSString alloc] initWithString:NSLocalizedString(welcomeTextName,nil)];
@@ -825,28 +764,6 @@ Change the Rank picture and description.
                         
 	}
 	
-    
-}
-
-/**
- Implementation: Return UserConscience's Mood to previous state.  Eliminate transient mood/enthusiasm.  Fade results since glow change would be jarring, visually.
- */
-- (void) resetMood:(float) originalMood andEnthusiasm:(float) originalEnthusiasm{
-    
-    [UIView beginAnimations:@"conscienceFade" context:nil];
-    [UIView setAnimationDuration:0.25];
-    
-    [UIView setAnimationBeginsFromCurrentState:YES];
-    
-    _userConscience.userConscienceView.alpha = 0;
-    _userConscience.userConscienceMind.mood = originalMood;
-    _userConscience.userConscienceMind.enthusiasm = originalEnthusiasm;
-    [_userConscience.userConscienceView setNeedsDisplay];
-    
-    [UIView setAnimationDelegate:_userConscience.userConscienceView];
-    [UIView setAnimationDidStopSelector:@selector(makeConscienceVisible)];
-    
-    [UIView commitAnimations];
     
 }
 

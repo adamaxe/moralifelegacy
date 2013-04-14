@@ -1,5 +1,6 @@
 #import "UserConscience.h"
 #import "ModelManager.h"
+#import <QuartzCore/QuartzCore.h>
 #import "ConscienceBody.h"
 #import "ConscienceAccessories.h"
 #import "ConscienceAsset.h"
@@ -10,6 +11,7 @@
 @interface UserConscience ()
 
 @property (nonatomic) ModelManager *modelManager;
+@property (nonatomic) NSTimer *shakeTimer;				/**< limits Conscience shake response */
 
 /**
  Create base Monitor before personalization re-instatement
@@ -19,6 +21,10 @@
  Apply User's changes to base Monitor
  */
 - (void)configureConscience;
+/**
+ Stop the Conscience from shaking
+ */
+- (void)shakeEnd;
 
 @end
 
@@ -128,6 +134,69 @@
 	//Call utility class to parse svg data for feature building
 	[ConscienceBuilder buildConscience:_userConscienceBody];
 }
+
+/**
+ Implementation: Return UserConscience's Mood to previous state.  Eliminate transient mood/enthusiasm.  Fade results since glow change would be jarring, visually.
+ */
+- (void) resetMood:(float) originalMood andEnthusiasm:(float) originalEnthusiasm{
+
+    [UIView beginAnimations:@"conscienceFade" context:nil];
+    [UIView setAnimationDuration:0.25];
+
+    [UIView setAnimationBeginsFromCurrentState:YES];
+
+    self.userConscienceView.alpha = 0;
+    self.userConscienceMind.mood = originalMood;
+    self.userConscienceMind.enthusiasm = originalEnthusiasm;
+    [self.userConscienceView setNeedsDisplay];
+
+    [UIView setAnimationDelegate:self.userConscienceView];
+    [UIView setAnimationDidStopSelector:@selector(makeConscienceVisible)];
+
+    [UIView commitAnimations];
+    
+}
+
+/**
+ Implementation: Randomize the position of the conscience and the eye positions for a time.  Stop the actual consciencePosition randomization, but continue the eye randomization for a time.
+ */
+- (void)shakeConscience {
+    SEL shakeSelector = @selector(changeEyeDirection);
+	SEL shakeEndSelector = @selector(shakeEnd);
+
+	// create a singature from the selector
+	NSMethodSignature *shakeSignature = [[ConscienceView class] instanceMethodSignatureForSelector:shakeSelector];
+	NSMethodSignature *shakeEndSignature = [[self class] instanceMethodSignatureForSelector:shakeEndSelector];
+
+	NSInvocation *shakeInvocation = [NSInvocation invocationWithMethodSignature:shakeSignature];
+	NSInvocation *shakeEndInvocation = [NSInvocation invocationWithMethodSignature:shakeEndSignature];
+
+	[shakeInvocation setTarget:self.userConscienceView];
+	[shakeInvocation setSelector:shakeSelector];
+	[shakeEndInvocation setTarget:self];
+	[shakeEndInvocation setSelector:shakeEndSelector];
+
+    //Stop the conscience from moving
+    if(self.shakeTimer != nil){
+        [self.shakeTimer invalidate];
+        self.shakeTimer = nil;
+    }else {
+        self.shakeTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 invocation:shakeInvocation repeats:YES];
+        [NSTimer scheduledTimerWithTimeInterval:1.5 invocation:shakeEndInvocation repeats:NO];
+
+    }
+
+    CAAnimation *shakeAnimation = (CAAnimation *)[self.userConscienceView shakeAnimation];
+    [self.userConscienceView.layer addAnimation:shakeAnimation forKey:@"position"];
+
+}
+
+- (void) shakeEnd {
+	[self.shakeTimer invalidate];
+	self.shakeTimer = nil;
+
+}
+
 
 
 @end

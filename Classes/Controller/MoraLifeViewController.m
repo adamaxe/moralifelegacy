@@ -47,6 +47,18 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
     }
 }
 
+//Implement Shaking response
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
+
+    if (motion == UIEventSubtypeMotionShake) {
+        [_userConscience shakeConscience];
+    }
+}
+
 - (void)localizeUI {
     //No op to suppress localizable protocol warnings.  Must be implemented by subclasses.
 }
