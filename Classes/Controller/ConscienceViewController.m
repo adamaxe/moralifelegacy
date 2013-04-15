@@ -90,32 +90,28 @@ User selection causes selectChoice to be called which sets the currentState vari
 	
 	tempButtonImages = @[@"icon-features.png", @"icon-palette.png", @"icon-accessories.png", @" "];
 	[buttonImages setValue:tempButtonImages forKey:@"1"];
-	
 	tempButtonLabels = @[@"Orientation", @"Atlantic", @"Eastern", @"Coming Soon!"];
 	[buttonLabels setValue:tempButtonLabels forKey:@"2"];
 	
 	tempButtonImages = @[@"icon-places1.png", @"icon-places2.png", @"icon-places3.png", @"icon-places4.png"];
 	[buttonImages setValue:tempButtonImages forKey:@"2"];
-	
 	tempButtonLabels = @[@"Features", @"Colors", @"Accessories", @" "];
 	[buttonLabels setValue:tempButtonLabels forKey:@"1"];
     
 	tempButtonImages = @[@"icon-resetapp.png", @" ", @" ", @" "];
 	[buttonImages setValue:tempButtonImages forKey:@"3"];
-	
 	tempButtonLabels = @[@"Reset Application", @" ", @" ", @" "];
 	[buttonLabels setValue:tempButtonLabels forKey:@"3"];
 	
 	tempButtonImages = @[@"icon-eye.png", @"icon-symbol.png", @"icon-mouth.png", @"icon-bubble.png"];
 	[buttonImages setValue:tempButtonImages forKey:@"5"];
-	
 	tempButtonLabels = @[@"Eye", @"Face", @"Mouth", @"Bubble"];
 	[buttonLabels setValue:tempButtonLabels forKey:@"5"];
 	
 	tempButtonImages = @[@"icon-eye.png", @"icon-brow.png", @"icon-bubble.png", @"icon-none.png"];
 	[buttonImages setValue:tempButtonImages forKey:@"6"];
-	
 	tempButtonLabels = @[@"Eye", @"Brow", @"Bubble", @" "];
+
 	[buttonLabels setValue:tempButtonLabels forKey:@"6"];
     
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
@@ -270,58 +266,28 @@ Determines if current screen should change or if another UIViewController needs 
     
     //Change buttons and status bar for appropriate requested screen
 	statusMessage1.text = (NSString *)screenTitles[currentState];
-    
-	//Set button image and names, set tags for screen derivation
-	NSString *buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][0];
-	NSString *buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][0];
-	[button1 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
-	[labelButton1 setTitle:buttonLabel forState: UIControlStateNormal];
-	button1.tag = currentState*4;
-	labelButton1.tag = currentState*4;
-    
-    button1.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button1.tag]),nil);
-	button1.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button1.tag]),nil);
-    labelButton1.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton1.tag]),nil);
-	labelButton1.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton1.tag]),nil);
 
-    
-	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][1];
-	buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][1];
-	[button2 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
-	[labelButton2 setTitle:buttonLabel forState: UIControlStateNormal];
-	button2.tag = currentState*4 + 1;
-	labelButton2.tag = currentState*4 + 1;
+    NSArray *buttonArray = @[button1, button2, button3, button4];
+    NSArray *labelArray = @[labelButton1, labelButton2, labelButton3, labelButton4];
 
-    button2.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button2.tag]),nil);
-	button2.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button2.tag]),nil);
-    labelButton2.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton2.tag]),nil);
-	labelButton2.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton2.tag]),nil);
+	//Set button image and names, set tags for screen derivation    
+    for (int i = 0; i < 4; i++) {
+        UIButton *currentButton = buttonArray[i];
+        UIButton *currentLabelButton = labelArray[i];
 
-    
-	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][2];
-	buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][2];
-	[button3 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
-	[labelButton3 setTitle:buttonLabel forState: UIControlStateNormal];
-	button3.tag = currentState*4 + 2;
-	labelButton3.tag = currentState*4 + 2;
-    
-    button3.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button3.tag]),nil);
-	button3.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button3.tag]),nil);
-    labelButton3.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton3.tag]),nil);
-	labelButton3.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton3.tag]),nil);
-    
-	buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][3];
-	buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][3];
-	[button4 setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal]; 
-	[labelButton4 setTitle:buttonLabel forState: UIControlStateNormal];
-	button4.tag = currentState*4 + 3;
-	labelButton4.tag = currentState*4 + 3;
-    
-    button4.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", button4.tag]),nil);
-	button4.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", button4.tag]),nil);
-    labelButton4.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", labelButton4.tag]),nil);
-	labelButton4.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", labelButton4.tag]),nil);
-    
+        NSString *buttonImageName = (NSString *)buttonImages[[NSString stringWithFormat:@"%d", currentState]][i];
+        NSString *buttonLabel = (NSString *)buttonLabels[[NSString stringWithFormat:@"%d", currentState]][i];
+        [currentButton setBackgroundImage:[UIImage imageNamed:buttonImageName] forState:UIControlStateNormal];
+        [currentLabelButton setTitle:buttonLabel forState: UIControlStateNormal];
+        currentButton.tag = currentState*4 + i;
+        currentLabelButton.tag = currentState*4 + i;
+
+        currentButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", currentButton.tag]),nil);
+        currentButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", currentButton.tag]),nil);
+        currentLabelButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", currentLabelButton.tag]),nil);
+        currentLabelButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", currentLabelButton.tag]),nil);
+    }
+
     [UIView beginAnimations:@"ShowChoices" context:nil];
     [UIView setAnimationDuration:0.1];
     [UIView setAnimationBeginsFromCurrentState:YES];
@@ -455,9 +421,8 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 
             DilemmaListModel *dilemmaListModel = [[DilemmaListModel alloc] initWithModelManager:_modelManager andDefaults:prefs andCurrentCampaign:requestedCampaign];
             DilemmaListViewController *dilemmaListViewController = [[DilemmaListViewController alloc] initWithModel:dilemmaListModel modelManager:_modelManager andConscience:_userConscience];
-//            _userConscience.userConscienceView.alpha = 0;
+
             dilemmaListViewController.screenshot = [self prepareScreenForScreenshot];
-//            _userConscience.userConscienceView.alpha = 1;
 
             [prefs setInteger:requestedCampaign forKey:@"dilemmaCampaign"];
 
