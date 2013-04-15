@@ -16,6 +16,13 @@ float const MLTransientInterval = 7;
 @property (nonatomic) NSTimer *shakeTimer;				/**< limits Conscience shake response */
 
 /**
+ User choices affect UserConscience immediately, must return Conscience to regular state
+ @param originalMood float representing overall Conscience mood
+ @param originalEnthusiasm float representing overall Conscience enthusiasm
+ */
+-(void) resetMood:(float) originalMood andEnthusiasm:(float) originalEnthusiasm;
+
+/**
  Create base Monitor before personalization re-instatement
  */
 - (void)createConscience;

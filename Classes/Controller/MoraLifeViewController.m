@@ -39,6 +39,11 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
     return [self initWithNibName:nil bundle:nil modelManager:modelManager andConscience:userConscience];
 }
 
+#pragma mark -
+#pragma mark protected KVC implementation
+
+/** Implementation: Protected variables are not implemented in KVC.  Therefore, we most override it.
+ */
 - (id)valueForKey:(NSString *)key {
     return [protectedInstanceVariables containsObject:key]? nil : [super valueForKey:key];
 }
@@ -49,7 +54,11 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
     }
 }
 
-//Implement Shaking response
+#pragma mark -
+#pragma mark shake handling
+
+/** Implementation: Allow for shaking response
+ */
 -(BOOL)canBecomeFirstResponder {
     return YES;
 }
@@ -61,6 +70,11 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
     }
 }
 
+#pragma mark -
+#pragma mark Protocol placeholders
+
+/** Implementation: Protocols that must be implemented by the subclasses
+ */
 - (void)localizeUI {
     //No op to suppress localizable protocol warnings.  Must be implemented by subclasses.
 }
@@ -74,21 +88,10 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 }
 
 #pragma mark -
-#pragma mark Memory Management
-
-- (void)didReceiveMemoryWarning {
-    // Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-    
-}
-
-- (void)viewDidUnload {
-    [super viewDidUnload];
-}
-
-#pragma mark -
 #pragma mark UserConscienceTouchProtocol
 
+/** Implementation: When Users touches the Conscience, depress and then call the UserConscience protocol callback
+ */
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	NSSet *allTouches = [event allTouches];
 
@@ -125,6 +128,8 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 
 }
 
+/** Implementation: When Users releases the Conscience, restore the view and then call the UserConscience protocol callback
+ */
 -(void) touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 
 	//Return the Conscience to regular size in event of touched or zoomed
@@ -155,12 +160,27 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
     
 }
 
+/** Implementation: Hide the Conscience so that a screenshot can be taken
+ */
 -(UIImage *)prepareScreenForScreenshot {
     float previousAlpha = _userConscience.userConscienceView.alpha;
     _userConscience.userConscienceView.alpha = 0;
     UIImage *screenshot = [self takeScreenshot];
     _userConscience.userConscienceView.alpha = previousAlpha;
     return screenshot;
+}
+
+#pragma mark -
+#pragma mark Memory Management
+
+- (void)didReceiveMemoryWarning {
+    // Releases the view if it doesn't have a superview.
+    [super didReceiveMemoryWarning];
+
+}
+
+- (void)viewDidUnload {
+    [super viewDidUnload];
 }
 
 @end
