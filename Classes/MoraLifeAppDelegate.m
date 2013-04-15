@@ -15,6 +15,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 #import "MoraLifeAppDelegate.h"
 #import "ModelManager.h"
+#import "HomeModel.h"
 #import "HomeViewController.h"
 #import "UserConscience.h"
 
@@ -89,12 +90,13 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     
     self.moralModelManager = [[ModelManager alloc] init];
+    HomeModel *homeModel = [[HomeModel alloc] initWithModelManager:self.moralModelManager];
 
 	homeNavigationController = [[UINavigationController alloc] init];
 
     UserConscience *userConscience = [[UserConscience alloc] initWithModelManager:self.moralModelManager];
 
-	HomeViewController *homeViewController = [[HomeViewController alloc] initWithModelManager:self.moralModelManager andConscience:userConscience];
+	HomeViewController *homeViewController = [[HomeViewController alloc] initWithModel:homeModel modelManager:self.moralModelManager andConscience:userConscience];
 
 	homeNavigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
 

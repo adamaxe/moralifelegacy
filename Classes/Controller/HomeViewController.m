@@ -6,11 +6,8 @@ All other Conscience-based UIViewControllers are launched from this starting poi
  */
 
 #import "HomeViewController.h"
+#import "HomeModel.h"
 #import "ConscienceViewController.h"
-#import "UserChoiceDAO.h"
-#import "UserCollectableDAO.h"
-#import "MoralDAO.h"
-#import "ConscienceAssetDAO.h"
 #import "IntroViewController.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
@@ -23,7 +20,6 @@ typedef enum {
     MLHomeViewControllerThoughtButtonTag = 3033
 } MLHomeViewControllerTags;
 
-int const MLThoughtIterations = 5;
 float const MLThoughtInterval = 5;
 
 @interface HomeViewController () <ViewControllerLocalization> {
@@ -59,6 +55,8 @@ float const MLThoughtInterval = 5;
     
 }
 
+@property (nonatomic, strong) HomeModel *homeModel;
+
 /**
  Present a thought bubble to the User, suggesting that the UserConscience is talking
  */
@@ -77,19 +75,6 @@ float const MLThoughtInterval = 5;
 -(void) showIntroView;
 
 -(void) refreshConscience;
-/**
- Create welcome message thought bubble for UserConscience
- */
--(void) createWelcomeMessage;
-/**
- Calculate through all UserChoices which most prominent/troublesome virtue/vice is
- @param isVirtue bool representing whether virtue or vice was requested
- */
--(void) retrieveBiggestChoiceAsVirtue:(BOOL) isVirtue;
-/**
- Find highest rank
- */
--(void) retrieveHighestRank;
 -(void) createMovementReaction;
 -(void) setupModalWorkflow;
 
@@ -97,13 +82,10 @@ float const MLThoughtInterval = 5;
 
 @implementation HomeViewController
 
-/** @todo externalize angle and shake functions if possible */
-static int thoughtVersion = 0;
-
 #pragma mark -
 #pragma mark ViewController lifecycle
 
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (id)initWithModel:(HomeModel *) homeModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     if ((self = [super initWithModelManager:modelManager andConscience:userConscience])) {
 		prefs = [NSUserDefaults standardUserDefaults];
@@ -111,6 +93,8 @@ static int thoughtVersion = 0;
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];
         highestRankName = [[NSMutableString alloc] init];
+
+        self.homeModel = homeModel;
 
 	}
     
@@ -150,8 +134,6 @@ static int thoughtVersion = 0;
 
     [conscienceStatus setTextColor:[UIColor moraLifeChoiceBlue]];
     [conscienceStatus setShadowColor:[UIColor moraLifeChoiceLightGray]];
-
-    [self createWelcomeMessage];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
@@ -209,10 +191,20 @@ static int thoughtVersion = 0;
     }
 
 	[consciencePlayground setNeedsDisplay];
-    [self createWelcomeMessage];
+    [conscienceStatus setText:[self.homeModel generateWelomeMessageWithTimeOfDay:[NSDate date] andMood:_userConscience.userConscienceMind.mood andEnthusiasm:_userConscience.userConscienceMind.enthusiasm]];
+
+    [virtueImage setImage:self.homeModel.greatestVirtueImage];
+    [homeVirtueDisplayName setString:self.homeModel.greatestVirtue];
+
+    [viceImage setImage:self.homeModel.worstViceImage];
+    [homeViceDisplayName setString:self.homeModel.worstVice];
+
+	//In case of no granted Ranks, setup the default User
+	[rankImage setImage:self.homeModel.highestRankImage];
+	[highestRankName setString:self.homeModel.highestRank];
 
     [self selectNextView:nil];
-	
+
 }
 
 - (void) pushJournal {
@@ -444,228 +436,6 @@ static int thoughtVersion = 0;
         [self showThought];
     }
 
-}
-
-
-/**
-Implementation:  Determine time of day, and which thought should be displayed.  Cycle through available dilemmas,  current mood, etc.
- */
--(void) createWelcomeMessage{
-    
-    [self retrieveBiggestChoiceAsVirtue:TRUE];
-    [self retrieveBiggestChoiceAsVirtue:FALSE];
-    [self retrieveHighestRank];
-
-    
-    /** @todo localize everything */
-    NSString *timeOfDay = @"Morning";
-    
-    NSDate *now = [NSDate date];
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:now];
-    NSInteger hour = [components hour];
-    
-    NSArray *conscienceEnthusiasm = @[@"Stuporous", @"Unresponsive", @"Apathetic", @"Lethargic", @"Indifferent", @"Calm", @"Focused", @"Animated", @"Excited", @"Passionate", @"Unbridled"];
-    NSArray *conscienceMood = @[@"Livid", @"Angry", @"Depressed", @"Sad", @"Discontent", @"Normal", @"Content", @"Pleasant", @"Happy", @"Ecstatic", @"Jubilant"];
-    
-    if (hour < 4) {
-        timeOfDay = @"Night";
-    } else if (hour < 12) {
-        timeOfDay = @"Morning";
-    } else if (hour < 17) {
-        timeOfDay = @"Afternoon";
-    } else if (hour <= 24) {
-        timeOfDay = @"Night";
-    }
-    
-    NSString *mood = @"Good";
-    
-    if ((_userConscience.userConscienceMind.enthusiasm < 50) || (_userConscience.userConscienceMind.mood < 50)) {
-        mood = @"Bad";
-    }
-    
-    
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
-    currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
-    UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
-    
-    int ethicals = 0;
-    //Increase the moral's value
-    ethicals = [[currentUserCollectable collectableValue] intValue];		
-        
-    NSString *welcomeTextName =[[NSString alloc] initWithFormat:@"%@Welcome%@%@",NSStringFromClass([self class]), timeOfDay, mood ];
-    NSString *welcomeText = [[NSString alloc] initWithString:NSLocalizedString(welcomeTextName,nil)];
-    NSMutableString *thoughtSpecialized = [[NSMutableString alloc] init];
-    
-    /** @todo localize Conscience responses */
-    switch (thoughtVersion) {
-        case 0:{
-            [thoughtSpecialized appendString:@"Have you read your Moral Report lately? Tap the Rank Button to review it!"];
-            break;
-        }
-        case 1:{
-            
-            if (ethicals == 0) {
-                [thoughtSpecialized appendString:@"You have no ethicals left.\n\nEarn some in Morathology by tapping the Rank Button!"];
-            } else {
-                [thoughtSpecialized appendFormat:@"You have %dε in the bank.\n\nTap the Rank Button to spend them in the Commissary!", ethicals];
-            }
-            break;
-        }
-        case 2:{
-            
-            int moodIndex = [@(_userConscience.userConscienceMind.mood) intValue];
-            int enthusiasmIndex = [@(_userConscience.userConscienceMind.enthusiasm) intValue];
-
-            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", conscienceMood[moodIndex/10], conscienceEnthusiasm[enthusiasmIndex/10]];
-            
-            break;
-        }               
-        case 3:{
-            [thoughtSpecialized appendFormat:@"Your current rank is %@.", highestRankName];
-            break;
-        }
-        default:
-            [thoughtSpecialized setString:welcomeText];
-            break;
-            
-    }
-    
-    if (thoughtVersion < MLThoughtIterations-1) {
-        thoughtVersion++;
-    } else {
-        thoughtVersion = 0;
-    }
-    
-    [conscienceStatus setText:thoughtSpecialized];
-
-}
-
-/**
-Implementation:  Must iterate through every UserChoice entered and sum each like entry to determine most prominent/troublesome virtue/vice 
- */
-- (void) retrieveBiggestChoiceAsVirtue:(BOOL) isVirtue{
-    
-    UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:_modelManager];
-    NSPredicate *pred;
-    
-    if (isVirtue) {
-        pred = [NSPredicate predicateWithFormat:@"choiceWeight > %d", 0];
-    } else {
-        pred = [NSPredicate predicateWithFormat:@"choiceWeight < %d", 0];
-    }
-    
-	currentUserChoiceDAO.predicates = @[pred];    
-    
-    NSMutableString *moralDisplayName = [NSMutableString stringWithString:@"unknown"];
-    NSMutableString *moralImageName = [NSMutableString stringWithString:@"card-doubt"];
-    
-	NSArray *objects = [currentUserChoiceDAO readAll];
-    NSMutableDictionary *reportValues = [[NSMutableDictionary alloc] initWithCapacity:[objects count]];
-    
-	if ([objects count] == 0) {
-		NSLog(@"No matches");
-        
-        if (isVirtue) {
-            [virtueImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
-        } else {
-            [viceImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
-        }
-        
-	} else {
-        
-        float currentValue = 0.0;
-        
-        
-        for (UserChoice *match in objects){
-            
-            NSNumber *choiceWeightTemp = reportValues[[match choiceMoral]];
-            
-            if (choiceWeightTemp != nil) {
-                currentValue = [choiceWeightTemp floatValue];
-            } else {
-                currentValue = 0.0;
-            }
-            
-            currentValue += fabsf([[match choiceWeight] floatValue]);
-            
-            [reportValues setValue:@(currentValue) forKey:[match choiceMoral]];
-        }
-        
-        NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
-        NSArray* reversedPercentages = [[sortedPercentages reverseObjectEnumerator] allObjects];
-        
-        NSString *value = reversedPercentages[0];
-
-        MoralDAO *currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:_modelManager];
-        Moral *currentMoral = [currentMoralDAO read:value];
-
-        if (currentMoral) {
-            [moralDisplayName setString:currentMoral.displayNameMoral];
-            [moralImageName setString:currentMoral.imageNameMoral];            
-        }
-                
-        
-        if (isVirtue) {
-            [virtueButton setEnabled:TRUE];
-            [virtueImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", moralImageName]]];
-            
-            [homeVirtueDisplayName setString:moralDisplayName]; 
-        } else {
-            [viceButton setEnabled:TRUE];
-            [viceImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", moralImageName]]];
-            
-            [homeViceDisplayName setString:moralDisplayName];  
-        }
-        
-        
-	}
-	
-	
-}
-
-/**
- Implementation:  Must iterate through every UserCollectable to find all ranks given.  Sort by collectableName as ranks increase alphabetically.  
-Change the Rank picture and description.
- */
-- (void) retrieveHighestRank {
-    
-	//Begin CoreData Retrieval to find all Ranks in possession.
-    UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
-    
-	NSPredicate *pred = [NSPredicate predicateWithFormat:@"collectableName contains[cd] %@", @"asse-rank"];
-	currentUserCollectableDAO.predicates = @[pred];
-    
-	NSSortDescriptor* sortDescriptor;
-    
-	//sort by collectablename as all ranks are alphabetically/numerically sorted by collectableName
-	sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"collectableName" ascending:FALSE];
-    
-	NSArray* sortDescriptors = @[sortDescriptor];
-	currentUserCollectableDAO.sorts = sortDescriptors;
-    
-	NSArray *objects = [currentUserCollectableDAO readAll];
-
-	//In case of no granted Ranks, setup the default User
-	[rankImage setImage:[UIImage imageNamed:@"card-doubt.png"]];
-	[highestRankName setString:@"Neophyte"];       
-    
-	//Ensure that at least one rank is present
-	if ([objects count] > 0) {
-        
-        NSString *value = [objects[0] collectableName];
-        ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:_modelManager];
-        ConscienceAsset *currentAsset = [currentAssetDAO read:value];
-        
-        if (currentAsset) {
-            [rankImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentAsset.imageNameReference]]];
-            [highestRankName setString:currentAsset.displayNameReference];
-        }
-        
-                        
-	}
-	
-    
 }
 
 #pragma mark -

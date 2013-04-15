@@ -1466,6 +1466,9 @@
 		5ED00E4B12AEFE6400985108 /* card-vagrancy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED00E4512AEFE6400985108 /* card-vagrancy.png */; };
 		5ED00E8412AF3D9300985108 /* tabbar-quill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED00E8112AF3D9300985108 /* tabbar-quill@2x.png */; };
 		5ED00E9112AF400400985108 /* tabbar-quill.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED00E8E12AF400400985108 /* tabbar-quill.png */; };
+		5ED0440F171B8C8C0044EABF /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0440E171B8C8C0044EABF /* HomeModel.m */; };
+		5ED04410171B8C8C0044EABF /* HomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED0440E171B8C8C0044EABF /* HomeModel.m */; };
+		5ED04412171B8C9D0044EABF /* TestHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED04411171B8C9D0044EABF /* TestHomeModel.m */; };
 		5ED61EBD122CAD3A00542453 /* ConscienceBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED61EB9122CAD3A00542453 /* ConscienceBubbleView.m */; };
 		5ED857F01230C5E800EDDD3F /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED857EC1230C5E800EDDD3F /* Icon@2x.png */; };
 		5ED8E926125D366A0089668A /* card-dishonesty.png in Resources */ = {isa = PBXBuildFile; fileRef = 5ED8E8FA125D366A0089668A /* card-dishonesty.png */; };
@@ -3211,6 +3214,9 @@
 		5ED00E4512AEFE6400985108 /* card-vagrancy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-vagrancy.png"; path = "Resources/images/interface/cards/card-vagrancy.png"; sourceTree = "<group>"; };
 		5ED00E8112AF3D9300985108 /* tabbar-quill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabbar-quill@2x.png"; path = "Resources/images/interface/tabbar-quill@2x.png"; sourceTree = "<group>"; };
 		5ED00E8E12AF400400985108 /* tabbar-quill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tabbar-quill.png"; path = "Resources/images/interface/tabbar-quill.png"; sourceTree = "<group>"; };
+		5ED0440D171B8C8C0044EABF /* HomeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeModel.h; sourceTree = "<group>"; };
+		5ED0440E171B8C8C0044EABF /* HomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeModel.m; sourceTree = "<group>"; };
+		5ED04411171B8C9D0044EABF /* TestHomeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHomeModel.m; sourceTree = "<group>"; };
 		5ED61EB8122CAD3A00542453 /* ConscienceBubbleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceBubbleView.h; path = View/ConscienceBubbleView.h; sourceTree = "<group>"; };
 		5ED61EB9122CAD3A00542453 /* ConscienceBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceBubbleView.m; path = View/ConscienceBubbleView.m; sourceTree = "<group>"; };
 		5ED857EC1230C5E800EDDD3F /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
@@ -5237,6 +5243,8 @@
 				5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */,
 				5E48489016D3323900B9F66A /* DilemmaListModel.h */,
 				5E48489116D3323900B9F66A /* DilemmaListModel.m */,
+				5ED0440D171B8C8C0044EABF /* HomeModel.h */,
+				5ED0440E171B8C8C0044EABF /* HomeModel.m */,
 				5E23AA1215EB32880049BE87 /* ReferenceModel.h */,
 				5E23AA1315EB32880049BE87 /* ReferenceModel.m */,
 				5E9D258E15DDF35D0097A5F0 /* ReportPieModel.h */,
@@ -5252,6 +5260,7 @@
 				5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */,
 				5E48489416D3326700B9F66A /* TestDilemmaListModel.m */,
 				5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */,
+				5ED04411171B8C9D0044EABF /* TestHomeModel.m */,
 				5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */,
 			);
 			name = ViewModel;
@@ -7268,6 +7277,7 @@
 				5E48489216D3323900B9F66A /* DilemmaListModel.m in Sources */,
 				5E06560E16EC09B80045B8F3 /* UserConscience.m in Sources */,
 				5E4F414317040241005B0149 /* MoraLifeViewController.m in Sources */,
+				5ED0440F171B8C8C0044EABF /* HomeModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7367,6 +7377,8 @@
 				5E978A1315EC5BB400EB2ED1 /* TestReferenceModel.m in Sources */,
 				5E48489316D3323900B9F66A /* DilemmaListModel.m in Sources */,
 				5E48489516D3326700B9F66A /* TestDilemmaListModel.m in Sources */,
+				5ED04410171B8C8C0044EABF /* HomeModel.m in Sources */,
+				5ED04412171B8C9D0044EABF /* TestHomeModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

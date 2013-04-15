@@ -1,5 +1,5 @@
 /**
- Report view model.  Generate the data from User choices to display as a list of selections to allow the User to re-enter choice based upon a previous choice.
+ Choice History view model.  Generate the data from User choices to display as a list of selections to allow the User to re-enter choice based upon a previous choice.
 
  @class ChoiceHistoryModel
  @see ChoiceHistoryViewController
@@ -37,6 +37,7 @@ extern NSString* const MLChoiceListSortName;
 /**
  Builds model with dependency injection
  @param modelManager ModelManager for either production or testing
+ @param prefs NSUserDefaults for setting correct choice for subsequent screens
  @return id ChoiceHistoryModel
  */
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs;
