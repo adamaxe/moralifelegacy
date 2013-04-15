@@ -37,4 +37,12 @@
  */
 - (NSString *)generateWelomeMessageWithTimeOfDay:(NSDate *)now andMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm;
 
+/**
+ Return a welcome message to be spoken by UserConscience
+ @param CGFloat current UserConscience mood
+ @param CGFloat current UserConscience enthusiasm
+ @return NSString reactionMessage
+ */
+- (NSString *)generateReactionWithMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm;
+
 @end

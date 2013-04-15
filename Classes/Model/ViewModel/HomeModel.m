@@ -291,4 +291,33 @@ int const MLThoughtIterations = 5;
 
 }
 
+- (NSString *)generateReactionWithMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm {
+    int randomResponse = arc4random()%3;
+    NSString *statusMessage;
+
+    if (mood > 45) {
+        if (randomResponse == 0) {
+            statusMessage = @"Wee!";
+        } else if (randomResponse == 1){
+            statusMessage = @"Tickles!";
+        } else {
+            statusMessage = @"I'm touched.  LOL!";
+        }
+
+    } else {
+
+        if (randomResponse == 0) {
+            statusMessage = @"Please stop.";
+        } else if (randomResponse == 1){
+            statusMessage = @"I'm not in the mood.";
+        } else {
+            statusMessage = @"Ugh!";
+        }
+
+    }
+
+    return statusMessage;
+
+}
+
 @end

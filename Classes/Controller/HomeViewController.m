@@ -75,7 +75,6 @@ float const MLThoughtInterval = 5;
 -(void) showIntroView;
 
 -(void) refreshConscience;
--(void) createMovementReaction;
 -(void) setupModalWorkflow;
 
 @end
@@ -336,36 +335,6 @@ float const MLThoughtInterval = 5;
 	[[consciencePlayground viewWithTag:MLConscienceViewTag] setNeedsDisplay];
 }
 
--(void) createMovementReaction {
-    
-    int randomResponse = arc4random()%3;
-
-    if (_userConscience.userConscienceMind.mood > 45) {
-        if (randomResponse == 0) {
-            [conscienceStatus setText:@"Wee!"];
-        } else if (randomResponse == 1){
-            [conscienceStatus setText:@"Tickles!"];
-        } else {
-            [conscienceStatus setText:@"I'm touched.  LOL!"];
-        }
-                
-    } else {
-
-        if (randomResponse == 0) {
-            [conscienceStatus setText:@"Please stop."];
-        } else if (randomResponse == 1){
-            [conscienceStatus setText:@"I'm not in the mood."];
-        } else {
-            [conscienceStatus setText:@"Ugh!"];
-        }
-        
-    }
-
-    [_userConscience.userConscienceView setIsExpressionForced:TRUE];
-    [_userConscience.userConscienceView setNeedsDisplay];
-            
-}
-
 #pragma mark -
 #pragma Data Manipulation
 
@@ -453,7 +422,9 @@ float const MLThoughtInterval = 5;
 #pragma mark UserConscienceTouchProtocol
 
 -(void)userConscienceTouchBegan {
-    [self createMovementReaction];
+    [conscienceStatus setText:[self.homeModel generateReactionWithMood:_userConscience.userConscienceMind.mood andEnthusiasm:_userConscience.userConscienceMind.enthusiasm]];
+    [_userConscience.userConscienceView setIsExpressionForced:TRUE];
+    [_userConscience.userConscienceView setNeedsDisplay];
 }
 
 -(void)userConscienceTouchEnded {
