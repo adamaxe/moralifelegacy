@@ -42,7 +42,7 @@ int const MLThoughtIterations = 5;
         
         currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:modelManager];
 
-        currentConscienceAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:_modelManager];
+        currentConscienceAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:modelManager];
         currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:modelManager];
         
         self.modelManager = modelManager;
