@@ -218,12 +218,6 @@ float const MLThoughtInterval = 5;
 
 }
 
--(void)viewDidAppear:(BOOL)animated {
-    
-	[super viewDidAppear:animated];
-    [self becomeFirstResponder];
-}
-
 - (void)viewWillDisappear:(BOOL)animated {
     
     //Remove observers in case of backgrounding
@@ -238,7 +232,6 @@ float const MLThoughtInterval = 5;
     NSString *conscienceCenter = NSStringFromCGPoint(_userConscience.userConscienceView.center);
     [prefs setObject:conscienceCenter forKey:@"conscienceCenter"];
     
-    [self resignFirstResponder];
     [super viewWillDisappear:animated];
 }
 
