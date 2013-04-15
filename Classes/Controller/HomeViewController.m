@@ -46,8 +46,7 @@ float const MLThoughtInterval = 5;
 	NSTimer *thoughtFadeTimer;			/**< determines when Conscience thought disappears */
     
 	CGFloat animationDuration;			/**< assists in gesture recognition */	
-	CGFloat initialTapDistance;			/**< assists in gesture recognition */
-    
+
 	NSMutableString *homeVirtueDisplayName;	/**< most prominent virtue text */
 	NSMutableString *homeViceDisplayName;	/**< most prominent vice text */
     NSMutableString *highestRankName;       /**< highest achieved rank */
@@ -115,7 +114,7 @@ float const MLThoughtInterval = 5;
     viceLabel.font = [UIFont fontForHomeScreenButtons];
     rankLabel.font = [UIFont fontForHomeScreenButtons];
 
-	animationDuration = 1.0;
+	animationDuration = 0.5;
     
 	thoughtBubbleView1.alpha = 0;
     virtueImage.alpha = 1;
@@ -166,7 +165,7 @@ float const MLThoughtInterval = 5;
     _userConscience.userConscienceView.center = CGPointMake(MLConscienceHomeX, MLConscienceHomeY);
     
 	[UIView beginAnimations:@"ShowConscience" context:nil];
-	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationDuration:animationDuration];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     
 	_userConscience.userConscienceView.alpha = 1;
@@ -310,7 +309,7 @@ float const MLThoughtInterval = 5;
 -(void)showConscienceModal{
 	    
     [UIView beginAnimations:@"HideConscience" context:nil];
-	[UIView setAnimationDuration:0.5];
+	[UIView setAnimationDuration:animationDuration];
 	[UIView setAnimationBeginsFromCurrentState:NO];
     [UIView setAnimationDelegate:self]; // self is a view controller
     [UIView setAnimationDidStopSelector:@selector(setupModalWorkflow)];
