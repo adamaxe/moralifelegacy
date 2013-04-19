@@ -9,6 +9,7 @@
 
 static int thoughtVersion = 0;
 int const MLThoughtIterations = 5;
+NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
 @interface HomeModel () {
     NSUserDefaults *preferences;                    /**< User defaults to write to file system */
@@ -44,7 +45,14 @@ int const MLThoughtIterations = 5;
 
         currentConscienceAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:@"" andModelManager:modelManager];
         currentMoralDAO = [[MoralDAO alloc] initWithKey:@"" andModelManager:modelManager];
-        
+
+        self.greatestVirtue = @"";
+        self.worstVice = @"";
+        self.highestRank = @"";
+        self.greatestVirtueImage = [[UIImage alloc] init];
+        self.worstViceImage = [[UIImage alloc] init];
+        self.highestRankImage = [[UIImage alloc] init];
+
         self.modelManager = modelManager;
 
     }
@@ -274,7 +282,7 @@ int const MLThoughtIterations = 5;
 
 	//In case of no granted Ranks, setup the default User
 	self.highestRankImage = [UIImage imageNamed:@"card-doubt.png"];
-	self.highestRank = @"Neophyte";
+	self.highestRank = [NSString stringWithString:HOME_MODEL_BEGINNER_RANK];
 
 	//Ensure that at least one rank is present
 	if ([objects count] > 0) {

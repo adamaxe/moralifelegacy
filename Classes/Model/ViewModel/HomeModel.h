@@ -9,6 +9,8 @@
  @file
  */
 
+extern NSString * const HOME_MODEL_BEGINNER_RANK;
+
 @class ModelManager;
 
 @interface HomeModel : NSObject

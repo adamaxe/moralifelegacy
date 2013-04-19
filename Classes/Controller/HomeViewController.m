@@ -91,7 +91,6 @@ float const MLThoughtInterval = 5;
         homeVirtueDisplayName = [[NSMutableString alloc] init];
         homeViceDisplayName = [[NSMutableString alloc] init];
         highestRankName = [[NSMutableString alloc] init];
-
         self.homeModel = homeModel;
 
 	}

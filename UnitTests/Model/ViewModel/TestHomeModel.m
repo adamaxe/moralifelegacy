@@ -110,23 +110,23 @@
     moralChoice1Consequence = @"moralChoice1Consequence";
     moralChoice1EntryIsGood = TRUE;
 
-    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
-    virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
-    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
-    vice2 = [self createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
-    vice3 = [self createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
-
-    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
-    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
-
-    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
-    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
-    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
-
-    choiceMoral1.choiceInfluence = @(moralChoice1Influence);
-    choiceMoral1.choiceJustification = moralChoice1Justification;
-    choiceMoral1.choiceConsequences = moralChoice1Consequence;
-    choiceMoral1.entryIsGood = @(moralChoice1EntryIsGood);
+//    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
+//    virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
+//    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
+//    vice2 = [self createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
+//    vice3 = [self createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
+//
+//    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+//    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+//
+//    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
+//    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
+//    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
+//
+//    choiceMoral1.choiceInfluence = @(moralChoice1Influence);
+//    choiceMoral1.choiceJustification = moralChoice1Justification;
+//    choiceMoral1.choiceConsequences = moralChoice1Consequence;
+//    choiceMoral1.entryIsGood = @(moralChoice1EntryIsGood);
 
     [testModelManager saveContext];
 
@@ -142,13 +142,22 @@
 
 }
 
-- (void)testChoiceHistoryModelCanBeCreated {
+- (void)testChoiceHomeModelCanBeCreated {
 
     HomeModel *testingSubjectCreate = [[HomeModel alloc] initWithModelManager:testModelManager];
 
     STAssertNotNil(testingSubjectCreate, @"HomeModel can't be created.");
 
     
+}
+
+- (void)testChoiceHomeModelDefaultValuesAreCorrect {
+
+    STAssertTrue([testingSubject.greatestVirtue isEqualToString:@""], @"HomeModel greatestVirtue is not empty string.");
+    STAssertTrue([testingSubject.worstVice isEqualToString:@""], @"HomeModel worstVice is not empty string.");
+    NSLog(@"highest:%@", testingSubject.highestRank);
+    STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel highestRank is not empty string.");
+
 }
 
 - (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
