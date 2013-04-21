@@ -8,7 +8,8 @@
 #import "ConscienceAssetDAO.h"
 
 static int thoughtVersion = 0;
-int const MLThoughtIterations = 5;
+int const EMOTIONAL_STATE_COUNT = 11;
+int const HOME_MODEL_THOUGHT_ITERATIONS = 5;
 NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
 @interface HomeModel () {
@@ -100,15 +101,29 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
  */
 - (NSString *)generateWelomeMessageWithTimeOfDay:(NSDate *)now andMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm {
 
-    /** @todo localize everything */
+    NSString *welcomeTemp;
+
     NSString *timeOfDay = @"Morning";
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:now];
     NSInteger hour = [components hour];
 
-    NSArray *conscienceEnthusiasm = @[@"Stuporous", @"Unresponsive", @"Apathetic", @"Lethargic", @"Indifferent", @"Calm", @"Focused", @"Animated", @"Excited", @"Passionate", @"Unbridled"];
-    NSArray *conscienceMood = @[@"Livid", @"Angry", @"Depressed", @"Sad", @"Discontent", @"Normal", @"Content", @"Pleasant", @"Happy", @"Ecstatic", @"Jubilant"];
+
+    NSMutableArray *conscienceEnthusiasm = [[NSMutableArray alloc] initWithCapacity:EMOTIONAL_STATE_COUNT];
+    NSMutableArray *conscienceMood = [[NSMutableArray alloc] initWithCapacity:EMOTIONAL_STATE_COUNT];
+
+    for (int i = 0; i < EMOTIONAL_STATE_COUNT; i++) {
+
+        welcomeTemp = [[NSString alloc] initWithFormat:@"%@Mood%d",NSStringFromClass([self class]), i];
+
+        conscienceMood[i] = NSLocalizedString(welcomeTemp, nil);
+
+        welcomeTemp =[[NSString alloc] initWithFormat:@"%@Enthusiasm%d",NSStringFromClass([self class]), i];
+
+        conscienceEnthusiasm[i] = NSLocalizedString(welcomeTemp, nil);
+
+    }
 
     if (hour < 4) {
         timeOfDay = @"Night";
@@ -141,15 +156,21 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
     /** @todo localize Conscience responses */
     switch (thoughtVersion) {
         case 0:{
-            [thoughtSpecialized appendString:@"Have you read your Moral Report lately? Tap the Rank Button to review it!"];
+
+            welcomeTemp = [[NSString alloc] initWithFormat:@"%@Thought0",NSStringFromClass([self class])];
+
+            [thoughtSpecialized appendString:NSLocalizedString(welcomeTemp,nil)];
             break;
         }
         case 1:{
 
             if (ethicals == 0) {
-                [thoughtSpecialized appendString:@"You have no ethicals left.\n\nEarn some in Morathology by tapping the Rank Button!"];
+                welcomeTemp = [[NSString alloc] initWithFormat:@"%@Thought1",NSStringFromClass([self class])];
+                [thoughtSpecialized appendString:NSLocalizedString(welcomeTemp,nil)];
             } else {
-                [thoughtSpecialized appendFormat:@"You have %dε in the bank.\n\nTap the Rank Button to spend them in the Commissary!", ethicals];
+                welcomeTemp = [[NSString alloc] initWithFormat:@"%@Thought2",NSStringFromClass([self class])];
+                NSString *welcomeTemp2 = [[NSString alloc] initWithFormat:@"%@Thought3",NSStringFromClass([self class])];
+                [thoughtSpecialized appendFormat:@"%@%d%@", NSLocalizedString(welcomeTemp,nil), ethicals, NSLocalizedString(welcomeTemp2,nil)];
             }
             break;
         }
@@ -158,12 +179,17 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
             int moodIndex = [@(mood) intValue];
             int enthusiasmIndex = [@(enthusiasm) intValue];
 
-            [thoughtSpecialized appendFormat:@"I'm feeling %@ and %@.", conscienceMood[moodIndex/10], conscienceEnthusiasm[enthusiasmIndex/10]];
+            welcomeTemp = [[NSString alloc] initWithFormat:@"%@Thought4",NSStringFromClass([self class])];
+            NSString *welcomeTemp2 = [[NSString alloc] initWithFormat:@"%@Thought5",NSStringFromClass([self class])];
+
+            [thoughtSpecialized appendFormat:@"%@%@%@%@.", NSLocalizedString(welcomeTemp,nil), conscienceMood[moodIndex/10], NSLocalizedString(welcomeTemp2,nil), conscienceEnthusiasm[enthusiasmIndex/10]];
 
             break;
         }
         case 3:{
-            [thoughtSpecialized appendFormat:@"Your current rank is %@.", self.highestRank];
+            welcomeTemp = [[NSString alloc] initWithFormat:@"%@Thought6",NSStringFromClass([self class])];
+
+            [thoughtSpecialized appendFormat:@"%@%@.", NSLocalizedString(welcomeTemp,nil), self.highestRank];
             break;
         }
         default:
@@ -172,7 +198,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
     }
 
-    if (thoughtVersion < MLThoughtIterations-1) {
+    if (thoughtVersion < HOME_MODEL_THOUGHT_ITERATIONS-1) {
         thoughtVersion++;
     } else {
         thoughtVersion = 0;
