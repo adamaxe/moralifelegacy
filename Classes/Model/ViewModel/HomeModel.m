@@ -10,6 +10,7 @@
 static int thoughtVersion = 0;
 int const EMOTIONAL_STATE_COUNT = 11;
 int const HOME_MODEL_THOUGHT_ITERATIONS = 5;
+int const HOME_MODEL_REACTION_COUNT = 6;
 NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
 @interface HomeModel () {
@@ -135,11 +136,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
         timeOfDay = @"Night";
     }
 
-    NSString *currentConscienceMood = @"Good";
-
-    if ((enthusiasm < 50) || (mood < 50)) {
-        currentConscienceMood = @"Bad";
-    }
+    NSString *currentConscienceMood = ((enthusiasm < 50) || (mood < 50)) ? @"Bad" : @"Good";
 
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
 
@@ -326,31 +323,12 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 }
 
 - (NSString *)generateReactionWithMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm {
-    int randomResponse = arc4random()%3;
-    NSString *statusMessage;
+    int randomResponse = arc4random()%HOME_MODEL_REACTION_COUNT;
 
-    if (mood > 45) {
-        if (randomResponse == 0) {
-            statusMessage = @"Wee!";
-        } else if (randomResponse == 1){
-            statusMessage = @"Tickles!";
-        } else {
-            statusMessage = @"I'm touched.  LOL!";
-        }
+    NSString *reactionMood = (mood > 45) ? @"Good" : @"Bad";
+    NSString *reactionTemp = [[NSString alloc] initWithFormat:@"%@Reaction%d%@",NSStringFromClass([self class]), randomResponse, reactionMood];
 
-    } else {
-
-        if (randomResponse == 0) {
-            statusMessage = @"Please stop.";
-        } else if (randomResponse == 1){
-            statusMessage = @"I'm not in the mood.";
-        } else {
-            statusMessage = @"Ugh!";
-        }
-
-    }
-
-    return statusMessage;
+    return NSLocalizedString(reactionTemp, nil);
 
 }
 
