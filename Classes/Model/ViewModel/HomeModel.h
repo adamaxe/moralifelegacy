@@ -10,6 +10,7 @@
  */
 
 extern NSString * const HOME_MODEL_BEGINNER_RANK;
+extern int const HOME_MODEL_REACTION_COUNT;
 
 @class ModelManager;
 

@@ -325,7 +325,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 - (NSString *)generateReactionWithMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm {
     int randomResponse = arc4random()%HOME_MODEL_REACTION_COUNT;
 
-    NSString *reactionMood = (mood > 45) ? @"Good" : @"Bad";
+    NSString *reactionMood = ((enthusiasm > 35) && (mood > 45)) ? @"Good" : @"Bad";
     NSString *reactionTemp = [[NSString alloc] initWithFormat:@"%@Reaction%d%@",NSStringFromClass([self class]), randomResponse, reactionMood];
 
     return NSLocalizedString(reactionTemp, nil);

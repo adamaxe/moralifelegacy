@@ -156,8 +156,48 @@
     STAssertTrue([testingSubject.greatestVirtue isEqualToString:@""], @"HomeModel greatestVirtue is not empty string.");
     STAssertTrue([testingSubject.worstVice isEqualToString:@""], @"HomeModel worstVice is not empty string.");
     NSLog(@"highest:%@", testingSubject.highestRank);
-    STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel highestRank is not empty string.");
+    STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel highestRank is not default rank.");
 
+}
+
+- (void)testChoiceHomeModelDefaultGoodReactionsAreCorrect {
+
+    NSMutableArray *possibleReactions = [[NSMutableArray alloc] initWithCapacity:HOME_MODEL_REACTION_COUNT];
+    
+    for (int i = 0; i < HOME_MODEL_REACTION_COUNT; i++) {
+        possibleReactions[i] = [[NSString alloc] initWithFormat:@"%@Reaction%d%@",NSStringFromClass(testingSubject.class), i, @"Good"];
+    }
+
+    NSString *reaction = [testingSubject generateReactionWithMood:51.0 andEnthusiasm:51.0];
+    STAssertTrue([possibleReactions containsObject:reaction], @"HomeModel reaction is not in Good set.");
+
+    [possibleReactions removeAllObjects];
+    for (int i = 0; i < HOME_MODEL_REACTION_COUNT; i++) {
+        possibleReactions[i] = [[NSString alloc] initWithFormat:@"%@Reaction%d%@",NSStringFromClass(testingSubject.class), i, @"Bad"];
+    }
+
+    STAssertFalse([possibleReactions containsObject:reaction], @"HomeModel reaction is not incorrectly in bad set.");
+
+}
+
+- (void)testChoiceHomeModelDefaultBadReactionsAreCorrect {
+
+    NSMutableArray *possibleReactions = [[NSMutableArray alloc] initWithCapacity:HOME_MODEL_REACTION_COUNT];
+
+    for (int i = 0; i < HOME_MODEL_REACTION_COUNT; i++) {
+        possibleReactions[i] = [[NSString alloc] initWithFormat:@"%@Reaction%d%@",NSStringFromClass(testingSubject.class), i, @"Bad"];
+    }
+
+    NSString *reaction = [testingSubject generateReactionWithMood:40.0 andEnthusiasm:40.0];
+    STAssertTrue([possibleReactions containsObject:reaction], @"HomeModel reaction is not in Good set.");
+
+    [possibleReactions removeAllObjects];
+    for (int i = 0; i < HOME_MODEL_REACTION_COUNT; i++) {
+        possibleReactions[i] = [[NSString alloc] initWithFormat:@"%@Reaction%d%@",NSStringFromClass(testingSubject.class), i, @"Good"];
+    }
+
+    STAssertFalse([possibleReactions containsObject:reaction], @"HomeModel reaction is not incorrectly in bad set.");
+    
 }
 
 - (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
