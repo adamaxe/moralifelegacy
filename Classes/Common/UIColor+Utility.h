@@ -59,15 +59,15 @@
 
 /**
 Class method for creating a UIColor from a hex formatted string
- @param NSString hex representation to be converted i.e. FF00FF or #FF00FF
+ @param hexValue NSString hex representation to be converted i.e. FF00FF or #FF00FF
  @return UIColor UIColor from the hexValue
  */
 + (UIColor *) colorWithHexString:(NSString *) hexValue;
 
 /**
  Class method for creating a UIColor from a hex formatted string and alpha value
- @param NSString hex representation to be converted i.e. FF00FF or #FF00FF
- @param CGFloat float value from 0.0 to 1.0 for alpha channel
+ @param hexValue NSString hex representation to be converted i.e. FF00FF or #FF00FF
+ @param alpha CGFloat value from 0.0 to 1.0 for alpha channel
  @return UIColor UIColor from the hexValue and alpha
  */
 + (UIColor *) colorWithHexString:(NSString *) hexValue alpha:(CGFloat) alpha;

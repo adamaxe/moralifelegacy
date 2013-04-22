@@ -10,8 +10,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #import "ChoiceViewController.h"
 
 /**
- Possible Reference Types
- typedef utilized to avoid having to use enum declaration
+ Determines which type of list to show
  */
 typedef enum {
 	MLChoiceTypeChoiceGood,

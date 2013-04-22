@@ -300,7 +300,6 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 	NSArray* sortDescriptors = @[sortDescriptor];
 	currentUserCollectableDAO.sorts = sortDescriptors;
 
-
 	NSArray *objects = [currentUserCollectableDAO readAll];
 
 	//In case of no granted Ranks, setup the default User

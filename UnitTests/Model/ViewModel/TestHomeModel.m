@@ -12,59 +12,13 @@
 #import "ModelManager.h"
 #import "Moral.h"
 #import "UserChoice.h"
+#import "UserCollectable.h"
 #import "OCMock/OCMock.h"
 
 @interface TestHomeModel : SenTestCase {
     
     HomeModel *testingSubject;
     ModelManager *testModelManager;
-
-    CGFloat virtue1Severity;
-    CGFloat virtue2Severity;
-    CGFloat vice1Severity;
-    CGFloat vice2Severity;
-    CGFloat vice3Severity;
-
-    Moral *virtue1;
-    Moral *virtue2;
-    Moral *vice1;
-    Moral *vice2;
-    Moral *vice3;
-
-    NSString *moralChoice1Short;
-    NSString *moralChoice2Short;
-    NSString *immoralChoice1Short;
-    NSString *immoralChoice2Short;
-    NSString *immoralChoice3Short;
-
-    NSString *moralChoice1Long;
-    NSString *moralChoice2Long;
-    NSString *immoralChoice1Long;
-    NSString *immoralChoice2Long;
-    NSString *immoralChoice3Long;
-
-    UserChoice *choiceMoral1;
-    UserChoice *choiceMoral2;
-    UserChoice *choiceImmoral1;
-    UserChoice *choiceImmoral2;
-    UserChoice *choiceImmoral3;
-
-    NSString *virtue1Name;
-    NSString *virtue2Name;
-    NSString *vice1Name;
-    NSString *vice2Name;
-    NSString *vice3Name;
-
-    NSString *choiceMoral1Name;
-    NSString *choiceMoral2Name;
-    NSString *choiceImmoral1Name;
-    NSString *choiceImmoral2Name;
-    NSString *choiceImmoral3Name;
-
-    CGFloat moralChoice1Influence;
-    NSString *moralChoice1Justification;
-    NSString *moralChoice1Consequence;
-    BOOL moralChoice1EntryIsGood;
 
 }
 
@@ -74,59 +28,6 @@
 
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
-
-    virtue1Severity = 5.0;
-    virtue2Severity = 3.0;
-    vice1Severity = 4.0;
-    vice2Severity = 2.0;
-    vice3Severity = 1.0;
-
-    virtue1Name = @"Virtue1";
-    virtue2Name = @"Virtue2";
-    vice1Name = @"Vice1";
-    vice2Name = @"Vice2";
-    vice3Name = @"Vice3";
-
-    moralChoice1Short = @"moralChoice1Short";
-    moralChoice2Short = @"moralChoice2Short";
-    immoralChoice1Short = @"immoralChoice1Short";
-    immoralChoice2Short = @"immoralChoice2Short";
-    immoralChoice3Short = @"immoralChoice3Short";
-
-    moralChoice1Long = @"moralChoice1Long";
-    moralChoice2Long = @"moralChoice2Long";
-    immoralChoice1Long = @"immoralChoice1Long";
-    immoralChoice2Long = @"immoralChoice2Long";
-    immoralChoice3Long = @"immoralChoice3Long";
-
-    choiceMoral1Name = @"choiceMoral1Name";
-    choiceMoral2Name = @"choiceMoral2Name";
-    choiceImmoral1Name = @"choiceImmoral1Name";
-    choiceImmoral2Name = @"choiceImmoral2Name";
-    choiceImmoral3Name = @"choiceImmoral3Name";
-
-    moralChoice1Influence = 2.5;
-    moralChoice1Justification = @"moralChoice1Justification";
-    moralChoice1Consequence = @"moralChoice1Consequence";
-    moralChoice1EntryIsGood = TRUE;
-
-//    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
-//    virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
-//    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
-//    vice2 = [self createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
-//    vice3 = [self createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
-//
-//    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
-//    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
-//
-//    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
-//    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
-//    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
-//
-//    choiceMoral1.choiceInfluence = @(moralChoice1Influence);
-//    choiceMoral1.choiceJustification = moralChoice1Justification;
-//    choiceMoral1.choiceConsequences = moralChoice1Consequence;
-//    choiceMoral1.entryIsGood = @(moralChoice1EntryIsGood);
 
     [testModelManager saveContext];
 
@@ -200,50 +101,54 @@
     
 }
 
-- (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
-    return [testModelManager read:Moral.class withKey:@"nameMoral" andValue:moralName];
-}
+- (void)testChoiceHomeModelHighestRankIsCorrectWhenRankIsUpdated{
 
-- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
+    UserCollectable *testCollectable1;
+    UserCollectable *testCollectable2;
+    UserCollectable *testCollectable3;
 
-    NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
+    NSString *keyCollectable1;
+    NSString *keyCollectable2;
+    NSString *keyCollectable3;
 
-    Moral *testMoral1 = [modelManager create:Moral.class];
+    NSString *collectableName1;
+    NSString *collectableName2;
+    NSString *collectableName3;
+    NSDate *collectableCreateDate;
 
-    testMoral1.shortDescriptionMoral = type;
-    testMoral1.nameMoral = moralName;
+    keyCollectable1 = @"asse-rank1";
+    keyCollectable2 = @"asse-rank2a";
+    keyCollectable2 = @"asse-rank2b";
 
-    testMoral1.imageNameMoral = imageName;
-    testMoral1.colorMoral = @"FF0000";
-    testMoral1.displayNameMoral = @"displayName";
-    testMoral1.longDescriptionMoral = @"longDescription";
-    testMoral1.component = @"component";
-    testMoral1.linkMoral = @"link";
-    testMoral1.definitionMoral = @"definition";
+    collectableName1 = @"asse-rank1";
+    collectableName2 = @"asse-rank2a";
+    collectableName3 = @"asse-rank2b";
+    collectableCreateDate = [NSDate date];
 
-    [modelManager saveContext];
+    testCollectable1 = [testModelManager create:UserCollectable.class];
+    testCollectable2 = [testModelManager create:UserCollectable.class];
+    testCollectable3 = [testModelManager create:UserCollectable.class];
 
-    return testMoral1;
-    
-}
+    testCollectable1.collectableName = collectableName1;
+    testCollectable1.collectableKey = keyCollectable1;
+    testCollectable1.collectableCreationDate = collectableCreateDate;
 
-- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
+    testCollectable2.collectableName = collectableName2;
+    testCollectable2.collectableKey = keyCollectable2;
+    testCollectable2.collectableCreationDate = collectableCreateDate;
 
-    UserChoice *testChoice1 = [modelManager create:UserChoice.class];
+    testCollectable3.collectableName = collectableName3;
+    testCollectable3.collectableKey = keyCollectable3;
+    testCollectable3.collectableCreationDate = collectableCreateDate;
 
-    testChoice1.entryShortDescription = moralChoiceShort;
-    testChoice1.entryLongDescription = moralChoiceLong;
-    testChoice1.choiceMoral = moral.nameMoral;
-    testChoice1.entryCreationDate = [NSDate date];
-    testChoice1.entryKey = [NSString stringWithFormat:@"%@key", entryName];
-    testChoice1.entryIsGood = ([moral.shortDescriptionMoral isEqualToString:@"Virtue"]) ? @1 : @0;
-    testChoice1.choiceWeight = @(severity * 2);
-    testChoice1.entryModificationDate = [NSDate date];
-    testChoice1.entrySeverity = @(severity);
 
-    [modelManager saveContext];
+    [testModelManager saveContext];
 
-    return testChoice1;
+
+    STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel greatestVirtue is not empty string.");
+    STAssertTrue([testingSubject.worstVice isEqualToString:@""], @"HomeModel worstVice is not empty string.");
+    NSLog(@"highest:%@", testingSubject.highestRank);
+    STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel highestRank is not default rank.");
     
 }
 
