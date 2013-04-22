@@ -1,8 +1,6 @@
 /**
  UIFont utility category.  Allow creation of a UIFont using standard Font Family Name
 
- @class UIFont+Utility
-
  @author Copyright 2013 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
  @date 02/14/2013
  */

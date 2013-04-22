@@ -22,7 +22,7 @@
 
 /**
  Read method to fetch an ReferenceBelief from the store
- @param NSString key to designate which ReferenceBelief to return (optional)
+ @param key NSString to designate which ReferenceBelief to return (optional)
  @return ReferenceBelief NSManagedObject to be returned
  */
 - (ReferenceBelief *)read:(NSString *)key;

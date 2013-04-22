@@ -1,7 +1,5 @@
 /**
 Implementation:  Override draw layer of UINavigation bar to prevent drawing of black/gray graphic
-
-@class UINavigationBar-Transparent UINavigationBar-Transparent.h
  */
 
 #import "UINavigationBar-Transparent.h"

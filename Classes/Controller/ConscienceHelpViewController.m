@@ -43,7 +43,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 
 /**
  Commit User's choice to UserData
- @param id Object which requested method
+ @param sender id Object which requested method
  */
 -(void)dismissThoughtModal:(id)sender;
 

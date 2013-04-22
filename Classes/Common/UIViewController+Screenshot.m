@@ -1,7 +1,5 @@
 /**
  Implementation: Do up some CG magic
-
- @class UIViewController+Screenshot UIViewController+Screenshot.h
  */
 #import "UIViewController+Screenshot.h"
 #import <QuartzCore/QuartzCore.h>
