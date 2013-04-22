@@ -33,17 +33,17 @@ extern int const HOME_MODEL_REACTION_COUNT;
 
 /**
  Return a welcome message to be spoken by UserConscience
- @param NSDate current time of day
- @param CGFloat current UserConscience mood
- @param CGFloat current UserConscience enthusiasm
+ @param now NSDate current time of day
+ @param mood CGFloat current UserConscience mood
+ @param enthusiasm CGFloat current UserConscience enthusiasm
  @return NSString welcomeMessage
  */
 - (NSString *)generateWelomeMessageWithTimeOfDay:(NSDate *)now andMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm;
 
 /**
  Return a welcome message to be spoken by UserConscience
- @param CGFloat current UserConscience mood
- @param CGFloat current UserConscience enthusiasm
+ @param mood CGFloat current UserConscience mood
+ @param enthusiasm CGFloat current UserConscience enthusiasm
  @return NSString reactionMessage
  */
 - (NSString *)generateReactionWithMood:(CGFloat)mood andEnthusiasm:(CGFloat)enthusiasm;

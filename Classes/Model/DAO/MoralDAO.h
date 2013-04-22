@@ -22,7 +22,7 @@
 
 /**
  Read method to fetch an Moral from the store
- @param NSString key to designate which Moral to return (optional)
+ @param key NSString to designate which Moral to return (optional)
  @return Moral NSManagedObject to be returned
  */
 - (Moral *)read:(NSString *)key;

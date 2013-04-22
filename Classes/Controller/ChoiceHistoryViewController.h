@@ -30,7 +30,7 @@
 /**
  Accepts User Input to remove modal screen
  
-@param id Object which requested method
+@param sender Object which requested method
 @return IBAction method is usable by Interface Builder
 */
 -(IBAction)dismissChoiceModal:(id)sender;

@@ -28,7 +28,7 @@ Second screen in Choice/Luck Listing Workflow.  User can select a Choice for rev
 
 /**
 Accepts User input to selects the data sort and order types
-@param id Object which requested method
+@param sender Object which requested method
 @return IBAction method is usable by Interface Builder
  */
 - (IBAction) switchList:(id) sender;

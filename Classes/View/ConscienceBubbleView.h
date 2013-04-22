@@ -16,8 +16,8 @@ extern float const MLBubbleWidthDefault;
 
 @interface ConscienceBubbleView : UIView 
 
-@property (nonatomic, assign) int bubbleType;		/**< type of bubble */
-@property (nonatomic, assign) CGFloat bubbleGlowWidth;	/**< width of black bubble outline */
+@property (nonatomic, assign) int bubbleType;               /**< type of bubble */
+@property (nonatomic, assign) CGFloat bubbleGlowWidth;      /**< width of black bubble outline */
 @property (nonatomic, assign) CGFloat bubbleGlowDuration;	/**< pulse speed of bubble */
 @property (nonatomic, strong) NSString *bubbleColor;		/**< color of bubble */
 

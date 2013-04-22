@@ -50,8 +50,8 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
 
 /**
  Nib version of Init that creates the viewController with the User's Conscience
- @param nibName NSString signifying the XIB to load
- @param nibBundle NSBundle where the XIB is stored
+ @param nibNameOrNil NSString signifying the XIB to load
+ @param nibBundleOrNil NSBundle where the XIB is stored
  @param modelManager ModelManager data persistence
  @param userConscience UserConscience for modals and help screens
  @return id instance of MoraLifeViewController

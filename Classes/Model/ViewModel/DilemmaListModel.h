@@ -35,14 +35,14 @@ typedef enum {
  Builds model with dependency injection
  @param modelManager ModelManager for either production or testing
  @param prefs NSUserDefaults for dependency injection
- @param dilemmaCampaign int of requested campaign
+ @param campaign int of requested campaign
  @return id DilemmaModel
  */
 - (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andCurrentCampaign:(MLRequestedMorathologyAdventure) campaign;
 
 /**
  Retrieve reference for display
- @param reference NSString of requested pkey
+ @param dilemmaKey NSString of requested pkey
  */
 - (void) selectDilemma:(NSString *) dilemmaKey;
 

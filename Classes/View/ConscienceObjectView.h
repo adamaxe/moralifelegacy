@@ -25,9 +25,10 @@ extern int const MLEyeHeight;
 
 /**
 Creates a CGMutablePathRef to draw
-@param NSArray array of (NSNumber *) CGFloats to build path 
-@param NSArray array of int values to choose each drawign instruction
-*/
+@param points NSArray of (NSNumber *) CGFloats to build path
+@param instructions NSArray of int values to choose each drawing instruction
+@param path CGMutablePathRef to be constructed
+ */
 - (void) createPathFromPoints:(NSArray *) points WithInstructions:(NSArray *) instructions ForPath:(CGMutablePathRef) path;
 
 @end

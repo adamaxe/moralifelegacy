@@ -10,6 +10,6 @@
 @interface AccessoryTableViewCell : UITableViewCell
 
 @property (nonatomic, assign) BOOL isAffordable;    /**< whether user can afford accessory */
-@property (nonatomic) UIImage *accessoryImage;  /**< image for Accessory */
+@property (nonatomic) UIImage *accessoryImage;      /**< image for Accessory */
 
 @end

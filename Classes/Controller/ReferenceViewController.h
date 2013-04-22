@@ -18,7 +18,7 @@ Primary screen of Reference selection Workflow.  User can select what type of Re
 
 /**
 Accepts User input to determine type of Reference requested
-@param id Object which requested method
+@param sender id Object which requested method
 @return IBAction referenced from Interface Builder
  */
 - (IBAction) selectReferenceType:(id)sender;

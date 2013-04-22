@@ -16,8 +16,8 @@ extern NSString* const MLCollectableEthicals;
 
 /**
  Overloaded init to provide dependency injection of ModelManager for both release and testing
- @param NSString key to designate which NSManagedObject to return (optional)
- @param ModelManager which persistence stack to reference (release file system or test in-memory)
+ @param key NSString to designate which NSManagedObject to return (optional)
+ @param moralModelManager which persistence stack to reference (release file system or test in-memory)
  @return id UserCollectableDAO created for designated Model
  */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
@@ -30,7 +30,7 @@ extern NSString* const MLCollectableEthicals;
 
 /**
  Read method to fetch an UserCollectable from the store
- @param NSString key to designate which UserCollectable to return (optional)
+ @param key NSString to designate which UserCollectable to return (optional)
  @return UserCollectable NSManagedObject to be returned
  */
 - (UserCollectable *)read:(NSString *)key;

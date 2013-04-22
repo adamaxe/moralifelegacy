@@ -19,7 +19,7 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 
 /**
 Accepts User input to select a ConscienceAsset for review
-@param id Object which requested method
+@param sender id Object which requested method
 @return IBAction method available from Interface Builder
  */
 -(IBAction)selectChoice:(id) sender;

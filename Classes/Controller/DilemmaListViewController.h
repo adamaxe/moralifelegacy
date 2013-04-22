@@ -29,14 +29,14 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 
 /**
 Remove DilemmaList screen and reset requested Dilemma Campaign
-@param id Object which requested method
+@param sender id Object which requested method
 @return IBAction referenced from Interface Builder
  */
 -(IBAction)dismissDilemmaModal:(id)sender;
 
 /**
 Accepts User input to return to ConscienceViewController
-@param id Object which requested method
+@param sender id Object which requested method
 @return IBAction referenced from Interface Builder
  */
 -(IBAction)returnToHome:(id)sender;

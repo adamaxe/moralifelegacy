@@ -35,7 +35,7 @@ Accepts User input to cancel the choice of ConscienceAsset.  Either returns User
 
 /**
  Accepts User input to return to ConscienceViewController
- @param id Object which requested method
+ @param sender id Object which requested method
  @return IBAction method available from Interface Builder
  */
 -(IBAction)returnToHome:(id)sender;

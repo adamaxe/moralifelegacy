@@ -14,15 +14,15 @@
 
 /**
  Overloaded init to provide dependency injection of ModelManager for both release and testing
- @param NSString key to designate which NSManagedObject to return (optional)
- @param ModelManager which persistence stack to reference (release file system or test in-memory)
+ @param key NSString to designate which NSManagedObject to return (optional)
+ @param moralModelManager which persistence stack to reference (release file system or test in-memory)
  @return id ConscienceAssetDAO created for designated Model
  */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
 /**
  Read method to fetch an ConscienceAsset from the store
- @param NSString key to designate which ConscienceAsset to return (optional)
+ @param key NSString to designate which ConscienceAsset to return (optional)
  @return ConscienceAsset NSManagedObject to be returned
  */
 - (ConscienceAsset *)read:(NSString *)key;

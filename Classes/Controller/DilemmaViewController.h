@@ -17,14 +17,14 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
 
 /**
 Accepts User input to change the presently displayed UIView and possibly commit Choice
-@param id Object which requested method
+@param sender id Object which requested method
 @return IBAction method available from Interface Builder
  */
 -(IBAction)selectChoice:(id)sender;
 
 /**
 Accepts User input to return to ConscienceViewController
-@param id Object which requested method
+@param sender id Object which requested method
 @return IBAction method available from Interface Builder
  */
 -(IBAction)returnToHome:(id)sender;

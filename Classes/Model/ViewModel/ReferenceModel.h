@@ -58,7 +58,7 @@ typedef enum {
 
 /**
  Retrieve reference for display
- @param reference NSString of requested pkey
+ @param referenceKey NSString of requested pkey
  */
 - (void) selectReference:(NSString *) referenceKey;
 

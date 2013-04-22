@@ -23,9 +23,9 @@ extern NSString* const MLContextReadWrite;   /**< key to determine read write pe
 
 /**
 Overloaded init to provide dependency injection of ModelManager for both release and testing
- @param NSString key to designate which NSManagedObject to return (optional)
- @param ModelManager which persistence stack to reference (release file system or test in-memory)
- @param NSString Class type provided by DAO subclass to determine which NSManagedObject to act upon
+ @param key NSString to designate which NSManagedObject to return (optional)
+ @param moralModelManager which persistence stack to reference (release file system or test in-memory)
+ @param classType NSString Class type provided by DAO subclass to determine which NSManagedObject to act upon
  @return id BaseDAO created for designated Model
  */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType;
@@ -38,7 +38,7 @@ Create method to insert an NSManagedObject into the store
 
 /**
  Read method to fetch an NSManagedObject from the store
- @param NSString key to designate which NSManagedObject to return (optional)
+ @param key NSString to designate which NSManagedObject to return (optional)
  @return NSManagedObject Return will be typecast by DAO subclass
  */
 - (NSManagedObject *)readObject:(NSString *)key;
@@ -57,7 +57,7 @@ Create method to insert an NSManagedObject into the store
 
 /**
  Delete method to remove an NSManagedObject from the store
- @param NSManagedObject Actual NSManagedObject to delete
+ @param objectToDelete NSManagedObject Actual NSManagedObject to delete
  @return BOOL Communicate if delete was successful
  */
 - (BOOL)delete:(NSManagedObject *)objectToDelete;

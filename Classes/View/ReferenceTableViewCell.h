@@ -9,7 +9,9 @@ Custom TableViewCell for Reference Assets.  Changes styling of text and allows f
 
 @interface ReferenceTableViewCell : UITableViewCell
 
-//Cell type to differentiate image border, height
+/**
+ Cell type to differentiate image border, height
+ */
 typedef enum {
     ReferenceTableViewCellTypeAsset,
     ReferenceTableViewCellTypeFigure,

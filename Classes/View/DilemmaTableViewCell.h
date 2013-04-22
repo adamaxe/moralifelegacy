@@ -9,7 +9,9 @@
 
 @interface DilemmaTableViewCell : UITableViewCell
 
-//Cell type to differentiate user state of dilemma
+/**
+ Cell type to differentiate user state of dilemma
+ */
 typedef enum {
     DilemmaTableViewCellStateAvailable,
     DilemmaTableViewCellStateUnavailable,

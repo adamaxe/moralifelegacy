@@ -17,14 +17,14 @@ Last screen in Choice/Luck Entry Workflow.
 
 /**
 Accepts User input to change the description of the Influence slider
-@param id Object which requested the slider change
+@param sender Object which requested the slider change
 @return IBAction referenced from Interface Builder
  */
 -(IBAction)influenceChange:(id) sender;
 
 /**
 Accepts User input to dismiss current UIViewController
-@param id Object which requested the view dismissal
+@param sender Object which requested the view dismissal
 @return IBAction referenced from Interface Builder
  */
 -(IBAction)saveTapped:(id) sender;
@@ -37,7 +37,7 @@ Accepts User input to remove all changes
 
 /**
  Accepts User input to view purpose of Influence slider
- @param id Object which requested the slider change
+ @param sender Object which requested the slider change
  @return IBAction referenced from Interface Builder
  */
 -(IBAction)selectInfluence:(id) sender;

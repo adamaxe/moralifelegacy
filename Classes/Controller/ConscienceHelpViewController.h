@@ -29,14 +29,14 @@ Conscience modular Help screen.  View controller for Conscience helping User wit
 
 /**
  Accepts User input to change the presently displayed UIView
- @param id Object which requested method
+ @param sender id Object which requested method
  @return IBAction method available from Interface Builder
  */
 -(IBAction)selectChoice:(id)sender;
 
 /**
  Accepts User input to return to ConscienceViewController
- @param id Object which requested method
+ @param sender id Object which requested method
  @return IBAction referenced from Interface Builder
  */
 -(IBAction)returnToHome:(id)sender;

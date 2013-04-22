@@ -14,8 +14,8 @@
 
 /**
  Overloaded init to provide dependency injection of ModelManager for both release and testing
- @param NSString key to designate which NSManagedObject to return (optional)
- @param ModelManager which persistence stack to reference (release file system or test in-memory)
+ @param key NSString to designate which NSManagedObject to return (optional)
+ @param moralModelManager which persistence stack to reference (release file system or test in-memory)
  @return id UserCharacterDAO created for designated Model
  */
 - (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
@@ -28,7 +28,7 @@
 
 /**
  Read method to fetch an UserCharacter from the store
- @param NSString key to designate which UserCharacter to return (optional)
+ @param key NSString to designate which UserCharacter to return (optional)
  @return UserCharacter NSManagedObject to be returned
  */
 - (UserCharacter *)read:(NSString *)key;
