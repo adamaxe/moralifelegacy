@@ -76,6 +76,7 @@
 		5E16502B130105EA0024C4D1 /* card-flexibility.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E165027130105EA0024C4D1 /* card-flexibility.png */; };
 		5E16502C130105EA0024C4D1 /* card-humor.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E165028130105EA0024C4D1 /* card-humor.png */; };
 		5E16502D130105EA0024C4D1 /* card-judgement.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E165029130105EA0024C4D1 /* card-judgement.png */; };
+		5E194A14172CE5BE00348D2D /* TestModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E194A13172CE5BE00348D2D /* TestModelHelper.m */; };
 		5E1ACE131550F82D00DBDE6E /* TestUserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DA154E3234008A7936 /* TestUserCollectable.m */; };
 		5E1ACE141550F91400DBDE6E /* TestUserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DC154F8848008A7936 /* TestUserCharacter.m */; };
 		5E1ACE151550F96200DBDE6E /* TestDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E071E641550CBE9009A5357 /* TestDilemma.m */; };
@@ -1797,6 +1798,8 @@
 		5E165027130105EA0024C4D1 /* card-flexibility.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-flexibility.png"; path = "Resources/images/interface/cards/card-flexibility.png"; sourceTree = "<group>"; };
 		5E165028130105EA0024C4D1 /* card-humor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-humor.png"; path = "Resources/images/interface/cards/card-humor.png"; sourceTree = "<group>"; };
 		5E165029130105EA0024C4D1 /* card-judgement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-judgement.png"; path = "Resources/images/interface/cards/card-judgement.png"; sourceTree = "<group>"; };
+		5E194A13172CE5BE00348D2D /* TestModelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestModelHelper.m; path = Model/ViewModel/TestModelHelper.m; sourceTree = "<group>"; };
+		5E194A15172CE67900348D2D /* TestModelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestModelHelper.h; path = Model/ViewModel/TestModelHelper.h; sourceTree = "<group>"; };
 		5E1ACE1F1551AC9A00DBDE6E /* TestMoral.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestMoral.m; sourceTree = "<group>"; };
 		5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserChoice.m; sourceTree = "<group>"; };
 		5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUserDilemma.m; sourceTree = "<group>"; };
@@ -5196,6 +5199,8 @@
 				5E9D259215DDF3AD0097A5F0 /* ViewModel */,
 				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
 				5EA26D7215843DB600CDA802 /* TestModelManager.m */,
+				5E194A15172CE67900348D2D /* TestModelHelper.h */,
+				5E194A13172CE5BE00348D2D /* TestModelHelper.m */,
 				5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */,
 				5E266044156C5D72007DF236 /* TestConscienceBubbleFactory.m */,
 				5E26605F156C6538007DF236 /* TestConscienceAccessories.m */,
@@ -7379,6 +7384,7 @@
 				5E48489516D3326700B9F66A /* TestDilemmaListModel.m in Sources */,
 				5ED04410171B8C8C0044EABF /* HomeModel.m in Sources */,
 				5ED04412171B8C9D0044EABF /* TestHomeModel.m in Sources */,
+				5E194A14172CE5BE00348D2D /* TestModelHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

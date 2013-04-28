@@ -13,6 +13,7 @@
 #import "Moral.h"
 #import "UserChoice.h"
 #import "UserCollectable.h"
+#import "ConscienceAsset.h"
 #import "OCMock/OCMock.h"
 
 @interface TestHomeModel : SenTestCase {
@@ -106,6 +107,7 @@
     UserCollectable *testCollectable1;
     UserCollectable *testCollectable2;
     UserCollectable *testCollectable3;
+    ConscienceAsset *testAsset;
 
     NSString *keyCollectable1;
     NSString *keyCollectable2;
@@ -118,7 +120,7 @@
 
     keyCollectable1 = @"asse-rank1";
     keyCollectable2 = @"asse-rank2a";
-    keyCollectable2 = @"asse-rank2b";
+    keyCollectable3 = @"asse-rank2b";
 
     collectableName1 = @"asse-rank1";
     collectableName2 = @"asse-rank2a";
@@ -141,13 +143,8 @@
     testCollectable3.collectableKey = keyCollectable3;
     testCollectable3.collectableCreationDate = collectableCreateDate;
 
-
     [testModelManager saveContext];
 
-
-    STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel greatestVirtue is not empty string.");
-    STAssertTrue([testingSubject.worstVice isEqualToString:@""], @"HomeModel worstVice is not empty string.");
-    NSLog(@"highest:%@", testingSubject.highestRank);
     STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel highestRank is not default rank.");
     
 }

@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "Character.h"
 #import "Dilemma.h"
 
@@ -6,24 +7,9 @@
     ModelManager *testModelManager;
     Character *testCharacter;
     Dilemma *testDilemma;
-    
-    NSString *characterAccessoryPrimary;
-    NSString *characterAccessorySecondary;
-    NSString *characterAccessoryTop;
-    NSString *characterAccessoryBottom;
-    NSString *characterFace;
-    NSString *characterName;
-    NSString *characterEye;
-    NSString *characterMouth;
-    NSNumber *characterEnthusiasm;
-    NSNumber *characterAge;
-    NSNumber *characterMood;
-    NSString *characterEyeColor;
-    NSString *characterBrowColor;
-    NSString *characterBubbleColor;
-    NSDecimalNumber *characterSize;
-    NSNumber *characterBubbleType;
 
+    NSString *characterName;
+    
 }
 
 @end
@@ -32,52 +18,13 @@
 
 - (void)setUp {
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
-    
-    characterAccessoryPrimary = @"accessoryPrimary";
-    characterAccessorySecondary = @"accessorySecondary";
-    characterAccessoryTop = @"accessoryTop";
-    characterAccessoryBottom = @"accessoryBottom";
-    characterFace = @"face";
-    characterName = @"name";
-    characterEye = @"eye";
-    characterMouth = @"mouth";
-    characterAge = @1.0f;
-    characterMood = @1.0f;
-    characterEyeColor = @"eyeColor";
-    characterBrowColor = @"browColor";
-    characterBubbleColor = @"bubbleColor";
-    characterSize = [NSDecimalNumber decimalNumberWithString:@"1.0"];
-    characterBubbleType = @1.0f;
+
+    characterName = @"characterName";
+
+    testCharacter = [TestModelHelper createCharacterWithName:characterName withModelManager:testModelManager];
         
-    testCharacter = [testModelManager create:Character.class];
-    
-    testCharacter.accessoryPrimaryCharacter = characterAccessoryPrimary;
-    testCharacter.accessorySecondaryCharacter = characterAccessorySecondary;
-    testCharacter.accessoryTopCharacter = characterAccessoryTop;
-    testCharacter.accessoryBottomCharacter = characterAccessoryBottom;
-    testCharacter.faceCharacter = characterFace;
-    testCharacter.nameCharacter = characterName;
-    testCharacter.eyeCharacter = characterEye;
-    testCharacter.mouthCharacter = characterMouth;
-    testCharacter.ageCharacter = characterAge;
-    testCharacter.eyeColor = characterEyeColor;
-    testCharacter.browColor = characterBrowColor;
-    testCharacter.bubbleColor = characterBubbleColor;
-    testCharacter.sizeCharacter = characterSize;
-    testCharacter.bubbleType = characterBubbleType;
-    
-    testDilemma = [testModelManager create:Dilemma.class];
-    testDilemma.rewardADilemma = @"dilemma";
-    testDilemma.choiceB = @"choiceB";
-    testDilemma.moodDilemma  = @1.0f;
-    testDilemma.displayNameDilemma = @"displayName";
-    testDilemma.surrounding = @"surrounding";
-    testDilemma.nameDilemma = @"name";
-    testDilemma.rewardBDilemma = @"reward";
-    testDilemma.choiceA = @"choice";
-    testDilemma.enthusiasmDilemma = @1.0f;
-    testDilemma.dilemmaText = @"text";
-    
+    testDilemma = [TestModelHelper createDilemmaWithName:@"dilemmaName" withModelManager:testModelManager];
+
 }
 
 - (void)tearDown{
@@ -104,21 +51,7 @@
     STAssertEquals(characters.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
     Character *retrieved = characters[0];
     
-    STAssertEqualObjects(retrieved.ageCharacter, characterAge, @"characterAge Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.sizeCharacter, characterSize, @"characterSize Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.bubbleType, characterBubbleType, @"characterBubbleType Getter/Setter failed.");    
-    STAssertEqualObjects(retrieved.accessoryPrimaryCharacter, characterAccessoryPrimary, @"characterAccessoryPrimary Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.accessorySecondaryCharacter, characterAccessorySecondary, @"characterAccessorySecondary Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.accessoryTopCharacter, characterAccessoryTop, @"characterAccessoryTop Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.accessoryBottomCharacter, characterAccessoryBottom, @"characterAccessoryBottom Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.faceCharacter, characterFace, @"characterFace Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.nameCharacter, characterName, @"characterName Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.eyeCharacter, characterEye, @"characterEye Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.mouthCharacter, characterMouth, @"characterMouth Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.eyeColor, characterEyeColor, @"characterEyeColor Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.browColor, characterBrowColor, @"characterBrowColor Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.bubbleColor, characterBubbleColor, @"characterBubbleColor Getter/Setter failed.");
-    
+    STAssertEqualObjects(retrieved.nameCharacter, characterName, @"characterName Getter/Setter failed.");    
 }
 
 - (void)testCharacterReferentialIntegrity {

@@ -71,7 +71,7 @@ if [ "x$JENKINS_SYSTEM_TESTS" = "x" ]; then
     for i in "${scripts[@]}"
     do
 
-    instruments -D $RESULTS_DIRECTORY/$i-trace.trace -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $XCODEBUILD_BUILD_DIR/Release-iphonesimulator/$XCODEBUILD_WRAPPER_NAME -e UIASCRIPT ./SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
+    instruments -D $RESULTS_DIRECTORY/$i-trace.trace -t /Applications/Xcode.app/Contents/Applications/Instruments.app/Contents/PlugIns/AutomationInstrument.bundle/Contents/Resources/Automation.tracetemplate $XCODEBUILD_BUILD_DIR/Debug-iphonesimulator/$XCODEBUILD_WRAPPER_NAME -e UIASCRIPT ./SystemTests/$i.js -e UIARESULTSPATH $RESULTS_DIRECTORY
 
     done
 

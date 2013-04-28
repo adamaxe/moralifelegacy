@@ -9,6 +9,7 @@
  */
 
 #import "ReferenceModel.h"
+#import "TestModelHelper.h"
 #import "ConscienceAsset.h"
 #import "ReferencePerson.h"
 #import "ReferenceAsset.h"
@@ -40,12 +41,12 @@
     testModelManager = [[ModelManager alloc] initWithInMemoryStore:YES];
     userDefaultsMock = [OCMockObject niceMockForClass:NSUserDefaults.class];
 
-    virtue1 = [self createMoralWithName:@"Virtue1" withType:@"Virtue" withModelManager:testModelManager];
-    vice1 = [self createMoralWithName:@"Vice1" withType:@"Vice" withModelManager:testModelManager];
-    testAsset1 = [self createAssetWithName:@"Asset1" withModelManager:testModelManager];
-    testAsset2 = [self createAssetWithName:@"Asset2" withModelManager:testModelManager];
-    testPerson1 = [self createPersonWithName:@"Person1" withModelManager:testModelManager];
-    testPerson2 = [self createPersonWithName:@"Person2" withModelManager:testModelManager];
+    virtue1 = [TestModelHelper createMoralWithName:@"Virtue1" withType:@"Virtue" withModelManager:testModelManager];
+    vice1 = [TestModelHelper createMoralWithName:@"Vice1" withType:@"Vice" withModelManager:testModelManager];
+    testAsset1 = [TestModelHelper createAssetWithName:@"Asset1" withModelManager:testModelManager];
+    testAsset2 = [TestModelHelper createAssetWithName:@"Asset2" withModelManager:testModelManager];
+    testPerson1 = [TestModelHelper createPersonWithName:@"Person1" withModelManager:testModelManager];
+    testPerson2 = [TestModelHelper createPersonWithName:@"Person2" withModelManager:testModelManager];
     [testModelManager saveContext];
 
     //Don't add testPerson2 to ensure that ReferenceModel only returns things owned by User
@@ -249,65 +250,6 @@
     [testingSubject selectReference:vice1.nameMoral];
     
     [userDefaultsMock verify];
-}
-
-- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
-
-    NSString *imageNameGenerated = [NSString stringWithFormat:@"%@imageName", moralName];
-
-    Moral *testMoral1 = [modelManager create:Moral.class];
-
-    testMoral1.shortDescriptionMoral = type;
-    testMoral1.nameMoral = moralName;
-
-    testMoral1.imageNameMoral = imageNameGenerated;
-    testMoral1.colorMoral = @"FF0000";
-    testMoral1.displayNameMoral = @"displayName";
-    testMoral1.longDescriptionMoral = @"longDescription";
-    testMoral1.component = @"component";
-    testMoral1.linkMoral = @"link";
-    testMoral1.definitionMoral = @"definition";
-
-    [modelManager saveContext];
-
-    return testMoral1;
-}
-
-- (ReferencePerson *)createPersonWithName:(NSString *)personName withModelManager:(ModelManager *)modelManager{
-
-    ReferencePerson *testPersonLocal1 = [modelManager create:ReferencePerson.class];
-
-    testPersonLocal1.nameReference = personName;
-
-    testPersonLocal1.imageNameReference = @"imageNamePerson";
-    testPersonLocal1.displayNameReference = @"displayNamePerson";
-    testPersonLocal1.longDescriptionReference = @"longDescriptionPerson";
-    testPersonLocal1.originYear = @2012;
-    testPersonLocal1.linkReference = @"linkPerson";
-    testPersonLocal1.shortDescriptionReference = [NSString stringWithFormat:@"%@shortDescriptionPerson", personName];
-
-    [modelManager saveContext];
-
-    return testPersonLocal1;
-}
-
-- (ConscienceAsset *)createAssetWithName:(NSString *)assetName withModelManager:(ModelManager *)modelManager{
-
-    ConscienceAsset *testAssetLocal1 = [modelManager create:ConscienceAsset.class];
-
-    testAssetLocal1.nameReference = assetName;
-
-    testAssetLocal1.costAsset = @20;
-    testAssetLocal1.imageNameReference = @"imageNameAsset";
-    testAssetLocal1.displayNameReference = @"displayNameAsset";
-    testAssetLocal1.longDescriptionReference = @"longDescriptionAsset";
-    testAssetLocal1.originYear = @2011;
-    testAssetLocal1.linkReference = @"linkAsset";
-    testAssetLocal1.shortDescriptionReference = [NSString stringWithFormat:@"%@shortDescriptionAsset", assetName];
-
-    [modelManager saveContext];
-
-    return testAssetLocal1;
 }
 
 @end
