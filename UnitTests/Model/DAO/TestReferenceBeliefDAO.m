@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "ReferenceBelief.h"
 #import "ReferenceBeliefDAO.h"
 
@@ -12,15 +13,7 @@
     
     NSString *nameAsset1;
     NSString *nameAsset2;
-    NSString *nameAsset3;
 
-    NSString *type;
-    NSString *shortDescription;
-    NSNumber *originYear;
-    NSString *longDescription;
-    NSString *link;
-    NSString *displayName;
-    NSString *imageName;
 }
 
 @end
@@ -32,38 +25,9 @@
 
     nameAsset1 = @"Asset1";
     nameAsset2 = @"Asset2";
-    nameAsset3 = @"Asset3";    
-    
-    type = @"type";
-    shortDescription = @"short description";
-    originYear = @2010;
-    longDescription = @"long description";
-    link = @"http://www.teamaxe.org";    
-    displayName = @"display name";
-    imageName = @"image name";
-    
-    testReferenceBelief1 = [testModelManager create:ReferenceBelief.class];
-    testReferenceBelief2 = [testModelManager create:ReferenceBelief.class];
-
-    testReferenceBelief1.nameReference = nameAsset1;
-    testReferenceBelief1.typeBelief = type;
-    testReferenceBelief1.shortDescriptionReference = shortDescription;
-    testReferenceBelief1.originYear = originYear;
-    testReferenceBelief1.longDescriptionReference = longDescription;
-    testReferenceBelief1.linkReference = link;
-    testReferenceBelief1.displayNameReference = displayName;
-    testReferenceBelief1.imageNameReference = imageName;
-
-    testReferenceBelief2.nameReference = nameAsset2;
-    testReferenceBelief2.typeBelief = type;
-    testReferenceBelief2.shortDescriptionReference = shortDescription;
-    testReferenceBelief2.originYear = originYear;
-    testReferenceBelief2.longDescriptionReference = longDescription;
-    testReferenceBelief2.linkReference = link;
-    testReferenceBelief2.displayNameReference = displayName;
-    testReferenceBelief2.imageNameReference = imageName;
-
-    [testModelManager saveContext];
+        
+    testReferenceBelief1 = [TestModelHelper createBeliefWithName:nameAsset1 withModelManager:testModelManager];
+    testReferenceBelief2 = [TestModelHelper createBeliefWithName:nameAsset2 withModelManager:testModelManager];
     
     testingSubject = [[ReferenceBeliefDAO alloc] initWithKey:@"" andModelManager:testModelManager];
 
