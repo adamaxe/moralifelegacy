@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "ReferenceAsset.h"
 #import "ReferenceAssetDAO.h"
 
@@ -13,13 +14,7 @@
     NSString *nameAsset1;
     NSString *nameAsset2;
     NSString *nameAsset3;
-    
-    NSString *shortDescription;
-    NSNumber *originYear;
-    NSString *longDescription;
-    NSString *link;
-    NSString *displayName;
-    NSString *imageName;
+
 }
 
 @end
@@ -32,34 +27,9 @@
     nameAsset1 = @"Asset1";
     nameAsset2 = @"Asset2";
     nameAsset3 = @"Asset3";    
-    
-    shortDescription = @"short description";
-    originYear = @2010;
-    longDescription = @"long description";
-    link = @"http://www.teamaxe.org";    
-    displayName = @"display name";
-    imageName = @"image name";
-    
-    testReferenceAsset1 = [testModelManager create:ReferenceAsset.class];
-    testReferenceAsset2 = [testModelManager create:ReferenceAsset.class];
 
-    testReferenceAsset1.nameReference = nameAsset1;
-    testReferenceAsset1.shortDescriptionReference = shortDescription;
-    testReferenceAsset1.originYear = originYear;
-    testReferenceAsset1.longDescriptionReference = longDescription;
-    testReferenceAsset1.linkReference = link;
-    testReferenceAsset1.displayNameReference = displayName;
-    testReferenceAsset1.imageNameReference = imageName;
-
-    testReferenceAsset2.nameReference = nameAsset2;
-    testReferenceAsset2.shortDescriptionReference = shortDescription;
-    testReferenceAsset2.originYear = originYear;
-    testReferenceAsset2.longDescriptionReference = longDescription;
-    testReferenceAsset2.linkReference = link;
-    testReferenceAsset2.displayNameReference = displayName;
-    testReferenceAsset2.imageNameReference = imageName;
-
-    [testModelManager saveContext];
+    testReferenceAsset1 = [TestModelHelper createReferenceAssetWithName:nameAsset1 withModelManager:testModelManager];
+    testReferenceAsset2 = [TestModelHelper createReferenceAssetWithName:nameAsset2 withModelManager:testModelManager];
     
     testingSubject = [[ReferenceAssetDAO alloc] initWithKey:@"" andModelManager:testModelManager];
 

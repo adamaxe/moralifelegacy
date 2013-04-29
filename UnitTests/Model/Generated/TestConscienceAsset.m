@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "ConscienceAsset.h"
 
 @interface TestConscienceAsset: SenTestCase {
@@ -37,7 +38,7 @@
     displayName = @"display name";
     imageName = @"image name";
     
-    testAsset = [testModelManager create:ConscienceAsset.class];
+    testAsset = [TestModelHelper createAssetWithName:name withModelManager:testModelManager];
 
     testAsset.costAsset = costAsset;
     testAsset.moralValueAsset = moralValueAsset;

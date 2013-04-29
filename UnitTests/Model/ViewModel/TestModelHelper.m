@@ -5,12 +5,16 @@
 #import "TestModelHelper.h"
 #import "ModelManager.h"
 #import "ConscienceAsset.h"
-#import "ReferencePerson.h"
 #import "ReferenceAsset.h"
+#import "ReferenceBelief.h"
+#import "ReferencePerson.h"
+#import "ReferenceText.h"
 #import "UserCollectable.h"
 #import "Dilemma.h"
 #import "Character.h"
 #import "Moral.h"
+#import "UserChoice.h"
+#import "UserDilemma.h"
 
 @implementation TestModelHelper
 
@@ -58,6 +62,10 @@
     return testDilemma;
 }
 
++ (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
+    return [modelManager read:Moral.class withKey:@"nameMoral" andValue:moralName];
+}
+
 + (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
 
     NSString *imageNameGenerated = [NSString stringWithFormat:@"%@imageName", moralName];
@@ -80,6 +88,21 @@
     return testMoral1;
 }
 
++ (ReferenceBelief *)createBeliefWithName:(NSString *)beliefName withModelManager:(ModelManager *)modelManager {
+
+    ReferenceBelief *testBeliefLocal1 = [modelManager create:ReferenceBelief.class];
+    testBeliefLocal1.typeBelief = @"typeBelief";
+    testBeliefLocal1.shortDescriptionReference = @"short description";
+    testBeliefLocal1.originYear = @2010;
+    testBeliefLocal1.nameReference = beliefName;
+    testBeliefLocal1.longDescriptionReference = @"long description";
+    testBeliefLocal1.linkReference = @"http://www.teamaxe.org";
+    testBeliefLocal1.displayNameReference = @"display name";
+    testBeliefLocal1.imageNameReference = @"image name";
+
+    return testBeliefLocal1;
+}
+
 + (ReferencePerson *)createPersonWithName:(NSString *)personName withModelManager:(ModelManager *)modelManager{
 
     ReferencePerson *testPersonLocal1 = [modelManager create:ReferencePerson.class];
@@ -98,6 +121,38 @@
     return testPersonLocal1;
 }
 
++ (ReferenceText *)createTextWithName:(NSString *)textName withModelManager:(ModelManager *)modelManager {
+
+    ReferenceText *testTextLocal1 = [modelManager create:ReferenceText.class];
+    testTextLocal1.shortDescriptionReference = @"short description";
+    testTextLocal1.originYear = @2010;
+    testTextLocal1.nameReference = textName;
+    testTextLocal1.longDescriptionReference = @"long description";
+    testTextLocal1.linkReference = @"http://www.teamaxe.org";
+    testTextLocal1.displayNameReference = @"display name";
+    testTextLocal1.imageNameReference = @"image name";
+
+    return testTextLocal1;
+}
+
++ (ReferenceAsset *)createReferenceAssetWithName:(NSString *)assetName withModelManager:(ModelManager *)modelManager {
+    ReferenceAsset *testAssetLocal1 = [modelManager create:ReferenceAsset.class];
+
+    testAssetLocal1.nameReference = assetName;
+
+    testAssetLocal1.imageNameReference = @"imageNameAsset";
+    testAssetLocal1.displayNameReference = @"displayNameAsset";
+    testAssetLocal1.longDescriptionReference = @"longDescriptionAsset";
+    testAssetLocal1.originYear = @2011;
+    testAssetLocal1.linkReference = @"http://`linkAsset";
+    testAssetLocal1.shortDescriptionReference = [NSString stringWithFormat:@"%@shortDescriptionAsset", assetName];
+
+    [modelManager saveContext];
+
+    return testAssetLocal1;
+}
+
+
 + (ConscienceAsset *)createAssetWithName:(NSString *)assetName withModelManager:(ModelManager *)modelManager{
 
     ConscienceAsset *testAssetLocal1 = [modelManager create:ConscienceAsset.class];
@@ -105,16 +160,67 @@
     testAssetLocal1.nameReference = assetName;
 
     testAssetLocal1.costAsset = @20;
+    testAssetLocal1.moralValueAsset = @2.0f;
+    testAssetLocal1.orientationAsset = @"left";
     testAssetLocal1.imageNameReference = @"imageNameAsset";
     testAssetLocal1.displayNameReference = @"displayNameAsset";
     testAssetLocal1.longDescriptionReference = @"longDescriptionAsset";
     testAssetLocal1.originYear = @2011;
-    testAssetLocal1.linkReference = @"linkAsset";
+    testAssetLocal1.linkReference = @"http://`linkAsset";
     testAssetLocal1.shortDescriptionReference = [NSString stringWithFormat:@"%@shortDescriptionAsset", assetName];
 
     [modelManager saveContext];
 
     return testAssetLocal1;
+}
+
++ (UserCollectable *)createUserCollectableWithName:(NSString *)userCollectableName withModelManager:(ModelManager *)modelManager{
+
+    UserCollectable *testUserCollectableLocal1 = [modelManager create:UserCollectable.class];
+
+    testUserCollectableLocal1.collectableName = userCollectableName;
+    testUserCollectableLocal1.collectableKey = userCollectableName;
+    testUserCollectableLocal1.collectableCreationDate = [NSDate date];
+
+    [modelManager saveContext];
+
+    return testUserCollectableLocal1;
+}
+
++ (UserDilemma *)createUserDilemmaWithName:(NSString *)userDilemmaName withModelManager:(ModelManager *)modelManager{
+
+    UserDilemma *testUserDilemmaLocal1 = [modelManager create:UserDilemma.class];
+
+    testUserDilemmaLocal1.entryKey = userDilemmaName;
+    testUserDilemmaLocal1.entryShortDescription = @"entryShortDescription";
+    testUserDilemmaLocal1.entryIsGood = @1;
+    testUserDilemmaLocal1.entryLongDescription = @"entryLongDescription";
+    testUserDilemmaLocal1.entrySeverity = @5.0f;
+    testUserDilemmaLocal1.entryCreationDate = [NSDate date];
+
+    [modelManager saveContext];
+
+    return testUserDilemmaLocal1;
+}
+
++ (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
+
+    UserChoice *testChoice1 = [modelManager create:UserChoice.class];
+
+    testChoice1.entryShortDescription = moralChoiceShort;
+    testChoice1.entryLongDescription = moralChoiceLong;
+    testChoice1.choiceMoral = moral.nameMoral;
+    testChoice1.entryCreationDate = [NSDate date];
+    testChoice1.entryKey = [NSString stringWithFormat:@"%@key", entryName];
+    testChoice1.entryIsGood = ([moral.shortDescriptionMoral isEqualToString:@"Virtue"]) ? @1 : @0;
+    testChoice1.choiceWeight = @(severity * 2);
+    testChoice1.entryModificationDate = [NSDate date];
+    testChoice1.entrySeverity = @(severity);
+
+    [modelManager saveContext];
+
+    return testChoice1;
+    
 }
 
 @end

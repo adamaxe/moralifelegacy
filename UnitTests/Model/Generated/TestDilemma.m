@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "Dilemma.h"
 #import "Character.h"
 #import "Moral.h"
@@ -20,34 +21,6 @@
     NSString *choiceA;
     NSNumber *enthusiasmDilemma;
     NSString *dilemmaText;
-    
-    NSString *characterAccessoryPrimary;
-    NSString *characterAccessorySecondary;
-    NSString *characterAccessoryTop;
-    NSString *characterAccessoryBottom;
-    NSString *characterFace;
-    NSString *characterName;
-    NSString *characterEye;
-    NSString *characterMouth;
-    NSNumber *characterEnthusiasm;
-    NSNumber *characterAge;
-    NSNumber *characterMood;
-    NSString *characterEyeColor;
-    NSString *characterBrowColor;
-    NSString *characterBubbleColor;
-    NSDecimalNumber *characterSize;
-    NSNumber *characterBubbleType;
-    
-    NSString *imageNameMoral;
-    NSString *colorMoral;
-    NSString *displayNameMoral;
-    NSString *longDescriptionMoral;
-    NSString *component;
-    NSString *shortDescriptionMoral;
-    NSString *linkMoral;
-    NSString *nameMoral;
-    NSString *nameMoral2;
-    NSString *definitionMoral;    
 
 }
 
@@ -80,74 +53,11 @@
     testDilemma.choiceA = choiceA;
     testDilemma.enthusiasmDilemma = enthusiasmDilemma;
     testDilemma.dilemmaText = dilemmaText;
-    
-    characterAccessoryPrimary = @"accessoryPrimary";
-    characterAccessorySecondary = @"accessorySecondary";
-    characterAccessoryTop = @"accessoryTop";
-    characterAccessoryBottom = @"accessoryBottom";
-    characterFace = @"face";
-    characterName = @"name";
-    characterEye = @"eye";
-    characterMouth = @"mouth";
-    characterAge = @1.0f;
-    characterMood = @1.0f;
-    characterEyeColor = @"eyeColor";
-    characterBrowColor = @"browColor";
-    characterBubbleColor = @"bubbleColor";
-    characterSize = [NSDecimalNumber decimalNumberWithString:@"1.0"];
-    characterBubbleType = @1.0f;
-    
-    testCharacter = [testModelManager create:Character.class];
-    
-    testCharacter.accessoryPrimaryCharacter = characterAccessoryPrimary;
-    testCharacter.accessorySecondaryCharacter = characterAccessorySecondary;
-    testCharacter.accessoryTopCharacter = characterAccessoryTop;
-    testCharacter.accessoryBottomCharacter = characterAccessoryBottom;
-    testCharacter.faceCharacter = characterFace;
-    testCharacter.nameCharacter = characterName;
-    testCharacter.eyeCharacter = characterEye;
-    testCharacter.mouthCharacter = characterMouth;
-    testCharacter.ageCharacter = characterAge;
-    testCharacter.eyeColor = characterEyeColor;
-    testCharacter.browColor = characterBrowColor;
-    testCharacter.bubbleColor = characterBubbleColor;
-    testCharacter.sizeCharacter = characterSize;
-    testCharacter.bubbleType = characterBubbleType;
-    
-    imageNameMoral = @"imageNameMoral";
-    colorMoral = @"colorMoral";
-    displayNameMoral = @"displayNameMoral";
-    longDescriptionMoral = @"longDescriptionMoral";
-    component = @"component";
-    shortDescriptionMoral = @"shortDescriptionMoral";
-    linkMoral = @"linkMoral";
-    nameMoral = @"nameMoral";
-    nameMoral2 = @"nameMoral2";
-    definitionMoral = @"definitionMoral"; 
-    
-    testMoral = [testModelManager create:Moral.class];
-    testMoral2 = [testModelManager create:Moral.class];
-    
-    testMoral.imageNameMoral = imageNameMoral;
-    testMoral.colorMoral = colorMoral;
-    testMoral.displayNameMoral = displayNameMoral;
-    testMoral.longDescriptionMoral = longDescriptionMoral;
-    testMoral.component = component;
-    testMoral.shortDescriptionMoral = shortDescriptionMoral;
-    testMoral.linkMoral = linkMoral;
-    testMoral.nameMoral = nameMoral;
-    testMoral.definitionMoral = definitionMoral;
 
-    testMoral2.imageNameMoral = imageNameMoral;
-    testMoral2.colorMoral = colorMoral;
-    testMoral2.displayNameMoral = displayNameMoral;
-    testMoral2.longDescriptionMoral = longDescriptionMoral;
-    testMoral2.component = component;
-    testMoral2.shortDescriptionMoral = shortDescriptionMoral;
-    testMoral2.linkMoral = linkMoral;
-    testMoral2.nameMoral = nameMoral2;
-    testMoral2.definitionMoral = definitionMoral;
-
+    testCharacter = [TestModelHelper createCharacterWithName:@"characterName" withModelManager:testModelManager];
+            
+    testMoral = [TestModelHelper createMoralWithName:@"nameMoral1" withType:@"virtue" withModelManager:testModelManager];
+    testMoral2 = [TestModelHelper createMoralWithName:@"nameMoral2" withType:@"vice" withModelManager:testModelManager];
 }
 
 - (void)tearDown{

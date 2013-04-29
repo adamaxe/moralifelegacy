@@ -10,6 +10,7 @@
 
 #import "HomeModel.h"
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "Moral.h"
 #import "UserChoice.h"
 #import "UserCollectable.h"
@@ -107,43 +108,11 @@
     UserCollectable *testCollectable1;
     UserCollectable *testCollectable2;
     UserCollectable *testCollectable3;
-    ConscienceAsset *testAsset;
+//    ConscienceAsset *testAsset;
 
-    NSString *keyCollectable1;
-    NSString *keyCollectable2;
-    NSString *keyCollectable3;
-
-    NSString *collectableName1;
-    NSString *collectableName2;
-    NSString *collectableName3;
-    NSDate *collectableCreateDate;
-
-    keyCollectable1 = @"asse-rank1";
-    keyCollectable2 = @"asse-rank2a";
-    keyCollectable3 = @"asse-rank2b";
-
-    collectableName1 = @"asse-rank1";
-    collectableName2 = @"asse-rank2a";
-    collectableName3 = @"asse-rank2b";
-    collectableCreateDate = [NSDate date];
-
-    testCollectable1 = [testModelManager create:UserCollectable.class];
-    testCollectable2 = [testModelManager create:UserCollectable.class];
-    testCollectable3 = [testModelManager create:UserCollectable.class];
-
-    testCollectable1.collectableName = collectableName1;
-    testCollectable1.collectableKey = keyCollectable1;
-    testCollectable1.collectableCreationDate = collectableCreateDate;
-
-    testCollectable2.collectableName = collectableName2;
-    testCollectable2.collectableKey = keyCollectable2;
-    testCollectable2.collectableCreationDate = collectableCreateDate;
-
-    testCollectable3.collectableName = collectableName3;
-    testCollectable3.collectableKey = keyCollectable3;
-    testCollectable3.collectableCreationDate = collectableCreateDate;
-
-    [testModelManager saveContext];
+    testCollectable1 = [TestModelHelper createUserCollectableWithName:@"asse-rank1" withModelManager:testModelManager];
+    testCollectable2 = [TestModelHelper createUserCollectableWithName:@"asse-rank2a" withModelManager:testModelManager];
+    testCollectable3 = [TestModelHelper createUserCollectableWithName:@"asse-rank2b" withModelManager:testModelManager];
 
     STAssertTrue([testingSubject.highestRank isEqualToString:HOME_MODEL_BEGINNER_RANK], @"HomeModel highestRank is not default rank.");
     

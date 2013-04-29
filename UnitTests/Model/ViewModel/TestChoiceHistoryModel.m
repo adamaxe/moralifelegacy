@@ -9,6 +9,7 @@
  */
 
 #import "ChoiceHistoryModel.h"
+#import "TestModelHelper.h"
 #import "ModelManager.h"
 #import "Moral.h"
 #import "UserChoice.h"
@@ -20,17 +21,22 @@
     ModelManager *testModelManager;
     id userDefaultsMock;
 
-    CGFloat virtue1Severity;
-    CGFloat virtue2Severity;
-    CGFloat vice1Severity;
-    CGFloat vice2Severity;
-    CGFloat vice3Severity;
-
     Moral *virtue1;
     Moral *virtue2;
     Moral *vice1;
     Moral *vice2;
     Moral *vice3;
+    UserChoice *choiceMoral1;
+    UserChoice *choiceMoral2;
+    UserChoice *choiceImmoral1;
+    UserChoice *choiceImmoral2;
+    UserChoice *choiceImmoral3;
+
+    CGFloat virtue1Severity;
+    CGFloat virtue2Severity;
+    CGFloat vice1Severity;
+    CGFloat vice2Severity;
+    CGFloat vice3Severity;
 
     NSString *moralChoice1Short;
     NSString *moralChoice2Short;
@@ -43,12 +49,6 @@
     NSString *immoralChoice1Long;
     NSString *immoralChoice2Long;
     NSString *immoralChoice3Long;
-
-    UserChoice *choiceMoral1;
-    UserChoice *choiceMoral2;
-    UserChoice *choiceImmoral1;
-    UserChoice *choiceImmoral2;
-    UserChoice *choiceImmoral3;
 
     NSString *virtue1Name;
     NSString *virtue2Name;
@@ -112,18 +112,18 @@
     moralChoice1Consequence = @"moralChoice1Consequence";
     moralChoice1EntryIsGood = TRUE;
 
-    virtue1 = [self createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
-    virtue2 = [self createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
-    vice1 = [self createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
-    vice2 = [self createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
-    vice3 = [self createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
+    virtue1 = [TestModelHelper createMoralWithName:virtue1Name withType:@"Virtue" withModelManager:testModelManager];
+    virtue2 = [TestModelHelper createMoralWithName:virtue2Name withType:@"Virtue" withModelManager:testModelManager];
+    vice1 = [TestModelHelper createMoralWithName:vice1Name withType:@"Vice" withModelManager:testModelManager];
+    vice2 = [TestModelHelper createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
+    vice3 = [TestModelHelper createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
 
-    choiceMoral1 = [self createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
-    choiceMoral2 = [self createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+    choiceMoral1 = [TestModelHelper createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+    choiceMoral2 = [TestModelHelper createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
 
-    choiceImmoral1 = [self createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
-    choiceImmoral2 = [self createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
-    choiceImmoral3 = [self createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
+    choiceImmoral1 = [TestModelHelper createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
+    choiceImmoral2 = [TestModelHelper createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
+    choiceImmoral3 = [TestModelHelper createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
 
     choiceMoral1.choiceInfluence = @(moralChoice1Influence);
     choiceMoral1.choiceJustification = moralChoice1Justification;
@@ -319,7 +319,7 @@
 //    NSString *dilemmaName = @"testName";
     NSString *dilemmaName = @"dile-test";
 
-    UserChoice *choiceDilemma = [self createUserEntryWithName:dilemmaName withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManagerCreate];
+    UserChoice *choiceDilemma = [TestModelHelper createUserEntryWithName:dilemmaName withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManagerCreate];
 
     STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
 
@@ -390,53 +390,6 @@
     [testingSubject retrieveChoice:@"incorrectChoiceKey" forEditing:NO];
 
     [userDefaultsMock verify];
-}
-
-- (Moral *)readMoralWithName:(NSString *)moralName fromModelManager:(ModelManager *)modelManager{
-    return [testModelManager read:Moral.class withKey:@"nameMoral" andValue:moralName];
-}
-
-- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
-
-    NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
-
-    Moral *testMoral1 = [modelManager create:Moral.class];
-
-    testMoral1.shortDescriptionMoral = type;
-    testMoral1.nameMoral = moralName;
-
-    testMoral1.imageNameMoral = imageName;
-    testMoral1.colorMoral = @"FF0000";
-    testMoral1.displayNameMoral = @"displayName";
-    testMoral1.longDescriptionMoral = @"longDescription";
-    testMoral1.component = @"component";
-    testMoral1.linkMoral = @"link";
-    testMoral1.definitionMoral = @"definition";
-
-    [modelManager saveContext];
-
-    return testMoral1;
-    
-}
-
-- (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
-
-    UserChoice *testChoice1 = [modelManager create:UserChoice.class];
-
-    testChoice1.entryShortDescription = moralChoiceShort;
-    testChoice1.entryLongDescription = moralChoiceLong;
-    testChoice1.choiceMoral = moral.nameMoral;
-    testChoice1.entryCreationDate = [NSDate date];
-    testChoice1.entryKey = [NSString stringWithFormat:@"%@key", entryName];
-    testChoice1.entryIsGood = ([moral.shortDescriptionMoral isEqualToString:@"Virtue"]) ? @1 : @0;
-    testChoice1.choiceWeight = @(severity * 2);
-    testChoice1.entryModificationDate = [NSDate date];
-    testChoice1.entrySeverity = @(severity);
-
-    [modelManager saveContext];
-
-    return testChoice1;
-    
 }
 
 - (void)assertCorrectOrder:(NSArray *)expectedChoices {

@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "ConscienceAsset.h"
 #import "ConscienceAssetDAO.h"
 
@@ -33,41 +34,9 @@
 
     nameAsset1 = @"Asset1";
     nameAsset2 = @"Asset2";
-    
-    costAsset = @1.0f;
-    moralValueAsset = @2.0f; 
-    orientationAsset = @"left";
-    shortDescription = @"short description";
-    originYear = @2010;
-    longDescription = @"long description";
-    link = @"http://www.teamaxe.org";    
-    displayName = @"display name";
-    imageName = @"image name";
-    
-    testConscienceAsset1 = [testModelManager create:ConscienceAsset.class];
-    testConscienceAsset2 = [testModelManager create:ConscienceAsset.class];
-
-    testConscienceAsset1.nameReference = nameAsset1;
-    testConscienceAsset1.costAsset = costAsset;
-    testConscienceAsset1.orientationAsset = orientationAsset;
-    testConscienceAsset1.moralValueAsset = moralValueAsset;
-    testConscienceAsset1.shortDescriptionReference = shortDescription;
-    testConscienceAsset1.originYear = originYear;
-    testConscienceAsset1.longDescriptionReference = longDescription;
-    testConscienceAsset1.linkReference = link;
-    testConscienceAsset1.displayNameReference = displayName;
-    testConscienceAsset1.imageNameReference = imageName;
-
-    testConscienceAsset2.nameReference = nameAsset2;
-    testConscienceAsset2.costAsset = costAsset;
-    testConscienceAsset2.orientationAsset = orientationAsset;
-    testConscienceAsset2.moralValueAsset = moralValueAsset;
-    testConscienceAsset2.shortDescriptionReference = shortDescription;
-    testConscienceAsset2.originYear = originYear;
-    testConscienceAsset2.longDescriptionReference = longDescription;
-    testConscienceAsset2.linkReference = link;
-    testConscienceAsset2.displayNameReference = displayName;
-    testConscienceAsset2.imageNameReference = imageName;
+        
+    testConscienceAsset1 = [TestModelHelper createAssetWithName:nameAsset1 withModelManager:testModelManager];
+    testConscienceAsset2 = [TestModelHelper createAssetWithName:nameAsset2 withModelManager:testModelManager];
 
     [testModelManager saveContext];
     

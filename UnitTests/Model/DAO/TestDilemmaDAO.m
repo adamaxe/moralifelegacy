@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "DilemmaDAO.h"
 
 @interface TestDilemmaDAO: SenTestCase {
@@ -12,13 +13,6 @@
     NSString *nameDilemma1;
     NSString *nameDilemma2;
     
-    NSString *choiceB;
-    NSNumber *moodDilemma;
-    NSString *displayNameDilemma;
-    NSString *choiceA;
-    NSNumber *enthusiasmDilemma;
-    NSString *dilemmaText;
-    
 }
 
 @end
@@ -30,34 +24,10 @@
 
     nameDilemma1 = @"nameDilemma1";    
     nameDilemma2 = @"nameDilemma2";        
-    
-    choiceB = @"choiceB";
-    moodDilemma  = @1.0f;
-    displayNameDilemma = @"displayNameDilemma";
-    choiceA = @"choiceA";
-    enthusiasmDilemma = @1.0f;
-    dilemmaText = @"dilemmaText";
-        
-    testDilemma1 = [testModelManager create:Dilemma.class];
-    testDilemma2 = [testModelManager create:Dilemma.class];
+            
+    testDilemma1 = [TestModelHelper createDilemmaWithName:nameDilemma1 withModelManager:testModelManager];
+    testDilemma2 = [TestModelHelper createDilemmaWithName:nameDilemma2 withModelManager:testModelManager];
 
-    testDilemma1.nameDilemma = nameDilemma1;    
-    testDilemma1.choiceB = choiceB;
-    testDilemma1.moodDilemma = moodDilemma;
-    testDilemma1.displayNameDilemma = displayNameDilemma;
-    testDilemma1.choiceA = choiceA;
-    testDilemma1.enthusiasmDilemma = enthusiasmDilemma;
-    testDilemma1.dilemmaText = dilemmaText;
-
-    testDilemma2.nameDilemma = nameDilemma2;
-    testDilemma2.choiceB = choiceB;
-    testDilemma2.moodDilemma = moodDilemma;
-    testDilemma2.displayNameDilemma = displayNameDilemma;
-    testDilemma2.choiceA = choiceA;
-    testDilemma2.enthusiasmDilemma = enthusiasmDilemma;
-    testDilemma2.dilemmaText = dilemmaText;
-
-    [testModelManager saveContext];
     
     testingSubject = [[DilemmaDAO alloc] initWithKey:@"" andModelManager:testModelManager];
 

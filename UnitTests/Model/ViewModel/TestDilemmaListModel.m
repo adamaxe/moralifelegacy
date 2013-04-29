@@ -9,6 +9,7 @@
  */
 
 #import "DilemmaListModel.h"
+#import "TestModelHelper.h"
 #import "UserDilemma.h"
 #import "Dilemma.h"
 #import "Moral.h"
@@ -26,36 +27,12 @@
     Moral *testMoralB;
     UserDilemma *testUserDilemma;
 
-    NSString *nameUserDilemma1;
-    NSString *entryShortDescription;
-    NSNumber *entryIsGood;
-    NSString *entryKey;
-    NSString *entryLongDescription;
-    NSNumber *entrySeverity;
-    NSDate *entryCreationDate;
-
     id userDefaultsMock;
 
     NSString *nameDilemma1;
     NSString *nameDilemma2;
     NSString *nameDilemma3;
-    NSString *rewardADilemma;
-    NSString *choiceB;
-    NSNumber *moodDilemma;
-    NSString *displayNameDilemma;
-    NSString *surrounding;
-    NSString *rewardBDilemma;
-    NSString *choiceA;
-    NSNumber *enthusiasmDilemma;
-    NSString *dilemmaText;
 
-    NSString *moralTypeVirtue;
-    NSString *nameMoral1;
-    NSString *moralTypeVice;
-    NSString *nameMoral2;
-    NSString *moralTypeVirtueExtra;
-    NSString *nameMoral3;
-    NSString *moralTypeAll;
 }
 
 @end
@@ -69,36 +46,12 @@
     nameDilemma1 = @"dile-1-01";
     nameDilemma2 = @"dile-2-01";
     nameDilemma3 = @"dile-3-01";
-    choiceA = @"choiceA";
-    choiceB = @"choiceB";
-    displayNameDilemma = @"displayNameDilemma";
-    surrounding = @"surrounding";
-    rewardADilemma = @"rewardADilemma";
-    rewardBDilemma = @"rewardBDilemma";
-    moodDilemma = @1.5f;
-    enthusiasmDilemma = @1.0f;
-    dilemmaText = @"dilemmaText";
 
-    testDilemma1 = [self createDilemmaWithName:nameDilemma1];
-    testDilemma2 = [self createDilemmaWithName:nameDilemma2];
+    testDilemma1 = [TestModelHelper createDilemmaWithName:nameDilemma1 withModelManager:testModelManager];
+    testDilemma2 = [TestModelHelper createDilemmaWithName:nameDilemma2 withModelManager:testModelManager];
 
-    entryShortDescription = @"entryShortDescription";
-    entryIsGood = @1;
-    entryKey = @"dile-1-01user";
-    entryLongDescription = @"entryLongDescription";
-    entrySeverity =@5.0f;
-    entryCreationDate = [NSDate date];
-
-    moralTypeVirtue = @"Virtue";
-    nameMoral1 = @"Virtue Name1";
-    moralTypeVice = @"Vice";
-    nameMoral2 = @"Vice Name2";
-    moralTypeVirtueExtra = @"Virtue";
-    nameMoral3 = @"Virtue Name3";
-    moralTypeAll = @"all";
-
-    testMoralA = [self createMoralWithName:nameMoral1 withType:moralTypeVirtue withModelManager:testModelManager];
-    testMoralB = [self createMoralWithName:nameMoral2 withType:moralTypeVirtue withModelManager:testModelManager];
+    testMoralA = [TestModelHelper createMoralWithName:@"Virtue Name1" withType:@"Virtue" withModelManager:testModelManager];
+    testMoralB = [TestModelHelper createMoralWithName:@"Vice Name2" withType:@"Vice" withModelManager:testModelManager];
 
     testDilemma1.moralChoiceA = testMoralA;
     testDilemma1.moralChoiceB = testMoralB;
@@ -106,7 +59,7 @@
     testDilemma2.moralChoiceA = testMoralA;
     testDilemma2.moralChoiceB = testMoralA;
 
-    testUserDilemma = [self createUserDilemmaWithName:entryKey];
+    testUserDilemma = [TestModelHelper createUserDilemmaWithName:@"dile-1-01user" withModelManager:testModelManager];
     testingSubject = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
 }
@@ -174,7 +127,7 @@
 - (void)testDilemmaModelCanRetrieveCorrectlySortedDilemmasGivenRequestedCampaign {
 
     NSString *nameDilemmaOrderedSecond = @"dile-1-02";
-    Dilemma *testDilemmaOrderedSecond = [self createDilemmaWithName:nameDilemmaOrderedSecond];
+    Dilemma *testDilemmaOrderedSecond = [TestModelHelper createDilemmaWithName:nameDilemmaOrderedSecond withModelManager:testModelManager];
 
     DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
@@ -227,7 +180,7 @@
     NSString *secondUserDilemma =  @"dile-1-02user";
     NSString *entryShortDescription2 = @"entryShortDescription2";
 
-    UserDilemma *testUserDilemma2 = [self createUserDilemmaWithName:secondUserDilemma];
+    UserDilemma *testUserDilemma2 = [TestModelHelper createUserDilemmaWithName:secondUserDilemma withModelManager:testModelManager];
     testUserDilemma2.entryShortDescription = entryShortDescription2;
     [testModelManager saveContext];
 
@@ -250,63 +203,6 @@
     [testingSubject selectDilemma:nameDilemma1];
 
     [userDefaultsMock verify];
-}
-
-- (Dilemma *)createDilemmaWithName:(NSString *)dilemmaName {
-    Dilemma *testDilemmaLocal1 = [testModelManager create:Dilemma.class];
-
-    testDilemmaLocal1.nameDilemma = dilemmaName;
-    testDilemmaLocal1.rewardADilemma = rewardADilemma;
-    testDilemmaLocal1.choiceB = choiceB;
-    testDilemmaLocal1.moodDilemma = moodDilemma;
-    testDilemmaLocal1.displayNameDilemma = displayNameDilemma;
-    testDilemmaLocal1.surrounding = surrounding;
-    testDilemmaLocal1.rewardBDilemma = rewardBDilemma;
-    testDilemmaLocal1.choiceA = choiceA;
-    testDilemmaLocal1.enthusiasmDilemma = enthusiasmDilemma;
-    testDilemmaLocal1.dilemmaText = dilemmaText;
-    [testModelManager saveContext];
-
-    return testDilemmaLocal1;
-}
-
-- (UserDilemma *)createUserDilemmaWithName:(NSString *)userDilemmaName {
-
-    UserDilemma *testUserDilemmaLocal1 = [testModelManager create:UserDilemma.class];
-
-    testUserDilemmaLocal1.entryKey = userDilemmaName;
-    testUserDilemmaLocal1.entryShortDescription = entryShortDescription;
-    testUserDilemmaLocal1.entryIsGood = entryIsGood;
-    testUserDilemmaLocal1.entryLongDescription = entryLongDescription;
-    testUserDilemmaLocal1.entrySeverity = entrySeverity;
-    testUserDilemmaLocal1.entryCreationDate = entryCreationDate;
-
-    [testModelManager saveContext];
-
-    return testUserDilemmaLocal1;
-}
-
-- (Moral *)createMoralWithName:(NSString *)moralName withType:(NSString *)type withModelManager:(ModelManager *)modelManager{
-
-    NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
-
-    Moral *testMoral1 = [modelManager create:Moral.class];
-
-    testMoral1.shortDescriptionMoral = type;
-    testMoral1.nameMoral = moralName;
-
-    testMoral1.imageNameMoral = imageName;
-    testMoral1.colorMoral = @"FF0000";
-    testMoral1.displayNameMoral = @"displayName";
-    testMoral1.longDescriptionMoral = @"longDescription";
-    testMoral1.component = @"component";
-    testMoral1.linkMoral = @"link";
-    testMoral1.definitionMoral = @"definition";
-
-    [modelManager saveContext];
-
-    return testMoral1;
-    
 }
 
 @end

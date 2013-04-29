@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "CharacterDAO.h"
 
 @interface TestCharacterDAO: SenTestCase {
@@ -11,19 +12,7 @@
     
     NSString *nameCharacter1;
     NSString *nameCharacter2;
-    
-    NSString * characterFace;
-    NSString * characterName;
-    NSString * characterEye;
-    NSString * characterMouth;
-    NSNumber * characterEnthusiasm;
-    NSNumber * characterMood;
-    NSString * characterEyeColor;
-    NSString * characterBrowColor;
-    NSString * characterBubbleColor;
-    NSDecimalNumber * characterSize;
-    NSNumber * characterBubbleType;
-    
+        
 }
 
 @end
@@ -35,39 +24,9 @@
 
     nameCharacter1 = @"nameCharacter1";    
     nameCharacter2 = @"nameCharacter2";        
-    
-    characterFace = @"face";
-    characterEye = @"eye";
-    characterMouth = @"mouth";
-    characterMood = @1.0f;
-    characterEyeColor = @"eyeColor";
-    characterBrowColor = @"browColor";
-    characterBubbleColor = @"bubbleColor";
-    characterSize = [NSDecimalNumber decimalNumberWithString:@"1.0"];
-    characterBubbleType = @1.0f;
-    
-    testCharacter1 = [testModelManager create:Character.class];
-    testCharacter2 = [testModelManager create:Character.class];
 
-    testCharacter1.nameCharacter = nameCharacter1;    
-    testCharacter1.faceCharacter = characterFace;
-    testCharacter1.eyeCharacter = characterEye;
-    testCharacter1.mouthCharacter = characterMouth;
-    testCharacter1.eyeColor = characterEyeColor;
-    testCharacter1.browColor = characterBrowColor;
-    testCharacter1.bubbleColor = characterBubbleColor;
-    testCharacter1.sizeCharacter = characterSize;
-    testCharacter1.bubbleType = characterBubbleType;
-
-    testCharacter2.nameCharacter = nameCharacter2;    
-    testCharacter2.faceCharacter = characterFace;
-    testCharacter2.eyeCharacter = characterEye;
-    testCharacter2.mouthCharacter = characterMouth;
-    testCharacter2.eyeColor = characterEyeColor;
-    testCharacter2.browColor = characterBrowColor;
-    testCharacter2.bubbleColor = characterBubbleColor;
-    testCharacter2.sizeCharacter = characterSize;
-    testCharacter2.bubbleType = characterBubbleType;
+    testCharacter1 = [TestModelHelper createCharacterWithName:nameCharacter1 withModelManager:testModelManager];
+    testCharacter2 = [TestModelHelper createCharacterWithName:nameCharacter2 withModelManager:testModelManager];
 
     [testModelManager saveContext];
     

@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "Moral.h"
 #import "Dilemma.h"
 #import "Character.h"
@@ -19,18 +20,6 @@
     NSString *nameMoral;
     NSString *definitionMoral;
     
-    NSString *rewardADilemma;
-    NSString *choiceB;
-    NSNumber *moodDilemma;
-    NSString *displayNameDilemma;
-    NSString *surrounding;
-    NSString *nameDilemma;
-    NSString *nameDilemma2;    
-    NSString *rewardBDilemma;
-    NSString *choiceA;
-    NSNumber *enthusiasmDilemma;
-    NSString *dilemmaText;
-
 }
 
 @end
@@ -50,18 +39,6 @@
     nameMoral = @"name";
     definitionMoral = @"definition"; 
     
-    rewardADilemma = @"rewardADilemma";
-    choiceB = @"choiceB";
-    moodDilemma  = @1.0f;
-    displayNameDilemma = @"displayNameDilemma";
-    surrounding = @"surrounding";
-    nameDilemma = @"nameDilemma";
-    nameDilemma2 = @"nameDilemma2";
-    rewardBDilemma = @"rewardBDilemma";
-    choiceA = @"choiceA";
-    enthusiasmDilemma = @1.0f;
-    dilemmaText = @"MoralText";
-    
     testMoral = [testModelManager create:Moral.class];
     
     testMoral.imageNameMoral = imageNameMoral;
@@ -74,29 +51,8 @@
     testMoral.nameMoral = nameMoral;
     testMoral.definitionMoral = definitionMoral;
     
-    testDilemma = [testModelManager create:Dilemma.class];
-    testDilemma.rewardADilemma = rewardADilemma;
-    testDilemma.choiceB = choiceB;
-    testDilemma.moodDilemma = moodDilemma;
-    testDilemma.displayNameDilemma = displayNameDilemma;
-    testDilemma.surrounding = surrounding;
-    testDilemma.nameDilemma = nameDilemma;
-    testDilemma.rewardBDilemma = rewardBDilemma;
-    testDilemma.choiceA = choiceA;
-    testDilemma.enthusiasmDilemma = enthusiasmDilemma;
-    testDilemma.dilemmaText = dilemmaText;
-    
-    testDilemma2 = [testModelManager create:Dilemma.class];
-    testDilemma2.rewardADilemma = rewardADilemma;
-    testDilemma2.choiceB = choiceB;
-    testDilemma2.moodDilemma = moodDilemma;
-    testDilemma2.displayNameDilemma = displayNameDilemma;
-    testDilemma2.surrounding = surrounding;
-    testDilemma2.nameDilemma = nameDilemma;
-    testDilemma2.rewardBDilemma = rewardBDilemma;
-    testDilemma2.choiceA = choiceA;
-    testDilemma2.enthusiasmDilemma = enthusiasmDilemma;
-    testDilemma2.dilemmaText = dilemmaText;
+    testDilemma = [TestModelHelper createDilemmaWithName:@"nameDilemma" withModelManager:testModelManager];
+    testDilemma2 = [TestModelHelper createDilemmaWithName:@"nameDilemma2" withModelManager:testModelManager];
 
 }
 
@@ -157,7 +113,7 @@
     
     testMoral.dillemmaA = [NSSet setWithObject:testDilemma];
     testMoral.dillemmaB = [NSSet setWithObject:testDilemma2];
-    
+
     STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI Update test");
         
     NSString *newDilemmaName1 = @"New dilemma name 1";
