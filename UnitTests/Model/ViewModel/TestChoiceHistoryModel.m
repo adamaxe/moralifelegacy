@@ -118,12 +118,12 @@
     vice2 = [TestModelHelper createMoralWithName:vice2Name withType:@"Vice" withModelManager:testModelManager];
     vice3 = [TestModelHelper createMoralWithName:vice3Name withType:@"Vice" withModelManager:testModelManager];
 
-    choiceMoral1 = [TestModelHelper createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
-    choiceMoral2 = [TestModelHelper createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long withModelManager:testModelManager];
+    choiceMoral1 = [TestModelHelper createUserEntryWithName:choiceMoral1Name withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long andWeight:virtue1Severity*2 withModelManager:testModelManager];
+    choiceMoral2 = [TestModelHelper createUserEntryWithName:choiceMoral2Name withMoral:virtue2 andSeverity:virtue2Severity andShortDescription:moralChoice2Short andLongDescription:moralChoice1Long andWeight:virtue2Severity*2 withModelManager:testModelManager];
 
-    choiceImmoral1 = [TestModelHelper createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long withModelManager:testModelManager];
-    choiceImmoral2 = [TestModelHelper createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long withModelManager:testModelManager];
-    choiceImmoral3 = [TestModelHelper createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long withModelManager:testModelManager];
+    choiceImmoral1 = [TestModelHelper createUserEntryWithName:choiceImmoral1Name withMoral:vice1 andSeverity:vice1Severity andShortDescription:immoralChoice1Short andLongDescription:immoralChoice1Long andWeight:vice1Severity*2 withModelManager:testModelManager];
+    choiceImmoral2 = [TestModelHelper createUserEntryWithName:choiceImmoral2Name withMoral:vice2 andSeverity:vice2Severity andShortDescription:immoralChoice2Short andLongDescription:immoralChoice2Long andWeight:vice2Severity*2 withModelManager:testModelManager];
+    choiceImmoral3 = [TestModelHelper createUserEntryWithName:choiceImmoral3Name withMoral:vice3 andSeverity:vice3Severity andShortDescription:immoralChoice3Short andLongDescription:immoralChoice3Long andWeight:vice3Severity*2 withModelManager:testModelManager];
 
     choiceMoral1.choiceInfluence = @(moralChoice1Influence);
     choiceMoral1.choiceJustification = moralChoice1Justification;
@@ -319,7 +319,7 @@
 //    NSString *dilemmaName = @"testName";
     NSString *dilemmaName = @"dile-test";
 
-    UserChoice *choiceDilemma = [TestModelHelper createUserEntryWithName:dilemmaName withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long withModelManager:testModelManagerCreate];
+    UserChoice *choiceDilemma = [TestModelHelper createUserEntryWithName:dilemmaName withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long andWeight:1.0 withModelManager:testModelManagerCreate];
 
     STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
 

@@ -203,7 +203,12 @@
     return testUserDilemmaLocal1;
 }
 
-+ (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager{
++ (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andWeight:(CGFloat)weight withModelManager:(ModelManager *)modelManager {
+
+    return [TestModelHelper createUserEntryWithName:entryName withMoral:moral andSeverity:1.0 andShortDescription:@"shortDescription" andLongDescription:@"longDescription" andWeight:weight withModelManager:modelManager];
+}
+
++ (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong andWeight:(CGFloat)weight withModelManager:(ModelManager *)modelManager{
 
     UserChoice *testChoice1 = [modelManager create:UserChoice.class];
 
@@ -213,7 +218,7 @@
     testChoice1.entryCreationDate = [NSDate date];
     testChoice1.entryKey = [NSString stringWithFormat:@"%@key", entryName];
     testChoice1.entryIsGood = ([moral.shortDescriptionMoral isEqualToString:@"Virtue"]) ? @1 : @0;
-    testChoice1.choiceWeight = @(severity * 2);
+    testChoice1.choiceWeight = @(weight);
     testChoice1.entryModificationDate = [NSDate date];
     testChoice1.entrySeverity = @(severity);
 

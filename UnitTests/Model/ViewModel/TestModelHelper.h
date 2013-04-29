@@ -22,7 +22,8 @@
 + (ReferencePerson *)createPersonWithName:(NSString *)personName withModelManager:(ModelManager *)modelManager;
 + (ReferenceText *)createTextWithName:(NSString *)textName withModelManager:(ModelManager *)modelManager;
 + (UserCollectable *)createUserCollectableWithName:(NSString *)userCollectableName withModelManager:(ModelManager *)modelManager;
-+ (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong withModelManager:(ModelManager *)modelManager;
++ (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andWeight:(CGFloat)weight withModelManager:(ModelManager *)modelManager;
++ (UserChoice *)createUserEntryWithName:(NSString *)entryName withMoral:(Moral *)moral andSeverity:(CGFloat) severity andShortDescription:(NSString *) moralChoiceShort andLongDescription:(NSString *) moralChoiceLong andWeight:(CGFloat)weight withModelManager:(ModelManager *)modelManager;
 + (UserDilemma *)createUserDilemmaWithName:(NSString *)userDilemmaName withModelManager:(ModelManager *)modelManager;
 
 @end
