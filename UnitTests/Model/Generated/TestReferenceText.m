@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "ReferenceText.h"
 #import "ReferenceBelief.h"
 #import "ReferencePerson.h"
@@ -36,7 +37,7 @@
     displayNameReference = @"displayNameReference";
     imageNameReference = @"imageNameReferencee";
     
-    testText = [testModelManager create:ReferenceText.class];
+    testText = [TestModelHelper createTextWithName:nameReference withModelManager:testModelManager];
     testText.quote = quote;
     testText.shortDescriptionReference = shortDescriptionReference;
     testText.originYear = originYear;
@@ -45,25 +46,9 @@
     testText.linkReference = linkReference;
     testText.displayNameReference = displayNameReference;
     testText.imageNameReference = imageNameReference; 
-    
-    testBelief = [testModelManager create:ReferenceBelief.class];
-    testBelief.typeBelief = @"belief";
-    testBelief.shortDescriptionReference = shortDescriptionReference;
-    testBelief.originYear = originYear;
-    testBelief.nameReference = nameReference;
-    testBelief.longDescriptionReference = longDescriptionReference;
-    testBelief.linkReference = linkReference;
-    testBelief.displayNameReference = displayNameReference;
-    testBelief.imageNameReference = imageNameReference;
-    
-    testPerson = [testModelManager create:ReferencePerson.class];
-    testPerson.shortDescriptionReference = shortDescriptionReference;
-    testPerson.originYear = originYear;
-    testPerson.nameReference = nameReference;
-    testPerson.longDescriptionReference = longDescriptionReference;
-    testPerson.linkReference = linkReference;
-    testPerson.displayNameReference = displayNameReference;
-    testPerson.imageNameReference = imageNameReference;
+
+    testPerson = [TestModelHelper createPersonWithName:@"namePerson" withModelManager:testModelManager];
+    testBelief = [TestModelHelper createBeliefWithName:@"nameBelief" withModelManager:testModelManager];
     
 }
 
@@ -105,35 +90,9 @@
     
     STAssertNoThrow([testModelManager saveContext], @"ReferenceText/Belief/Person can't be created for RI test.");
 
-    ReferenceText *childText1 = [testModelManager create:ReferenceText.class];
-    ReferenceText *childText2 = [testModelManager create:ReferenceText.class];    
-    ReferenceText *parentText = [testModelManager create:ReferenceText.class];
-
-    childText1.shortDescriptionReference = shortDescriptionReference;
-    childText1.originYear = originYear;
-    childText1.nameReference = @"child1";
-    childText1.longDescriptionReference = longDescriptionReference;
-    childText1.linkReference = linkReference;
-    childText1.displayNameReference = displayNameReference;
-    childText1.imageNameReference = imageNameReference;
-    childText1.parentReference = testText;
-   
-    childText2.shortDescriptionReference = shortDescriptionReference;
-    childText2.originYear = originYear;
-    childText2.nameReference = @"child2";
-    childText2.longDescriptionReference = longDescriptionReference;
-    childText2.linkReference = linkReference;
-    childText2.displayNameReference = displayNameReference;
-    childText2.imageNameReference = imageNameReference;   
-    childText1.parentReference = testText;    
-    
-    parentText.shortDescriptionReference = shortDescriptionReference;
-    parentText.originYear = originYear;
-    parentText.nameReference = @"parent";
-    parentText.longDescriptionReference = longDescriptionReference;
-    parentText.linkReference = linkReference;
-    parentText.displayNameReference = displayNameReference;
-    parentText.imageNameReference = imageNameReference; 
+    ReferenceText *childText1 = [TestModelHelper createTextWithName:@"child1" withModelManager:testModelManager];
+    ReferenceText *childText2 = [TestModelHelper createTextWithName:@"child2" withModelManager:testModelManager];
+    ReferenceText *parentText = [TestModelHelper createTextWithName:@"parent" withModelManager:testModelManager];
         
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testBelief.texts = [NSSet setWithObject:testText];    

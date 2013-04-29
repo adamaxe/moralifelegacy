@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "ReferenceText.h"
 #import "ReferenceTextDAO.h"
 
@@ -12,14 +13,7 @@
     
     NSString *nameAsset1;
     NSString *nameAsset2;
-    NSString *nameAsset3;
     
-    NSString *shortDescription;
-    NSNumber *originYear;
-    NSString *longDescription;
-    NSString *link;
-    NSString *displayName;
-    NSString *imageName;
 }
 
 @end
@@ -31,35 +25,9 @@
 
     nameAsset1 = @"Asset1";
     nameAsset2 = @"Asset2";
-    nameAsset3 = @"Asset3";    
     
-    shortDescription = @"short description";
-    originYear = @2010;
-    longDescription = @"long description";
-    link = @"http://www.teamaxe.org";    
-    displayName = @"display name";
-    imageName = @"image name";
-    
-    testReferenceText1 = [testModelManager create:ReferenceText.class];
-    testReferenceText2 = [testModelManager create:ReferenceText.class];
-
-    testReferenceText1.nameReference = nameAsset1;
-    testReferenceText1.shortDescriptionReference = shortDescription;
-    testReferenceText1.originYear = originYear;
-    testReferenceText1.longDescriptionReference = longDescription;
-    testReferenceText1.linkReference = link;
-    testReferenceText1.displayNameReference = displayName;
-    testReferenceText1.imageNameReference = imageName;
-
-    testReferenceText2.nameReference = nameAsset2;
-    testReferenceText2.shortDescriptionReference = shortDescription;
-    testReferenceText2.originYear = originYear;
-    testReferenceText2.longDescriptionReference = longDescription;
-    testReferenceText2.linkReference = link;
-    testReferenceText2.displayNameReference = displayName;
-    testReferenceText2.imageNameReference = imageName;
-
-    [testModelManager saveContext];
+    testReferenceText1 = [TestModelHelper createTextWithName:nameAsset1 withModelManager:testModelManager];
+    testReferenceText2 = [TestModelHelper createTextWithName:nameAsset2 withModelManager:testModelManager];
     
     testingSubject = [[ReferenceTextDAO alloc] initWithKey:@"" andModelManager:testModelManager];
 
