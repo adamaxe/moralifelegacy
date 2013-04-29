@@ -1,4 +1,5 @@
 #import "ModelManager.h"
+#import "TestModelHelper.h"
 #import "ReferencePerson.h"
 #import "ReferenceText.h"
 #import "ReferenceBelief.h"
@@ -36,7 +37,7 @@
     displayName = @"display name";
     imageName = @"image name";
     
-    testPerson = [testModelManager create:ReferencePerson.class];
+    testPerson = [TestModelHelper createPersonWithName:name withModelManager:testModelManager];
     testPerson.quotePerson = quote;
     testPerson.deathYearPerson = originYear;
     testPerson.shortDescriptionReference = shortDescription;
@@ -47,25 +48,8 @@
     testPerson.displayNameReference = displayName;
     testPerson.imageNameReference = imageName;
     
-    testText = [testModelManager create:ReferenceText.class];
-    testText.quote = quote;
-    testText.shortDescriptionReference = shortDescription;
-    testText.originYear = originYear;
-    testText.nameReference = name;
-    testText.longDescriptionReference = longDescription;
-    testText.linkReference = link;
-    testText.displayNameReference = displayName;
-    testText.imageNameReference = imageName; 
-    
-    testBelief = [testModelManager create:ReferenceBelief.class];
-    testBelief.typeBelief = @"belief";
-    testBelief.shortDescriptionReference = shortDescription;
-    testBelief.originYear = originYear;
-    testBelief.nameReference = name;
-    testBelief.longDescriptionReference = longDescription;
-    testBelief.linkReference = link;
-    testBelief.displayNameReference = displayName;
-    testBelief.imageNameReference = imageName;
+    testText = [TestModelHelper createTextWithName:@"nameText" withModelManager:testModelManager];
+    testBelief = [TestModelHelper createBeliefWithName:@"nameBelief" withModelManager:testModelManager];
 }
 
 - (void)tearDown{
