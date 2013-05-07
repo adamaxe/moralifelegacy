@@ -34,7 +34,6 @@ extern float const MLConscienceLargestSize;
 @interface ConscienceView : UIView
 
 @property (nonatomic, assign) int directionFacing;                  /**< Which way the Conscience is currently facing */
-@property (nonatomic, assign) BOOL isExpressionForced;				/**< allow for forcing of an expression */
 @property (nonatomic, strong) UIView *conscienceBubbleView;			/**< UIView that contains all other Views */
 @property (nonatomic, strong) ConscienceBody *currentConscienceBody;			/**< Current Conscience visual configuration */
 @property (nonatomic, strong) ConscienceAccessories *currentConscienceAccessories;	/**< Current Conscience visual possessions */
@@ -53,64 +52,9 @@ Values are open and closed
            withMind:(ConscienceMind *) argMind;
 
 /**
-Change dimples expression 
-Values are happy, normal, sad
-@param expression NSString layerName of dimple ConscienceLayer to be selected
- */
-- (void) changeDimplesExpressions:(NSString *) expression;
-
-/**
-Change lips expression 
-@param expression NSString layerName of lips ConscienceLayer to be selected
- */
-- (void) changeLipsExpressions:(NSString *) expression;
-
-/**
-Change teeth expression 
-@param expression NSString layerName of teeth ConscienceLayer to be selected
- */
-- (void) changeTeethExpressions:(NSString *) expression;
-
-/**
-Change tongue expression 
-@param expression NSString layerName of tongue ConscienceLayer to be selected
- */
-- (void) changeTongueExpressions:(NSString *) expression;
-
-/**
-Changes color and speed of the bubble surrounding the Conscience
- */
-- (void) changeBubble;
-
-/**
-Changes direction that Conscience is looking
- */
-- (void) changeEyeDirection;
-
-/**
-Determine which emotion to ask for mouth change
- */
-- (void) timedMouthExpressionChanges;
-
-/**
 Make Conscience reappear
  */
 - (void)removeConscienceInvisibility;
-
-/**
-Determine which direction/emotion to ask for eye change
- */
-- (void) timedEyeChanges;
-
-/**
-Begin timers for eyes/mouth changes
- */
-- (void) setTimers;
-
-/**
-Stop timers for eyes/mouth changes
- */
-- (void) stopTimers;
 	
 /**
 Make Conscience reappear

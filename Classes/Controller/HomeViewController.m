@@ -421,7 +421,7 @@ float const MLThoughtInterval = 5;
 
 -(void)userConscienceTouchBegan {
     [conscienceStatus setText:[self.homeModel generateReactionWithMood:_userConscience.userConscienceMind.mood andEnthusiasm:_userConscience.userConscienceMind.enthusiasm]];
-    [_userConscience.userConscienceView setIsExpressionForced:TRUE];
+    [_userConscience.userConscienceMind setIsExpressionForced:TRUE];
     [_userConscience.userConscienceView setNeedsDisplay];
 }
 

@@ -413,7 +413,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
     [UIView commitAnimations];
     
-	[_userConscience.userConscienceView setIsExpressionForced:TRUE];
+	[_userConscience.userConscienceMind setIsExpressionForced:TRUE];
 	[_userConscience.userConscienceView setNeedsDisplay];
     
     messageState = 4; 
@@ -471,7 +471,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     _userConscience.userConscienceMind.mood = 35;
     _userConscience.userConscienceMind.enthusiasm = 80;
 
-	[_userConscience.userConscienceView setIsExpressionForced:TRUE];
+	[_userConscience.userConscienceMind setIsExpressionForced:TRUE];
 	[_userConscience.userConscienceView setNeedsDisplay];
     
     messageState = 6;

@@ -71,7 +71,7 @@ float const MLTransientInterval = 7;
         //set new mood
         self.userConscienceMind.mood = transientMood;
         self.userConscienceMind.enthusiasm = 100.0;
-        [self.userConscienceView setIsExpressionForced:TRUE];
+        [self.userConscienceMind setIsExpressionForced:TRUE];
 
         //Setup invocation for delayed mood reset
         SEL selector = @selector(resetMood:andEnthusiasm:);

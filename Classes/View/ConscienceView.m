@@ -44,8 +44,6 @@ int const MLSymbolHeight = 200;
 int const MLSymbolWidth = 200;
 int const MLTopBottomAccessoryHeight = 50;
 int const MLTopBottomAccessoryWidth = 162;
-int const MLExpressionInterval = 3;
-float const MLBlinkInterval = 2;
 
 /**
  Tag Numbers for webViews in order to reference them
@@ -75,128 +73,7 @@ typedef enum {
 	MLConscienceViewChoiceMoralButtonTag = 3023
 } MLConscienceViewTags;
 
-/** Eyes
- */
-
-typedef enum {
-    MLEyePlacementLeft,
-    MLEyePlacementRight,
-    MLEyePlacementBoth,
-    MLEyePlacementRandom
-
-} MLEyePlacement;
-
-typedef enum {
-    MLEyeStateClose,
-    MLEyeStateOpen
-
-} MLEyeState;
-
-/**
- Possible expression states of Lips
- */
-typedef enum {
-	MLExpressionLipsSadShock,
-	MLExpressionLipsSadOpenAlt1,
-	MLExpressionLipsSadOpen,
-	MLExpressionLipsSadAlt1,
-	MLExpressionLipsSad,
-	MLExpressionLipsSadSmirk,
-	MLExpressionLipsSadSilly,
-	MLExpressionLipsNormal,
-	MLExpressionLipsHappySmirk,
-	MLExpressionLipsHappy,
-	MLExpressionLipsHappyAlt1,
-	MLExpressionLipsHappySilly,
-	MLExpressionLipsHappyOpen,
-	MLExpressionLipsHappyOpenAlt1,
-	MLExpressionLipsHappyShock
-} MLExpressionLips;
-
-/**
- Possible expression states of Dimples
- */
-typedef enum {
-	MLExpressionDimplesSad,
-	MLExpressionDimplesNormal,
-	MLExpressionDimplesHappy
-} MLExpressionDimples;
-
-/**
- Possible expression states of Teeth
- */
-typedef enum {
-	MLExpressionTeethSadOpenAlt1,
-	MLExpressionTeethSadOpen,
-	MLExpressionTeethHappyOpen,
-	MLExpressionTeethHappyOpenAlt1
-} MLexpressionTeeth;
-
-/**
- Possible expression states of Tongue
- */
-typedef enum {
-	MLExpressionTongueSadCenter,
-	MLExpressionTongueSadLeft,
-	MLExpressionTongueSadRight,
-	MLExpressionTongueHappyCenter,
-	MLExpressionTongueHappyLeft,
-	MLExpressionTongueHappyRight
-} MLExpressionTongue;
-
-/**
- Possible expression states of Brow
- */
-typedef enum {
-	MLExpressionBrowAngry,
-	MLExpressionBrowNormal,
-	MLExpressionBrowConfused,
-	MLExpressionBrowExcited
-} MLExpressionBrow;
-
-/**
- Possible expression states of Lashes
- */
-typedef enum {
-	MLExpressionLashesUp,
-	MLExpressionLashesDown
-} MLExpressionLashes;
-
-/**
- Possible expression states of Lid
- */
-typedef enum {
-	MLExpressionLidAngry,
-	MLExpressionLidSleepy,
-	MLExpressionLidNormal,
-	MLExpressionLidUnder
-} MLExpressionLid;
-
-
-/**
- Possible look direction of Eye
- */
-typedef enum {
-	MLExpressionLookCenter,
-	MLExpressionLookDown,
-	MLExpressionLookUp,
-	MLExpressionLookLeft,
-	MLExpressionLookRight,
-	MLExpressionLookCross,
-	MLExpressionLookCrazy
-} MLExpressionLook;
-
-/**
- Possible expression states of Bags
- */
-typedef enum {
-	MLExpressionBagsNormal,
-	MLExpressionBagsOld,
-	MLExpressionBagsOlder,
-	MLExpressionBagsOldest
-} MLExpressionBags;
-
-@interface ConscienceView () {
+@interface ConscienceView () <ConscienceExpressionDelegate> {
 
     //Conscience visual display
 	ConscienceBubbleView *animatedBubbleView;		/**< External animated bubble */
@@ -211,54 +88,10 @@ typedef enum {
 	AccessoryObjectView *accessoryTopView;          /**< Conscience head */
 	AccessoryObjectView *accessoryBottomView;		/**< Conscience neck/chest */
 	
-    NSArray *browExpressions;
-    NSArray *lidExpressions;    
-    NSArray *lipsExpressions;
-    NSArray *tongueExpressions;
-    NSArray *teethExpressions;
-    NSArray *dimplesExpressions;
     NSArray *eyeLeftPositions;
     NSArray *eyeRightPositions;    
-    
-	NSTimer *mouthTimer;		/**< controls expression interval */
-	NSTimer *eyeTimer;          /**< controls eye state interval */
-	NSTimer *blinkTimer;		/**< controls blink/wink interval */
-	
+
 }
-
-/**
- Change eye state to imitate winking/blinking
- Values are open and closed
- @param eyeState int whether eye is open or closed
- @param eyeNumber int eye designation to affect (left, right, both, random)
- */
-- (void) changeEyeState:(MLEyeState) eyeState forEye:(MLEyePlacement) eyeNumber;
-
-/**
- Change direction Conscience is looking by moving iris
- Values are center, down, up, left, right, cross, crazy
- @param expressionIndex int direction eye can look
- @param eyeNumber int eye designation to affect (left, right, both, random)
- @see expressionLookEnum
- */
-- (void) changeEyeDirection:(MLExpressionLook)expressionIndex forEye:(MLEyePlacement) eyeNumber;
-
-/**
- Change brow expression
- Values are angry, confused, excited, normal
- @param expression NSString layerName of brow ConscienceLayer to be selected
- @param eyeNumber int eye designation to affect (left, right, both, random)
- */
-- (void) changeBrowExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber;
-
-/**
- Change lid expression
- Values are angry, normal, sleepy, under
- @param expression NSString layerName of lid ConscienceLayer to be selected
- @param eyeNumber int eye designation to affect (left, right, both, random)
- */
-- (void) changeLidExpressions:(NSString *) expression forEye:(MLEyePlacement) eyeNumber;
-
 
 @end
 
@@ -279,6 +112,7 @@ withMind: (ConscienceMind *) argMind{
         [self setCurrentConscienceBody:argBody];
         [self setCurrentConscienceAccessories:argAccessories];
         [self setCurrentConscienceMind:argMind];
+        self.currentConscienceMind.delegate = self;
 
         //Conscience Look direction determined by layeroffset
         //Array of pixel offsets by X/Y coordinates utilized for every eyetype
@@ -298,13 +132,6 @@ withMind: (ConscienceMind *) argMind{
                                       [NSValue valueWithCGPoint:CGPointMake(-3, -1)],
                                       [NSValue valueWithCGPoint:CGPointMake(4, 1)],
                                       [NSValue valueWithCGPoint:CGPointMake(-1, 4)]];
-
-        lipsExpressions = @[@"layerLipsSadShock", @"layerLipsSadOpenAlt1", @"layerLipsSadOpen", @"layerLipsSadAlt1", @"layerLipsSad", @"layerLipsSadSmirk", @"layerLipsSadSilly", @"layerLipsNormalSad", @"layerLipsNormal", @"layerLipsNormalHappy", @"layerLipsHappySmirk", @"layerLipsHappy", @"layerLipsHappySilly", @"layerLipsHappyAlt1", @"layerLipsHappyOpen", @"layerLipsHappyOpenAlt1", @"layerLipsHappyShock"];
-        dimplesExpressions = @[@"layerDimplesSad", @"layerDimplesNormal", @"layerDimplesHappy"];        
-        teethExpressions = @[@"layerTeethSadOpenAlt1", @"layerTeethSadOpen", @"layerTeethNormal", @"layerTeethHappyOpen", @"layerTeethHappyOpenAlt1"];
-        tongueExpressions = @[@"layerTongueSadCenter", @"layerTongueSadLeft", @"layerTongueSadRight", @"layerTongueNormal", @"layerTongueHappyCenter", @"layerTongueHappyLeft", @"layerTongueHappyRight"];
-        browExpressions = @[@"layerBrowNormal",@"layerBrowAngry", @"layerBrowConfused", @"layerBrowExcited"];
-        lidExpressions = @[@"layerLidNormal", @"layerLidAngry", @"layerLidSquint", @"layerLidSleepy", @"layerLidUnder"];
 
 		//Setup initial views
 		_directionFacing = MLDirectionFacingLeft;
@@ -400,10 +227,6 @@ Views are called by tags which are set in initWithFrame by constants
 	animatedBubbleView = (ConscienceBubbleView *) [_conscienceBubbleView viewWithTag:MLConscienceViewAnimatedBubbleViewTag];
 	[animatedBubbleView setNeedsDisplay];	
 
-    
-	[self setTimers];
-	
-
 }
 
 /**
@@ -491,9 +314,7 @@ Views are called by tags which are set in initWithFrame by constants
 	conscienceEyeLeftView.center = p;		
 	p = CGPointMake([(positionPath.pathPoints)[4] floatValue], [(positionPath.pathPoints)[5] floatValue]);
 	conscienceMouthView.center = p;
-        
-	_isExpressionForced = FALSE;
-    
+            
 }
 
 #pragma mark -
@@ -859,275 +680,6 @@ Implementation: Reset Conscience alpha.
 	[UIView commitAnimations];
 }
 
-#pragma mark -
-#pragma mark Timed Changes
-
-/**
-Implementation: Determine if Conscience is awake.  Set timers to change eye and lip expresssions.
- */
-- (void) setTimers{
-	
-    //Put Conscience to sleep if enthusiasm is 0
-    if (_currentConscienceMind.enthusiasm > 0) {
-
-        //Restart Conscience movement after User has moved it
-        [self timedEyeChanges];
-        [self timedMouthExpressionChanges];        
-        
-        if(![mouthTimer isValid]){
-            mouthTimer = [NSTimer scheduledTimerWithTimeInterval:MLExpressionInterval target:self selector:@selector(timedMouthExpressionChanges) userInfo:nil repeats:YES];
-        }
-        if(![eyeTimer isValid]){
-            eyeTimer = [NSTimer scheduledTimerWithTimeInterval:MLBlinkInterval target:self selector:@selector(timedEyeChanges) userInfo:nil repeats:YES];
-        }
-        
-    } else {
-        [self changeEyeState:MLEyeStateClose forEye:MLEyePlacementBoth];
-    }
-	
-}
-
-/**
-Implementation: Cancel timers handling mouth/eye expressions and any transient blinks.
- */
-- (void) stopTimers {
-
-    if(mouthTimer != nil){
-        
-        [mouthTimer invalidate];
-        mouthTimer = nil;
-    }
-    
-    if(blinkTimer != nil){
-        
-        [blinkTimer invalidate];
-        blinkTimer = nil;
-    }
-    
-    if(eyeTimer != nil){
-        
-        [eyeTimer invalidate];
-        eyeTimer = nil;
-    }
-    
-}
-
-/**
-Implementation: Determine which mouth expression to enable along with teeth, dimple and tongue selection
- */
-- (void) timedMouthExpressionChanges{
-	
-    CGFloat conscienceMood = _currentConscienceMind.mood;
-    CGFloat conscienceEnthusiasm = _currentConscienceMind.enthusiasm;
-
-    int randomIndex = 16 * (conscienceMood/100);
-    
-    
-    if (conscienceEnthusiasm > 50) {
-        randomIndex += 1;
-    } else {
-        randomIndex -= 1;
-    }
-    
-    randomIndex += arc4random() %2;
-    
-    if (randomIndex > 16) {
-        randomIndex = 16;
-    }
-    
-    if (randomIndex < 0) {
-        randomIndex = 0;
-    }
-    
-	int randomSwitch = arc4random() % 2;
-	int randomTongueHappy = 3 + arc4random() % 3;
-	int randomTongueSad = arc4random() % 3;
-	int dimpleIndex = 1;
-	int teethIndex = 2;
-	int tongueIndex = 3;	
-	
-	if ((randomSwitch < 1) || _isExpressionForced) {
-
-		[self changeLipsExpressions:lipsExpressions[randomIndex]];
-	}
-
-	_isExpressionForced = FALSE;
-	
-	if(randomSwitch < 1){
-        
-        switch(randomIndex){
-			case 0:dimpleIndex = 0;teethIndex = 2;tongueIndex = 3;break;				
-			case 1:dimpleIndex = 0;teethIndex = 0;tongueIndex = 3;break;
-			case 2:dimpleIndex = 0;teethIndex = 1;tongueIndex = 3;break;                
-			case 3:dimpleIndex = 0;teethIndex = 2;tongueIndex = 3;break;
-			case 4:dimpleIndex = 0;teethIndex = 2;tongueIndex = randomTongueSad;break;
-			case 5:dimpleIndex = 0;teethIndex = 2;tongueIndex = 3;break;
-			case 6:dimpleIndex = 0;teethIndex = 2;tongueIndex = randomTongueSad;break;
-			case 7:dimpleIndex = 1;teethIndex = 2;tongueIndex = 3;break;
-			case 8:dimpleIndex = 1;teethIndex = 2;tongueIndex = 3;break;
-			case 9:dimpleIndex = 1;teethIndex = 2;tongueIndex = 3;break;
-			case 10:dimpleIndex = 2;teethIndex = 2;tongueIndex = 3;break;
-			case 11:dimpleIndex = 2;teethIndex = 2;tongueIndex = randomTongueHappy;break;
-			case 12:dimpleIndex = 2;teethIndex = 2;tongueIndex = randomTongueHappy;break;
-            case 13:dimpleIndex = 2;teethIndex = 2;tongueIndex = 3;break;		  
-			case 14:dimpleIndex = 2;teethIndex = 3;tongueIndex = 3;break;
-			case 15:dimpleIndex = 2;teethIndex = 4;tongueIndex = 3;break;
-            case 16:dimpleIndex = 2;teethIndex = 2;tongueIndex = 3;break;
-			default:dimpleIndex = 1;teethIndex = 2;tongueIndex = 3;
-                
-        }
-        
-	}else{
-		dimpleIndex = 1;
-		teethIndex = 2;
-		tongueIndex = 3;
-		
-	}
-	
-	[self changeDimplesExpressions:dimplesExpressions[dimpleIndex]];
-	
-    if (conscienceEnthusiasm > 40) {
-
-        [self changeTeethExpressions:teethExpressions[teethIndex]];        
-        [self changeTongueExpressions:tongueExpressions[tongueIndex]];
-    
-    }
-    
-}
-
-- (void) timedEyeChanges{
-	
-	//Randomize blinks
-	int randomSwitch = arc4random() % 3;
-	//Random direction
-	//5 removes cross-eyed and crazy
-	int randomDirection = arc4random() % 6;
-
-	//Generate int between 0 - 240;
-	int randomInterval = arc4random() %100;
-	//Generate random float range between 0.1 and 
-	float blinkDuration = 0.1 + (float)randomInterval/100;
-		    
-    CGFloat conscienceEnthusiasm = _currentConscienceMind.enthusiasm;
-    CGFloat conscienceMood = _currentConscienceMind.mood;
-
-	if(conscienceMood < 0) {
-	
-		if(randomSwitch == 0) {
-			randomDirection = 5;	
-		} else if (randomSwitch ==1) {
-			randomDirection = 6;	
-		}
-	}
-    
-	//Create Invocation in order to re-open eyes after random interval
-	// get an Objective-C selector variable for the method
-	SEL eyeTimerSelector = @selector(changeEyeState:forEye:);
-	
-	// create a singature from the selector
-	NSMethodSignature *eyeTimerSignature = [[self class] instanceMethodSignatureForSelector:eyeTimerSelector];
-	
-	NSInvocation *eyeTimerInvocation = [NSInvocation invocationWithMethodSignature:eyeTimerSignature];
-	[eyeTimerInvocation setTarget:self];
-	[eyeTimerInvocation setSelector:eyeTimerSelector];
-	
-	int eyeState = MLEyeStateOpen;
-    int eyeNumber = MLEyePlacementBoth;
-    
-    /** @bug fix winking */
-//    //If Conscience is in a good mood, allow for winking
-//    if (conscienceMood > 70) {
-//        if ((arc4random() % 4) > 2) {
-//            eyeNumber = MLEyeRandomIndex;
-//            blinkDuration = 0.3;
-//            randomDirection = 0;
-//        }
-//            
-//    }	
-    
-    [eyeTimerInvocation setArgument:&eyeState atIndex:2];
-	[eyeTimerInvocation setArgument:&eyeNumber atIndex:3];
-	
-	if (randomSwitch < 2)  {
-		[self changeEyeState:MLEyeStateClose forEye:eyeNumber];
-		blinkTimer = [NSTimer scheduledTimerWithTimeInterval:blinkDuration invocation:eyeTimerInvocation repeats:NO];
-	}
-    
-    /** @todo lessen confused frequency */
-    eyeNumber = MLEyePlacementBoth;
-	
-    if ((randomSwitch < 1) || _isExpressionForced){
-        int randomBrow = 0; 
-
-        if (conscienceEnthusiasm > 60) {
-            if (conscienceMood > 50) {
-                randomBrow = 3;
-            }else {
-                randomBrow = 1;
-            }
-
-        } else {
-            randomBrow = 2;
-            eyeNumber = MLEyePlacementRandom;
-        }
-		
-		[self changeBrowExpressions:browExpressions[randomBrow] forEye:eyeNumber]; 
-		
-	} else {
-        [self changeBrowExpressions:browExpressions[0] forEye:eyeNumber]; 
-
-    }
-    
-    eyeNumber = MLEyePlacementBoth;
-        
-	if ((randomSwitch == 2) || _isExpressionForced) {
-            
-        int randomLid = 0;
-        
-        if (conscienceEnthusiasm > 70) {
-
-            if ((arc4random() %3) > 1) {
-                randomLid = 4;
-            } else {
-            
-                if (conscienceMood <= 15) {
-                    randomLid = 2;
-                }
-            }
-            
-        } else if (conscienceEnthusiasm > 30) {
-            
-            if (conscienceMood > 50) {
-                randomLid = 0;
-            }else {
-                randomLid = 1;
-            }
-            
-        } else {
-            randomLid = 3;
-        }
-        		
-        if (randomLid > 2) {
-			
-            if ((arc4random() %3) > 2) {
-
-                eyeNumber = MLEyePlacementRandom;
-            }
-			
-		}
-
-		[self changeLidExpressions:lidExpressions[randomLid] forEye:eyeNumber];
-		
-	} else {
-        [self changeLidExpressions:lidExpressions[0] forEye:eyeNumber];
-
-    }
-        	
-	_isExpressionForced = FALSE;
-	[self changeEyeDirection:randomDirection forEye:MLEyePlacementBoth];
-	
-}
-
 - (void) changeEyeDirection{
 	
 	static int expressionIndex = 0;
@@ -1164,18 +716,5 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
     CGPathRelease(shakePath);
     return shakeAnimation;
 }
-
-#pragma mark -
-#pragma mark Memory management
-
-/**
-Release init'ed objects, deallocate super.
-*/
-- (void)dealloc {
-    
-	[self stopTimers];
-
-}
-
 
 @end
