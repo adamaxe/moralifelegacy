@@ -33,16 +33,12 @@ int const MLEyeHeight = 32;
     return self;
 }
 
-
 /**
-Must override drawRect because custom drawing from a vector source is required
-@param rect frame to be drawn within
-*/
+ Must override drawRect because custom drawing from a vector source is required
+ @param rect frame to be drawn within
+ */
 -(void) drawRect:(CGRect)rect{
 
-	NSString *fillColor;
-	bool isReoriented = FALSE;
-	
 	if (_conscienceBackgroundColor != nil){
 		self.backgroundColor = [UIColor clearColor];
 	}else {
@@ -54,24 +50,31 @@ Must override drawRect because custom drawing from a vector source is required
 	//e.g. Iris must draw before lid to be obscured by lid
 	NSArray *layerKeys = [_totalLayers allKeys];
 	NSArray *sortedKeys = [layerKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-	
+
+    [self strokeAndFillPath:sortedKeys];
+    
+}
+
+- (void)strokeAndFillPath:(NSArray *)sortedKeys {
 	//Iterate through layers, drawing each.
-	ConscienceLayer *currentLayer;
+    NSString *fillColor;
+    int isReoriented = 0;
+    ConscienceLayer *currentLayer;
 	
 	for (int i=0; i<[sortedKeys count]; i++) {
 		currentLayer = (ConscienceLayer *)_totalLayers[sortedKeys[i]];
-
+        
 		if (currentLayer != nil) {
 			CGContextRef context = UIGraphicsGetCurrentContext();
-
+            
 			CGContextSaveGState(context);
-
+            
 			//Parse pathInstructions to determine number of paths required
 			//pathInstructions is array of instruction arrays
 			//pathPoints is array of point arrays	
 			for (ConsciencePath *currentPath in currentLayer.consciencePaths) {
                 _dynamicPath = CGPathCreateMutable();
-
+                
 				//Determine if image from path should be reoriented
 				//Set bool after first iteration to prevent cummulative translations
 				if (!isReoriented && (currentLayer.offsetX != 0 || currentLayer.offsetY != 0)) {
@@ -86,7 +89,7 @@ Must override drawRect because custom drawing from a vector source is required
 				
 				//Create the path
 				[self createPathFromPoints:pathPoints WithInstructions:pathInstructions ForPath:_dynamicPath];
-
+                
                 
 				//Color the path
 				//Convert hex from data to CGPathColor format
@@ -114,43 +117,42 @@ Must override drawRect because custom drawing from a vector source is required
 					
 					CGPoint startPoint = [(gradientElement.gradientPoints)[0] CGPointValue];
 					CGPoint endPoint = [(gradientElement.gradientPoints)[1] CGPointValue];
-
+                    
 					CGContextDrawLinearGradient (context, conscienceGradient, startPoint, endPoint, 0);
 					//CFRelease(conscienceGradient);
 					CGColorSpaceRelease(conscienceColorSpace);
 					CGGradientRelease(conscienceGradient);
                     fillColor = @"000000";
 				}
-
+                
                 UIColor *fillColorUIColor = [UIColor colorWithHexString:fillColor alpha:currentPath.pathFillOpacity];
                 CGContextSetFillColorWithColor(context, fillColorUIColor.CGColor);
-
-
+                
+                
 				CGContextFillPath(context);
-
+                
 				//Stroke the path
 				CGContextAddPath(context, _dynamicPath);
-
+                
                 UIColor *strokeColorUIColor = [UIColor colorWithHexString:currentPath.pathStrokeColor alpha:currentPath.pathStrokeOpacity];
-
+                
 				CGContextSetLineWidth(context, currentPath.pathStrokeWidth);
                 CGContextSetStrokeColorWithColor(context, strokeColorUIColor.CGColor);
-
+                
 				CGContextStrokePath(context);
-
+                
                 //Close path
                 CGPathCloseSubpath(_dynamicPath);
 				CGPathRelease(_dynamicPath);
-
+                
 			}
-
+            
 			CGContextRestoreGState(context);
-
+            
 		}else {
 			NSLog(@"no layer");
 		}
 	}
-
 }
 
 /**
