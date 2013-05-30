@@ -3554,7 +3554,6 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				5E81A2451757187F007E617B /* SystemConfiguration.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -3622,6 +3621,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E81A2451757187F007E617B /* SystemConfiguration.framework */,
 				5E81A2471757195A007E617B /* Flurry.h */,
 				5E81A2481757195A007E617B /* libFlurry.a */,
 				5E6834621742F58C00238F8E /* Crashlytics.framework */,
