@@ -31,4 +31,4 @@ Backup[ ]of[ ]*.pages/
 Backup[ ]of[ ]*.key/
 Backup[ ]of[ ]*.numbers/
 apikeys.sh
-moralife-apikeys.plist
+# moralife-apikeys.plist
