@@ -93,8 +93,11 @@ NSString* const MLAPIKeyPListFileName = @"moralife-apikeys";
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:MLAPIKeyPListFileName ofType:@"plist"];
     NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+    NSString *crashlyticsAPIKey = [apiKeys objectForKey:@"crashlytics"];
 
-    [Crashlytics startWithAPIKey:[apiKeys objectForKey:@"crashlytics"]];
+    if (crashlyticsAPIKey) {
+        [Crashlytics startWithAPIKey:crashlyticsAPIKey];
+    }
 
     self.moralModelManager = [[ModelManager alloc] init];
     HomeModel *homeModel = [[HomeModel alloc] initWithModelManager:self.moralModelManager];
