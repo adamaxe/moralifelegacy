@@ -1254,8 +1254,8 @@
 		5E7F115112DE7A9E00B64DC1 /* ref-thomashenryhuxley-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E7F10BD12DE7A9E00B64DC1 /* ref-thomashenryhuxley-sm.png */; };
 		5E7F115212DE7A9E00B64DC1 /* ref-thomashenryhuxley.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7F10BE12DE7A9E00B64DC1 /* ref-thomashenryhuxley.jpg */; };
 		5E81A2411756FD5B007E617B /* moralife-apikeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E81A2401756FD5B007E617B /* moralife-apikeys.plist */; };
-		5E81A244175716B7007E617B /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E81A243175716B7007E617B /* libFlurry.a */; };
 		5E81A24617571880007E617B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E81A2451757187F007E617B /* SystemConfiguration.framework */; };
+		5E81A2491757195A007E617B /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E81A2481757195A007E617B /* libFlurry.a */; };
 		5E862D471314DEC700B4FC4F /* ReferenceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E862D461314DEC600B4FC4F /* ReferenceAsset.m */; };
 		5E866B4812DC1B03007BAEFD /* ref-dalailama1-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AD012DC1B02007BAEFD /* ref-dalailama1-sm.png */; };
 		5E866B4912DC1B03007BAEFD /* ref-dalailama1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AD112DC1B02007BAEFD /* ref-dalailama1.jpg */; };
@@ -2973,9 +2973,9 @@
 		5E7FC822154E0FB60051D494 /* TestReferencePerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferencePerson.m; sourceTree = "<group>"; };
 		5E7FC824154E17E50051D494 /* TestConscienceAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestConscienceAsset.m; sourceTree = "<group>"; };
 		5E81A2401756FD5B007E617B /* moralife-apikeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "moralife-apikeys.plist"; sourceTree = "<group>"; };
-		5E81A242175716B6007E617B /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
-		5E81A243175716B7007E617B /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
 		5E81A2451757187F007E617B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5E81A2471757195A007E617B /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Flurry.h; path = Frameworks/Flurry.h; sourceTree = "<group>"; };
+		5E81A2481757195A007E617B /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFlurry.a; path = Frameworks/libFlurry.a; sourceTree = "<group>"; };
 		5E862D451314DEC600B4FC4F /* ReferenceAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceAsset.h; sourceTree = "<group>"; };
 		5E862D461314DEC600B4FC4F /* ReferenceAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceAsset.m; sourceTree = "<group>"; };
 		5E866AD012DC1B02007BAEFD /* ref-dalailama1-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-dalailama1-sm.png"; path = "Resources/images/reference/ref-dalailama1-sm.png"; sourceTree = "<group>"; };
@@ -3509,7 +3509,7 @@
 				5E4CBAB0120A5C120090DC29 /* QuartzCore.framework in Frameworks */,
 				5E43FE1E12BDDB0700BF5C28 /* CoreData.framework in Frameworks */,
 				5E6834631742F58D00238F8E /* Crashlytics.framework in Frameworks */,
-				5E81A244175716B7007E617B /* libFlurry.a in Frameworks */,
+				5E81A2491757195A007E617B /* libFlurry.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3622,8 +3622,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5E81A242175716B6007E617B /* Flurry.h */,
-				5E81A243175716B7007E617B /* libFlurry.a */,
+				5E81A2471757195A007E617B /* Flurry.h */,
+				5E81A2481757195A007E617B /* libFlurry.a */,
 				5E6834621742F58C00238F8E /* Crashlytics.framework */,
 				5EA15CEF15C0DD5A004EDDCA /* libSystem.dylib */,
 				5E99C5C013C552A6001F5CB8 /* QuartzCore.framework */,
@@ -7464,6 +7464,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = MoraLife;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -7489,6 +7490,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = MoraLife;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7548,6 +7550,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/Frameworks\"",
 				);
 				PRODUCT_NAME = MoraLife;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
