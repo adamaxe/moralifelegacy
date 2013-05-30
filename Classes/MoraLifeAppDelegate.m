@@ -95,7 +95,7 @@ NSString* const MLAPIKeyPListFileName = @"moralife-apikeys";
     NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     NSString *crashlyticsAPIKey = [apiKeys objectForKey:@"crashlytics"];
 
-    if (crashlyticsAPIKey) {
+    if (![crashlyticsAPIKey isEqualToString:@""]) {
         [Crashlytics startWithAPIKey:crashlyticsAPIKey];
     }
 
