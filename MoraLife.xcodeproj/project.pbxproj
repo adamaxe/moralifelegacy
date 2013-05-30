@@ -7474,7 +7474,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Flurry\"",
 					"\"$(SRCROOT)/Frameworks/Flurry\"",
 				);
 				PRODUCT_NAME = MoraLife;
@@ -7502,7 +7501,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Flurry\"",
 					"\"$(SRCROOT)/Frameworks/Flurry\"",
 				);
 				PRODUCT_NAME = MoraLife;
@@ -7565,7 +7563,6 @@
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
 					"\"$(SRCROOT)/Frameworks\"",
-					"\"$(SRCROOT)/Flurry\"",
 					"\"$(SRCROOT)/Frameworks/Flurry\"",
 				);
 				PRODUCT_NAME = MoraLife;
