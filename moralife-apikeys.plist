@@ -4,6 +4,8 @@
 <dict>
 	<key>crashlytics</key>
 	<string></string>
+	<key>flurry</key>
+	<string></string>
 	<key>parse</key>
 	<string>abc1234</string>
 </dict>

@@ -19,6 +19,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "HomeViewController.h"
 #import "UserConscience.h"
 #import <Crashlytics/Crashlytics.h>
+#import "Flurry.h"
 
 NSString* const MLAPIKeyPListFileName = @"moralife-apikeys";
 
@@ -94,10 +95,17 @@ NSString* const MLAPIKeyPListFileName = @"moralife-apikeys";
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:MLAPIKeyPListFileName ofType:@"plist"];
     NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
     NSString *crashlyticsAPIKey = [apiKeys objectForKey:@"crashlytics"];
+    NSString *flurryAPIKey = [apiKeys objectForKey:@"flurry"];
 
     if (![crashlyticsAPIKey isEqualToString:@""]) {
         [Crashlytics startWithAPIKey:crashlyticsAPIKey];
     }
+
+    if (![flurryAPIKey isEqualToString:@""]) {
+        [Flurry startSession:flurryAPIKey];
+    }
+
+
 
     self.moralModelManager = [[ModelManager alloc] init];
     HomeModel *homeModel = [[HomeModel alloc] initWithModelManager:self.moralModelManager];
