@@ -18,6 +18,9 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "HomeModel.h"
 #import "HomeViewController.h"
 #import "UserConscience.h"
+#import <Crashlytics/Crashlytics.h>
+
+NSString* const MLAPIKeyPListFileName = @"moralife-apikeys";
 
 @interface MoraLifeAppDelegate () {
 
@@ -88,7 +91,11 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  @see ConscienceAccessories
  */
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:MLAPIKeyPListFileName ofType:@"plist"];
+    NSDictionary *apiKeys = [[NSDictionary alloc] initWithContentsOfFile:plistPath];
+
+    [Crashlytics startWithAPIKey:[apiKeys objectForKey:@"crashlytics"]];
+
     self.moralModelManager = [[ModelManager alloc] init];
     HomeModel *homeModel = [[HomeModel alloc] initWithModelManager:self.moralModelManager];
 
