@@ -1255,6 +1255,7 @@
 		5E7F115212DE7A9E00B64DC1 /* ref-thomashenryhuxley.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7F10BE12DE7A9E00B64DC1 /* ref-thomashenryhuxley.jpg */; };
 		5E81A2411756FD5B007E617B /* moralife-apikeys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5E81A2401756FD5B007E617B /* moralife-apikeys.plist */; };
 		5E81A244175716B7007E617B /* libFlurry.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E81A243175716B7007E617B /* libFlurry.a */; };
+		5E81A24617571880007E617B /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E81A2451757187F007E617B /* SystemConfiguration.framework */; };
 		5E862D471314DEC700B4FC4F /* ReferenceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E862D461314DEC600B4FC4F /* ReferenceAsset.m */; };
 		5E866B4812DC1B03007BAEFD /* ref-dalailama1-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AD012DC1B02007BAEFD /* ref-dalailama1-sm.png */; };
 		5E866B4912DC1B03007BAEFD /* ref-dalailama1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E866AD112DC1B02007BAEFD /* ref-dalailama1.jpg */; };
@@ -2974,6 +2975,7 @@
 		5E81A2401756FD5B007E617B /* moralife-apikeys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "moralife-apikeys.plist"; sourceTree = "<group>"; };
 		5E81A242175716B6007E617B /* Flurry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flurry.h; sourceTree = "<group>"; };
 		5E81A243175716B7007E617B /* libFlurry.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libFlurry.a; sourceTree = "<group>"; };
+		5E81A2451757187F007E617B /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5E862D451314DEC600B4FC4F /* ReferenceAsset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceAsset.h; sourceTree = "<group>"; };
 		5E862D461314DEC600B4FC4F /* ReferenceAsset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceAsset.m; sourceTree = "<group>"; };
 		5E866AD012DC1B02007BAEFD /* ref-dalailama1-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-dalailama1-sm.png"; path = "Resources/images/reference/ref-dalailama1-sm.png"; sourceTree = "<group>"; };
@@ -3499,6 +3501,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E81A24617571880007E617B /* SystemConfiguration.framework in Frameworks */,
 				5EA15CF015C0DD5A004EDDCA /* libSystem.dylib in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
@@ -3551,6 +3554,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				5E81A2451757187F007E617B /* SystemConfiguration.framework */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
