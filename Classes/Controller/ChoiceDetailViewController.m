@@ -84,7 +84,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    (self.navigationItem).leftBarButtonItem = choiceBarButton;
+    self.navigationItem.leftBarButtonItem = choiceBarButton;
 
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
@@ -177,8 +177,8 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
             influenceImageView.alpha = 0;
 
         } completion:^(BOOL finished) {
-            _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-            [self presentModalViewController:_conscienceHelpViewController animated:NO];
+            [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
+
         }];
         
         [prefs setBool:FALSE forKey:@"firstChoiceDetailEntry"];
@@ -295,7 +295,7 @@ Implementation: pop UIViewController from current navigationController
 
     } completion:^(BOOL finished) {
         _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-        [self presentModalViewController:_conscienceHelpViewController animated:NO];
+        [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
     }];
 
 }

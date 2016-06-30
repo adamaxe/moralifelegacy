@@ -158,17 +158,17 @@ typedef NS_ENUM(unsigned int, MLDilemmaType) {
 
     dilemmaTitle.font = [UIFont fontForConscienceHeader];
     dilemmaTitle.numberOfLines = 1;
-    [dilemmaTitle setAdjustsFontSizeToFitWidth:TRUE];
+    dilemmaTitle.adjustsFontSizeToFitWidth = TRUE;
     dilemmaTitle.textColor = [UIColor moraLifeChoiceBlue];
 
     dilemmaTitleText.font = [UIFont fontForConscienceHeader];
     dilemmaTitleText.numberOfLines = 1;
-    [dilemmaTitleText setAdjustsFontSizeToFitWidth:TRUE];
+    dilemmaTitleText.adjustsFontSizeToFitWidth = TRUE;
     dilemmaTitleText.textColor = [UIColor moraLifeChoiceBlue];
 
     moralSelectedChoiceLabel.font = [UIFont fontForConscienceHeader];
     moralSelectedChoiceLabel.numberOfLines = 1;
-    [moralSelectedChoiceLabel setAdjustsFontSizeToFitWidth:TRUE];
+    moralSelectedChoiceLabel.adjustsFontSizeToFitWidth = TRUE;
     moralSelectedChoiceLabel.textColor = [UIColor moraLifeChoiceBlue];
 
     ethicalRewardLabel.textColor = [UIColor moraLifeChoiceGreen];

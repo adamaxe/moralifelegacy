@@ -27,6 +27,7 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
         _userConscience = userConscience;
         _conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:_userConscience];
         _conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+        _conscienceHelpViewController.modalPresentationStyle = UIModalPresentationFullScreen;
 
         protectedInstanceVariables = @[@"_modelManager",@"_userConscience", @"_conscienceHelpViewController", @"protectedInstanceVariables"];
 	}

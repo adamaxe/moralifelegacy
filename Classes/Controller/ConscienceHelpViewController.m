@@ -61,13 +61,13 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
         self.viewControllerClassName = [[NSString alloc] init];
 
 		helpTitle = [[UILabel alloc] initWithFrame:CGRectZero];
-		helpTitle.textAlignment = UITextAlignmentCenter;
+		helpTitle.textAlignment = NSTextAlignmentCenter;
 		helpTitle.textColor = [UIColor moraLifeChoiceGreen];
         helpTitle.font = [UIFont fontForConscienceHeader];
 
-		helpTitle.minimumFontSize = 8.0;
+		helpTitle.minimumScaleFactor = 8.0/helpTitle.font.pointSize;
 		helpTitle.numberOfLines = 1;
-		[helpTitle setAdjustsFontSizeToFitWidth:TRUE];
+		helpTitle.adjustsFontSizeToFitWidth = TRUE;
 		[self.view addSubview:helpTitle];
 
 		[helpText flashScrollIndicators];
@@ -248,7 +248,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
         [self dismissThoughtModal:placeHolder];
     }
     
-    int screenMaximum = (self.helpTitles).count;
+    int screenMaximum = self.helpTitles.count;
 	
 	//Animate button that User should use
 	if (screenVersion >= screenMaximum){

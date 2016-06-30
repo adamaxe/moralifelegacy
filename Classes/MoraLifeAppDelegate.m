@@ -112,7 +112,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #endif
 
 	application.applicationSupportsShakeToEdit = YES;
-    (self.window).rootViewController = homeNavigationController;
+    self.window.rootViewController = homeNavigationController;
 	[self.window makeKeyAndVisible];
 	
 } 

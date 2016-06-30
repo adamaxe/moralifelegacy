@@ -11,18 +11,19 @@
 
         self.isAffordable = FALSE;
         //Configure cell text
-        (self.textLabel).font = [UIFont fontForTableViewCellText];
-        (self.textLabel).numberOfLines = 1;
-        [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
-        (self.textLabel).textColor = [UIColor moraLifeChoiceBlue];
+        self.textLabel.font = [UIFont fontForTableViewCellText];
+        self.textLabel.numberOfLines = 1;
+        self.textLabel.adjustsFontSizeToFitWidth = TRUE;
+        self.textLabel.textColor = [UIColor moraLifeChoiceBlue];
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         //Configure cell subtitle text
-        (self.detailTextLabel).font = [UIFont fontForTableViewCellDetailText];
-        (self.detailTextLabel).numberOfLines = 1;
-        [self.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
-        (self.detailTextLabel).minimumFontSize = 8.0;
-
+        self.detailTextLabel.font = [UIFont fontForTableViewCellDetailText];
+        self.detailTextLabel.numberOfLines = 1;
+        self.detailTextLabel.adjustsFontSizeToFitWidth = TRUE;
+        
+        self.detailTextLabel.minimumScaleFactor = 8.0/self.detailTextLabel.font.pointSize;
+        
     }
     return self;
 }
@@ -43,7 +44,7 @@
 
 - (void)setAccessoryImage:(UIImage *)accessoryImage {
     if (![_accessoryImage isEqual:accessoryImage]) {
-        (self.imageView).image = accessoryImage;
+        self.imageView.image = accessoryImage;
         _accessoryImage = accessoryImage;
     }
 }

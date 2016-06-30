@@ -135,7 +135,9 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 		_conscienceHelpViewController.isConscienceOnScreen = TRUE;
         _conscienceHelpViewController.numberOfScreens = 1;
         _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-		[self presentModalViewController:_conscienceHelpViewController animated:NO];
+
+        [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
+        
         
         [prefs setBool:FALSE forKey:@"firstPie"];
 
@@ -273,7 +275,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
         
     } else {
         cell.moralImage = [UIImage imageNamed:@"card-doubt.png"];
-        cell.textLabel.textAlignment = UITextAlignmentCenter;
+        cell.textLabel.textAlignment = NSTextAlignmentCenter;
     }
 
     return cell;

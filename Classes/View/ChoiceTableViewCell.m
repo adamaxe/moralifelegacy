@@ -10,13 +10,14 @@
     if (self) {
 
         self.isVirtue = FALSE;
-        (self.textLabel).minimumFontSize = 12.0;
+        
+        self.textLabel.minimumScaleFactor = 12.0/self.detailTextLabel.font.pointSize;
 
         //Set cell content wrapping
-        (self.textLabel).textColor = [UIColor moraLifeChoiceBlue];
-        (self.textLabel).font = [UIFont fontForTableViewCellTextLarge];
-        (self.textLabel).numberOfLines = 1;
-        [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
+         self.textLabel.textColor = [UIColor moraLifeChoiceBlue];
+        self.textLabel.font = [UIFont fontForTableViewCellTextLarge];
+        self.textLabel.numberOfLines = 1;
+        self.textLabel.adjustsFontSizeToFitWidth = TRUE;
         [self.textLabel sizeToFit];
 
     }
@@ -29,9 +30,9 @@
 
 - (void)setIsVirtue:(BOOL)isVirtue {
     if (isVirtue) {
-        (self.detailTextLabel).textColor = [UIColor moraLifeChoiceGreen];
+        self.detailTextLabel.textColor = [UIColor moraLifeChoiceGreen];
     } else {
-        (self.detailTextLabel).textColor = [UIColor moraLifeChoiceRed];
+        self.detailTextLabel.textColor = [UIColor moraLifeChoiceRed];
     }
 
     _isVirtue = isVirtue;
@@ -40,7 +41,7 @@
 
 - (void)setMoralImage:(UIImage *)moralImage {
     if (![_moralImage isEqual:moralImage]) {
-        (self.imageView).image = moralImage;
+        self.imageView.image = moralImage;
         _moralImage = moralImage;
     }
 }

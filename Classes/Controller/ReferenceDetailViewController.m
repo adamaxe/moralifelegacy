@@ -94,7 +94,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 	prefs = [NSUserDefaults standardUserDefaults];		
     
-	if ((self.title).length == 0) {
+	if (self.title.length == 0) {
 		self.title = NSLocalizedString(@"ReferenceDetailScreenTitle",nil);
 	}
     
@@ -108,7 +108,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 	}
     referenceNameLabel.font = [UIFont fontForScreenButtons];
 
-    [referenceNameLabel setAdjustsFontSizeToFitWidth:YES];
+    referenceNameLabel.adjustsFontSizeToFitWidth = YES;
     referenceNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
     referenceNameLabel.textColor = [UIColor moraLifeChoiceBlue];
     referenceNameLabel.shadowColor = [UIColor whiteColor];
@@ -128,7 +128,7 @@ Determine which fields and UI elements should be presented depending up on Refer
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    (self.navigationItem).leftBarButtonItem = referenceBarButton;
+    self.navigationItem.leftBarButtonItem = referenceBarButton;
 
     _conscienceHelpViewController.isConscienceOnScreen = FALSE;
 
@@ -182,8 +182,8 @@ Implementation: Show Conscience thoughtbubble containing Quote
     _conscienceHelpViewController.isConscienceOnScreen = FALSE;
     _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 
-    [self presentModalViewController:_conscienceHelpViewController animated:NO];
-	
+    [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
+    
 }
 
 /**
@@ -204,7 +204,7 @@ Implementation: Dismiss view.
  */
 -(IBAction)dismissReferenceModal:(id)sender{
 	
-	[self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 		
 }
 

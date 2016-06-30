@@ -117,13 +117,13 @@ User selection causes selectChoice to be called which sets the currentState vari
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
-    statusMessage1.textAlignment = UITextAlignmentCenter;
+    statusMessage1.textAlignment = NSTextAlignmentCenter;
     statusMessage1.textColor = [UIColor moraLifeChoiceGreen];
     statusMessage1.font = [UIFont fontForConscienceHeader];
 
-    statusMessage1.minimumFontSize = 8.0;
+    statusMessage1.minimumScaleFactor = 8.0/statusMessage1.font.pointSize;
     statusMessage1.numberOfLines = 1;
-    [statusMessage1 setAdjustsFontSizeToFitWidth:TRUE];
+    statusMessage1.adjustsFontSizeToFitWidth = TRUE;
 
     [labelButton1 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
     [labelButton1 setTitleShadowColor:[UIColor moraLifeChoiceGray] forState:UIControlStateNormal];
@@ -210,7 +210,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 		_conscienceHelpViewController.isConscienceOnScreen = TRUE;
         _conscienceHelpViewController.numberOfScreens = 1;
         _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-		[self presentModalViewController:_conscienceHelpViewController animated:NO];
+        [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
         
         [prefs setBool:FALSE forKey:@"firstConscienceModal"];
         
@@ -416,7 +416,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
             _conscienceHelpViewController.isConscienceOnScreen = TRUE;
             _conscienceHelpViewController.numberOfScreens = 3;
             _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-            [self presentModalViewController:_conscienceHelpViewController animated:NO];
+            [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
 			
         } else {
 

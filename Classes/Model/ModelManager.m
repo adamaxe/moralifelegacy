@@ -542,7 +542,7 @@ Save the current NSManagedObjectContext.  Allows for testing of the Core Data st
     NSError *error = nil;
     
     @try {
-        if ((self.managedObjectContext).hasChanges) {
+        if (self.managedObjectContext.hasChanges) {
             [self.managedObjectContext save: &error];
         }
     }
@@ -557,7 +557,7 @@ Save the current NSManagedObjectContext.  Allows for testing of the Core Data st
     }
 
     @try {
-        if ((self.readWriteManagedObjectContext).hasChanges) {
+        if (self.readWriteManagedObjectContext.hasChanges) {
             [self.readWriteManagedObjectContext save: &error];
         }
     }

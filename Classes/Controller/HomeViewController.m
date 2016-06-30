@@ -143,7 +143,7 @@ float const MLThoughtInterval = 5;
     homeNavigationTitle.textColor = [UIColor whiteColor];
     homeNavigationTitle.shadowColor = [UIColor blackColor];
     homeNavigationTitle.shadowOffset = CGSizeMake(0, -1);
-    homeNavigationTitle.textAlignment = UITextAlignmentLeft;
+    homeNavigationTitle.textAlignment = NSTextAlignmentLeft;
     homeNavigationTitle.backgroundColor = [UIColor clearColor];
     homeNavigationTitle.text = self.navigationItem.title;
     self.navigationItem.titleView = homeNavigationTitle;
@@ -299,8 +299,9 @@ float const MLThoughtInterval = 5;
     conscienceViewController.screenshot = [self prepareScreenForScreenshot];
 	
     [conscienceNavigationController pushViewController:conscienceViewController animated:NO];
+    conscienceNavigationController.modalPresentationStyle = UIModalPresentationFullScreen;
 	
-	[self presentModalViewController:conscienceNavigationController animated:NO];
+	[self presentViewController:conscienceNavigationController animated:NO completion:nil];
 	
 }
 
@@ -328,7 +329,8 @@ float const MLThoughtInterval = 5;
     
     IntroViewController *introViewCont = [[IntroViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     
-    [self presentModalViewController:introViewCont animated:NO];
+    introViewCont.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:introViewCont animated:NO completion:nil];
 }
 
 -(void) refreshConscience{

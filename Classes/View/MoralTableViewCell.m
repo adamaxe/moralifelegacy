@@ -27,15 +27,15 @@ CGFloat const MoralTableViewCellRowImageDimension = 40.0;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        (self.textLabel).textColor = [UIColor moraLifeChoiceBlue];
+        self.textLabel.textColor = [UIColor moraLifeChoiceBlue];
 
-        (self.textLabel).font = [UIFont fontForTableViewCellTextLarge];
-        (self.textLabel).numberOfLines = 1;
-        [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
+        self.textLabel.font = [UIFont fontForTableViewCellTextLarge];
+        self.textLabel.numberOfLines = 1;
+        self.textLabel.adjustsFontSizeToFitWidth = TRUE;
         [self.textLabel sizeToFit];
 
-        (self.detailTextLabel).font = [UIFont fontForTableViewCellDetailText];
-        (self.detailTextLabel).numberOfLines = 0;
+        self.detailTextLabel.font = [UIFont fontForTableViewCellDetailText];
+        self.detailTextLabel.numberOfLines = 0;
         [self.detailTextLabel sizeToFit];
 
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -76,7 +76,7 @@ CGFloat const MoralTableViewCellRowImageDimension = 40.0;
 - (void)setMoralName:(NSString *)moralName {
     if (![_moralName isEqualToString:moralName]) {
         _moralName = moralName;
-        (self.textLabel).text = _moralName.capitalizedString;
+        self.textLabel.text = _moralName.capitalizedString;
     }
 
 }
@@ -84,20 +84,20 @@ CGFloat const MoralTableViewCellRowImageDimension = 40.0;
 - (void)setMoralSynonyms:(NSString *)moralSynonyms {
     if(![_moralSynonyms isEqualToString:moralSynonyms]) {
         _moralSynonyms = moralSynonyms;
-        (self.detailTextLabel).text = _moralSynonyms;
+        self.detailTextLabel.text = _moralSynonyms;
     }
 }
 
 - (void)setMoralImage:(UIImage *)moralImage {
     if (![_moralImage isEqual:moralImage]) {
-        (self.imageView).image = moralImage;
+        self.imageView.image = moralImage;
         _moralImage = moralImage;
     }
 }
 
 - (void)setMoralColor:(UIColor *)moralColor {
     if (![_moralColor isEqual:moralColor]) {
-        (self.textLabel).textColor = moralColor;
+        self.textLabel.textColor = moralColor;
         _moralColor = moralColor;
     }
 

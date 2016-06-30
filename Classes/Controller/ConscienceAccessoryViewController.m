@@ -51,13 +51,13 @@ int const MLConscienceCenterY = 165;
     
     accessorySlot = 0;
 
-    statusMessage1.textAlignment = UITextAlignmentCenter;
+    statusMessage1.textAlignment = NSTextAlignmentCenter;
     statusMessage1.textColor = [UIColor moraLifeChoiceGreen];
     statusMessage1.font = [UIFont fontForConscienceHeader];
 
-    statusMessage1.minimumFontSize = 8.0;
+    statusMessage1.minimumScaleFactor = 8.0/statusMessage1.font.pointSize;
     statusMessage1.numberOfLines = 1;
-    [statusMessage1 setAdjustsFontSizeToFitWidth:TRUE];
+    statusMessage1.adjustsFontSizeToFitWidth = TRUE;
 
     primaryAccessoryLabel.textColor = [UIColor moraLifeBrown];
     topAccessoryLabel.textColor = [UIColor moraLifeBrown];

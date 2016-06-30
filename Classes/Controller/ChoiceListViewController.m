@@ -110,7 +110,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    (self.navigationItem).leftBarButtonItem = choiceBarButton;
+    self.navigationItem.leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
 }
@@ -191,7 +191,7 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                     [moralSortButton setTitle:@"Alpha" forState: UIControlStateNormal];
                 }
 
-                (self.choiceHistoryModel).sortKey = choiceSortDescriptor;
+                self.choiceHistoryModel.sortKey = choiceSortDescriptor;
 
             } break;
 
@@ -204,7 +204,7 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                     isAscending = TRUE;
                     [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
                 }
-                (self.choiceHistoryModel).isAscending = isAscending;
+                self.choiceHistoryModel.isAscending = isAscending;
             }
                 break;
         //Cancel requested, return to Choice Init
@@ -217,8 +217,8 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
         }
 
     } else {
-        (self.choiceHistoryModel).sortKey = self.choiceHistoryModel.sortKey;
-        (self.choiceHistoryModel).isAscending = self.choiceHistoryModel.isAscending;
+        self.choiceHistoryModel.sortKey = self.choiceHistoryModel.sortKey;
+        self.choiceHistoryModel.isAscending = self.choiceHistoryModel.isAscending;
     }
     
     //Refresh data view based on new criteria

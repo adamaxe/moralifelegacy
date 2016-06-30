@@ -8,11 +8,11 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        (self.textLabel).shadowColor = [UIColor lightGrayColor];
-        (self.textLabel).shadowOffset = CGSizeMake(1, 1);
+        self.textLabel.shadowColor = [UIColor lightGrayColor];
+        self.textLabel.shadowOffset = CGSizeMake(1, 1);
 
-        (self.textLabel).numberOfLines = 1;
-        [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
+        self.textLabel.numberOfLines = 1;
+        self.textLabel.adjustsFontSizeToFitWidth = TRUE;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
 
@@ -22,14 +22,14 @@
 
 - (void)setMoralImage:(UIImage *)moralImage {
     if (![_moralImage isEqual:moralImage]) {
-        (self.imageView).image = moralImage;
+        self.imageView.image = moralImage;
         _moralImage = moralImage;
     }
 }
 
 - (void)setMoralColor:(UIColor *)moralColor {
     if (![_moralColor isEqual:moralColor]) {
-        (self.textLabel).textColor = moralColor;
+        self.textLabel.textColor = moralColor;
         _moralColor = moralColor;
     }
 

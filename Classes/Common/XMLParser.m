@@ -37,7 +37,7 @@ attributes:(NSDictionary *)attributeDict {
 	if([elementName isEqualToString:@"g"]) {
 		//Layer Group has been found, initialize containers to hold data
 		self.currentConscienceLayer = [[ConscienceLayer alloc] init];
-		(self.currentConscienceLayer).layerID = attributeDict[@"id"];
+		self.currentConscienceLayer.layerID = attributeDict[@"id"];
 
 	} else if([elementName isEqualToString:@"path"]) {
 
@@ -83,30 +83,30 @@ attributes:(NSDictionary *)attributeDict {
 namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 
 	//Determine which layer is found
-	NSRange subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Brow"];
+	NSRange subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Brow"];
 	BOOL browFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Lashes"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Lashes"];
 	BOOL lashesFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Eye"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Eye"];
 	BOOL eyeFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Lid"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Lid"];
 	BOOL lidFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Socket"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Socket"];
 	BOOL socketFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Bags"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Bags"];
 	BOOL bagsFoundBool =  (subStrRange.location != NSNotFound);
 
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Dimples"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Dimples"];
 	BOOL dimplesFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Lips"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Lips"];
 	BOOL lipsFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Teeth"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Teeth"];
 	BOOL teethFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Tongue"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Tongue"];
 	BOOL tongueFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Symbol"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Symbol"];
 	BOOL symbolFoundBool =  (subStrRange.location != NSNotFound);
-	subStrRange = [(self.currentConscienceLayer).layerID rangeOfString:@"Position"];
+	subStrRange = [self.currentConscienceLayer.layerID rangeOfString:@"Position"];
 	BOOL positionFoundBool =  (subStrRange.location != NSNotFound);	
 
 	/** @todo convert dictionary key to kExpression enum */
@@ -114,29 +114,29 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 	if([elementName isEqualToString:@"g"]){
 		//Determine which ConscienceLayer path belongs
 		if (browFoundBool) {
-			(self.currentConscienceBody.browLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.browLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (bagsFoundBool) {
-			(self.currentConscienceBody.bagsLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.bagsLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (eyeFoundBool) {
-			(self.currentConscienceBody.eyeLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.eyeLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (lashesFoundBool) {
-			(self.currentConscienceBody.lashesLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.lashesLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (lidFoundBool) {
-			(self.currentConscienceBody.lidLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.lidLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (socketFoundBool) {
-			(self.currentConscienceBody.socketLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.socketLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (dimplesFoundBool) {
-			(self.currentConscienceBody.dimplesLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.dimplesLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (lipsFoundBool) {
-			(self.currentConscienceBody.lipsLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.lipsLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (teethFoundBool) {
-			(self.currentConscienceBody.teethLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.teethLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (tongueFoundBool) {
-			(self.currentConscienceBody.tongueLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.tongueLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (symbolFoundBool) {
-			(self.currentConscienceBody.symbolLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.symbolLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		} else if (positionFoundBool) {
-			(self.currentConscienceBody.symbolLayers)[(self.currentConscienceLayer).layerID] = self.currentConscienceLayer;
+			(self.currentConscienceBody.symbolLayers)[self.currentConscienceLayer.layerID] = self.currentConscienceLayer;
 		}
 		
 	}
@@ -150,7 +150,7 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
 
-	NSString *errorString = [NSString stringWithFormat:@"Error %li,Description: %@, Line: %i, Column: %i", (long)parseError.code, parser.parserError.localizedDescription, parser.lineNumber,parser.columnNumber];
+	NSString *errorString = [NSString stringWithFormat:@"Error %li,Description: %@, Line: %li, Column: %li", (long)parseError.code, parser.parserError.localizedDescription, (long)parser.lineNumber,(long)parser.columnNumber];
 
 	NSLog(@"parseerror:%@",errorString);
 

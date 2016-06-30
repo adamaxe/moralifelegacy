@@ -93,7 +93,7 @@ NSString* const MLContextReadWrite = @"readWrite";
 
         NSError *error = nil;
         
-        if ((self.context).hasChanges) {
+        if (self.context.hasChanges) {
             [self.context save:&error];
         }
         
@@ -122,7 +122,7 @@ NSString* const MLContextReadWrite = @"readWrite";
             [self.context delete:[self findPersistedObject:self.currentKey]];
         }
         
-        if ((self.context).hasChanges) {
+        if (self.context.hasChanges) {
             [self.context save:&error];
         }
         

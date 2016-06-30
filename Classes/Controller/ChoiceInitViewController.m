@@ -72,7 +72,7 @@ typedef NS_ENUM(unsigned int, MLChoiceTypeChoice) {
     choiceListLabel.font = [UIFont fontForHomeScreenButtons];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    (self.navigationItem).leftBarButtonItem = choiceBarButton;
+    self.navigationItem.leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
 }
@@ -111,7 +111,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
         _conscienceHelpViewController.numberOfScreens = 1;
         _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 
-        [self presentModalViewController:_conscienceHelpViewController animated:NO];
+        [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
         
         [prefs setBool:FALSE forKey:@"firstChoice"];
         

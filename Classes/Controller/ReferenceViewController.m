@@ -61,7 +61,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     accessoriesLabel.font = [UIFont fontForScreenButtons];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    (self.navigationItem).leftBarButtonItem = choiceBarButton;
+    self.navigationItem.leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
 
@@ -108,7 +108,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 
         conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 
-		[self presentModalViewController:conscienceHelpViewController animated:NO];
+        [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
         
         [prefs setBool:FALSE forKey:@"firstReference"];
         
