@@ -150,7 +150,7 @@ namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName {
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
 
-	NSString *errorString = [NSString stringWithFormat:@"Error %i,Description: %@, Line: %i, Column: %i", parseError.code, parser.parserError.localizedDescription, parser.lineNumber,parser.columnNumber];
+	NSString *errorString = [NSString stringWithFormat:@"Error %li,Description: %@, Line: %i, Column: %i", (long)parseError.code, parser.parserError.localizedDescription, parser.lineNumber,parser.columnNumber];
 
 	NSLog(@"parseerror:%@",errorString);
 

@@ -107,7 +107,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
     NSString *timeOfDay = @"Morning";
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:now];
+    NSDateComponents *components = [calendar components:NSCalendarUnitHour fromDate:now];
     NSInteger hour = components.hour;
 
 

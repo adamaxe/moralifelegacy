@@ -129,7 +129,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	//Set boolean to determine which version of screen to present
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
+		long choiceIndex = senderButton.tag;
 		
 		switch (choiceIndex){
 			case 0:isGood = TRUE;break;
