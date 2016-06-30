@@ -12,7 +12,7 @@ float const MLFeatureOffsetY = 0.0;
 
 @implementation ConscienceLayer
 
-- (id)init{
+- (instancetype)init{
     self = [super init];
     if (self) {    
         //In case of first time run, or User does not supply configuration, default gradient
@@ -29,7 +29,7 @@ float const MLFeatureOffsetY = 0.0;
 }
 
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (instancetype)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {         
         

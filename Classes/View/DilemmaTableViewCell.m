@@ -4,15 +4,15 @@
 
 @implementation DilemmaTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
         //Setup cell text visuals
-        [self.detailTextLabel setTextColor:[UIColor moraLifeBrightGreen]];
-        [self.textLabel setFont:[UIFont fontForTableViewCellText]];
-        [self.textLabel setNumberOfLines:1];
+        (self.detailTextLabel).textColor = [UIColor moraLifeBrightGreen];
+        (self.textLabel).font = [UIFont fontForTableViewCellText];
+        (self.textLabel).numberOfLines = 1;
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
         self.textLabel.alpha = 1.0f;
@@ -31,7 +31,7 @@
 
 - (void)setDilemmaImage:(UIImage *)dilemmaImage {
     if (![_dilemmaImage isEqual:dilemmaImage]) {
-        [self.imageView setImage:dilemmaImage];
+        (self.imageView).image = dilemmaImage;
         _dilemmaImage = dilemmaImage;
     }
 }
@@ -51,9 +51,9 @@
         case DilemmaTableViewCellStateFinished: {
             self.accessoryType = UITableViewCellAccessoryCheckmark;
             self.selectionStyle = UITableViewCellSelectionStyleNone;
-            [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
-            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
-            [self.textLabel setFont:[UIFont fontForTableViewCellText]];
+            (self.textLabel).textColor = [UIColor moraLifeChoiceLightGray];
+            (self.detailTextLabel).textColor = [UIColor moraLifeChoiceLightGreen];
+            (self.textLabel).font = [UIFont fontForTableViewCellText];
 
             self.textLabel.alpha = 0.6f;
             self.detailTextLabel.alpha = 0.6f;
@@ -63,10 +63,10 @@
         case DilemmaTableViewCellStateAvailable: {
             self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             self.selectionStyle = UITableViewCellSelectionStyleGray;
-            [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
+            (self.textLabel).font = [UIFont fontForTableViewCellTextLarge];
 
-            [self.textLabel setTextColor:[UIColor moraLifeChoiceRed]];
-            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+            (self.textLabel).textColor = [UIColor moraLifeChoiceRed];
+            (self.detailTextLabel).textColor = [UIColor moraLifeChoiceBlue];
             self.textLabel.alpha = 1.0f;
             self.detailTextLabel.alpha = 1.0f;
             self.imageView.alpha = 1.0f;
@@ -75,10 +75,10 @@
         case DilemmaTableViewCellStateUnavailable: {
             self.accessoryType = UITableViewCellAccessoryNone;
             self.selectionStyle = UITableViewCellSelectionStyleNone;
-            [self.textLabel setFont:[UIFont fontForTableViewCellText]];
+            (self.textLabel).font = [UIFont fontForTableViewCellText];
 
-            [self.textLabel setTextColor:[UIColor moraLifeChoiceLightGreen]];
-            [self.detailTextLabel setTextColor:[UIColor moraLifeChoiceLightGray]];
+            (self.textLabel).textColor = [UIColor moraLifeChoiceLightGreen];
+            (self.detailTextLabel).textColor = [UIColor moraLifeChoiceLightGray];
             self.textLabel.alpha = 1.0f;
             self.detailTextLabel.alpha = 1.0f;
             self.imageView.alpha = 1.0f;

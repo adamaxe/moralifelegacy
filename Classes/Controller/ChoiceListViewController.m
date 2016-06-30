@@ -64,7 +64,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (instancetype)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     self = [super initWithModelManager:modelManager andConscience:userConscience];
 
@@ -110,7 +110,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+    (self.navigationItem).leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
 }
@@ -127,14 +127,14 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	if (searchString != nil) {
 		[prefs removeObjectForKey:@"searchTextChoice"];
 		[self filterResults:searchString];
-		[choiceSearchBar setText:searchString];
+		choiceSearchBar.text = searchString;
 	}
 	
 	//The scrollbars won't flash unless the tableview is long enough.
 	[choicesTableView flashScrollIndicators];
 	
 	//Unselect the selected row if any was previously selected
-	NSIndexPath* selection = [choicesTableView indexPathForSelectedRow];
+	NSIndexPath* selection = choicesTableView.indexPathForSelectedRow;
 	
 	if (selection){
 		[choicesTableView deselectRowAtIndexPath:selection animated:YES];
@@ -191,7 +191,7 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                     [moralSortButton setTitle:@"Alpha" forState: UIControlStateNormal];
                 }
 
-                [self.choiceHistoryModel setSortKey:choiceSortDescriptor];
+                (self.choiceHistoryModel).sortKey = choiceSortDescriptor;
 
             } break;
 
@@ -204,7 +204,7 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                     isAscending = TRUE;
                     [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
                 }
-                [self.choiceHistoryModel setIsAscending:isAscending];
+                (self.choiceHistoryModel).isAscending = isAscending;
             }
                 break;
         //Cancel requested, return to Choice Init
@@ -217,8 +217,8 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
         }
 
     } else {
-        [self.choiceHistoryModel setSortKey:self.choiceHistoryModel.sortKey];
-        [self.choiceHistoryModel setIsAscending:self.choiceHistoryModel.isAscending];
+        (self.choiceHistoryModel).sortKey = self.choiceHistoryModel.sortKey;
+        (self.choiceHistoryModel).isAscending = self.choiceHistoryModel.isAscending;
     }
     
     //Refresh data view based on new criteria
@@ -264,7 +264,7 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [tableData count];
+    return tableData.count;
 }
 
 
@@ -350,9 +350,9 @@ Implementation: Retrieve all User entered Choices, and then populate a working s
 		@autoreleasepool {
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[(self.choiceHistoryModel.details)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeMorals = [[(self.choiceHistoryModel.icons)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [name.lowercaseString rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeDetails = [[(self.choiceHistoryModel.details)[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeMorals = [[(self.choiceHistoryModel.icons)[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
 			
 			//A match was found in row name, details or moral
 			if(searchRange.location != NSNotFound)

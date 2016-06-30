@@ -29,7 +29,7 @@ extern int const HOME_MODEL_REACTION_COUNT;
  @param modelManager ModelManager for either production or testing
  @return id HomeModel
  */
-- (id)initWithModelManager:(ModelManager *) modelManager;
+- (instancetype)initWithModelManager:(ModelManager *) modelManager NS_DESIGNATED_INITIALIZER;
 
 /**
  Return a welcome message to be spoken by UserConscience

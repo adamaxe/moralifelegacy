@@ -18,7 +18,7 @@ Implementation: Call various utilities to construct User's Conscience.  Call XML
  */
 + (void)buildConscience:(ConscienceBody *) requestedConscienceBody{
 		
-    NSString *featurePath = [[NSBundle mainBundle] bundlePath];
+    NSString *featurePath = [NSBundle mainBundle].bundlePath;
     NSFileManager *fileManager = [NSFileManager defaultManager];     
 
     NSMutableString *featureFileName = [NSMutableString stringWithFormat:@"%@.svg", requestedConscienceBody.eyeName];
@@ -62,7 +62,7 @@ Implementation: Parse the XML document and feed the ConscienceBody based upon re
     
     
 	NSString *featureFileName = [NSString stringWithFormat:@"%@.svg", currentFeature];
-	NSString *featurePath = [[NSBundle mainBundle] bundlePath];
+	NSString *featurePath = [NSBundle mainBundle].bundlePath;
 	NSString *dataPath = [featurePath stringByAppendingPathComponent:featureFileName];	
 	NSData *featureData = [[NSData alloc] initWithContentsOfFile:dataPath];
     
@@ -71,10 +71,10 @@ Implementation: Parse the XML document and feed the ConscienceBody based upon re
 	//Initialize the delegate.
 	XMLParser *parser = [[XMLParser alloc] init];
 	//Assign a conscience to be populated
-	[parser setCurrentConscienceBody:manipulatedConscience];
+	parser.currentConscienceBody = manipulatedConscience;
 	
 	//Set delegate
-	[xmlParser setDelegate:parser];
+	xmlParser.delegate = parser;
 	[xmlParser setShouldProcessNamespaces:NO];
 	[xmlParser setShouldReportNamespacePrefixes:NO];
 	[xmlParser setShouldResolveExternalEntities:NO];

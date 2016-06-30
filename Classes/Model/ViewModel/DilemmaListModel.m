@@ -28,7 +28,7 @@
 
 @implementation DilemmaListModel
 
-- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andCurrentCampaign:(MLRequestedMorathologyAdventure) campaign {
+- (instancetype)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andCurrentCampaign:(MLRequestedMorathologyAdventure) campaign {
 
     self = [super init];
     if (self) {
@@ -93,42 +93,42 @@
 	NSPredicate *pred = [NSPredicate predicateWithFormat:@"nameDilemma contains[cd] %@", dilemmaPredicate];
 
 	if (self.dilemmaCampaign > 0) {
-		[currentDilemmaDAO setPredicates:@[pred]];
+		currentDilemmaDAO.predicates = @[pred];
 	}
 
 	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameDilemma" ascending:YES];
 	NSArray* sortDescriptors = @[sortDescriptor];
-	[currentDilemmaDAO setSorts:sortDescriptors];
+	currentDilemmaDAO.sorts = sortDescriptors;
 
 	NSArray *objects = [currentDilemmaDAO readAll];
 
-	if ([objects count] == 0) {
+	if (objects.count == 0) {
 		NSLog(@"No matches");
 	} else {
 
         //Add dilemmas to list, concatenate two morals together for detail text
 		for (Dilemma *match in objects){
 
-			[derivedDilemmas addObject:[match nameDilemma]];
-			[derivedDilemmaImages addObject:[match surrounding]];
-			[derivedDilemmaDisplayNames addObject:[match displayNameDilemma]];
+			[derivedDilemmas addObject:match.nameDilemma];
+			[derivedDilemmaImages addObject:match.surrounding];
+			[derivedDilemmaDisplayNames addObject:match.displayNameDilemma];
 
             NSString *dilemmaDescription;
 
             //If the morals assigned are equal, then, this is not choice between two morals.  Change the description accordingly.
-            if ([[[match moralChoiceA] nameMoral] isEqualToString:[[match moralChoiceB] nameMoral]]) {
-                dilemmaDescription = [[NSString alloc] initWithString:[[match moralChoiceA] displayNameMoral]];
+            if ([match.moralChoiceA.nameMoral isEqualToString:match.moralChoiceB.nameMoral]) {
+                dilemmaDescription = [[NSString alloc] initWithString:match.moralChoiceA.displayNameMoral];
                 isDilemma = FALSE;
             } else {
-                dilemmaDescription = [[NSString alloc] initWithFormat:@"%@ vs. %@", [[match moralChoiceA] displayNameMoral], [[match moralChoiceB] displayNameMoral]];
+                dilemmaDescription = [[NSString alloc] initWithFormat:@"%@ vs. %@", match.moralChoiceA.displayNameMoral, match.moralChoiceB.displayNameMoral];
                 isDilemma = TRUE;
             }
 
-            if ([match moralChoiceA]) {
-                [derivedMoralNames setValue:[[match moralChoiceA] displayNameMoral] forKey:[[match moralChoiceA] nameMoral]];
+            if (match.moralChoiceA) {
+                [derivedMoralNames setValue:match.moralChoiceA.displayNameMoral forKey:match.moralChoiceA.nameMoral];
             }
-            if ([match moralChoiceB]) {
-                [derivedMoralNames setValue:[[match moralChoiceB] displayNameMoral] forKey:[[match moralChoiceB] nameMoral]];
+            if (match.moralChoiceB) {
+                [derivedMoralNames setValue:match.moralChoiceB.displayNameMoral forKey:match.moralChoiceB.nameMoral];
             }
             
             [derivedDilemmaTypes addObject:@(isDilemma)];
@@ -168,7 +168,7 @@
 
     NSArray *objects = [currentUserDilemmaDAO readAll];
 
-	if ([objects count] == 0) {
+	if (objects.count == 0) {
 
         //User has not completed a single choice
         //populate array to prevent npe

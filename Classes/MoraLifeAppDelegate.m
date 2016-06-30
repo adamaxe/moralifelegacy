@@ -31,7 +31,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  Retrieve current sandbox Documents directory
  @return Documents NSURL of sandboxed application writable Doc directory
  */
-- (NSURL *)applicationDocumentsDirectory;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSURL *applicationDocumentsDirectory;
 
 @end
 
@@ -112,7 +112,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #endif
 
 	application.applicationSupportsShakeToEdit = YES;
-    [self.window setRootViewController:homeNavigationController];
+    (self.window).rootViewController = homeNavigationController;
 	[self.window makeKeyAndVisible];
 	
 } 
@@ -125,7 +125,7 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
  */
 - (NSURL *)applicationDocumentsDirectory {
 	
-	return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+	return [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask].lastObject;
 }
 
 #pragma mark -

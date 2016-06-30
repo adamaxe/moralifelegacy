@@ -22,7 +22,7 @@ float const MLBubbleWidthDefault = 5.0;
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 
 		//Set background to transparent, enable multi-touch for User manipulation
@@ -111,11 +111,11 @@ float const MLBubbleWidthDefault = 5.0;
     //Opaque Layer is drawn in the shape of the outer path and pulses
     CAShapeLayer *bubbleAnimationLayer = [CAShapeLayer layer];
     CGRect shapeRect = CGRectMake(5.0f, 5.0f, 178.0f, 178.0f);
-    [bubbleAnimationLayer setBounds:shapeRect];
-    [bubbleAnimationLayer setPosition:CGPointMake(94.0f, 94.0f)];
-    [bubbleAnimationLayer setFillColor:[[UIColor whiteColor] CGColor]];
-    [bubbleAnimationLayer setOpacity:0.6];
-    [bubbleAnimationLayer setPath:outerPath];
+    bubbleAnimationLayer.bounds = shapeRect;
+    bubbleAnimationLayer.position = CGPointMake(94.0f, 94.0f);
+    bubbleAnimationLayer.fillColor = [UIColor whiteColor].CGColor;
+    bubbleAnimationLayer.opacity = 0.6;
+    bubbleAnimationLayer.path = outerPath;
         
 	CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
 	opacityAnimation.duration = _bubbleGlowDuration;

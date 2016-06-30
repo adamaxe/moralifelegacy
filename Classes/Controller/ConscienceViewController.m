@@ -117,12 +117,12 @@ User selection causes selectChoice to be called which sets the currentState vari
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);
 
-    [statusMessage1 setTextAlignment:UITextAlignmentCenter];
-    [statusMessage1 setTextColor: [UIColor moraLifeChoiceGreen]];
+    statusMessage1.textAlignment = UITextAlignmentCenter;
+    statusMessage1.textColor = [UIColor moraLifeChoiceGreen];
     statusMessage1.font = [UIFont fontForConscienceHeader];
 
-    [statusMessage1 setMinimumFontSize:8.0];
-    [statusMessage1 setNumberOfLines:1];
+    statusMessage1.minimumFontSize = 8.0;
+    statusMessage1.numberOfLines = 1;
     [statusMessage1 setAdjustsFontSizeToFitWidth:TRUE];
 
     [labelButton1 setTitleColor:[UIColor moraLifeChoiceBlue] forState:UIControlStateNormal];
@@ -159,6 +159,7 @@ User selection causes selectChoice to be called which sets the currentState vari
 
 -(void)viewDidAppear:(BOOL)animated {
 
+    [super viewDidAppear:animated];
     thoughtModalArea.alpha = 0.0;
 
 	CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
@@ -374,7 +375,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
 	if (isListViewControllerNeeded) {
 
 		ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
-		[conscienceListController setAccessorySlot:requestedAccessorySlot];
+		conscienceListController.accessorySlot = requestedAccessorySlot;
         [UIView animateWithDuration:0.5 animations:^{
             _userConscience.userConscienceView.alpha = 0;
         }completion:^(BOOL finished) {
@@ -408,7 +409,7 @@ Implementation:  Determines which UIViewController was requested by User.  Loads
                 break;
         }
         
-        BOOL campaignRejected = ![[_userConscience conscienceCollection] containsObject:adventureRequirement];
+        BOOL campaignRejected = ![_userConscience.conscienceCollection containsObject:adventureRequirement];
 
 		if(campaignRejected){
             
@@ -452,12 +453,12 @@ Implementation: Revert Conscience to homescreen position, dismiss UIViewControll
 		
 		NSMethodSignature *signature = [UIViewController instanceMethodSignatureForSelector:selector];
 		NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-		[invocation setSelector:selector];
+		invocation.selector = selector;
 		
 		BOOL timerBool = NO;
 		
 		//Set the arguments
-		[invocation setTarget:self];
+		invocation.target = self;
 		[invocation setArgument:&timerBool atIndex:2];
 		[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
 

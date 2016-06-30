@@ -91,7 +91,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 #pragma mark -
 #pragma mark View lifecycle
 
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     self = [super initWithModelManager:modelManager andConscience:userConscience];
     if (self) {
 
@@ -133,10 +133,10 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 	}
     
 	//Place inner shadow around flat UITextView
-	[descriptionInnerShadow setImage:[UIImage imageNamed:@"textview-innershadow.png"]];
+	descriptionInnerShadow.image = [UIImage imageNamed:@"textview-innershadow.png"];
 
-    [severityLabel setShadowColor:[UIColor whiteColor]];
-    [severityLabel setShadowOffset:CGSizeMake(0, 1)];
+    severityLabel.shadowColor = [UIColor whiteColor];
+    severityLabel.shadowOffset = CGSizeMake(0, 1);
 
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateNormal];
 	[severitySlider setThumbImage:[UIImage imageNamed:@"button-circle-down.png"] forState:UIControlStateHighlighted];
@@ -151,8 +151,8 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     [hideKeyboardButton setBackgroundImage:[UIImage imageNamed:@"button-normal-down.png"] forState: UIControlStateNormal];
     [hideKeyboardButton setBackgroundImage:[UIImage imageNamed:@"button-normal-down.png"] forState: UIControlStateHighlighted];	
     [hideKeyboardButton addTarget: self action:@selector(hideKeyboard) forControlEvents: UIControlEventTouchUpInside];
-    [[hideKeyboardButton titleLabel] setShadowColor:[UIColor blackColor]];
-    [[hideKeyboardButton titleLabel] setShadowOffset:CGSizeMake(0, -1)];
+    hideKeyboardButton.titleLabel.shadowColor = [UIColor blackColor];
+    hideKeyboardButton.titleLabel.shadowOffset = CGSizeMake(0, -1);
     
     [self.view addSubview: hideKeyboardButton];
 
@@ -170,7 +170,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+    (self.navigationItem).leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
 
@@ -228,7 +228,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
 		NSMutableString *moralImageName = [[NSMutableString alloc] initWithString:moralImage];
 		[moralImageName appendString:@".png"];
         		
-		[moralImageView setImage:[UIImage imageNamed:moralImageName]];
+		moralImageView.image = [UIImage imageNamed:moralImageName];
 		
         
 	}
@@ -327,7 +327,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
     [UIView animateWithDuration:0.35 animations:^{
         severityLabel.alpha = 0.0;
     }completion:^(BOOL finished){
-        [severityLabel setText:(NSString *)severityLabelDescriptions[severityAsInt-1]];
+        severityLabel.text = (NSString *)severityLabelDescriptions[severityAsInt-1];
         severityLabel.accessibilityLabel = severityLabel.text;
 
         [UIView animateWithDuration:0.25 animations:^{
@@ -571,7 +571,7 @@ Implementation: Resign first responder and return the views to original location
 {
 	[self animateOptionChange:0];
     
-	[hideKeyboardButton setAlpha:0];
+	hideKeyboardButton.alpha = 0;
 	[descriptionTextView resignFirstResponder];
 }
 
@@ -650,8 +650,8 @@ Implementation: Resign first responder and return the views to original location
 
 - (void)limitTextField:(NSNotification *)note {
     
-	if ([[activeField text] length] > activeField.maxLength) {
-        [activeField setText:[[activeField text] substringToIndex:activeField.maxLength]];
+	if (activeField.text.length > activeField.maxLength) {
+        activeField.text = [activeField.text substringToIndex:activeField.maxLength];
     }
 }
 
@@ -700,7 +700,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
 
     //Construct Unique Primary Key from dtstamp to millisecond
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];	
+    dateFormatter.dateFormat = @"yyyyMMddHHmmssSSS";	
 	
     NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
@@ -711,7 +711,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
         isNewChoice = FALSE;
     }else {
-        [choiceKey setString:[NSString stringWithFormat:@"%@%@", currentDTS, [moralKey lowercaseString]]];
+        [choiceKey setString:[NSString stringWithFormat:@"%@%@", currentDTS, moralKey.lowercaseString]];
     }
     
     float severityConversion = severitySlider.value;
@@ -732,7 +732,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
     if (isNewChoice) {
         currentUserChoice = [currentUserChoiceDAO create];
         
-        [currentUserChoice setEntryCreationDate:[NSDate date]];
+        currentUserChoice.entryCreationDate = [NSDate date];
         
         //Setup a transient expression for Conscience in response to entry
         //UserDefault will be picked up by HomeViewController
@@ -762,8 +762,8 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:_modelManager];
         UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
         
-        [currentUserCharacter setCharacterMood:@(newMood)];    
-        [currentUserCharacter setCharacterEnthusiasm:@(newEnthusiasm)];    
+        currentUserCharacter.characterMood = @(newMood);    
+        currentUserCharacter.characterEnthusiasm = @(newEnthusiasm);    
         
         [currentUserCharacterDAO update];
         
@@ -778,7 +778,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
                         
             //Increase the moral's value
-            float moralIncrease = [[currentUserCollectable collectableValue] floatValue];
+            float moralIncrease = currentUserCollectable.collectableValue.floatValue;
             
             if (moralIncrease >= 99.0) {
                 moralIncrease = 99.0;
@@ -786,7 +786,7 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
                moralIncrease += 1.0;
             }
             
-            [currentUserCollectable setCollectableValue:@(moralIncrease)];
+            currentUserCollectable.collectableValue = @(moralIncrease);
             
         } else {
             
@@ -795,10 +795,10 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
             //Create a new moral reward
             UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
             
-            [currentUserCollectable setCollectableCreationDate:[NSDate date]];
-            [currentUserCollectable setCollectableKey:choiceKey];
-            [currentUserCollectable setCollectableName:moralKey];
-            [currentUserCollectable setCollectableValue:@1.0f];
+            currentUserCollectable.collectableCreationDate = [NSDate date];
+            currentUserCollectable.collectableKey = choiceKey;
+            currentUserCollectable.collectableName = moralKey;
+            currentUserCollectable.collectableValue = @1.0f;
                         
             [_userConscience.conscienceCollection addObject:moralKey];
             
@@ -813,17 +813,17 @@ Implementation: Compile all of the relevant data from ChoiceModalViewController 
         
     }
 	
-    [currentUserChoice setEntryShortDescription:choiceTextField.text];
-    [currentUserChoice setEntryLongDescription:choiceLongDescription];
-    [currentUserChoice setEntrySeverity:@(severityConversion)];
-    [currentUserChoice setEntryModificationDate:[NSDate date]];
-    [currentUserChoice setEntryKey:choiceKey];
-    [currentUserChoice setChoiceMoral:moralKey];
-    [currentUserChoice setChoiceJustification:choiceJustification];
-    [currentUserChoice setChoiceInfluence:@(choiceInfluence)];
-    [currentUserChoice setEntryIsGood:@(isVirtue)];
-    [currentUserChoice setChoiceConsequences:choiceConsequences];
-    [currentUserChoice setChoiceWeight:@(choiceCalculatedWeight)];    
+    currentUserChoice.entryShortDescription = choiceTextField.text;
+    currentUserChoice.entryLongDescription = choiceLongDescription;
+    currentUserChoice.entrySeverity = @(severityConversion);
+    currentUserChoice.entryModificationDate = [NSDate date];
+    currentUserChoice.entryKey = choiceKey;
+    currentUserChoice.choiceMoral = moralKey;
+    currentUserChoice.choiceJustification = choiceJustification;
+    currentUserChoice.choiceInfluence = @(choiceInfluence);
+    currentUserChoice.entryIsGood = @(isVirtue);
+    currentUserChoice.choiceConsequences = choiceConsequences;
+    currentUserChoice.choiceWeight = @(choiceCalculatedWeight);    
 	
     [currentUserChoiceDAO update];
 	
@@ -844,7 +844,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
-    int ethicals = [[currentUserCollectable collectableValue] intValue];
+    int ethicals = currentUserCollectable.collectableValue.intValue;
     
     ethicals += 5;
     

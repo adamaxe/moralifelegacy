@@ -20,13 +20,13 @@ extern NSString* const MLCollectableEthicals;
  @param moralModelManager which persistence stack to reference (release file system or test in-memory)
  @return id UserCollectableDAO created for designated Model
  */
-- (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager NS_DESIGNATED_INITIALIZER;
 
 /**
  Read method to create an UserCollectable in the store
  @return UserCollectable Created NSManagedObject to be returned
  */
-- (UserCollectable *)create;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) UserCollectable *create;
 
 /**
  Read method to fetch an UserCollectable from the store

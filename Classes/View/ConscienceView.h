@@ -49,8 +49,8 @@ Values are open and closed
 @param argMind ConscienceMind containing Conscience's current state of mind
 @return id Self
  */
-- (id)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
-           withMind:(ConscienceMind *) argMind;
+- (instancetype)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
+           withMind:(ConscienceMind *) argMind NS_DESIGNATED_INITIALIZER;
 
 /**
 Change dimples expression 
@@ -121,6 +121,6 @@ Make Conscience reappear
 Make Conscience reappear
 @return CAKeyFrameAnimation animation to implement for shaken
  */
--(CAKeyframeAnimation *) shakeAnimation;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) CAKeyframeAnimation *shakeAnimation;
 
 @end

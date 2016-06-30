@@ -21,17 +21,17 @@ Commits choice to UserData, updates ethicals, adds reward to UserConscience::use
 #import "UserChoiceDAO.h"
 #import "UIColor+Utility.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, MLViewToAnimate) {
     MLViewToAnimateVersus,
     MLViewToAnimateReward
-} MLViewToAnimate;
+};
 
-typedef enum {
+typedef NS_ENUM(unsigned int, MLDilemmaType) {
     MLDilemmaTypeMoralChoice,
     MLDilemmaTypeInformation,
     MLDilemmaTypePurchase,
     MLDilemmaTypeMoralEntry
-} MLDilemmaType;
+};
 
 @interface DilemmaViewController () <ViewControllerLocalization> {
     
@@ -125,7 +125,7 @@ typedef enum {
 #pragma mark ViewController Lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience{
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience{
 	if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil modelManager:modelManager andConscience:userConscience])) {
 
         self.isAction = ([nibNameOrNil isEqualToString:@"ConscienceActionView"]);
@@ -156,20 +156,20 @@ typedef enum {
     
     isChoiceA = self.isAction;
 
-    [dilemmaTitle setFont:[UIFont fontForConscienceHeader]];
-    [dilemmaTitle setNumberOfLines:1];
+    dilemmaTitle.font = [UIFont fontForConscienceHeader];
+    dilemmaTitle.numberOfLines = 1;
     [dilemmaTitle setAdjustsFontSizeToFitWidth:TRUE];
-    [dilemmaTitle setTextColor:[UIColor moraLifeChoiceBlue]];
+    dilemmaTitle.textColor = [UIColor moraLifeChoiceBlue];
 
-    [dilemmaTitleText setFont:[UIFont fontForConscienceHeader]];
-    [dilemmaTitleText setNumberOfLines:1];
+    dilemmaTitleText.font = [UIFont fontForConscienceHeader];
+    dilemmaTitleText.numberOfLines = 1;
     [dilemmaTitleText setAdjustsFontSizeToFitWidth:TRUE];
-    [dilemmaTitleText setTextColor:[UIColor moraLifeChoiceBlue]];
+    dilemmaTitleText.textColor = [UIColor moraLifeChoiceBlue];
 
-    [moralSelectedChoiceLabel setFont:[UIFont fontForConscienceHeader]];
-    [moralSelectedChoiceLabel setNumberOfLines:1];
+    moralSelectedChoiceLabel.font = [UIFont fontForConscienceHeader];
+    moralSelectedChoiceLabel.numberOfLines = 1;
     [moralSelectedChoiceLabel setAdjustsFontSizeToFitWidth:TRUE];
-    [moralSelectedChoiceLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+    moralSelectedChoiceLabel.textColor = [UIColor moraLifeChoiceBlue];
 
     ethicalRewardLabel.textColor = [UIColor moraLifeChoiceGreen];
     moralRewardLabel.textColor = [UIColor moraLifeChoiceGreen];
@@ -252,8 +252,8 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
         int choiceIndex = senderButton.tag;
 
         if (self.isAction) {
-            [moralSelectedImage setImage:moral1ChoiceImage.image];
-            [moralSelectedChoiceLabel setText:moral1ChoiceLabel.text];
+            moralSelectedImage.image = moral1ChoiceImage.image;
+            moralSelectedChoiceLabel.text = moral1ChoiceLabel.text;
 
             if ((choiceIndex == 4) && isRequirementOwned) {
 
@@ -274,14 +274,14 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
         } else {
 
             if (choiceIndex == 6) {
-                [moralSelectedImage setImage:moral1ChoiceImage.image];
-                [moralSelectedChoiceLabel setText:moral1ChoiceLabel.text];
+                moralSelectedImage.image = moral1ChoiceImage.image;
+                moralSelectedChoiceLabel.text = moral1ChoiceLabel.text;
 
                 isChoiceA = TRUE;
                 isReadyToCommit = TRUE;
             } else if (choiceIndex == 7) {
-                [moralSelectedImage setImage:moral2ChoiceImage.image];
-                [moralSelectedChoiceLabel setText:moral2ChoiceLabel.text];
+                moralSelectedImage.image = moral2ChoiceImage.image;
+                moralSelectedChoiceLabel.text = moral2ChoiceLabel.text;
 
                 isChoiceA = FALSE;
                 isReadyToCommit = TRUE;
@@ -607,34 +607,34 @@ Construct antagonist Conscience
     
 	if (currentDilemma) {    
 		//Populate relevante dilemma information
-        [dilemmaName setString:[currentDilemma nameDilemma]];
-        [moralAName setString:[[currentDilemma moralChoiceA] nameMoral]];
-        [moralBName setString:[[currentDilemma moralChoiceB] nameMoral]];
-        [moralADescription setString:[[currentDilemma moralChoiceA] shortDescriptionMoral]];
-        [moralBDescription setString:[[currentDilemma moralChoiceB] shortDescriptionMoral]];
-		surroundingsBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [currentDilemma surrounding]]];
+        [dilemmaName setString:currentDilemma.nameDilemma];
+        [moralAName setString:currentDilemma.moralChoiceA.nameMoral];
+        [moralBName setString:currentDilemma.moralChoiceB.nameMoral];
+        [moralADescription setString:currentDilemma.moralChoiceA.shortDescriptionMoral];
+        [moralBDescription setString:currentDilemma.moralChoiceB.shortDescriptionMoral];
+		surroundingsBackground.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", currentDilemma.surrounding]];
 
 		//Setup relevant dilemma text
-        [introText setText:[currentDilemma choiceB]];
-		[dilemmaTitle setText:[currentDilemma displayNameDilemma]];
-		[dilemmaTitleText setText:[dilemmaTitle text]];
-		[dilemmaText setText:[currentDilemma dilemmaText]];
-		[choiceText1 setText:[currentDilemma choiceA]];
-		[choiceText2 setText:[currentDilemma choiceB]];
+        introText.text = currentDilemma.choiceB;
+		dilemmaTitle.text = currentDilemma.displayNameDilemma;
+		dilemmaTitleText.text = dilemmaTitle.text;
+		dilemmaText.text = currentDilemma.dilemmaText;
+		choiceText1.text = currentDilemma.choiceA;
+		choiceText2.text = currentDilemma.choiceB;
         
-		NSString *moral1Text = [[NSString alloc] initWithString:[[currentDilemma moralChoiceA] displayNameMoral]];
-		NSString *moral2Text = [[NSString alloc] initWithString:[[currentDilemma moralChoiceB] displayNameMoral]];
+		NSString *moral1Text = [[NSString alloc] initWithString:currentDilemma.moralChoiceA.displayNameMoral];
+		NSString *moral2Text = [[NSString alloc] initWithString:currentDilemma.moralChoiceB.displayNameMoral];
         
-		UIImage *moral1ImageFull = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[currentDilemma moralChoiceA] imageNameMoral]]];
-		UIImage *moral2ImageFull = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", [[currentDilemma moralChoiceB] imageNameMoral]]];
+		UIImage *moral1ImageFull = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", currentDilemma.moralChoiceA.imageNameMoral]];
+		UIImage *moral2ImageFull = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", currentDilemma.moralChoiceB.imageNameMoral]];
 
 		BOOL keyIsMoral = FALSE;
 		//Determine if criteria for success is going to be
-		if ([[currentDilemma rewardADilemma] isEqualToString:[currentDilemma rewardBDilemma]]) {
-			actionKey = [[NSString alloc] initWithString:[[currentDilemma moralChoiceA] nameMoral]];
+		if ([currentDilemma.rewardADilemma isEqualToString:currentDilemma.rewardBDilemma]) {
+			actionKey = [[NSString alloc] initWithString:currentDilemma.moralChoiceA.nameMoral];
 			keyIsMoral = TRUE;
 		} else {
-			actionKey = [[NSString alloc] initWithString:[currentDilemma rewardADilemma]];
+			actionKey = [[NSString alloc] initWithString:currentDilemma.rewardADilemma];
 		}
 
 		//Determine if User is in possession of item/moral needed to pass Action
@@ -644,7 +644,7 @@ Construct antagonist Conscience
             UserChoiceDAO *currentUserChoicePreReqDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:_modelManager];
 			NSPredicate *userChoicePred = [NSPredicate predicateWithFormat:@"(choiceMoral == %@) AND (NOT entryKey contains[cd] %@)", actionKey, @"dile-"];
 
-			[currentUserChoicePreReqDAO setPredicates:@[userChoicePred]];
+			currentUserChoicePreReqDAO.predicates = @[userChoicePred];
 
 			if ([currentUserChoicePreReqDAO count] == 0) {
 				isRequirementOwned = FALSE;
@@ -668,7 +668,7 @@ Construct antagonist Conscience
 
 		} else {
 
-			if ([[_userConscience conscienceCollection] containsObject:actionKey]) {
+			if ([_userConscience.conscienceCollection containsObject:actionKey]) {
 				isRequirementOwned = TRUE;
 			} else {
 				isRequirementOwned = FALSE;
@@ -677,10 +677,10 @@ Construct antagonist Conscience
         
 		moral1Image.image = moral1ImageFull;
 		moral2Image.image = moral2ImageFull;
-		[dilemmaMoralLabel1 setText:moral1Text];
-      	[dilemmaMoralLabel2 setText:moral2Text];
-		[moral1ChoiceLabel setText:moral1Text];
-      	[moral2ChoiceLabel setText:moral2Text];
+		dilemmaMoralLabel1.text = moral1Text;
+      	dilemmaMoralLabel2.text = moral2Text;
+		moral1ChoiceLabel.text = moral1Text;
+      	moral2ChoiceLabel.text = moral2Text;
         
 		moral1ChoiceImage.image = moral1ImageFull;
 		moral2ChoiceImage.image = moral2ImageFull;
@@ -691,41 +691,41 @@ Construct antagonist Conscience
 		[selectionButton1 setTitle:moral1Text forState:UIControlStateNormal];
 		[selectionButton2 setTitle:moral2Text forState:UIControlStateNormal];        
         
-		[reward1 appendString:[currentDilemma rewardADilemma]];
-		[reward2 appendString:[currentDilemma rewardBDilemma]];
+		[reward1 appendString:currentDilemma.rewardADilemma];
+		[reward2 appendString:currentDilemma.rewardBDilemma];
 
         //Instantiate Conscience facets for use throughout class
         ConscienceBody *antagonistConscienceBody = [[ConscienceBody alloc] init];
         ConscienceAccessories *antagonistConscienceAccessories = [[ConscienceAccessories alloc] init];
         ConscienceMind *antagonistConscienceMind = [[ConscienceMind alloc] init];        
         
-        Character *character = [currentDilemma antagonist];
+        Character *character = currentDilemma.antagonist;
         
 		//Create antagonist Conscience
-		antagonistConscienceBody.eyeColor = [character eyeColor];
-		antagonistConscienceBody.browColor = [character browColor];
-		antagonistConscienceBody.bubbleColor = [character bubbleColor];
-		antagonistConscienceBody.age = [[character ageCharacter] intValue];
-		antagonistConscienceBody.bubbleType = [[character bubbleType] intValue];
-		antagonistConscienceBody.symbolName = [character faceCharacter];
-		antagonistConscienceBody.eyeName = [character eyeCharacter];
-		antagonistConscienceBody.mouthName = [character mouthCharacter];
+		antagonistConscienceBody.eyeColor = character.eyeColor;
+		antagonistConscienceBody.browColor = character.browColor;
+		antagonistConscienceBody.bubbleColor = character.bubbleColor;
+		antagonistConscienceBody.age = character.ageCharacter.intValue;
+		antagonistConscienceBody.bubbleType = character.bubbleType.intValue;
+		antagonistConscienceBody.symbolName = character.faceCharacter;
+		antagonistConscienceBody.eyeName = character.eyeCharacter;
+		antagonistConscienceBody.mouthName = character.mouthCharacter;
 
-        if (![[character accessoryPrimaryCharacter] isEqualToString:@""]) {
-            antagonistConscienceAccessories.primaryAccessory = [character accessoryPrimaryCharacter];
+        if (![character.accessoryPrimaryCharacter isEqualToString:@""]) {
+            antagonistConscienceAccessories.primaryAccessory = character.accessoryPrimaryCharacter;
         }
-        if (![[character accessorySecondaryCharacter] isEqualToString:@""]) {
-            antagonistConscienceAccessories.secondaryAccessory = [character accessorySecondaryCharacter];
+        if (![character.accessorySecondaryCharacter isEqualToString:@""]) {
+            antagonistConscienceAccessories.secondaryAccessory = character.accessorySecondaryCharacter;
         }
-        if (![[character accessoryTopCharacter] isEqualToString:@""]) {
-            antagonistConscienceAccessories.topAccessory = [character accessoryTopCharacter];
+        if (![character.accessoryTopCharacter isEqualToString:@""]) {
+            antagonistConscienceAccessories.topAccessory = character.accessoryTopCharacter;
         }
-        if (![[character accessoryBottomCharacter] isEqualToString:@""]) {            
-            antagonistConscienceAccessories.bottomAccessory = [character accessoryBottomCharacter];
+        if (![character.accessoryBottomCharacter isEqualToString:@""]) {            
+            antagonistConscienceAccessories.bottomAccessory = character.accessoryBottomCharacter;
         }
         
-		[antagonistConscienceMind setMood:[[currentDilemma moodDilemma] floatValue]];
-		[antagonistConscienceMind setEnthusiasm:[[currentDilemma enthusiasmDilemma] floatValue]];
+		antagonistConscienceMind.mood = currentDilemma.moodDilemma.floatValue;
+		antagonistConscienceMind.enthusiasm = currentDilemma.enthusiasmDilemma.floatValue;
         
 		//Call conscience construction
 		[ConscienceBuilder buildConscience:antagonistConscienceBody];
@@ -758,7 +758,7 @@ Calculate changes to User's ethicals.  Limit to 999.
             
     //Construct Unique Primary Key from dtstamp to millisecond
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];	
+    dateFormatter.dateFormat = @"yyyyMMddHHmmssSSS";	
     
     NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
@@ -768,9 +768,9 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     UserDilemma *currentUserDilemma = [currentUserDilemmaDAO create];
         
-    [currentUserDilemma setEntryShortDescription:dilemmaName];
-    [currentUserDilemma setEntryCreationDate:[NSDate date]];
-    [currentUserDilemma setEntryKey:dilemmaKey];
+    currentUserDilemma.entryShortDescription = dilemmaName;
+    currentUserDilemma.entryCreationDate = [NSDate date];
+    currentUserDilemma.entryKey = dilemmaKey;
     
     NSString *moralKey;
     
@@ -780,9 +780,9 @@ Calculate changes to User's ethicals.  Limit to 999.
         moralKey = [[NSString alloc] initWithString:moralBName];       
     }
     
-    [currentUserDilemma setEntryLongDescription:moralKey];
+    currentUserDilemma.entryLongDescription = moralKey;
     
-    [currentUserDilemma setEntryIsGood:@(isChoiceA)];
+    currentUserDilemma.entryIsGood = @(isChoiceA);
     
     UserCollectableDAO *currentUserCollectableDAO = [[UserCollectableDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     //See if moral has been rewarded before
@@ -792,7 +792,7 @@ Calculate changes to User's ethicals.  Limit to 999.
         UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:moralKey];
 
 		//Increase the moral's value
-		float moralIncrease = [[currentUserCollectable collectableValue] floatValue];
+		float moralIncrease = currentUserCollectable.collectableValue.floatValue;
         
 		if (moralIncrease >= 99.0) {
 			moralIncrease = 99.0;
@@ -806,10 +806,10 @@ Calculate changes to User's ethicals.  Limit to 999.
         
 		//Create a new moral reward
 		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];       
-		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
-		[currentUserCollectable setCollectableKey:dilemmaKey];
-		[currentUserCollectable setCollectableName:moralKey];
-		[currentUserCollectable setCollectableValue:@1.0f];
+		currentUserCollectable.collectableCreationDate = [NSDate date];
+		currentUserCollectable.collectableKey = dilemmaKey;
+		currentUserCollectable.collectableName = moralKey;
+		currentUserCollectable.collectableValue = @1.0f;
                 
 		[_userConscience.conscienceCollection addObject:moralKey];
 
@@ -831,46 +831,46 @@ Calculate changes to User's ethicals.  Limit to 999.
 	if ([selectedReward rangeOfString:MLCollectableEthicals].location != NSNotFound) {
 		//Ethicals are rewarded, process
 		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:MLCollectableEthicals]];
-		[moralSelectedRewardLabel setText:@"Have some Ethicals!"];
+		moralSelectedRewardLabel.text = @"Have some Ethicals!";
 
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
         
 		//ReferencePerson rewarded, process, use large moralRewardImage
-		[ethicalRewardLabel setAlpha:0];
+		ethicalRewardLabel.alpha = 0;
         
         ReferencePersonDAO *currentPersonDAO = [[ReferencePersonDAO alloc] initWithKey:selectedReward andModelManager:_modelManager];
         ReferencePerson *currentPerson = [currentPersonDAO read:@""];
         
-        [moralSelectedRewardLabel setText:[NSString stringWithString:currentPerson.displayNameReference]];
+        moralSelectedRewardLabel.text = [NSString stringWithString:currentPerson.displayNameReference];
         
-		[rewardImage setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentPerson.imageNameReference]]];
+		rewardImage.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.jpg", currentPerson.imageNameReference]];
         
 		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
-		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
-		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
-		[currentUserCollectable setCollectableName:selectedReward];
+		currentUserCollectable.collectableCreationDate = [NSDate date];
+		currentUserCollectable.collectableKey = [NSString stringWithFormat:@"%@%@", currentDTS, selectedReward];
+		currentUserCollectable.collectableName = selectedReward;
                 
 		[_userConscience.conscienceCollection addObject:selectedReward];
 
 	} else if ([selectedReward rangeOfString:@"asse-"].location != NSNotFound) {
       
 		//ConscienceAsset rewarded, process, use small moralRewardImage
-		[ethicalRewardLabel setAlpha:0];
+		ethicalRewardLabel.alpha = 0;
         
         ReferenceAssetDAO *currentReferenceDAO = [[ReferenceAssetDAO alloc] initWithKey:selectedReward andModelManager:_modelManager];
         ReferenceAsset *currentReference = [currentReferenceDAO read:@""];
         
-		[moralSelectedRewardLabel setText:[NSString stringWithString:currentReference.displayNameReference]];
+		moralSelectedRewardLabel.text = [NSString stringWithString:currentReference.displayNameReference];
         
-		[rewardImageSmall setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentReference.imageNameReference]]];
+		rewardImageSmall.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@-sm.png", currentReference.imageNameReference]];
         
                 
 		UserCollectable *currentUserCollectable = [currentUserCollectableDAO create];
         
-		[currentUserCollectable setCollectableCreationDate:[NSDate date]];
-		[currentUserCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, selectedReward]];
-		[currentUserCollectable setCollectableName:selectedReward];
+		currentUserCollectable.collectableCreationDate = [NSDate date];
+		currentUserCollectable.collectableKey = [NSString stringWithFormat:@"%@%@", currentDTS, selectedReward];
+		currentUserCollectable.collectableName = selectedReward;
                 
 		[_userConscience.conscienceCollection addObject:selectedReward];
 	}
@@ -880,9 +880,9 @@ Calculate changes to User's ethicals.  Limit to 999.
 	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
 	//Increase the moral's value
-	int ethicalIncrease = [[currentUserCollectable collectableValue] intValue];
+	int ethicalIncrease = currentUserCollectable.collectableValue.intValue;
 
-	[moralRewardLabel setText:@"+1"];
+	moralRewardLabel.text = @"+1";
 
 	//If reward was NOFAIL, add 5 ethicals
 	if([selectedReward isEqualToString:@""]){
@@ -890,13 +890,13 @@ Calculate changes to User's ethicals.  Limit to 999.
 	}
 
     //Append epsilon character and change negative to infinity
-	[ethicalRewardLabel setText:[NSString stringWithFormat:@"+%dε", [selectedReward intValue]]];
+	ethicalRewardLabel.text = [NSString stringWithFormat:@"+%dε", selectedReward.intValue];
     
 	//Set limit to amount of Ethicals User can earn
 	//@todo make constant
-    ethicalIncrease += [selectedReward intValue];
+    ethicalIncrease += selectedReward.intValue;
     
-	[currentUserCollectable setCollectableValue:@(ethicalIncrease)];
+	currentUserCollectable.collectableValue = @(ethicalIncrease);
         
     
     [currentUserDilemmaDAO update];
@@ -908,7 +908,7 @@ Calculate changes to User's ethicals.  Limit to 999.
     UserChoiceDAO *currentUserChoiceDAO = [[UserChoiceDAO alloc] initWithKey:@"" andModelManager:_modelManager];
 	UserChoice *currentUserChoice = [currentUserChoiceDAO create];
     
-	[currentUserChoice setEntryCreationDate:[NSDate date]];
+	currentUserChoice.entryCreationDate = [NSDate date];
     
 	NSMutableString *moralType = [[NSMutableString alloc] initWithString:@""];
     
@@ -926,21 +926,21 @@ Calculate changes to User's ethicals.  Limit to 999.
 	}
 
 	//Commit UserChoice
-	[currentUserChoice setEntryShortDescription:dilemmaName];
-	[currentUserChoice setEntryLongDescription:@""];
-	[currentUserChoice setEntrySeverity:@1.0f];
-	[currentUserChoice setEntryModificationDate:[NSDate date]];
-	[currentUserChoice setEntryKey:dilemmaKey];
-	[currentUserChoice setChoiceMoral:moralKey];
-	[currentUserChoice setChoiceJustification:@""];
-	[currentUserChoice setChoiceInfluence:@1];
-	[currentUserChoice setEntryIsGood:@(isGood)];
-	[currentUserChoice setChoiceConsequences:@""];
+	currentUserChoice.entryShortDescription = dilemmaName;
+	currentUserChoice.entryLongDescription = @"";
+	currentUserChoice.entrySeverity = @1.0f;
+	currentUserChoice.entryModificationDate = [NSDate date];
+	currentUserChoice.entryKey = dilemmaKey;
+	currentUserChoice.choiceMoral = moralKey;
+	currentUserChoice.choiceJustification = @"";
+	currentUserChoice.choiceInfluence = @1;
+	currentUserChoice.entryIsGood = @(isGood);
+	currentUserChoice.choiceConsequences = @"";
     
 	if (isGood) {
-		[currentUserChoice setChoiceWeight:@0.2f];  
+		currentUserChoice.choiceWeight = @0.2f;  
 	} else {
-		[currentUserChoice setChoiceWeight:@-0.2f];  
+		currentUserChoice.choiceWeight = @-0.2f;  
 	}
     
     [currentUserChoiceDAO update];
@@ -968,8 +968,8 @@ Calculate changes to User's ethicals.  Limit to 999.
     
     UserCharacterDAO *currentUserCharacterDAO = [[UserCharacterDAO alloc] initWithKey:@"" andModelManager:_modelManager];
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
-    [currentUserCharacter setCharacterMood:@(newMood)];    
-    [currentUserCharacter setCharacterEnthusiasm:@(newEnthusiasm)];
+    currentUserCharacter.characterMood = @(newMood);    
+    currentUserCharacter.characterEnthusiasm = @(newEnthusiasm);
     
     [currentUserCharacterDAO update];
     

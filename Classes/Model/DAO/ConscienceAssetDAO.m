@@ -2,7 +2,7 @@
 
 @implementation ConscienceAssetDAO 
 
-- (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
     
     self = [super initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadOnly];
     

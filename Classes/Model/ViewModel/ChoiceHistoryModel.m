@@ -34,7 +34,7 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
 
 @implementation ChoiceHistoryModel
 
-- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs{
+- (instancetype)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs{
 
     self = [super init];
     if (self) {
@@ -123,38 +123,38 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
 
 	NSArray *objects = [currentUserChoiceDAO readAll];
 
-	if ([objects count] > 0) {
+	if (objects.count > 0) {
 
 		//Build raw data list to be filtered by second data container set
 		for (UserChoice *matches in objects){
 
-			[derivedChoices addObject:[matches entryShortDescription]];
-		 	[derivedChoiceKeys addObject:[matches entryKey]];
-			[derivedChoicesAreGood addObject:@([[matches entryIsGood] boolValue])];
+			[derivedChoices addObject:matches.entryShortDescription];
+		 	[derivedChoiceKeys addObject:matches.entryKey];
+			[derivedChoicesAreGood addObject:@(matches.entryIsGood.boolValue)];
 
 			//Detailed text is name of Moral, Weight, Date, Long Description
 			NSMutableString *detailText = [[NSMutableString alloc] init];
 
-			[detailText appendFormat:@"%.1f ", [[matches choiceWeight] floatValue]];
-			NSString *value = [matches choiceMoral];
+			[detailText appendFormat:@"%.1f ", matches.choiceWeight.floatValue];
+			NSString *value = matches.choiceMoral;
 
 			Moral *currentMoral = [currentMoralDAO read:value];
 
             //Display image and moral name
-            [derivedIcons addObject:[currentMoral imageNameMoral]];
-            [detailText appendString:[currentMoral displayNameMoral]];
+            [derivedIcons addObject:currentMoral.imageNameMoral];
+            [detailText appendString:currentMoral.displayNameMoral];
 
 			//Display date last modified for sorting
-            NSDate *modificationDate = [matches entryModificationDate];
+            NSDate *modificationDate = matches.entryModificationDate;
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-            [dateFormat setDateFormat:@"MM-dd"];
+            dateFormat.dateFormat = @"MM-dd";
 
             [detailText appendFormat:@" %@", [dateFormat stringFromDate:modificationDate]];
 
 
 			//If longDescription is empty, do not show colon separating
-            if (![[matches entryLongDescription] isEqualToString:@""]) {
-                [detailText appendFormat:@": %@", [matches entryLongDescription]];
+            if (![matches.entryLongDescription isEqualToString:@""]) {
+                [detailText appendFormat:@": %@", matches.entryLongDescription];
             }
 
 			//Populate details array with constructed detail
@@ -182,21 +182,22 @@ NSString* const MLChoiceListSortName = @"entryShortDescription";
 
         //Set state retention for eventual call to ChoiceViewController to pick up
         if(isEditing){
-            [preferences setObject:[userChoiceMatch entryKey] forKey:@"entryKey"];
+            [preferences setObject:userChoiceMatch.entryKey forKey:@"entryKey"];
         }
-        [preferences setFloat:[[userChoiceMatch entrySeverity] floatValue]forKey:@"entrySeverity"];
-        [preferences setObject:[userChoiceMatch entryShortDescription] forKey:@"entryShortDescription"];
-        [preferences setObject:[userChoiceMatch entryLongDescription] forKey:@"entryLongDescription"];
-        [preferences setObject:[userChoiceMatch choiceJustification] forKey:@"choiceJustification"];
-        [preferences setObject:[userChoiceMatch choiceConsequences] forKey:@"choiceConsequence"];
-        [preferences setFloat:[[userChoiceMatch choiceInfluence] floatValue] forKey:@"choiceInfluence"];
-        [preferences setObject:[userChoiceMatch choiceMoral] forKey:@"moralKey"];
-        [preferences setBool:[[userChoiceMatch entryIsGood] boolValue] forKey:@"entryIsGood"];
+        
+        [preferences setFloat:userChoiceMatch.entrySeverity.floatValue forKey:@"entrySeverity"];
+        [preferences setObject:userChoiceMatch.entryShortDescription forKey:@"entryShortDescription"];
+        [preferences setObject:userChoiceMatch.entryLongDescription forKey:@"entryLongDescription"];
+        [preferences setObject:userChoiceMatch.choiceJustification forKey:@"choiceJustification"];
+        [preferences setObject:userChoiceMatch.choiceConsequences forKey:@"choiceConsequence"];
+        [preferences setFloat:userChoiceMatch.choiceInfluence.floatValue forKey:@"choiceInfluence"];
+        [preferences setObject:userChoiceMatch.choiceMoral forKey:@"moralKey"];
+        [preferences setBool:userChoiceMatch.entryIsGood.boolValue forKey:@"entryIsGood"];
 
-        Moral *currentMoral = [currentMoralDAO read:[userChoiceMatch choiceMoral]];
+        Moral *currentMoral = [currentMoralDAO read:userChoiceMatch.choiceMoral];
 
-        [preferences setObject:[currentMoral displayNameMoral] forKey:@"moralName"];
-        [preferences setObject:[currentMoral imageNameMoral] forKey:@"moralImage"];
+        [preferences setObject:currentMoral.displayNameMoral forKey:@"moralName"];
+        [preferences setObject:currentMoral.imageNameMoral forKey:@"moralImage"];
         [preferences synchronize];
     }
 

@@ -12,11 +12,11 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 /**
  Determines which type of list to show
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLChoiceTypeChoice) {
 	MLChoiceTypeChoiceGood,
 	MLChoiceTypeChoiceBad,
 	MLChoiceTypeChoiceList
-} MLChoiceTypeChoice;
+};
 
 @interface ChoiceInitViewController () <ViewControllerLocalization> {
 	
@@ -48,7 +48,7 @@ typedef enum {
 #pragma mark View lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
 	if ((self = [super initWithModelManager:modelManager andConscience:userConscience])) {
 		//Create NSUserDefaults for serialized state retention
@@ -72,7 +72,7 @@ typedef enum {
     choiceListLabel.font = [UIFont fontForHomeScreenButtons];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+    (self.navigationItem).leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
 }
@@ -223,7 +223,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
  */
 - (void) buttonAnimate:(NSNumber *) buttonNumber{
 
-	switch ([buttonNumber intValue]){
+	switch (buttonNumber.intValue){
 
         case 0: [goodChoiceView startAnimating];break;
         case 1: [badChoiceView startAnimating];break;

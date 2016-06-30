@@ -11,13 +11,13 @@
 
 #import "ModelManager.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, MLRequestedMorathologyAdventure) {
     MLRequestedMorathologyAdventure0,
     MLRequestedMorathologyAdventure1,
     MLRequestedMorathologyAdventure2,
     MLRequestedMorathologyAdventure3,
     MLRequestedMorathologyAdventure4
-} MLRequestedMorathologyAdventure;
+};
 
 @interface DilemmaListModel : NSObject
 
@@ -38,7 +38,7 @@ typedef enum {
  @param campaign int of requested campaign
  @return id DilemmaModel
  */
-- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andCurrentCampaign:(MLRequestedMorathologyAdventure) campaign;
+- (instancetype)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andCurrentCampaign:(MLRequestedMorathologyAdventure) campaign NS_DESIGNATED_INITIALIZER;
 
 /**
  Retrieve reference for display

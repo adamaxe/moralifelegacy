@@ -14,7 +14,7 @@ const float GraphViewDefaultPieDegrees = 360;
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     
     if ((self = [super initWithFrame:frame])) {
         
@@ -68,7 +68,7 @@ const float GraphViewDefaultPieDegrees = 360;
 	CGContextSetShadow(context, shadowOffset, 5);
     
 	//Ensure pieValues got propogated
-	if ([_pieValues count] > 0) {
+	if (_pieValues.count > 0) {
         
 		//Drawing each slice of the pie by hand with Core Graphics
 		//The operation will be:
@@ -86,7 +86,7 @@ const float GraphViewDefaultPieDegrees = 360;
 		//Array contains the number of degrees the value takes in the pie
 		//Must add these to each subsequent slice, 
 		//Otherwise, slice will be continually drawn over itself
-		for (int i = 0; i < [_pieValues count]; i++) {
+		for (int i = 0; i < _pieValues.count; i++) {
             
 			//Array is composed of NSNumbers that must be casted back down to floats
 			arcPointNext += [_pieValues[i] floatValue];

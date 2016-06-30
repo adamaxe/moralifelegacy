@@ -78,7 +78,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 #pragma mark -
 #pragma mark ViewController Lifecycle
 
-- (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (instancetype)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     self = [super initWithModelManager:modelManager andConscience:userConscience];
 
@@ -94,7 +94,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 	prefs = [NSUserDefaults standardUserDefaults];		
     
-	if ([self.title length] == 0) {
+	if ((self.title).length == 0) {
 		self.title = NSLocalizedString(@"ReferenceDetailScreenTitle",nil);
 	}
     
@@ -109,17 +109,17 @@ Determine which fields and UI elements should be presented depending up on Refer
     referenceNameLabel.font = [UIFont fontForScreenButtons];
 
     [referenceNameLabel setAdjustsFontSizeToFitWidth:YES];
-    [referenceNameLabel setLineBreakMode:NSLineBreakByWordWrapping];
-    [referenceNameLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-    [referenceNameLabel setShadowColor:[UIColor whiteColor]];
-    [referenceNameLabel setShadowOffset:CGSizeMake(0, 1)];
+    referenceNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    referenceNameLabel.textColor = [UIColor moraLifeChoiceBlue];
+    referenceNameLabel.shadowColor = [UIColor whiteColor];
+    referenceNameLabel.shadowOffset = CGSizeMake(0, 1);
 
-    [referenceDateLabel setShadowColor:[UIColor whiteColor]];
-    [referenceDateLabel setShadowOffset:CGSizeMake(0, 1)];
-    [referenceOriginLabel setShadowColor:[UIColor whiteColor]];
-    [referenceOriginLabel setShadowOffset:CGSizeMake(0, 1)];
-    [referenceShortDescriptionLabel setShadowColor:[UIColor whiteColor]];
-    [referenceShortDescriptionLabel setShadowOffset:CGSizeMake(0, 1)];
+    referenceDateLabel.shadowColor = [UIColor whiteColor];
+    referenceDateLabel.shadowOffset = CGSizeMake(0, 1);
+    referenceOriginLabel.shadowColor = [UIColor whiteColor];
+    referenceOriginLabel.shadowOffset = CGSizeMake(0, 1);
+    referenceShortDescriptionLabel.shadowColor = [UIColor whiteColor];
+    referenceShortDescriptionLabel.shadowOffset = CGSizeMake(0, 1);
 
 	[self retrieveReference];
 	[self populateReferenceScreen];
@@ -128,7 +128,7 @@ Determine which fields and UI elements should be presented depending up on Refer
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    [self.navigationItem setLeftBarButtonItem:referenceBarButton];
+    (self.navigationItem).leftBarButtonItem = referenceBarButton;
 
     _conscienceHelpViewController.isConscienceOnScreen = FALSE;
 
@@ -138,6 +138,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 
 -(void) viewWillDisappear:(BOOL)animated{	
 
+    [super viewWillDisappear:animated];
     if (referenceKey != nil) {
         
         if (![referenceKey isEqualToString:@""]) {
@@ -194,7 +195,7 @@ Implementation: Launch MobileSafari with reference's URL
 	
 	if (![[UIApplication sharedApplication] openURL:url])
 		
-		NSLog(@"%@%@",@"Failed to open url:",[url description]);	
+		NSLog(@"%@%@",@"Failed to open url:",url.description);	
 	
 }
 
@@ -232,7 +233,7 @@ Implementation: Determine whether death is applicable, create span and determine
     
     NSString *combinedDate = [[NSString alloc] initWithFormat:@"%@-%@", referenceDate, referenceDeathDate];
 	
-	[referenceDateLabel setText:combinedDate];
+	referenceDateLabel.text = combinedDate;
 
 }
 
@@ -259,17 +260,17 @@ Implementation: Determine which type of image to show to User in reference card.
 			break;
 	}
 
-	[moralPictureView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"%@.png", referenceMoral]]];
+	moralPictureView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png", referenceMoral]];
 	
-	[referenceNameLabel setText:referenceName];
-	[referenceOriginLabel setText:referenceOrigin];
-	[referenceShortDescriptionLabel setText:referenceShortDescription];
-	[referenceLongDescriptionTextView setText:referenceLongDescription];
+	referenceNameLabel.text = referenceName;
+	referenceOriginLabel.text = referenceOrigin;
+	referenceShortDescriptionLabel.text = referenceShortDescription;
+	referenceLongDescriptionTextView.text = referenceLongDescription;
 	
 	if (referenceType > 0) {
 		[self createDateView];
 	} else {
-		[referenceDateLabel setText:@""];
+		referenceDateLabel.text = @"";
 	}
 	
 	//Adjust onscreen buttons for available data
@@ -312,7 +313,7 @@ Implementation: Find value of reference from UserCollection in case of Morals
 
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
-    [cardNumberLabel setText:[NSString stringWithFormat:@"%d", [[currentUserCollectable collectableValue] intValue]]];
+    cardNumberLabel.text = [NSString stringWithFormat:@"%d", currentUserCollectable.collectableValue.intValue];
 
 }
 

@@ -9,7 +9,7 @@ Implementation:  Facial Features Gradient Data.  Object to be populated with the
 
 @implementation ConscienceGradient
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     

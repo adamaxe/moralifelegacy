@@ -18,13 +18,13 @@
  @param moralModelManager which persistence stack to reference (release file system or test in-memory)
  @return id UserDilemmaDAO created for designated Model
  */
-- (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager NS_DESIGNATED_INITIALIZER;
 
 /**
  Read method to create an UserDilemma in the store
  @return UserDilemma Created NSManagedObject to be returned
  */
-- (UserDilemma *)create;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) UserDilemma *create;
 
 /**
  Read method to fetch an UserDilemma from the store

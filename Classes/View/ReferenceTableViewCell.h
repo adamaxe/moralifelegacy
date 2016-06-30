@@ -12,11 +12,11 @@ Custom TableViewCell for Reference Assets.  Changes styling of text and allows f
 /**
  Cell type to differentiate image border, height
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, ReferenceTableViewCellType) {
     ReferenceTableViewCellTypeAsset,
     ReferenceTableViewCellTypeFigure,
     ReferenceTableViewCellTypeMoral
-} ReferenceTableViewCellType;
+};
 
 @property (nonatomic) UIImage *referenceImage;  /**< image for Reference */
 @property (nonatomic, assign) ReferenceTableViewCellType referenceType; /**< moralife cell type */

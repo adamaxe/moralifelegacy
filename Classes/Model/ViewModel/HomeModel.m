@@ -36,7 +36,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
 @implementation HomeModel
 
-- (id)initWithModelManager:(ModelManager *) modelManager {
+- (instancetype)initWithModelManager:(ModelManager *) modelManager {
 
     self = [super init];
     if (self) {
@@ -108,7 +108,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
     NSCalendar *calendar = [NSCalendar currentCalendar];
     NSDateComponents *components = [calendar components:NSHourCalendarUnit fromDate:now];
-    NSInteger hour = [components hour];
+    NSInteger hour = components.hour;
 
 
     NSMutableArray *conscienceEnthusiasm = [[NSMutableArray alloc] initWithCapacity:EMOTIONAL_STATE_COUNT];
@@ -144,7 +144,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
     int ethicals = 0;
     //Increase the moral's value
-    ethicals = [[currentUserCollectable collectableValue] intValue];
+    ethicals = currentUserCollectable.collectableValue.intValue;
 
     NSString *welcomeTextName =[[NSString alloc] initWithFormat:@"%@Welcome%@%@",NSStringFromClass([self class]), timeOfDay, currentConscienceMood];
     NSString *welcomeText = [[NSString alloc] initWithString:NSLocalizedString(welcomeTextName,nil)];
@@ -173,8 +173,8 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
         }
         case 2:{
 
-            int moodIndex = [@(mood) intValue];
-            int enthusiasmIndex = [@(enthusiasm) intValue];
+            int moodIndex = (@(mood)).intValue;
+            int enthusiasmIndex = (@(enthusiasm)).intValue;
 
             welcomeTemp = [[NSString alloc] initWithFormat:@"%@Thought4",NSStringFromClass([self class])];
             NSString *welcomeTemp2 = [[NSString alloc] initWithFormat:@"%@Thought5",NSStringFromClass([self class])];
@@ -224,9 +224,9 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
     NSMutableString *moralImageName = [NSMutableString stringWithString:@"card-doubt"];
 
 	NSArray *objects = [currentUserChoiceDAO readAll];
-    NSMutableDictionary *reportValues = [[NSMutableDictionary alloc] initWithCapacity:[objects count]];
+    NSMutableDictionary *reportValues = [[NSMutableDictionary alloc] initWithCapacity:objects.count];
 
-	if ([objects count] == 0) {
+	if (objects.count == 0) {
 		NSLog(@"No matches");
 
         if (isVirtue) {
@@ -242,21 +242,21 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 
         for (UserChoice *match in objects){
 
-            NSNumber *choiceWeightTemp = reportValues[[match choiceMoral]];
+            NSNumber *choiceWeightTemp = reportValues[match.choiceMoral];
 
             if (choiceWeightTemp != nil) {
-                currentValue = [choiceWeightTemp floatValue];
+                currentValue = choiceWeightTemp.floatValue;
             } else {
                 currentValue = 0.0;
             }
 
-            currentValue += fabsf([[match choiceWeight] floatValue]);
+            currentValue += fabsf(match.choiceWeight.floatValue);
 
-            [reportValues setValue:@(currentValue) forKey:[match choiceMoral]];
+            [reportValues setValue:@(currentValue) forKey:match.choiceMoral];
         }
 
         NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
-        NSArray* reversedPercentages = [[sortedPercentages reverseObjectEnumerator] allObjects];
+        NSArray* reversedPercentages = [sortedPercentages reverseObjectEnumerator].allObjects;
 
         NSString *value = reversedPercentages[0];
 
@@ -307,7 +307,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
 	self.highestRank = [NSString stringWithString:HOME_MODEL_BEGINNER_RANK];
 
 	//Ensure that at least one rank is present
-	if ([objects count] > 0) {
+	if (objects.count > 0) {
 
         NSString *value = [objects[0] collectableName];
         ConscienceAsset *currentAsset = [currentConscienceAssetDAO read:value];

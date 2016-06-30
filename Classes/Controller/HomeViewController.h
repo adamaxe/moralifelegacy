@@ -23,7 +23,7 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
  @param userConscience UserConscience for modals and help screens
  @return id instance of ReferenceDetailViewController
  */
-- (id)initWithModel:(HomeModel *) homeModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (instancetype)initWithModel:(HomeModel *) homeModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_DESIGNATED_INITIALIZER;
 
 /**
 Accepts User input in order to determine which thought Bubble to display or ConscienceViewController

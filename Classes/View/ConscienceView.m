@@ -50,7 +50,7 @@ float const MLBlinkInterval = 2;
 /**
  Tag Numbers for webViews in order to reference them
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLConscienceViewTags) {
 	MLConscienceViewEyeRightViewTag = 3000,
 	MLConscienceViewEyeLeftViewTag = 3001,
 	MLConscienceViewMouthWebViewTag = 3002,
@@ -73,29 +73,29 @@ typedef enum {
 	MLConscienceViewConscienceProtagonistViewTag = 3021,
 	MLConscienceViewChoiceCancelButtonTag = 3022,
 	MLConscienceViewChoiceMoralButtonTag = 3023
-} MLConscienceViewTags;
+};
 
 /** Eyes
  */
 
-typedef enum {
+typedef NS_ENUM(unsigned int, MLEyePlacement) {
     MLEyePlacementLeft,
     MLEyePlacementRight,
     MLEyePlacementBoth,
     MLEyePlacementRandom
 
-} MLEyePlacement;
+};
 
-typedef enum {
+typedef NS_ENUM(unsigned int, MLEyeState) {
     MLEyeStateClose,
     MLEyeStateOpen
 
-} MLEyeState;
+};
 
 /**
  Possible expression states of Lips
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionLips) {
 	MLExpressionLipsSadShock,
 	MLExpressionLipsSadOpenAlt1,
 	MLExpressionLipsSadOpen,
@@ -111,72 +111,72 @@ typedef enum {
 	MLExpressionLipsHappyOpen,
 	MLExpressionLipsHappyOpenAlt1,
 	MLExpressionLipsHappyShock
-} MLExpressionLips;
+};
 
 /**
  Possible expression states of Dimples
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionDimples) {
 	MLExpressionDimplesSad,
 	MLExpressionDimplesNormal,
 	MLExpressionDimplesHappy
-} MLExpressionDimples;
+};
 
 /**
  Possible expression states of Teeth
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLexpressionTeeth) {
 	MLExpressionTeethSadOpenAlt1,
 	MLExpressionTeethSadOpen,
 	MLExpressionTeethHappyOpen,
 	MLExpressionTeethHappyOpenAlt1
-} MLexpressionTeeth;
+};
 
 /**
  Possible expression states of Tongue
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionTongue) {
 	MLExpressionTongueSadCenter,
 	MLExpressionTongueSadLeft,
 	MLExpressionTongueSadRight,
 	MLExpressionTongueHappyCenter,
 	MLExpressionTongueHappyLeft,
 	MLExpressionTongueHappyRight
-} MLExpressionTongue;
+};
 
 /**
  Possible expression states of Brow
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionBrow) {
 	MLExpressionBrowAngry,
 	MLExpressionBrowNormal,
 	MLExpressionBrowConfused,
 	MLExpressionBrowExcited
-} MLExpressionBrow;
+};
 
 /**
  Possible expression states of Lashes
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionLashes) {
 	MLExpressionLashesUp,
 	MLExpressionLashesDown
-} MLExpressionLashes;
+};
 
 /**
  Possible expression states of Lid
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionLid) {
 	MLExpressionLidAngry,
 	MLExpressionLidSleepy,
 	MLExpressionLidNormal,
 	MLExpressionLidUnder
-} MLExpressionLid;
+};
 
 
 /**
  Possible look direction of Eye
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionLook) {
 	MLExpressionLookCenter,
 	MLExpressionLookDown,
 	MLExpressionLookUp,
@@ -184,17 +184,17 @@ typedef enum {
 	MLExpressionLookRight,
 	MLExpressionLookCross,
 	MLExpressionLookCrazy
-} MLExpressionLook;
+};
 
 /**
  Possible expression states of Bags
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLExpressionBags) {
 	MLExpressionBagsNormal,
 	MLExpressionBagsOld,
 	MLExpressionBagsOlder,
 	MLExpressionBagsOldest
-} MLExpressionBags;
+};
 
 @interface ConscienceView () {
 
@@ -271,14 +271,14 @@ static float vigourOfShake = 0.05f;
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
+- (instancetype)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
 withMind: (ConscienceMind *) argMind{
 
     if ((self = [super initWithFrame:frame])) {
 
-        [self setCurrentConscienceBody:argBody];
-        [self setCurrentConscienceAccessories:argAccessories];
-        [self setCurrentConscienceMind:argMind];
+        self.currentConscienceBody = argBody;
+        self.currentConscienceAccessories = argAccessories;
+        self.currentConscienceMind = argMind;
 
         //Conscience Look direction determined by layeroffset
         //Array of pixel offsets by X/Y coordinates utilized for every eyetype
@@ -483,7 +483,7 @@ Views are called by tags which are set in initWithFrame by constants
 	//Positioning of Eyes/Mouth/Symbol actually housed in symbol SVG file
 	//Position is a single path in SVG where each point represents a facial feature location		
 	ConscienceLayer *positionLayer = (ConscienceLayer *)(_currentConscienceBody.symbolLayers)[@"layerPosition"];
-	ConsciencePath *positionPath = (ConsciencePath *)[positionLayer consciencePaths][0];
+	ConsciencePath *positionPath = (ConsciencePath *)positionLayer.consciencePaths[0];
 	
 	CGPoint p = CGPointMake([(positionPath.pathPoints)[0] floatValue], [(positionPath.pathPoints)[1] floatValue]);
 	conscienceEyeRightView.center = p;
@@ -617,8 +617,8 @@ expressionIndex determined by ViewController
         
 		CGPoint p = [val CGPointValue];
         ConscienceLayer *currentEyeball = (ConscienceLayer *)(conscienceEyeView.totalLayers)[layerID];
-		[currentEyeball setOffsetX:p.x];
-		[currentEyeball setOffsetY:p.y];
+		currentEyeball.offsetX = p.x;
+		currentEyeball.offsetY = p.y;
         
 		[conscienceEyeView setNeedsDisplay];
 
@@ -874,10 +874,10 @@ Implementation: Determine if Conscience is awake.  Set timers to change eye and 
         [self timedEyeChanges];
         [self timedMouthExpressionChanges];        
         
-        if(![mouthTimer isValid]){
+        if(!mouthTimer.valid){
             mouthTimer = [NSTimer scheduledTimerWithTimeInterval:MLExpressionInterval target:self selector:@selector(timedMouthExpressionChanges) userInfo:nil repeats:YES];
         }
-        if(![eyeTimer isValid]){
+        if(!eyeTimer.valid){
             eyeTimer = [NSTimer scheduledTimerWithTimeInterval:MLBlinkInterval target:self selector:@selector(timedEyeChanges) userInfo:nil repeats:YES];
         }
         
@@ -1028,8 +1028,8 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
 	NSMethodSignature *eyeTimerSignature = [[self class] instanceMethodSignatureForSelector:eyeTimerSelector];
 	
 	NSInvocation *eyeTimerInvocation = [NSInvocation invocationWithMethodSignature:eyeTimerSignature];
-	[eyeTimerInvocation setTarget:self];
-	[eyeTimerInvocation setSelector:eyeTimerSelector];
+	eyeTimerInvocation.target = self;
+	eyeTimerInvocation.selector = eyeTimerSelector;
 	
 	int eyeState = MLEyeStateOpen;
     int eyeNumber = MLEyePlacementBoth;
@@ -1147,13 +1147,13 @@ Implementation: Determine which mouth expression to enable along with teeth, dim
     CAKeyframeAnimation *shakeAnimation = [CAKeyframeAnimation animation];
 	
     CGMutablePathRef shakePath = CGPathCreateMutable();
-    CGPathMoveToPoint(shakePath, NULL, CGRectGetMinX([self frame]), CGRectGetMinY([self frame]));
+    CGPathMoveToPoint(shakePath, NULL, CGRectGetMinX(self.frame), CGRectGetMinY(self.frame));
 	int index;
 	for (index = 0; index < numberOfShakes; ++index)
 	{
 		
-		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX([self frame]) - [self frame].size.width * vigourOfShake, CGRectGetMidY([self frame]) - [self frame].size.height * vigourOfShake);
-		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX([self frame]) + [self frame].size.width * vigourOfShake, CGRectGetMidY([self frame]) + [self frame].size.height * vigourOfShake);
+		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX(self.frame) - self.frame.size.width * vigourOfShake, CGRectGetMidY(self.frame) - self.frame.size.height * vigourOfShake);
+		CGPathAddLineToPoint(shakePath, NULL, CGRectGetMidX(self.frame) + self.frame.size.width * vigourOfShake, CGRectGetMidY(self.frame) + self.frame.size.height * vigourOfShake);
 		
 	}
     

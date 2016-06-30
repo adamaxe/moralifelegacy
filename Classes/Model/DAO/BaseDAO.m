@@ -8,7 +8,7 @@
 @property (nonatomic, strong) NSMutableArray *persistedObjects; /**< current NSManagedObjects under control */
 
 - (NSManagedObject *)findPersistedObject:(NSString *)key;       /**< retrieve requested NSManagedObject from temp array */
-- (NSArray *)retrievePersistedObjects;                          /**< retrieve NSManagedObject from persisted store */
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *retrievePersistedObjects;                          /**< retrieve NSManagedObject from persisted store */
 
 @end
 
@@ -23,16 +23,16 @@ NSString* const MLContextReadWrite = @"readWrite";
 /**
  Implementation: Default constructor.  Setup correct context type, instantiate ivars/props.  Dependency injection for the model manager allows for testing of all the DAOs
  */
-- (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType {
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType {
     
     self = [super init];
     
     if (self) {
 
         if ([classType isEqualToString:MLContextReadWrite]) {
-            self.context = [moralModelManager readWriteManagedObjectContext];
+            self.context = moralModelManager.readWriteManagedObjectContext;
         } else {
-            self.context = [moralModelManager managedObjectContext];
+            self.context = moralModelManager.managedObjectContext;
         }
         
         self.classType = [[NSString alloc] initWithString:classType];
@@ -93,7 +93,7 @@ NSString* const MLContextReadWrite = @"readWrite";
 
         NSError *error = nil;
         
-        if ([self.context hasChanges]) {
+        if ((self.context).hasChanges) {
             [self.context save:&error];
         }
         
@@ -122,7 +122,7 @@ NSString* const MLContextReadWrite = @"readWrite";
             [self.context delete:[self findPersistedObject:self.currentKey]];
         }
         
-        if ([self.context hasChanges]) {
+        if ((self.context).hasChanges) {
             [self.context save:&error];
         }
         
@@ -187,7 +187,7 @@ NSString* const MLContextReadWrite = @"readWrite";
 	NSError *outError;
 	NSEntityDescription *entityAssetDesc = [NSEntityDescription entityForName:self.managedObjectClassName inManagedObjectContext:self.context];
 	NSFetchRequest *request = [[NSFetchRequest alloc] init];
-	[request setEntity:entityAssetDesc];
+	request.entity = entityAssetDesc;
 
     //Get the default predicate
     NSMutableArray *currentPredicates = [[NSMutableArray alloc] initWithArray:self.predicates];
@@ -200,16 +200,16 @@ NSString* const MLContextReadWrite = @"readWrite";
     }
     
     NSPredicate *currentPredicate = [NSCompoundPredicate andPredicateWithSubpredicates:currentPredicates];
-    [request setPredicate:currentPredicate];
+    request.predicate = currentPredicate;
 
 
     //Determine if client requests a specific sort order
 	if (self.sorts.count > 0) {
-        [request setSortDescriptors:self.sorts];
+        request.sortDescriptors = self.sorts;
     } else {
         NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:self.sortDefaultName ascending:YES];
         NSArray* sortDescriptors = @[sortDescriptor];
-        [request setSortDescriptors:sortDescriptors];
+        request.sortDescriptors = sortDescriptors;
     }
     
 	NSArray *objects = [self.context executeFetchRequest:request error:&outError];

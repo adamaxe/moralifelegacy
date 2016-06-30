@@ -58,7 +58,7 @@
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience  *)userConscience {
+- (instancetype)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience  *)userConscience {
 
     //This viewController shares a XIB with ChoiceModalViewController
     self = [super initWithNibName:@"ChoiceModalView" bundle:nil modelManager:modelManager andConscience:userConscience];
@@ -126,14 +126,14 @@
 	if (searchString != nil) {
 		[prefs removeObjectForKey:@"searchTextChoice"];
 		[self filterResults:searchString];
-		[modalSearchBar setText:searchString];
+		modalSearchBar.text = searchString;
 	}
 	
 	//The scrollbars won't flash unless the tableview is long enough.
 	[modalTableView flashScrollIndicators];
 	
 	//Unselect the selected row if any was previously selected
-	NSIndexPath* selection = [modalTableView indexPathForSelectedRow];
+	NSIndexPath* selection = modalTableView.indexPathForSelectedRow;
 	
 	if (selection){
 		[modalTableView deselectRowAtIndexPath:selection animated:YES];
@@ -207,12 +207,12 @@
 	
 	NSMethodSignature *signature = [UIViewController instanceMethodSignatureForSelector:selector];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-	[invocation setSelector:selector];
+	invocation.selector = selector;
 	
 	BOOL timerBool = NO;
 	
 	//Set the arguments
-	[invocation setTarget:self];
+	invocation.target = self;
 	[invocation setArgument:&timerBool atIndex:2];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
@@ -258,7 +258,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [tableData count];
+    return tableData.count;
 }
 
 // Customize the appearance of table view cells.
@@ -341,9 +341,9 @@
 		@autoreleasepool {
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[(self.choiceHistoryModel.details)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeMorals = [[(self.choiceHistoryModel.icons)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [name.lowercaseString rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeDetails = [[(self.choiceHistoryModel.details)[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeMorals = [[(self.choiceHistoryModel.icons)[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
 			
 			//A match was found in row name, details or moral
 			if(searchRange.location != NSNotFound)

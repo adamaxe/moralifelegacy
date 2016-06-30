@@ -157,12 +157,12 @@ Implementation: Moves Conscience gracefully off screen before dismissing control
 	
 	NSMethodSignature *signature = [UIViewController instanceMethodSignatureForSelector:selector];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-	[invocation setSelector:selector];
+	invocation.selector = selector;
 	
 	BOOL timerBool = NO;
 	
 	//Set the arguments
-	[invocation setTarget:self];
+	invocation.target = self;
 	[invocation setArgument:&timerBool atIndex:2];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
@@ -220,7 +220,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-	return [tableData count];
+	return tableData.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -240,11 +240,11 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	}
 
 	//Populate cell information
-    if ([tableData count] > 0) {
+    if (tableData.count > 0) {
         cell.moralName = tableData[indexPath.row];
                 
         UIImage *rowImage = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:tableDataImages[indexPath.row] ofType:@"png"]];
-        [[cell imageView] setImage:rowImage];
+        cell.imageView.image = rowImage;
         cell.moralSynonyms = tableDataDetails[indexPath.row];
     }
 	
@@ -303,8 +303,8 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 		@autoreleasepool {
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[moralDetails[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [name.lowercaseString rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeDetails = [[moralDetails[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
         
 			
 			//A match was found
@@ -356,7 +356,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
 	@catch(NSException *e){
 	}
 	[searchBar resignFirstResponder];
-	[searchBar setText:@""];
+	searchBar.text = @"";
 }
 
 

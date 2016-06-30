@@ -15,7 +15,7 @@ int const MLSideAccessoryHeight = 162;
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
 	if ((self = [super initWithFrame:frame])) {
 
 		//Set view to transparent, enable touch
@@ -26,7 +26,7 @@ int const MLSideAccessoryHeight = 162;
 		self.contentMode = UIViewContentModeCenter;
 		
 		//Set filename to known blank png at initialization
-		[self setAccessoryFilename:MLAccessoryFileNameResourceDefault];
+		self.accessoryFilename = MLAccessoryFileNameResourceDefault;
 		
 	}
 	return self;
@@ -35,7 +35,7 @@ int const MLSideAccessoryHeight = 162;
 - (void)drawRect:(CGRect)rect {
     
     if ([_accessoryFilename isEqualToString:@""]) {
-        [self setAccessoryFilename:MLAccessoryFileNameResourceDefault];
+        self.accessoryFilename = MLAccessoryFileNameResourceDefault;
     }
     
     UIImage *image = [[UIImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:_accessoryFilename ofType:@"png"]];

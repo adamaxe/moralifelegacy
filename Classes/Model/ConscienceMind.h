@@ -24,12 +24,12 @@ extern float const MLConscienceMoodDefault;
 Determine prior state of mind for mood
 @return CGFloat Conscience's current Mood
 */
-- (CGFloat) priorMood;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat priorMood;
 
 /**
 Determine prior state of mind for enthusiasm
 @return CGFloat Conscience's current Enthusiasm
 */
-- (CGFloat) priorEnthusiasm;
+@property (NS_NONATOMIC_IOSONLY, readonly) CGFloat priorEnthusiasm;
 
 @end

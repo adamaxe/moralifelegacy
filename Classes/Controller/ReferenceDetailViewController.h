@@ -24,7 +24,7 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
  @param userConscience UserConscience for modals and help screens
  @return id instance of ReferenceDetailViewController
  */
-- (id)initWithModel:(ReferenceModel *)referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (instancetype)initWithModel:(ReferenceModel *)referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_DESIGNATED_INITIALIZER;
 
 /**
 Accepts User input to ask for a Quote from reference.

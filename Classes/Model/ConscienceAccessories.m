@@ -14,7 +14,7 @@ NSString* const MLBottomAccessoryFileNameResourceDefault = @"acc-nothing";
 
 @implementation ConscienceAccessories
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {

@@ -22,23 +22,23 @@ CGFloat const MoralTableViewCellRowImageDimension = 40.0;
     return MIN(textHeight, (detailTextFont.pointSize * MoralTableViewCellMaximumLineNumber) + MoralTableViewCellRowTextPaddingVertical);
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+        (self.textLabel).textColor = [UIColor moraLifeChoiceBlue];
 
-        [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
-        [self.textLabel setNumberOfLines:1];
+        (self.textLabel).font = [UIFont fontForTableViewCellTextLarge];
+        (self.textLabel).numberOfLines = 1;
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
         [self.textLabel sizeToFit];
 
-        [self.detailTextLabel setFont:[UIFont fontForTableViewCellDetailText]];
-        [self.detailTextLabel setNumberOfLines:0];
+        (self.detailTextLabel).font = [UIFont fontForTableViewCellDetailText];
+        (self.detailTextLabel).numberOfLines = 0;
         [self.detailTextLabel sizeToFit];
 
-        [self setSelectionStyle:UITableViewCellSelectionStyleNone];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
 
     }
     return self;
@@ -76,7 +76,7 @@ CGFloat const MoralTableViewCellRowImageDimension = 40.0;
 - (void)setMoralName:(NSString *)moralName {
     if (![_moralName isEqualToString:moralName]) {
         _moralName = moralName;
-        [self.textLabel setText: [_moralName capitalizedString]];
+        (self.textLabel).text = _moralName.capitalizedString;
     }
 
 }
@@ -84,20 +84,20 @@ CGFloat const MoralTableViewCellRowImageDimension = 40.0;
 - (void)setMoralSynonyms:(NSString *)moralSynonyms {
     if(![_moralSynonyms isEqualToString:moralSynonyms]) {
         _moralSynonyms = moralSynonyms;
-        [self.detailTextLabel setText:_moralSynonyms];
+        (self.detailTextLabel).text = _moralSynonyms;
     }
 }
 
 - (void)setMoralImage:(UIImage *)moralImage {
     if (![_moralImage isEqual:moralImage]) {
-        [self.imageView setImage:moralImage];
+        (self.imageView).image = moralImage;
         _moralImage = moralImage;
     }
 }
 
 - (void)setMoralColor:(UIColor *)moralColor {
     if (![_moralColor isEqual:moralColor]) {
-        [self.textLabel setTextColor:moralColor];
+        (self.textLabel).textColor = moralColor;
         _moralColor = moralColor;
     }
 

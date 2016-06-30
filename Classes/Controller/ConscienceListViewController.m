@@ -89,7 +89,7 @@ User can filter list by only things that are affordable to currentFunds.
 	[self retrieveCurrentFunds];
 	[self retrieveAllSelections];
     
-    [listType setText:@"All"];
+    listType.text = @"All";
 
 	//Display available ethicals to User
 	[fundsButton setTitle:[NSString stringWithFormat:@"%dε", currentFunds] forState:UIControlStateNormal];
@@ -126,6 +126,7 @@ User can filter list by only things that are affordable to currentFunds.
 
 -(void)viewDidAppear:(BOOL)animated {
     
+    [super viewDidAppear:animated];
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 }
@@ -179,14 +180,14 @@ Implementation: Cycle between affordable and all Conscience Asset listings.  Cha
 
     //Change UILabel to reflect what is available in the list
     if (searchViewFilter < 1) {
-        [listType setText:@"Owned"];
+        listType.text = @"Owned";
         searchViewFilter++;
     } else if (searchViewFilter < 2) {
-        [listType setText:@"Affordable"];
+        listType.text = @"Affordable";
         searchViewFilter++;
     } else {
         searchViewFilter = 0;
-        [listType setText:@"All"];
+        listType.text = @"All";
 
     }
     
@@ -277,12 +278,12 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
 	NSSortDescriptor* sortDescriptor2 = [[NSSortDescriptor alloc] initWithKey:@"displayNameReference" ascending:YES];
 	NSArray* sortDescriptors = @[sortDescriptor1, sortDescriptor2];
     
-	[currentAssetDAO setPredicates:predicateArray];
-    [currentAssetDAO setSorts:sortDescriptors];
+	currentAssetDAO.predicates = predicateArray;
+    currentAssetDAO.sorts = sortDescriptors;
     
     
     NSArray *assets = [currentAssetDAO readAll];
-    int numberOfAssets = [assets count];
+    int numberOfAssets = assets.count;
     
 	//Create raw result sets
 	choices = [[NSMutableArray alloc] initWithCapacity:numberOfAssets];
@@ -304,7 +305,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
         if ([_userConscience.conscienceCollection containsObject:match.nameReference]){
             [choiceSubtitles addObject:[NSString stringWithFormat:@"Owned! - %@", match.shortDescriptionReference]];
         } else {
-            NSString *assetCost = [NSString stringWithFormat:@"%@ε", ([match.costAsset intValue] < 0) ? @"∞ " : match.costAsset];
+            NSString *assetCost = [NSString stringWithFormat:@"%@ε", ((match.costAsset).intValue < 0) ? @"∞ " : match.costAsset];
             [choiceSubtitles addObject:[NSString stringWithFormat:@"%@ - %@", assetCost, match.shortDescriptionReference]];
         }
         
@@ -334,7 +335,7 @@ Implementation: Retrieve User's current ethicals from UserData
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
     //Set current ethicals for UIViewController
-    currentFunds = [[currentUserCollectable collectableValue] intValue];
+    currentFunds = currentUserCollectable.collectableValue.intValue;
         
 
 }
@@ -351,7 +352,7 @@ Implementation: Retrieve User's current ethicals from UserData
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     
-	return [tableData count];
+	return tableData.count;
 }
 
 
@@ -424,8 +425,8 @@ Implementation: Retrieve User's current ethicals from UserData
 		@autoreleasepool {
         
 		//Convert both searches to lowercase and compare search string to name in various elements of data
-			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[choiceSubtitles[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [name.lowercaseString rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeDetails = [[choiceSubtitles[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
         		
 			//A match was found
 			if(searchRange.location != NSNotFound)
@@ -525,8 +526,8 @@ Implementation: Retrieve User's current ethicals from UserData
 	NSMutableString *selectedRow = [NSMutableString stringWithString:tableDataKeys[indexPath.row]];
 
 	//Alert following ConscienceAcceptViewController to type and key of requested ConscienceAsset
-	[conscienceAcceptController setAssetSelection:selectedRow];
-	[conscienceAcceptController setAccessorySlot:_accessorySlot];
+	conscienceAcceptController.assetSelection = selectedRow;
+	conscienceAcceptController.accessorySlot = _accessorySlot;
 
     [UIView animateWithDuration:0.5 animations:^{
         _userConscience.userConscienceView.alpha = 0;

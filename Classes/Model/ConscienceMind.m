@@ -13,13 +13,13 @@ float const MLConscienceMoodDefault = 55.0;
 
 @implementation ConscienceMind
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {
         //In case of first time run, or User does not supply configuration, default gradient        
-        [self setEnthusiasm:MLConscienceEnthusiasmDefault];
-        [self setMood:MLConscienceMoodDefault];
+        self.enthusiasm = MLConscienceEnthusiasmDefault;
+        self.mood = MLConscienceMoodDefault;
 		_enthusiasmMemories = [[NSMutableDictionary alloc] init];
 		_moodMemories = [[NSMutableDictionary alloc] init];
     }

@@ -18,7 +18,7 @@ NSString* const MLSymbolFileNameResourceDefault = @"con-nothing";
 
 @implementation ConscienceBody
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if (self) {

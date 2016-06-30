@@ -23,7 +23,7 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
  @param userConscience UserConscience for modals and help screens
  @return id instance of ReportPieViewController
  */
-- (id)initWithModel:(ReportPieModel *)reportPieModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (instancetype)initWithModel:(ReportPieModel *)reportPieModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_DESIGNATED_INITIALIZER;
 /**
 Accepts User input to graph display type (sort/order/virtue/vice)  
 @param sender id of object which requested method

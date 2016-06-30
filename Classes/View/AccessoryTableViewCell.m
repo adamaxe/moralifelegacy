@@ -4,24 +4,24 @@
 
 @implementation AccessoryTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
         self.isAffordable = FALSE;
         //Configure cell text
-        [self.textLabel setFont:[UIFont fontForTableViewCellText]];
-        [self.textLabel setNumberOfLines:1];
+        (self.textLabel).font = [UIFont fontForTableViewCellText];
+        (self.textLabel).numberOfLines = 1;
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
-        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
+        (self.textLabel).textColor = [UIColor moraLifeChoiceBlue];
 		self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         //Configure cell subtitle text
-        [self.detailTextLabel setFont:[UIFont fontForTableViewCellDetailText]];
-        [self.detailTextLabel setNumberOfLines:1];
+        (self.detailTextLabel).font = [UIFont fontForTableViewCellDetailText];
+        (self.detailTextLabel).numberOfLines = 1;
         [self.detailTextLabel setAdjustsFontSizeToFitWidth:TRUE];
-        [self.detailTextLabel setMinimumFontSize:8.0];
+        (self.detailTextLabel).minimumFontSize = 8.0;
 
     }
     return self;
@@ -43,7 +43,7 @@
 
 - (void)setAccessoryImage:(UIImage *)accessoryImage {
     if (![_accessoryImage isEqual:accessoryImage]) {
-        [self.imageView setImage:accessoryImage];
+        (self.imageView).image = accessoryImage;
         _accessoryImage = accessoryImage;
     }
 }

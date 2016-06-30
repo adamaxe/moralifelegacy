@@ -54,19 +54,19 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 #pragma mark -
 #pragma mark ViewController lifecycle
 
--(id)initWithConscience:(UserConscience *)userConscience {
+-(instancetype)initWithConscience:(UserConscience *)userConscience {
     self = [super init];
     if (self) {
         self.userConscience = userConscience;
         self.viewControllerClassName = [[NSString alloc] init];
 
 		helpTitle = [[UILabel alloc] initWithFrame:CGRectZero];
-		[helpTitle setTextAlignment:UITextAlignmentCenter];
-		[helpTitle setTextColor: [UIColor moraLifeChoiceGreen]];
+		helpTitle.textAlignment = UITextAlignmentCenter;
+		helpTitle.textColor = [UIColor moraLifeChoiceGreen];
         helpTitle.font = [UIFont fontForConscienceHeader];
 
-		[helpTitle setMinimumFontSize:8.0];
-		[helpTitle setNumberOfLines:1];
+		helpTitle.minimumFontSize = 8.0;
+		helpTitle.numberOfLines = 1;
 		[helpTitle setAdjustsFontSizeToFitWidth:TRUE];
 		[self.view addSubview:helpTitle];
 
@@ -248,7 +248,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
         [self dismissThoughtModal:placeHolder];
     }
     
-    int screenMaximum = [self.helpTitles count];
+    int screenMaximum = (self.helpTitles).count;
 	
 	//Animate button that User should use
 	if (screenVersion >= screenMaximum){
@@ -310,12 +310,12 @@ Implementation:  Return Conscience graphically to place before requesting help. 
 	
 	NSMethodSignature *signature = [UIViewController instanceMethodSignatureForSelector:selector];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-	[invocation setSelector:selector];
+	invocation.selector = selector;
 	
 	BOOL timerBool = NO;
 	
 	//Set the arguments
-	[invocation setTarget:self];
+	invocation.target = self;
 	[invocation setArgument:&timerBool atIndex:2];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];

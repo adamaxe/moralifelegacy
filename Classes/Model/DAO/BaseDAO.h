@@ -28,13 +28,13 @@ Overloaded init to provide dependency injection of ModelManager for both release
  @param classType NSString Class type provided by DAO subclass to determine which NSManagedObject to act upon
  @return id BaseDAO created for designated Model
  */
-- (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType;
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType NS_DESIGNATED_INITIALIZER;
 
 /**
 Create method to insert an NSManagedObject into the store
  @return NSManagedObject Return will be typecast by DAO subclass
  */
-- (NSManagedObject *)createObject;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) NSManagedObject *createObject;
 
 /**
  Read method to fetch an NSManagedObject from the store
@@ -47,13 +47,13 @@ Create method to insert an NSManagedObject into the store
  List method to fetch all NSManagedObjects of subclass' type
  @return NSArray Return will contain subclass DAO type
  */
-- (NSArray *)readAll;
+@property (NS_NONATOMIC_IOSONLY, readonly, copy) NSArray *readAll;
 
 /**
  Modify method to update an NSManagedObject in the store
  @return BOOL Communicate if update was successful
  */
-- (BOOL)update;
+@property (NS_NONATOMIC_IOSONLY, readonly) BOOL update;
 
 /**
  Delete method to remove an NSManagedObject from the store
@@ -66,6 +66,6 @@ Create method to insert an NSManagedObject into the store
  Count method to return number of NSManagedObjects known by DAO
  @return int Number of NSManagedObjects under control
  */
-- (int)count;
+@property (NS_NONATOMIC_IOSONLY, readonly) int count;
 
 @end

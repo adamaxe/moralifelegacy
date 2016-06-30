@@ -24,7 +24,7 @@ Second screen in Choice/Luck Listing Workflow.  User can select a Choice for rev
  @param userConscience UserConscience for modals and help screens
  @return id instance of ChoiceListViewController
  */
-- (id)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (instancetype)initWithModel:(ChoiceHistoryModel *)choiceHistoryModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_DESIGNATED_INITIALIZER;
 
 /**
 Accepts User input to selects the data sort and order types

@@ -40,7 +40,7 @@ extern NSString* const MLChoiceListSortName;
  @param prefs NSUserDefaults for setting correct choice for subsequent screens
  @return id ChoiceHistoryModel
  */
-- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs;
+- (instancetype)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs NS_DESIGNATED_INITIALIZER;
 
 /**
  Retrieve choice for copying into new choice

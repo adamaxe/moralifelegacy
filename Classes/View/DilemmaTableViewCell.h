@@ -12,11 +12,11 @@
 /**
  Cell type to differentiate user state of dilemma
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, DilemmaTableViewCellState) {
     DilemmaTableViewCellStateAvailable,
     DilemmaTableViewCellStateUnavailable,
     DilemmaTableViewCellStateFinished
-} DilemmaTableViewCellState;
+};
 
 @property (nonatomic, assign) DilemmaTableViewCellState currentCellState;   /**< whether cell is available, unfinished, etc. */
 @property (nonatomic) UIImage *dilemmaImage;    /**< image for Dilemma */

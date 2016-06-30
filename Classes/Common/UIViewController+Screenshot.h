@@ -10,6 +10,6 @@
 Return a screenshot for use in backgrounds
  @return UIImage screenshot image for background use
  */
-- (UIImage *) takeScreenshot;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) UIImage *takeScreenshot;
 
 @end

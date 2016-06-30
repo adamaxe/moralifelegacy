@@ -18,13 +18,13 @@
  @param moralModelManager which persistence stack to reference (release file system or test in-memory)
  @return id UserCharacterDAO created for designated Model
  */
-- (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager NS_DESIGNATED_INITIALIZER;
 
 /**
  Read method to create an UserCharacter in the store
  @return UserCharacter Created NSManagedObject to be returned
  */
-- (UserCharacter *)create;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) UserCharacter *create;
 
 /**
  Read method to fetch an UserCharacter from the store

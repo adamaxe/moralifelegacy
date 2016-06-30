@@ -26,7 +26,7 @@
  @param modelManager ModelManager data persistence
  @return id instance of UserConscience
  */
--(id)initWithModelManager:(ModelManager *)modelManager;
+-(instancetype)initWithModelManager:(ModelManager *)modelManager NS_DESIGNATED_INITIALIZER;
 
 /**
  Cancel all of shooken UserConscience behavior

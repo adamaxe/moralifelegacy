@@ -15,14 +15,14 @@
  Possible Reference Types
  typedef utilized to avoid having to use enum declaration
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLReferenceModelTypeEnum) {
 	MLReferenceModelTypeConscienceAsset,
 	MLReferenceModelTypePerson,
 	MLReferenceModelTypeMoral,
 	MLReferenceModelTypeBelief,
 	MLReferenceModelTypeText,
 	MLReferenceModelTypeReferenceAsset
-} MLReferenceModelTypeEnum;
+};
 
 @interface ReferenceModel : NSObject
 
@@ -54,7 +54,7 @@ typedef enum {
  @param userCollection NSArray of currently owned objects for comparison
  @return id ReferenceModel
  */
-- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andUserCollection:(NSArray *) userCollection;
+- (instancetype)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andUserCollection:(NSArray *) userCollection NS_DESIGNATED_INITIALIZER;
 
 /**
  Retrieve reference for display

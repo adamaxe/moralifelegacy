@@ -20,7 +20,7 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
         _modelManager = modelManager;
@@ -35,7 +35,7 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 
 }
 
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     return [self initWithNibName:nil bundle:nil modelManager:modelManager andConscience:userConscience];
 }
 
@@ -95,11 +95,11 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
 	NSSet *allTouches = [event allTouches];
 
-	switch ([allTouches count]) {
+	switch (allTouches.count) {
 		case 1: { //Single touch
 
 			//Get the first touch.
-			UITouch *touch = [allTouches allObjects][0];
+			UITouch *touch = allTouches.allObjects[0];
 
 			CGPoint conscienceCenter = [touch locationInView:self.view];
 			UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];
@@ -142,7 +142,7 @@ Implementation:  UIViewController Superclass that possesses ModelManager and Use
 	[UIView commitAnimations];
 
     NSSet *allTouches = [event allTouches];
-    UITouch *touch = [allTouches allObjects][0];
+    UITouch *touch = allTouches.allObjects[0];
 
     CGPoint conscienceCenter = [touch locationInView:self.view];
 

@@ -43,7 +43,7 @@
 
 @implementation ReportPieModel
 
-- (id)initWithModelManager:(ModelManager *) modelManager {
+- (instancetype)initWithModelManager:(ModelManager *) modelManager {
 
     self = [super init];
     if (self) {
@@ -118,30 +118,30 @@
 
 	NSArray *objects = [currentUserChoiceDAO readAll];
 
-	if ([objects count] > 0) {
+	if (objects.count > 0) {
 
 		float currentValue = 0.0;
 
 		//Iterate through every UserChoice combining each entry
 		for (UserChoice *userChoiceMatch in objects){
 
-			NSNumber *choiceWeightTemp = reportValues[[userChoiceMatch choiceMoral]];
+			NSNumber *choiceWeightTemp = reportValues[userChoiceMatch.choiceMoral];
 
 			//See if a Choice has already been entered for particular Moral
             if (choiceWeightTemp != nil) {
-                currentValue = [choiceWeightTemp floatValue];
+                currentValue = choiceWeightTemp.floatValue;
             } else {
                 currentValue = 0.0;
             }
 
 			//Keep running of absolute value of Morals for percentage calculation
 			//Vices are stored as negative
-            runningTotal += fabsf([[userChoiceMatch choiceWeight] floatValue]);
-            currentValue += fabsf([[userChoiceMatch choiceWeight] floatValue]);
+            runningTotal += fabsf(userChoiceMatch.choiceWeight.floatValue);
+            currentValue += fabsf(userChoiceMatch.choiceWeight.floatValue);
 
-            [reportValues setValue:@(currentValue) forKey:[userChoiceMatch choiceMoral]];
+            [reportValues setValue:@(currentValue) forKey:userChoiceMatch.choiceMoral];
 
-            NSString *moralName = [userChoiceMatch choiceMoral];
+            NSString *moralName = userChoiceMatch.choiceMoral;
             Moral *currentMoral = [currentMoralDAO read:moralName];
 
             [moralDisplayNames setValue:currentMoral.displayNameMoral forKey:moralName];
@@ -180,12 +180,12 @@
 	float moralPercentage = 0.0;
 
 	//Create raw, sorted and reversed versions of the keys for sorting/ordering options
-	NSArray *reportKeys = [reportValues allKeys];
+	NSArray *reportKeys = reportValues.allKeys;
 	NSArray *sortedPercentages = [reportValues keysSortedByValueUsingSelector:@selector(compare:)];
-	NSArray* reversedPercentages = [[sortedPercentages reverseObjectEnumerator] allObjects];
+	NSArray* reversedPercentages = [sortedPercentages reverseObjectEnumerator].allObjects;
 
 	NSArray *sortedKeys = [reportKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-	NSArray *reversedKeys = [[sortedKeys reverseObjectEnumerator] allObjects];
+	NSArray *reversedKeys = [sortedKeys reverseObjectEnumerator].allObjects;
 
 	NSArray *iteratorArray;
 
@@ -206,7 +206,7 @@
 	}
 
     //Account for no User entries
-    if ([iteratorArray count] == 0) {
+    if (iteratorArray.count == 0) {
 
         if (self.isGood) {
             [derivedReportNames addObject:@"No Moral Entries!"];

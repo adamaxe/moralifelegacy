@@ -35,7 +35,7 @@ NSString* const ModelManagerStoreType = @"sqlite";
 /**
 If in-memory store type omitted, then sqlite is assumed
  */
-- (id)init {
+- (instancetype)init {
     
     return [self initWithInMemoryStore:NO];
 }
@@ -43,7 +43,7 @@ If in-memory store type omitted, then sqlite is assumed
 /**
 Allows for testing of the Core Data stack by setting up either the real, sqlite persistent store or an in-memory version
  */
-- (id)initWithInMemoryStore:(BOOL)isTransient {
+- (instancetype)initWithInMemoryStore:(BOOL)isTransient {
     
     self = [super init];
     
@@ -56,8 +56,8 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
             self.storeType = [[NSString alloc] initWithString:NSSQLiteStoreType];
         }
         
-        self.managedObjectContext = [self managedObjectContext];
-        self.readWriteManagedObjectContext = [self readWriteManagedObjectContext];
+        self.managedObjectContext = self.managedObjectContext;
+        self.readWriteManagedObjectContext = self.readWriteManagedObjectContext;
         
     }
     
@@ -74,10 +74,10 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
         return _managedObjectContext;
     }
     
-    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    NSPersistentStoreCoordinator *coordinator = self.persistentStoreCoordinator;
     if (coordinator != nil) {
         _managedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_managedObjectContext setPersistentStoreCoordinator:coordinator];
+        _managedObjectContext.persistentStoreCoordinator = coordinator;
     }
     return _managedObjectContext;
 }
@@ -92,10 +92,10 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
         return _readWriteManagedObjectContext;
     }
     
-    NSPersistentStoreCoordinator *coordinator = [self readWritePersistentStoreCoordinator];
+    NSPersistentStoreCoordinator *coordinator = self.readWritePersistentStoreCoordinator;
     if (coordinator != nil) {
         _readWriteManagedObjectContext = [[NSManagedObjectContext alloc] init];
-        [_readWriteManagedObjectContext setPersistentStoreCoordinator:coordinator];
+        _readWriteManagedObjectContext.persistentStoreCoordinator = coordinator;
     }
     return _readWriteManagedObjectContext;
 }
@@ -260,7 +260,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     //Determine if migration is necessary by checking to see if current Model is comaptible with current store metadata
     NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeCacheURL error:&error];
     
-    BOOL isMigrationRequired = ![[self managedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];;
+    BOOL isMigrationRequired = ![self.managedObjectModel isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];;
     BOOL isMergedModelAcceptible;
     
     if (isMigrationRequired) {
@@ -279,13 +279,13 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
             
             [fileManager removeItemAtPath:preloadCacheData error:&error];
             
-            [self migrateStore:storeLegacyURL toMigratedStore:storeCacheURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
+            [self migrateStore:storeLegacyURL toMigratedStore:storeCacheURL withModel:[self mergedManagedObjectModel] andDestinationModel:self.managedObjectModel error:&error];
         } else {
             
             if (isCacheVersionPresent) {
                 
                 error = nil;
-                [self migrateStore:storeCacheURL toMigratedStore:storeCacheURLTemp withModel:[self mergedManagedObjectModel] andDestinationModel:[self managedObjectModel] error:&error];
+                [self migrateStore:storeCacheURL toMigratedStore:storeCacheURLTemp withModel:[self mergedManagedObjectModel] andDestinationModel:self.managedObjectModel error:&error];
                 
                 [fileManager removeItemAtPath:preloadCacheData error:&error];
                 [fileManager copyItemAtPath:preloadCacheDataTemp toPath:preloadCacheData error:&error];
@@ -296,11 +296,11 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     
     //Otherwise, simply load the store with automatic migration
     error = nil;
-    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
     
 	if (![_persistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeCacheURL options:options error:&error]) {
         
-        NSLog(@"Error with adding ReadOnly store to coordinator %@, %@", error, [error userInfo]);
+        NSLog(@"Error with adding ReadOnly store to coordinator %@, %@", error, error.userInfo);
         abort();
     }
     
@@ -360,7 +360,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     //Older model design utilized a merged model.  This needs to be corrected.
     //Determine if migration is necessary by checking to see if current Model is comaptible with current store metadata
     NSDictionary *sourceMetadata = [NSPersistentStoreCoordinator metadataForPersistentStoreOfType:NSSQLiteStoreType URL:storeURL error:&error];
-    BOOL isMigrationRequired = ![[self readWriteManagedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
+    BOOL isMigrationRequired = ![self.readWriteManagedObjectModel isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
     
     //Determine if legacy, merged model is capable of migrating the store
     BOOL isMergedModelAcceptible = [[self mergedManagedObjectModel] isConfiguration:nil compatibleWithStoreMetadata:sourceMetadata];
@@ -370,7 +370,7 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
         
         //UserData might contain user entry, so it must not be simply overridden.
         //It must be migrated to a temporary location, the legacy must be deleted, and then migrated store moved into place
-        [self migrateStore:storeURL toMigratedStore:storeTempURL withModel:[self mergedManagedObjectModel] andDestinationModel:[self readWriteManagedObjectModel] error:&error];
+        [self migrateStore:storeURL toMigratedStore:storeTempURL withModel:[self mergedManagedObjectModel] andDestinationModel:self.readWriteManagedObjectModel error:&error];
         [fileManager removeItemAtPath:preloadData error:&error];
         [fileManager copyItemAtPath:preloadTempData toPath:preloadData error:&error];
         [fileManager removeItemAtPath:preloadTempData error:&error];
@@ -378,11 +378,11 @@ Allows for testing of the Core Data stack by setting up either the real, sqlite 
     }    
     
     error = nil;
-    _readWritePersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self readWriteManagedObjectModel]];
+    _readWritePersistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.readWriteManagedObjectModel];
   	
 	if (![_readWritePersistentStoreCoordinator addPersistentStoreWithType:self.storeType configuration:nil URL:storeURL options:options error:&error]) {
         
-        NSLog(@"Error with adding ReadWrite store to coordinatorr %@, %@", error, [error userInfo]);
+        NSLog(@"Error with adding ReadWrite store to coordinatorr %@, %@", error, error.userInfo);
         abort();
     } 
     
@@ -405,7 +405,7 @@ Performs a migration from the legacy store with a merged model to the new store
     
     // Get the migration manager class to perform the migration.
     NSValue *classValue = [NSPersistentStoreCoordinator registeredStoreTypes][NSSQLiteStoreType];
-    Class sqliteStoreClass = (Class)[classValue pointerValue];
+    Class sqliteStoreClass = (Class)classValue.pointerValue;
     Class sqliteStoreMigrationManagerClass = [sqliteStoreClass migrationManagerClass];
     
     NSMigrationManager *manager = [[sqliteStoreMigrationManagerClass alloc] initWithSourceModel:sourceModel destinationModel:destinationModel];
@@ -459,7 +459,7 @@ Create a single NSManagedObject of the type Class.
     
     if (error) {
         NSString *errorMessage = @"Test Core Data fetch failed: %@\n\n";
-        [NSException raise:@"CoreDataFetchError" format:errorMessage, [error description]];
+        [NSException raise:@"CoreDataFetchError" format:errorMessage, error.description];
     }
     
     return results;
@@ -474,7 +474,7 @@ Read a single NSManagedObject
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName: NSStringFromClass(requestedClass)];
     
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"%K == %@", classKey, keyValue];
-	[request setPredicate:pred];
+	request.predicate = pred;
     
     NSArray *results;
     
@@ -492,10 +492,10 @@ Read a single NSManagedObject
     
     if (error) {
         NSString *errorMessage = @"Test Core Data fetch failed: %@\n\n";
-        [NSException raise:@"CoreDataFetchError" format:errorMessage, [error description]];
+        [NSException raise:@"CoreDataFetchError" format:errorMessage, error.description];
     }
     
-    if ([results count] > 0) {
+    if (results.count > 0) {
         return results[0];
     } else {
         return nil;
@@ -542,7 +542,7 @@ Save the current NSManagedObjectContext.  Allows for testing of the Core Data st
     NSError *error = nil;
     
     @try {
-        if ([self.managedObjectContext hasChanges]) {
+        if ((self.managedObjectContext).hasChanges) {
             [self.managedObjectContext save: &error];
         }
     }
@@ -553,11 +553,11 @@ Save the current NSManagedObjectContext.  Allows for testing of the Core Data st
     
     if (error) {
         NSString *errorMessage = @"Core Data Read Only save failed: %@\n\n";
-        [NSException raise:@"CoreDataSaveError" format:errorMessage, [error description]];
+        [NSException raise:@"CoreDataSaveError" format:errorMessage, error.description];
     }
 
     @try {
-        if ([self.readWriteManagedObjectContext hasChanges]) {
+        if ((self.readWriteManagedObjectContext).hasChanges) {
             [self.readWriteManagedObjectContext save: &error];
         }
     }
@@ -568,7 +568,7 @@ Save the current NSManagedObjectContext.  Allows for testing of the Core Data st
     
     if (error) {
         NSString *errorMessage = @"Core Data Read Write save failed: %@\n\n";
-        [NSException raise:@"CoreDataSaveError" format:errorMessage, [error description]];
+        [NSException raise:@"CoreDataSaveError" format:errorMessage, error.description];
     }
 } 
 

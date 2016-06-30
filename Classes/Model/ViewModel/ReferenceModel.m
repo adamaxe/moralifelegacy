@@ -40,7 +40,7 @@
 
 @implementation ReferenceModel
 
-- (id)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andUserCollection:(NSArray *) userCollection{
+- (instancetype)initWithModelManager:(ModelManager *) modelManager andDefaults:(NSUserDefaults *) prefs andUserCollection:(NSArray *) userCollection{
 
     self = [super init];
     if (self) {
@@ -165,7 +165,7 @@
 	/** @bug leaks complaint */
 	NSArray *objects = [currentDAO readAll];
 
-	if ([objects count] > 0) {
+	if (objects.count > 0) {
 
         if (self.referenceType != MLReferenceModelTypeMoral) {
             for (id match in objects){
@@ -185,13 +185,13 @@
                         [derivedRelatedMorals addObject:@""];
                     } else {
                         relatedMoral = [match relatedMoral];
-                        [derivedRelatedMorals addObject:[relatedMoral imageNameMoral]];
+                        [derivedRelatedMorals addObject:relatedMoral.imageNameMoral];
                     }
 
                     if ([match originLocation] == nil) {
 
                         if ((self.referenceType != MLReferenceModelTypePerson) && relatedMoral) {
-                            [derivedOriginLocations addObject:[[NSString alloc] initWithFormat:@"+%d %@", [[match moralValueAsset] intValue], relatedMoral.displayNameMoral]];
+                            [derivedOriginLocations addObject:[[NSString alloc] initWithFormat:@"+%d %@", [match moralValueAsset].intValue, relatedMoral.displayNameMoral]];
                         } else {
                             [derivedOriginLocations addObject:@""];
                         }
@@ -201,7 +201,7 @@
                     }
 
                     if ([match respondsToSelector:@selector(deathYearPerson)]) {
-                        [derivedEndYears addObject:[[match deathYearPerson] stringValue]];
+                        [derivedEndYears addObject:[match deathYearPerson].stringValue];
                     } else {
                         [derivedEndYears addObject:@0];
                     }
@@ -225,14 +225,14 @@
 
             for (Moral *moralMatch in objects){
 
-                if([currentUserCollection containsObject:[moralMatch nameMoral]]){
+                if([currentUserCollection containsObject:moralMatch.nameMoral]){
 
-                    [derivedReferences addObject:[moralMatch displayNameMoral]];
-                    [derivedIcons addObject:[moralMatch imageNameMoral]];
-                    [derivedDetails addObject:[moralMatch shortDescriptionMoral]];
-                    [derivedReferenceKeys addObject:[moralMatch nameMoral]];
-                    [derivedLongDescriptions addObject:[[NSString alloc] initWithFormat:@"%@\n\nDefinition: %@", [moralMatch longDescriptionMoral], [moralMatch definitionMoral]]];
-                    [derivedLinks addObject:[moralMatch linkMoral]];
+                    [derivedReferences addObject:moralMatch.displayNameMoral];
+                    [derivedIcons addObject:moralMatch.imageNameMoral];
+                    [derivedDetails addObject:moralMatch.shortDescriptionMoral];
+                    [derivedReferenceKeys addObject:moralMatch.nameMoral];
+                    [derivedLongDescriptions addObject:[[NSString alloc] initWithFormat:@"%@\n\nDefinition: %@", moralMatch.longDescriptionMoral, moralMatch.definitionMoral]];
+                    [derivedLinks addObject:moralMatch.linkMoral];
                     [derivedOriginYears addObject:@0];
                     [derivedOriginLocations addObject:@""];
                     [derivedEndYears addObject:@"0"];

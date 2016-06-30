@@ -18,7 +18,7 @@
  @param moralModelManager which persistence stack to reference (release file system or test in-memory)
  @return id ReferenceAssetDAO created for designated Model
  */
-- (id)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager NS_DESIGNATED_INITIALIZER;
 
 /**
  Read method to fetch an ReferenceAsset from the store

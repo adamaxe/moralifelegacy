@@ -58,7 +58,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(DilemmaListModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (instancetype)initWithModel:(DilemmaListModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {
@@ -113,7 +113,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 		
 		[prefs removeObjectForKey:@"searchTextDilemma"];
 		[self filterResults:searchString];
-		[dilemmaSearchBar setText:searchString];
+		dilemmaSearchBar.text = searchString;
 		
 	}
 
@@ -128,7 +128,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 	[dilemmaListTableView flashScrollIndicators];
     
 	// Unselect the selected row if any
-	NSIndexPath* selection = [dilemmaListTableView indexPathForSelectedRow];
+	NSIndexPath* selection = dilemmaListTableView.indexPathForSelectedRow;
 	
 	if (selection)
 		[dilemmaListTableView deselectRowAtIndexPath:selection animated:YES];
@@ -140,10 +140,11 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 
 -(void)viewDidAppear:(BOOL)animated{
     
+    [super viewDidAppear:animated];
     //Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
-    int nextRow = [userChoices count] - 1;
+    int nextRow = userChoices.count - 1;
         
     if (nextRow > 0) {
 
@@ -180,6 +181,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
 
 -(void) viewWillDisappear:(BOOL)animated{
     
+    [super viewWillDisappear:animated];
 	//If user has filtered list, we must retain this upon return to this view
 	if (dilemmaSearchBar.text != nil && ![dilemmaSearchBar.text isEqualToString:@""]) {
 		[prefs setObject:dilemmaSearchBar.text forKey:@"searchTextDilemma"];
@@ -228,7 +230,7 @@ Implementation: Signals User desire to return to ConscienceViewController
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	//NSLog(@”contacts error in num of row”);
-	return [tableData count];
+	return tableData.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -238,7 +240,7 @@ Implementation: Signals User desire to return to ConscienceViewController
       	cell = [[DilemmaTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([DilemmaTableViewCell class])];
 	}
 
-	[cell.textLabel setText:tableData[indexPath.row]];
+	(cell.textLabel).text = tableData[indexPath.row];
 	
 	//cell image is surrounding utilized in dilemma
     NSMutableString *rowImageName = [[NSMutableString alloc]  initWithString:tableDataImages[indexPath.row]];
@@ -248,7 +250,7 @@ Implementation: Signals User desire to return to ConscienceViewController
     cell.dilemmaImage = rowImage;
 
 	//Generate array of all keys in User Dictionary
-	NSArray *allUserChoices = [userChoices allKeys];
+	NSArray *allUserChoices = userChoices.allKeys;
     
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
@@ -275,7 +277,7 @@ Implementation: Signals User desire to return to ConscienceViewController
         cell.currentCellState = DilemmaTableViewCellStateFinished;
 
 		NSString *moralName = [moralNames valueForKey:[userChoices valueForKey:tableDataKeys[indexPath.row]]];
-		[cell.detailTextLabel setText:moralName];
+		(cell.detailTextLabel).text = moralName;
 	} else {
         
 		if (isSelectable) {
@@ -283,7 +285,7 @@ Implementation: Signals User desire to return to ConscienceViewController
 		} else {
             cell.currentCellState = DilemmaTableViewCellStateUnavailable;
 		}
-        [cell.detailTextLabel setText:tableDataDetails[indexPath.row]];
+        (cell.detailTextLabel).text = tableDataDetails[indexPath.row];
 
 	}
     
@@ -293,7 +295,7 @@ Implementation: Signals User desire to return to ConscienceViewController
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
     //If User has already completed Dilemma, prevent User from selecting it
-    NSArray *allUserChoices = [userChoices allKeys];
+    NSArray *allUserChoices = userChoices.allKeys;
     
     int previousRow = indexPath.row;
         
@@ -449,8 +451,8 @@ Implementation: Tableview must be refreshed on appear, as returning from detail 
 		@autoreleasepool {
         
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[self.dilemmaModel.dilemmaDetails[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [name.lowercaseString rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeDetails = [[self.dilemmaModel.dilemmaDetails[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
         
 			
 			//A match was found

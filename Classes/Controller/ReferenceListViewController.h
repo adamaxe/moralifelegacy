@@ -24,7 +24,7 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
  @param userConscience UserConscience for modals and help screens
  @return id instance of ReferenceListViewController
  */
-- (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (instancetype)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_DESIGNATED_INITIALIZER;
 
 
 @end

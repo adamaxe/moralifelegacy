@@ -39,7 +39,7 @@ float const MLTransientInterval = 7;
 
 @implementation UserConscience
 
--(id)initWithModelManager:(ModelManager *)modelManager {
+-(instancetype)initWithModelManager:(ModelManager *)modelManager {
 
     self = [super init];
 
@@ -78,10 +78,10 @@ float const MLTransientInterval = 7;
 
         NSMethodSignature *signature = [UserConscience instanceMethodSignatureForSelector:selector];
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-        [invocation setSelector:selector];
+        invocation.selector = selector;
 
         //Set the arguments
-        [invocation setTarget:self];
+        invocation.target = self;
         [invocation setArgument:&restoreMood atIndex:2];
         [invocation setArgument:&restoreEnthusiasm atIndex:3];
 
@@ -107,7 +107,7 @@ float const MLTransientInterval = 7;
     //Populate dictionary with dilemmaName (key) and moral that was chosen
     for (UserCollectable *match in objects) {
 
-        [self.conscienceCollection addObject:[match collectableName]];
+        [self.conscienceCollection addObject:match.collectableName];
     }
 
 }
@@ -153,25 +153,25 @@ float const MLTransientInterval = 7;
     UserCharacter *currentUserCharacter = [currentUserCharacterDAO read:@""];
 
     //Populate User Conscience
-    _userConscienceBody.eyeName = [currentUserCharacter characterEye];
-    _userConscienceBody.mouthName = [currentUserCharacter characterMouth];
-    _userConscienceBody.symbolName = [currentUserCharacter characterFace];
+    _userConscienceBody.eyeName = currentUserCharacter.characterEye;
+    _userConscienceBody.mouthName = currentUserCharacter.characterMouth;
+    _userConscienceBody.symbolName = currentUserCharacter.characterFace;
 
-    _userConscienceBody.eyeColor = [currentUserCharacter characterEyeColor];
-    _userConscienceBody.browColor = [currentUserCharacter characterBrowColor];
-    _userConscienceBody.bubbleColor = [currentUserCharacter characterBubbleColor];
-    _userConscienceBody.bubbleType = [[currentUserCharacter characterBubbleType] intValue];
+    _userConscienceBody.eyeColor = currentUserCharacter.characterEyeColor;
+    _userConscienceBody.browColor = currentUserCharacter.characterBrowColor;
+    _userConscienceBody.bubbleColor = currentUserCharacter.characterBubbleColor;
+    _userConscienceBody.bubbleType = currentUserCharacter.characterBubbleType.intValue;
 
-    _userConscienceBody.age = [[currentUserCharacter characterAge] intValue];
-    _userConscienceBody.size = [[currentUserCharacter characterSize] floatValue];
+    _userConscienceBody.age = currentUserCharacter.characterAge.intValue;
+    _userConscienceBody.size = currentUserCharacter.characterSize.floatValue;
 
-    _userConscienceAccessories.primaryAccessory = [currentUserCharacter characterAccessoryPrimary];
-    _userConscienceAccessories.secondaryAccessory = [currentUserCharacter characterAccessorySecondary];
-    _userConscienceAccessories.topAccessory = [currentUserCharacter characterAccessoryTop];
-    _userConscienceAccessories.bottomAccessory = [currentUserCharacter characterAccessoryBottom];
+    _userConscienceAccessories.primaryAccessory = currentUserCharacter.characterAccessoryPrimary;
+    _userConscienceAccessories.secondaryAccessory = currentUserCharacter.characterAccessorySecondary;
+    _userConscienceAccessories.topAccessory = currentUserCharacter.characterAccessoryTop;
+    _userConscienceAccessories.bottomAccessory = currentUserCharacter.characterAccessoryBottom;
 
-    _userConscienceMind.mood = [[currentUserCharacter characterMood] floatValue];
-    _userConscienceMind.enthusiasm = [[currentUserCharacter characterEnthusiasm] floatValue];
+    _userConscienceMind.mood = currentUserCharacter.characterMood.floatValue;
+    _userConscienceMind.enthusiasm = currentUserCharacter.characterEnthusiasm.floatValue;
 
 
 	//Call utility class to parse svg data for feature building
@@ -217,10 +217,10 @@ float const MLTransientInterval = 7;
 	NSInvocation *shakeInvocation = [NSInvocation invocationWithMethodSignature:shakeSignature];
 	NSInvocation *shakeEndInvocation = [NSInvocation invocationWithMethodSignature:shakeEndSignature];
 
-	[shakeInvocation setTarget:self.userConscienceView];
-	[shakeInvocation setSelector:shakeSelector];
-	[shakeEndInvocation setTarget:self];
-	[shakeEndInvocation setSelector:shakeEndSelector];
+	shakeInvocation.target = self.userConscienceView;
+	shakeInvocation.selector = shakeSelector;
+	shakeEndInvocation.target = self;
+	shakeEndInvocation.selector = shakeEndSelector;
 
     //Stop the conscience from moving
     if(self.shakeTimer != nil){

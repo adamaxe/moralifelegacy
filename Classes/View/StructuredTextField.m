@@ -18,13 +18,13 @@ override text for a field in order to prevent it from being updated
 
 	NSMutableString *transformString = [[NSMutableString alloc] initWithCapacity:_maxLength];
 	
-	if ([textArg length] > _maxLength) {
+	if (textArg.length > _maxLength) {
 		[transformString setString:[textArg substringToIndex:_maxLength]];
 	}else {
 		[transformString setString:textArg];
 	}
     
-	[super setText: (NSString *) transformString];
+	super.text = (NSString *) transformString;
     
 
 }

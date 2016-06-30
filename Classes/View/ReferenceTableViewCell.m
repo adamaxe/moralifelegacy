@@ -18,21 +18,21 @@ int const ReferenceTableViewCellHeightFigure = 88;
 
 @implementation ReferenceTableViewCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
 
-        [self.textLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-        [self.textLabel setFont:[UIFont fontForTableViewCellTextLarge]];
-        [self.textLabel setNumberOfLines:1];
+        (self.textLabel).textColor = [UIColor moraLifeChoiceBlue];
+        (self.textLabel).font = [UIFont fontForTableViewCellTextLarge];
+        (self.textLabel).numberOfLines = 1;
         [self.textLabel setAdjustsFontSizeToFitWidth:TRUE];
 
         UIView *figureImageFrame = [[UIView alloc] initWithFrame:self.imageView.frame];
         figureImageFrame.backgroundColor = [UIColor clearColor];
-        figureImageFrame.layer.borderColor = [[UIColor moraLifeBrown] CGColor];
+        figureImageFrame.layer.borderColor = [UIColor moraLifeBrown].CGColor;
         figureImageFrame.layer.borderWidth = 2.0;
-        figureImageFrame.layer.backgroundColor = [[UIColor clearColor] CGColor];
+        figureImageFrame.layer.backgroundColor = [UIColor clearColor].CGColor;
         figureImageFrame.layer.cornerRadius = 4.0;
 
         figureImageFrame.hidden = YES;
@@ -83,7 +83,7 @@ int const ReferenceTableViewCellHeightFigure = 88;
 
 - (void)setReferenceImage:(UIImage *)referenceImage {
     if (![_referenceImage isEqual:referenceImage]) {
-        [self.imageView setImage:referenceImage];
+        (self.imageView).image = referenceImage;
         _referenceImage = referenceImage;
     }
 }

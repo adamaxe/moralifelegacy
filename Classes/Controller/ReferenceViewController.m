@@ -38,7 +38,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
 #pragma mark -
 #pragma mark View lifecycle
 
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 	if ((self = [super initWithModelManager:modelManager andConscience:userConscience])) {
 		//Array to hold button names for random animations
 		buttonNames = @[@"accessories", @"people", @"choicelist"];
@@ -61,7 +61,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     accessoriesLabel.font = [UIFont fontForScreenButtons];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+    (self.navigationItem).leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
 
@@ -180,7 +180,7 @@ Implementation: Determine which type of reference is requested by the User.
  */
 - (void) buttonAnimate:(NSNumber *) buttonNumber{
 
-	switch ([buttonNumber intValue]){
+	switch (buttonNumber.intValue){
 
         case 0: [accessoriesView startAnimating];break;
         case 1: [peopleView startAnimating];break;

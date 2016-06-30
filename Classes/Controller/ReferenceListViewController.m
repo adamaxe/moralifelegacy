@@ -46,7 +46,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (instancetype)initWithModel:(ReferenceModel *) referenceModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     self = [super initWithModelManager:modelManager andConscience:userConscience];
 
@@ -79,7 +79,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    [self.navigationItem setLeftBarButtonItem:referenceBarButton];
+    (self.navigationItem).leftBarButtonItem = referenceBarButton;
 
     [self localizeUI];
 
@@ -98,7 +98,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 		
 		[prefs removeObjectForKey:[NSString stringWithFormat:@"searchText%d", self.referenceModel.referenceType]];
 		[self filterResults:searchString];
-        [referenceSearchBar setText:searchString];
+        referenceSearchBar.text = searchString;
 		
 	}
 	
@@ -106,7 +106,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	[referencesTableView flashScrollIndicators];
 	
 	// Unselect the selected row if any
-	NSIndexPath* selection = [referencesTableView indexPathForSelectedRow];
+	NSIndexPath* selection = referencesTableView.indexPathForSelectedRow;
 	
 	if (selection)
 		[referencesTableView deselectRowAtIndexPath:selection animated:YES];
@@ -177,7 +177,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [tableData count];
+    return tableData.count;
 }
 
 
@@ -190,8 +190,8 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
       	cell = [[ReferenceTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([ReferenceTableViewCell class])];
 	}
 
-    [[cell textLabel] setText:tableData[indexPath.row]];
-    [[cell detailTextLabel] setText:tableDataDetails[indexPath.row]];
+    cell.textLabel.text = tableData[indexPath.row];
+    cell.detailTextLabel.text = tableDataDetails[indexPath.row];
 	
 	NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:tableDataImages[indexPath.row]];	
 
@@ -200,7 +200,7 @@ Implementation: Retrieve all relevant hits from SystemData as raw.  Populate sea
     }
 
     if (self.referenceModel.referenceType == MLReferenceModelTypePerson) {
-        [cell setReferenceType:ReferenceTableViewCellTypeFigure];
+        cell.referenceType = ReferenceTableViewCellTypeFigure;
     }
 
 
@@ -311,8 +311,8 @@ Implementation: Iterate through searchData looking for instances of searchText
 		@autoreleasepool {
 		
 		//Convert both searches to lowercase and compare search string to name in cell.textLabel
-			NSRange searchRange = [[name lowercaseString] rangeOfString:[searchText lowercaseString]];
-			NSRange searchRangeDetails = [[(self.referenceModel.details)[counter] lowercaseString] rangeOfString:[searchText lowercaseString]];
+			NSRange searchRange = [name.lowercaseString rangeOfString:searchText.lowercaseString];
+			NSRange searchRangeDetails = [[(self.referenceModel.details)[counter] lowercaseString] rangeOfString:searchText.lowercaseString];
 			
 			//A match was found
 			if(searchRange.location != NSNotFound)
@@ -371,7 +371,7 @@ Implementation: Iterate through searchData looking for instances of searchText
             break;
     }
     
-    [self setTitle:controllerTitle];
+    self.title = controllerTitle;
 
 }
 

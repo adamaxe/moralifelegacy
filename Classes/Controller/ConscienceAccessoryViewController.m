@@ -51,18 +51,18 @@ int const MLConscienceCenterY = 165;
     
     accessorySlot = 0;
 
-    [statusMessage1 setTextAlignment:UITextAlignmentCenter];
-    [statusMessage1 setTextColor: [UIColor moraLifeChoiceGreen]];
+    statusMessage1.textAlignment = UITextAlignmentCenter;
+    statusMessage1.textColor = [UIColor moraLifeChoiceGreen];
     statusMessage1.font = [UIFont fontForConscienceHeader];
 
-    [statusMessage1 setMinimumFontSize:8.0];
-    [statusMessage1 setNumberOfLines:1];
+    statusMessage1.minimumFontSize = 8.0;
+    statusMessage1.numberOfLines = 1;
     [statusMessage1 setAdjustsFontSizeToFitWidth:TRUE];
 
-    [primaryAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
-    [topAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
-    [bottomAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
-    [secondaryAccessoryLabel setTextColor:[UIColor moraLifeBrown]];
+    primaryAccessoryLabel.textColor = [UIColor moraLifeBrown];
+    topAccessoryLabel.textColor = [UIColor moraLifeBrown];
+    bottomAccessoryLabel.textColor = [UIColor moraLifeBrown];
+    secondaryAccessoryLabel.textColor = [UIColor moraLifeBrown];
 
 	//Rotate accessoryLabels to be parallel to longest side	
 	primaryAccessoryLabel.transform = CGAffineTransformMakeRotation (3.14/2);
@@ -157,7 +157,7 @@ Implementation: Present ChoiceDetailViewController to User from UINavigationBar 
     
     ConscienceListViewController *conscienceListController = [[ConscienceListViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
     conscienceListController.screenshot = [self prepareScreenForScreenshot];
-    [conscienceListController setAccessorySlot:accessorySlot];
+    conscienceListController.accessorySlot = accessorySlot;
     
     
     [self.navigationController pushViewController:conscienceListController animated:NO];

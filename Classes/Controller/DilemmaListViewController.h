@@ -25,7 +25,7 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
  @param userConscience UserConscience for modals and help screens
  @return id instance of DilemmaListViewController
  */
-- (id)initWithModel:(DilemmaListModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (instancetype)initWithModel:(DilemmaListModel *) dilemmaModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_DESIGNATED_INITIALIZER;
 
 /**
 Remove DilemmaList screen and reset requested Dilemma Campaign

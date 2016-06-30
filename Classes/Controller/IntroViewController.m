@@ -110,7 +110,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 	CGPoint centerPoint = CGPointMake(MLConscienceOffscreenBottomX, MLConscienceOffscreenBottomY);
 	
 	_userConscience.userConscienceView.center = centerPoint;
-	[conscienceStatus setText:@"Hello there!  Welcome to..."];
+	conscienceStatus.text = @"Hello there!  Welcome to...";
 
 	backgroundImage.alpha = 0;
 	moraLifeLogoImage.alpha = 0;
@@ -147,6 +147,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 
 -(void)viewWillDisappear:(BOOL)animated {
 
+    [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                 name:UIApplicationDidEnterBackgroundNotification
                                               object:nil];
@@ -295,7 +296,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 
 -(void) switchText0{
 
-    [conscienceStatus setText:@"I am your Conscience.  I'll help you record the things you do throughout the day."];
+    conscienceStatus.text = @"I am your Conscience.  I'll help you record the things you do throughout the day.";
     
 	[UIView beginAnimations:@"labelFade2" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -322,7 +323,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
     [self animateStatusText];
     
-    [conscienceStatus setText:@"You can skip this introduction by tapping on the right arrow bubble over there."];
+    conscienceStatus.text = @"You can skip this introduction by tapping on the right arrow bubble over there.";
 
 	[UIView beginAnimations:@"labelFade2a" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -348,7 +349,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
         
     [self animateStatusText];
 
-    [conscienceStatus setText:@"But I get lonely, so you should stick around until the end.  You can tap my thought bubble to get me to hurry up, though."];
+    conscienceStatus.text = @"But I get lonely, so you should stick around until the end.  You can tap my thought bubble to get me to hurry up, though.";
 
 	[UIView beginAnimations:@"labelFade2b" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -368,7 +369,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText3{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"Using MoraLife, you can journal your moral actions, and I'll usually respond to them."];
+    conscienceStatus.text = @"Using MoraLife, you can journal your moral actions, and I'll usually respond to them.";
     
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -388,7 +389,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText4{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"...like so.  *Hay-LOW!*"];
+    conscienceStatus.text = @"...like so.  *Hay-LOW!*";
     
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -426,7 +427,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText5{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"You can record naughty actions as well and get the opposite results."];    
+    conscienceStatus.text = @"You can record naughty actions as well and get the opposite results.";    
     
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -446,7 +447,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText6{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"Check it out.  *Triah-DENT!*"];    
+    conscienceStatus.text = @"Check it out.  *Triah-DENT!*";    
     
 	[UIView beginAnimations:@"labelFade3" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -486,7 +487,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     [self animateStatusText];
     _userConscience.userConscienceMind.mood = 60;
     _userConscience.userConscienceMind.enthusiasm = 60;
-    [conscienceStatus setText:@"You can think of me as your ethical accountant."];
+    conscienceStatus.text = @"You can think of me as your ethical accountant.";
     
     [UIView beginAnimations:@"conscienceFlip" context:nil];
     [UIView setAnimationDuration:0.25];
@@ -514,7 +515,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText8{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"Now before we get started, I want to talk about how to use MoraLife."];
+    conscienceStatus.text = @"Now before we get started, I want to talk about how to use MoraLife.";
     
 	[UIView beginAnimations:@"labelFade7" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -534,7 +535,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText9{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"I'll communicate with you via these thought bubbles.  Tapping on me will present different options."];
+    conscienceStatus.text = @"I'll communicate with you via these thought bubbles.  Tapping on me will present different options.";
         
 	[UIView beginAnimations:@"labelFade8" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -559,7 +560,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     navBarImage.hidden = FALSE;
 
     [self animateStatusText];
-    [conscienceStatus setText:@"I'll bring up the rest of the User Interface now.  Check out that woodgrain."];
+    conscienceStatus.text = @"I'll bring up the rest of the User Interface now.  Check out that woodgrain.";
     
 	[UIView beginAnimations:@"labelFade9" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -584,7 +585,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     downButtonImage.center = CGPointMake(38, 52);
     
     [self animateStatusText];
-    [conscienceStatus setText:@"This Navigation bar will allow you to access the other features in MoraLife."];
+    conscienceStatus.text = @"This Navigation bar will allow you to access the other features in MoraLife.";
     
 	[UIView beginAnimations:@"labelFade10" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -608,7 +609,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 -(void) switchText12{
     
     [self animateStatusText];
-    [conscienceStatus setText:@"Tapping on the Journal Button lets you enter in moral or immoral Choices."];
+    conscienceStatus.text = @"Tapping on the Journal Button lets you enter in moral or immoral Choices.";
     
 	[UIView beginAnimations:@"labelFade11" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -635,7 +636,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
     [self animateStatusText];
 
-    [conscienceStatus setText:@"Tap that Collection Button to review the things that you've bought or received in Morathology."];
+    conscienceStatus.text = @"Tap that Collection Button to review the things that you've bought or received in Morathology.";
     
 	[UIView beginAnimations:@"labelFade12" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -661,7 +662,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 
     [self animateStatusText];
 
-    [conscienceStatus setText:@"Lastly, you can tap on my thought bubble to dismiss it."];
+    conscienceStatus.text = @"Lastly, you can tap on my thought bubble to dismiss it.";
     
 	[UIView beginAnimations:@"labelFade13" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -687,7 +688,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
     [self animateStatusText];
     
-    [conscienceStatus setText:@"Most things in MoraLife will respond to touches.  So, go touch-crazy and tap on everything you see."];
+    conscienceStatus.text = @"Most things in MoraLife will respond to touches.  So, go touch-crazy and tap on everything you see.";
     
 	[UIView beginAnimations:@"labelFade14" context:nil];
 	[UIView setAnimationDuration:0.5];
@@ -713,7 +714,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     nextButtonImage.hidden = FALSE;
     
     [self animateStatusText];
-    [conscienceStatus setText:@"So, I'm done yapping at you, now.  Tap the right arrow to get started."];
+    conscienceStatus.text = @"So, I'm done yapping at you, now.  Tap the right arrow to get started.";
     [thoughtButton setEnabled:FALSE];
     
     isImpatient = FALSE;
@@ -888,9 +889,9 @@ Implementation:  Return conscience to view
 
     //Display appropriate text if User has watched entire Intro
     if (isImpatient) {
-        [conscienceStatus setText:@"Okay, so I can tell that you're ready to go.  Let's skip the intro and get to the good stuff."];
+        conscienceStatus.text = @"Okay, so I can tell that you're ready to go.  Let's skip the intro and get to the good stuff.";
     } else {
-        [conscienceStatus setText:@"Awesome.  You're like the best User ever for not skipping the intro.  Let's rock this."];
+        conscienceStatus.text = @"Awesome.  You're like the best User ever for not skipping the intro.  Let's rock this.";
         
     }
 
@@ -984,12 +985,12 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	
 	NSMethodSignature *signature = [UIViewController instanceMethodSignatureForSelector:selector];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-	[invocation setSelector:selector];
+	invocation.selector = selector;
 	
 	BOOL timerBool = NO;
 	
 	//Set the arguments
-	[invocation setTarget:self];
+	invocation.target = self;
 	[invocation setArgument:&timerBool atIndex:2];
 	
 	[NSTimer scheduledTimerWithTimeInterval:0.5 invocation:invocation repeats:NO];
@@ -1018,10 +1019,10 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 	NSInvocation *shakeInvocation = [NSInvocation invocationWithMethodSignature:shakeSignature];
 	NSInvocation *shakeEndInvocation = [NSInvocation invocationWithMethodSignature:shakeEndSignature];
 	
-	[shakeInvocation setTarget:_userConscience.userConscienceView];
-	[shakeInvocation setSelector:shakeSelector];
-	[shakeEndInvocation setTarget:self];
-	[shakeEndInvocation setSelector:shakeEndSelector];	
+	shakeInvocation.target = _userConscience.userConscienceView;
+	shakeInvocation.selector = shakeSelector;
+	shakeEndInvocation.target = self;
+	shakeEndInvocation.selector = shakeEndSelector;	
 
 	//Detect if a User has shaken the device  
     if (motion == UIEventSubtypeMotionShake)
@@ -1059,11 +1060,11 @@ Implementation:  Stop any timers, animate Conscience and Thought fades, delay di
 {
 	NSSet *allTouches = [event allTouches];
     
-	switch ([allTouches count]) {
+	switch (allTouches.count) {
 		case 1: { //Single touch
 			
 			//Get the first touch.
-			UITouch *touch = [allTouches allObjects][0];
+			UITouch *touch = allTouches.allObjects[0];
     
 			CGPoint conscienceCenter = [touch locationInView:self.view];
 			UIView* touchedView = [self.view hitTest:conscienceCenter withEvent:event];

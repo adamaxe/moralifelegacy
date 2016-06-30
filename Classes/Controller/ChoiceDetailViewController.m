@@ -63,14 +63,14 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 	prefs = [NSUserDefaults standardUserDefaults];
 
     justificationLabel.font = [UIFont fontForTextLabels];
-    [justificationLabel setShadowColor:[UIColor whiteColor]];
-    [justificationLabel setShadowOffset:CGSizeMake(0, 1)];
+    justificationLabel.shadowColor = [UIColor whiteColor];
+    justificationLabel.shadowOffset = CGSizeMake(0, 1);
     consequencesLabel.font = [UIFont fontForTextLabels];
-    [consequencesLabel setShadowColor:[UIColor whiteColor]];
-    [consequencesLabel setShadowOffset:CGSizeMake(0, 1)];
+    consequencesLabel.shadowColor = [UIColor whiteColor];
+    consequencesLabel.shadowOffset = CGSizeMake(0, 1);
     influenceLabel.font = [UIFont fontForTextLabels];
-    [influenceLabel setShadowColor:[UIColor whiteColor]];
-    [influenceLabel setShadowOffset:CGSizeMake(0, 1)];
+    influenceLabel.shadowColor = [UIColor whiteColor];
+    influenceLabel.shadowOffset = CGSizeMake(0, 1);
 
 	//Set maximum lengths for User-entry to textfields
 	justificationTextField.delegate = self;
@@ -84,7 +84,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     self.navigationItem.hidesBackButton = YES;
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
-    [self.navigationItem setLeftBarButtonItem:choiceBarButton];
+    (self.navigationItem).leftBarButtonItem = choiceBarButton;
 
 	//Prevent keypress level changes over maxlength of field
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(limitTextField:) name: UITextFieldTextDidChangeNotification object:activeField];
@@ -190,7 +190,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
     [UIView animateWithDuration:0.35 animations:^{
         influenceLabel.alpha = 0.0;
     }completion:^(BOOL finished){
-        [influenceLabel setText:(NSString *)influenceLabelDescriptions[influenceAsInt-1]];
+        influenceLabel.text = (NSString *)influenceLabelDescriptions[influenceAsInt-1];
         influenceLabel.accessibilityLabel = influenceLabel.text;
 
         [UIView animateWithDuration:0.25 animations:^{
@@ -328,9 +328,9 @@ Implementation:  Truncate the field on each keypress if length is greater
  */
 - (void)limitTextField:(NSNotification *)note {
     
-	if ([[activeField text] length] > activeField.maxLength) {
+	if (activeField.text.length > activeField.maxLength) {
 		//If current length is greater, truncate
-		[activeField setText:[[activeField text] substringToIndex:activeField.maxLength]];
+		activeField.text = [activeField.text substringToIndex:activeField.maxLength];
     }
 }
 

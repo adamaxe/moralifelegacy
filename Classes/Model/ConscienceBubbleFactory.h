@@ -13,7 +13,7 @@
 /**
  Possible bubbleTypes
  */
-typedef enum {
+typedef NS_ENUM(unsigned int, MLBubbleType) {
 	MLBubbleTypeRoundNormal,
 	MLBubbleTypeRoundTall,
 	MLBubbleTypeRoundShort,
@@ -29,7 +29,7 @@ typedef enum {
 	MLBubbleTypeGearNormal,
 	MLBubbleTypeGearTall,
 	MLBubbleTypeGearShort
-} MLBubbleType;
+};
 
 @interface ConscienceBubbleFactory : NSObject
 

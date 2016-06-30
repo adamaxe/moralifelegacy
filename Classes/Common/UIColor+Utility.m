@@ -62,7 +62,7 @@
     scanner = [NSScanner scannerWithString: hexValue];
 
     //Optionally allow the leading #symbol in many web-safe color generators
-    [scanner setCharactersToBeSkipped:[NSCharacterSet characterSetWithCharactersInString:@"#"]];
+    scanner.charactersToBeSkipped = [NSCharacterSet characterSetWithCharactersInString:@"#"];
 
     [scanner scanHexInt: &rgbval];
 

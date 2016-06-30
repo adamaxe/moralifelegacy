@@ -27,6 +27,6 @@ Builds model with dependency injection
  @param modelManager ModelManager for either production or testing
  @return id ReportPieModel
  */
-- (id)initWithModelManager:(ModelManager *) modelManager;
+- (instancetype)initWithModelManager:(ModelManager *) modelManager NS_DESIGNATED_INITIALIZER;
 
 @end

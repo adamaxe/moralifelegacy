@@ -20,7 +20,7 @@ int const MLEyeHeight = 32;
 #pragma mark -
 #pragma mark View lifecycle
 
-- (id)initWithFrame:(CGRect)frame {
+- (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
 		//By default, each ConscienceObject must be transparent
 		_conscienceBackgroundColor = [UIColor clearColor];
@@ -48,7 +48,7 @@ int const MLEyeHeight = 32;
 	//Determine draw order
 	//Layers prefixed with int to ease draw order
 	//e.g. Iris must draw before lid to be obscured by lid
-	NSArray *layerKeys = [_totalLayers allKeys];
+	NSArray *layerKeys = _totalLayers.allKeys;
 	NSArray *sortedKeys = [layerKeys sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
     [self strokeAndFillPath:sortedKeys];
@@ -61,7 +61,7 @@ int const MLEyeHeight = 32;
     int isReoriented = 0;
     ConscienceLayer *currentLayer;
 	
-	for (int i=0; i<[sortedKeys count]; i++) {
+	for (int i=0; i<sortedKeys.count; i++) {
 		currentLayer = (ConscienceLayer *)_totalLayers[sortedKeys[i]];
         
 		if (currentLayer != nil) {
@@ -105,7 +105,7 @@ int const MLEyeHeight = 32;
 					}
 				}else {
 					NSString *gradientSubstring = (NSString *)[currentPath.pathFillColor substringFromIndex:5];
-					gradientSubstring = [gradientSubstring substringToIndex:[gradientSubstring length]-1];
+					gradientSubstring = [gradientSubstring substringToIndex:gradientSubstring.length-1];
 					
 					ConscienceGradient *gradientElement = _totalGradients[gradientSubstring];
 					CGContextClip(context);
@@ -167,7 +167,7 @@ Points must be absolute.
 	int pointPosition = 0;
 
 	//Parse instructions to determine number of operations
-	for (int i = 0; i < [instructions count]; i++) {
+	for (int i = 0; i < instructions.count; i++) {
 
 		//For each element, perform requested CGPath operation.
 		//Pass the appropriate number of CGFloats to operation.

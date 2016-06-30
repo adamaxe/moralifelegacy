@@ -80,7 +80,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 #pragma mark ViewController lifecycle
 
 // The designated initializer.  Override if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     if (self = [super initWithModelManager:modelManager andConscience:userConscience]) {
 
@@ -118,18 +118,18 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	
 	//Get current amount of ethicals for display and purchase logic
 	[self retrieveCurrentFunds];
-	[currentFundsLabel setText:[NSString stringWithFormat:@"%dε", currentFunds]];
+	currentFundsLabel.text = [NSString stringWithFormat:@"%dε", currentFunds];
     
     ConscienceAssetDAO *currentAssetDAO = [[ConscienceAssetDAO alloc] initWithKey:self.assetSelection andModelManager:_modelManager];
     ConscienceAsset *currentAsset = [currentAssetDAO read:@""];
     
     //Set UI labels
-    [accessoryNameLabel setText:currentAsset.displayNameReference];
-    [accessoryDescriptionLabel setText:currentAsset.shortDescriptionReference];        
-    assetCost = [currentAsset.costAsset intValue];
+    accessoryNameLabel.text = currentAsset.displayNameReference;
+    accessoryDescriptionLabel.text = currentAsset.shortDescriptionReference;        
+    assetCost = (currentAsset.costAsset).intValue;
         
     //Set UI image of Moral
-    [moralImageView setImage:[UIImage imageNamed:currentAsset.relatedMoral.imageNameMoral]];
+    moralImageView.image = [UIImage imageNamed:currentAsset.relatedMoral.imageNameMoral];
 
     assetFileName = [[NSString alloc] initWithString:currentAsset.imageNameReference];
 	
@@ -153,7 +153,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
             [resetFeature setString:[NSString stringWithFormat:@"%d", _userConscience.userConscienceBody.bubbleType]];
             
             NSString *bubbleType = [currentFeature substringFromIndex:11];
-            _userConscience.userConscienceBody.bubbleType = [bubbleType intValue];
+            _userConscience.userConscienceBody.bubbleType = bubbleType.intValue;
 
         }break;            
 		default: break;
@@ -165,11 +165,11 @@ User can return to the previous screen:  return to ConscienceListViewController 
     }
 
     [backButton setTitleColor:[UIColor moraLifeChoiceRed] forState:UIControlStateNormal];
-    [insufficientEthicalsLabel setTextColor:[UIColor moraLifeChoiceRed]];
+    insufficientEthicalsLabel.textColor = [UIColor moraLifeChoiceRed];
     [buyButton setTitleColor:[UIColor moraLifeChoiceGreen] forState:UIControlStateNormal];
-    [currentFundsLabel setTextColor:[UIColor moraLifeChoiceGreen]];
-    [accessoryNameLabel setTextColor:[UIColor moraLifeChoiceBlue]];
-    [accessoryNameLabel setShadowColor:[UIColor moraLifeChoiceGray]];
+    currentFundsLabel.textColor = [UIColor moraLifeChoiceGreen];
+    accessoryNameLabel.textColor = [UIColor moraLifeChoiceBlue];
+    accessoryNameLabel.shadowColor = [UIColor moraLifeChoiceGray];
 
     [self localizeUI];    
 
@@ -183,7 +183,7 @@ User can return to the previous screen:  return to ConscienceListViewController 
 	[consciencePlayground addSubview:_userConscience.userConscienceView];
 	[_userConscience.userConscienceView setNeedsDisplay];
 
-    [accessoryCostLabel setTextColor:[UIColor moraLifeChoiceGreen]];
+    accessoryCostLabel.textColor = [UIColor moraLifeChoiceGreen];
     
 	//Inform/restrict User's ability to actually purchase ConscienceAsset
 	//Flash assetCost is ConscienceAsset is unbuyable
@@ -191,8 +191,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		[buyButton setHidden:TRUE];
         [insufficientEthicalsLabel setHidden:FALSE];
         
-		[backButton setCenter:CGPointMake(backButton.center.x-50, backButton.center.y)];
-		[accessoryCostLabel setTextColor:[UIColor moraLifeChoiceRed]];
+		backButton.center = CGPointMake(backButton.center.x-50, backButton.center.y);
+		accessoryCostLabel.textColor = [UIColor moraLifeChoiceRed];
 
 		[UIView beginAnimations:@"PulseCost" context:nil];
 		[UIView setAnimationDuration:1.0];
@@ -200,8 +200,8 @@ User can return to the previous screen:  return to ConscienceListViewController 
 		[UIView setAnimationRepeatCount:5.0];
 		[UIView setAnimationRepeatAutoreverses:TRUE];        
 
-		[accessoryCostLabel setAlpha:0.5];
-		[accessoryCostLabel setTransform:CGAffineTransformMakeScale(1.20f, 1.20f)];
+		accessoryCostLabel.alpha = 0.5;
+		accessoryCostLabel.transform = CGAffineTransformMakeScale(1.20f, 1.20f);
         
 		[UIView commitAnimations];
     }
@@ -295,7 +295,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
                 case 7:_userConscience.userConscienceBody.eyeColor = resetFeature;break;
                 case 8:_userConscience.userConscienceBody.browColor = resetFeature;break;
                 case 9:_userConscience.userConscienceBody.bubbleColor = resetFeature;break;
-                case 10:_userConscience.userConscienceBody.bubbleType = [resetFeature intValue];break;                    
+                case 10:_userConscience.userConscienceBody.bubbleType = resetFeature.intValue;break;                    
                 default: break;
             }
             
@@ -360,7 +360,7 @@ Implementation: Internal function to retrieve how many ethicals User currently h
     UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
 
     //Increase the moral's value
-    int ethicals = [[currentUserCollectable collectableValue] intValue];
+    int ethicals = currentUserCollectable.collectableValue.intValue;
     
     currentFunds = ethicals;
     
@@ -378,17 +378,17 @@ Implementation: Commits the ConscienceAsset to persistence framework.
         
 	//Assign current ConscienceAsset to UserCharacter
 	switch (self.accessorySlot) {
-		case 0:[currentUserCharacter setCharacterAccessoryTop:currentFeature];break;
-		case 1:[currentUserCharacter setCharacterAccessoryPrimary:currentFeature];break;
-		case 2:[currentUserCharacter setCharacterAccessoryBottom:currentFeature];break;
-		case 3:[currentUserCharacter setCharacterAccessorySecondary:currentFeature];break;
-		case 4:[currentUserCharacter setCharacterEye:currentFeature];break;
-		case 5:[currentUserCharacter setCharacterFace:currentFeature];break;
-		case 6:[currentUserCharacter setCharacterMouth:currentFeature];break;
-		case 7:[currentUserCharacter setCharacterEyeColor:currentFeature];break;
-		case 8:[currentUserCharacter setCharacterBrowColor:currentFeature];break;
-		case 9:[currentUserCharacter setCharacterBubbleColor:currentFeature];break;
-		case 10:[currentUserCharacter setCharacterBubbleType:@([currentFeature intValue])];break;
+		case 0:currentUserCharacter.characterAccessoryTop = currentFeature;break;
+		case 1:currentUserCharacter.characterAccessoryPrimary = currentFeature;break;
+		case 2:currentUserCharacter.characterAccessoryBottom = currentFeature;break;
+		case 3:currentUserCharacter.characterAccessorySecondary = currentFeature;break;
+		case 4:currentUserCharacter.characterEye = currentFeature;break;
+		case 5:currentUserCharacter.characterFace = currentFeature;break;
+		case 6:currentUserCharacter.characterMouth = currentFeature;break;
+		case 7:currentUserCharacter.characterEyeColor = currentFeature;break;
+		case 8:currentUserCharacter.characterBrowColor = currentFeature;break;
+		case 9:currentUserCharacter.characterBubbleColor = currentFeature;break;
+		case 10:currentUserCharacter.characterBubbleType = @(currentFeature.intValue);break;
 		default: break;
 	}
     
@@ -417,8 +417,8 @@ Implementation: Commits the ConscienceAsset to persistence framework.
     //UserDefault will be picked up by HomeViewController
     [prefs setFloat:(85) forKey:@"transientMind"];
     
-    [currentUserCharacter setCharacterMood:@(newMood)];    
-    [currentUserCharacter setCharacterEnthusiasm:@(newEnthusiasm)];
+    currentUserCharacter.characterMood = @(newMood);    
+    currentUserCharacter.characterEnthusiasm = @(newEnthusiasm);
 
     [currentUserCharacterDAO update];
     
@@ -431,7 +431,7 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
         
 	//Construct Unique Primary Key from dtstamp to millisecond
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyyMMddHHmmssSSS"];	
+	dateFormatter.dateFormat = @"yyyyMMddHHmmssSSS";	
     
 	NSString *currentDTS = [dateFormatter stringFromDate:[NSDate date]];
     
@@ -444,9 +444,9 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
     //Create a new moral reward
     UserCollectable *currentUserAssetCollectable = [currentUserCollectableDAO create];
 	
-    [currentUserAssetCollectable setCollectableCreationDate:[NSDate date]];
-	[currentUserAssetCollectable setCollectableKey:[NSString stringWithFormat:@"%@%@", currentDTS, self.assetSelection]];
-	[currentUserAssetCollectable setCollectableName:self.assetSelection];
+    currentUserAssetCollectable.collectableCreationDate = [NSDate date];
+	currentUserAssetCollectable.collectableKey = [NSString stringWithFormat:@"%@%@", currentDTS, self.assetSelection];
+	currentUserAssetCollectable.collectableName = self.assetSelection;
     
 	//Check to see if ConscienceAsset has already been collected
 	if (!isOwned){
@@ -459,7 +459,7 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
     currentUserCollectableDAO.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
 	UserCollectable *currentUserCollectable = [currentUserCollectableDAO read:@""];
     
-	int ethicals = [[currentUserCollectable collectableValue] intValue];
+	int ethicals = currentUserCollectable.collectableValue.intValue;
     
 	ethicals -= assetCost;
 
@@ -487,7 +487,7 @@ Implementation: Changes userCollection.  Subtract cost from ethicals and add Con
     } else {
         NSString *assetCostString = [NSString stringWithFormat:@"%d", assetCost];
         NSString *actualAssetCost = [NSString stringWithFormat:@"%@ε", (assetCost < 0) ? @"∞ " : assetCostString];
-        [accessoryCostLabel setText:[NSString stringWithFormat:@"Cost: %@", actualAssetCost]];
+        accessoryCostLabel.text = [NSString stringWithFormat:@"Cost: %@", actualAssetCost];
         buyButton.accessibilityHint = NSLocalizedString(@"ConscienceAcceptBuyButtonBuyHint",nil);
         buyButton.accessibilityLabel = NSLocalizedString(@"ConscienceAcceptBuyButtonBuyLabel",nil);
         [buyButton.titleLabel setText:NSLocalizedString(@"ConscienceAcceptBuyButtonBuyLabel",nil)];

@@ -38,7 +38,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 @implementation ReportPieViewController
 
-- (id)initWithModel:(ReportPieModel *)reportPieModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (instancetype)initWithModel:(ReportPieModel *)reportPieModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
     self = [super initWithModelManager:modelManager andConscience:userConscience];
 
     if (self) {
@@ -64,7 +64,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 }
 
 -(void)viewDidAppear:(BOOL)animated {
-    
+    [super viewDidAppear:animated];
 	//Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
     
@@ -72,6 +72,7 @@ Implementation:  Present a GraphView of piechart type with accompanying data des
 
 -(void)viewWillAppear:(BOOL)animated {
     
+    [super viewWillAppear:animated];
     //Position Conscience in lower-left of screen
     CGPoint centerPoint = CGPointMake(MLConscienceLowerLeftX, MLConscienceLowerLeftY);
 
@@ -159,14 +160,14 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
             case 0:{    
                 if (self.isGood) {
                     self.isGood = FALSE;
-                    [moralType setImage:[UIImage imageNamed:@"acc-pri-weapon-trident-sm.png"]];
-                    [moralTypeLabel setText:@"Vice"];
+                    moralType.image = [UIImage imageNamed:@"acc-pri-weapon-trident-sm.png"];
+                    moralTypeLabel.text = @"Vice";
                 } else {
                     self.isGood = TRUE;
-                    [moralType setImage:[UIImage imageNamed:@"acc-top-halo-sm.png"]];
-                    [moralTypeLabel setText:@"Virtue"];
+                    moralType.image = [UIImage imageNamed:@"acc-top-halo-sm.png"];
+                    moralTypeLabel.text = @"Virtue";
                 }
-                [moralTypeLabel setAccessibilityValue:moralTypeLabel.text];
+                moralTypeLabel.accessibilityValue = moralTypeLabel.text;
             } break;
             case 1:{    
                 if (self.isAlphabetical) {
@@ -176,7 +177,7 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
                     self.isAlphabetical = TRUE;
                     [moralSortButton setTitle:@"A" forState: UIControlStateNormal];
                 }
-                [moralSortButton setAccessibilityValue:moralSortButton.titleLabel.text];
+                moralSortButton.accessibilityValue = moralSortButton.titleLabel.text;
 
             }
                 break;
@@ -188,7 +189,7 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
                     self.isAscending = TRUE;
                     [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
                 }
-                [moralOrderButton setAccessibilityValue:moralOrderButton.titleLabel.text];
+                moralOrderButton.accessibilityValue = moralOrderButton.titleLabel.text;
 
             }
                 break;
@@ -222,8 +223,8 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 	GraphView *graph = [[GraphView alloc] initWithFrame:CGRectMake(0.0, 0.0, 240, 240)];
 
 	//Populate Graph with entries    
-	[graph setPieValues:self.reportPieModel.pieValues];
-	[graph setPieColors:self.reportPieModel.pieColors];
+	graph.pieValues = self.reportPieModel.pieValues;
+	graph.pieColors = self.reportPieModel.pieColors;
 
 	//Add new graph to view
 	[thoughtModalArea addSubview:graph];
@@ -247,7 +248,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    return [self.reportPieModel.reportNames count];
+    return (self.reportPieModel.reportNames).count;
 
 }
 
@@ -261,10 +262,10 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
       	cell = [[ReportMoralTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:NSStringFromClass([ReportMoralTableViewCell class])];
 	}
     
-	[cell.textLabel setText:(self.reportPieModel.reportNames)[indexPath.row]];
+	(cell.textLabel).text = (self.reportPieModel.reportNames)[indexPath.row];
     
     cell.moralColor = self.reportPieModel.pieColors[indexPath.row];
-    if ([self.reportPieModel.moralNames count] > 0) {
+    if ((self.reportPieModel.moralNames).count > 0) {
         
         NSMutableString *rowImageName = [[NSMutableString alloc] initWithString:(self.reportPieModel.moralImageNames)[(self.reportPieModel.moralNames)[indexPath.row]]];
         [rowImageName appendString:@".png"];
@@ -272,7 +273,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
         
     } else {
         cell.moralImage = [UIImage imageNamed:@"card-doubt.png"];
-        [[cell textLabel] setTextAlignment:UITextAlignmentCenter];
+        cell.textLabel.textAlignment = UITextAlignmentCenter;
     }
 
     return cell;
@@ -287,7 +288,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     NSString *titleName =[[NSString alloc] initWithFormat:@"%@",NSStringFromClass([self class])];
     
     [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, self.isGood]),nil)];
-    [moralTypeLabel setText:@"Virtue"];                
+    moralTypeLabel.text = @"Virtue";                
     
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);

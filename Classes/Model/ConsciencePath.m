@@ -12,7 +12,7 @@ float const MLDefault0Float = 0.0;
 
 @implementation ConsciencePath
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
 	if (self) {
@@ -32,7 +32,7 @@ float const MLDefault0Float = 0.0;
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)decoder {
+- (instancetype)initWithCoder:(NSCoder *)decoder {
     self = [super init];
     if (self) {         
         
@@ -100,7 +100,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
                 
             NSArray *points = [element componentsSeparatedByString: @","];
             
-            for (int i = 0; i < [points count]; i++) {
+            for (int i = 0; i < points.count; i++) {
                 [self.pathPoints addObject:points[i]];
                 pointCount++;
             }
@@ -164,7 +164,7 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 	NSArray *styleComponent;
 	NSArray *styleTokens = [styleData componentsSeparatedByString: @";"];
 	
-	NSMutableDictionary *styleNameValuePairs = [NSMutableDictionary dictionaryWithCapacity:[styleTokens count]];
+	NSMutableDictionary *styleNameValuePairs = [NSMutableDictionary dictionaryWithCapacity:styleTokens.count];
 
 	for (NSString *element in styleTokens) {
 		styleComponent = [element componentsSeparatedByString: @":"];
@@ -178,41 +178,41 @@ Implementation: Using the SVG spec, separate draw instructions from draw points 
 	//Determine if fill color is null, an RGB hex color or a gradient
 	if ((pathColorPre == NULL) || [pathColorPre isEqualToString:@"none"]) {
 		//fill color is empty, should default to black
-		[self setPathFillColor:@"000000"];
+		self.pathFillColor = @"000000";
 	}else if([pathColorPre rangeOfString:@"url"].location == NSNotFound){
 		//fill color is not a gradient reference
         //remove leading #
         NSString *substringColor = [pathColorPre substringFromIndex:1];
-		[self setPathFillColor: [substringColor substringToIndex:[substringColor length]]];
+		self.pathFillColor = [substringColor substringToIndex:substringColor.length];
 
 	}else {
 		//Substring off "URL(#)" from gradientName
 		NSString *substringTemp = [pathColorPre substringFromIndex:5];
         
-		[self setPathGradient: [substringTemp substringToIndex:[substringTemp length]-1]];
+		self.pathGradient = [substringTemp substringToIndex:substringTemp.length-1];
 		
 		//populate fillColor with full gradient link
 		//prevent view from painting path
-		[self setPathFillColor:pathColorPre];
+		self.pathFillColor = pathColorPre;
 	
-		[self setPathFillOpacity: 0];
+		self.pathFillOpacity = 0;
 	}
 
 	pathColorPre = (NSString *)styleNameValuePairs[@"stroke"];
 	
 	if (pathColorPre != NULL && ![pathColorPre isEqualToString:@"none"]) {
 
-		[self setPathStrokeColor:pathColorPre];
+		self.pathStrokeColor = pathColorPre;
 
 	}else {
-		[self setPathStrokeColor:@"000000"];
+		self.pathStrokeColor = @"000000";
 		
 	}	
 
-	[self setPathStrokeWidth: [(NSNumber*)styleNameValuePairs[@"stroke-width"] floatValue]];
-	[self setPathFillOpacity: [(NSNumber*)styleNameValuePairs[@"fill-opacity"] floatValue]];
-	[self setPathStrokeMiterLimit: [(NSNumber*)styleNameValuePairs[@"stroke-miterlimit"] floatValue]];
-	[self setPathStrokeOpacity: [(NSNumber*)styleNameValuePairs[@"stroke-opacity"] floatValue]];
+	self.pathStrokeWidth = ((NSNumber*)styleNameValuePairs[@"stroke-width"]).floatValue;
+	self.pathFillOpacity = ((NSNumber*)styleNameValuePairs[@"fill-opacity"]).floatValue;
+	self.pathStrokeMiterLimit = ((NSNumber*)styleNameValuePairs[@"stroke-miterlimit"]).floatValue;
+	self.pathStrokeOpacity = ((NSNumber*)styleNameValuePairs[@"stroke-opacity"]).floatValue;
 	
 }
 

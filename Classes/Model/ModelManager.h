@@ -19,7 +19,7 @@ Provides access to backing data store while obscuring details of stack.  Provide
  @param isTransient BOOL showing whether the data store is in-memory or not
  @return id self
  */
-- (id)initWithInMemoryStore:(BOOL)isTransient;
+- (instancetype)initWithInMemoryStore:(BOOL)isTransient NS_DESIGNATED_INITIALIZER;
 
 /**
  Provides ability to create an instance of a persisted NSManagedObject

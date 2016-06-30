@@ -13,12 +13,12 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "ReferenceViewController.h"
 #import "UIColor+Utility.h"
 
-typedef enum {
+typedef NS_ENUM(unsigned int, MLHomeViewControllerTags) {
     MLHomeViewControllerVirtueButtonTag = 3030,
     MLHomeViewControllerViceButtonTag = 3031,
     MLHomeViewControllerRankButtonTag = 3032,
     MLHomeViewControllerThoughtButtonTag = 3033
-} MLHomeViewControllerTags;
+};
 
 float const MLThoughtInterval = 5;
 
@@ -83,7 +83,7 @@ float const MLThoughtInterval = 5;
 #pragma mark -
 #pragma mark ViewController lifecycle
 
-- (id)initWithModel:(HomeModel *) homeModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
+- (instancetype)initWithModel:(HomeModel *) homeModel modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience {
 
     if ((self = [super initWithModelManager:modelManager andConscience:userConscience])) {
 		prefs = [NSUserDefaults standardUserDefaults];
@@ -106,9 +106,9 @@ float const MLThoughtInterval = 5;
     viceImage.alpha = 0;
     rankImage.alpha = 0;
     
-    [virtueButton setTag:MLHomeViewControllerVirtueButtonTag];    
-    [viceButton setTag:MLHomeViewControllerViceButtonTag];
-    [rankButton setTag:MLHomeViewControllerRankButtonTag];
+    virtueButton.tag = MLHomeViewControllerVirtueButtonTag;    
+    viceButton.tag = MLHomeViewControllerViceButtonTag;
+    rankButton.tag = MLHomeViewControllerRankButtonTag;
     virtueLabel.font = [UIFont fontForHomeScreenButtons];
     viceLabel.font = [UIFont fontForHomeScreenButtons];
     rankLabel.font = [UIFont fontForHomeScreenButtons];
@@ -129,8 +129,8 @@ float const MLThoughtInterval = 5;
         
     }  
 
-    [conscienceStatus setTextColor:[UIColor moraLifeChoiceBlue]];
-    [conscienceStatus setShadowColor:[UIColor moraLifeChoiceLightGray]];
+    conscienceStatus.textColor = [UIColor moraLifeChoiceBlue];
+    conscienceStatus.shadowColor = [UIColor moraLifeChoiceLightGray];
 
     UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
     UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
@@ -154,6 +154,8 @@ float const MLThoughtInterval = 5;
 
 -(void) viewWillAppear:(BOOL)animated{
 
+    [super viewWillAppear:animated];
+    
 	_userConscience.userConscienceView.alpha = 0;
     thoughtArea.hidden = FALSE;
 
@@ -188,16 +190,16 @@ float const MLThoughtInterval = 5;
     }
 
 	[consciencePlayground setNeedsDisplay];
-    [conscienceStatus setText:[self.homeModel generateWelomeMessageWithTimeOfDay:[NSDate date] andMood:_userConscience.userConscienceMind.mood andEnthusiasm:_userConscience.userConscienceMind.enthusiasm]];
+    conscienceStatus.text = [self.homeModel generateWelomeMessageWithTimeOfDay:[NSDate date] andMood:_userConscience.userConscienceMind.mood andEnthusiasm:_userConscience.userConscienceMind.enthusiasm];
 
-    [virtueImage setImage:self.homeModel.greatestVirtueImage];
+    virtueImage.image = self.homeModel.greatestVirtueImage;
     [homeVirtueDisplayName setString:self.homeModel.greatestVirtue];
 
-    [viceImage setImage:self.homeModel.worstViceImage];
+    viceImage.image = self.homeModel.worstViceImage;
     [homeViceDisplayName setString:self.homeModel.worstVice];
 
 	//In case of no granted Ranks, setup the default User
-	[rankImage setImage:self.homeModel.highestRankImage];
+	rankImage.image = self.homeModel.highestRankImage;
 	[highestRankName setString:self.homeModel.highestRank];
 
     [self selectNextView:nil];
@@ -382,7 +384,7 @@ float const MLThoughtInterval = 5;
         [UIView animateWithDuration:0.5 animations:^{
             conscienceStatus.alpha = 0;
         }completion:^(BOOL finished) {
-            [conscienceStatus setText:searchString];
+            conscienceStatus.text = searchString;
             [UIView animateWithDuration:0.5 animations:^{
                 conscienceStatus.alpha = 1;
             }];
@@ -420,7 +422,7 @@ float const MLThoughtInterval = 5;
 #pragma mark UserConscienceTouchProtocol
 
 -(void)userConscienceTouchBegan {
-    [conscienceStatus setText:[self.homeModel generateReactionWithMood:_userConscience.userConscienceMind.mood andEnthusiasm:_userConscience.userConscienceMind.enthusiasm]];
+    conscienceStatus.text = [self.homeModel generateReactionWithMood:_userConscience.userConscienceMind.mood andEnthusiasm:_userConscience.userConscienceMind.enthusiasm];
     [_userConscience.userConscienceView setIsExpressionForced:TRUE];
     [_userConscience.userConscienceView setNeedsDisplay];
 }

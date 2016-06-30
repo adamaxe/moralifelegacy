@@ -56,7 +56,7 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
  @param userConscience UserConscience for modals and help screens
  @return id instance of MoraLifeViewController
  */
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_DESIGNATED_INITIALIZER;
 
 /**
  Creates the viewController with the User's Conscience
@@ -64,12 +64,12 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
  @param userConscience UserConscience for modals and help screens
  @return id instance of MoraLifeViewController
  */
--(id)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience;
 
 /**
  Clears the conscience off the screen before taking a screenshot
  @return UIImage screenshot without the Conscience on screen
  */
--(UIImage *)prepareScreenForScreenshot;
+@property (NS_NONATOMIC_IOSONLY, readonly, strong) UIImage *prepareScreenForScreenshot;
 
 @end
