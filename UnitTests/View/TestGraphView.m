@@ -12,7 +12,7 @@
 #import "UIColor+Utility.h"
 @class GraphView;
 
-@interface TestGraphView : SenTestCase {
+@interface TestGraphView : XCTestCase {
     GraphView *testingSubject;
 }
 
@@ -43,7 +43,7 @@ const int kGraphWidth = 240;
  */
 - (void)testGraphExists{
     
-    STAssertNotNil(testingSubject, @"The graph was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The graph was not init'ed.");
 }
 
 /**
@@ -52,8 +52,8 @@ const int kGraphWidth = 240;
 
 - (void)testDefaultData{
     
-    STAssertEqualObjects([NSNumber numberWithFloat:360.0], [testingSubject pieValues][0], @"Default Graph data inaccurate.");
-    STAssertEqualObjects([UIColor moraLifeChoiceRed], [testingSubject pieColors][0], @"Default Graph Color inaccurate.");
+    XCTAssertEqualObjects([NSNumber numberWithFloat:360.0], [testingSubject pieValues][0], @"Default Graph data inaccurate.");
+    XCTAssertEqualObjects([UIColor moraLifeChoiceRed], [testingSubject pieColors][0], @"Default Graph Color inaccurate.");
 }
 
 /**
@@ -70,8 +70,8 @@ const int kGraphWidth = 240;
     [testingSubject setPieValues:testValues];
     [testingSubject setPieColors:testColors];
     
-    STAssertEqualObjects(pieValue1, [testingSubject pieValues][0], @"Graph data setter inaccurate.");
-    STAssertEqualObjects([UIColor blueColor], [testingSubject pieColors][0], @"Graph color setter inaccurate.");
+    XCTAssertEqualObjects(pieValue1, [testingSubject pieValues][0], @"Graph data setter inaccurate.");
+    XCTAssertEqualObjects([UIColor blueColor], [testingSubject pieColors][0], @"Graph color setter inaccurate.");
 
 
 }

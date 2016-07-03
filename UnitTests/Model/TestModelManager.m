@@ -11,7 +11,7 @@
 #import "ModelManager.h"
 #import "Moral.h"
 
-@interface TestModelManager : SenTestCase {
+@interface TestModelManager : XCTestCase {
     
     ModelManager *testingSubject;
         
@@ -56,7 +56,7 @@
         
     ModelManager *testingSubjectCreate = [[ModelManager alloc] initWithInMemoryStore:YES];
 
-    STAssertNotNil(testingSubjectCreate, @"ModelManager can't be created.");
+    XCTAssertNotNil(testingSubjectCreate, @"ModelManager can't be created.");
     
     
 }
@@ -65,11 +65,11 @@
 
     Moral *testMoral4 = [self createMoralWithName:@"nameMoral4" withType:moralTypeVirtue];
 
-    STAssertNoThrow([testingSubject saveContext], @"Object can't be created.");
+    XCTAssertNoThrow([testingSubject saveContext], @"Object can't be created.");
 
     NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
         
-    STAssertTrue([retrievedMorals containsObject:testMoral4], @"Created Object is not in the returned array.");
+    XCTAssertTrue([retrievedMorals containsObject:testMoral4], @"Created Object is not in the returned array.");
 
 }
 
@@ -77,21 +77,21 @@
         
     NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
 
-    STAssertNotNil(retrievedMorals, @"Objects can't be read.");
+    XCTAssertNotNil(retrievedMorals, @"Objects can't be read.");
     
     int count = [retrievedMorals count];
-    STAssertEquals(count, 3, @"The amount of NSManagedObjects is wrong.");
+    XCTAssertEqual(count, 3, @"The amount of NSManagedObjects is wrong.");
 }
 
 - (void)testAllReturnedNSManagedObjectsAreCorrect {
     
     NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
     
-    STAssertNotNil(retrievedMorals, @"Objects can't be read.");
+    XCTAssertNotNil(retrievedMorals, @"Objects can't be read.");
     
-    STAssertTrue([retrievedMorals containsObject:testMoral1], @"1st Object is not in the returned array.");
-    STAssertTrue([retrievedMorals containsObject:testMoral2], @"2nd Object is not in the returned array.");
-    STAssertTrue([retrievedMorals containsObject:testMoral3], @"3rd Object not in the returned array.");
+    XCTAssertTrue([retrievedMorals containsObject:testMoral1], @"1st Object is not in the returned array.");
+    XCTAssertTrue([retrievedMorals containsObject:testMoral2], @"2nd Object is not in the returned array.");
+    XCTAssertTrue([retrievedMorals containsObject:testMoral3], @"3rd Object not in the returned array.");
     
 }
 
@@ -100,7 +100,7 @@
     [testingSubject saveContext];
     
     NSArray *retrievedMorals = [testingSubject readAll:testMoral1.class];
-    STAssertFalse([retrievedMorals containsObject:testMoral3], @"Object was not deleted.");
+    XCTAssertFalse([retrievedMorals containsObject:testMoral3], @"Object was not deleted.");
 
 }
 

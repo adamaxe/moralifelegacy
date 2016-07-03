@@ -12,7 +12,7 @@
 
 @class ConscienceGradient;
 
-@interface TestConscienceGradient : SenTestCase {
+@interface TestConscienceGradient : XCTestCase {
     
     ConscienceGradient *testingSubject;
     
@@ -45,7 +45,7 @@
  */
 - (void)testConscienceGradientExists{
 
-    STAssertNotNil(testingSubject, @"The Conscience Path was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The Conscience Path was not init'ed.");
 }
 
 /**
@@ -53,10 +53,10 @@
  */
 - (void)testDefaultConscienceGradient{
 
-	STAssertEquals(2, [testingSubject locationsCount], @"Default locationsCount inaccurate.");
-	STAssertEquals(8, [testingSubject componentsCount], @"Default components count inaccurate.");
-	STAssertEquals(2, [testingSubject pointsCount], @"Default points count inaccurate.");
-	STAssertEqualObjects(@"", [testingSubject gradientID], @"Default gradient inaccurate.");
+	XCTAssertEqual(2, [testingSubject locationsCount], @"Default locationsCount inaccurate.");
+	XCTAssertEqual(8, [testingSubject componentsCount], @"Default components count inaccurate.");
+	XCTAssertEqual(2, [testingSubject pointsCount], @"Default points count inaccurate.");
+	XCTAssertEqualObjects(@"", [testingSubject gradientID], @"Default gradient inaccurate.");
 
 }
 
@@ -75,10 +75,10 @@
 	[testingSubject setComponentsCount:testComponentsCount];
 	[testingSubject setPointsCount:testPointsCount];
     
-	STAssertEquals(testLocationsCount, [testingSubject locationsCount], @"locationsCount setter/getter inaccurate.");
-	STAssertEquals(testComponentsCount, [testingSubject componentsCount], @"componentsCount setter/getter inaccurate.");
-	STAssertEquals(testPointsCount, [testingSubject pointsCount], @"pointsCount setter/getter inaccurate.");
-	STAssertEqualObjects(testGradientID, [testingSubject gradientID], @"gradientID setter/getter inaccurate.");
+	XCTAssertEqual(testLocationsCount, [testingSubject locationsCount], @"locationsCount setter/getter inaccurate.");
+	XCTAssertEqual(testComponentsCount, [testingSubject componentsCount], @"componentsCount setter/getter inaccurate.");
+	XCTAssertEqual(testPointsCount, [testingSubject pointsCount], @"pointsCount setter/getter inaccurate.");
+	XCTAssertEqualObjects(testGradientID, [testingSubject gradientID], @"gradientID setter/getter inaccurate.");
 
 }
 

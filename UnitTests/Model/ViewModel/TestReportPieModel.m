@@ -15,7 +15,7 @@
 #import "UserChoice.h"
 //#import "UIColor+Utility.h"
 
-@interface TestReportPieModel : SenTestCase {
+@interface TestReportPieModel : XCTestCase {
     
     ReportPieModel *testingSubject;
     ModelManager *testModelManager;
@@ -106,16 +106,16 @@
 
     ReportPieModel *testingSubjectCreate = [[ReportPieModel alloc] initWithModelManager:testModelManager];
 
-    STAssertNotNil(testingSubjectCreate, @"ReportPieModel can't be created.");
+    XCTAssertNotNil(testingSubjectCreate, @"ReportPieModel can't be created.");
 
     
 }
 
 - (void)testReportPieModelDefaultValuesAreSetCorrectly {
 
-    STAssertTrue(testingSubject.isGood, @"ReportPieModel isn't good by default");
-    STAssertFalse(testingSubject.isAlphabetical, @"ReportPieModel is alpha incorrectly by default");
-    STAssertFalse(testingSubject.isAscending, @"ReportPieModel is ascending incorrectly by default");
+    XCTAssertTrue(testingSubject.isGood, @"ReportPieModel isn't good by default");
+    XCTAssertFalse(testingSubject.isAlphabetical, @"ReportPieModel is alpha incorrectly by default");
+    XCTAssertFalse(testingSubject.isAscending, @"ReportPieModel is ascending incorrectly by default");
 
 }
 
@@ -125,7 +125,7 @@
 
     ReportPieModel *testingSubjectCreate = [[ReportPieModel alloc] initWithModelManager:testModelManagerCreate];
 
-    STAssertEqualObjects((testingSubjectCreate.reportNames)[0], @"No Moral Entries!", @"Empty Virtue name is incorrect");
+    XCTAssertEqualObjects((testingSubjectCreate.reportNames)[0], @"No Moral Entries!", @"Empty Virtue name is incorrect");
 
 
 }
@@ -137,7 +137,7 @@
 
     testingSubjectCreate.isGood = FALSE;
     
-    STAssertEqualObjects((testingSubjectCreate.reportNames)[0], @"No Immoral Entries!", @"Empty Vice name is incorrect");
+    XCTAssertEqualObjects((testingSubjectCreate.reportNames)[0], @"No Immoral Entries!", @"Empty Vice name is incorrect");
     
 }
 
@@ -268,11 +268,11 @@
 
         NSString *moralName = (testingSubject.moralNames)[i];
 
-        STAssertEqualObjects(moralName, expectedMorals[i], @"Moral Names are not in correct order");
+        XCTAssertEqualObjects(moralName, expectedMorals[i], @"Moral Names are not in correct order");
 
         NSString *imageName = [NSString stringWithFormat:@"%@imageName", moralName];
 
-        STAssertEqualObjects((testingSubject.moralImageNames)[moralName], imageName, @"Moral Image Names are not in correct order");
+        XCTAssertEqualObjects((testingSubject.moralImageNames)[moralName], imageName, @"Moral Image Names are not in correct order");
 
         /**< @TODO: Determine moral issue, then implement moralImageName tests */
 //        Moral *moral = [self readMoralWithName:moralName];
@@ -282,7 +282,7 @@
 
     for (int i = 0; i < testingSubject.pieValues.count; i++) {
 
-        STAssertEqualsWithAccuracy([(testingSubject.pieValues)[i] floatValue], [expectedValues[i] floatValue], 0,  @"Pie Values are not in correct order");
+        XCTAssertEqualWithAccuracy([(testingSubject.pieValues)[i] floatValue], [expectedValues[i] floatValue], 0,  @"Pie Values are not in correct order");
     }
 }
 

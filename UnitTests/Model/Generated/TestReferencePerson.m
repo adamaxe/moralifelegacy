@@ -4,7 +4,7 @@
 #import "ReferenceText.h"
 #import "ReferenceBelief.h"
 
-@interface TestReferencePerson: SenTestCase {
+@interface TestReferencePerson: XCTestCase {
     ModelManager *testModelManager;
     ReferencePerson *testPerson;
     ReferenceText *testText;    
@@ -63,61 +63,61 @@
 - (void)testPersonCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be created.");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be created.");
         
 }
 
 - (void)testPersonAccessorsAreFunctional {
     
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be created for Accessor test.");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be created for Accessor test.");
     
     NSArray *people = [testModelManager readAll:ReferencePerson.class];
     
-    STAssertEquals(people.count, (NSUInteger) 1, @"There should only be 1 ReferencePerson in the context.");
+    XCTAssertEqual(people.count, (NSUInteger) 1, @"There should only be 1 ReferencePerson in the context.");
     ReferencePerson *retrieved = people[0];
-    STAssertEqualObjects(retrieved.quotePerson, quote, @"quotePerson Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.deathYearPerson, originYear, @"deathYearPerson Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.quotePerson, quote, @"quotePerson Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.deathYearPerson, originYear, @"deathYearPerson Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
     
 }
 
 - (void)testPersonReferentialIntegrity {
     
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for RI test.");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for RI test.");
         
     testText.author = testPerson;
     testBelief.figurehead = testPerson;    
 
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text relationships can't be created for RI test.");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text relationships can't be created for RI test.");
         
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testPerson.belief = [NSSet setWithObject:testBelief];
 
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be updated for RI test.");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be updated for RI test.");
     
     NSArray *people = [testModelManager readAll:ReferencePerson.class];
-    STAssertEquals(people.count, (NSUInteger) 1, @"There should be 1 ReferencePeople in the context.");
+    XCTAssertEqual(people.count, (NSUInteger) 1, @"There should be 1 ReferencePeople in the context.");
     
     ReferencePerson *retrieved = people[0];
     
-    STAssertEqualObjects([retrieved.oeuvre anyObject], testText, @"oeuvre Relationship failed.");
-    STAssertEqualObjects([retrieved.belief anyObject], testBelief, @"belief Relationship failed.");
+    XCTAssertEqualObjects([retrieved.oeuvre anyObject], testText, @"oeuvre Relationship failed.");
+    XCTAssertEqualObjects([retrieved.belief anyObject], testBelief, @"belief Relationship failed.");
     
 }
 
 - (void)testPersonReferentialIntegrityUpdate {
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for RI Update test");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for RI Update test");
 
     testText.author = testPerson;
     testBelief.figurehead = testPerson;    
     
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief relationships can't be created for RI Update test");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief relationships can't be created for RI Update test");
     
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testPerson.belief = [NSSet setWithObject:testBelief];
@@ -127,28 +127,28 @@
     NSString *newBeliefName = @"New belief name";
     testBelief.nameReference = newBeliefName;
 
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be updated for RI Update test");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson can't be updated for RI Update test");
     
     NSArray *people = [testModelManager readAll:ReferencePerson.class];
     ReferencePerson *retrieved = people[0];
-    STAssertEqualObjects([[retrieved.oeuvre anyObject] nameReference], newOeuvreName, @"author RI update failed.");
-    STAssertEqualObjects([[retrieved.belief anyObject] nameReference], newBeliefName, @"belief RI update failed.");
+    XCTAssertEqualObjects([[retrieved.oeuvre anyObject] nameReference], newOeuvreName, @"author RI update failed.");
+    XCTAssertEqualObjects([[retrieved.belief anyObject] nameReference], newBeliefName, @"belief RI update failed.");
     
 }
 
 - (void)testPersonDeletion {
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testPerson], @"ReferencePerson can't be deleted");
+    XCTAssertNoThrow([testModelManager delete:testPerson], @"ReferencePerson can't be deleted");
     
     NSArray *people = [testModelManager readAll:ReferencePerson.class];
     
-    STAssertEquals(people.count, (NSUInteger) 0, @"ReferencePerson is still present after delete");
+    XCTAssertEqual(people.count, (NSUInteger) 0, @"ReferencePerson is still present after delete");
     
 }
 
 - (void)testPersonReferentialIntegrityDelete {
-    STAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for RI Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferencePerson/Belief/Text can't be created for RI Delete test");
     
     testText.author = testPerson;
     testBelief.figurehead = testPerson;    
@@ -156,15 +156,15 @@
     testPerson.oeuvre = [NSSet setWithObject:testText];
     testPerson.belief = [NSSet setWithObject:testBelief];    
     
-    STAssertNoThrow([testModelManager saveContext], @"ReferenceTexts/Belief relationships can't be created for RI Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"ReferenceTexts/Belief relationships can't be created for RI Delete test");
     
-    STAssertNoThrow([testModelManager delete:testPerson], @"ReferencePerson can't be deleted");
+    XCTAssertNoThrow([testModelManager delete:testPerson], @"ReferencePerson can't be deleted");
     
     NSArray *beliefs = [testModelManager readAll:ReferenceBelief.class];
     NSArray *texts = [testModelManager readAll:ReferenceText.class];
     
-    STAssertEquals(beliefs.count, (NSUInteger) 1, @"ReferenceBelief should not have been cascade deleted");
-    STAssertEquals(texts.count, (NSUInteger) 1, @"ReferenceText should not have been cascade deleted");
+    XCTAssertEqual(beliefs.count, (NSUInteger) 1, @"ReferenceBelief should not have been cascade deleted");
+    XCTAssertEqual(texts.count, (NSUInteger) 1, @"ReferenceText should not have been cascade deleted");
     
 }
 

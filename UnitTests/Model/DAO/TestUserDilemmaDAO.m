@@ -1,7 +1,7 @@
 #import "ModelManager.h"
 #import "UserDilemmaDAO.h"
 
-@interface TestUserDilemmaDAO: SenTestCase {
+@interface TestUserDilemmaDAO: XCTestCase {
     ModelManager *testModelManager;
 
     UserDilemmaDAO *testingSubject;
@@ -69,20 +69,20 @@
 }
 
 - (void)testUserDilemmaDAOAllTypeCanBeCreated {
-    STAssertNotNil(testingSubject, @"UserDilemmaDAO All type can't be created.");
+    XCTAssertNotNil(testingSubject, @"UserDilemmaDAO All type can't be created.");
 }
 
 - (void)testUserDilemmaDAORead {
         
     UserDilemma *testDilemma = [testingSubject read:keyDilemma1];
-    STAssertEqualObjects(testDilemma, testUserDilemma1, @"UserDilemmaDAO All not populated with Dilemma 1.");    
+    XCTAssertEqualObjects(testDilemma, testUserDilemma1, @"UserDilemmaDAO All not populated with Dilemma 1.");    
 }
 
 - (void)testUserDilemmaDAOCanBeCreated {
     
     UserDilemma *testUserDilemma = [testingSubject create];
         
-    STAssertNotNil(testUserDilemma, @"UserDilemmaDAO wasn't able to create.");
+    XCTAssertNotNil(testUserDilemma, @"UserDilemmaDAO wasn't able to create.");
     
     NSString *keyDilemma3 = @"keyDilemma3";
     
@@ -94,7 +94,7 @@
     testUserDilemma.entryCreationDate = entryCreationDate;
         
     UserDilemma *testDilemmaVerify = [testingSubject read:keyDilemma3];
-    STAssertEqualObjects(testUserDilemma, testDilemmaVerify, @"UserDilemmaDAO not populated with Dilemma 1.");
+    XCTAssertEqualObjects(testUserDilemma, testDilemmaVerify, @"UserDilemmaDAO not populated with Dilemma 1.");
 }
 
 - (void)testUserDilemmaDAOCanBeUpdated {
@@ -103,15 +103,15 @@
     testUserDilemma2.entryShortDescription = newShortDescription;
         
     UserDilemma *testDilemmaVerify = [testingSubject read:keyDilemma2];
-    STAssertEqualObjects(testUserDilemma2.entryShortDescription, testDilemmaVerify.entryShortDescription, @"UserDilemmaDAO All not populated with Dilemma 2.");    
+    XCTAssertEqualObjects(testUserDilemma2.entryShortDescription, testDilemmaVerify.entryShortDescription, @"UserDilemmaDAO All not populated with Dilemma 2.");    
     
 }
 
 - (void)testUserDilemmaDAOReadAll {
             
     NSArray *allDilemmas = [testingSubject readAll];
-    STAssertTrue([allDilemmas containsObject:testUserDilemma1], @"UserDilemmaDAO All not populated with Dilemma 1.");
-    STAssertTrue([allDilemmas containsObject:testUserDilemma2], @"UserDilemmaDAO All not populated with Dilemma 2.");
+    XCTAssertTrue([allDilemmas containsObject:testUserDilemma1], @"UserDilemmaDAO All not populated with Dilemma 1.");
+    XCTAssertTrue([allDilemmas containsObject:testUserDilemma2], @"UserDilemmaDAO All not populated with Dilemma 2.");
 }
 
 //- (void)testUserDilemmaDAOCanBeDeleted {
