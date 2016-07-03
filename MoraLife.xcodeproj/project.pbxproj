@@ -11,49 +11,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		4951737C1D261028009FEAFA /* TestCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A415B6575400B759F6 /* TestCharacterDAO.m */; };
-		4951737D1D261028009FEAFA /* TestConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */; };
-		4951737E1D261028009FEAFA /* TestDilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A215B652CC00B759F6 /* TestDilemmaDAO.m */; };
-		4951737F1D261028009FEAFA /* TestMoralDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5761401595975600E14606 /* TestMoralDAO.m */; };
-		495173801D261028009FEAFA /* TestReferenceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59A15B64A9D00B759F6 /* TestReferenceAssetDAO.m */; };
-		495173811D261028009FEAFA /* TestReferenceBeliefDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */; };
-		495173821D261028009FEAFA /* TestReferencePersonDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */; };
-		495173831D261028009FEAFA /* TestReferenceTextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */; };
-		495173841D261028009FEAFA /* TestUserCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */; };
-		495173851D261028009FEAFA /* TestUserChoiceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930415B78AED009F13ED /* TestUserChoiceDAO.m */; };
-		495173861D261028009FEAFA /* TestUserCollectableDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */; };
-		495173871D261028009FEAFA /* TestUserDilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930215B787DB009F13ED /* TestUserDilemmaDAO.m */; };
-		495173881D26102C009FEAFA /* TestConscienceHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5A613C542DC001F5CB8 /* TestConscienceHelpViewController.m */; };
-		495173891D261031009FEAFA /* TestCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DE154F8EE8008A7936 /* TestCharacter.m */; };
-		4951738A1D261031009FEAFA /* TestConscienceAsset.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC824154E17E50051D494 /* TestConscienceAsset.m */; };
-		4951738B1D261031009FEAFA /* TestDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E071E641550CBE9009A5357 /* TestDilemma.m */; };
-		4951738C1D261031009FEAFA /* TestMoral.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE1F1551AC9A00DBDE6E /* TestMoral.m */; };
-		4951738D1D261031009FEAFA /* TestReferenceBelief.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */; };
-		4951738E1D261031009FEAFA /* TestReferencePerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC822154E0FB60051D494 /* TestReferencePerson.m */; };
-		4951738F1D261031009FEAFA /* TestReferenceText.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7FC820154DDFF80051D494 /* TestReferenceText.m */; };
-		495173901D261031009FEAFA /* TestUserCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DC154F8848008A7936 /* TestUserCharacter.m */; };
-		495173911D261031009FEAFA /* TestUserChoice.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2115521A0600DBDE6E /* TestUserChoice.m */; };
-		495173921D261031009FEAFA /* TestUserCollectable.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DA154E3234008A7936 /* TestUserCollectable.m */; };
-		495173931D261031009FEAFA /* TestUserDilemma.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E1ACE2315523C1800DBDE6E /* TestUserDilemma.m */; };
-		495173941D261037009FEAFA /* TestChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */; };
-		495173951D261037009FEAFA /* TestDilemmaListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E48489416D3326700B9F66A /* TestDilemmaListModel.m */; };
-		495173961D261037009FEAFA /* TestReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */; };
-		495173971D261037009FEAFA /* TestHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED04411171B8C9D0044EABF /* TestHomeModel.m */; };
-		495173981D261037009FEAFA /* TestReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */; };
-		495173991D261048009FEAFA /* TestConscienceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */; };
-		4951739A1D261048009FEAFA /* TestModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA26D7215843DB600CDA802 /* TestModelManager.m */; };
-		4951739B1D261048009FEAFA /* TestConsciencePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */; };
-		4951739C1D261048009FEAFA /* TestConscienceBubbleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266044156C5D72007DF236 /* TestConscienceBubbleFactory.m */; };
-		4951739D1D261048009FEAFA /* TestConscienceAccessories.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E26605F156C6538007DF236 /* TestConscienceAccessories.m */; };
-		4951739E1D261048009FEAFA /* TestConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266062156C6DCB007DF236 /* TestConscienceMind.m */; };
-		4951739F1D261048009FEAFA /* TestConscienceBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266064156C70FA007DF236 /* TestConscienceBody.m */; };
-		495173A01D261048009FEAFA /* TestConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266066156C79BF007DF236 /* TestConscienceGradient.m */; };
-		495173A11D261050009FEAFA /* TestGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0C33913F2529F0093FCA6 /* TestGraphView.m */; };
-		495173A21D261050009FEAFA /* TestAccessoryObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AF13C542F5001F5CB8 /* TestAccessoryObjectView.m */; };
-		495173A31D261050009FEAFA /* TestConscienceBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5B113C542F5001F5CB8 /* TestConscienceBubbleView.m */; };
-		495173A41D261050009FEAFA /* TestConscienceObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5B313C542F5001F5CB8 /* TestConscienceObjectView.m */; };
-		495173A51D261075009FEAFA /* TestModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E194A13172CE5BE00348D2D /* TestModelHelper.m */; };
-		495173A61D2612CF009FEAFA /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9D161315E31E9A003AC018 /* libOCMock.a */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
@@ -1657,7 +1614,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		495173761D261012009FEAFA /* PBXContainerItemProxy */ = {
+		495173B01D2974F6009FEAFA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
@@ -1673,7 +1630,7 @@
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* MoraLife_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoraLife_Prefix.pch; sourceTree = "<group>"; };
-		495173711D261011009FEAFA /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		495173AB1D2974F6009FEAFA /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E02EC5911FE65B100F159B4 /* ConscienceMind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceMind.h; path = Model/ConscienceMind.h; sourceTree = "<group>"; };
 		5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceMind.m; path = Model/ConscienceMind.m; sourceTree = "<group>"; };
 		5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-marktwain-sm.png"; path = "Resources/images/reference/ref-marktwain-sm.png"; sourceTree = "<group>"; };
@@ -3447,11 +3404,10 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4951736E1D261011009FEAFA /* Frameworks */ = {
+		495173A81D2974F6009FEAFA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				495173A61D2612CF009FEAFA /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3475,7 +3431,7 @@
 			isa = PBXGroup;
 			children = (
 				5E5181F911F354BC00F9DDB2 /* MoraLife.app */,
-				495173711D261011009FEAFA /* UnitTests.xctest */,
+				495173AB1D2974F6009FEAFA /* UnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -5535,22 +5491,22 @@
 			productReference = 5E5181F911F354BC00F9DDB2 /* MoraLife.app */;
 			productType = "com.apple.product-type.application";
 		};
-		495173701D261011009FEAFA /* UnitTests */ = {
+		495173AA1D2974F6009FEAFA /* UnitTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4951737B1D261012009FEAFA /* Build configuration list for PBXNativeTarget "UnitTests" */;
+			buildConfigurationList = 495173B21D2974F6009FEAFA /* Build configuration list for PBXNativeTarget "UnitTests" */;
 			buildPhases = (
-				4951736D1D261011009FEAFA /* Sources */,
-				4951736E1D261011009FEAFA /* Frameworks */,
-				4951736F1D261011009FEAFA /* Resources */,
+				495173A71D2974F6009FEAFA /* Sources */,
+				495173A81D2974F6009FEAFA /* Frameworks */,
+				495173A91D2974F6009FEAFA /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				495173771D261012009FEAFA /* PBXTargetDependency */,
+				495173B11D2974F6009FEAFA /* PBXTargetDependency */,
 			);
 			name = UnitTests;
 			productName = UnitTests;
-			productReference = 495173711D261011009FEAFA /* UnitTests.xctest */;
+			productReference = 495173AB1D2974F6009FEAFA /* UnitTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -5564,7 +5520,7 @@
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = XSXV6ZV2MM;
 					};
-					495173701D261011009FEAFA = {
+					495173AA1D2974F6009FEAFA = {
 						CreatedOnToolsVersion = 7.3.1;
 						TestTargetID = 1D6058900D05DD3D006BFB54;
 					};
@@ -5586,7 +5542,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* MoraLife */,
-				495173701D261011009FEAFA /* UnitTests */,
+				495173AA1D2974F6009FEAFA /* UnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -7113,7 +7069,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4951736F1D261011009FEAFA /* Resources */ = {
+		495173A91D2974F6009FEAFA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -7214,62 +7170,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4951736D1D261011009FEAFA /* Sources */ = {
+		495173A71D2974F6009FEAFA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				495173861D261028009FEAFA /* TestUserCollectableDAO.m in Sources */,
-				495173831D261028009FEAFA /* TestReferenceTextDAO.m in Sources */,
-				4951737E1D261028009FEAFA /* TestDilemmaDAO.m in Sources */,
-				495173931D261031009FEAFA /* TestUserDilemma.m in Sources */,
-				4951739C1D261048009FEAFA /* TestConscienceBubbleFactory.m in Sources */,
-				4951739D1D261048009FEAFA /* TestConscienceAccessories.m in Sources */,
-				495173881D26102C009FEAFA /* TestConscienceHelpViewController.m in Sources */,
-				495173941D261037009FEAFA /* TestChoiceHistoryModel.m in Sources */,
-				4951738F1D261031009FEAFA /* TestReferenceText.m in Sources */,
-				495173851D261028009FEAFA /* TestUserChoiceDAO.m in Sources */,
-				495173991D261048009FEAFA /* TestConscienceLayer.m in Sources */,
-				4951737C1D261028009FEAFA /* TestCharacterDAO.m in Sources */,
-				495173871D261028009FEAFA /* TestUserDilemmaDAO.m in Sources */,
-				495173921D261031009FEAFA /* TestUserCollectable.m in Sources */,
-				4951737F1D261028009FEAFA /* TestMoralDAO.m in Sources */,
-				4951738D1D261031009FEAFA /* TestReferenceBelief.m in Sources */,
-				495173A31D261050009FEAFA /* TestConscienceBubbleView.m in Sources */,
-				495173A11D261050009FEAFA /* TestGraphView.m in Sources */,
-				495173A41D261050009FEAFA /* TestConscienceObjectView.m in Sources */,
-				4951739E1D261048009FEAFA /* TestConscienceMind.m in Sources */,
-				4951737D1D261028009FEAFA /* TestConscienceAssetDAO.m in Sources */,
-				4951739B1D261048009FEAFA /* TestConsciencePath.m in Sources */,
-				495173901D261031009FEAFA /* TestUserCharacter.m in Sources */,
-				4951738A1D261031009FEAFA /* TestConscienceAsset.m in Sources */,
-				495173821D261028009FEAFA /* TestReferencePersonDAO.m in Sources */,
-				495173841D261028009FEAFA /* TestUserCharacterDAO.m in Sources */,
-				495173951D261037009FEAFA /* TestDilemmaListModel.m in Sources */,
-				495173971D261037009FEAFA /* TestHomeModel.m in Sources */,
-				495173891D261031009FEAFA /* TestCharacter.m in Sources */,
-				4951739F1D261048009FEAFA /* TestConscienceBody.m in Sources */,
-				495173981D261037009FEAFA /* TestReportPieModel.m in Sources */,
-				495173811D261028009FEAFA /* TestReferenceBeliefDAO.m in Sources */,
-				4951739A1D261048009FEAFA /* TestModelManager.m in Sources */,
-				4951738C1D261031009FEAFA /* TestMoral.m in Sources */,
-				495173961D261037009FEAFA /* TestReferenceModel.m in Sources */,
-				495173A21D261050009FEAFA /* TestAccessoryObjectView.m in Sources */,
-				495173801D261028009FEAFA /* TestReferenceAssetDAO.m in Sources */,
-				495173911D261031009FEAFA /* TestUserChoice.m in Sources */,
-				4951738E1D261031009FEAFA /* TestReferencePerson.m in Sources */,
-				495173A51D261075009FEAFA /* TestModelHelper.m in Sources */,
-				4951738B1D261031009FEAFA /* TestDilemma.m in Sources */,
-				495173A01D261048009FEAFA /* TestConscienceGradient.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		495173771D261012009FEAFA /* PBXTargetDependency */ = {
+		495173B11D2974F6009FEAFA /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 1D6058900D05DD3D006BFB54 /* MoraLife */;
-			targetProxy = 495173761D261012009FEAFA /* PBXContainerItemProxy */;
+			targetProxy = 495173B01D2974F6009FEAFA /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -7298,6 +7212,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7321,6 +7236,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7337,7 +7253,7 @@
 			};
 			name = Release;
 		};
-		495173781D261012009FEAFA /* Debug */ = {
+		495173B31D2974F6009FEAFA /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -7360,7 +7276,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -7371,24 +7286,18 @@
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/UnitTests/Libraries/**";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/UnitTests/Libraries/**",
-				);
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoraLife.app/MoraLife";
 			};
 			name = Debug;
 		};
-		495173791D261012009FEAFA /* Release */ = {
+		495173B41D2974F6009FEAFA /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -7410,30 +7319,23 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/UnitTests/Libraries/**";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/UnitTests/Libraries/**",
-				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoraLife.app/MoraLife";
 			};
 			name = Release;
 		};
-		4951737A1D261012009FEAFA /* Ad Hoc Distribution */ = {
+		495173B51D2974F6009FEAFA /* Ad Hoc Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -7455,23 +7357,16 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/UnitTests/Libraries/**";
 				INFOPLIST_FILE = "UnitTests/UnitTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/UnitTests/Libraries/**",
-				);
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.UnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoraLife.app/MoraLife";
@@ -7515,6 +7410,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7610,14 +7506,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4951737B1D261012009FEAFA /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
+		495173B21D2974F6009FEAFA /* Build configuration list for PBXNativeTarget "UnitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				495173781D261012009FEAFA /* Debug */,
-				495173791D261012009FEAFA /* Release */,
-				4951737A1D261012009FEAFA /* Ad Hoc Distribution */,
+				495173B31D2974F6009FEAFA /* Debug */,
+				495173B41D2974F6009FEAFA /* Release */,
+				495173B51D2974F6009FEAFA /* Ad Hoc Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "MoraLife" */ = {
 			isa = XCConfigurationList;
