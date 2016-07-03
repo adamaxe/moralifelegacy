@@ -15,7 +15,7 @@
 #import "UserChoice.h"
 #import "OCMock/OCMock.h"
 
-@interface TestChoiceHistoryModel : SenTestCase {
+@interface TestChoiceHistoryModel : XCTestCase {
     
     ChoiceHistoryModel *testingSubject;
     ModelManager *testModelManager;
@@ -148,15 +148,15 @@
 
     ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock];
 
-    STAssertNotNil(testingSubjectCreate, @"ChoiceHistoryModel can't be created.");
+    XCTAssertNotNil(testingSubjectCreate, @"ChoiceHistoryModel can't be created.");
 
     
 }
 
 - (void)testChoiceHistoryModelDefaultValuesAreSetCorrectly {
 
-    STAssertTrue([testingSubject.choiceType isEqualToString:@""], @"ChoiceHistoryModel isn't good by default");
-    STAssertFalse(testingSubject.isAscending, @"ChoiceHistoryModel is ascending incorrectly by default");
+    XCTAssertTrue([testingSubject.choiceType isEqualToString:@""], @"ChoiceHistoryModel isn't good by default");
+    XCTAssertFalse(testingSubject.isAscending, @"ChoiceHistoryModel is ascending incorrectly by default");
 
 }
 
@@ -166,11 +166,11 @@
 
     ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
 
-    STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"ChoicesAreGood are not empty");
-    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"ChoiceKeys are not empty");
-    STAssertTrue(testingSubjectCreate.details.count == 0, @"Details are not empty");
-    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Icons are not empty");
+    XCTAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
+    XCTAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"ChoicesAreGood are not empty");
+    XCTAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"ChoiceKeys are not empty");
+    XCTAssertTrue(testingSubjectCreate.details.count == 0, @"Details are not empty");
+    XCTAssertTrue(testingSubjectCreate.icons.count == 0, @"Icons are not empty");
 
 
 }
@@ -321,16 +321,16 @@
 
     UserChoice *choiceDilemma = [TestModelHelper createUserEntryWithName:dilemmaName withMoral:virtue1 andSeverity:virtue1Severity andShortDescription:moralChoice1Short andLongDescription:moralChoice1Long andWeight:1.0 withModelManager:testModelManagerCreate];
 
-    STAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
+    XCTAssertNotNil(choiceDilemma, @"Dilemma-based choice was unable to be created.");
 
     ChoiceHistoryModel *testingSubjectCreate = [[ChoiceHistoryModel alloc] initWithModelManager:testModelManagerCreate andDefaults:userDefaultsMock];
 
 
-    STAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
-    STAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
+    XCTAssertTrue(testingSubjectCreate.choices.count == 0, @"Choices are not empty");
+    XCTAssertTrue(testingSubjectCreate.choicesAreGood.count == 0, @"Choices are not empty");
+    XCTAssertTrue(testingSubjectCreate.choiceKeys.count == 0, @"Choices are not empty");
+    XCTAssertTrue(testingSubjectCreate.details.count == 0, @"Choices are not empty");
+    XCTAssertTrue(testingSubjectCreate.icons.count == 0, @"Choices are not empty");
 
 }
 
@@ -397,9 +397,9 @@
     for (int i = 0; i < testingSubject.choices.count; i++) {
 
         UserChoice *expectedUserChoice = expectedChoices[i];
-        STAssertEqualObjects((testingSubject.choices)[i], expectedUserChoice.entryShortDescription, @"Choice shortDescriptions are not in correct order");
-        STAssertEqualObjects((testingSubject.choicesAreGood)[i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
-        STAssertEqualObjects((testingSubject.choiceKeys)[i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
+        XCTAssertEqualObjects((testingSubject.choices)[i], expectedUserChoice.entryShortDescription, @"Choice shortDescriptions are not in correct order");
+        XCTAssertEqualObjects((testingSubject.choicesAreGood)[i], expectedUserChoice.entryIsGood, @"Choice types are not in correct order");
+        XCTAssertEqualObjects((testingSubject.choiceKeys)[i], expectedUserChoice.entryKey, @"Choice keys are not in correct order");
 
         /**< @TODO: figure out why moral creation crashes, then implement details and icon tests */
 //        Moral *expectedMoral = [self readMoralWithName:expectedUserChoice.choiceMoral];

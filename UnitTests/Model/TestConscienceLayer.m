@@ -17,7 +17,7 @@
 
 @class ConscienceLayer;
 
-@interface TestConscienceLayer : SenTestCase {
+@interface TestConscienceLayer : XCTestCase {
     
     ConscienceLayer *testingSubject;
     
@@ -48,7 +48,7 @@
  */
 - (void)testConscienceLayerExists{
 
-    STAssertNotNil(testingSubject, @"The Conscience Layer was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The Conscience Layer was not init'ed.");
 }
 
 /**
@@ -58,12 +58,12 @@
 
     int count = [[testingSubject consciencePaths] count];
     
-	STAssertEquals(0, count, @"Default empty paths array inaccurate.");
-	STAssertEquals(MLFeatureOffsetX, [testingSubject offsetX], @"Default feature offset X inaccurate.");
-	STAssertEquals(MLFeatureOffsetY, [testingSubject offsetY], @"Default feature offset Y inaccurate.");
-	STAssertEqualObjects(MLPathColorDefault, [testingSubject currentFillColor], @"Default fill color inaccurate.");
-	STAssertEqualObjects(MLPathColorDefault, [testingSubject currentStrokeColor], @"Default stroke color inaccurate.");
-	STAssertEqualObjects(@"", [testingSubject layerID], @"Default layer ID inaccurate.");
+	XCTAssertEqual(0, count, @"Default empty paths array inaccurate.");
+	XCTAssertEqual(MLFeatureOffsetX, [testingSubject offsetX], @"Default feature offset X inaccurate.");
+	XCTAssertEqual(MLFeatureOffsetY, [testingSubject offsetY], @"Default feature offset Y inaccurate.");
+	XCTAssertEqualObjects(MLPathColorDefault, [testingSubject currentFillColor], @"Default fill color inaccurate.");
+	XCTAssertEqualObjects(MLPathColorDefault, [testingSubject currentStrokeColor], @"Default stroke color inaccurate.");
+	XCTAssertEqualObjects(@"", [testingSubject layerID], @"Default layer ID inaccurate.");
 
 }
 
@@ -92,12 +92,12 @@
 
     int count = [[testingSubject consciencePaths] count];
     
-	STAssertEquals(1, count, @"consciencePaths setter/getter inaccurate.");
-	STAssertEquals(testXOffset, [testingSubject offsetX], @"feature offset X setter/getter inaccurate.");
-	STAssertEquals(testYOffset, [testingSubject offsetY], @"feature offset Y setter/getter inaccurate.");
-	STAssertEqualObjects(testFillColor, [testingSubject currentFillColor], @"fill color setter/getter inaccurate.");
-	STAssertEqualObjects(testStrokeColor, [testingSubject currentStrokeColor], @"stroke color setter/getter inaccurate.");
-	STAssertEqualObjects(testID, [testingSubject layerID], @"layerID setter/getter inaccurate.");
+	XCTAssertEqual(1, count, @"consciencePaths setter/getter inaccurate.");
+	XCTAssertEqual(testXOffset, [testingSubject offsetX], @"feature offset X setter/getter inaccurate.");
+	XCTAssertEqual(testYOffset, [testingSubject offsetY], @"feature offset Y setter/getter inaccurate.");
+	XCTAssertEqualObjects(testFillColor, [testingSubject currentFillColor], @"fill color setter/getter inaccurate.");
+	XCTAssertEqualObjects(testStrokeColor, [testingSubject currentStrokeColor], @"stroke color setter/getter inaccurate.");
+	XCTAssertEqualObjects(testID, [testingSubject layerID], @"layerID setter/getter inaccurate.");
 
 
 }

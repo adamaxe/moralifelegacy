@@ -12,7 +12,7 @@
 
 #import "ConscienceBody.h"
 
-@interface TestConscienceBody : SenTestCase {
+@interface TestConscienceBody : XCTestCase {
     
     ConscienceBody *testingSubject;
     
@@ -45,7 +45,7 @@
  */
 - (void)testConscienceBodyExists{
 
-    STAssertNotNil(testingSubject, @"The Conscience Body was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The Conscience Body was not init'ed.");
 }
 
 /**
@@ -53,14 +53,14 @@
  */
 - (void)testDefaultConscienceBody{
     
-	STAssertEquals(MLConscienceAgeDefault, [testingSubject age], @"Default ConscienceAge inaccurate.");
-	STAssertEquals(MLConscienceSizeDefault, [testingSubject size], @"Default ConscienceSize inaccurate.");
-	STAssertEquals(MLBubbleTypeDefault, [testingSubject bubbleType], @"Default BubbleType inaccurate.");
-	STAssertEqualObjects(MLBubbleColorDefault, [testingSubject bubbleColor], @"Default BubbleColor inaccurate.");
-	STAssertEqualObjects(MLConscienceBrowColorDefault, [testingSubject browColor], @"Default BrowColor inaccurate.");
-    STAssertEqualObjects(MLConscienceEyeColorDefault, [testingSubject eyeColor], @"Default EyeColor inaccurate.");
-    STAssertEqualObjects(MLSymbolFileNameResourceDefault, [testingSubject symbolName], @"Default SymbolName inaccurate.");
-    STAssertEqualObjects(MLEyeFileNameResourceDefault, [testingSubject eyeName], @"Default EyeName inaccurate.");
+	XCTAssertEqual(MLConscienceAgeDefault, [testingSubject age], @"Default ConscienceAge inaccurate.");
+	XCTAssertEqual(MLConscienceSizeDefault, [testingSubject size], @"Default ConscienceSize inaccurate.");
+	XCTAssertEqual(MLBubbleTypeDefault, [testingSubject bubbleType], @"Default BubbleType inaccurate.");
+	XCTAssertEqualObjects(MLBubbleColorDefault, [testingSubject bubbleColor], @"Default BubbleColor inaccurate.");
+	XCTAssertEqualObjects(MLConscienceBrowColorDefault, [testingSubject browColor], @"Default BrowColor inaccurate.");
+    XCTAssertEqualObjects(MLConscienceEyeColorDefault, [testingSubject eyeColor], @"Default EyeColor inaccurate.");
+    XCTAssertEqualObjects(MLSymbolFileNameResourceDefault, [testingSubject symbolName], @"Default SymbolName inaccurate.");
+    XCTAssertEqualObjects(MLEyeFileNameResourceDefault, [testingSubject eyeName], @"Default EyeName inaccurate.");
 }
 
 /**
@@ -90,15 +90,15 @@
     [testingSubject setAge:testAge];
     [testingSubject setSize:testSize];
     
-    STAssertEquals(testSize, [testingSubject size], @"size setter/getter inaccurate.");
-	STAssertEquals(testAge, [testingSubject age], @"age setter/getter inaccurate.");
-	STAssertEquals(testBubbleType, [testingSubject bubbleType], @"bubbleType setter/getter inaccurate.");
-	STAssertEqualObjects(testEyeFileName, [testingSubject eyeName], @"eyeName setter/getter inaccurate.");
-	STAssertEqualObjects(testMouthFileName, [testingSubject mouthName], @"mouthName setter/getter inaccurate.");
-	STAssertEqualObjects(testSymbolFileName, [testingSubject symbolName], @"symbolName setter/getter inaccurate.");
-	STAssertEqualObjects(testEyeColor, [testingSubject eyeColor], @"eyeColor setter/getter inaccurate.");    
-	STAssertEqualObjects(testBrowColor, [testingSubject browColor], @"browColor setter/getter inaccurate.");    
-	STAssertEqualObjects(testBubbleColor, [testingSubject bubbleColor], @"bubbleColor setter/getter inaccurate.");    
+    XCTAssertEqual(testSize, [testingSubject size], @"size setter/getter inaccurate.");
+	XCTAssertEqual(testAge, [testingSubject age], @"age setter/getter inaccurate.");
+	XCTAssertEqual(testBubbleType, [testingSubject bubbleType], @"bubbleType setter/getter inaccurate.");
+	XCTAssertEqualObjects(testEyeFileName, [testingSubject eyeName], @"eyeName setter/getter inaccurate.");
+	XCTAssertEqualObjects(testMouthFileName, [testingSubject mouthName], @"mouthName setter/getter inaccurate.");
+	XCTAssertEqualObjects(testSymbolFileName, [testingSubject symbolName], @"symbolName setter/getter inaccurate.");
+	XCTAssertEqualObjects(testEyeColor, [testingSubject eyeColor], @"eyeColor setter/getter inaccurate.");    
+	XCTAssertEqualObjects(testBrowColor, [testingSubject browColor], @"browColor setter/getter inaccurate.");    
+	XCTAssertEqualObjects(testBubbleColor, [testingSubject bubbleColor], @"bubbleColor setter/getter inaccurate.");    
 }
 
 @end

@@ -12,7 +12,7 @@
 #import "MoraLifeAppDelegate.h"
 @class ConscienceHelpViewController;
 
-@interface TestConscienceHelpViewController : SenTestCase {
+@interface TestConscienceHelpViewController : XCTestCase {
     
     MoraLifeAppDelegate *delegate;
     ConscienceHelpViewController *testingSubject;

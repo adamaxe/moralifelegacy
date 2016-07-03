@@ -12,7 +12,7 @@
 
 #import "AccessoryObjectView.h"
 
-@interface TestAccessoryObjectView : SenTestCase {
+@interface TestAccessoryObjectView : XCTestCase {
     
     AccessoryObjectView *testingSubject;
     
@@ -44,7 +44,7 @@
  */
 - (void)testAccessoryExists{
 
-    STAssertNotNil(testingSubject, @"The accessory was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The accessory was not init'ed.");
 }
 
 /**
@@ -52,7 +52,7 @@
  */
 - (void)testDefaultAccessory{
 
-    STAssertEqualObjects(MLAccessoryFileNameResourceDefault, [testingSubject accessoryFilename], @"Default accessory name inaccurate.");
+    XCTAssertEqualObjects(MLAccessoryFileNameResourceDefault, [testingSubject accessoryFilename], @"Default accessory name inaccurate.");
 }
 
 /**
@@ -64,7 +64,7 @@
     
     [testingSubject setAccessoryFilename:testFilename];
     
-    STAssertEqualObjects(testFilename, [testingSubject accessoryFilename], @"Filename setter/getter inaccurate.");
+    XCTAssertEqualObjects(testFilename, [testingSubject accessoryFilename], @"Filename setter/getter inaccurate.");
 }
 
 @end

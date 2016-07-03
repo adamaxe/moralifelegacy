@@ -12,7 +12,7 @@
 
 #import "ConscienceMind.h"
 
-@interface TestConscienceMind : SenTestCase {
+@interface TestConscienceMind : XCTestCase {
     
     ConscienceMind *testingSubject;
     
@@ -45,7 +45,7 @@
  */
 - (void)testConscienceMindExists{
 
-    STAssertNotNil(testingSubject, @"The Conscience Path was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The Conscience Path was not init'ed.");
 }
 
 /**
@@ -53,8 +53,8 @@
  */
 - (void)testDefaultConscienceMind{
     
-	STAssertEquals(MLConscienceMoodDefault, [testingSubject mood], @"Default mood inaccurate.");
-	STAssertEquals(MLConscienceEnthusiasmDefault, [testingSubject enthusiasm], @"Default enthusiasm inaccurate.");
+	XCTAssertEqual(MLConscienceMoodDefault, [testingSubject mood], @"Default mood inaccurate.");
+	XCTAssertEqual(MLConscienceEnthusiasmDefault, [testingSubject enthusiasm], @"Default enthusiasm inaccurate.");
 
 }
 
@@ -69,8 +69,8 @@
 	[testingSubject setMood:testMood];
 	[testingSubject setEnthusiasm:testEnthusiasm];
         
-	STAssertEquals(testMood, [testingSubject mood], @"Mood setter/getter inaccurate.");
-	STAssertEquals(testEnthusiasm, [testingSubject enthusiasm], @"Enthusiasm setter/getter inaccurate.");
+	XCTAssertEqual(testMood, [testingSubject mood], @"Mood setter/getter inaccurate.");
+	XCTAssertEqual(testEnthusiasm, [testingSubject enthusiasm], @"Enthusiasm setter/getter inaccurate.");
 }
 
 @end

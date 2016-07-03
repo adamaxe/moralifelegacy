@@ -2,7 +2,7 @@
 #import "TestModelHelper.h"
 #import "CharacterDAO.h"
 
-@interface TestCharacterDAO: SenTestCase {
+@interface TestCharacterDAO: XCTestCase {
     ModelManager *testModelManager;
 
     CharacterDAO *testingSubject;
@@ -43,32 +43,32 @@
 }
 
 - (void)testCharacterDAOAllTypeCanBeCreated {
-    STAssertNotNil(testingSubject, @"CharacterDAO All type can't be created.");
+    XCTAssertNotNil(testingSubject, @"CharacterDAO All type can't be created.");
 }
 
 - (void)testCharacterDAORead {
         
     Character *testCharacter = [testingSubject read:nameCharacter1];
-    STAssertEqualObjects(testCharacter, testCharacter1, @"CharacterDAO All not populated with Character 1.");    
+    XCTAssertEqualObjects(testCharacter, testCharacter1, @"CharacterDAO All not populated with Character 1.");    
 }
 
 - (void)testCharacterDAOCreateFailsCorrectly {
     
     id testCharacter = [testingSubject createObject];
-    STAssertNil(testCharacter, @"CharacterDAO was able to create incorrectly.");    
+    XCTAssertNil(testCharacter, @"CharacterDAO was able to create incorrectly.");    
 }
 
 - (void)testCharacterDAOUpdateFailsCorrectly {
     
     BOOL isUpdateSuccessful = [testingSubject update];
-    STAssertFalse(isUpdateSuccessful, @"CharacterDAO was able to update incorrectly.");    
+    XCTAssertFalse(isUpdateSuccessful, @"CharacterDAO was able to update incorrectly.");    
 }
 
 - (void)testCharacterDAOReadAll {
             
     NSArray *allCharacters = [testingSubject readAll];
-    STAssertTrue([allCharacters containsObject:testCharacter1], @"CharacterDAO All not populated with Character 1.");
-    STAssertTrue([allCharacters containsObject:testCharacter2], @"CharacterDAO All not populated with Character 2.");
+    XCTAssertTrue([allCharacters containsObject:testCharacter1], @"CharacterDAO All not populated with Character 1.");
+    XCTAssertTrue([allCharacters containsObject:testCharacter2], @"CharacterDAO All not populated with Character 2.");
 }
 
 //- (void)testCharacterDAODeleteFailsCorrectly {
