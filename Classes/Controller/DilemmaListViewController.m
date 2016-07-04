@@ -172,7 +172,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
         _conscienceHelpViewController.isConscienceOnScreen = TRUE;
         _conscienceHelpViewController.numberOfScreens = 1;
         _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-        [self presentModalViewController:_conscienceHelpViewController animated:NO];
+        [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
         
         [prefs setBool:FALSE forKey:@"firstMorathology"];
         

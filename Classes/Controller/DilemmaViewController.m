@@ -661,8 +661,9 @@ Construct antagonist Conscience
                     _conscienceHelpViewController.isConscienceOnScreen = TRUE;
                     _conscienceHelpViewController.numberOfScreens = 1;
                     _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-                    [self presentModalViewController:_conscienceHelpViewController animated:NO];
-                    [self.navigationController popViewControllerAnimated:NO];
+                    [self presentViewController:_conscienceHelpViewController animated:NO completion:^{
+                        [self.navigationController popViewControllerAnimated:NO];
+                    }];
                 }
 			}
 

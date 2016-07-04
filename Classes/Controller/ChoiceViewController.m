@@ -306,7 +306,7 @@ Implementation: Show an initial help screen if this is the User's first use of t
 
         } completion:^(BOOL finished) {
             _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-            [self presentModalViewController:_conscienceHelpViewController animated:NO];
+            [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
         }];
         
         [prefs setBool:FALSE forKey:@"firstChoiceEntry"];
@@ -373,7 +373,7 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
         
     } completion:^(BOOL finished) {
         self.virtueViceViewController.screenshot = [self prepareScreenForScreenshot];
-        [self presentModalViewController:self.virtueViceViewController animated:NO];
+        [self presentViewController:self.virtueViceViewController animated:NO completion:nil];
     }];
 
 }
@@ -392,7 +392,7 @@ Implementation: Present ChoiceModalViewController to all User to enter in Choice
 
     } completion:^(BOOL finished) {
         self.historyViewController.screenshot = [self prepareScreenForScreenshot];
-        [self presentModalViewController:self.historyViewController animated:NO];
+        [self presentViewController:self.historyViewController animated:NO completion:nil];
 
     }];
 	
@@ -429,7 +429,7 @@ Implementation: Present ConscienceHelpViewController that shows User extended de
 
     } completion:^(BOOL finished) {
         _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-        [self presentModalViewController:_conscienceHelpViewController animated:NO];
+        [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
 
     }];
 
@@ -459,7 +459,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 
         } completion:^(BOOL finished) {
             _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-            [self presentModalViewController:_conscienceHelpViewController animated:NO];
+            [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
 
         }];
 
@@ -483,7 +483,7 @@ Implementation:  Determine if commit is possible.  If not, present ConscienceHel
 
             } completion:^(BOOL finished) {
                 _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
-                [self presentModalViewController:_conscienceHelpViewController animated:NO];
+                [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
 
             }];
 
