@@ -78,7 +78,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav1Label", nil) style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = referenceBarButton;
 
     [self localizeUI];
@@ -367,7 +367,7 @@ Implementation: Iterate through searchData looking for instances of searchText
             controllerTitle = NSLocalizedString(@"ReferenceScreenAccessoriesTitle",nil);
             break;
         default:
-            controllerTitle = @"List";
+            controllerTitle = NSLocalizedString(@"ReferenceScreenAccessoriesList",nil);
             break;
     }
     

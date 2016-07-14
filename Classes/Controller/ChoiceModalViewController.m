@@ -189,7 +189,7 @@ Implementation: Retrieve all available Virtues/Vices and populate searchable dat
     currentMoralDAO.predicates = @[pred];
     
     NSArray *morals = [currentMoralDAO readAll];
-    int numberOfMorals = morals.count;
+    NSInteger numberOfMorals = morals.count;
     
     moralNames = [[NSMutableArray alloc] initWithCapacity:numberOfMorals];
 	moralImages = [[NSMutableArray alloc] initWithCapacity:numberOfMorals];			

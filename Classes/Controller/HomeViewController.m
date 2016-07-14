@@ -132,8 +132,8 @@ float const MLThoughtInterval = 5;
     conscienceStatus.textColor = [UIColor moraLifeChoiceBlue];
     conscienceStatus.shadowColor = [UIColor moraLifeChoiceLightGray];
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Journal" style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
-    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Collection" style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav2Title", nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushJournal)];
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav3Title", nil) style:UIBarButtonItemStylePlain target:self action:@selector(pushReference)];
     [self.navigationItem setRightBarButtonItems:@[referenceBarButton, choiceBarButton] animated:FALSE];
 
     [self localizeUI];    
@@ -291,7 +291,7 @@ float const MLThoughtInterval = 5;
     
     UINavigationController *conscienceNavigationController = [[UINavigationController alloc] init];
 		
-	conscienceNavigationController.tabBarItem.title = @"Customization";
+	conscienceNavigationController.tabBarItem.title = NSLocalizedString(@"Customization", nil);
 	[conscienceNavigationController setNavigationBarHidden:YES];
 	    
 	ConscienceViewController *conscienceViewController = [[ConscienceViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
@@ -351,7 +351,7 @@ float const MLThoughtInterval = 5;
 	//Set boolean to determine which version of screen to present
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
+		NSInteger choiceIndex = senderButton.tag;
         
 		switch (choiceIndex){
 			case MLHomeViewControllerVirtueButtonTag:{

@@ -38,7 +38,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
 	CGFloat initialTapDistance;			/**< assists in gesture recognition */
     CGFloat animationDuration;          /**< duration variable for determining movement */
     
-    int messageState;                   /**< which stage of intro is current */
+    NSInteger messageState;                   /**< which stage of intro is current */
     BOOL isImpatient;                   /**< has User decided to skip intro */
     
 }
@@ -178,7 +178,7 @@ NSString* const MLBubbleColorIntroDevil = @"FF0000";
     
 	//Check for presences of previously interrupted intro
     NSObject *introCheck = [prefs objectForKey:@"introStateRestore"];
-    int messageStateRestore = 0;
+    NSInteger messageStateRestore = 0;
     
     if (introCheck != nil) {
         messageStateRestore = [prefs integerForKey:@"introStateRestore"];        

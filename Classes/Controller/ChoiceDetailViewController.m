@@ -83,7 +83,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav1Label", nil) style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = choiceBarButton;
 
 	//Prevent keypress level changes over maxlength of field

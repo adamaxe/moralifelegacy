@@ -16,7 +16,7 @@ Last screen in the workflow of User attempting to purchase/outfit the Conscience
 
 @interface ConscienceAcceptViewController : MoraLifeViewController
 
-@property (nonatomic, assign) int accessorySlot;		/**< which slot is ConscienceAsset, set from ConscienceListViewController */
+@property (nonatomic, assign) NSInteger accessorySlot;		/**< which slot is ConscienceAsset, set from ConscienceListViewController */
 @property (nonatomic, strong) NSString *assetSelection;	/**< which ConscienceAsset, set from ConscienceListViewController */
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 

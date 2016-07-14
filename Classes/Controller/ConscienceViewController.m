@@ -55,7 +55,7 @@ User selection causes selectChoice to be called which sets the currentState vari
  Accepts User input to change the state of the screen.
  @param controllerID int of UIViewController to be selected
  */
--(void)selectController:(int) controllerID;
+-(void)selectController:(NSInteger) controllerID;
 
 @end
 
@@ -228,7 +228,7 @@ Determines if current screen should change or if another UIViewController needs 
 
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
+		NSInteger choiceIndex = senderButton.tag;
 
 		switch (choiceIndex){
 			case 0:currentState = 1;[self changeSelectionScreen];break;
@@ -283,10 +283,10 @@ Determines if current screen should change or if another UIViewController needs 
         currentButton.tag = currentState*4 + i;
         currentLabelButton.tag = currentState*4 + i;
 
-        currentButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", currentButton.tag]),nil);
-        currentButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", currentButton.tag]),nil);
-        currentLabelButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dLabel", currentLabelButton.tag]),nil);
-        currentLabelButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%dHint", currentLabelButton.tag]),nil);
+        currentButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%ldLabel", (long)currentButton.tag]),nil);
+        currentButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%ldHint", (long)currentButton.tag]),nil);
+        currentLabelButton.accessibilityLabel = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%ldLabel", (long)currentLabelButton.tag]),nil);
+        currentLabelButton.accessibilityHint = NSLocalizedString(([NSString stringWithFormat:@"ConscienceModalScreenButton%ldHint", (long)currentLabelButton.tag]),nil);
     }
 
     [UIView beginAnimations:@"ShowChoices" context:nil];
@@ -320,7 +320,7 @@ Implementation:  Set the Status message at top of screen and the image and label
 Implementation:  Determines which UIViewController was requested by User.  Loads correct UIViewController and sets its required fields.
 @todo refactor to more intelligently select correct View Controller
  */
-- (void) selectController:(int) controllerID{
+- (void) selectController:(NSInteger) controllerID{
 	
 	BOOL isListViewControllerNeeded = FALSE;
 	BOOL isDilemmaViewControllerNeeded = FALSE;

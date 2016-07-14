@@ -1004,7 +1004,6 @@
 		5E6BA4F515B920290008825D /* systemTests.sh in Resources */ = {isa = PBXBuildFile; fileRef = 5E6BA4F215B920290008825D /* systemTests.sh */; };
 		5E70EEE411C31BEB0010FBD7 /* pictureframe-landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */; };
 		5E7180C115E70D4200250935 /* ChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */; };
-		5E7191D412206AEF000A3508 /* UINavigationBar-Transparent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */; };
 		5E7378C3122A1F18004301D3 /* con-crescent-nose.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5E7378C1122A1F18004301D3 /* con-crescent-nose.svg */; };
 		5E73B1B1125969460039A577 /* cardback.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73B199125969460039A577 /* cardback.png */; };
 		5E73B1B2125969460039A577 /* cardfront.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E73B19A125969460039A577 /* cardfront.png */; };
@@ -2680,8 +2679,6 @@
 		5E70EEE211C31BEB0010FBD7 /* pictureframe-landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "pictureframe-landscape.png"; path = "Resources/images/interface/pictureframe-landscape.png"; sourceTree = "<group>"; };
 		5E7180BF15E70D4200250935 /* ChoiceHistoryModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceHistoryModel.h; sourceTree = "<group>"; };
 		5E7180C015E70D4200250935 /* ChoiceHistoryModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceHistoryModel.m; sourceTree = "<group>"; };
-		5E7191CF12206AEF000A3508 /* UINavigationBar-Transparent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar-Transparent.h"; path = "View/UINavigationBar-Transparent.h"; sourceTree = "<group>"; };
-		5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar-Transparent.m"; path = "View/UINavigationBar-Transparent.m"; sourceTree = "<group>"; };
 		5E7378C1122A1F18004301D3 /* con-crescent-nose.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-crescent-nose.svg"; path = "Resources/images/conscience/con-crescent-nose.svg"; sourceTree = "<group>"; };
 		5E73B199125969460039A577 /* cardback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cardback.png; path = Resources/images/interface/cards/cardback.png; sourceTree = "<group>"; };
 		5E73B19A125969460039A577 /* cardfront.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cardfront.png; path = Resources/images/interface/cards/cardfront.png; sourceTree = "<group>"; };
@@ -4628,8 +4625,6 @@
 				5EAB7A4D169E98B300623A48 /* ReportMoralTableViewCell.m */,
 				5EE3B3A011C09FA9006C97B0 /* StructuredTextField.h */,
 				5EE3B3A111C09FA9006C97B0 /* StructuredTextField.m */,
-				5E7191CF12206AEF000A3508 /* UINavigationBar-Transparent.h */,
-				5E7191D012206AEF000A3508 /* UINavigationBar-Transparent.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -5555,7 +5550,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0800;
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = XSXV6ZV2MM;
@@ -7135,7 +7130,6 @@
 				5E0DFA5B120BA66B00F77D70 /* ConscienceGradient.m in Sources */,
 				5EF57BF21218DE770053B97B /* ConscienceAccessories.m in Sources */,
 				5E9104E3121A18E200423DE8 /* AccessoryObjectView.m in Sources */,
-				5E7191D412206AEF000A3508 /* UINavigationBar-Transparent.m in Sources */,
 				5EE2E182122608840091140B /* HomeViewController.m in Sources */,
 				5E3E880D122609B600F2708A /* XMLParser.m in Sources */,
 				5ED61EBD122CAD3A00542453 /* ConscienceBubbleView.m in Sources */,
@@ -7290,7 +7284,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7301,7 +7294,7 @@
 				GCC_PREFIX_HEADER = MoraLife_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "moralife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.moralife;
 				PRODUCT_NAME = MoraLife;
@@ -7315,7 +7308,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7324,7 +7316,7 @@
 				GCC_PREFIX_HEADER = MoraLife_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "moralife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.moralife;
 				PRODUCT_NAME = MoraLife;
@@ -7495,7 +7487,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -7504,7 +7495,7 @@
 				GCC_PREFIX_HEADER = MoraLife_Prefix.pch;
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "moralife-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.moralife;
 				PRODUCT_NAME = MoraLife;

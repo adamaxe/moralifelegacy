@@ -60,7 +60,7 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     moralsLabel.font = [UIFont fontForScreenButtons];
     accessoriesLabel.font = [UIFont fontForScreenButtons];
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav1Label", nil) style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];

@@ -137,7 +137,7 @@ NSString* const MLContextReadWrite = @"readWrite";
 /**
  Implementation: Count of current NSManagedObjects known to the DAO
  */
-- (int)count {
+- (NSInteger)count {
     [self refreshData];
     return self.persistedObjects.count;
 }

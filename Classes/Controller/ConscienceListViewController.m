@@ -89,7 +89,7 @@ User can filter list by only things that are affordable to currentFunds.
 	[self retrieveCurrentFunds];
 	[self retrieveAllSelections];
     
-    listType.text = @"All";
+    listType.text = NSLocalizedString(@"All", nil);
 
 	//Display available ethicals to User
 	[fundsButton setTitle:[NSString stringWithFormat:@"%dε", currentFunds] forState:UIControlStateNormal];
@@ -150,7 +150,6 @@ User can filter list by only things that are affordable to currentFunds.
     NSObject *firstConscienceListCheck = [prefs objectForKey:@"firstConscienceList"];
     
     if (firstConscienceListCheck == nil) {
-        int todo = 1;
 
         ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:_userConscience];
         conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
@@ -181,14 +180,14 @@ Implementation: Cycle between affordable and all Conscience Asset listings.  Cha
 
     //Change UILabel to reflect what is available in the list
     if (searchViewFilter < 1) {
-        listType.text = @"Owned";
+        listType.text = NSLocalizedString(@"Owned", nil);
         searchViewFilter++;
     } else if (searchViewFilter < 2) {
-        listType.text = @"Affordable";
+        listType.text = NSLocalizedString(@"Affordable", nil);
         searchViewFilter++;
     } else {
         searchViewFilter = 0;
-        listType.text = @"All";
+        listType.text = NSLocalizedString(@"All", nil);
 
     }
     
@@ -284,7 +283,7 @@ Implementation: Retrieve all available ConscienceAssets, and then populate a wor
     
     
     NSArray *assets = [currentAssetDAO readAll];
-    int numberOfAssets = assets.count;
+    NSInteger numberOfAssets = assets.count;
     
 	//Create raw result sets
 	choices = [[NSMutableArray alloc] initWithCapacity:numberOfAssets];

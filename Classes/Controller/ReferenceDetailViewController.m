@@ -127,7 +127,7 @@ Determine which fields and UI elements should be presented depending up on Refer
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
+    UIBarButtonItem *referenceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav1Title", nil) style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = referenceBarButton;
 
     _conscienceHelpViewController.isConscienceOnScreen = FALSE;

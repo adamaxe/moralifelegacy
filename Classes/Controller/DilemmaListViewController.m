@@ -144,7 +144,7 @@ Prevent User from selecting Dilemmas/Action out of order.  Present selected choi
     //Present help screen after a split second
     [NSTimer scheduledTimerWithTimeInterval:0.0 target:self selector:@selector(showInitialHelpScreen) userInfo:nil repeats:NO];
 
-    int nextRow = userChoices.count - 1;
+    NSInteger nextRow = userChoices.count - 1;
         
     if (nextRow > 0) {
 
@@ -254,7 +254,7 @@ Implementation: Signals User desire to return to ConscienceViewController
     
 	//Determine if user has already completed particular dilemma
 	//If so, display checkmark and display which moral was chosen
-	int previousRow = indexPath.row;
+	NSInteger previousRow = indexPath.row;
     
 	BOOL isSelectable = FALSE;
     
@@ -297,7 +297,7 @@ Implementation: Signals User desire to return to ConscienceViewController
     //If User has already completed Dilemma, prevent User from selecting it
     NSArray *allUserChoices = userChoices.allKeys;
     
-    int previousRow = indexPath.row;
+    NSInteger previousRow = indexPath.row;
         
     BOOL isSelectable = FALSE;
     

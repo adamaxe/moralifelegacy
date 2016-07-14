@@ -256,7 +256,7 @@ Implementation: Signals User desire to commit the ConscienceAsset to persistence
 
 		//Retrieve buttons tag to verify which button was pressed
 		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
+		NSInteger choiceIndex = senderButton.tag;
 
 		//User has elected to buy ConscienceAsset
 		//Return User to Home screen after transaction		

@@ -71,7 +71,7 @@ typedef NS_ENUM(unsigned int, MLChoiceTypeChoice) {
     badChoiceLabel.font = [UIFont fontForHomeScreenButtons];
     choiceListLabel.font = [UIFont fontForHomeScreenButtons];
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav1Label", nil) style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
@@ -129,7 +129,7 @@ Implementation: A single view controller is utilized for both Good and Bad choic
 	//Set boolean to determine which version of screen to present
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
-		long choiceIndex = senderButton.tag;
+		NSInteger choiceIndex = senderButton.tag;
 		
 		switch (choiceIndex){
 			case 0:isGood = TRUE;break;

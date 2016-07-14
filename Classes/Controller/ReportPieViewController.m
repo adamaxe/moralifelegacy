@@ -156,18 +156,18 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
 	if ([sender isKindOfClass:[UIButton class]]) {
 		
         UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
+		NSInteger choiceIndex = senderButton.tag;
         
         switch (choiceIndex) {
             case 0:{    
                 if (self.isGood) {
                     self.isGood = FALSE;
                     moralType.image = [UIImage imageNamed:@"acc-pri-weapon-trident-sm.png"];
-                    moralTypeLabel.text = @"Vice";
+                    moralTypeLabel.text = NSLocalizedString(@"ViceLabel", nil);
                 } else {
                     self.isGood = TRUE;
                     moralType.image = [UIImage imageNamed:@"acc-top-halo-sm.png"];
-                    moralTypeLabel.text = @"Virtue";
+                    moralTypeLabel.text = NSLocalizedString(@"VirtueLabel", nil);
                 }
                 moralTypeLabel.accessibilityValue = moralTypeLabel.text;
             } break;

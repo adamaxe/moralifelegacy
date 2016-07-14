@@ -27,7 +27,7 @@ int const MLConscienceCenterY = 165;
     IBOutlet UIButton *secondaryAccessoryButton;    /**< button for secondary accessory outline */
     IBOutlet UIButton *previousButton;              /**< button for accessing previous screen */
 
-    int accessorySlot;
+    NSInteger accessorySlot;
 }
 
 @property (nonatomic) IBOutlet UIImageView *previousScreen;

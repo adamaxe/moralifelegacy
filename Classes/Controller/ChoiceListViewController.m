@@ -109,7 +109,7 @@ Refetches of table data are necessary when sorting and ordering are requested.
 
     self.navigationItem.hidesBackButton = YES;
 
-    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Home" style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
+    UIBarButtonItem *choiceBarButton = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"PrimaryNav1Label", nil) style:UIBarButtonItemStylePlain target:self.navigationController action:@selector(popToRootViewControllerAnimated:)];
     self.navigationItem.leftBarButtonItem = choiceBarButton;
 
     [self localizeUI];
@@ -169,7 +169,7 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
 	if ([sender isKindOfClass:[UIButton class]]) {
 		
 		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
+		NSInteger choiceIndex = senderButton.tag;
         
 		//Determine if Sort or Order change is requested
 		switch (choiceIndex) {

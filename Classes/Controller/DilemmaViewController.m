@@ -110,7 +110,7 @@ typedef NS_ENUM(unsigned int, MLDilemmaType) {
  Change the active UIView within the UIViewController
  @param screenVersion intDesignating which page of screen to display
  */
--(void)changeScreen:(int) screenVersion;
+-(void)changeScreen:(NSInteger) screenVersion;
 
 /**
  Commit User's choice to UserData
@@ -249,7 +249,7 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
 
     if ([sender isKindOfClass:[UIButton class]]) {
         UIButton *senderButton = sender;
-        int choiceIndex = senderButton.tag;
+        NSInteger choiceIndex = senderButton.tag;
 
         if (self.isAction) {
             moralSelectedImage.image = moral1ChoiceImage.image;
@@ -305,7 +305,7 @@ Implementation: Determine which screen user is own and determine if Dilemma is r
 Implementation: Hide or show a screen depending upon which page the User currently resides.
 Show reward views once User has completed dilemma and refuse access to previous screen versions.
  */
--(void)changeActionScreen:(int) screenVersion {
+-(void)changeActionScreen:(NSInteger) screenVersion {
     
 	UIView *viewSelection;
 	int buttonFactor = 0;
@@ -415,7 +415,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
  Implementation: Hide or show a screen depending upon which page the User currently resides.
  Show reward views once User has completed dilemma and refuse access to previous screen versions.
  */
--(void)changeScreen:(int) screenVersion {
+-(void)changeScreen:(NSInteger) screenVersion {
 
 	UIView *viewSelection;
 	int buttonFactor = 0;

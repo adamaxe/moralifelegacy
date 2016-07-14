@@ -17,7 +17,7 @@ Secondary Conscience interaction screen.  Most other Conscience interactions req
 @interface ConscienceListViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
-@property (nonatomic, assign) int accessorySlot;	/**< which slot is ConscienceAsset, set from ConscienceAccessoryViewController */
+@property (nonatomic, assign) NSInteger accessorySlot;	/**< which slot is ConscienceAsset, set from ConscienceAccessoryViewController */
 
 /**
 Accepts User input to filter list of ConscienceAssets.

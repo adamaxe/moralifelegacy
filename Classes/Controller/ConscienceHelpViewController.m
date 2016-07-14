@@ -39,7 +39,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
  Change the active UIView within the UIViewController
  @param screenVersion intDesignating which version of screen to display
  */
--(void)changeScreen:(int) screenVersion;
+-(void)changeScreen:(NSInteger) screenVersion;
 
 /**
  Commit User's choice to UserData
@@ -190,7 +190,7 @@ Implementation: Ensure that actual button wishes to call changeScreen
 	
 	if ([sender isKindOfClass:[UIButton class]]) {
 		UIButton *senderButton = sender;
-		int choiceIndex = senderButton.tag;
+		NSInteger choiceIndex = senderButton.tag;
         
 		[self changeScreen:choiceIndex];
 		
@@ -213,7 +213,7 @@ Implementation: Ensure that actual button wishes to call changeScreen
 Implementation: Hide or show a screen depending upon which page the User currently resides.
 Show reward views once User has completed dilemma and refuse access to previous screen versions.
  */
--(void)changeScreen:(int) screenVersion {
+-(void)changeScreen:(NSInteger) screenVersion {
 	id placeHolder = @"";
     int buttonFactor = 0;
 	

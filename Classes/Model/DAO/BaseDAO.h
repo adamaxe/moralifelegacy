@@ -66,6 +66,6 @@ Create method to insert an NSManagedObject into the store
  Count method to return number of NSManagedObjects known by DAO
  @return int Number of NSManagedObjects under control
  */
-@property (NS_NONATOMIC_IOSONLY, readonly) int count;
+@property (NS_NONATOMIC_IOSONLY, readonly) NSInteger count;
 
 @end
