@@ -832,7 +832,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	if ([selectedReward rangeOfString:MLCollectableEthicals].location != NSNotFound) {
 		//Ethicals are rewarded, process
 		[selectedReward deleteCharactersInRange:[selectedReward rangeOfString:MLCollectableEthicals]];
-		moralSelectedRewardLabel.text = @"Have some Ethicals!";
+        moralSelectedRewardLabel.text = NSLocalizedString(@"DilemmaViewControllerRewardGenericLabel", nil);
 
 	} else if ([selectedReward rangeOfString:@"figu-"].location != NSNotFound) {
         
@@ -883,7 +883,7 @@ Calculate changes to User's ethicals.  Limit to 999.
 	//Increase the moral's value
 	int ethicalIncrease = currentUserCollectable.collectableValue.intValue;
 
-	moralRewardLabel.text = @"+1";
+	moralRewardLabel.text = NSLocalizedString(@"DilemmaViewControllerRewardPlusOneLabel", nil);
 
 	//If reward was NOFAIL, add 5 ethicals
 	if([selectedReward isEqualToString:@""]){

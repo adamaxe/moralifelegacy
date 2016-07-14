@@ -56,7 +56,7 @@
  */
 - (void)testDefaultConscienceLayer{
 
-    int count = [[testingSubject consciencePaths] count];
+    NSInteger count = testingSubject.consciencePaths.count;
     
 	XCTAssertEqual(0, count, @"Default empty paths array inaccurate.");
 	XCTAssertEqual(MLFeatureOffsetX, [testingSubject offsetX], @"Default feature offset X inaccurate.");
@@ -90,7 +90,7 @@
 	[testingSubject setOffsetY:testYOffset];
     [testingSubject setConsciencePaths:testPaths];
 
-    int count = [[testingSubject consciencePaths] count];
+    NSInteger count = testingSubject.consciencePaths.count;
     
 	XCTAssertEqual(1, count, @"consciencePaths setter/getter inaccurate.");
 	XCTAssertEqual(testXOffset, [testingSubject offsetX], @"feature offset X setter/getter inaccurate.");

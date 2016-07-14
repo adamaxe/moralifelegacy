@@ -149,7 +149,7 @@
     XCTAssertNotNil(testingEmptySubject, @"MoralDAO Empty can't be created.");
     
     NSArray *allNames = [testingEmptySubject readAll];
-    int count = [allNames count];
+    NSInteger count = allNames.count;
     XCTAssertEqual(count, 0, @"MoralDAO Empty is not empty.");
     
 }

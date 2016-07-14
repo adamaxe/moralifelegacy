@@ -92,11 +92,11 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	[self retrieveAllReferences];
     
     //User may be returning from DilemmaView and will expect search filtered list
-	NSString *searchString = [prefs objectForKey:[NSString stringWithFormat:@"searchText%d", self.referenceModel.referenceType]];	
+	NSString *searchString = [prefs objectForKey:[NSString stringWithFormat:@"searchText%lu", (unsigned long)self.referenceModel.referenceType]];
 	
 	if (searchString != nil) {
 		
-		[prefs removeObjectForKey:[NSString stringWithFormat:@"searchText%d", self.referenceModel.referenceType]];
+		[prefs removeObjectForKey:[NSString stringWithFormat:@"searchText%lu", (unsigned long)self.referenceModel.referenceType]];
 		[self filterResults:searchString];
         referenceSearchBar.text = searchString;
 		
@@ -119,7 +119,7 @@ Implementation: Retrieve requested Reference types from SystemData.  Allow User 
 	
     //If user has filtered list, we must retain this upon return to this view
 	if (referenceSearchBar.text != nil && ![referenceSearchBar.text isEqualToString:@""]) {
-		[prefs setObject:referenceSearchBar.text forKey:[NSString stringWithFormat:@"searchText%d", self.referenceModel.referenceType]];
+		[prefs setObject:referenceSearchBar.text forKey:[NSString stringWithFormat:@"searchText%lu", (unsigned long)self.referenceModel.referenceType]];
 		
 	}
 	

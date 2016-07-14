@@ -79,7 +79,7 @@
 
     XCTAssertNotNil(retrievedMorals, @"Objects can't be read.");
     
-    int count = [retrievedMorals count];
+    NSInteger count = retrievedMorals.count;
     XCTAssertEqual(count, 3, @"The amount of NSManagedObjects is wrong.");
 }
 

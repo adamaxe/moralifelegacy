@@ -90,8 +90,8 @@ Refetches of table data are necessary when sorting and ordering are requested.
 	/** 
 	@todo utilize consistent localization string references 
 	*/
-	[moralSortButton setTitle:@"Sort" forState: UIControlStateNormal];
-	[moralOrderButton setTitle:@"Order" forState: UIControlStateNormal];
+	[moralSortButton setTitle:NSLocalizedString(@"ChoiceListViewControllerSortLabel", nil) forState: UIControlStateNormal];
+	[moralOrderButton setTitle:NSLocalizedString(@"ChoiceListViewControllerOrderLabel", nil) forState: UIControlStateNormal];
         
 	choiceSearchBar.barStyle = UIBarStyleBlack;
 	choiceSearchBar.delegate = self;
@@ -179,16 +179,16 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
                 if ([choiceSortDescriptor isEqualToString:MLChoiceListSortName]) {
 
                     [choiceSortDescriptor setString:MLChoiceListSortDate];
-                    [moralSortButton setTitle:@"Date" forState: UIControlStateNormal];
+                    [moralSortButton setTitle:NSLocalizedString(@"ChoiceListViewControllerDateLabel", nil) forState: UIControlStateNormal];
                 } else if ([choiceSortDescriptor isEqualToString:MLChoiceListSortDate]){
 
                     [choiceSortDescriptor setString:MLChoiceListSortWeight];
-                    [moralSortButton setTitle:@"Weight" forState: UIControlStateNormal];
+                    [moralSortButton setTitle:NSLocalizedString(@"ChoiceListViewControllerWeightLabel", nil) forState: UIControlStateNormal];
                     
                 } else {
 
                     [choiceSortDescriptor setString:MLChoiceListSortName];
-                    [moralSortButton setTitle:@"Alpha" forState: UIControlStateNormal];
+                    [moralSortButton setTitle:NSLocalizedString(@"ChoiceListViewControllerSortLabel", nil) forState: UIControlStateNormal];
                 }
 
                 self.choiceHistoryModel.sortKey = choiceSortDescriptor;
@@ -199,10 +199,10 @@ Implementation: Cycle between Name, Date and Weight for sorting and Ascending an
             case 1:{    
                 if (isAscending) {
                     isAscending = FALSE;
-                    [moralOrderButton setTitle:@"Des" forState: UIControlStateNormal];
+                    [moralOrderButton setTitle:NSLocalizedString(@"ChoiceListViewControllerDescendingLabel", nil) forState: UIControlStateNormal];
                 } else {
                     isAscending = TRUE;
-                    [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
+                    [moralOrderButton setTitle:NSLocalizedString(@"ChoiceListViewControllerAscendingLabel", nil) forState: UIControlStateNormal];
                 }
                 self.choiceHistoryModel.isAscending = isAscending;
             }

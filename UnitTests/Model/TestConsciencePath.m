@@ -55,8 +55,8 @@
  */
 - (void)testDefaultConsciencePath{
     
-    int countPaths = [[testingSubject pathPoints] count];
-    int countInstructions = [[testingSubject pathInstructions] count];
+    NSInteger countPaths = testingSubject.pathPoints.count;
+    NSInteger countInstructions = testingSubject.pathInstructions.count;
 
 	XCTAssertEqual(0, countPaths, @"Default empty path points array inaccurate.");
 	XCTAssertEqual(0, countInstructions, @"Default empty path instructions array inaccurate.");
@@ -103,8 +103,8 @@
     [testingSubject setPathPoints:pathPoints];
     [testingSubject setPathInstructions:pathInstructions];
     
-    int countPaths = [[testingSubject pathPoints] count];
-    int countInstructions = [[testingSubject pathInstructions] count];
+    NSInteger countPaths = testingSubject.pathPoints.count;
+    NSInteger countInstructions = testingSubject.pathInstructions.count;
     
 	XCTAssertEqual(1, countPaths, @"Path points array setter/getter inaccurate.");
 	XCTAssertEqual(1, countInstructions, @"Path instructions array setter/getter inaccurate.");

@@ -58,11 +58,11 @@
 
 	UIColor *testColor = [UIColor clearColor];
 	int count = 0;
-    int countSetter = [[testingSubject totalLayers] count];
+    NSInteger countSetter = testingSubject.totalLayers.count;
     
 	XCTAssertEqual(count, countSetter, @"totalLayers was not initialized properly.");
     
-    countSetter = [[testingSubject totalGradients] count];
+    countSetter = testingSubject.totalGradients.count;
     
 	XCTAssertEqual(count, countSetter, @"totalGradients was not initialized properly.");
 	XCTAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor was not initialized properly.");
@@ -89,11 +89,11 @@
 	[testingSubject setTotalGradients:testGradients];
 	[testingSubject setConscienceBackgroundColor:testColor];
     
-    int countSetter = [[testingSubject totalLayers] count];
+    NSInteger countSetter = testingSubject.totalLayers.count;
     
 	XCTAssertEqual(count, countSetter, @"totalLayers setter/getter inaccurate.");
     
-    countSetter = [[testingSubject totalGradients] count];
+    countSetter = testingSubject.totalGradients.count;
 
 	XCTAssertEqual(count, countSetter, @"totalGradients setter/getter inaccurate.");
 	XCTAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor setter/getter inaccurate.");

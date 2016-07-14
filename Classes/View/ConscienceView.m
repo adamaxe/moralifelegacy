@@ -271,6 +271,7 @@ static float vigourOfShake = 0.05f;
 #pragma mark -
 #pragma mark View lifecycle
 
+
 - (instancetype)initWithFrame:(CGRect)frame withBody:(ConscienceBody *) argBody withAccessories:(ConscienceAccessories *) argAccessories
 withMind: (ConscienceMind *) argMind{
 

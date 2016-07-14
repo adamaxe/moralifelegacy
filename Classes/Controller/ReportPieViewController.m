@@ -174,10 +174,10 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
             case 1:{    
                 if (self.isAlphabetical) {
                     self.isAlphabetical = FALSE;
-                    [moralSortButton setTitle:@"%" forState: UIControlStateNormal];
+                    [moralSortButton setTitle:NSLocalizedString(@"ReportScreenSortPercentageLabel", nil) forState: UIControlStateNormal];
                 } else {
                     self.isAlphabetical = TRUE;
-                    [moralSortButton setTitle:@"A" forState: UIControlStateNormal];
+                    [moralSortButton setTitle:NSLocalizedString(@"ReportScreenSortAlphabeticalLabel", nil) forState: UIControlStateNormal];
                 }
                 moralSortButton.accessibilityValue = moralSortButton.titleLabel.text;
 
@@ -186,10 +186,10 @@ Implementation: Based upon User input, set flags for Moral type (Virtue/Vice), S
             case 2:{    
                 if (self.isAscending) {
                     self.isAscending = FALSE;
-                    [moralOrderButton setTitle:@"Des" forState: UIControlStateNormal];
+                    [moralOrderButton setTitle:NSLocalizedString(@"ReportScreenSortDescendingLabel", nil) forState: UIControlStateNormal];
                 } else {
                     self.isAscending = TRUE;
-                    [moralOrderButton setTitle:@"Asc" forState: UIControlStateNormal];
+                    [moralOrderButton setTitle:NSLocalizedString(@"ReportScreenSortAscendingLabel", nil) forState: UIControlStateNormal];
                 }
                 moralOrderButton.accessibilityValue = moralOrderButton.titleLabel.text;
 

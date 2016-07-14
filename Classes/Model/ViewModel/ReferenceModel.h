@@ -15,7 +15,7 @@
  Possible Reference Types
  typedef utilized to avoid having to use enum declaration
  */
-typedef NS_ENUM(unsigned int, MLReferenceModelTypeEnum) {
+typedef NS_ENUM(NSUInteger, MLReferenceModelTypeEnum) {
 	MLReferenceModelTypeConscienceAsset,
 	MLReferenceModelTypePerson,
 	MLReferenceModelTypeMoral,
