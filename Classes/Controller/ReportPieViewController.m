@@ -290,7 +290,7 @@ Convert percentage to degrees out of 360.  Send values and colors to GraphView
     NSString *titleName =[[NSString alloc] initWithFormat:@"%@",NSStringFromClass([self class])];
     
     [self setTitle:NSLocalizedString(([NSString stringWithFormat:@"%@%dTitle", titleName, self.isGood]),nil)];
-    moralTypeLabel.text = @"Virtue";                
+    moralTypeLabel.text = NSLocalizedString(@"VirtueLabel",nil);                
     
     previousButton.accessibilityHint = NSLocalizedString(@"PreviousButtonHint",nil);
 	previousButton.accessibilityLabel =  NSLocalizedString(@"PreviousButtonLabel",nil);

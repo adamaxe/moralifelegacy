@@ -15,14 +15,6 @@ extern NSString* const MLCollectableEthicals;
 @interface UserCollectableDAO : BaseDAO
 
 /**
- Overloaded init to provide dependency injection of ModelManager for both release and testing
- @param key NSString to designate which NSManagedObject to return (optional)
- @param moralModelManager which persistence stack to reference (release file system or test in-memory)
- @return id UserCollectableDAO created for designated Model
- */
-- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager NS_DESIGNATED_INITIALIZER;
-
-/**
  Read method to create an UserCollectable in the store
  @return UserCollectable Created NSManagedObject to be returned
  */

@@ -56,6 +56,10 @@ NSString* const MLContextReadWrite = @"readWrite";
     
 }
 
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
+    return [self initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadOnly];
+}
+
 /**
  Implementation: Insert an NSManagedObject into the ReadWrite store, otherwise, cancel the create
  */

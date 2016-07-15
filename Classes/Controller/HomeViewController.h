@@ -16,6 +16,8 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 
 @interface HomeViewController : MoraLifeViewController
 
+- (instancetype)init NS_UNAVAILABLE;
+
 /**
  Dependency injection constructor to pass model
  @param homeModel HomeModel handling business logic

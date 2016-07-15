@@ -2,9 +2,9 @@
 
 @implementation UserChoiceDAO 
 
-- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType{
     
-    self = [super initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadWrite];
+    self = [super initWithKey:key andModelManager:moralModelManager andClassType:classType];
     
     if (self) {
         [self.predicateDefaultName setString:@"entryKey"];
@@ -15,6 +15,11 @@
     return self;
     
 }
+
+-(instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
+    return [self initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadWrite];
+}
+
 
 - (UserChoice *)create {
     return (UserChoice *)[self createObject];

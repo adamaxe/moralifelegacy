@@ -31,6 +31,8 @@ typedef NS_ENUM(unsigned int, MLRequestedMorathologyAdventure) {
 @property (nonatomic, readonly, strong) NSDictionary *moralNames;			/**< user entries for Dilemma */
 @property (nonatomic, readonly, strong) NSDictionary *userChoices;			/**< user entries for Dilemma */
 
+-(instancetype)init NS_UNAVAILABLE;
+
 /**
  Builds model with dependency injection
  @param modelManager ModelManager for either production or testing

@@ -33,6 +33,7 @@ extern NSString* const MLChoiceListSortName;
 @property (nonatomic, readonly, strong) NSArray *details;			/**< Array of User-entered details */
 @property (nonatomic, readonly, strong) NSArray *icons;				/**< Array of associated images */
 
+-(instancetype)init NS_UNAVAILABLE;
 
 /**
  Builds model with dependency injection

@@ -21,6 +21,8 @@
 @property (nonatomic, strong) NSMutableArray *conscienceCollection;       /**< Currently owned items */
 @property (nonatomic, unsafe_unretained) float transientMood; /**< set a mood temporarily */
 
+-(instancetype)init NS_UNAVAILABLE;
+
 /**
  Dependency injection constructor to pass model
  @param modelManager ModelManager data persistence

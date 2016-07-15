@@ -12,6 +12,11 @@ BaseDAO Superclass.  This class handles the interaction between the model and th
 
 @interface BaseDAO : NSObject
 
+typedef NS_ENUM(NSInteger, MLDAOAccessControl) {
+    MLDAOAccessControlReadOnly,
+    MLDAOAccessControlReadWrite
+};
+
 extern NSString* const MLContextReadOnly;    /**< key to determine read only persistent store to access */
 extern NSString* const MLContextReadWrite;   /**< key to determine read write persistent store to access */
 
@@ -21,6 +26,8 @@ extern NSString* const MLContextReadWrite;   /**< key to determine read write pe
 @property (nonatomic, strong) NSMutableString *sortDefaultName;         /**< default NSSortDescriptor attribute name */
 @property (nonatomic, strong) NSMutableString *managedObjectClassName;  /**< NSManagedObject type to act upon */
 
+-(instancetype)init NS_UNAVAILABLE;
+
 /**
 Overloaded init to provide dependency injection of ModelManager for both release and testing
  @param key NSString to designate which NSManagedObject to return (optional)
@@ -29,6 +36,15 @@ Overloaded init to provide dependency injection of ModelManager for both release
  @return id BaseDAO created for designated Model
  */
 - (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType NS_DESIGNATED_INITIALIZER;
+
+
+/**
+ Convenience method for creating READONLY versions of DAO
+ @param key NSString to designate which NSManagedObject to return (optional)
+ @param moralModelManager which persistence stack to reference (release file system or test in-memory)
+ @return id BaseDAO created for designated Model
+ */
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager;
 
 /**
 Create method to insert an NSManagedObject into the store

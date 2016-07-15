@@ -22,6 +22,8 @@
 @property (nonatomic, readonly, strong) NSArray *pieColors;      /**< color assigned to moral for name/pie slice */
 @property (nonatomic, readonly, strong) NSDictionary *moralImageNames;   /**< moral icon */
 
+-(instancetype)init NS_UNAVAILABLE;
+
 /**
 Builds model with dependency injection
  @param modelManager ModelManager for either production or testing

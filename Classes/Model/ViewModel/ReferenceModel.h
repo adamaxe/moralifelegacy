@@ -47,6 +47,8 @@ typedef NS_ENUM(NSUInteger, MLReferenceModelTypeEnum) {
 @property (nonatomic, readonly, strong) NSArray *quotes;				/**<  */
 @property (nonatomic, readonly, strong) NSArray *relatedMorals;				/**<  */
 
+-(instancetype)init NS_UNAVAILABLE;
+
 /**
  Builds model with dependency injection
  @param modelManager ModelManager for either production or testing

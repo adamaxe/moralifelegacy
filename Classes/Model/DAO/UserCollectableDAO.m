@@ -4,9 +4,9 @@ NSString* const MLCollectableEthicals = @"ethical";
 
 @implementation UserCollectableDAO
 
-- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
+- (instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager andClassType:(NSString *)classType{
 
-    self = [super initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadWrite];
+    self = [super initWithKey:key andModelManager:moralModelManager andClassType:classType];
 
     if (self) {
         [self.predicateDefaultName setString:@"collectableKey"];
@@ -17,6 +17,11 @@ NSString* const MLCollectableEthicals = @"ethical";
     return self;
 
 }
+
+-(instancetype)initWithKey:(NSString *)key andModelManager:(ModelManager *)moralModelManager {
+    return [self initWithKey:key andModelManager:moralModelManager andClassType:MLContextReadWrite];
+}
+
 
 - (UserCollectable *)create {
     return (UserCollectable *)[self createObject];

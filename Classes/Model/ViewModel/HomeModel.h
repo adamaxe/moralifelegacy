@@ -24,6 +24,8 @@ extern int const HOME_MODEL_REACTION_COUNT;
 @property (nonatomic, strong, readonly) UIImage *worstViceImage;
 @property (nonatomic, strong, readonly) UIImage *highestRankImage;
 
+-(instancetype)init NS_UNAVAILABLE;
+
 /**
  Builds model with dependency injection
  @param modelManager ModelManager for either production or testing
