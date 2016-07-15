@@ -124,9 +124,9 @@
 
 - (void)testUserCharacterWithoutRequiredAttributes {
     UserCharacter *testUserCharacterBad = [testModelManager create:UserCharacter.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserCharacterBad.class];
     
-//    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
+    XCTAssertNotNil(testUserCharacterBad);
 }
 
 @end

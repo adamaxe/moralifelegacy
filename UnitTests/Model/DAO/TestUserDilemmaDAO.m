@@ -114,6 +114,8 @@
     XCTAssertTrue([allDilemmas containsObject:testUserDilemma2], @"UserDilemmaDAO All not populated with Dilemma 2.");
 }
 
+#warning Implement testing default readwrite behavior
+
 //- (void)testUserDilemmaDAOCanBeDeleted {
 //        
 //    BOOL isDeleteSuccessful = [testingSubject delete:testUserDilemma2];

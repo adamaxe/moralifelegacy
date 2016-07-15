@@ -128,6 +128,8 @@
 
 }
 
+#warning Implement testing default readwrite behavior
+
 //- (void)testUserCollectableDAOCanBeDeleted {
 //        
 //    BOOL isDeleteSuccessful = [testingSubject delete:testCollectable2];

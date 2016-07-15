@@ -137,6 +137,8 @@
     XCTAssertTrue([allCharacters containsObject:testCharacter2], @"UserCharacterDAO All not populated with Character 2.");
 }
 
+#warning Implement testing default readwrite behavior
+
 //- (void)testUserCharacterDAOCanBeDeleted {
 //        
 //    BOOL isDeleteSuccessful = [testingSubject delete:testCharacter2];

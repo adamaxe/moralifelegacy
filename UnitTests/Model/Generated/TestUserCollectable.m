@@ -77,9 +77,9 @@
 
 - (void)testUserCollectableWithoutRequiredAttributes {
     UserCollectable *testUserCollectableBad = [testModelManager create:UserCollectable.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserCollectableBad.class];
     
-//    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
+    XCTAssertNotNil(testUserCollectableBad);
 }
 
 @end

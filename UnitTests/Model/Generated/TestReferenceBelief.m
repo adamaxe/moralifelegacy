@@ -168,9 +168,9 @@
 
 - (void)testBeliefWithoutRequiredAttributes {
     ReferenceBelief *testBeliefBad = [testModelManager create:ReferenceBelief.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testBeliefBad.class];
 
-//    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
+    XCTAssertNotNil(testBeliefBad);
 }
 
 @end

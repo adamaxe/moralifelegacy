@@ -93,10 +93,10 @@
 
 - (void)testUserDilemmaWithoutRequiredAttributes {
     UserDilemma *testUserDilemmaBad = [testModelManager create:UserDilemma.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserDilemmaBad.class];
 
     testUserDilemma.entryCreationDate = nil;
-//    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
+    XCTAssertNotNil(testUserDilemmaBad);
 }
 
 - (void)testUserDilemmaDefaultValues {

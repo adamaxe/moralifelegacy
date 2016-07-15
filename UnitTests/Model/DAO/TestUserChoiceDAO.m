@@ -134,6 +134,8 @@
     XCTAssertTrue([allChoices containsObject:testUserChoice2], @"UserChoiceDAO All not populated with Choice 2.");
 }
 
+#warning Implement testing default readwrite behavior
+
 //- (void)testUserChoiceDAOCanBeDeleted {
 //        
 //    BOOL isDeleteSuccessful = [testingSubject delete:testUserChoice2];

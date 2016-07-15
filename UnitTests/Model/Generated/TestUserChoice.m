@@ -128,26 +128,26 @@
 
 - (void)testUserChoiceWithoutRequiredAttributes {
     UserChoice *testUserChoiceBad = [testModelManager create:UserChoice.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceBad.class];
 
-//    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
+    XCTAssertNotNil(testUserChoiceBad);
+    
 }
 
 - (void)testUserChoiceDefaultValues {
     UserChoice *testUserChoiceDefault = [testModelManager create:UserChoice.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceDefault.class];
 
     testUserChoiceDefault.entryCreationDate = entryCreationDate;
     testUserChoiceDefault.entryModificationDate = entryModificationDate;
     
-//    XCTAssertNoThrow([testModelManager saveContext], errorMessage);
+    XCTAssertNoThrow([testModelManager saveContext]);
+    XCTAssertNotNil(testUserChoiceDefault);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:NSStringFromClass(UserChoice.class)];
     request.predicate = searchPredicate;
     NSArray *userChoices = [[testModelManager readWriteManagedObjectContext] executeFetchRequest:request error:&error];
-//    NSArray *userChoices = [testModelManager read:UserChoice.class withKey:@"entryKey" andValue:@"0"];
     
     UserChoice *retrieved = userChoices[0];
     XCTAssertEqualObjects(retrieved.entryShortDescription, @"0", @"entryShortDescription default value failed.");
