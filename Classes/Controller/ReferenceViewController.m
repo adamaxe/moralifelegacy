@@ -101,12 +101,11 @@ Implementation:  UIViewController allows subsequent screen selection, controls b
     
     if (firstReferenceCheck == nil) {
         
-        ConscienceHelpViewController *conscienceHelpViewController = [[ConscienceHelpViewController alloc] initWithConscience:_userConscience];
-        conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
-		conscienceHelpViewController.isConscienceOnScreen = FALSE;
-        conscienceHelpViewController.numberOfScreens = 1;
+        _conscienceHelpViewController.viewControllerClassName = NSStringFromClass([self class]);
+		_conscienceHelpViewController.isConscienceOnScreen = FALSE;
+        _conscienceHelpViewController.numberOfScreens = 1;
 
-        conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
 
         [self presentViewController:_conscienceHelpViewController animated:NO completion:nil];
         

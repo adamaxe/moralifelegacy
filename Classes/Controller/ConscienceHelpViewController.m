@@ -215,7 +215,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
  */
 -(void)changeScreen:(NSInteger) screenVersion {
 	id placeHolder = @"";
-    int buttonFactor = 0;
+    NSInteger buttonFactor = 0;
 	
 	nextButton.hidden = FALSE;
 	previousButton.hidden = FALSE;
@@ -232,8 +232,11 @@ Show reward views once User has completed dilemma and refuse access to previous 
         } completion:^(BOOL finished) {
             helpTitle.hidden = FALSE;
             helpText.hidden = FALSE;
-            helpTitle.text = self.helpTitles[screenVersion - 1];
-            helpText.text = self.helpTexts[screenVersion - 1];
+
+            if (self.helpTitles.count > 0 && self.helpTexts.count > 0) {
+                helpTitle.text = self.helpTitles[screenVersion - 1];
+                helpText.text = self.helpTexts[screenVersion - 1];
+            }
 
             [UIView animateWithDuration:0.5 animations:^{
                 helpTitle.alpha = 1;
@@ -248,7 +251,7 @@ Show reward views once User has completed dilemma and refuse access to previous 
         [self dismissThoughtModal:placeHolder];
     }
     
-    int screenMaximum = self.helpTitles.count;
+    NSInteger screenMaximum = self.helpTitles.count;
 	
 	//Animate button that User should use
 	if (screenVersion >= screenMaximum){
