@@ -169,6 +169,7 @@ Data is pulled from NSUserDefaults in order to take advantage of built-in state 
 
     if (firstChoiceEntryCheck == nil) {
 
+        _conscienceHelpViewController.screenshot = [self prepareScreenForScreenshot];
         _conscienceHelpViewController.numberOfScreens = 1;
 
         [UIView animateWithDuration:0.25 animations:^{

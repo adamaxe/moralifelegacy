@@ -16,7 +16,8 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 
 @interface HomeViewController : MoraLifeViewController
 
-- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_UNAVAILABLE;
+- (instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil modelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_UNAVAILABLE;
 
 /**
  Dependency injection constructor to pass model

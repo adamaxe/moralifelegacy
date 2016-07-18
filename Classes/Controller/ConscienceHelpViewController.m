@@ -55,7 +55,7 @@ Calling UIViewController much present NSArray of page titles, texts, and BOOL te
 #pragma mark ViewController lifecycle
 
 -(instancetype)initWithConscience:(UserConscience *)userConscience {
-    self = [super init];
+    self = [super initWithNibName:nil bundle:[NSBundle mainBundle]];
     if (self) {
         self.userConscience = userConscience;
         self.viewControllerClassName = [[NSString alloc] init];

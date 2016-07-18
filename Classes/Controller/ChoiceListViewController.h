@@ -17,6 +17,8 @@ Second screen in Choice/Luck Listing Workflow.  User can select a Choice for rev
 
 @interface ChoiceListViewController : MoraLifeViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate>
 
+- (instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_UNAVAILABLE;
+
 /**
  Dependency injection constructor to pass model
  @param choiceHistoryModel ChoiceHistoryModel handling business logic

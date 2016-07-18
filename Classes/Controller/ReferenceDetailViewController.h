@@ -17,6 +17,8 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
 
 @interface ReferenceDetailViewController : MoraLifeViewController <UIActionSheetDelegate>
 
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_UNAVAILABLE;
+
 /**
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic

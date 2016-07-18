@@ -17,6 +17,8 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
 
 @property (nonatomic, assign) MLReferenceModelTypeEnum referenceType;	/**< int determining type of reference selection */
 
+- (instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_UNAVAILABLE;
+
 /**
  Dependency injection constructor to pass model
  @param referenceModel ReferenceModel handling business logic

@@ -16,6 +16,8 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 
+- (instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_UNAVAILABLE;
+
 /**
  Dependency injection constructor to pass model
  @param reportPieModel ReportPieModel handling business logic

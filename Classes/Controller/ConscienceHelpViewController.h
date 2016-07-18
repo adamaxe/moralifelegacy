@@ -20,6 +20,11 @@ Conscience modular Help screen.  View controller for Conscience helping User wit
 @property(nonatomic, assign) int numberOfScreens;       /**< the help screen requested */
 @property(nonatomic, assign) BOOL isConscienceOnScreen;	/**< is Conscience already on screen */
 
+-(instancetype)init NS_UNAVAILABLE;
+-(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
+-(instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+
+
 /**
  Creates the viewController with the User's Conscience
  @param userConscience UserConscience for modals and help screens

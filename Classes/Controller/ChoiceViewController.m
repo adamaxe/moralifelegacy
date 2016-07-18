@@ -99,7 +99,7 @@ Affects UserConscience by increasing/decreasing mood/enthusiasm.
         choiceKey = [[NSMutableString alloc] init];
 
         //Create input for requesting ChoiceDetailViewController
-        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",nil) style:UIBarButtonItemStyleBordered target:self action:@selector(showChoiceDetailEntry)];
+        UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"ChoiceScreenDetailsLabel",nil) style:UIBarButtonItemStylePlain target:self action:@selector(showChoiceDetailEntry)];
 
         self.navigationItem.rightBarButtonItem = barButtonItem;
 

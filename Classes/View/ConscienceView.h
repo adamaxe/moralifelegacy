@@ -40,6 +40,9 @@ extern float const MLConscienceLargestSize;
 @property (nonatomic, strong) ConscienceAccessories *currentConscienceAccessories;	/**< Current Conscience visual possessions */
 @property (nonatomic, strong) ConscienceMind *currentConscienceMind;			/**< Current Conscience mood/enthusiasm */
 
+-(instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
+-(instancetype)initWithFrame:(CGRect)frame NS_UNAVAILABLE;
+
 /**
 Change eye state to imitate winking/blinking
 Values are open and closed

@@ -48,6 +48,7 @@ This UIViewController subclass possesses an init for ModelManager and UserConsci
         ConscienceHelpViewController *_conscienceHelpViewController;
 }
 
+-(instancetype)init NS_UNAVAILABLE;
 -(instancetype)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil NS_UNAVAILABLE;
 -(instancetype)initWithCoder:(NSCoder *)aDecoder NS_UNAVAILABLE;
 

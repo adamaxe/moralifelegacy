@@ -18,6 +18,8 @@
 
 @property(nonatomic, strong) UIImage *screenshot;       /**< screenshot of previous screen for transition */
 
+-(instancetype)initWithModelManager:(ModelManager *)modelManager andConscience:(UserConscience *)userConscience NS_UNAVAILABLE;
+
 /**
  Dependency injection constructor to pass model
  @param choiceHistoryModel ChoiceHistoryModel handling business logic
