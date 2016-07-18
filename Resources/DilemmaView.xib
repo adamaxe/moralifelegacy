@@ -1,2219 +1,420 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
-	<data>
-		<int key="IBDocument.SystemTarget">1552</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
-		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">2083</string>
-		</object>
-		<object class="NSArray" key="IBDocument.IntegratedClassDependencies">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>IBProxyObject</string>
-			<string>IBUIButton</string>
-			<string>IBUIImageView</string>
-			<string>IBUILabel</string>
-			<string>IBUITextView</string>
-			<string>IBUIView</string>
-		</object>
-		<object class="NSArray" key="IBDocument.PluginDependencies">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-		</object>
-		<object class="NSMutableDictionary" key="IBDocument.Metadata">
-			<string key="NS.key.0">PluginDependencyRecalculationVersion</string>
-			<integer value="1" key="NS.object.0"/>
-		</object>
-		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="IBProxyObject" id="372490531">
-				<string key="IBProxiedObjectIdentifier">IBFilesOwner</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBProxyObject" id="975951072">
-				<string key="IBProxiedObjectIdentifier">IBFirstResponder</string>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-			<object class="IBUIView" id="191373211">
-				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">274</int>
-				<object class="NSMutableArray" key="NSSubviews">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBUIImageView" id="915348926">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, -20}, {320, 480}}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="538146265"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
-					<object class="IBUIView" id="538146265">
-						<reference key="NSNextResponder" ref="191373211"/>
-						<int key="NSvFlags">292</int>
-						<object class="NSMutableArray" key="NSSubviews">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBUIImageView" id="1040894430">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{5, 0}, {320, 460}}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="509523287"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">thoughtbubble-large1.png</string>
-								</object>
-							</object>
-							<object class="IBUIImageView" id="509523287">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{31, 33}, {253, 100}}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="145869420"/>
-								<object class="NSColor" key="IBUIBackgroundColor" id="62652147">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MCAwAA</bytes>
-								</object>
-								<bool key="IBUIOpaque">NO</bool>
-								<float key="IBUIAlpha">0.5</float>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="527579418">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">-2147483356</int>
-								<object class="NSMutableArray" key="NSSubviews">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="IBUIView" id="727105608">
-										<reference key="NSNextResponder" ref="527579418"/>
-										<int key="NSvFlags">292</int>
-										<object class="NSMutableArray" key="NSSubviews">
-											<bool key="EncodedWithXMLCoder">YES</bool>
-											<object class="IBUIImageView" id="795522526">
-												<reference key="NSNextResponder" ref="727105608"/>
-												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{3, 8}, {100, 130}}</string>
-												<reference key="NSSuperview" ref="727105608"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="989370488"/>
-												<bool key="IBUIUserInteractionEnabled">NO</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-											</object>
-											<object class="IBUIImageView" id="941640545">
-												<reference key="NSNextResponder" ref="727105608"/>
-												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{21, 29}, {60, 60}}</string>
-												<reference key="NSSuperview" ref="727105608"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="150190554"/>
-												<bool key="IBUIUserInteractionEnabled">NO</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-											</object>
-											<object class="IBUIImageView" id="269987025">
-												<reference key="NSNextResponder" ref="727105608"/>
-												<int key="NSvFlags">292</int>
-												<string key="NSFrameSize">{115, 152}</string>
-												<reference key="NSSuperview" ref="727105608"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="795522526"/>
-												<bool key="IBUIUserInteractionEnabled">NO</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-												<object class="NSCustomResource" key="IBUIImage">
-													<string key="NSClassName">NSImage</string>
-													<string key="NSResourceName">cardback-reference.png</string>
-												</object>
-											</object>
-											<object class="IBUILabel" id="989370488">
-												<reference key="NSNextResponder" ref="727105608"/>
-												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{17, 48}, {75, 43}}</string>
-												<reference key="NSSuperview" ref="727105608"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="941640545"/>
-												<bool key="IBUIOpaque">NO</bool>
-												<bool key="IBUIClipsSubviews">YES</bool>
-												<int key="IBUIContentMode">7</int>
-												<bool key="IBUIUserInteractionEnabled">NO</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-												<string type="base64-UTF8" key="IBUIText">Cg</string>
-												<object class="NSColor" key="IBUITextColor">
-													<int key="NSColorSpace">1</int>
-													<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-												</object>
-												<object class="NSColor" key="IBUIHighlightedColor" id="683198306">
-													<int key="NSColorSpace">3</int>
-													<bytes key="NSWhite">MQA</bytes>
-												</object>
-												<object class="NSColor" key="IBUIShadowColor">
-													<int key="NSColorSpace">1</int>
-													<bytes key="NSRGB">MC4wOTgwMzkyMTcyOSAwLjA5ODAzOTIxNzI5IDAuMDk4MDM5MjE3MjkAA</bytes>
-												</object>
-												<string key="IBUIShadowOffset">{0, 1}</string>
-												<int key="IBUIBaselineAdjustment">1</int>
-												<float key="IBUIMinimumFontSize">10</float>
-												<int key="IBUITextAlignment">1</int>
-												<object class="IBUIFontDescription" key="IBUIFontDescription">
-													<string key="name">Helvetica</string>
-													<string key="family">Helvetica</string>
-													<int key="traits">0</int>
-													<double key="pointSize">36</double>
-												</object>
-												<object class="NSFont" key="IBUIFont">
-													<string key="NSName">Helvetica</string>
-													<double key="NSSize">36</double>
-													<int key="NSfFlags">16</int>
-												</object>
-											</object>
-											<object class="IBUILabel" id="150190554">
-												<reference key="NSNextResponder" ref="727105608"/>
-												<int key="NSvFlags">-2147483356</int>
-												<string key="NSFrame">{{65, 103}, {32, 32}}</string>
-												<reference key="NSSuperview" ref="727105608"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="591859427"/>
-												<bool key="IBUIOpaque">NO</bool>
-												<bool key="IBUIClipsSubviews">YES</bool>
-												<int key="IBUIContentMode">7</int>
-												<bool key="IBUIUserInteractionEnabled">NO</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-												<string key="IBUIText">15</string>
-												<object class="NSColor" key="IBUITextColor">
-													<int key="NSColorSpace">1</int>
-													<bytes key="NSRGB">MC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMAA</bytes>
-												</object>
-												<reference key="IBUIHighlightedColor" ref="683198306"/>
-												<int key="IBUIBaselineAdjustment">1</int>
-												<float key="IBUIMinimumFontSize">10</float>
-												<int key="IBUITextAlignment">2</int>
-												<object class="IBUIFontDescription" key="IBUIFontDescription" id="520065858">
-													<string key="name">Helvetica-Bold</string>
-													<string key="family">Helvetica</string>
-													<int key="traits">2</int>
-													<double key="pointSize">18</double>
-												</object>
-												<object class="NSFont" key="IBUIFont" id="405520096">
-													<string key="NSName">Helvetica-Bold</string>
-													<double key="NSSize">18</double>
-													<int key="NSfFlags">16</int>
-												</object>
-											</object>
-											<object class="IBUIImageView" id="591859427">
-												<reference key="NSNextResponder" ref="727105608"/>
-												<int key="NSvFlags">292</int>
-												<string key="NSFrame">{{66, 103}, {32, 32}}</string>
-												<reference key="NSSuperview" ref="727105608"/>
-												<reference key="NSWindow"/>
-												<reference key="NSNextKeyView" ref="585367959"/>
-												<bool key="IBUIUserInteractionEnabled">NO</bool>
-												<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-												<object class="NSCustomResource" key="IBUIImage" id="152205509">
-													<string key="NSClassName">NSImage</string>
-													<string key="NSResourceName">card-loyalty.png</string>
-												</object>
-											</object>
-										</object>
-										<string key="NSFrame">{{103, 197}, {115, 152}}</string>
-										<reference key="NSSuperview" ref="527579418"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="269987025"/>
-										<object class="NSColor" key="IBUIBackgroundColor">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MQA</bytes>
-											<object class="NSColorSpace" key="NSCustomColorSpace" id="825725967">
-												<int key="NSID">2</int>
-											</object>
-										</object>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-									</object>
-									<object class="IBUILabel" id="585367959">
-										<reference key="NSNextResponder" ref="527579418"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{210, 299}, {40, 29}}</string>
-										<reference key="NSSuperview" ref="527579418"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="34480304"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<float key="IBUIAlpha">0.0</float>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">+5</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<int key="IBUITextAlignment">2</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="1062010726">
-											<string key="name">Helvetica</string>
-											<string key="family">Helvetica</string>
-											<int key="traits">0</int>
-											<double key="pointSize">18</double>
-										</object>
-										<object class="NSFont" key="IBUIFont" id="57846409">
-											<string key="NSName">Helvetica</string>
-											<double key="NSSize">18</double>
-											<int key="NSfFlags">16</int>
-										</object>
-									</object>
-									<object class="IBUILabel" id="1047793857">
-										<reference key="NSNextResponder" ref="527579418"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{35, 138}, {240, 29}}</string>
-										<reference key="NSSuperview" ref="527579418"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="441700561"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Chosen Moral</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<reference key="IBUIShadowColor" ref="683198306"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<int key="IBUITextAlignment">1</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">Helvetica-Bold</string>
-											<string key="family">Helvetica</string>
-											<int key="traits">2</int>
-											<double key="pointSize">24</double>
-										</object>
-										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Helvetica-Bold</string>
-											<double key="NSSize">24</double>
-											<int key="NSfFlags">16</int>
-										</object>
-									</object>
-									<object class="IBUILabel" id="441700561">
-										<reference key="NSNextResponder" ref="527579418"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{40, 161}, {240, 29}}</string>
-										<reference key="NSSuperview" ref="527579418"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="727105608"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Chosen Moral</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC41MDE5NjA4MTQgMC4yNTA5ODA0MDcgMAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<object class="NSColor" key="IBUIShadowColor" id="1018336614">
-											<int key="NSColorSpace">3</int>
-											<bytes key="NSWhite">MC42NjY2NjY2NjY3AA</bytes>
-										</object>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<int key="IBUITextAlignment">1</int>
-										<reference key="IBUIFontDescription" ref="520065858"/>
-										<reference key="IBUIFont" ref="405520096"/>
-									</object>
-								</object>
-								<string key="NSFrameSize">{320, 480}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1047793857"/>
-								<reference key="IBUIBackgroundColor" ref="62652147"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="34480304">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">-2147483356</int>
-								<object class="NSMutableArray" key="NSSubviews">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="IBUIButton" id="356814167">
-										<reference key="NSNextResponder" ref="34480304"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{0, 278}, {320, 75}}</string>
-										<reference key="NSSuperview" ref="34480304"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="945866819"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<int key="IBUITag">7</int>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<int key="IBUIContentHorizontalAlignment">2</int>
-										<int key="IBUIContentVerticalAlignment">0</int>
-										<double key="IBUIContentEdgeInsets.top">0.0</double>
-										<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-										<double key="IBUIContentEdgeInsets.left">-64</double>
-										<double key="IBUIContentEdgeInsets.right">64</double>
-										<double key="IBUITitleEdgeInsets.top">-4</double>
-										<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-										<double key="IBUITitleEdgeInsets.left">12</double>
-										<double key="IBUITitleEdgeInsets.right">16</double>
-										<int key="IBUILineBreakMode">1</int>
-										<string key="IBUITitleShadowOffset">{1, 1}</string>
-										<string key="IBUINormalTitle">Choice2</string>
-										<reference key="IBUIHighlightedTitleColor" ref="683198306"/>
-										<object class="NSColor" key="IBUINormalTitleColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUINormalTitleShadowColor" ref="1018336614"/>
-										<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">thoughtbubble-thin2.png</string>
-										</object>
-										<reference key="IBUIFontDescription" ref="520065858"/>
-										<reference key="IBUIFont" ref="405520096"/>
-									</object>
-									<object class="IBUILabel" id="774993682">
-										<reference key="NSNextResponder" ref="34480304"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{96, 224}, {128, 48}}</string>
-										<reference key="NSSuperview" ref="34480304"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="356814167"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">~ OR ~</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<reference key="IBUIShadowColor" ref="1018336614"/>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<int key="IBUITextAlignment">1</int>
-										<reference key="IBUIFontDescription" ref="520065858"/>
-										<reference key="IBUIFont" ref="405520096"/>
-									</object>
-									<object class="IBUIButton" id="390823874">
-										<reference key="NSNextResponder" ref="34480304"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{0, 150}, {320, 75}}</string>
-										<reference key="NSSuperview" ref="34480304"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="205696567"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<int key="IBUITag">6</int>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<int key="IBUIContentVerticalAlignment">0</int>
-										<double key="IBUIContentEdgeInsets.top">0.0</double>
-										<double key="IBUIContentEdgeInsets.bottom">0.0</double>
-										<double key="IBUIContentEdgeInsets.left">64</double>
-										<double key="IBUIContentEdgeInsets.right">-64</double>
-										<double key="IBUITitleEdgeInsets.top">-4</double>
-										<double key="IBUITitleEdgeInsets.bottom">0.0</double>
-										<double key="IBUITitleEdgeInsets.left">17</double>
-										<double key="IBUITitleEdgeInsets.right">12</double>
-										<int key="IBUILineBreakMode">4</int>
-										<string key="IBUITitleShadowOffset">{1, 1}</string>
-										<string key="IBUINormalTitle">Choice1</string>
-										<reference key="IBUIHighlightedTitleColor" ref="683198306"/>
-										<object class="NSColor" key="IBUINormalTitleColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUINormalTitleShadowColor" ref="1018336614"/>
-										<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">thoughtbubble-thin1.png</string>
-										</object>
-										<reference key="IBUIFontDescription" ref="520065858"/>
-										<reference key="IBUIFont" ref="405520096"/>
-									</object>
-									<object class="IBUIImageView" id="205696567">
-										<reference key="NSNextResponder" ref="34480304"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{46, 167}, {32, 32}}</string>
-										<reference key="NSSuperview" ref="34480304"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="774993682"/>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<reference key="IBUIImage" ref="152205509"/>
-									</object>
-									<object class="IBUIImageView" id="945866819">
-										<reference key="NSNextResponder" ref="34480304"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{249, 298}, {32, 32}}</string>
-										<reference key="NSSuperview" ref="34480304"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="725327106"/>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<object class="NSCustomResource" key="IBUIImage" id="929730917">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">card-honesty.png</string>
-										</object>
-									</object>
-								</object>
-								<string key="NSFrameSize">{320, 460}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="390823874"/>
-								<reference key="IBUIBackgroundColor" ref="62652147"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="725327106">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">-2147483356</int>
-								<object class="NSMutableArray" key="NSSubviews">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="IBUITextView" id="147438419">
-										<reference key="NSNextResponder" ref="725327106"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{50, 186}, {220, 160}}</string>
-										<reference key="NSSuperview" ref="725327106"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="246192506"/>
-										<object class="NSColor" key="IBUIBackgroundColor" id="765630406">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MSAxIDEAA</bytes>
-										</object>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<bool key="IBUIMultipleTouchEnabled">YES</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<bool key="IBUIEditable">NO</bool>
-										<string key="IBUIText">Tell the truth and implicate your boss.  You know that he would not want you to lie for him.  Furthermore, he has a sweet corner office that will become vacant upon his incarceration.</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC42MDAwMDAwMjM4IDAuMjkwMjQ4MTk1MSAwLjE5MTUzNDU3NjcAA</bytes>
-										</object>
-										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-											<int key="IBUIAutocapitalizationType">2</int>
-											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										</object>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="775682546">
-											<int key="type">1</int>
-											<double key="pointSize">17</double>
-										</object>
-										<object class="NSFont" key="IBUIFont" id="971716169">
-											<string key="NSName">Helvetica</string>
-											<double key="NSSize">17</double>
-											<int key="NSfFlags">16</int>
-										</object>
-									</object>
-									<object class="IBUILabel" id="306782691">
-										<reference key="NSNextResponder" ref="725327106"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{69, 147}, {200, 29}}</string>
-										<reference key="NSSuperview" ref="725327106"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="147438419"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Honesty</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<reference key="IBUIShadowColor" ref="1018336614"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<reference key="IBUIFontDescription" ref="1062010726"/>
-										<reference key="IBUIFont" ref="57846409"/>
-									</object>
-									<object class="IBUIImageView" id="941849708">
-										<reference key="NSNextResponder" ref="725327106"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{32, 148}, {32, 32}}</string>
-										<reference key="NSSuperview" ref="725327106"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="306782691"/>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<reference key="IBUIImage" ref="929730917"/>
-									</object>
-								</object>
-								<string key="NSFrameSize">{320, 460}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="941849708"/>
-								<reference key="IBUIBackgroundColor" ref="62652147"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="246192506">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">-2147483356</int>
-								<object class="NSMutableArray" key="NSSubviews">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="IBUITextView" id="993820764">
-										<reference key="NSNextResponder" ref="246192506"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{50, 186}, {220, 155}}</string>
-										<reference key="NSSuperview" ref="246192506"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="71279312"/>
-										<reference key="IBUIBackgroundColor" ref="765630406"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<bool key="IBUIMultipleTouchEnabled">YES</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<bool key="IBUIEditable">NO</bool>
-										<string key="IBUIText">Hold your tongue.  You want to give him the benefit of the doubt.  Besides, he knows where you sleep.</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC42MDAwMDAwMjM4IDAuMjkwMjQ4MTk1MSAwLjE5MTUzNDU3NjcAA</bytes>
-										</object>
-										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-											<int key="IBUIAutocapitalizationType">2</int>
-											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										</object>
-										<reference key="IBUIFontDescription" ref="775682546"/>
-										<reference key="IBUIFont" ref="971716169"/>
-									</object>
-									<object class="IBUILabel" id="71279312">
-										<reference key="NSNextResponder" ref="246192506"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{168, 356}, {52, 21}}</string>
-										<reference key="NSSuperview" ref="246192506"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="792793239"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">~ OR ~</string>
-										<object class="NSColor" key="IBUITextColor" id="649316476">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<reference key="IBUIShadowColor" ref="1018336614"/>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<object class="IBUIFontDescription" key="IBUIFontDescription">
-											<string key="name">Helvetica-Bold</string>
-											<string key="family">Helvetica</string>
-											<int key="traits">2</int>
-											<double key="pointSize">17</double>
-										</object>
-										<object class="NSFont" key="IBUIFont">
-											<string key="NSName">Helvetica-Bold</string>
-											<double key="NSSize">17</double>
-											<int key="NSfFlags">16</int>
-										</object>
-									</object>
-									<object class="IBUILabel" id="554490606">
-										<reference key="NSNextResponder" ref="246192506"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{69, 147}, {200, 29}}</string>
-										<reference key="NSSuperview" ref="246192506"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="993820764"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Loyalty</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<reference key="IBUIShadowColor" ref="1018336614"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<reference key="IBUIFontDescription" ref="1062010726"/>
-										<reference key="IBUIFont" ref="57846409"/>
-									</object>
-									<object class="IBUIImageView" id="112961113">
-										<reference key="NSNextResponder" ref="246192506"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{32, 148}, {32, 32}}</string>
-										<reference key="NSSuperview" ref="246192506"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="554490606"/>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<reference key="IBUIImage" ref="152205509"/>
-									</object>
-								</object>
-								<string key="NSFrameSize">{320, 460}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="112961113"/>
-								<reference key="IBUIBackgroundColor" ref="62652147"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="792793239">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">-2147483356</int>
-								<object class="NSMutableArray" key="NSSubviews">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="IBUILabel" id="138206717">
-										<reference key="NSNextResponder" ref="792793239"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{40, 139}, {240, 35}}</string>
-										<reference key="NSSuperview" ref="792793239"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="632154849"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Dilemma Title</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="683198306"/>
-										<reference key="IBUIShadowColor" ref="683198306"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<int key="IBUITextAlignment">1</int>
-										<object class="IBUIFontDescription" key="IBUIFontDescription" id="452906992">
-											<string key="name">Helvetica</string>
-											<string key="family">Helvetica</string>
-											<int key="traits">0</int>
-											<double key="pointSize">24</double>
-										</object>
-										<object class="NSFont" key="IBUIFont" id="535852548">
-											<string key="NSName">Helvetica</string>
-											<double key="NSSize">24</double>
-											<int key="NSfFlags">16</int>
-										</object>
-									</object>
-									<object class="IBUITextView" id="632154849">
-										<reference key="NSNextResponder" ref="792793239"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{40, 175}, {240, 170}}</string>
-										<reference key="NSSuperview" ref="792793239"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="230133056"/>
-										<reference key="IBUIBackgroundColor" ref="765630406"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<bool key="IBUIMultipleTouchEnabled">YES</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<bool key="IBUIEditable">NO</bool>
-										<string key="IBUIText">Test Text View</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC42MDAwMDAwMjM4IDAuMjkwMjQ4MTk1MSAwLjE5MTUzNDU3NjcAA</bytes>
-										</object>
-										<object class="IBUITextInputTraits" key="IBUITextInputTraits">
-											<int key="IBUIAutocapitalizationType">2</int>
-											<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										</object>
-										<reference key="IBUIFontDescription" ref="775682546"/>
-										<reference key="IBUIFont" ref="971716169"/>
-									</object>
-								</object>
-								<string key="NSFrameSize">{320, 460}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="138206717"/>
-								<reference key="IBUIBackgroundColor" ref="62652147"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIView" id="230133056">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">-2147483356</int>
-								<object class="NSMutableArray" key="NSSubviews">
-									<bool key="EncodedWithXMLCoder">YES</bool>
-									<object class="IBUIImageView" id="162874859">
-										<reference key="NSNextResponder" ref="230133056"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{118, 221}, {75, 75}}</string>
-										<reference key="NSSuperview" ref="230133056"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="889601563"/>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<object class="NSCustomResource" key="IBUIImage">
-											<string key="NSClassName">NSImage</string>
-											<string key="NSResourceName">icon-competition.png</string>
-										</object>
-									</object>
-									<object class="IBUILabel" id="827347268">
-										<reference key="NSNextResponder" ref="230133056"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{40, 139}, {240, 35}}</string>
-										<reference key="NSSuperview" ref="230133056"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="824072913"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Dilemma Title</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MCAwLjUwMTk2MDgxNCAwAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="1018336614"/>
-										<reference key="IBUIShadowColor" ref="683198306"/>
-										<string key="IBUIShadowOffset">{0, 0}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<int key="IBUITextAlignment">1</int>
-										<int key="IBUILineBreakMode">0</int>
-										<reference key="IBUIFontDescription" ref="452906992"/>
-										<reference key="IBUIFont" ref="535852548"/>
-									</object>
-									<object class="IBUIImageView" id="889601563">
-										<reference key="NSNextResponder" ref="230133056"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{249, 196}, {32, 32}}</string>
-										<reference key="NSSuperview" ref="230133056"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="1044794784"/>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<reference key="IBUIImage" ref="152205509"/>
-									</object>
-									<object class="IBUIImageView" id="1044794784">
-										<reference key="NSNextResponder" ref="230133056"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{44, 298}, {32, 32}}</string>
-										<reference key="NSSuperview" ref="230133056"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="1014906623"/>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<reference key="IBUIImage" ref="929730917"/>
-									</object>
-									<object class="IBUILabel" id="824072913">
-										<reference key="NSNextResponder" ref="230133056"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{40, 201}, {206, 22}}</string>
-										<reference key="NSSuperview" ref="230133056"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="162874859"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Loyalty</string>
-										<reference key="IBUITextColor" ref="649316476"/>
-										<reference key="IBUIHighlightedColor" ref="1018336614"/>
-										<reference key="IBUIShadowColor" ref="1018336614"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<int key="IBUITextAlignment">2</int>
-										<reference key="IBUIFontDescription" ref="1062010726"/>
-										<reference key="IBUIFont" ref="57846409"/>
-									</object>
-									<object class="IBUILabel" id="1014906623">
-										<reference key="NSNextResponder" ref="230133056"/>
-										<int key="NSvFlags">292</int>
-										<string key="NSFrame">{{79, 299}, {206, 29}}</string>
-										<reference key="NSSuperview" ref="230133056"/>
-										<reference key="NSWindow"/>
-										<reference key="NSNextKeyView" ref="186923266"/>
-										<bool key="IBUIOpaque">NO</bool>
-										<bool key="IBUIClipsSubviews">YES</bool>
-										<int key="IBUIContentMode">7</int>
-										<bool key="IBUIUserInteractionEnabled">NO</bool>
-										<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-										<string key="IBUIText">Honesty</string>
-										<object class="NSColor" key="IBUITextColor">
-											<int key="NSColorSpace">1</int>
-											<bytes key="NSRGB">MC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMgMC4yMDAwMDAwMDMAA</bytes>
-										</object>
-										<reference key="IBUIHighlightedColor" ref="1018336614"/>
-										<reference key="IBUIShadowColor" ref="1018336614"/>
-										<string key="IBUIShadowOffset">{1, 1}</string>
-										<int key="IBUIBaselineAdjustment">1</int>
-										<float key="IBUIMinimumFontSize">10</float>
-										<reference key="IBUIFontDescription" ref="1062010726"/>
-										<reference key="IBUIFont" ref="57846409"/>
-									</object>
-								</object>
-								<string key="NSFrameSize">{320, 460}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="827347268"/>
-								<reference key="IBUIBackgroundColor" ref="62652147"/>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-							</object>
-							<object class="IBUIButton" id="3759875">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{252, 380}, {45, 45}}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<float key="IBUIAlpha">0.5</float>
-								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
-									<string key="IBUIAccessibilityLabel">Previous</string>
-								</object>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="683198306"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<object class="NSColor" key="IBUINormalTitleShadowColor" id="906887797">
-									<int key="NSColorSpace">3</int>
-									<bytes key="NSWhite">MC41AA</bytes>
-								</object>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">interface-choicesprevious.png</string>
-								</object>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="364788970">
-									<string key="name">Helvetica-Bold</string>
-									<string key="family">Helvetica</string>
-									<int key="traits">2</int>
-									<double key="pointSize">15</double>
-								</object>
-								<object class="NSFont" key="IBUIFont" id="983632218">
-									<string key="NSName">Helvetica-Bold</string>
-									<double key="NSSize">15</double>
-									<int key="NSfFlags">16</int>
-								</object>
-							</object>
-							<object class="IBUIButton" id="145869420">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{232, 340}, {45, 45}}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="3759875"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<int key="IBUITag">2</int>
-								<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
-									<string key="IBUIAccessibilityLabel">Previous</string>
-								</object>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="683198306"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="906887797"/>
-								<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">interface-choicesnext.png</string>
-								</object>
-								<reference key="IBUIFontDescription" ref="364788970"/>
-								<reference key="IBUIFont" ref="983632218"/>
-							</object>
-							<object class="IBUIButton" id="304847281">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{0, 380}, {180, 80}}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="1040894430"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<int key="IBUIContentHorizontalAlignment">0</int>
-								<int key="IBUIContentVerticalAlignment">0</int>
-								<reference key="IBUIHighlightedTitleColor" ref="683198306"/>
-								<object class="NSColor" key="IBUINormalTitleColor">
-									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
-								</object>
-								<reference key="IBUINormalTitleShadowColor" ref="906887797"/>
-								<reference key="IBUIFontDescription" ref="364788970"/>
-								<reference key="IBUIFont" ref="983632218"/>
-							</object>
-							<object class="IBUIImageView" id="186923266">
-								<reference key="NSNextResponder" ref="538146265"/>
-								<int key="NSvFlags">256</int>
-								<string key="NSFrame">{{0, 307}, {40, 40}}</string>
-								<reference key="NSSuperview" ref="538146265"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="304847281"/>
-								<bool key="IBUIOpaque">NO</bool>
-								<bool key="IBUIClipsSubviews">YES</bool>
-								<int key="IBUIContentMode">4</int>
-								<bool key="IBUIMultipleTouchEnabled">YES</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">thoughtbubble-connector.png</string>
-								</object>
-							</object>
-						</object>
-						<string key="NSFrameSize">{320, 460}</string>
-						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="527579418"/>
-						<reference key="IBUIBackgroundColor" ref="62652147"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-					</object>
-				</object>
-				<string key="NSFrame">{{0, 20}, {320, 460}}</string>
-				<reference key="NSSuperview"/>
-				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="915348926"/>
-				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">3</int>
-					<bytes key="NSWhite">MQA</bytes>
-					<reference key="NSCustomColorSpace" ref="825725967"/>
-				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
-				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-			</object>
-		</object>
-		<object class="IBObjectContainer" key="IBDocument.Objects">
-			<object class="NSMutableArray" key="connectionRecords">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">view</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="191373211"/>
-					</object>
-					<int key="connectionID">3</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">thoughtModalArea</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="538146265"/>
-					</object>
-					<int key="connectionID">17</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">surroundingsBackground</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="509523287"/>
-					</object>
-					<int key="connectionID">21</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dilemmaText</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="632154849"/>
-					</object>
-					<int key="connectionID">25</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">versusImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="162874859"/>
-					</object>
-					<int key="connectionID">35</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">screen1View</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="230133056"/>
-					</object>
-					<int key="connectionID">41</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">screen2View</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="792793239"/>
-					</object>
-					<int key="connectionID">43</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">screen3View</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="246192506"/>
-					</object>
-					<int key="connectionID">45</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">screen4View</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="725327106"/>
-					</object>
-					<int key="connectionID">47</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">choiceText1</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="993820764"/>
-					</object>
-					<int key="connectionID">57</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dilemmaMoralLabel1</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="824072913"/>
-					</object>
-					<int key="connectionID">66</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dilemmaMoralLabel2</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1014906623"/>
-					</object>
-					<int key="connectionID">67</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral1ChoiceLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="554490606"/>
-					</object>
-					<int key="connectionID">68</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral2ChoiceLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="306782691"/>
-					</object>
-					<int key="connectionID">70</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">screen5View</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="34480304"/>
-					</object>
-					<int key="connectionID">76</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">selectionButton2</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="356814167"/>
-					</object>
-					<int key="connectionID">86</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">selectionButton1</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="390823874"/>
-					</object>
-					<int key="connectionID">87</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">screen6View</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="527579418"/>
-					</object>
-					<int key="connectionID">89</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moralRewardLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="585367959"/>
-					</object>
-					<int key="connectionID">113</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moralSelectedImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="591859427"/>
-					</object>
-					<int key="connectionID">121</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moralSelectedChoiceLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1047793857"/>
-					</object>
-					<int key="connectionID">122</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moralScoreLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="150190554"/>
-					</object>
-					<int key="connectionID">123</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">ethicalRewardLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="989370488"/>
-					</object>
-					<int key="connectionID">124</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">choiceText2</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="147438419"/>
-					</object>
-					<int key="connectionID">126</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dilemmaTitle</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="827347268"/>
-					</object>
-					<int key="connectionID">129</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dilemmaTitleText</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="138206717"/>
-					</object>
-					<int key="connectionID">130</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral1Image</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="889601563"/>
-					</object>
-					<int key="connectionID">131</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral2Image</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="1044794784"/>
-					</object>
-					<int key="connectionID">132</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral1ChoiceImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="112961113"/>
-					</object>
-					<int key="connectionID">133</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral2ChoiceImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="941849708"/>
-					</object>
-					<int key="connectionID">134</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral1ButtonImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="205696567"/>
-					</object>
-					<int key="connectionID">135</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moral2ButtonImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="945866819"/>
-					</object>
-					<int key="connectionID">136</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">rewardView</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="727105608"/>
-					</object>
-					<int key="connectionID">144</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">rewardCard</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="269987025"/>
-					</object>
-					<int key="connectionID">146</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">rewardImage</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="795522526"/>
-					</object>
-					<int key="connectionID">147</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">rewardImageSmall</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="941640545"/>
-					</object>
-					<int key="connectionID">149</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">moralSelectedRewardLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="441700561"/>
-					</object>
-					<int key="connectionID">151</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">previousButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="3759875"/>
-					</object>
-					<int key="connectionID">152</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">nextButton</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="145869420"/>
-					</object>
-					<int key="connectionID">153</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">previousScreen</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="915348926"/>
-					</object>
-					<int key="connectionID">157</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">selectChoice:</string>
-						<reference key="source" ref="145869420"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">140</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">selectChoice:</string>
-						<reference key="source" ref="3759875"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">139</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">selectChoice:</string>
-						<reference key="source" ref="390823874"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">138</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">selectChoice:</string>
-						<reference key="source" ref="356814167"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">137</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchEventConnection" key="connection">
-						<string key="label">returnToHome:</string>
-						<reference key="source" ref="304847281"/>
-						<reference key="destination" ref="372490531"/>
-						<int key="IBEventType">7</int>
-					</object>
-					<int key="connectionID">155</int>
-				</object>
-			</object>
-			<object class="IBMutableOrderedSet" key="objectRecords">
-				<object class="NSArray" key="orderedObjects">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<object class="IBObjectRecord">
-						<int key="objectID">0</int>
-						<object class="NSArray" key="object" id="0">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-						</object>
-						<reference key="children" ref="1000"/>
-						<nil key="parent"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">1</int>
-						<reference key="object" ref="191373211"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="538146265"/>
-							<reference ref="915348926"/>
-						</object>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-1</int>
-						<reference key="object" ref="372490531"/>
-						<reference key="parent" ref="0"/>
-						<string key="objectName">File's Owner</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">-2</int>
-						<reference key="object" ref="975951072"/>
-						<reference key="parent" ref="0"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">10</int>
-						<reference key="object" ref="538146265"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="725327106"/>
-							<reference ref="230133056"/>
-							<reference ref="792793239"/>
-							<reference ref="246192506"/>
-							<reference ref="34480304"/>
-							<reference ref="527579418"/>
-							<reference ref="3759875"/>
-							<reference ref="145869420"/>
-							<reference ref="304847281"/>
-							<reference ref="186923266"/>
-							<reference ref="509523287"/>
-							<reference ref="1040894430"/>
-						</object>
-						<reference key="parent" ref="191373211"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">11</int>
-						<reference key="object" ref="509523287"/>
-						<reference key="parent" ref="538146265"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">40</int>
-						<reference key="object" ref="230133056"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="827347268"/>
-							<reference ref="162874859"/>
-							<reference ref="1044794784"/>
-							<reference ref="824072913"/>
-							<reference ref="1014906623"/>
-							<reference ref="889601563"/>
-						</object>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">View1</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">42</int>
-						<reference key="object" ref="792793239"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="632154849"/>
-							<reference ref="138206717"/>
-						</object>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">View2</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">44</int>
-						<reference key="object" ref="246192506"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="112961113"/>
-							<reference ref="993820764"/>
-							<reference ref="71279312"/>
-							<reference ref="554490606"/>
-						</object>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">View3</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">46</int>
-						<reference key="object" ref="725327106"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="941849708"/>
-							<reference ref="147438419"/>
-							<reference ref="306782691"/>
-						</object>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">View4</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">31</int>
-						<reference key="object" ref="162874859"/>
-						<reference key="parent" ref="230133056"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">15</int>
-						<reference key="object" ref="827347268"/>
-						<reference key="parent" ref="230133056"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">32</int>
-						<reference key="object" ref="889601563"/>
-						<reference key="parent" ref="230133056"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">33</int>
-						<reference key="object" ref="1044794784"/>
-						<reference key="parent" ref="230133056"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">24</int>
-						<reference key="object" ref="632154849"/>
-						<reference key="parent" ref="792793239"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">48</int>
-						<reference key="object" ref="824072913"/>
-						<reference key="parent" ref="230133056"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">49</int>
-						<reference key="object" ref="1014906623"/>
-						<reference key="parent" ref="230133056"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">51</int>
-						<reference key="object" ref="112961113"/>
-						<reference key="parent" ref="246192506"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">53</int>
-						<reference key="object" ref="993820764"/>
-						<reference key="parent" ref="246192506"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">59</int>
-						<reference key="object" ref="71279312"/>
-						<reference key="parent" ref="246192506"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">62</int>
-						<reference key="object" ref="147438419"/>
-						<reference key="parent" ref="725327106"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">64</int>
-						<reference key="object" ref="941849708"/>
-						<reference key="parent" ref="725327106"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">65</int>
-						<reference key="object" ref="554490606"/>
-						<reference key="parent" ref="246192506"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">69</int>
-						<reference key="object" ref="306782691"/>
-						<reference key="parent" ref="725327106"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">71</int>
-						<reference key="object" ref="34480304"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="205696567"/>
-							<reference ref="945866819"/>
-							<reference ref="390823874"/>
-							<reference ref="356814167"/>
-							<reference ref="774993682"/>
-						</object>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">View5</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">77</int>
-						<reference key="object" ref="390823874"/>
-						<reference key="parent" ref="34480304"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">79</int>
-						<reference key="object" ref="356814167"/>
-						<reference key="parent" ref="34480304"/>
-						<string key="objectName">Button - Choice2</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">80</int>
-						<reference key="object" ref="205696567"/>
-						<reference key="parent" ref="34480304"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">81</int>
-						<reference key="object" ref="945866819"/>
-						<reference key="parent" ref="34480304"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">78</int>
-						<reference key="object" ref="774993682"/>
-						<reference key="parent" ref="34480304"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">88</int>
-						<reference key="object" ref="527579418"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="1047793857"/>
-							<reference ref="585367959"/>
-							<reference ref="727105608"/>
-							<reference ref="441700561"/>
-						</object>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">View6</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">95</int>
-						<reference key="object" ref="585367959"/>
-						<reference key="parent" ref="527579418"/>
-						<string key="objectName">MoralRewardLabel</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">107</int>
-						<reference key="object" ref="1047793857"/>
-						<reference key="parent" ref="527579418"/>
-						<string key="objectName">SelectedCardLabel</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">127</int>
-						<reference key="object" ref="138206717"/>
-						<reference key="parent" ref="792793239"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">143</int>
-						<reference key="object" ref="727105608"/>
-						<object class="NSMutableArray" key="children">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="795522526"/>
-							<reference ref="989370488"/>
-							<reference ref="150190554"/>
-							<reference ref="591859427"/>
-							<reference ref="269987025"/>
-							<reference ref="941640545"/>
-						</object>
-						<reference key="parent" ref="527579418"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">141</int>
-						<reference key="object" ref="795522526"/>
-						<reference key="parent" ref="727105608"/>
-						<string key="objectName">rewardImage</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">111</int>
-						<reference key="object" ref="989370488"/>
-						<reference key="parent" ref="727105608"/>
-						<string key="objectName">RewardEthicalLabel</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">105</int>
-						<reference key="object" ref="150190554"/>
-						<reference key="parent" ref="727105608"/>
-						<string key="objectName">SelectedCardScore</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">109</int>
-						<reference key="object" ref="591859427"/>
-						<reference key="parent" ref="727105608"/>
-						<string key="objectName">SelectedCardImage</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">145</int>
-						<reference key="object" ref="269987025"/>
-						<reference key="parent" ref="727105608"/>
-						<string key="objectName">pictureFrame</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">148</int>
-						<reference key="object" ref="941640545"/>
-						<reference key="parent" ref="727105608"/>
-						<string key="objectName">rewardImageSmall</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">150</int>
-						<reference key="object" ref="441700561"/>
-						<reference key="parent" ref="527579418"/>
-						<string key="objectName">SelectedRewardLabel</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">26</int>
-						<reference key="object" ref="3759875"/>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">ButtonPrevious</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">13</int>
-						<reference key="object" ref="145869420"/>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">ButtonNext</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">154</int>
-						<reference key="object" ref="304847281"/>
-						<reference key="parent" ref="538146265"/>
-						<string key="objectName">ButtonHome</string>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">125</int>
-						<reference key="object" ref="186923266"/>
-						<reference key="parent" ref="538146265"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">6</int>
-						<reference key="object" ref="1040894430"/>
-						<reference key="parent" ref="538146265"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">156</int>
-						<reference key="object" ref="915348926"/>
-						<reference key="parent" ref="191373211"/>
-					</object>
-				</object>
-			</object>
-			<object class="NSMutableDictionary" key="flattenedProperties">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="NSArray" key="dict.sortedKeys">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>-1.CustomClassName</string>
-					<string>-1.IBPluginDependency</string>
-					<string>-2.CustomClassName</string>
-					<string>-2.IBPluginDependency</string>
-					<string>1.IBPluginDependency</string>
-					<string>10.IBPluginDependency</string>
-					<string>105.IBPluginDependency</string>
-					<string>107.IBPluginDependency</string>
-					<string>109.IBPluginDependency</string>
-					<string>11.IBPluginDependency</string>
-					<string>111.IBPluginDependency</string>
-					<string>125.IBPluginDependency</string>
-					<string>127.IBPluginDependency</string>
-					<string>13.IBPluginDependency</string>
-					<string>141.IBPluginDependency</string>
-					<string>143.IBPluginDependency</string>
-					<string>145.IBPluginDependency</string>
-					<string>148.IBPluginDependency</string>
-					<string>15.IBPluginDependency</string>
-					<string>150.IBPluginDependency</string>
-					<string>154.IBPluginDependency</string>
-					<string>156.IBPluginDependency</string>
-					<string>24.IBPluginDependency</string>
-					<string>26.IBPluginDependency</string>
-					<string>31.IBPluginDependency</string>
-					<string>32.IBPluginDependency</string>
-					<string>33.IBPluginDependency</string>
-					<string>40.IBPluginDependency</string>
-					<string>42.IBPluginDependency</string>
-					<string>44.IBPluginDependency</string>
-					<string>46.IBPluginDependency</string>
-					<string>48.IBPluginDependency</string>
-					<string>49.IBPluginDependency</string>
-					<string>51.IBPluginDependency</string>
-					<string>53.IBPluginDependency</string>
-					<string>59.IBPluginDependency</string>
-					<string>6.IBPluginDependency</string>
-					<string>62.IBPluginDependency</string>
-					<string>64.IBPluginDependency</string>
-					<string>65.IBPluginDependency</string>
-					<string>69.IBPluginDependency</string>
-					<string>71.IBPluginDependency</string>
-					<string>77.IBPluginDependency</string>
-					<string>77.IBUIButtonInspectorSelectedEdgeInsetMetadataKey</string>
-					<string>78.IBPluginDependency</string>
-					<string>79.IBPluginDependency</string>
-					<string>79.IBUIButtonInspectorSelectedEdgeInsetMetadataKey</string>
-					<string>79.IBUIButtonInspectorSelectedStateConfigurationMetadataKey</string>
-					<string>80.IBPluginDependency</string>
-					<string>81.IBPluginDependency</string>
-					<string>88.IBPluginDependency</string>
-					<string>95.IBPluginDependency</string>
-				</object>
-				<object class="NSArray" key="dict.values">
-					<bool key="EncodedWithXMLCoder">YES</bool>
-					<string>DilemmaViewController</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>UIResponder</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<real value="1"/>
-					<real value="0.0"/>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				</object>
-			</object>
-			<object class="NSMutableDictionary" key="unlocalizedProperties">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<reference key="dict.sortedKeys" ref="0"/>
-				<reference key="dict.values" ref="0"/>
-			</object>
-			<nil key="activeLocalization"/>
-			<object class="NSMutableDictionary" key="localizations">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<reference key="dict.sortedKeys" ref="0"/>
-				<reference key="dict.values" ref="0"/>
-			</object>
-			<nil key="sourceID"/>
-			<int key="maxID">157</int>
-		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes">
-			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<object class="IBPartialClassDescription">
-					<string key="className">DilemmaViewController</string>
-					<string key="superclassName">UIViewController</string>
-					<object class="NSMutableDictionary" key="actions">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>returnToHome:</string>
-							<string>selectChoice:</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>id</string>
-							<string>id</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="actionInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>returnToHome:</string>
-							<string>selectChoice:</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBActionInfo">
-								<string key="name">returnToHome:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-							<object class="IBActionInfo">
-								<string key="name">selectChoice:</string>
-								<string key="candidateClassName">id</string>
-							</object>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="outlets">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>choiceText1</string>
-							<string>choiceText2</string>
-							<string>dilemmaMoralLabel1</string>
-							<string>dilemmaMoralLabel2</string>
-							<string>dilemmaText</string>
-							<string>dilemmaTitle</string>
-							<string>dilemmaTitleText</string>
-							<string>ethicalRewardLabel</string>
-							<string>introText</string>
-							<string>moral1ButtonImage</string>
-							<string>moral1ChoiceImage</string>
-							<string>moral1ChoiceLabel</string>
-							<string>moral1Image</string>
-							<string>moral2ButtonImage</string>
-							<string>moral2ChoiceImage</string>
-							<string>moral2ChoiceLabel</string>
-							<string>moral2Image</string>
-							<string>moralRewardLabel</string>
-							<string>moralScoreLabel</string>
-							<string>moralSelectedChoiceLabel</string>
-							<string>moralSelectedImage</string>
-							<string>moralSelectedRewardLabel</string>
-							<string>nextButton</string>
-							<string>previousButton</string>
-							<string>previousScreen</string>
-							<string>rewardCard</string>
-							<string>rewardImage</string>
-							<string>rewardImageSmall</string>
-							<string>rewardView</string>
-							<string>screen1View</string>
-							<string>screen2View</string>
-							<string>screen3View</string>
-							<string>screen4View</string>
-							<string>screen5View</string>
-							<string>screen6View</string>
-							<string>selectionButton1</string>
-							<string>selectionButton2</string>
-							<string>surroundingsBackground</string>
-							<string>thoughtModalArea</string>
-							<string>versusImage</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>UITextView</string>
-							<string>UITextView</string>
-							<string>UILabel</string>
-							<string>UILabel</string>
-							<string>UITextView</string>
-							<string>UILabel</string>
-							<string>UILabel</string>
-							<string>UILabel</string>
-							<string>UITextView</string>
-							<string>UIImageView</string>
-							<string>UIImageView</string>
-							<string>UILabel</string>
-							<string>UIImageView</string>
-							<string>UIImageView</string>
-							<string>UIImageView</string>
-							<string>UILabel</string>
-							<string>UIImageView</string>
-							<string>UILabel</string>
-							<string>UILabel</string>
-							<string>UILabel</string>
-							<string>UIImageView</string>
-							<string>UILabel</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIImageView</string>
-							<string>UIImageView</string>
-							<string>UIImageView</string>
-							<string>UIImageView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIView</string>
-							<string>UIButton</string>
-							<string>UIButton</string>
-							<string>UIImageView</string>
-							<string>UIView</string>
-							<string>UIImageView</string>
-						</object>
-					</object>
-					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<bool key="EncodedWithXMLCoder">YES</bool>
-						<object class="NSArray" key="dict.sortedKeys">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>choiceText1</string>
-							<string>choiceText2</string>
-							<string>dilemmaMoralLabel1</string>
-							<string>dilemmaMoralLabel2</string>
-							<string>dilemmaText</string>
-							<string>dilemmaTitle</string>
-							<string>dilemmaTitleText</string>
-							<string>ethicalRewardLabel</string>
-							<string>introText</string>
-							<string>moral1ButtonImage</string>
-							<string>moral1ChoiceImage</string>
-							<string>moral1ChoiceLabel</string>
-							<string>moral1Image</string>
-							<string>moral2ButtonImage</string>
-							<string>moral2ChoiceImage</string>
-							<string>moral2ChoiceLabel</string>
-							<string>moral2Image</string>
-							<string>moralRewardLabel</string>
-							<string>moralScoreLabel</string>
-							<string>moralSelectedChoiceLabel</string>
-							<string>moralSelectedImage</string>
-							<string>moralSelectedRewardLabel</string>
-							<string>nextButton</string>
-							<string>previousButton</string>
-							<string>previousScreen</string>
-							<string>rewardCard</string>
-							<string>rewardImage</string>
-							<string>rewardImageSmall</string>
-							<string>rewardView</string>
-							<string>screen1View</string>
-							<string>screen2View</string>
-							<string>screen3View</string>
-							<string>screen4View</string>
-							<string>screen5View</string>
-							<string>screen6View</string>
-							<string>selectionButton1</string>
-							<string>selectionButton2</string>
-							<string>surroundingsBackground</string>
-							<string>thoughtModalArea</string>
-							<string>versusImage</string>
-						</object>
-						<object class="NSArray" key="dict.values">
-							<bool key="EncodedWithXMLCoder">YES</bool>
-							<object class="IBToOneOutletInfo">
-								<string key="name">choiceText1</string>
-								<string key="candidateClassName">UITextView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">choiceText2</string>
-								<string key="candidateClassName">UITextView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">dilemmaMoralLabel1</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">dilemmaMoralLabel2</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">dilemmaText</string>
-								<string key="candidateClassName">UITextView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">dilemmaTitle</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">dilemmaTitleText</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">ethicalRewardLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">introText</string>
-								<string key="candidateClassName">UITextView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral1ButtonImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral1ChoiceImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral1ChoiceLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral1Image</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral2ButtonImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral2ChoiceImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral2ChoiceLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moral2Image</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moralRewardLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moralScoreLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moralSelectedChoiceLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moralSelectedImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">moralSelectedRewardLabel</string>
-								<string key="candidateClassName">UILabel</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">nextButton</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">previousButton</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">previousScreen</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">rewardCard</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">rewardImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">rewardImageSmall</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">rewardView</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">screen1View</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">screen2View</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">screen3View</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">screen4View</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">screen5View</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">screen6View</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">selectionButton1</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">selectionButton2</string>
-								<string key="candidateClassName">UIButton</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">surroundingsBackground</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">thoughtModalArea</string>
-								<string key="candidateClassName">UIView</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">versusImage</string>
-								<string key="candidateClassName">UIImageView</string>
-							</object>
-						</object>
-					</object>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/DilemmaViewController.h</string>
-					</object>
-				</object>
-			</object>
-		</object>
-		<int key="IBDocument.localizationMode">0</int>
-		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1552" key="NS.object.0"/>
-		</object>
-		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDevelopmentDependencies">
-			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.InterfaceBuilder3</string>
-			<integer value="3000" key="NS.object.0"/>
-		</object>
-		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
-		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<bool key="EncodedWithXMLCoder">YES</bool>
-			<object class="NSArray" key="dict.sortedKeys">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>card-honesty.png</string>
-				<string>card-loyalty.png</string>
-				<string>cardback-reference.png</string>
-				<string>icon-competition.png</string>
-				<string>interface-choicesnext.png</string>
-				<string>interface-choicesprevious.png</string>
-				<string>thoughtbubble-connector.png</string>
-				<string>thoughtbubble-large1.png</string>
-				<string>thoughtbubble-thin1.png</string>
-				<string>thoughtbubble-thin2.png</string>
-			</object>
-			<object class="NSArray" key="dict.values">
-				<bool key="EncodedWithXMLCoder">YES</bool>
-				<string>{128, 128}</string>
-				<string>{128, 128}</string>
-				<string>{115, 152}</string>
-				<string>{75, 75}</string>
-				<string>{90, 90}</string>
-				<string>{90, 90}</string>
-				<string>{40, 40}</string>
-				<string>{320, 460}</string>
-				<string>{320, 75}</string>
-				<string>{320, 75}</string>
-			</object>
-		</object>
-		<string key="IBCocoaTouchPluginVersion">2083</string>
-	</data>
-</archive>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11129.15" systemVersion="16A201w" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11103.10"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DilemmaViewController">
+            <connections>
+                <outlet property="choiceText1" destination="53" id="57"/>
+                <outlet property="choiceText2" destination="62" id="126"/>
+                <outlet property="dilemmaMoralLabel1" destination="48" id="66"/>
+                <outlet property="dilemmaMoralLabel2" destination="49" id="67"/>
+                <outlet property="dilemmaText" destination="24" id="25"/>
+                <outlet property="dilemmaTitle" destination="15" id="129"/>
+                <outlet property="dilemmaTitleText" destination="127" id="130"/>
+                <outlet property="ethicalRewardLabel" destination="111" id="124"/>
+                <outlet property="moral1ButtonImage" destination="80" id="135"/>
+                <outlet property="moral1ChoiceImage" destination="51" id="133"/>
+                <outlet property="moral1ChoiceLabel" destination="65" id="68"/>
+                <outlet property="moral1Image" destination="32" id="131"/>
+                <outlet property="moral2ButtonImage" destination="81" id="136"/>
+                <outlet property="moral2ChoiceImage" destination="64" id="134"/>
+                <outlet property="moral2ChoiceLabel" destination="69" id="70"/>
+                <outlet property="moral2Image" destination="33" id="132"/>
+                <outlet property="moralRewardLabel" destination="95" id="113"/>
+                <outlet property="moralScoreLabel" destination="105" id="123"/>
+                <outlet property="moralSelectedChoiceLabel" destination="107" id="122"/>
+                <outlet property="moralSelectedImage" destination="109" id="121"/>
+                <outlet property="moralSelectedRewardLabel" destination="150" id="151"/>
+                <outlet property="nextButton" destination="13" id="153"/>
+                <outlet property="previousButton" destination="26" id="152"/>
+                <outlet property="previousScreen" destination="156" id="157"/>
+                <outlet property="rewardCard" destination="145" id="146"/>
+                <outlet property="rewardImage" destination="141" id="147"/>
+                <outlet property="rewardImageSmall" destination="148" id="149"/>
+                <outlet property="rewardView" destination="143" id="144"/>
+                <outlet property="screen1View" destination="40" id="41"/>
+                <outlet property="screen2View" destination="42" id="43"/>
+                <outlet property="screen3View" destination="44" id="45"/>
+                <outlet property="screen4View" destination="46" id="47"/>
+                <outlet property="screen5View" destination="71" id="76"/>
+                <outlet property="screen6View" destination="88" id="89"/>
+                <outlet property="selectionButton1" destination="77" id="87"/>
+                <outlet property="selectionButton2" destination="79" id="86"/>
+                <outlet property="surroundingsBackground" destination="11" id="21"/>
+                <outlet property="thoughtModalArea" destination="10" id="17"/>
+                <outlet property="versusImage" destination="31" id="35"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="156">
+                    <frame key="frameInset" minY="-20" width="320" height="480"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </imageView>
+                <view opaque="NO" contentMode="scaleToFill" id="10">
+                    <frame key="frameInset" width="320" height="460"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="thoughtbubble-large1.png" id="6">
+                            <frame key="frameInset" minX="5" width="320" height="460"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </imageView>
+                        <imageView opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" id="11">
+                            <frame key="frameInset" minX="31" minY="33" width="253" height="100"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </imageView>
+                        <view hidden="YES" opaque="NO" contentMode="scaleToFill" id="88" userLabel="View6">
+                            <frame key="frameInset" width="320" height="480"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" id="143">
+                                    <frame key="frameInset" minX="103" minY="197" width="115" height="152"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="141" userLabel="rewardImage">
+                                            <frame key="frameInset" minX="3" minY="8" width="100" height="130"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="148" userLabel="rewardImageSmall">
+                                            <frame key="frameInset" minX="21" minY="29" width="60" height="60"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="cardback-reference.png" id="145" userLabel="pictureFrame">
+                                            <frame key="frameInset" width="115" height="152"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="111" userLabel="RewardEthicalLabel">
+                                            <frame key="frameInset" minX="17" minY="48" width="75" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <string key="text" base64-UTF8="YES">
+Cg
+</string>
+                                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
+                                            <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="shadowColor" red="0.098039217289999994" green="0.098039217289999994" blue="0.098039217289999994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <size key="shadowOffset" width="0.0" height="1"/>
+                                        </label>
+                                        <label hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="15" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="105" userLabel="SelectedCardScore">
+                                            <frame key="frameInset" minX="65" minY="103" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                            <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="card-loyalty.png" id="109" userLabel="SelectedCardImage">
+                                            <frame key="frameInset" minX="66" minY="103" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </view>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="left" text="+5" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="95" userLabel="MoralRewardLabel">
+                                    <frame key="frameInset" minX="210" minY="299" width="40" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chosen Moral" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="107" userLabel="SelectedCardLabel">
+                                    <frame key="frameInset" minX="35" minY="138" width="240" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="24"/>
+                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Chosen Moral" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="150" userLabel="SelectedRewardLabel">
+                                    <frame key="frameInset" minX="40" minY="161" width="240" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                    <color key="textColor" red="0.50196081400000003" green="0.25098040700000002" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="71" userLabel="View5">
+                            <frame key="frameInset" width="320" height="460"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="characterWrap" id="79" userLabel="Button - Choice2">
+                                    <frame key="frameInset" minY="278" width="320" height="75"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                    <inset key="contentEdgeInsets" minX="-64" minY="0.0" maxX="64" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="12" minY="-4" maxX="16" maxY="0.0"/>
+                                    <size key="titleShadowOffset" width="1" height="1"/>
+                                    <state key="normal" title="Choice2" backgroundImage="thoughtbubble-thin2.png">
+                                        <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectChoice:" destination="-1" eventType="touchUpInside" id="137"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="~ OR ~" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="78">
+                                    <frame key="frameInset" minX="96" minY="224" width="128" height="48"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                    <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" id="77">
+                                    <frame key="frameInset" minY="150" width="320" height="75"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                                    <inset key="contentEdgeInsets" minX="64" minY="0.0" maxX="-64" maxY="0.0"/>
+                                    <inset key="titleEdgeInsets" minX="17" minY="-4" maxX="12" maxY="0.0"/>
+                                    <size key="titleShadowOffset" width="1" height="1"/>
+                                    <state key="normal" title="Choice1" backgroundImage="thoughtbubble-thin1.png">
+                                        <color key="titleColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="titleShadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectChoice:" destination="-1" eventType="touchUpInside" id="138"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="card-loyalty.png" id="80">
+                                    <frame key="frameInset" minX="46" minY="167" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="card-honesty.png" id="81">
+                                    <frame key="frameInset" minX="249" minY="298" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="46" userLabel="View4">
+                            <frame key="frameInset" width="320" height="460"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" id="62">
+                                    <frame key="frameInset" minX="50" minY="186" width="220" height="160"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <string key="text">Tell the truth and implicate your boss.  You know that he would not want you to lie for him.  Furthermore, he has a sweet corner office that will become vacant upon his incarceration.</string>
+                                    <color key="textColor" red="0.60000002379999995" green="0.29024819509999999" blue="0.19153457669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Honesty" lineBreakMode="tailTruncation" minimumFontSize="10" id="69">
+                                    <frame key="frameInset" minX="69" minY="147" width="200" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="card-honesty.png" id="64">
+                                    <frame key="frameInset" minX="32" minY="148" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="44" userLabel="View3">
+                            <frame key="frameInset" width="320" height="460"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Hold your tongue.  You want to give him the benefit of the doubt.  Besides, he knows where you sleep." id="53">
+                                    <frame key="frameInset" minX="50" minY="186" width="220" height="155"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.60000002379999995" green="0.29024819509999999" blue="0.19153457669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="~ OR ~" lineBreakMode="tailTruncation" minimumFontSize="10" id="59">
+                                    <frame key="frameInset" minX="168" minY="356" width="52" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                    <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loyalty" lineBreakMode="tailTruncation" minimumFontSize="10" id="65">
+                                    <frame key="frameInset" minX="69" minY="147" width="200" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="card-loyalty.png" id="51">
+                                    <frame key="frameInset" minX="32" minY="148" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="42" userLabel="View2">
+                            <frame key="frameInset" width="320" height="460"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dilemma Title" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" id="127">
+                                    <frame key="frameInset" minX="40" minY="139" width="240" height="35"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                                <textView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Test Text View" id="24">
+                                    <frame key="frameInset" minX="40" minY="175" width="240" height="170"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" red="0.60000002379999995" green="0.29024819509999999" blue="0.19153457669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view hidden="YES" contentMode="scaleToFill" id="40" userLabel="View1">
+                            <frame key="frameInset" width="320" height="460"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="icon-competition.png" id="31">
+                                    <frame key="frameInset" minX="118" minY="221" width="75" height="75"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Dilemma Title" textAlignment="center" lineBreakMode="wordWrap" minimumFontSize="10" id="15">
+                                    <frame key="frameInset" minX="40" minY="139" width="240" height="35"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="24"/>
+                                    <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="0.0" height="0.0"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="card-loyalty.png" id="32">
+                                    <frame key="frameInset" minX="249" minY="196" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="card-honesty.png" id="33">
+                                    <frame key="frameInset" minX="44" minY="298" width="32" height="32"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Loyalty" textAlignment="right" lineBreakMode="tailTruncation" minimumFontSize="10" id="48">
+                                    <frame key="frameInset" minX="40" minY="201" width="206" height="22"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                    <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Honesty" lineBreakMode="tailTruncation" minimumFontSize="10" id="49">
+                                    <frame key="frameInset" minX="79" minY="299" width="206" height="29"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="18"/>
+                                    <color key="textColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="highlightedColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="shadowColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <size key="shadowOffset" width="1" height="1"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <button opaque="NO" alpha="0.5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="26" userLabel="ButtonPrevious">
+                            <frame key="frameInset" minX="252" minY="380" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Previous"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" backgroundImage="interface-choicesprevious.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="selectChoice:" destination="-1" eventType="touchUpInside" id="139"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="13" userLabel="ButtonNext">
+                            <frame key="frameInset" minX="232" minY="340" width="45" height="45"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <accessibility key="accessibilityConfiguration" label="Previous"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal" backgroundImage="interface-choicesnext.png">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="selectChoice:" destination="-1" eventType="touchUpInside" id="140"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="154" userLabel="ButtonHome">
+                            <frame key="frameInset" minY="380" width="180" height="80"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="returnToHome:" destination="-1" eventType="touchUpInside" id="155"/>
+                            </connections>
+                        </button>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="thoughtbubble-connector.png" id="125">
+                            <frame key="frameInset" minY="307" width="40" height="40"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="card-honesty.png" width="128" height="128"/>
+        <image name="card-loyalty.png" width="128" height="128"/>
+        <image name="cardback-reference.png" width="115" height="152"/>
+        <image name="icon-competition.png" width="75" height="75"/>
+        <image name="interface-choicesnext.png" width="90" height="90"/>
+        <image name="interface-choicesprevious.png" width="90" height="90"/>
+        <image name="thoughtbubble-connector.png" width="40" height="40"/>
+        <image name="thoughtbubble-large1.png" width="320" height="460"/>
+        <image name="thoughtbubble-thin1.png" width="320" height="75"/>
+        <image name="thoughtbubble-thin2.png" width="320" height="75"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4_7.fullscreen"/>
+    </simulatedMetricsContainer>
+</document>

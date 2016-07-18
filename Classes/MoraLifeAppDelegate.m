@@ -98,8 +98,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 
 	HomeViewController *homeViewController = [[HomeViewController alloc] initWithModel:homeModel modelManager:self.moralModelManager andConscience:userConscience];
 
-	homeNavigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-
+    [UINavigationBar appearance].barTintColor = [UIColor colorWithRed:162.0/255.0 green:71.0/255.0 blue:13.0/255.0 alpha:1.0];
+    
 	[homeNavigationController pushViewController:homeViewController animated:NO];
 
 #if defined(__IPHONE_5_0) && __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_5_0
