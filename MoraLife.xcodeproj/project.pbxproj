@@ -1366,8 +1366,6 @@
 		5EBC2200121394F3005E4644 /* con-yinyang.svg in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC21F1121394F3005E4644 /* con-yinyang.svg */; };
 		5EBC9AD513524007001ACD7A /* ref-you-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9AD313524007001ACD7A /* ref-you-sm.png */; };
 		5EBC9AD613524007001ACD7A /* ref-you.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9AD413524007001ACD7A /* ref-you.jpg */; };
-		5EBC9ADC1352A42E001ACD7A /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */; };
-		5EBC9ADF1352A4CD001ACD7A /* IntroView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */; };
 		5EC246D312711DF100421807 /* card-addiction.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246BF12711DF100421807 /* card-addiction.png */; };
 		5EC246D412711DF100421807 /* card-caprice.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C012711DF100421807 /* card-caprice.png */; };
 		5EC246D512711DF100421807 /* card-idolatry.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC246C112711DF100421807 /* card-idolatry.png */; };
@@ -3022,7 +3020,6 @@
 		5EA5422A1380BB13009077B7 /* Character.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Character.m; sourceTree = "<group>"; };
 		5EA639B612625D9100C72419 /* button-large-down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "button-large-down.png"; path = "Resources/images/interface/button-large-down.png"; sourceTree = "<group>"; };
 		5EA696DB157DFF440075115F /* helpscreendismissals.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = helpscreendismissals.js; sourceTree = "<group>"; };
-		5EA696DC157DFF440075115F /* introcompletion.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = introcompletion.js; sourceTree = "<group>"; };
 		5EA696DD15804A190075115F /* consciencenavigation.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = consciencenavigation.js; sourceTree = "<group>"; };
 		5EA83800160645BF00536C9E /* acc-top-lancercap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "acc-top-lancercap.png"; path = "Resources/images/accessories/acc-top-lancercap.png"; sourceTree = "<group>"; };
 		5EA83803160645D400536C9E /* acc-top-lancercap-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "acc-top-lancercap-sm.png"; sourceTree = "<group>"; };
@@ -3106,9 +3103,6 @@
 		5EBC21F1121394F3005E4644 /* con-yinyang.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = "con-yinyang.svg"; path = "Resources/images/conscience/con-yinyang.svg"; sourceTree = "<group>"; };
 		5EBC9AD313524007001ACD7A /* ref-you-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-you-sm.png"; path = "Resources/images/reference/ref-you-sm.png"; sourceTree = "<group>"; };
 		5EBC9AD413524007001ACD7A /* ref-you.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = "ref-you.jpg"; path = "Resources/images/reference/ref-you.jpg"; sourceTree = "<group>"; };
-		5EBC9AD91352A42B001ACD7A /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
-		5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
-		5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IntroView.xib; path = Resources/IntroView.xib; sourceTree = "<group>"; };
 		5EBED2FF1548D5EC00AFE44D /* TestReferenceBelief.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestReferenceBelief.m; sourceTree = "<group>"; };
 		5EC246BF12711DF100421807 /* card-addiction.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-addiction.png"; path = "Resources/images/interface/cards/card-addiction.png"; sourceTree = "<group>"; };
 		5EC246C012711DF100421807 /* card-caprice.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "card-caprice.png"; path = "Resources/images/interface/cards/card-caprice.png"; sourceTree = "<group>"; };
@@ -3528,7 +3522,6 @@
 				5E3E87B71226090B00F2708A /* ConscienceView.xib */,
 				5E6858E612727E0D0080386B /* DilemmaView.xib */,
 				5EAA2128130749D700C1DB02 /* DilemmaListView.xib */,
-				5EBC9ADE1352A4CD001ACD7A /* IntroView.xib */,
 				5E3E87B91226090B00F2708A /* MainWindow.xib */,
 				5E3E87BD1226090B00F2708A /* ReferenceView.xib */,
 				5E3E87BA1226090B00F2708A /* ReferenceDetailView.xib */,
@@ -5251,7 +5244,6 @@
 			isa = PBXGroup;
 			children = (
 				5EC5543915774064004BF692 /* include */,
-				5EA696DC157DFF440075115F /* introcompletion.js */,
 				5EA696DB157DFF440075115F /* helpscreendismissals.js */,
 				5EC5543C15774064004BF692 /* mainnavigation.js */,
 				5EA696DD15804A190075115F /* consciencenavigation.js */,
@@ -5418,8 +5410,6 @@
 				5EAA21241307498200C1DB02 /* DilemmaListViewController.m */,
 				5EE2E154122608840091140B /* HomeViewController.h */,
 				5EE2E155122608840091140B /* HomeViewController.m */,
-				5EBC9AD91352A42B001ACD7A /* IntroViewController.h */,
-				5EBC9ADA1352A42C001ACD7A /* IntroViewController.m */,
 				5E4F414217040241005B0149 /* MoraLifeViewController.h */,
 				5E4F414117040241005B0149 /* MoraLifeViewController.m */,
 				5EB9BE9612FD200500584F67 /* ReferenceDetailViewController.h */,
@@ -7005,7 +6995,6 @@
 				5E0592A5134D2AEE0099174E /* ref-stfrancisofassisi.jpg in Resources */,
 				5EBC9AD513524007001ACD7A /* ref-you-sm.png in Resources */,
 				5EBC9AD613524007001ACD7A /* ref-you.jpg in Resources */,
-				5EBC9ADF1352A4CD001ACD7A /* IntroView.xib in Resources */,
 				5EF5566E135D41810062C408 /* thoughtbubble-medium1.png in Resources */,
 				5EF5566F135D41810062C408 /* thoughtbubble-medium1@2x.png in Resources */,
 				5E5B9DDD135FD9A80043420F /* ref-isaacnewton-sm.png in Resources */,
@@ -7165,7 +7154,6 @@
 				5E777E9413161B8C00E35222 /* ReferencePerson.m in Sources */,
 				5E3CB179133C1BD000247A6F /* UserCollectable.m in Sources */,
 				5E554EAF134BF10E00554D82 /* Dilemma.m in Sources */,
-				5EBC9ADC1352A42E001ACD7A /* IntroViewController.m in Sources */,
 				5E480861137E4E2500C1E0CF /* Moral.m in Sources */,
 				5EA542281380B9BB009077B7 /* UserCharacter.m in Sources */,
 				5EA5422B1380BB13009077B7 /* Character.m in Sources */,

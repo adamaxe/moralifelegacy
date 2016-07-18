@@ -8,7 +8,6 @@ All other Conscience-based UIViewControllers are launched from this starting poi
 #import "HomeViewController.h"
 #import "HomeModel.h"
 #import "ConscienceViewController.h"
-#import "IntroViewController.h"
 #import "ChoiceInitViewController.h"
 #import "ReferenceViewController.h"
 #import "UIColor+Utility.h"
@@ -68,11 +67,6 @@ float const MLThoughtInterval = 5;
  Present the ConscienceViewController for Conscience interaction
  */
 -(void) showConscienceModal;
-/**
- On first launch, play an introduction
- */
--(void) showIntroView;
-
 -(void) refreshConscience;
 -(void) setupModalWorkflow;
 
@@ -120,15 +114,6 @@ float const MLThoughtInterval = 5;
     viceImage.alpha = 1;
     rankImage.alpha = 1;
     
-    //If this is the first time that the app, then show the intro
-    BOOL introComplete = [prefs boolForKey:@"introComplete"];
-    
-    if (!introComplete) {
-        
-        [self showIntroView];
-        
-    }  
-
     conscienceStatus.textColor = [UIColor moraLifeChoiceBlue];
     conscienceStatus.shadowColor = [UIColor moraLifeChoiceLightGray];
 
@@ -319,18 +304,6 @@ float const MLThoughtInterval = 5;
 	_userConscience.userConscienceView.alpha = 0;
     
 	[UIView commitAnimations];
-}
-
-/**
- Implementation:  Launch Intro UIViewController in case of first launch.
- Will demonstrate interactions to User
- */
--(void)showIntroView{
-    
-    IntroViewController *introViewCont = [[IntroViewController alloc] initWithModelManager:_modelManager andConscience:_userConscience];
-    
-    introViewCont.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self presentViewController:introViewCont animated:NO completion:nil];
 }
 
 -(void) refreshConscience{

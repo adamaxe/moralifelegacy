@@ -2,7 +2,7 @@
 
 #Setup script order
 #User can opt to just do one or more of the scripts by passing command line arguments
-DEFAULT_SCRIPTS=( "introcompletion" "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
+DEFAULT_SCRIPTS=( "helpscreendismissals" "mainnavigation" "consciencenavigation" "referenceverify" "choicemoraldisplay" "choicemoralcancel" "choicemoralentry" "choicemoralverify" "choiceimmoraldisplay" "choiceimmoralcancel" "choiceimmoralentry" "choiceimmoralverify" "reportpienavigation")
 SCRIPT_MESSAGE="\nHere are the available scripts: ${DEFAULT_SCRIPTS[@]}"
 
 #If command line arguments are greater than 0, determine what user wants
