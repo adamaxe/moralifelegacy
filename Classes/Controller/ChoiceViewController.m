@@ -887,7 +887,7 @@ Implementation: Retrieve current amount of ethicals, add 5 currently
     
     severitySlider.accessibilityHint = NSLocalizedString(@"ChoiceScreenSeverityHint",nil);
 	severitySlider.accessibilityLabel =  NSLocalizedString(@"ChoiceScreenSeverityLabel",nil);
-    NSMutableString *localString = [NSString stringWithFormat:@"ChoiceScreen%dTitle", isVirtue];
+    NSString *localString = [NSString stringWithFormat:@"ChoiceScreen%dTitle", isVirtue];
     
     //Change Title of screen to reflect good or bad choice
     [self setTitle:NSLocalizedString(localString, nil)];

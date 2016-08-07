@@ -20,6 +20,7 @@ CGFloat const MoralTableViewCellRowImageDimension = 40.0;
     CGSize constraintSize = CGSizeMake(MoralTableViewCellRowTextWidth, CGFLOAT_MAX);
         
     CGFloat textHeight = [text sizeWithFont:detailTextFont constrainedToSize:constraintSize].height;
+    
     return MIN(textHeight, (detailTextFont.pointSize * MoralTableViewCellMaximumLineNumber) + MoralTableViewCellRowTextPaddingVertical);
 }
 
