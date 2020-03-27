@@ -117,9 +117,9 @@ NSString* const MLContextReadWrite = @"readWrite";
         NSError *error = nil;
         
         if (objectToDelete) {
-            [self.context delete:objectToDelete];
+            [self.context deleteObject:objectToDelete];
         } else {
-            [self.context delete:[self findPersistedObject:self.currentKey]];
+            [self.context deleteObject:[self findPersistedObject:self.currentKey]];
         }
         
         if ([self.context hasChanges]) {

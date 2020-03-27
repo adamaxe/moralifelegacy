@@ -18,8 +18,8 @@ Moralife AppDelegate.  Implementation.  The delegate handles both the Core Data 
 #import "HomeModel.h"
 #import "HomeViewController.h"
 #import "UserConscience.h"
-#import <Crashlytics/Crashlytics.h>
-#import "Flurry.h"
+//#import <Crashlytics/Crashlytics.h>
+//#import "Flurry.h"
 
 NSString* const MLAPIKeyPListFileName = @"moralife-apikeys";
 
@@ -97,13 +97,13 @@ NSString* const MLAPIKeyPListFileName = @"moralife-apikeys";
     NSString *crashlyticsAPIKey = [apiKeys objectForKey:@"crashlytics"];
     NSString *flurryAPIKey = [apiKeys objectForKey:@"flurry"];
 
-    if (![crashlyticsAPIKey isEqualToString:@""]) {
-        [Crashlytics startWithAPIKey:crashlyticsAPIKey];
-    }
-
-    if (![flurryAPIKey isEqualToString:@""]) {
-        [Flurry startSession:flurryAPIKey];
-    }
+//    if (![crashlyticsAPIKey isEqualToString:@""]) {
+//        [Crashlytics startWithAPIKey:crashlyticsAPIKey];
+//    }
+//
+//    if (![flurryAPIKey isEqualToString:@""]) {
+//        [Flurry startSession:flurryAPIKey];
+//    }
 
 
 

@@ -65,7 +65,7 @@ float const MLBubbleWidthDefault = 5.0;
 	CGContextSetRGBFillColor (context, 1, 1, 1, 1);
 	
 	//Reset shadow for overall bubble black dropshadow
-	float shadowColorValues[] = {0, 0, 0, .6};// 3
+	double shadowColorValues[] = {0, 0, 0, .6};// 3
 	shadowColor = CGColorCreate(colorSpace, shadowColorValues);
 	shadowOffset = CGSizeMake (7,  7);
 	CGContextSetShadowWithColor(context, shadowOffset, 6, shadowColor);	
