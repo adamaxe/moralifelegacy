@@ -12,8 +12,6 @@
 
 #define USE_APPLICATION_UNIT_TEST 0
 
-#import <XCTest/XCTest.h>
-
 @class ConsciencePath;
 
 @interface TestConsciencePath :XCTestCase {

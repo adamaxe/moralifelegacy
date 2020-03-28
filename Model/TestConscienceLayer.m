@@ -12,7 +12,6 @@ Test the vector construction properties for a single Conscience Layer.
 
 #define USE_APPLICATION_UNIT_TEST 0
 
-#import <XCTest/XCTest.h>
 #import "ConscienceLayer.h"
 #import "ConsciencePath.h"
 
