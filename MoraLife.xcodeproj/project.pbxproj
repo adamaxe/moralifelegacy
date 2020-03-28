@@ -44,6 +44,7 @@
 		4903A63C242EEF070003115D /* TestReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E978A1215EC5BB400EB2ED1 /* TestReferenceModel.m */; };
 		4903A63D242EEF070003115D /* TestHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ED04411171B8C9D0044EABF /* TestHomeModel.m */; };
 		4903A63E242EEF070003115D /* TestReportPieModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D259315DDF3AD0097A5F0 /* TestReportPieModel.m */; };
+		4903A63F242EF60C0003115D /* TestCharacter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA108DE154F8EE8008A7936 /* TestCharacter.m */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
@@ -7289,6 +7290,7 @@
 				4903A618242EE1220003115D /* TestConscienceBody.m in Sources */,
 				4903A632242EE48C0003115D /* TestUserCollectableDAO.m in Sources */,
 				4903A61B242EE3E10003115D /* TestModelHelper.m in Sources */,
+				4903A63F242EF60C0003115D /* TestCharacter.m in Sources */,
 				4903A614242EE1220003115D /* TestConsciencePath.m in Sources */,
 				4903A617242EE1220003115D /* TestConscienceMind.m in Sources */,
 				4903A60B242EE06B0003115D /* TestAccessoryObjectView.m in Sources */,
