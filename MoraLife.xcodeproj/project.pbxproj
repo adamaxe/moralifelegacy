@@ -14,11 +14,17 @@
 		4903A5BD242E914C0003115D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4903A5BC242E914C0003115D /* Default-568h@2x.png */; };
 		4903A5C5242EC91B0003115D /* MoraLifeUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903A5C4242EC91B0003115D /* MoraLifeUnitTests.m */; };
 		4903A5D1242ED1040003115D /* TestConscienceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903A5D0242ED1040003115D /* TestConscienceLayer.m */; };
-		4903A5FC242EDA980003115D /* TestConsciencePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */; };
 		4903A60A242EE02A0003115D /* TestGraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0C33913F2529F0093FCA6 /* TestGraphView.m */; };
 		4903A60B242EE06B0003115D /* TestAccessoryObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AF13C542F5001F5CB8 /* TestAccessoryObjectView.m */; };
 		4903A60C242EE06B0003115D /* TestConscienceBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5B113C542F5001F5CB8 /* TestConscienceBubbleView.m */; };
 		4903A60D242EE06B0003115D /* TestConscienceObjectView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5B313C542F5001F5CB8 /* TestConscienceObjectView.m */; };
+		4903A60E242EE0D90003115D /* TestModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EA26D7215843DB600CDA802 /* TestModelManager.m */; };
+		4903A614242EE1220003115D /* TestConsciencePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */; };
+		4903A615242EE1220003115D /* TestConscienceBubbleFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266044156C5D72007DF236 /* TestConscienceBubbleFactory.m */; };
+		4903A616242EE1220003115D /* TestConscienceAccessories.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E26605F156C6538007DF236 /* TestConscienceAccessories.m */; };
+		4903A617242EE1220003115D /* TestConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266062156C6DCB007DF236 /* TestConscienceMind.m */; };
+		4903A618242EE1220003115D /* TestConscienceBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266064156C70FA007DF236 /* TestConscienceBody.m */; };
+		4903A619242EE1220003115D /* TestConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266066156C79BF007DF236 /* TestConscienceGradient.m */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
@@ -7240,13 +7246,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4903A616242EE1220003115D /* TestConscienceAccessories.m in Sources */,
 				4903A5D1242ED1040003115D /* TestConscienceLayer.m in Sources */,
-				4903A5FC242EDA980003115D /* TestConsciencePath.m in Sources */,
+				4903A60E242EE0D90003115D /* TestModelManager.m in Sources */,
+				4903A619242EE1220003115D /* TestConscienceGradient.m in Sources */,
 				4903A5C5242EC91B0003115D /* MoraLifeUnitTests.m in Sources */,
 				4903A60A242EE02A0003115D /* TestGraphView.m in Sources */,
 				4903A60C242EE06B0003115D /* TestConscienceBubbleView.m in Sources */,
 				4903A60D242EE06B0003115D /* TestConscienceObjectView.m in Sources */,
+				4903A618242EE1220003115D /* TestConscienceBody.m in Sources */,
+				4903A614242EE1220003115D /* TestConsciencePath.m in Sources */,
+				4903A617242EE1220003115D /* TestConscienceMind.m in Sources */,
 				4903A60B242EE06B0003115D /* TestAccessoryObjectView.m in Sources */,
+				4903A615242EE1220003115D /* TestConscienceBubbleFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

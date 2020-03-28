@@ -14,7 +14,7 @@
 
 #import "ConscienceBubbleFactory.h"
 
-@interface TestConscienceBubbleFactory : SenTestCase
+@interface TestConscienceBubbleFactory : XCTestCase
 
 @end
 
