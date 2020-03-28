@@ -104,9 +104,8 @@
 
 - (void)testConscienceAssetWithoutRequiredAttributes {
     ConscienceAsset *testConscienceAssetBad = [testModelManager create:ConscienceAsset.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testConscienceAssetBad.class];
     
-    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
 }
 
 @end

@@ -179,9 +179,8 @@
 
 - (void)testDilemmaWithoutRequiredAttributes {
     Dilemma *testDilemmaBad = [testModelManager create:Dilemma.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testDilemmaBad.class];
     
-    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
 }
 
 @end

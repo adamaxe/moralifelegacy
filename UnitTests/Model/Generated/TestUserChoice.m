@@ -128,19 +128,17 @@
 
 - (void)testUserChoiceWithoutRequiredAttributes {
     UserChoice *testUserChoiceBad = [testModelManager create:UserChoice.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceBad.class];
 
-    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
 }
 
 - (void)testUserChoiceDefaultValues {
     UserChoice *testUserChoiceDefault = [testModelManager create:UserChoice.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserChoiceDefault.class];
 
     testUserChoiceDefault.entryCreationDate = entryCreationDate;
     testUserChoiceDefault.entryModificationDate = entryModificationDate;
     
-    XCTAssertNoThrow([testModelManager saveContext], errorMessage);
+    XCTAssertNoThrow([testModelManager saveContext]);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];

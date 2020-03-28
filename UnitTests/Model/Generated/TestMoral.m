@@ -161,21 +161,19 @@
 
 - (void)testMoralWithoutRequiredAttributes {
     Dilemma *testMoralBad = [testModelManager create:Moral.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testMoralBad.class];
     
-    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
 }
 
 - (void)testMoralDefaultValues {
     Moral *testMoralDefault = [testModelManager create:Moral.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testMoralDefault.class];
     
     NSString *defaultLinkMoral = @"defaultLinkMoral";
         
     testMoralDefault.linkMoral = defaultLinkMoral;
     testMoralDefault.colorMoral = @"colorMoral";
     
-    XCTAssertNoThrow([testModelManager saveContext], errorMessage);
+    XCTAssertNoThrow([testModelManager saveContext]);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"linkMoral == %@", defaultLinkMoral];

@@ -93,10 +93,9 @@
 
 - (void)testUserDilemmaWithoutRequiredAttributes {
     UserDilemma *testUserDilemmaBad = [testModelManager create:UserDilemma.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserDilemmaBad.class];
 
     testUserDilemma.entryCreationDate = nil;
-    XCTAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
 }
 
 - (void)testUserDilemmaDefaultValues {
@@ -105,7 +104,7 @@
 
     testUserDilemmaDefault.entryCreationDate = entryCreationDate;
     
-    XCTAssertNoThrow([testModelManager saveContext], errorMessage);
+    XCTAssertNoThrow([testModelManager saveContext]);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"entryKey == %@", @"0"];
