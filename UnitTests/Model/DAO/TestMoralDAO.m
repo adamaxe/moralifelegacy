@@ -2,7 +2,7 @@
 #import "TestModelHelper.h"
 #import "MoralDAO.h"
 
-@interface TestMoralDAO: SenTestCase {
+@interface TestMoralDAO:XCTestCase {
     ModelManager *testModelManager;
 
     MoralDAO *testingSubject;
@@ -55,7 +55,7 @@
 
 - (void)testMoralDAOAllTypeCanBeCreated {
         
-    STAssertNotNil(testingSubject, @"MoralDAO All type can't be created.");
+    XCTAssertNotNil(testingSubject, @"MoralDAO All type can't be created.");
         
 }
 
@@ -65,7 +65,7 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", moralTypeVirtue];
     testingSubjectVirtue.predicates = @[pred];
 
-    STAssertNotNil(testingSubjectVirtue, @"MoralDAO Virtue type can't be created.");
+    XCTAssertNotNil(testingSubjectVirtue, @"MoralDAO Virtue type can't be created.");
     
     
 }
@@ -76,26 +76,26 @@
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"shortDescriptionMoral == %@", moralTypeVice];
     testingSubjectVice.predicates = @[pred];
     
-    STAssertNotNil(testingSubjectVice, @"MoralDAO Vice can't be created.");
+    XCTAssertNotNil(testingSubjectVice, @"MoralDAO Vice can't be created.");
     
 }
 
 - (void)testMoralDAORead {
         
     Moral *testMoral = [testingSubject read:nameMoral1];
-    STAssertEqualObjects(testMoral, testMoral1, @"MoralDAO All not populated with virtue 1.");    
+    XCTAssertEqualObjects(testMoral, testMoral1, @"MoralDAO All not populated with virtue 1.");    
 }
 
 - (void)testMoralDAOCreateFailsCorrectly {
     
     id testMoral = [testingSubject createObject];
-    STAssertNil(testMoral, @"MoralDAO was able to create incorrectly.");    
+    XCTAssertNil(testMoral, @"MoralDAO was able to create incorrectly.");    
 }
 
 - (void)testMoralDAOUpdateFailsCorrectly {
     
     BOOL isUpdateSuccessful = [testingSubject update];
-    STAssertFalse(isUpdateSuccessful, @"MoralDAO was able to update incorrectly.");    
+    XCTAssertFalse(isUpdateSuccessful, @"MoralDAO was able to update incorrectly.");    
 }
 
 - (void)testMoralDAOAllTypeContainsVirtuesAndVices {
@@ -103,9 +103,9 @@
     MoralDAO *testingSubjectAll = [[MoralDAO alloc] initWithKey:@"" andModelManager:testModelManager];
         
     NSArray *allMorals = [testingSubjectAll readAll];
-    STAssertTrue([allMorals containsObject:testMoral1], @"MoralDAO All not populated with virtue 1.");
-    STAssertTrue([allMorals containsObject:testMoral2], @"MoralDAO All not populated with vices.");
-    STAssertTrue([allMorals containsObject:testMoral3], @"MoralDAO All not populated with virtue 2.");
+    XCTAssertTrue([allMorals containsObject:testMoral1], @"MoralDAO All not populated with virtue 1.");
+    XCTAssertTrue([allMorals containsObject:testMoral2], @"MoralDAO All not populated with vices.");
+    XCTAssertTrue([allMorals containsObject:testMoral3], @"MoralDAO All not populated with virtue 2.");
     
     
 }
@@ -118,9 +118,9 @@
     
     NSArray *allMorals = [testingSubjectVirtue readAll];
 
-    STAssertTrue([allMorals containsObject:testMoral1], @"MoralDAO Virtue not populated with virtue 1.");
-    STAssertFalse([allMorals containsObject:testMoral2], @"MoralDAO Virtue populated with vices.");
-    STAssertTrue([allMorals containsObject:testMoral3], @"MoralDAO Virtue not populated with virtue 2.");
+    XCTAssertTrue([allMorals containsObject:testMoral1], @"MoralDAO Virtue not populated with virtue 1.");
+    XCTAssertFalse([allMorals containsObject:testMoral2], @"MoralDAO Virtue populated with vices.");
+    XCTAssertTrue([allMorals containsObject:testMoral3], @"MoralDAO Virtue not populated with virtue 2.");
 
     
 }
@@ -134,9 +134,9 @@
 
     NSArray *allMorals = [testingSubjectVice readAll];
     
-    STAssertTrue([allMorals containsObject:testMoral2], @"MoralDAO Vice not populated with vices.");
-    STAssertFalse([allMorals containsObject:testMoral1], @"MoralDAO Vice populated with virtues.");
-    STAssertFalse([allMorals containsObject:testMoral3], @"MoralDAO Vice populated with virtues.");
+    XCTAssertTrue([allMorals containsObject:testMoral2], @"MoralDAO Vice not populated with vices.");
+    XCTAssertFalse([allMorals containsObject:testMoral1], @"MoralDAO Vice populated with virtues.");
+    XCTAssertFalse([allMorals containsObject:testMoral3], @"MoralDAO Vice populated with virtues.");
     
 }
 
@@ -146,21 +146,21 @@
     
     MoralDAO *testingEmptySubject = [[MoralDAO alloc] initWithKey:@"" andModelManager:testEmptyModelManager];
     
-    STAssertNotNil(testingEmptySubject, @"MoralDAO Empty can't be created.");
+    XCTAssertNotNil(testingEmptySubject, @"MoralDAO Empty can't be created.");
     
     NSArray *allNames = [testingEmptySubject readAll];
     int count = [allNames count];
-    STAssertEquals(count, 0, @"MoralDAO Empty is not empty.");
+    XCTAssertEqual(count, 0, @"MoralDAO Empty is not empty.");
     
 }
 
 - (void)testMoralDAODeleteFailsCorrectly {
         
     BOOL isDeleteSuccessful = [testingSubject delete:testMoral3];
-    STAssertFalse(isDeleteSuccessful, @"MoralDAO was able to delete incorrectly.");
+    XCTAssertFalse(isDeleteSuccessful, @"MoralDAO was able to delete incorrectly.");
     
     Moral *testDeletedMoralVerify = [testingSubject read:nameMoral3];
-    STAssertEqualObjects(testMoral3, testDeletedMoralVerify, @"Moral was deleted incorrectly.");
+    XCTAssertEqualObjects(testMoral3, testDeletedMoralVerify, @"Moral was deleted incorrectly.");
     
 }
 

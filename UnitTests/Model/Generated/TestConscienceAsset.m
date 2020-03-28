@@ -2,7 +2,7 @@
 #import "TestModelHelper.h"
 #import "ConscienceAsset.h"
 
-@interface TestConscienceAsset: SenTestCase {
+@interface TestConscienceAsset:XCTestCase {
     ModelManager *testModelManager;
     ConscienceAsset *testAsset;
 
@@ -65,48 +65,47 @@
 - (void)testConscienceAssetCanBeCreated {
     
     //testBelief, testPerson and testText are created in setup    
-    STAssertNoThrow([testModelManager saveContext], @"ConscienceAsset can't be created.");
+    XCTAssertNoThrow([testModelManager saveContext], @"ConscienceAsset can't be created.");
         
 }
 
 - (void)testConscienceAssetAccessorsAreFunctional {
     
-    STAssertNoThrow([testModelManager saveContext], @"ConscienceAsset can't be created for Accessor test.");
+    XCTAssertNoThrow([testModelManager saveContext], @"ConscienceAsset can't be created for Accessor test.");
     
     NSArray *assets = [testModelManager readAll:ConscienceAsset.class];
     
-    STAssertEquals(assets.count, (NSUInteger) 1, @"There should only be 1 ConscienceAsset in the context.");
+    XCTAssertEqual(assets.count, (NSUInteger) 1, @"There should only be 1 ConscienceAsset in the context.");
     ConscienceAsset *retrieved = assets[0];
 
-    STAssertEqualObjects(retrieved.costAsset, costAsset, @"costAsset Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.moralValueAsset, moralValueAsset, @"moralValueAsset Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.orientationAsset, orientationAsset, @"orientationAsset Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.costAsset, costAsset, @"costAsset Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.moralValueAsset, moralValueAsset, @"moralValueAsset Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.orientationAsset, orientationAsset, @"orientationAsset Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.shortDescriptionReference, shortDescription, @"shortDescription Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.originYear, originYear, @"originYear Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.nameReference, name, @"nameReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.longDescriptionReference, longDescription, @"longDescriptionReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.linkReference, link, @"linkReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.displayNameReference, displayName, @"displayNameReference Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.imageNameReference, imageName, @"imageNameReference Getter/Setter failed.");
     
 }
 
 - (void)testConscienceAssetDeletion {
-    STAssertNoThrow([testModelManager saveContext], @"ConscienceAsset/Belief/Text can't be created for Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"ConscienceAsset/Belief/Text can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testAsset], @"ConscienceAsset can't be deleted");
+    XCTAssertNoThrow([testModelManager delete:testAsset], @"ConscienceAsset can't be deleted");
     
     NSArray *assets = [testModelManager readAll:ConscienceAsset.class];
     
-    STAssertEquals(assets.count, (NSUInteger) 0, @"ConscienceAsset is still present after delete");
+    XCTAssertEqual(assets.count, (NSUInteger) 0, @"ConscienceAsset is still present after delete");
     
 }
 
 - (void)testConscienceAssetWithoutRequiredAttributes {
     ConscienceAsset *testConscienceAssetBad = [testModelManager create:ConscienceAsset.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testConscienceAssetBad.class];
     
-    STAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
 }
 
 @end

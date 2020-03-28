@@ -1,7 +1,7 @@
 #import "ModelManager.h"
 #import "UserChoiceDAO.h"
 
-@interface TestUserChoiceDAO: SenTestCase {
+@interface TestUserChoiceDAO:XCTestCase {
     ModelManager *testModelManager;
 
     UserChoiceDAO *testingSubject;
@@ -85,20 +85,20 @@
 }
 
 - (void)testUserChoiceDAOAllTypeCanBeCreated {
-    STAssertNotNil(testingSubject, @"UserChoiceDAO All type can't be created.");
+    XCTAssertNotNil(testingSubject, @"UserChoiceDAO All type can't be created.");
 }
 
 - (void)testUserChoiceDAORead {
         
     UserChoice *testChoice = [testingSubject read:keyChoice1];
-    STAssertEqualObjects(testChoice, testUserChoice1, @"UserChoiceDAO All not populated with Choice 1.");    
+    XCTAssertEqualObjects(testChoice, testUserChoice1, @"UserChoiceDAO All not populated with Choice 1.");    
 }
 
 - (void)testUserChoiceDAOCanBeCreated {
     
     UserChoice *testUserChoice = [testingSubject create];
         
-    STAssertNotNil(testUserChoice, @"UserChoiceDAO wasn't able to create.");
+    XCTAssertNotNil(testUserChoice, @"UserChoiceDAO wasn't able to create.");
     
     NSString *keyChoice3 = @"keyChoice3";
     
@@ -114,7 +114,7 @@
     testUserChoice.choiceWeight = choiceWeight; 
         
     UserChoice *testChoiceVerify = [testingSubject read:keyChoice3];
-    STAssertEqualObjects(testUserChoice, testChoiceVerify, @"UserChoiceDAO not populated with Choice 1.");
+    XCTAssertEqualObjects(testUserChoice, testChoiceVerify, @"UserChoiceDAO not populated with Choice 1.");
 }
 
 - (void)testUserChoiceDAOCanBeUpdated {
@@ -123,24 +123,24 @@
     testUserChoice2.choiceMoral = newChoiceMoral;
         
     UserChoice *testChoiceVerify = [testingSubject read:keyChoice2];
-    STAssertEqualObjects(testUserChoice2.choiceMoral, testChoiceVerify.choiceMoral, @"UserChoiceDAO All not populated with Choice 2.");    
+    XCTAssertEqualObjects(testUserChoice2.choiceMoral, testChoiceVerify.choiceMoral, @"UserChoiceDAO All not populated with Choice 2.");    
     
 }
 
 - (void)testUserChoiceDAOReadAll {
             
     NSArray *allChoices = [testingSubject readAll];
-    STAssertTrue([allChoices containsObject:testUserChoice1], @"UserChoiceDAO All not populated with Choice 1.");
-    STAssertTrue([allChoices containsObject:testUserChoice2], @"UserChoiceDAO All not populated with Choice 2.");
+    XCTAssertTrue([allChoices containsObject:testUserChoice1], @"UserChoiceDAO All not populated with Choice 1.");
+    XCTAssertTrue([allChoices containsObject:testUserChoice2], @"UserChoiceDAO All not populated with Choice 2.");
 }
 
 //- (void)testUserChoiceDAOCanBeDeleted {
 //        
 //    BOOL isDeleteSuccessful = [testingSubject delete:testUserChoice2];
-//    STAssertTrue(isDeleteSuccessful, @"UserChoiceDAO wasn't able to delete.");
+//    XCTAssertTrue(isDeleteSuccessful, @"UserChoiceDAO wasn't able to delete.");
 //    
 //    UserChoice *testDeletedChoiceVerify = [testingSubject read:keyChoice2];
-//    STAssertNil(testDeletedChoiceVerify, @"UserChoice was deleted incorrectly.");
+//    XCTAssertNil(testDeletedChoiceVerify, @"UserChoice was deleted incorrectly.");
 //    
 //}
 

@@ -12,7 +12,7 @@
 
 @class ConscienceAccessories;
 
-@interface TestConscienceAccessories : SenTestCase {
+@interface TestConscienceAccessories :XCTestCase {
     
     ConscienceAccessories *testingSubject;
     
@@ -45,7 +45,7 @@
  */
 - (void)testConscienceAccessoriesExists{
 
-    STAssertNotNil(testingSubject, @"The Conscience Accessory was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The Conscience Accessory was not init'ed.");
 }
 
 /**
@@ -53,10 +53,10 @@
  */
 - (void)testDefaultConscienceAccessories{
     
-	STAssertEquals(MLPrimaryAccessoryFileNameResourceDefault, [testingSubject primaryAccessory], @"Default primaryAccessory inaccurate.");
-	STAssertEquals(MLSecondaryAccessoryFileNameResourceDefault, [testingSubject secondaryAccessory], @"Default secondaryAccessory inaccurate.");
-	STAssertEquals(MLTopAccessoryFileNameResourceDefault, [testingSubject topAccessory], @"Default topAccessory inaccurate.");
-	STAssertEquals(MLBottomAccessoryFileNameResourceDefault, [testingSubject bottomAccessory], @"Default bottomAccessory inaccurate.");
+	XCTAssertEqual(MLPrimaryAccessoryFileNameResourceDefault, [testingSubject primaryAccessory], @"Default primaryAccessory inaccurate.");
+	XCTAssertEqual(MLSecondaryAccessoryFileNameResourceDefault, [testingSubject secondaryAccessory], @"Default secondaryAccessory inaccurate.");
+	XCTAssertEqual(MLTopAccessoryFileNameResourceDefault, [testingSubject topAccessory], @"Default topAccessory inaccurate.");
+	XCTAssertEqual(MLBottomAccessoryFileNameResourceDefault, [testingSubject bottomAccessory], @"Default bottomAccessory inaccurate.");
 }
 
 /**
@@ -73,10 +73,10 @@
     [testingSubject setTopAccessory:testTopAccessory];
     [testingSubject setBottomAccessory:testBottomAccessory];
         
-	STAssertEqualObjects(testPrimaryAccessory, [testingSubject primaryAccessory], @"primaryAccessory setter/getter inaccurate.");
-	STAssertEqualObjects(testSecondaryAccessory, [testingSubject secondaryAccessory], @"secondaryAccessory setter/getter inaccurate.");
-	STAssertEqualObjects(testTopAccessory, [testingSubject topAccessory], @"topAccessory setter/getter inaccurate.");
-	STAssertEqualObjects(testBottomAccessory, [testingSubject bottomAccessory], @"bottomAccessory setter/getter inaccurate.");
+	XCTAssertEqualObjects(testPrimaryAccessory, [testingSubject primaryAccessory], @"primaryAccessory setter/getter inaccurate.");
+	XCTAssertEqualObjects(testSecondaryAccessory, [testingSubject secondaryAccessory], @"secondaryAccessory setter/getter inaccurate.");
+	XCTAssertEqualObjects(testTopAccessory, [testingSubject topAccessory], @"topAccessory setter/getter inaccurate.");
+	XCTAssertEqualObjects(testBottomAccessory, [testingSubject bottomAccessory], @"bottomAccessory setter/getter inaccurate.");
 
 }
 

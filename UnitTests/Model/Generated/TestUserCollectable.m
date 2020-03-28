@@ -1,7 +1,7 @@
 #import "ModelManager.h"
 #import "UserCollectable.h"
 
-@interface TestUserCollectable: SenTestCase {
+@interface TestUserCollectable:XCTestCase {
     ModelManager *testModelManager;
     UserCollectable *testUserCollectable;
     
@@ -44,42 +44,41 @@
 - (void)testUserCollectableCanBeCreated {
     
     //testUserCollectable are created in setup    
-    STAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created.");
+    XCTAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created.");
     
 }
 
 - (void)testUserCollectableAccessorsAreFunctional {
     
-    STAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created for Accessor test.");
+    XCTAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created for Accessor test.");
     
     NSArray *collectables = [testModelManager readAll:UserCollectable.class];
     
-    STAssertEquals(collectables.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
+    XCTAssertEqual(collectables.count, (NSUInteger) 1, @"There should only be 1 UserCollectable in the context.");
     UserCollectable *retrieved = collectables[0];
     
-    STAssertEqualObjects(retrieved.collectableValue, collectableValue, @"collectableValue Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.collectableCreationDate, collectableCreationDate, @"collectableCreationDate Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.collectableName, collectableName, @"collectableName Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.collectableKey, collectableKey, @"collectableKey Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.collectableValue, collectableValue, @"collectableValue Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.collectableCreationDate, collectableCreationDate, @"collectableCreationDate Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.collectableName, collectableName, @"collectableName Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.collectableKey, collectableKey, @"collectableKey Getter/Setter failed.");
     
 }
 
 - (void)testUserCollectableDeletion {
-    STAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created for Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"UserCollectable can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager deleteReadWrite:testUserCollectable], @"UserCollectable can't be deleted");
+    XCTAssertNoThrow([testModelManager deleteReadWrite:testUserCollectable], @"UserCollectable can't be deleted");
     
     NSArray *collectables = [testModelManager readAll:UserCollectable.class];
     
-    STAssertEquals(collectables.count, (NSUInteger) 0, @"UserCollectable is still present after delete");
+    XCTAssertEqual(collectables.count, (NSUInteger) 0, @"UserCollectable is still present after delete");
     
 }
 
 - (void)testUserCollectableWithoutRequiredAttributes {
     UserCollectable *testUserCollectableBad = [testModelManager create:UserCollectable.class];
-    NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testUserCollectableBad.class];
     
-    STAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext]);
 }
 
 @end
