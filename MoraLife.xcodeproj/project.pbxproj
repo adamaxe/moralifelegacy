@@ -25,6 +25,19 @@
 		4903A617242EE1220003115D /* TestConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266062156C6DCB007DF236 /* TestConscienceMind.m */; };
 		4903A618242EE1220003115D /* TestConscienceBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266064156C70FA007DF236 /* TestConscienceBody.m */; };
 		4903A619242EE1220003115D /* TestConscienceGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E266066156C79BF007DF236 /* TestConscienceGradient.m */; };
+		4903A61B242EE3E10003115D /* TestModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E194A13172CE5BE00348D2D /* TestModelHelper.m */; };
+		4903A628242EE48C0003115D /* TestCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A415B6575400B759F6 /* TestCharacterDAO.m */; };
+		4903A629242EE48C0003115D /* TestConscienceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4804BF15992B7D00E27E88 /* TestConscienceAssetDAO.m */; };
+		4903A62A242EE48C0003115D /* TestDilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A215B652CC00B759F6 /* TestDilemmaDAO.m */; };
+		4903A62B242EE48C0003115D /* TestMoralDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5761401595975600E14606 /* TestMoralDAO.m */; };
+		4903A62C242EE48C0003115D /* TestReferenceAssetDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59A15B64A9D00B759F6 /* TestReferenceAssetDAO.m */; };
+		4903A62D242EE48C0003115D /* TestReferenceBeliefDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59E15B64C1700B759F6 /* TestReferenceBeliefDAO.m */; };
+		4903A62E242EE48C0003115D /* TestReferencePersonDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F5A015B64C9300B759F6 /* TestReferencePersonDAO.m */; };
+		4903A62F242EE48C0003115D /* TestReferenceTextDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E61F59C15B64B9C00B759F6 /* TestReferenceTextDAO.m */; };
+		4903A630242EE48C0003115D /* TestUserCharacterDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A92FD15B6648C009F13ED /* TestUserCharacterDAO.m */; };
+		4903A631242EE48C0003115D /* TestUserChoiceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930415B78AED009F13ED /* TestUserChoiceDAO.m */; };
+		4903A632242EE48C0003115D /* TestUserCollectableDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */; };
+		4903A633242EE48C0003115D /* TestUserDilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930215B787DB009F13ED /* TestUserDilemmaDAO.m */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
@@ -7247,18 +7260,31 @@
 			buildActionMask = 2147483647;
 			files = (
 				4903A616242EE1220003115D /* TestConscienceAccessories.m in Sources */,
+				4903A629242EE48C0003115D /* TestConscienceAssetDAO.m in Sources */,
+				4903A630242EE48C0003115D /* TestUserCharacterDAO.m in Sources */,
 				4903A5D1242ED1040003115D /* TestConscienceLayer.m in Sources */,
 				4903A60E242EE0D90003115D /* TestModelManager.m in Sources */,
+				4903A633242EE48C0003115D /* TestUserDilemmaDAO.m in Sources */,
 				4903A619242EE1220003115D /* TestConscienceGradient.m in Sources */,
+				4903A62D242EE48C0003115D /* TestReferenceBeliefDAO.m in Sources */,
 				4903A5C5242EC91B0003115D /* MoraLifeUnitTests.m in Sources */,
+				4903A62F242EE48C0003115D /* TestReferenceTextDAO.m in Sources */,
 				4903A60A242EE02A0003115D /* TestGraphView.m in Sources */,
 				4903A60C242EE06B0003115D /* TestConscienceBubbleView.m in Sources */,
+				4903A62E242EE48C0003115D /* TestReferencePersonDAO.m in Sources */,
+				4903A631242EE48C0003115D /* TestUserChoiceDAO.m in Sources */,
+				4903A62A242EE48C0003115D /* TestDilemmaDAO.m in Sources */,
 				4903A60D242EE06B0003115D /* TestConscienceObjectView.m in Sources */,
 				4903A618242EE1220003115D /* TestConscienceBody.m in Sources */,
+				4903A632242EE48C0003115D /* TestUserCollectableDAO.m in Sources */,
+				4903A61B242EE3E10003115D /* TestModelHelper.m in Sources */,
 				4903A614242EE1220003115D /* TestConsciencePath.m in Sources */,
 				4903A617242EE1220003115D /* TestConscienceMind.m in Sources */,
 				4903A60B242EE06B0003115D /* TestAccessoryObjectView.m in Sources */,
 				4903A615242EE1220003115D /* TestConscienceBubbleFactory.m in Sources */,
+				4903A62C242EE48C0003115D /* TestReferenceAssetDAO.m in Sources */,
+				4903A62B242EE48C0003115D /* TestMoralDAO.m in Sources */,
+				4903A628242EE48C0003115D /* TestCharacterDAO.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
