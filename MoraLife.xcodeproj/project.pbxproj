@@ -13,6 +13,7 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		4903A5BD242E914C0003115D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4903A5BC242E914C0003115D /* Default-568h@2x.png */; };
 		4903A5C5242EC91B0003115D /* MoraLifeUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903A5C4242EC91B0003115D /* MoraLifeUnitTests.m */; };
+		4903A5D1242ED1040003115D /* TestConscienceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903A5D0242ED1040003115D /* TestConscienceLayer.m */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
@@ -1640,6 +1641,7 @@
 		4903A5C2242EC91B0003115D /* MoraLifeUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoraLifeUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4903A5C4242EC91B0003115D /* MoraLifeUnitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoraLifeUnitTests.m; sourceTree = "<group>"; };
 		4903A5C6242EC91B0003115D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4903A5D0242ED1040003115D /* TestConscienceLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = TestConscienceLayer.m; path = Model/TestConscienceLayer.m; sourceTree = SOURCE_ROOT; };
 		5E02EC5911FE65B100F159B4 /* ConscienceMind.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConscienceMind.h; path = Model/ConscienceMind.h; sourceTree = "<group>"; };
 		5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConscienceMind.m; path = Model/ConscienceMind.m; sourceTree = "<group>"; };
 		5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ref-marktwain-sm.png"; path = "Resources/images/reference/ref-marktwain-sm.png"; sourceTree = "<group>"; };
@@ -2937,7 +2939,6 @@
 		5E99BE64132872F9000D6F60 /* thoughtbubble-thin2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-thin2.png"; path = "Resources/images/interface/thoughtbubble-thin2.png"; sourceTree = "<group>"; };
 		5E99BE65132872F9000D6F60 /* thoughtbubble-thin2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "thoughtbubble-thin2@2x.png"; path = "Resources/images/interface/thoughtbubble-thin2@2x.png"; sourceTree = "<group>"; };
 		5E99C5A613C542DC001F5CB8 /* TestConscienceHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceHelpViewController.m; path = Controller/TestConscienceHelpViewController.m; sourceTree = "<group>"; };
-		5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceLayer.m; path = Model/TestConscienceLayer.m; sourceTree = "<group>"; };
 		5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConsciencePath.m; path = Model/TestConsciencePath.m; sourceTree = "<group>"; };
 		5E99C5AF13C542F5001F5CB8 /* TestAccessoryObjectView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestAccessoryObjectView.m; path = View/TestAccessoryObjectView.m; sourceTree = "<group>"; };
 		5E99C5B113C542F5001F5CB8 /* TestConscienceBubbleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestConscienceBubbleView.m; path = View/TestConscienceBubbleView.m; sourceTree = "<group>"; };
@@ -5136,7 +5137,7 @@
 				5E57613F1595975600E14606 /* DAO */,
 				5EBED2FE1548D5EC00AFE44D /* Generated */,
 				5E9D259215DDF3AD0097A5F0 /* ViewModel */,
-				5E99C5A913C542E7001F5CB8 /* TestConscienceLayer.m */,
+				4903A5D0242ED1040003115D /* TestConscienceLayer.m */,
 				5EA26D7215843DB600CDA802 /* TestModelManager.m */,
 				5E194A15172CE67900348D2D /* TestModelHelper.h */,
 				5E194A13172CE5BE00348D2D /* TestModelHelper.m */,
@@ -7234,6 +7235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4903A5D1242ED1040003115D /* TestConscienceLayer.m in Sources */,
 				4903A5C5242EC91B0003115D /* MoraLifeUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
