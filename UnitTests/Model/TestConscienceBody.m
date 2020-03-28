@@ -90,7 +90,7 @@
     [testingSubject setAge:testAge];
     [testingSubject setSize:testSize];
     
-    XCTAssertEqual(testSize, [testingSubject size], @"size setter/getter inaccurate.");
+    XCTAssertEqualWithAccuracy(testSize, [testingSubject size], 1, @"size setter/getter inaccurate.");
 	XCTAssertEqual(testAge, [testingSubject age], @"age setter/getter inaccurate.");
 	XCTAssertEqual(testBubbleType, [testingSubject bubbleType], @"bubbleType setter/getter inaccurate.");
 	XCTAssertEqualObjects(testEyeFileName, [testingSubject eyeName], @"eyeName setter/getter inaccurate.");
