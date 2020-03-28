@@ -68,7 +68,8 @@
 - (void)testReferenceModelDefaultValuesAreSetCorrectly {
 
     XCTAssertEqual(testingSubject.referenceType, MLReferenceModelTypeConscienceAsset, @"ReferenceModel referenceType isn't ConscienceAsset by default");
-//    XCTAssertEqual(testingSubject.title, NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button"), nil);
+    XCTAssertEqual(testingSubject.title, NSLocalizedString(@"ReferenceDetailScreenAccessoriesTitle",@"Title for Accessories Button"), @"ReferenceModel title isn't correct by default");
+
     XCTAssertFalse(testingSubject.hasLink, @"ReferenceModel hasLink is true incorrectly");
     XCTAssertFalse(testingSubject.hasQuote, @"ReferenceModel hasQuote is true incorrectly");
 
