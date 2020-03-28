@@ -327,7 +327,7 @@ NSString * const HOME_MODEL_BEGINNER_RANK = @"Neophyte";
     NSString *reactionMood = ((enthusiasm > 35) && (mood > 45)) ? @"Good" : @"Bad";
     NSString *reactionTemp = [[NSString alloc] initWithFormat:@"%@Reaction%d%@",NSStringFromClass([self class]), randomResponse, reactionMood];
 
-    return NSLocalizedString(reactionTemp, nil);
+    return NSLocalizedString(reactionTemp, @"localizedReaction");
 
 }
 

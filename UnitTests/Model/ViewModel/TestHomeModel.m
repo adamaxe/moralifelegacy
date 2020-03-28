@@ -72,6 +72,11 @@
     }
 
     NSString *reaction = [testingSubject generateReactionWithMood:51.0 andEnthusiasm:51.0];
+    
+    for (int i = 0; i < HOME_MODEL_REACTION_COUNT; i++) {
+        possibleReactions[i] = NSLocalizedString(possibleReactions[i], @"reactionKey");
+    }
+    
     XCTAssertTrue([possibleReactions containsObject:reaction], @"HomeModel reaction is not in Good set.");
 
     [possibleReactions removeAllObjects];
@@ -92,6 +97,12 @@
     }
 
     NSString *reaction = [testingSubject generateReactionWithMood:40.0 andEnthusiasm:40.0];
+    NSLog(@"highest:%@", reaction);
+    
+    for (int i = 0; i < HOME_MODEL_REACTION_COUNT; i++) {
+        possibleReactions[i] = NSLocalizedString(possibleReactions[i], @"reactionKey");
+    }
+    
     XCTAssertTrue([possibleReactions containsObject:reaction], @"HomeModel reaction is not in Good set.");
 
     [possibleReactions removeAllObjects];
