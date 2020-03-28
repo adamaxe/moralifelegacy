@@ -38,6 +38,8 @@
 		4903A631242EE48C0003115D /* TestUserChoiceDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930415B78AED009F13ED /* TestUserChoiceDAO.m */; };
 		4903A632242EE48C0003115D /* TestUserCollectableDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930015B67031009F13ED /* TestUserCollectableDAO.m */; };
 		4903A633242EE48C0003115D /* TestUserDilemmaDAO.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E5A930215B787DB009F13ED /* TestUserDilemmaDAO.m */; };
+		4903A637242EE81A0003115D /* TestChoiceHistoryModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E23AA1015E85CEB0049BE87 /* TestChoiceHistoryModel.m */; };
+		4903A63A242EED850003115D /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9D161315E31E9A003AC018 /* libOCMock.a */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
@@ -3450,6 +3452,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4903A63A242EED850003115D /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7273,6 +7276,7 @@
 				4903A60C242EE06B0003115D /* TestConscienceBubbleView.m in Sources */,
 				4903A62E242EE48C0003115D /* TestReferencePersonDAO.m in Sources */,
 				4903A631242EE48C0003115D /* TestUserChoiceDAO.m in Sources */,
+				4903A637242EE81A0003115D /* TestChoiceHistoryModel.m in Sources */,
 				4903A62A242EE48C0003115D /* TestDilemmaDAO.m in Sources */,
 				4903A60D242EE06B0003115D /* TestConscienceObjectView.m in Sources */,
 				4903A618242EE1220003115D /* TestConscienceBody.m in Sources */,
@@ -7339,9 +7343,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Frameworks\"",
 					"\"$(SRCROOT)/Frameworks/Flurry\"",
+					"$(PROJECT_DIR)/UnitTests/Libraries",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.moralife;
 				PRODUCT_NAME = MoraLife;
@@ -7367,9 +7372,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Frameworks\"",
 					"\"$(SRCROOT)/Frameworks/Flurry\"",
+					"$(PROJECT_DIR)/UnitTests/Libraries",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.moralife;
 				PRODUCT_NAME = MoraLife;
@@ -7397,6 +7403,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = XSXV6ZV2MM;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
@@ -7406,11 +7413,21 @@
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/UnitTests/Libraries";
 				INFOPLIST_FILE = MoraLifeUnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Libraries\"/**",
+					"$(PROJECT_DIR)/UnitTests/Libraries",
+				);
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.MoraLifeUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7439,15 +7456,26 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XSXV6ZV2MM;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/UnitTests/Libraries";
 				INFOPLIST_FILE = MoraLifeUnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Libraries\"/**",
+					"$(PROJECT_DIR)/UnitTests/Libraries",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.MoraLifeUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7476,15 +7504,26 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = XSXV6ZV2MM;
 				ENABLE_NS_ASSERTIONS = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(DEVELOPER_LIBRARY_DIR)/Frameworks";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_PREFIX_HEADER = "UnitTests/UnitTests-Prefix.pch";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/UnitTests/Libraries";
 				INFOPLIST_FILE = MoraLifeUnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/UnitTests/Libraries\"/**",
+					"$(PROJECT_DIR)/UnitTests/Libraries",
+				);
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.MoraLifeUnitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -7560,9 +7599,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					"\"$(SRCROOT)/Frameworks\"",
 					"\"$(SRCROOT)/Frameworks/Flurry\"",
+					"$(PROJECT_DIR)/UnitTests/Libraries",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = org.teamaxe.moralife;
 				PRODUCT_NAME = MoraLife;
