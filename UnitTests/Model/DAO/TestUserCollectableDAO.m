@@ -1,7 +1,7 @@
 #import "ModelManager.h"
 #import "UserCollectableDAO.h"
 
-@interface TestUserCollectableDAO: SenTestCase {
+@interface TestUserCollectableDAO:XCTestCase {
     ModelManager *testModelManager;
 
     UserCollectableDAO *testingSubject;
@@ -68,19 +68,19 @@
 }
 
 - (void)testUserCollectableDAOAllTypeCanBeCreated {
-    STAssertNotNil(testingSubject, @"UserCollectableDAO All type can't be created.");
+    XCTAssertNotNil(testingSubject, @"UserCollectableDAO All type can't be created.");
 }
 
 - (void)testUserCollectableDAORead {
         
     UserCollectable *testCollectable1Retrieve = [testingSubject read:keyCollectable1];
-    STAssertEqualObjects(testCollectable1Retrieve, testCollectable1, @"UserCollectableDAO All not populated with Collectable 1.");
+    XCTAssertEqualObjects(testCollectable1Retrieve, testCollectable1, @"UserCollectableDAO All not populated with Collectable 1.");
 
     UserCollectable *testCollectable2Retrieve = [testingSubject read:keyCollectable2];
-    STAssertEqualObjects(testCollectable2Retrieve, testCollectable2, @"UserCollectableDAO All not populated with Collectable 2.");
+    XCTAssertEqualObjects(testCollectable2Retrieve, testCollectable2, @"UserCollectableDAO All not populated with Collectable 2.");
 
     UserCollectable *testCollectable3Retrieve = [testingSubject read:keyCollectable3];
-    STAssertEqualObjects(testCollectable3Retrieve, testCollectable3, @"UserCollectableDAO All not populated with Collectable 3.");
+    XCTAssertEqualObjects(testCollectable3Retrieve, testCollectable3, @"UserCollectableDAO All not populated with Collectable 3.");
 
 }
 
@@ -89,14 +89,14 @@
     testingSubject.predicates = @[[NSPredicate predicateWithFormat:@"collectableName == %@", MLCollectableEthicals]];
 
     UserCollectable *testCollectable1Retrieve = [testingSubject read:@""];
-    STAssertEqualObjects(testCollectable1Retrieve, testCollectable3, @"Ethicals not populated with Collectable 1.");
+    XCTAssertEqualObjects(testCollectable1Retrieve, testCollectable3, @"Ethicals not populated with Collectable 1.");
 }
 
 - (void)testUserCollectableDAOCanBeCreated {
     
     UserCollectable *testCollectable = [testingSubject create];
         
-    STAssertNotNil(testCollectable, @"UserCollectableDAO wasn't able to create.");
+    XCTAssertNotNil(testCollectable, @"UserCollectableDAO wasn't able to create.");
     
     NSString *keyCollectable4 = @"keyCollectable4";
     NSString *nameCollectable4 = @"nameCollectable4";
@@ -106,7 +106,7 @@
     testCollectable.collectableCreationDate = collectableCreateDate;
         
     UserCollectable *testCollectableVerify = [testingSubject read:keyCollectable4];
-    STAssertEqualObjects(testCollectable, testCollectableVerify, @"UserCollectableDAO not populated with Collectable 4.");
+    XCTAssertEqualObjects(testCollectable, testCollectableVerify, @"UserCollectableDAO not populated with Collectable 4.");
 }
 
 - (void)testUserCollectableDAOCanBeUpdated {
@@ -115,26 +115,26 @@
     testCollectable2.collectableName = newCollectableName;
         
     UserCollectable *testCollectableVerify = [testingSubject read:keyCollectable2];
-    STAssertEqualObjects(testCollectable2.collectableName, testCollectableVerify.collectableName, @"UserCollectableDAO All not populated with Collectable 2.");    
+    XCTAssertEqualObjects(testCollectable2.collectableName, testCollectableVerify.collectableName, @"UserCollectableDAO All not populated with Collectable 2.");    
     
 }
 
 - (void)testUserCollectableDAOReadAll {
             
     NSArray *allCollectables = [testingSubject readAll];
-    STAssertTrue([allCollectables containsObject:testCollectable1], @"UserCollectableDAO All not populated with Collectable 1.");
-    STAssertTrue([allCollectables containsObject:testCollectable2], @"UserCollectableDAO All not populated with Collectable 2.");
-    STAssertTrue([allCollectables containsObject:testCollectable3], @"UserCollectableDAO All not populated with Collectable 3.");
+    XCTAssertTrue([allCollectables containsObject:testCollectable1], @"UserCollectableDAO All not populated with Collectable 1.");
+    XCTAssertTrue([allCollectables containsObject:testCollectable2], @"UserCollectableDAO All not populated with Collectable 2.");
+    XCTAssertTrue([allCollectables containsObject:testCollectable3], @"UserCollectableDAO All not populated with Collectable 3.");
 
 }
 
 //- (void)testUserCollectableDAOCanBeDeleted {
 //        
 //    BOOL isDeleteSuccessful = [testingSubject delete:testCollectable2];
-//    STAssertTrue(isDeleteSuccessful, @"UserCollectableDAO wasn't able to delete.");
+//    XCTAssertTrue(isDeleteSuccessful, @"UserCollectableDAO wasn't able to delete.");
 //    
 //    UserCollectable *testDeletedCollectableVerify = [testingSubject read:keyCollectable2];
-//    STAssertNil(testDeletedCollectableVerify, @"UserCollectable was deleted incorrectly.");
+//    XCTAssertNil(testDeletedCollectableVerify, @"UserCollectable was deleted incorrectly.");
 //    
 //}
 

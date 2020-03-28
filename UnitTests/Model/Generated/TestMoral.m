@@ -4,7 +4,7 @@
 #import "Dilemma.h"
 #import "Character.h"
 
-@interface TestMoral: SenTestCase {
+@interface TestMoral:XCTestCase {
     ModelManager *testModelManager;
     Moral *testMoral;
     Dilemma *testDilemma;
@@ -67,54 +67,54 @@
 - (void)testMoralCanBeCreated {
     
     //testUserCollectable are created in setup    
-    STAssertNoThrow([testModelManager saveContext], @"Moral can't be created.");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral can't be created.");
     
 }
 
 - (void)testMoralAccessorsAreFunctional {
     
-    STAssertNoThrow([testModelManager saveContext], @"Moral can't be created for Accessor test.");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral can't be created for Accessor test.");
     
     NSArray *morals = [testModelManager readAll:Moral.class];
     
-    STAssertEquals(morals.count, (NSUInteger) 1, @"There should only be 1 Moral in the context.");
+    XCTAssertEqual(morals.count, (NSUInteger) 1, @"There should only be 1 Moral in the context.");
     Moral *retrieved = morals[0];
     
-    STAssertEqualObjects(retrieved.imageNameMoral, imageNameMoral, @"imageNameMoral Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.colorMoral, colorMoral, @"colorMoral Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.displayNameMoral, displayNameMoral, @"displayNameMoral Getter/Setter failed.");    
-    STAssertEqualObjects(retrieved.longDescriptionMoral, longDescriptionMoral, @"longDescriptionMoral Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.component, component, @"component Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.shortDescriptionMoral, shortDescriptionMoral, @"shortDescriptionMoral Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.linkMoral, linkMoral, @"linkMoral Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.nameMoral, nameMoral, @"nameMoral Getter/Setter failed.");
-    STAssertEqualObjects(retrieved.definitionMoral, definitionMoral, @"definitionMoral Getter/Setter failed.");    
+    XCTAssertEqualObjects(retrieved.imageNameMoral, imageNameMoral, @"imageNameMoral Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.colorMoral, colorMoral, @"colorMoral Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.displayNameMoral, displayNameMoral, @"displayNameMoral Getter/Setter failed.");    
+    XCTAssertEqualObjects(retrieved.longDescriptionMoral, longDescriptionMoral, @"longDescriptionMoral Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.component, component, @"component Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.shortDescriptionMoral, shortDescriptionMoral, @"shortDescriptionMoral Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.linkMoral, linkMoral, @"linkMoral Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.nameMoral, nameMoral, @"nameMoral Getter/Setter failed.");
+    XCTAssertEqualObjects(retrieved.definitionMoral, definitionMoral, @"definitionMoral Getter/Setter failed.");    
 }
 
 - (void)testMoralReferentialIntegrity {
     
-    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI test");
 
     testMoral.dillemmaA = [NSSet setWithObject:testDilemma];
     testMoral.dillemmaB = [NSSet setWithObject:testDilemma2];
     
-    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI test");
             
     NSArray *morals = [testModelManager readAll:Moral.class];
     
     Moral *retrieved = morals[0];
-    STAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
-    STAssertEqualObjects([retrieved.dillemmaB anyObject], testDilemma2, @"dilemmaB Relationship failed.");
+    XCTAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
+    XCTAssertEqualObjects([retrieved.dillemmaB anyObject], testDilemma2, @"dilemmaB Relationship failed.");
     
 }
 
 - (void)testMoralReferentialIntegrityUpdate {
-    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI Update test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI Update test");
     
     testMoral.dillemmaA = [NSSet setWithObject:testDilemma];
     testMoral.dillemmaB = [NSSet setWithObject:testDilemma2];
 
-    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI Update test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI Update test");
         
     NSString *newDilemmaName1 = @"New dilemma name 1";
     testDilemma.nameDilemma = newDilemmaName1;
@@ -122,40 +122,40 @@
     NSString *newDilemmaName2 = @"New dilemma name 2";
     testDilemma2.nameDilemma = newDilemmaName2;
     
-    STAssertNoThrow([testModelManager saveContext], @"Dilemma can't be updated for RI Update test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Dilemma can't be updated for RI Update test");
     
     NSArray *morals = [testModelManager readAll:Moral.class];
     
     Moral *retrieved = morals[0];
-    STAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
-    STAssertEqualObjects([retrieved.dillemmaB anyObject], testDilemma2, @"dilemmaB Relationship failed.");
+    XCTAssertEqualObjects([retrieved.dillemmaA anyObject], testDilemma, @"dilemmaA Relationship failed.");
+    XCTAssertEqualObjects([retrieved.dillemmaB anyObject], testDilemma2, @"dilemmaB Relationship failed.");
     
 }
 
 - (void)testMoralDeletion {
-    STAssertNoThrow([testModelManager saveContext], @"Moral can't be created for Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral can't be created for Delete test");
     
-    STAssertNoThrow([testModelManager delete:testMoral], @"Moral can't be deleted");
+    XCTAssertNoThrow([testModelManager delete:testMoral], @"Moral can't be deleted");
     
     NSArray *morals = [testModelManager readAll:Moral.class];
     
-    STAssertEquals(morals.count, (NSUInteger) 0, @"Moral is still present after delete");
+    XCTAssertEqual(morals.count, (NSUInteger) 0, @"Moral is still present after delete");
     
 }
 
 - (void)testMoralReferentialIntegrityDelete {
-    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma can't be created for RI Delete test");
     
     testMoral.dillemmaA = [NSSet setWithObject:testDilemma];
     testMoral.dillemmaB = [NSSet setWithObject:testDilemma2];
     
-    STAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI Delete test");
+    XCTAssertNoThrow([testModelManager saveContext], @"Moral/Dilemma relationships can't be created for RI Delete test");
     
-    STAssertNoThrow([testModelManager delete:testMoral], @"Moral can't be deleted");
+    XCTAssertNoThrow([testModelManager delete:testMoral], @"Moral can't be deleted");
     
     NSArray *dilemmas = [testModelManager readAll:Dilemma.class];
     
-    STAssertEquals(dilemmas.count, (NSUInteger) 0, @"Both Dilemmas should have been cascade deleted");    
+    XCTAssertEqual(dilemmas.count, (NSUInteger) 0, @"Both Dilemmas should have been cascade deleted");    
     
 }
 
@@ -163,7 +163,7 @@
     Dilemma *testMoralBad = [testModelManager create:Moral.class];
     NSString *errorMessage = [NSString stringWithFormat:@"CD should've thrown on %@", testMoralBad.class];
     
-    STAssertThrows([testModelManager saveContext], errorMessage);
+    XCTAssertThrows([testModelManager saveContext], errorMessage);
 }
 
 - (void)testMoralDefaultValues {
@@ -175,7 +175,7 @@
     testMoralDefault.linkMoral = defaultLinkMoral;
     testMoralDefault.colorMoral = @"colorMoral";
     
-    STAssertNoThrow([testModelManager saveContext], errorMessage);
+    XCTAssertNoThrow([testModelManager saveContext], errorMessage);
     
     NSError *error = nil;
     NSPredicate *searchPredicate = [NSPredicate predicateWithFormat:@"linkMoral == %@", defaultLinkMoral];
@@ -184,11 +184,11 @@
     NSArray *userChoices = [[testModelManager managedObjectContext] executeFetchRequest:request error:&error];
     
     Moral *retrieved = userChoices[0];
-    STAssertEqualObjects(retrieved.shortDescriptionMoral, @"Virtue", @"shortDescriptionMoral default value failed.");
-    STAssertEqualObjects(retrieved.nameMoral, @"Moral", @"nameMoral default value failed.");
-    STAssertEqualObjects(retrieved.longDescriptionMoral, @"Moral", @"longDescriptionMoral default value failed.");
-    STAssertEqualObjects(retrieved.imageNameMoral, @"card-nothing", @"imageNameMoral default value failed.");
-    STAssertEqualObjects(retrieved.component, @"NA", @"component default value failed.");
+    XCTAssertEqualObjects(retrieved.shortDescriptionMoral, @"Virtue", @"shortDescriptionMoral default value failed.");
+    XCTAssertEqualObjects(retrieved.nameMoral, @"Moral", @"nameMoral default value failed.");
+    XCTAssertEqualObjects(retrieved.longDescriptionMoral, @"Moral", @"longDescriptionMoral default value failed.");
+    XCTAssertEqualObjects(retrieved.imageNameMoral, @"card-nothing", @"imageNameMoral default value failed.");
+    XCTAssertEqualObjects(retrieved.component, @"NA", @"component default value failed.");
     
 }
 

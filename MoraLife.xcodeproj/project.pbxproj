@@ -14,6 +14,7 @@
 		4903A5BD242E914C0003115D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4903A5BC242E914C0003115D /* Default-568h@2x.png */; };
 		4903A5C5242EC91B0003115D /* MoraLifeUnitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903A5C4242EC91B0003115D /* MoraLifeUnitTests.m */; };
 		4903A5D1242ED1040003115D /* TestConscienceLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4903A5D0242ED1040003115D /* TestConscienceLayer.m */; };
+		4903A5FC242EDA980003115D /* TestConsciencePath.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99C5AB13C542E7001F5CB8 /* TestConsciencePath.m */; };
 		5E02EC5D11FE65B100F159B4 /* ConscienceMind.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E02EC5A11FE65B100F159B4 /* ConscienceMind.m */; };
 		5E0592A2134D2AEE0099174E /* ref-marktwain-sm.png in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929E134D2AEE0099174E /* ref-marktwain-sm.png */; };
 		5E0592A3134D2AEE0099174E /* ref-marktwain.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5E05929F134D2AEE0099174E /* ref-marktwain.jpg */; };
@@ -7236,6 +7237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4903A5D1242ED1040003115D /* TestConscienceLayer.m in Sources */,
+				4903A5FC242EDA980003115D /* TestConsciencePath.m in Sources */,
 				4903A5C5242EC91B0003115D /* MoraLifeUnitTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

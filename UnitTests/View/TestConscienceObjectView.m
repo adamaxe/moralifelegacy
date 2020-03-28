@@ -14,7 +14,7 @@
 
 #import "ConscienceObjectView.h"
 
-@interface TestConscienceObjectView : SenTestCase {
+@interface TestConscienceObjectView :XCTestCase {
     
     ConscienceObjectView *testingSubject;
     
@@ -48,7 +48,7 @@
  */
 - (void)testConscienceObjectExists{
 
-    STAssertNotNil(testingSubject, @"The Conscience object was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The Conscience object was not init'ed.");
 }
 
 /**
@@ -60,12 +60,12 @@
 	int count = 0;
     int countSetter = [[testingSubject totalLayers] count];
     
-	STAssertEquals(count, countSetter, @"totalLayers was not initialized properly.");
+	XCTAssertEqual(count, countSetter, @"totalLayers was not initialized properly.");
     
     countSetter = [[testingSubject totalGradients] count];
     
-	STAssertEquals(count, countSetter, @"totalGradients was not initialized properly.");
-	STAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor was not initialized properly.");
+	XCTAssertEqual(count, countSetter, @"totalGradients was not initialized properly.");
+	XCTAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor was not initialized properly.");
 
 }
 
@@ -91,12 +91,12 @@
     
     int countSetter = [[testingSubject totalLayers] count];
     
-	STAssertEquals(count, countSetter, @"totalLayers setter/getter inaccurate.");
+	XCTAssertEqual(count, countSetter, @"totalLayers setter/getter inaccurate.");
     
     countSetter = [[testingSubject totalGradients] count];
 
-	STAssertEquals(count, countSetter, @"totalGradients setter/getter inaccurate.");
-	STAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor setter/getter inaccurate.");
+	XCTAssertEqual(count, countSetter, @"totalGradients setter/getter inaccurate.");
+	XCTAssertEqualObjects(testColor, [testingSubject conscienceBackgroundColor], @"conscienceBackgroundColor setter/getter inaccurate.");
 
 }
 

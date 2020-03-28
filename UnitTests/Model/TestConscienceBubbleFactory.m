@@ -39,7 +39,7 @@
  */
 - (void)testConscienceBubbleFactoryExists{
 
-    STAssertNotNil([ConscienceBubbleFactory class], @"The ConscienceBubbleFactory was not able to be called.");
+    XCTAssertNotNil([ConscienceBubbleFactory class], @"The ConscienceBubbleFactory was not able to be called.");
 }
 
 /**
@@ -54,14 +54,14 @@
     CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeRoundTall];
     CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeRoundTall];
     
-    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Round Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Round Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPath), @"Normal Round Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Round Bubble dynamic failed");
 
-    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Round Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Round Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Round Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Round Bubble dynamic failed");
 
-    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Round Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Round Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Round Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Round Bubble dynamic failed");
 
 }
 
@@ -74,14 +74,14 @@
     CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeStarTall];
     CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeStarTall];
     
-    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Star Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Star Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPath), @"Normal Star Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Star Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Star Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Star Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Star Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Star Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Star Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Star Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Star Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Star Bubble dynamic failed");
     
 }
 
@@ -94,14 +94,14 @@
     CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeDiamondTall];
     CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeDiamondTall];
     
-    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Diamond Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Diamond Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPath), @"Normal Diamond Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Diamond Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Diamond Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Diamond Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Diamond Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Diamond Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Diamond Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Diamond Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Diamond Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Diamond Bubble dynamic failed");
     
 }
 
@@ -114,14 +114,14 @@
     CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypePuffyTall];
     CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypePuffyTall];
     
-    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Puffy Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Puffy Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPath), @"Normal Puffy Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Puffy Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Puffy Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Puffy Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Puffy Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Puffy Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Puffy Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Puffy Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Puffy Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Puffy Bubble dynamic failed");
     
 }
 
@@ -134,14 +134,14 @@
     CGMutablePathRef outerPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:MLBubbleTypeGearTall];
     CGMutablePathRef dynamicPathTall = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:MLBubbleTypeGearTall];
     
-    STAssertFalse(CGPathIsEmpty(outerPath), @"Normal Gear Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Gear Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPath), @"Normal Gear Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPath), @"Normal Gear Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Gear Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Gear Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathShort), @"Short Gear Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathShort), @"Short Gear Bubble dynamic failed");
     
-    STAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Gear Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Gear Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPathTall), @"Tall Gear Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPathTall), @"Tall Gear Bubble dynamic failed");
     
 }
 
@@ -150,8 +150,8 @@
     CGMutablePathRef outerPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleSurfaceWithType:-1];
     CGMutablePathRef dynamicPath = (__bridge CGMutablePathRef)[ConscienceBubbleFactory bubbleAccentWithType:-1];
     
-    STAssertFalse(CGPathIsEmpty(outerPath), @"Default Bubble outerPath failed");
-    STAssertFalse(CGPathIsEmpty(dynamicPath), @"Default Bubble dynamic failed");
+    XCTAssertFalse(CGPathIsEmpty(outerPath), @"Default Bubble outerPath failed");
+    XCTAssertFalse(CGPathIsEmpty(dynamicPath), @"Default Bubble dynamic failed");
         
 }
 

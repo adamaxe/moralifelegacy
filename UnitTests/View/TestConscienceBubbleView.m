@@ -12,7 +12,7 @@
 
 #import "ConscienceBubbleView.h"
 
-@interface TestConscienceBubbleView: SenTestCase {
+@interface TestConscienceBubbleView:XCTestCase {
     
     ConscienceBubbleView *testingSubject;
     
@@ -47,7 +47,7 @@
  */
 - (void)testBubbleExists{
 
-    STAssertNotNil(testingSubject, @"The bubble was not init'ed.");
+    XCTAssertNotNil(testingSubject, @"The bubble was not init'ed.");
 }
 
 /**
@@ -55,10 +55,10 @@
  */
 - (void)testDefaultBubbleProperties{
     
-	STAssertEquals(MLBubbleTypeDefault, [testingSubject bubbleType], @"Default bubble type inaccurate");
-	STAssertEquals(MLBubbleWidthDefault, [testingSubject bubbleGlowWidth], @"Default bubble glow inaccurate");
-	STAssertEquals(MLBubbleDurationDefault, [testingSubject bubbleGlowDuration], @"Default bubble duration inaccurate");
-	STAssertEqualObjects(MLBubbleColorDefault, [testingSubject bubbleColor], @"Default bubble color inaccurate");
+	XCTAssertEqual(MLBubbleTypeDefault, [testingSubject bubbleType], @"Default bubble type inaccurate");
+	XCTAssertEqual(MLBubbleWidthDefault, [testingSubject bubbleGlowWidth], @"Default bubble glow inaccurate");
+	XCTAssertEqual(MLBubbleDurationDefault, [testingSubject bubbleGlowDuration], @"Default bubble duration inaccurate");
+	XCTAssertEqualObjects(MLBubbleColorDefault, [testingSubject bubbleColor], @"Default bubble color inaccurate");
 
 }
 
@@ -77,10 +77,10 @@
 	[testingSubject setBubbleGlowDuration:testBubbleGlowDuration];
 	[testingSubject setBubbleColor:testBubbleColor];
 
-	STAssertEquals(testBubbleType, [testingSubject bubbleType], @"Bubble type setter/getter inaccurate");
-	STAssertEquals(testBubbleGlowWidth, [testingSubject bubbleGlowWidth], @"Bubble glow setter/getter inaccurate");
-	STAssertEquals(testBubbleGlowDuration, [testingSubject bubbleGlowDuration], @"Bubble duration setter/getter inaccurate");
-	STAssertEqualObjects(testBubbleColor, [testingSubject bubbleColor], @"Bubble color setter/getter inaccurate");
+	XCTAssertEqual(testBubbleType, [testingSubject bubbleType], @"Bubble type setter/getter inaccurate");
+	XCTAssertEqual(testBubbleGlowWidth, [testingSubject bubbleGlowWidth], @"Bubble glow setter/getter inaccurate");
+	XCTAssertEqual(testBubbleGlowDuration, [testingSubject bubbleGlowDuration], @"Bubble duration setter/getter inaccurate");
+	XCTAssertEqualObjects(testBubbleColor, [testingSubject bubbleColor], @"Bubble color setter/getter inaccurate");
 }
 
 @end

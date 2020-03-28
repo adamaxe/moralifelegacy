@@ -3,7 +3,7 @@
 #import "ReferenceText.h"
 #import "ReferenceTextDAO.h"
 
-@interface TestReferenceTextDAO: SenTestCase {
+@interface TestReferenceTextDAO:XCTestCase {
     ModelManager *testModelManager;
 
     ReferenceTextDAO *testingSubject;
@@ -43,45 +43,45 @@
 
 - (void)testReferenceTextDAOAllTypeCanBeCreated {
     
-    STAssertNotNil(testingSubject, @"ReferenceTextDAO can't be created.");
+    XCTAssertNotNil(testingSubject, @"ReferenceTextDAO can't be created.");
 }
 
 - (void)testReferenceTextDAORead {
     
     ReferenceText *testAsset = [testingSubject read:nameAsset1];
-    STAssertEqualObjects(testAsset, testReferenceText1, @"ReferenceTextDAO not populated with text 1."); 
+    XCTAssertEqualObjects(testAsset, testReferenceText1, @"ReferenceTextDAO not populated with text 1."); 
     
     testAsset = [testingSubject read:nameAsset2];
-    STAssertEqualObjects(testAsset, testReferenceText2, @"ReferenceTextDAO not populated with text 2."); 
+    XCTAssertEqualObjects(testAsset, testReferenceText2, @"ReferenceTextDAO not populated with text 2."); 
 }
 
 - (void)testReferenceTextDAOReadAll {
         
     NSArray *allAssets = [testingSubject readAll];
-    STAssertTrue([allAssets containsObject:testReferenceText1], @"ReferenceTextDAO All not populated with text 1.");
-    STAssertTrue([allAssets containsObject:testReferenceText2], @"ReferenceTextDAO All not populated with text 2.");
+    XCTAssertTrue([allAssets containsObject:testReferenceText1], @"ReferenceTextDAO All not populated with text 1.");
+    XCTAssertTrue([allAssets containsObject:testReferenceText2], @"ReferenceTextDAO All not populated with text 2.");
     
 }
 
 - (void)testReferenceTextDAOCreateFailsCorrectly {
     
     id testMoral = [testingSubject createObject];
-    STAssertNil(testMoral, @"ReferenceTextDAO was able to create incorrectly.");    
+    XCTAssertNil(testMoral, @"ReferenceTextDAO was able to create incorrectly.");    
 }
 
 - (void)testReferenceTextDAOUpdateFailsCorrectly {
     
     BOOL isUpdateSuccessful = [testingSubject update];
-    STAssertFalse(isUpdateSuccessful, @"ReferenceTextDAO was able to update incorrectly.");    
+    XCTAssertFalse(isUpdateSuccessful, @"ReferenceTextDAO was able to update incorrectly.");    
 }
 
 - (void)testReferenceTextDAODeleteFailsCorrectly {
     
     BOOL isDeleteSuccessful = [testingSubject delete:testReferenceText2];
-    STAssertFalse(isDeleteSuccessful, @"ReferenceTextDAO was able to delete incorrectly.");
+    XCTAssertFalse(isDeleteSuccessful, @"ReferenceTextDAO was able to delete incorrectly.");
     
     ReferenceText *testDeletedAssetVerify = [testingSubject read:nameAsset2];
-    STAssertEqualObjects(testReferenceText2, testDeletedAssetVerify, @"ReferenceText was deleted incorrectly.");
+    XCTAssertEqualObjects(testReferenceText2, testDeletedAssetVerify, @"ReferenceText was deleted incorrectly.");
     
 }
 

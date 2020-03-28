@@ -12,7 +12,7 @@
 #import "MoraLifeAppDelegate.h"
 @class ConscienceHelpViewController;
 
-@interface TestConscienceHelpViewController : SenTestCase {
+@interface TestConscienceHelpViewController :XCTestCase {
     
     MoraLifeAppDelegate *delegate;
     ConscienceHelpViewController *testingSubject;
@@ -52,7 +52,7 @@
 //
 //- (void)testAppDelegate {
 //        
-//    STAssertNotNil(delegate, @"UIApplication failed to find the AppDelegate.");
+//    XCTAssertNotNil(delegate, @"UIApplication failed to find the AppDelegate.");
 //    
 //}
 //
@@ -63,8 +63,8 @@
  */
 //- (void)testViewExists{
 //
-//    STAssertNotNil(testingSubject, @"The view controller exists.");    
-//    STAssertNotNil(testingView, @"The view controller should have an associated view.");
+//    XCTAssertNotNil(testingSubject, @"The view controller exists.");    
+//    XCTAssertNotNil(testingView, @"The view controller should have an associated view.");
 //
 //}
 
@@ -75,8 +75,8 @@
 //
 //    int defaultNumberOfTitles = [[testingSubject helpTitles] count];
 //    isConscienceOnScreenTest = [testingSubject isConscienceOnScreen];
-//    STAssertEquals(0, defaultNumberOfTitles, @"Title array was not initialized properly.");
-//    STAssertFalse(isConscienceOnScreenTest, @"Monitor Bool not initialized correctly.");
+//    XCTAssertEqual(0, defaultNumberOfTitles, @"Title array was not initialized properly.");
+//    XCTAssertFalse(isConscienceOnScreenTest, @"Monitor Bool not initialized correctly.");
 //
 //}
 
@@ -97,10 +97,10 @@
 //    
 //    int numberOfTitles = [[testingSubject helpTitles] count];
 //    isConscienceOnScreenTest = [testingSubject isConscienceOnScreen];
-//    STAssertEquals(1, numberOfTitles, @"Title setter/getter non-functional");
-//    STAssertEquals(isConscienceOnScreenTest, [testingSubject isConscienceOnScreen], @"Conscience Bool setter/getter non-functional.");    
-//    STAssertEqualObjects(testTitle, [testingSubject helpTitles][0], @"Title setter/getter inaccurate.");
-//    STAssertEqualObjects(testText, [testingSubject helpTexts][0], @"Title setter/getter inaccurate.");
+//    XCTAssertEqual(1, numberOfTitles, @"Title setter/getter non-functional");
+//    XCTAssertEqual(isConscienceOnScreenTest, [testingSubject isConscienceOnScreen], @"Conscience Bool setter/getter non-functional.");    
+//    XCTAssertEqualObjects(testTitle, [testingSubject helpTitles][0], @"Title setter/getter inaccurate.");
+//    XCTAssertEqualObjects(testText, [testingSubject helpTexts][0], @"Title setter/getter inaccurate.");
 //}
 
 //#endif

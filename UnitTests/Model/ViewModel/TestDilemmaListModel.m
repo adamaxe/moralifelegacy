@@ -16,7 +16,7 @@
 #import "UserCollectable.h"
 #import "OCMock/OCMock.h"
 
-@interface TestDilemmaListModel : SenTestCase {
+@interface TestDilemmaListModel :XCTestCase {
     
     DilemmaListModel *testingSubject;
     ModelManager *testModelManager;
@@ -68,16 +68,16 @@
 
     DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
-    STAssertNotNil(testingSubjectCreate, @"DilemmaModel can't be created.");
+    XCTAssertNotNil(testingSubjectCreate, @"DilemmaModel can't be created.");
 }
 
 - (void)testDilemmaModelCanRetrieveCorrectDilemmaGivenRequestedCampaign {
 
-    STAssertTrue(testingSubject.dilemmas.count == 1, @"DilemmaModel didn't return correct number of dilemmas.");
+    XCTAssertTrue(testingSubject.dilemmas.count == 1, @"DilemmaModel didn't return correct number of dilemmas.");
 
-    STAssertEqualObjects(testingSubject.dilemmas[0], testDilemma1.nameDilemma, @"DilemmaName not correct.");
-    STAssertEqualObjects(testingSubject.dilemmaDisplayNames[0], testDilemma1.displayNameDilemma, @"dilemmaDisplayName not correct.");
-    STAssertEqualObjects(testingSubject.dilemmaImages[0], testDilemma1.surrounding, @"surrounding Image not correct.");
+    XCTAssertEqualObjects(testingSubject.dilemmas[0], testDilemma1.nameDilemma, @"DilemmaName not correct.");
+    XCTAssertEqualObjects(testingSubject.dilemmaDisplayNames[0], testDilemma1.displayNameDilemma, @"dilemmaDisplayName not correct.");
+    XCTAssertEqualObjects(testingSubject.dilemmaImages[0], testDilemma1.surrounding, @"surrounding Image not correct.");
 }
 
 - (void)testRetrievedDilemmaHasCorrectDerivedDataForAChoiceType {
@@ -85,33 +85,33 @@
     NSString *vsText = [NSString stringWithFormat:@"%@ vs. %@", testDilemma1.moralChoiceA.displayNameMoral, testDilemma1.moralChoiceB.displayNameMoral];
 
     //test vs. dilemma
-    STAssertEqualObjects(testingSubject.dilemmaDetails[0], vsText, @"DilemmaDetails not correctly displayed as the moral vs. moral.");
-    STAssertTrue([testingSubject.dilemmaTypes[0] boolValue] == TRUE, @"dilemmaType not correct.");
+    XCTAssertEqualObjects(testingSubject.dilemmaDetails[0], vsText, @"DilemmaDetails not correctly displayed as the moral vs. moral.");
+    XCTAssertTrue([testingSubject.dilemmaTypes[0] boolValue] == TRUE, @"dilemmaType not correct.");
 
     NSArray *moralKeys = [testingSubject.moralNames allKeys];
     NSArray *moralValues = [testingSubject.moralNames allValues];
 
-    STAssertTrue([moralKeys containsObject:testDilemma1.moralChoiceA.nameMoral], @"Dilemma moralNames doesn't contain moralA name");
-    STAssertTrue([moralValues containsObject:testDilemma1.moralChoiceA.displayNameMoral], @"Dilemma moralNames doesn't contain moralA name");
-    STAssertTrue([moralKeys containsObject:testDilemma1.moralChoiceB.nameMoral], @"Dilemma moralNames doesn't contain moralB name");
-    STAssertTrue([moralValues containsObject:testDilemma1.moralChoiceB.displayNameMoral], @"Dilemma moralNames doesn't contain moralB name");
+    XCTAssertTrue([moralKeys containsObject:testDilemma1.moralChoiceA.nameMoral], @"Dilemma moralNames doesn't contain moralA name");
+    XCTAssertTrue([moralValues containsObject:testDilemma1.moralChoiceA.displayNameMoral], @"Dilemma moralNames doesn't contain moralA name");
+    XCTAssertTrue([moralKeys containsObject:testDilemma1.moralChoiceB.nameMoral], @"Dilemma moralNames doesn't contain moralB name");
+    XCTAssertTrue([moralValues containsObject:testDilemma1.moralChoiceB.displayNameMoral], @"Dilemma moralNames doesn't contain moralB name");
 }
 
 - (void)testRetrievedDilemmaHasCorrectDerivedDataForAnActionType {
     DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
 
     //test action dilemma
-    STAssertEqualObjects(testingSubjectCreate.dilemmaDetails[0], testDilemma2.moralChoiceA.displayNameMoral, @"DilemmaDetails not correctly displayed as the moral.");
-    STAssertTrue([testingSubjectCreate.dilemmaTypes[0] boolValue] == FALSE, @"dilemmaType not correct.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmaDetails[0], testDilemma2.moralChoiceA.displayNameMoral, @"DilemmaDetails not correctly displayed as the moral.");
+    XCTAssertTrue([testingSubjectCreate.dilemmaTypes[0] boolValue] == FALSE, @"dilemmaType not correct.");
 
     NSArray *moralKeys = [testingSubjectCreate.moralNames allKeys];
     NSArray *moralValues = [testingSubjectCreate.moralNames allValues];
 
-    STAssertTrue([moralKeys containsObject:testDilemma2.moralChoiceA.nameMoral], @"Dilemma moralNames doesn't contain moralA name");
-    STAssertTrue([moralValues containsObject:testDilemma2.moralChoiceA.displayNameMoral], @"Dilemma moralNames doesn't contain moralA name");
+    XCTAssertTrue([moralKeys containsObject:testDilemma2.moralChoiceA.nameMoral], @"Dilemma moralNames doesn't contain moralA name");
+    XCTAssertTrue([moralValues containsObject:testDilemma2.moralChoiceA.displayNameMoral], @"Dilemma moralNames doesn't contain moralA name");
 
-    STAssertTrue(moralKeys.count == 1, @"Dilemma moralNames doesn't have a single entry (Morals aren't the same)");
-    STAssertTrue(moralValues.count == 1, @"Dilemma moralDisplayNames doesn't have a single entry (Morals aren't the same)");
+    XCTAssertTrue(moralKeys.count == 1, @"Dilemma moralNames doesn't have a single entry (Morals aren't the same)");
+    XCTAssertTrue(moralValues.count == 1, @"Dilemma moralDisplayNames doesn't have a single entry (Morals aren't the same)");
 
 }
 
@@ -119,9 +119,9 @@
 
     DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure2];
 
-    STAssertTrue(testingSubjectCreate.dilemmas.count == 1, @"DilemmaModel didn't return correct number of dilemmas.");
+    XCTAssertTrue(testingSubjectCreate.dilemmas.count == 1, @"DilemmaModel didn't return correct number of dilemmas.");
 
-    STAssertEqualObjects(testingSubjectCreate.dilemmas[0], testDilemma2.nameDilemma, @"DilemmaName not correct.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmas[0], testDilemma2.nameDilemma, @"DilemmaName not correct.");
 }
 
 - (void)testDilemmaModelCanRetrieveCorrectlySortedDilemmasGivenRequestedCampaign {
@@ -131,15 +131,15 @@
 
     DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure1];
 
-    STAssertTrue(testingSubjectCreate.dilemmas.count == 2, @"DilemmaModel didn't return correct number of dilemmas.");
+    XCTAssertTrue(testingSubjectCreate.dilemmas.count == 2, @"DilemmaModel didn't return correct number of dilemmas.");
 
-    STAssertEqualObjects(testingSubjectCreate.dilemmas[0], testDilemma1.nameDilemma, @"DilemmaName not correct order.");
-    STAssertEqualObjects(testingSubjectCreate.dilemmaDisplayNames[0], testDilemma1.displayNameDilemma, @"dilemmaDisplayName not correct order.");
-    STAssertEqualObjects(testingSubjectCreate.dilemmaImages[0], testDilemma1.surrounding, @"surrounding Image not correct order.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmas[0], testDilemma1.nameDilemma, @"DilemmaName not correct order.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmaDisplayNames[0], testDilemma1.displayNameDilemma, @"dilemmaDisplayName not correct order.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmaImages[0], testDilemma1.surrounding, @"surrounding Image not correct order.");
 
-    STAssertEqualObjects(testingSubjectCreate.dilemmas[1], testDilemmaOrderedSecond.nameDilemma, @"DilemmaName not correct order.");
-    STAssertEqualObjects(testingSubjectCreate.dilemmaDisplayNames[1], testDilemmaOrderedSecond.displayNameDilemma, @"dilemmaDisplayName not correct order.");
-    STAssertEqualObjects(testingSubjectCreate.dilemmaImages[1], testDilemmaOrderedSecond.surrounding, @"surrounding Image not correct order.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmas[1], testDilemmaOrderedSecond.nameDilemma, @"DilemmaName not correct order.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmaDisplayNames[1], testDilemmaOrderedSecond.displayNameDilemma, @"dilemmaDisplayName not correct order.");
+    XCTAssertEqualObjects(testingSubjectCreate.dilemmaImages[1], testDilemmaOrderedSecond.surrounding, @"surrounding Image not correct order.");
 
 }
 
@@ -147,7 +147,7 @@
 
     DilemmaListModel *testingSubjectCreate = [[DilemmaListModel alloc] initWithModelManager:testModelManager andDefaults:userDefaultsMock andCurrentCampaign:MLRequestedMorathologyAdventure3];
 
-    STAssertTrue(testingSubjectCreate.dilemmas.count == 0, @"DilemmaModel returned dilemma it shouldn't have.");
+    XCTAssertTrue(testingSubjectCreate.dilemmas.count == 0, @"DilemmaModel returned dilemma it shouldn't have.");
 }
 
 - (void)testDilemmaModelReturnsASingleUserDilemmaIfCampaignIsWrong {
@@ -157,10 +157,10 @@
 
     NSArray *userDilemmaKeys = [testingSubjectCreate.userChoices allKeys];
     NSArray *userDilemmaValues = [testingSubjectCreate.userChoices allValues];
-    STAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
-    STAssertEqualObjects(userDilemmaKeys[0], @"noUserEntries", @"DilemmaModel didn't return correct empty key designation.");
-    STAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
-    STAssertEqualObjects(userDilemmaValues[0], @"", @"DilemmaModel didn't return correct empty value designation.");
+    XCTAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+    XCTAssertEqualObjects(userDilemmaKeys[0], @"noUserEntries", @"DilemmaModel didn't return correct empty key designation.");
+    XCTAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
+    XCTAssertEqualObjects(userDilemmaValues[0], @"", @"DilemmaModel didn't return correct empty value designation.");
     
 }
 
@@ -168,10 +168,10 @@
 
     NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
     NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
-    STAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
-    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct userDilemma key.");
-    STAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
-    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct userDilemma key.");
+    XCTAssertTrue(userDilemmaKeys.count == 1, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+    XCTAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct userDilemma key.");
+    XCTAssertTrue(userDilemmaValues.count == 1, @"DilemmaModel didn't return correct userChoiceValues.");
+    XCTAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct userDilemma key.");
 
 }
 
@@ -186,12 +186,12 @@
 
     NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
     NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
-    STAssertTrue(userDilemmaKeys.count == 2, @"DilemmaModel didn't return correct number of userChoiceKeys.");
-    STAssertTrue(userDilemmaValues.count == 2, @"DilemmaModel didn't return correct userChoiceValues.");
-    STAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct first userDilemma key.");
-    STAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct first userDilemma value.");
-    STAssertEqualObjects(userDilemmaKeys[1], testUserDilemma2.entryShortDescription, @"DilemmaModel didn't return correct second userDilemma key.");
-    STAssertEqualObjects(userDilemmaValues[1], testUserDilemma2.entryLongDescription, @"DilemmaModel didn't return correct second userDilemma value.");
+    XCTAssertTrue(userDilemmaKeys.count == 2, @"DilemmaModel didn't return correct number of userChoiceKeys.");
+    XCTAssertTrue(userDilemmaValues.count == 2, @"DilemmaModel didn't return correct userChoiceValues.");
+    XCTAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct first userDilemma key.");
+    XCTAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct first userDilemma value.");
+    XCTAssertEqualObjects(userDilemmaKeys[1], testUserDilemma2.entryShortDescription, @"DilemmaModel didn't return correct second userDilemma key.");
+    XCTAssertEqualObjects(userDilemmaValues[1], testUserDilemma2.entryLongDescription, @"DilemmaModel didn't return correct second userDilemma value.");
 
 }
 

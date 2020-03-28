@@ -3,7 +3,7 @@
 #import "ConscienceAsset.h"
 #import "ConscienceAssetDAO.h"
 
-@interface TestConscienceAssetDAO: SenTestCase {
+@interface TestConscienceAssetDAO:XCTestCase {
     ModelManager *testModelManager;
 
     ConscienceAssetDAO *testingSubject;
@@ -54,45 +54,45 @@
 
 - (void)testConscienceDAOAllTypeCanBeCreated {
     
-    STAssertNotNil(testingSubject, @"ConscienceDAO can't be created.");
+    XCTAssertNotNil(testingSubject, @"ConscienceDAO can't be created.");
 }
 
 - (void)testConscienceAssetDAORead {
     
     ConscienceAsset *testAsset = [testingSubject read:nameAsset1];
-    STAssertEqualObjects(testAsset, testConscienceAsset1, @"ConscienceAssetDAO not populated with asset 1."); 
+    XCTAssertEqualObjects(testAsset, testConscienceAsset1, @"ConscienceAssetDAO not populated with asset 1."); 
     
     testAsset = [testingSubject read:nameAsset2];
-    STAssertEqualObjects(testAsset, testConscienceAsset2, @"ConscienceAssetDAO not populated with asset 2."); 
+    XCTAssertEqualObjects(testAsset, testConscienceAsset2, @"ConscienceAssetDAO not populated with asset 2."); 
 }
 
 - (void)testConscienceAssetDAOReadAll {
         
     NSArray *allAssets = [testingSubject readAll];
-    STAssertTrue([allAssets containsObject:testConscienceAsset1], @"ConscienceAssetDAO All not populated with asset 1.");
-    STAssertTrue([allAssets containsObject:testConscienceAsset2], @"ConscienceAssetDAO All not populated with asset 2.");
+    XCTAssertTrue([allAssets containsObject:testConscienceAsset1], @"ConscienceAssetDAO All not populated with asset 1.");
+    XCTAssertTrue([allAssets containsObject:testConscienceAsset2], @"ConscienceAssetDAO All not populated with asset 2.");
     
 }
 
 - (void)testConscienceAssetDAOCreateFailsCorrectly {
     
     id testMoral = [testingSubject createObject];
-    STAssertNil(testMoral, @"ConscienceAssetDAO was able to create incorrectly.");    
+    XCTAssertNil(testMoral, @"ConscienceAssetDAO was able to create incorrectly.");    
 }
 
 - (void)testConscienceAssetDAOUpdateFailsCorrectly {
     
     BOOL isUpdateSuccessful = [testingSubject update];
-    STAssertFalse(isUpdateSuccessful, @"ConscienceAssetDAO was able to update incorrectly.");    
+    XCTAssertFalse(isUpdateSuccessful, @"ConscienceAssetDAO was able to update incorrectly.");    
 }
 
 - (void)testConscienceAssetDAODeleteFailsCorrectly {
     
     BOOL isDeleteSuccessful = [testingSubject delete:testConscienceAsset2];
-    STAssertFalse(isDeleteSuccessful, @"ConscienceAssetDAO was able to delete incorrectly.");
+    XCTAssertFalse(isDeleteSuccessful, @"ConscienceAssetDAO was able to delete incorrectly.");
     
     ConscienceAsset *testDeletedAssetVerify = [testingSubject read:nameAsset2];
-    STAssertEqualObjects(testConscienceAsset2, testDeletedAssetVerify, @"ConscienceAsset was deleted incorrectly.");
+    XCTAssertEqualObjects(testConscienceAsset2, testDeletedAssetVerify, @"ConscienceAsset was deleted incorrectly.");
     
 }
 

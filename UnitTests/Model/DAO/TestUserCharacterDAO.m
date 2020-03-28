@@ -1,7 +1,7 @@
 #import "ModelManager.h"
 #import "UserCharacterDAO.h"
 
-@interface TestUserCharacterDAO: SenTestCase {
+@interface TestUserCharacterDAO:XCTestCase {
     ModelManager *testModelManager;
 
     UserCharacterDAO *testingSubject;
@@ -88,20 +88,20 @@
 }
 
 - (void)testUserCharacterDAOAllTypeCanBeCreated {
-    STAssertNotNil(testingSubject, @"UserCharacterDAO All type can't be created.");
+    XCTAssertNotNil(testingSubject, @"UserCharacterDAO All type can't be created.");
 }
 
 - (void)testUserCharacterDAORead {
         
     UserCharacter *testCharacter = [testingSubject read:nameCharacter1];
-    STAssertEqualObjects(testCharacter, testCharacter1, @"UserCharacterDAO All not populated with Character 1.");    
+    XCTAssertEqualObjects(testCharacter, testCharacter1, @"UserCharacterDAO All not populated with Character 1.");    
 }
 
 - (void)testUserCharacterDAOCanBeCreated {
     
     UserCharacter *testCharacter = [testingSubject create];
         
-    STAssertNotNil(testCharacter, @"UserCharacterDAO wasn't able to create.");
+    XCTAssertNotNil(testCharacter, @"UserCharacterDAO wasn't able to create.");
     
     NSString *nameCharacter3 = @"nameCharacter3";
     testCharacter.characterName = nameCharacter3;
@@ -117,7 +117,7 @@
     testCharacter.characterBubbleType = characterBubbleType;
         
     UserCharacter *testCharacterVerify = [testingSubject read:nameCharacter3];
-    STAssertEqualObjects(testCharacter, testCharacterVerify, @"UserCharacterDAO not populated with Character 1.");
+    XCTAssertEqualObjects(testCharacter, testCharacterVerify, @"UserCharacterDAO not populated with Character 1.");
 }
 
 - (void)testUserCharacterDAOCanBeUpdated {
@@ -126,24 +126,24 @@
     testCharacter2.characterFace = newCharacterFace;
         
     UserCharacter *testCharacterVerify = [testingSubject read:nameCharacter2];
-    STAssertEqualObjects(testCharacter2.characterFace, testCharacterVerify.characterFace, @"UserCharacterDAO All not populated with Character 2.");    
+    XCTAssertEqualObjects(testCharacter2.characterFace, testCharacterVerify.characterFace, @"UserCharacterDAO All not populated with Character 2.");    
     
 }
 
 - (void)testUserCharacterDAOReadAll {
             
     NSArray *allCharacters = [testingSubject readAll];
-    STAssertTrue([allCharacters containsObject:testCharacter1], @"UserCharacterDAO All not populated with Character 1.");
-    STAssertTrue([allCharacters containsObject:testCharacter2], @"UserCharacterDAO All not populated with Character 2.");
+    XCTAssertTrue([allCharacters containsObject:testCharacter1], @"UserCharacterDAO All not populated with Character 1.");
+    XCTAssertTrue([allCharacters containsObject:testCharacter2], @"UserCharacterDAO All not populated with Character 2.");
 }
 
 //- (void)testUserCharacterDAOCanBeDeleted {
 //        
 //    BOOL isDeleteSuccessful = [testingSubject delete:testCharacter2];
-//    STAssertTrue(isDeleteSuccessful, @"UserCharacterDAO wasn't able to delete.");
+//    XCTAssertTrue(isDeleteSuccessful, @"UserCharacterDAO wasn't able to delete.");
 //    
 //    UserCharacter *testDeletedCharacterVerify = [testingSubject read:nameCharacter2];
-//    STAssertNil(testDeletedCharacterVerify, @"UserCharacter was deleted incorrectly.");
+//    XCTAssertNil(testDeletedCharacterVerify, @"UserCharacter was deleted incorrectly.");
 //    
 //}
 
