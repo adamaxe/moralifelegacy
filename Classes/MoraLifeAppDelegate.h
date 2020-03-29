@@ -14,7 +14,7 @@ Moralife is the iPhone application which will provide its User with a Digital Co
 @mainpage Moralife
 @see HomeViewController
 @version 1.3.4
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @class MoralifeAppDelegate
 @date 03/28/2010
 @file

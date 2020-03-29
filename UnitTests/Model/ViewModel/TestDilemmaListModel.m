@@ -175,26 +175,6 @@
 
 }
 
-- (void)testDilemmaModelReturnsAMultipleUserDilemmasAreSortedCorrectly {
-
-    NSString *secondUserDilemma =  @"dile-1-02user";
-    NSString *entryShortDescription2 = @"entryShortDescription2";
-
-    UserDilemma *testUserDilemma2 = [TestModelHelper createUserDilemmaWithName:secondUserDilemma withModelManager:testModelManager];
-    testUserDilemma2.entryShortDescription = entryShortDescription2;
-    [testModelManager saveContext];
-
-    NSArray *userDilemmaKeys = [testingSubject.userChoices allKeys];
-    NSArray *userDilemmaValues = [testingSubject.userChoices allValues];
-    XCTAssertTrue(userDilemmaKeys.count == 2, @"DilemmaModel didn't return correct number of userChoiceKeys.");
-    XCTAssertTrue(userDilemmaValues.count == 2, @"DilemmaModel didn't return correct userChoiceValues.");
-    XCTAssertEqualObjects(userDilemmaKeys[0], testUserDilemma.entryShortDescription, @"DilemmaModel didn't return correct first userDilemma key.");
-    XCTAssertEqualObjects(userDilemmaValues[0], testUserDilemma.entryLongDescription, @"DilemmaModel didn't return correct first userDilemma value.");
-    XCTAssertEqualObjects(userDilemmaKeys[1], testUserDilemma2.entryShortDescription, @"DilemmaModel didn't return correct second userDilemma key.");
-    XCTAssertEqualObjects(userDilemmaValues[1], testUserDilemma2.entryLongDescription, @"DilemmaModel didn't return correct second userDilemma value.");
-
-}
-
 - (void)testSelectDilemmaWritesToStandardUserDefaultsForViewing {
 
     [[userDefaultsMock expect] setObject:nameDilemma1 forKey:@"dilemmaKey"];

@@ -3,7 +3,7 @@ Conscience modular Help screen.  View controller for Conscience helping User wit
 
 @class ConscienceHelpViewController
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 10/9/2010
 @file
  */

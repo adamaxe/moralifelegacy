@@ -7,7 +7,7 @@ Second screen in Conscience Accessory Workflow.  User can select type of Conscie
 @see ConscienceViewController
 @see ConscienceListViewController
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 08/25/2010
  */
 

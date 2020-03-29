@@ -6,7 +6,7 @@ List of available Dilemmas/Actions.  View Controller responsible for showing ava
 @see DilemmaViewController
 @see ConscienceActionViewController
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 09/24/2010
 @file
  */

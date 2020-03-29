@@ -6,7 +6,7 @@ Conscience character.  Combination of ConscienceAccessories, ConscienceBody and 
 @see ConscienceAccessories
 @see ConscienceMind
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 06/23/2010
 @file
  */

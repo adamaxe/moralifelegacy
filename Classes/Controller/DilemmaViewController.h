@@ -4,7 +4,7 @@ Conscience Interaction dilemma screen.  View for Conscience asking User moral qu
 @class DilemmaViewController
 @see ConscienceListViewController
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 09/9/2010
 @file
  */

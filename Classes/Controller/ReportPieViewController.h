@@ -4,7 +4,7 @@ Report view displaying pie chart.  Create GraphView and then displays contents o
 @class ReportPieViewController
 @see ConscienceViewController
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 09/05/2010
 @file
  */

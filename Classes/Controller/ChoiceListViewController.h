@@ -7,7 +7,7 @@ Second screen in Choice/Luck Listing Workflow.  User can select a Choice for rev
 @see ChoiceInitViewController
 @see ChoiceViewController
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 07/13/2010
 @file
  */

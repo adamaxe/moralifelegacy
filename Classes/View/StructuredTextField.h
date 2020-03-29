@@ -3,7 +3,7 @@ Maximum Length Textfield Subclass UIView.  Allow for a maximum length to be ente
  
 @class StructuredTextField StructuredTextField.h
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 05/23/2010
 @file
 */

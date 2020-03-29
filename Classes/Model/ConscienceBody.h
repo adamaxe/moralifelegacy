@@ -5,7 +5,7 @@ Each Dictionary contains every expression frame for currently selected feature t
 @class ConscienceBody
 @see ConscienceView
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 07/20/2010
 @file
  */

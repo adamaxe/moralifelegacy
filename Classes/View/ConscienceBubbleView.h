@@ -4,7 +4,7 @@ Conscience Bubble visualization.  The appearance and animation of the User's or 
 @class ConscienceBubbleView
 @see ConscienceView
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 08/30/2010
 @file
  */

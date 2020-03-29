@@ -6,7 +6,7 @@ Secondary screen in Reference review Workflow.  User can filter and review a lis
 @class ReferenceListViewController
 @see ReferenceViewController
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 06/04/2010
  */
 

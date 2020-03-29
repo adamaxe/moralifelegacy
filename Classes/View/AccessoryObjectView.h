@@ -4,7 +4,7 @@ Accessory image wrapper.  The image file of the User's or Antagonist's single ac
 @class AccessoryObjectView
 @see ConscienceView
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 08/16/2010
 @file
  */

@@ -4,7 +4,7 @@ Application Introduction.  View controller for first time into app.  Only utiliz
 @class IntroViewController
 @see HomeViewController
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 10/9/2010
 @file
  */

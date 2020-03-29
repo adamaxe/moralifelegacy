@@ -6,7 +6,7 @@ Third screen in Moral Entry Workflow.  User can either Virtue or Vice depending 
 @class ChoiceModalViewController ChoiceModalViewController.h
 @see ChoiceViewController
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 09/24/2010
 @file
  */

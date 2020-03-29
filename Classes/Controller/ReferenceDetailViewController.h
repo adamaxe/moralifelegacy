@@ -6,7 +6,7 @@ Final screen in Reference View Workflow.  Lists all relevant information about R
 @class ReferenceDetailViewController
 @see ReferenceViewController
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 06/06/2010
 @file
 @todo rename to ReferenceViewController

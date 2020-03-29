@@ -5,7 +5,7 @@ Primary screen for entire Application Workflow.  Provides high-level feedback fo
 @class HomeViewController
 @see ConscienceViewController
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 06/23/2010
 @file
 */

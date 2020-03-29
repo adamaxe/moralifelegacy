@@ -161,7 +161,7 @@
 
     currentUserDilemmaDAO.predicates = @[pred];
 
-	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:YES];
+	NSSortDescriptor* sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"entryShortDescription" ascending:NO];
 	NSArray* sortDescriptors = @[sortDescriptor];
 
     currentUserDilemmaDAO.sorts = sortDescriptors;

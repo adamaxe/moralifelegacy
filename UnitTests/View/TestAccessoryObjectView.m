@@ -3,7 +3,7 @@
  
  @class TestAccessoryObjectView
  
- @author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+ @author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
  @date 06/25/2011
  @file
  */

@@ -6,7 +6,7 @@ Primary screen of Reference selection Workflow.  User can select what type of Re
 @class ReferenceViewController
 @see ReferenceListViewController
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 05/17/2010
 @file
 @todo rename to ReferenceInitViewController

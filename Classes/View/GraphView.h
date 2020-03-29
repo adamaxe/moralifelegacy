@@ -4,7 +4,7 @@ Graph chart for reporting.  The appearance and display of various graph forms fo
 @class GraphView
 @see ReportPieViewController
 
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 09/05/2010
 @file
 */

@@ -7,7 +7,7 @@ Secondary Conscience interaction screen.  Most other Conscience interactions req
 @see ConscienceViewController
 @see ConscienceAccessoryViewController
  
-@author Copyright 2010 Team Axe, LLC. All rights reserved. http://www.teamaxe.org
+@author Copyright 2020 Adam Axe. All rights reserved. http://www.adamaxe.com
 @date 08/26/2010
 @file
  */
