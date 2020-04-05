@@ -1,0 +1,1482 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="One Person Software Development Project" company="Team Axe, LLC" webLink="http://www.teamaxe.org" view-date="2010-01-10" view-index="0" gantt-divider-location="316" resource-divider-location="301" version="2.0">
+    <description><![CDATA[This is the project plan of the first software creation from Team Axe, LLC.
+
+The project itself will follow the OpenUP software development process, and as such is divided into four phases: Inception, Elaboration, Construction and Transition.  The purpose of the project is to create a compelling and well-developed software creation utilizing the resources of only a single developer.
+
+Quarterly progress reports and other information can be viewed at the URL supplied with this document.]]></description>
+    <view zooming-state="default:4" id="gantt-chart"/>
+    <view id="resource-table">
+        <field id="0" name="Name" width="55" order="0"/>
+        <field id="1" name="Default role" width="44" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <calendar id="1" name="default">
+                <default-week sun="0" mon="0" tue="0" wed="0" thu="0" fri="0" sat="0"/>
+                <overriden-day-types/>
+                <days/>
+            </calendar>
+        </day-types>
+    </calendars>
+    <tasks color="#8cb6ce">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Inception" color="#3399ff" meeting="false" start="2010-01-21" duration="90" complete="100" priority="1" expand="false">
+            <notes><![CDATA[03/01/2010
+Inception Phase of project lasting throughout first quarter.  Familiarization with technology and feasibility.
+03/06/2010
+Expansion of Technological Familiarization to include Technology Selection and Developer Licensing.
+03/12/2010
+Creation of Initial Visual Design task.  Added metaphor and process tasks.  Added Project Timeline Task.
+04/19/2010
+Most Inception tasks complete.  Objective-C training going more slowly than anticipated.  In response, Objective-C training task added to all phases of project.
+05/30/2010
+Inception Complete.]]></notes>
+            <task id="1" name="Project Definition" color="#ff0033" meeting="false" start="2010-01-21" duration="13" complete="100" priority="2" expand="false">
+                <notes><![CDATA[03/01/2010
+Outline scope of project.  Begin Software Design Doc.]]></notes>
+                <task id="2" name="Project Scope Determination" color="#ff0000" meeting="false" start="2010-01-21" duration="1" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Determine general scope of software and ability to execute.
+03/12/2010
+Determined limited platform choice of only iPhone production.
+04/19/2010
+Further limitations in platform choice.  No native iPad support in first release.  iOS 3 and above support given to difficulty in aquiring iOS 2 hardware.]]></notes>
+                    <depend id="3" type="2" difference="0" hardness="Rubber"/>
+                </task>
+                <task id="3" name="Vision Statement" color="#ff0000" meeting="false" start="2010-02-01" duration="2" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Prepare vision statement to prevent scope creep and outline purpose of software.
+03/12/2010
+Vision statement developed to focus development effort.]]></notes>
+                </task>
+            </task>
+            <task id="7" name="Initial Requirements" color="#ff0000" meeting="false" start="2010-02-10" duration="12" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/05/2010
+Determine software requirements.
+03/12/2010
+Determined application limited to 4 screens at maximum in order to focus development effort on 4 discrete functionalities.]]></notes>
+                <depend id="6" type="2" difference="0" hardness="Strong"/>
+                <depend id="9" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="83" name="Market Research" color="#ff0000" meeting="false" start="2010-02-12" duration="5" complete="100" priority="1" expand="true">
+                <notes><![CDATA[02/12/2010
+Research market for pre-existing product fulfilling requirements.
+03/12/2010
+Conducted extensive market research.  No product in Apple Marketplace or overall software market that meets Use Cases.
+04/19/2010
+Continued research shows no compelling social networking component either.]]></notes>
+            </task>
+            <task id="4" name="Use Case Creation" color="#ff0033" meeting="false" start="2010-02-12" duration="19" complete="100" priority="1" expand="false">
+                <notes><![CDATA[02/12/2010
+Create set of Use Cases to refine what software should deliver.]]></notes>
+                <task id="5" name="Use Case Template Creation" color="#ff0033" meeting="false" start="2010-02-12" duration="12" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[02/12/2010
+Determine format of Use Cases.
+03/12/2010
+Format and template of Use Cases created.  Creation took longer than expected.  End date increased by 2 weeks.]]></notes>
+                    <depend id="24" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="6" name="Use Case Task Determination" color="#ff0000" meeting="false" start="2010-02-22" duration="3" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[02/12/2010
+Determine high-level set of functionality that will be achieved by Use Cases.
+03/12/2010
+Final set of product functionality set.  Use Cases written to reflect this.]]></notes>
+                    <depend id="24" type="2" difference="0" hardness="Rubber"/>
+                </task>
+                <task id="24" name="Use Case Drafts" color="#ff0033" meeting="false" start="2010-02-25" duration="6" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[02/12/2010
+Create initial set of Use Case drafts before template completion.
+03/12/2010
+Use Cases of 4 primary functionality drafts completed.  One feature under consideration for removal.
+04/19/2010
+Use Cases reduced to 3 primary functionality paths.]]></notes>
+                    <depend id="25" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="8" name="Architectural Feasibility" color="#00ff00" meeting="false" start="2010-02-23" duration="6" complete="100" priority="1" expand="true">
+                <notes><![CDATA[02/25/2010
+Study ability to execute project on platform without any knowledge of platform.
+03/12/2010
+Developer background with C/C++ makes Objective C acclimation possible.  Project feasibility granted.]]></notes>
+            </task>
+            <task id="9" name="Initial Documentation" color="#ff0033" meeting="false" start="2010-02-22" duration="33" complete="100" priority="1" expand="false">
+                <notes><![CDATA[2/20/2010
+Create initial set of documentation to support development effort.]]></notes>
+                <task id="10" name="Software Design Document Creation" color="#ff0033" meeting="false" start="2010-02-22" duration="15" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[02/23/2010
+Create Software Design Doc to solidify architectural decisions.
+03/12/2010
+Software Design Document framework completed with all sections drafted.
+03/30/2010
+Final Draft of Design doc completed.  Each section will be added to as development continues.  As such, Software Design Doc update task added to each phase.]]></notes>
+                </task>
+                <task id="11" name="Document Templates Creation" color="#ff0033" meeting="false" start="2010-03-02" duration="4" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[02/23/2010
+Determine/Create document template types for business, technical writing and documentation.
+03/12/2010
+Document templates for all project documentation determined.  Open Office chosen as exclusive tool.]]></notes>
+                    <depend id="12" type="2" difference="0" hardness="Rubber"/>
+                    <depend id="28" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="12" name="Data Research" color="#ff0000" meeting="false" start="2010-03-06" duration="21" complete="100" priority="0" expand="true">
+                    <notes><![CDATA[02/28/2010
+Begin research into system data for User Profile creation.
+03/12/2010
+Product reference material and data research determined to be greater than Inception phase endeavor.  Will progress throughout Elaboration and Construction.
+04/09/2010
+Initial Data collection and archival completed.]]></notes>
+                </task>
+            </task>
+            <task id="13" name="Technological Familiarization" color="#66ff66" meeting="false" start="2010-03-07" duration="45" complete="100" priority="1" expand="false">
+                <notes><![CDATA[03/01/2010
+Begin process of familiarization with XCode, Objective-C and Apple App Store/Developer resources.]]></notes>
+                <task id="81" name="Technology Selection" color="#00ff00" meeting="false" start="2010-03-07" duration="3" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Begin research into development toolchain (IDE, testing, debugging, prototyping).
+03/06/2010
+Determine scope of project to include platforms outside iPhone OS.
+03/12/2010
+Determined need for research into UIWebView vs. CoreGraphics display.]]></notes>
+                </task>
+                <task id="82" name="Developer Licensing" color="#00ff00" meeting="false" start="2010-03-07" duration="7" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Realized necessity of testing on actual hardware (performance).  Apple Developer license needed for development effort.
+03/12/2010
+Applying for Apple Developer Program.
+04/08/2010
+Acceptance to Apple Developer Program.]]></notes>
+                </task>
+                <task id="22" name="Objective-C Training" color="#00ff00" meeting="false" start="2010-03-13" duration="39" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/10/2010
+Began Stanford IPhone Developer online course.  Intending viewing all course videos and completing each assignment.
+03/12/2010
+Underestimated time.  Goal extended 2 weeks.
+04/04/2010
+Need for ongoing training identified.  Entry level Apple tutorials/documentation finished.
+04/09/2010
+Research into Apple documentation/education complete.]]></notes>
+                </task>
+                <task id="23" name="Development Environment Setup" color="#00ff00" meeting="false" start="2010-03-13" duration="12" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/10/2010
+Creation of development environment/workstation.  Selection of IDE, placement of workplace, backup/change control procedures.
+03/12/2010
+Project setup completion.  Test Unit Tests created.  Need testable use cases.
+04/08/2010
+Apple certificates/provisioning profiles received.  Test devices provisioned.]]></notes>
+                </task>
+                <task id="84" name="Toolchain" color="#00ff00" meeting="false" start="2010-03-13" duration="25" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/03/2010
+Finalize procedures and workflows in generating content for development/archival.
+03/12/2010
+Toolchain finalized.]]></notes>
+                </task>
+            </task>
+            <task id="19" name="Project Codebase Creation" color="#00ff00" meeting="false" start="2010-03-10" duration="41" complete="100" priority="2" expand="true">
+                <notes><![CDATA[03/08/2010
+Creation of Proof of Concept XCode project.
+03/12/2010
+Project filesystem hierarchy established.  Navigation hierarchy completed.
+04/08/2010
+Project codebase successfully tested on actual devices.]]></notes>
+            </task>
+            <task id="85" name="Initial Visual Design" color="#0000ff" meeting="false" start="2010-03-12" duration="37" complete="100" priority="1" expand="false">
+                <task id="86" name="Determine Design Metaphor" color="#0000ff" meeting="false" start="2010-03-12" duration="18" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Determine guiding design metaphor for UI.
+04/04/2010
+Visual design metaphor for UI identified and tested.  Design for major project deliverable still undergoing revision.
+04/09/2010
+Major project deliverable initial visual design finalized.]]></notes>
+                </task>
+                <task id="87" name="Visual Assets Prototypes" color="#0000ff" meeting="false" start="2010-03-20" duration="29" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Determine ability to generate art assets in acceptable timeframes.
+04/08/2010
+Prototype visual assets exported and pushed to test devices.]]></notes>
+                </task>
+            </task>
+            <task id="88" name="Project Timeline" color="#ff0000" meeting="false" start="2010-03-20" duration="6" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/12/2010
+Develop Gantt Chart.  For project.  Utilize Open Office Calc public domain Gantt Chart Template.
+04/01/2010
+Gantt Chart first revision complete.  Inception Phase complete.]]></notes>
+            </task>
+            <task id="20" name="Documentation Workflow Finalization" color="#ff0000" meeting="true" start="2010-03-20" duration="30" complete="100" priority="2" expand="true">
+                <notes><![CDATA[03/01/2010
+Create rough workflow guidelines for project documentation creation.
+3/12/2010
+Project documentation types determined.  Software Design Doc, Vision Doc, System/User Data Model Doc, UI Model Doc, Assest Licensing Doc, Use Cases.
+05/30/2010
+All project Documentation completed.]]></notes>
+            </task>
+        </task>
+        <task id="16" name="Elaboration" color="#8cb6ce" meeting="false" start="2010-03-03" duration="148" complete="96" priority="1" expand="true">
+            <notes><![CDATA[03/01/2010
+Take decisions and templates from Inception phase and complete preparation work for Construction.
+03/12/2010
+Realized need for Usability expertise.  Added task.
+04/08/2010
+Ongoing Training and Documentation tasks added.
+04/19/2010
+First external resource requested.
+06/13/2010
+Happy Birthday to me!  Significant setback in visualization.  Dates adjusted.
+07/20/2010
+Aside from visualization and usability setbacks, Elaboration phase complete.]]></notes>
+            <task id="25" name="Use Case Model Creation" color="#ff0000" meeting="false" start="2010-03-03" duration="49" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/01/2010
+Determine best doctype and template doctype for Use Cases.
+04/08/2010
+3 Primary Use Case scenarios developed.  System setup Use Case need identified.
+04/09/2010
+System setup Use Case developed.
+05/01/2010
+Initial Use Cases finished.  Awaiting Usability analysis.
+05/30/2010
+Use Case iteration moved to Construction Phase.]]></notes>
+            </task>
+            <task id="94" name="Ongoing Training and Documentation" color="#ff0000" meeting="false" start="2010-03-03" duration="106" complete="100" priority="1" expand="false">
+                <task id="95" name="Objective C training - Stanford Class" color="#ff0000" meeting="false" start="2010-03-03" duration="106" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[04/08/2010
+Taking Stanford Online Classes.  1st set of assignments complete.
+05/26/2010
+Most Stanford Class assignments complete.  All videos completed.  Training iteration moved to Construction Phase.]]></notes>
+                </task>
+                <task id="96" name="Software Design Doc revisions" color="#ff0000" meeting="false" start="2010-05-05" duration="32" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/03/2010
+Complete structure and rough draft of final Software Design Doc.
+03/12/2010
+Sections finalized.
+04/08/2010
+Task moved under Ongoing Training and documentation.
+05/26/2010
+Continued revisions to calculations.]]></notes>
+                </task>
+            </task>
+            <task id="28" name="Finalize Document Templates" color="#ff0000" meeting="false" start="2010-03-06" duration="49" complete="100" priority="0" expand="true">
+                <notes><![CDATA[03/12/2010
+Finalize documentation decisions.  Entirety of project documentation created with open source tools.  
+
+All documentation - Open Office
+All bitmap asset generation - GIMP
+All vector asset generation - Inkscape
+04/08/2010
+SVG workflow/structure identified for parsing.  Art workflow now seemless to code consumption.
+05/26/2010
+All document and asset templates complete.]]></notes>
+            </task>
+            <task id="89" name="Initial Usability" color="#ffff00" meeting="false" start="2010-04-01" duration="59" complete="72" priority="1" expand="true">
+                <notes><![CDATA[03/30/2010
+Usability Expert consulted.  Will contract initial Usability study to external resource.]]></notes>
+                <task id="90" name="Aquire Usability Resource" color="#ffff00" meeting="false" start="2010-04-01" duration="37" complete="50" priority="1" expand="true">
+                    <notes><![CDATA[03/30/2010
+Gathering Use Cases and Software Design Doc for review by Usability Expert.
+04/09/2010
+NDA sent to Usability Expert.
+04/19/2010
+NDA returned.  Project profile/Use cases sent.  Timeline increased.
+05/26/2010
+Awaiting Usability Expert response.]]></notes>
+                </task>
+                <task id="97" name="Review Usability Findings" color="#ffff00" meeting="true" start="2010-04-30" duration="30" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[04/19/2010
+Project profile materials sent to Usability resource.
+05/26/2010
+Awaiting Usability results.  Move iteration to Construction Phase.]]></notes>
+                    <depend id="101" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="27" name="Software Development Plan Creation" color="#00ff00" meeting="false" start="2010-04-19" duration="17" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/03/2010
+Enhance Software Design Doc section to include specific development decisions.
+05/26/2010
+Software vision and design doc synced.]]></notes>
+                <depend id="35" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="31" name="Finalize Project Environments" color="#00ff00" meeting="false" start="2010-04-19" duration="21" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/10/2010
+Finalize development workspace including filesystem naming conventions, backup procedures and workflow facilitation.]]></notes>
+                <task id="32" name="Finalize Dev Environment" color="#00ff00" meeting="false" start="2010-04-19" duration="7" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Complete creation of POC XCode project with general build targets, Unit Testing and project structure.
+03/12/2010
+Completed build targets, comment syntax, doxygen support.
+05/01/2010
+Development environment tool familiarization and profile setup complete (Instruments, XCode, etc.).
+05/26/2010
+Finalized Project filesystem structure.]]></notes>
+                </task>
+                <task id="34" name="Finalize Art Environment" color="#0000ff" meeting="false" start="2010-04-22" duration="18" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/03/2010
+Finalized filesystem conventions and tool settings/preferences.
+
+Raster - GIMP workspace, high resolution photography, high resolution assets stored, exported to low resolution iPhone assets.
+
+Vector - Inkscape workspace, exported to low resolution iPhone assets.
+
+Familiarization with Inkscape-specific svg file format.
+04/08/2010
+Codebase partitioned to accept art assests direct from Art workflow.
+05/26/2010
+Art toolchain finalized.  1 remaining issue with asset type.]]></notes>
+                </task>
+                <task id="33" name="Finalize Test Environment" color="#00ff00" meeting="false" start="2010-04-23" duration="17" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/10/2010
+Setup of SenTestingKit with default Unit Tests included in build process.
+04/08/2010
+SenTesting initial test cases created and merged with Build Process.
+05/26/2010
+Testing suites difficult to setup as familiarization with environment is still ongoing.  Add'l class structure fluctuations make constructing test cases difficult.
+7/8/2010
+Test cases complete, but given flux of class creations, unit testing is difficult.  UIAutomation investigation underway as well.]]></notes>
+                </task>
+            </task>
+            <task id="41" name="Visual Design Finalization" color="#0000ff" meeting="false" start="2010-04-29" duration="22" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/07/2010
+Finalize design metaphor and visual direction of project.]]></notes>
+                <task id="47" name="Finalize Art Workflow" color="#0000ff" meeting="false" start="2010-04-29" duration="22" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/09/2010
+Determine best-practices in Art development environment and workflow.
+05/26/2010
+All initial prototype art assets generated with acceptible workflow. ]]></notes>
+                </task>
+                <task id="45" name="Finalize Initial Art Assets" color="#0000ff" meeting="false" start="2010-04-29" duration="9" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/08/2010
+Create first batch of prototype art assets for Proof of Concept.
+05/26/2010
+All initial art assets completed and installed into codebase.]]></notes>
+                </task>
+            </task>
+            <task id="40" name="Proof of Concept" color="#00ff00" meeting="false" start="2010-05-03" duration="15" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/03/2010
+Create Proof of Concept iPhone app proving out ability to create application and test initial screen layouts and design decisions.
+05/26/2010
+Proof of Concept feature complete (without data retention).  However, performance is unacceptible.
+06/13/2010
+Proof of Concept completed, but primary development visualization deliverable performance is suboptimal ~15fps.  A new, lower-level visualization engine (and workflow to generate appropriate assets) is needed.]]></notes>
+                <depend id="46" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="35" name="Create Software Development Model" color="#00ff00" meeting="false" start="2010-05-06" duration="64" complete="100" priority="1" expand="true">
+                <notes><![CDATA[03/02/2010
+Design the principle software systems of the project.
+04/08/2010
+Methods for generating Data/ER/Class models determined.]]></notes>
+                <depend id="48" type="2" difference="0" hardness="Strong"/>
+                <task id="36" name="Technology Research" color="#00ff00" meeting="false" start="2010-05-06" duration="62" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/02/2010
+Determine best practices and most efficient frameworks for use on Apple Devices.
+04/08/2010
+Apple HIG, Best practices and Programming guides reviewed.
+05/26/2010
+Most apple UI interfaces understood and implemented.  CoreData and high-performing visualization still unknown.
+06/13/2010
+Visualization utilizing UIWebView suboptimal.  Research into CoreGraphics visualization underway.]]></notes>
+                </task>
+                <task id="37" name="Data Research" color="#00ff00" meeting="false" start="2010-05-06" duration="31" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Continuing research into software content and User customization.
+04/08/2010
+Core Data chosen as Model Framework over custom SQLite implementation.
+05/26/2010
+Determined best subset of data to include.  Data asset retrieval (public domain licensing) will begin.
+08/06/2010
+Data retrieval nearing completion. Most assets found in public domain.  Prototype datasets acceptible.  Will finish data retrieval for production product.]]></notes>
+                </task>
+                <task id="38" name="Class Model" color="#00ff00" meeting="false" start="2010-05-06" duration="64" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Construct Class Model diagram for high-level relationship determinations.
+04/08/2010
+Initial Class implementations from ER/Model work initiated.
+05/26/2010
+Initial design for primary deliverable visualization is unusable.  Must re-write using more lower-level structures.
+06/13/2010
+Class models for most system structures complete.  However, view models need rewrite.
+07/20/2010
+Class models complete with exception of view models.
+08/07/2010
+Visualization routine re-written with CoreGraphics and SVG backend-import. 60fps attainable on both original
+iPhone models and current generation iPhones.  @2x asset generation for UI elements in iPhone 4/iPad underway.]]></notes>
+                </task>
+                <task id="39" name="ER Model" color="#00ff00" meeting="false" start="2010-05-20" duration="14" complete="100" priority="1" expand="true">
+                    <notes><![CDATA[03/01/2010
+Create entity-relationship diagram for datastructures to hold both System data and User data.
+04/08/2010
+Basic Visual models generated via Eclipse-based ER software.  CoreData model will be generated via XCode.
+05/26/2010
+Eclipse-based ER diagramming not efficient with build process.  Abandoning after final visual ER generation.
+07/20/2010
+Begining CoreData modelling.]]></notes>
+                </task>
+            </task>
+            <task id="46" name="Functional Prototype" color="#00ff00" meeting="false" start="2010-05-18" duration="57" complete="100" thirdDate="2010-06-01" thirdDate-constraint="0" priority="1" expand="true">
+                <notes><![CDATA[03/01/2010
+Create functional Prototype for usability testing based upon Proof of Concept.
+05/26/2010
+Visualization performance is unacceptible.  Delaying Prototype delivery date by 1 month.
+07/20/2010
+View approach decided.  Rough design applied to functional prototype.]]></notes>
+                <depend id="102" type="2" difference="0" hardness="Rubber"/>
+            </task>
+            <task id="102" name="Prototype Real World Trial" color="#00ff00" meeting="true" start="2010-07-21" duration="8" complete="75" priority="1" expand="true">
+                <notes><![CDATA[08/14/2010
+Real world prototype testing underway. Performance differences between original iPhone and current
+generation iPhone acceptable.  Need to attain iPad and 1st generation iPod touch for support.]]></notes>
+            </task>
+        </task>
+        <task id="17" name="Construction" color="#ff0000" meeting="false" start="2010-05-21" duration="238" complete="10" priority="1" expand="true">
+            <notes><![CDATA[02/01/2010
+Take assets/code generated in elaboration and build functional product.
+03/12/2010
+Added Visual design development/generation path.
+05/26/2010
+Added Public Presence tasks.
+07/20/2010
+Added Audio Engineering, delays to construction, delay to Usability.]]></notes>
+            <task id="98" name="Public Presence Construction" color="#8cb6ce" meeting="false" start="2010-05-21" duration="71" complete="75" priority="1" expand="true">
+                <task id="99" name="Blog Creation" color="#ff0000" meeting="false" start="2010-05-21" duration="9" complete="75" priority="1" expand="true">
+                    <notes><![CDATA[05/26/2010
+Entertaining a blog about the process.  Transition blog to fully-fledged public presence.
+06/13/2010
+First blog entry posted under old blog-site.
+07/08/2010
+Add'l updates written.
+07/20/2010
+Initial Blog and site branding complete.  Iterations needed.]]></notes>
+                </task>
+                <task id="100" name="Business Entity Creation" color="#ff0000" meeting="false" start="2010-07-05" duration="26" complete="75" priority="1" expand="true">
+                    <notes><![CDATA[05/26/2010
+Decision to create LLC entity for purpose of production of this project.
+06/13/2010
+LLC research underway.
+06/20/2010
+LLC creation documentation.
+07/08/2010
+Articles of Organization received from state of MO.  TeamAxe, LLC. created.
+7/20/2010
+Apple Developer account transferred from Adam Axe entity to TeamAxe, LLC. entity.]]></notes>
+                </task>
+            </task>
+            <task id="91" name="Visual Design Finalization" color="#0000ff" meeting="false" start="2010-05-27" duration="93" complete="29" priority="1" expand="true">
+                <task id="92" name="Interface Asset Generation" color="#0000ff" meeting="false" start="2010-05-27" duration="93" complete="25" priority="1" expand="true">
+                    <notes><![CDATA[04/08/2010
+Photography completed.  Asset generation (lighting, cropping, resizing) commencing.
+07/28/2010
+Actual interface development underway, entry screen iterations commencing.]]></notes>
+                </task>
+                <task id="93" name="Project Asset Generation" color="#0000ff" meeting="false" start="2010-06-05" duration="62" complete="35" priority="1" expand="true">
+                    <notes><![CDATA[04/08/2010
+Asset prototypes constructed.  Performance issues noticed.
+07/28/2010
+Visualization issues corrected.  Asset toolchain updated.  Asset generation commencing.]]></notes>
+                </task>
+            </task>
+            <task id="101" name="Usability Review" color="#ffff00" meeting="false" start="2010-05-30" duration="47" complete="0" priority="1" expand="true">
+                <notes><![CDATA[05/26/2010
+Awaiting Usability results.
+06/13/2010
+Still awaiting Usabilty Resource response.  Delay of 1 month.
+07/20/2010
+Still no response from Usability Resource after repeated communication attempts.]]></notes>
+            </task>
+            <task id="104" name="Audio Engineering" color="#0000ff" meeting="false" start="2010-09-20" duration="88" complete="3" priority="1" expand="true">
+                <notes><![CDATA[07/20/2010
+Realized the need for ambient sound effects and possibly a theme.  Began research into audio design of peer software.]]></notes>
+                <task id="105" name="Theme Composition" color="#0000ff" meeting="false" start="2010-09-20" duration="82" complete="5" priority="1" expand="true">
+                    <notes><![CDATA[07/20/2010
+Previously composed pieces reviewed.  Possible candidates identified.]]></notes>
+                </task>
+                <task id="106" name="Effects Engineering" color="#0000ff" meeting="false" start="2010-10-17" duration="61" complete="2" priority="1" expand="true"/>
+            </task>
+            <task id="48" name="Primary Development" color="#00ff00" meeting="false" start="2010-07-09" duration="119" complete="8" priority="2" expand="true">
+                <notes><![CDATA[03/08/2010
+Primary class development
+06/13/2010
+Primary visual development deliverable unusable in current form.  Undergoing lower-level rewrite to attain 60fps.  Extension of 1 month to project for research.]]></notes>
+                <depend id="58" type="2" difference="0" hardness="Rubber"/>
+                <task id="51" name="Interface Development" color="#00ff00" meeting="false" start="2010-07-09" duration="119" complete="15" priority="1" expand="true">
+                    <notes><![CDATA[03/09/2010
+Designing and implementing User feedback.  Implementing visual design metaphor.
+04/08/2010
+3 Primary Screens constructed.  Conducting initial user testing.]]></notes>
+                </task>
+                <task id="49" name="Class Development" color="#00ff00" meeting="false" start="2010-07-09" duration="105" complete="10" priority="1" expand="true">
+                    <notes><![CDATA[03/03/2010
+Primary development of codebase.
+04/09/2010
+Production codebase started.]]></notes>
+                </task>
+                <task id="50" name="Data Development" color="#00ff00" meeting="false" start="2010-07-09" duration="91" complete="5" priority="1" expand="true">
+                    <notes><![CDATA[03/10/2010
+Primary development of data structures
+04/09/2010
+Data divided into 2 partitions, System and User.]]></notes>
+                </task>
+                <task id="52" name="Performance Development" color="#00ff00" meeting="false" start="2010-07-09" duration="73" complete="2" priority="1" expand="true">
+                    <notes><![CDATA[03/10/2010
+Troubleshooting, leak management, performance improvement.
+04/08/2010
+Major performance issues discovered in Mobile Safari with custom webkit JS engine.]]></notes>
+                </task>
+            </task>
+            <task id="103" name="Ongoing Training and Documentation" color="#00ff00" meeting="false" start="2010-06-17" duration="137" complete="15" priority="1" expand="true">
+                <notes><![CDATA[06/20/2010
+WWDC10 Videos downloaded.  Training ongoing.]]></notes>
+            </task>
+            <task id="54" name="Quality Assuarance" color="#00ff00" meeting="false" start="2010-08-17" duration="32" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/01/2010
+Finalization of testing before alpha release.]]></notes>
+                <task id="55" name="Final Usability" color="#ff0000" meeting="false" start="2010-08-17" duration="32" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/03/2010
+Review of usability study and last iteration.
+06/13/2010
+Usability has not become due to non-response from resource.  Delaying 1 month.
+07/20/2010
+No response from Usability Resource.  Delaying 1 month.  Troubling.]]></notes>
+                </task>
+            </task>
+            <task id="56" name="User Documentation" color="#ff0000" meeting="false" start="2010-08-30" duration="17" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/12/2010
+Creation of User documentation.  Leverage Use Cases.
+06/13/2010
+Must focus on visualization rewrite.  Documentation delayed.]]></notes>
+            </task>
+            <task id="57" name="Alpha Release" color="#00ff00" meeting="false" start="2010-10-17" duration="62" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/12/2010
+Alpha release to testers.]]></notes>
+                <depend id="59" type="2" difference="0" hardness="Strong"/>
+                <task id="107" name="Gather Tester Information" color="#ff0000" meeting="false" start="2010-10-17" duration="62" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[07/20/2010
+Identified need of Alpha Testers and process.]]></notes>
+                </task>
+                <task id="58" name="Alpha QA Iteration" color="#00ff00" meeting="false" start="2010-11-15" duration="16" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Iteration of Alpha test back to testers.]]></notes>
+                    <depend id="60" type="2" difference="0" hardness="Rubber"/>
+                </task>
+            </task>
+            <task id="59" name="Beta Release" color="#00ff00" meeting="false" start="2010-12-18" duration="14" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/03/2010
+Beta release to testers.]]></notes>
+                <task id="108" name="Gather Add'l Tester Information" color="#ff0000" meeting="false" start="2010-12-18" duration="6" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[07/20/2010
+Identified need of Beta Testers and process.]]></notes>
+                </task>
+                <task id="60" name="Beta QA Iteration" color="#00ff00" meeting="false" start="2010-12-18" duration="14" complete="0" priority="1" expand="true">
+                    <depend id="61" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="61" name="Release Candidate" color="#00ff00" meeting="true" start="2011-01-01" duration="13" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/03/2010
+Complete changes from Beta release.  Release to larger testing audience.]]></notes>
+                <depend id="67" type="2" difference="0" hardness="Strong"/>
+                <depend id="71" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="18" name="Transition" color="#ff0000" meeting="false" start="2010-09-20" duration="145" complete="0" priority="1" expand="true">
+            <notes><![CDATA[03/01/2010
+Rough outline of Transition tasks.  Further elaboration upon reaching Construction Phase.]]></notes>
+            <task id="62" name="Public Infrastructure Creation" color="#ff0000" meeting="false" start="2010-09-20" duration="28" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/12/2010
+Establish public hosting, DNS, technology vendors for public site.]]></notes>
+                <task id="63" name="Site Visual Design" color="#0000ff" meeting="false" start="2010-09-20" duration="6" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Leverage project visual design assets into web assets.]]></notes>
+                </task>
+                <task id="66" name="Site SEO" color="#ff0000" meeting="false" start="2010-09-27" duration="6" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Optimize site for aggregation on various public and social sites.]]></notes>
+                </task>
+                <task id="64" name="Site Development" color="#00ff00" meeting="false" start="2010-10-01" duration="12" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Develop site framework and pages.]]></notes>
+                    <depend id="65" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="65" name="Site Promotion" color="#00ff00" meeting="false" start="2010-10-13" duration="5" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Promote site.]]></notes>
+                </task>
+            </task>
+            <task id="67" name="Application Promotion" color="#00ff00" meeting="false" start="2011-01-14" duration="18" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/12/2010
+Finalize application and submit for approval.]]></notes>
+                <depend id="73" type="2" difference="0" hardness="Rubber"/>
+                <task id="71" name="Application Submission" color="#00ff00" meeting="false" start="2011-01-14" duration="18" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Prepare project for submission to iTunes Connect.]]></notes>
+                </task>
+                <task id="70" name="Rejection Preparation" color="#00ff00" meeting="false" start="2011-01-14" duration="18" complete="0" priority="1" expand="true">
+                    <notes><![CDATA[03/12/2010
+Prepare for application rejection.  Document code, eliminate bugs/leaks.]]></notes>
+                </task>
+            </task>
+            <task id="72" name="Licensing and Copyright" color="#ff0000" meeting="false" start="2010-10-29" duration="29" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/12/2010
+Submit product logos, procedures and project for licensing, copyright and patenting.]]></notes>
+            </task>
+            <task id="73" name="Press Release" color="#ff0000" meeting="false" start="2011-02-01" duration="11" complete="0" priority="1" expand="true">
+                <notes><![CDATA[03/12/2010
+Write press release for publishing on public/social sites.]]></notes>
+            </task>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="1" name="PrjMgr" function="0" contacts="" phone=""/>
+        <resource id="2" name="DevMgr" function="1" contacts="" phone=""/>
+        <resource id="3" name="ArtMgr" function="2" contacts="" phone=""/>
+        <resource id="4" name="QAMgr" function="3" contacts="" phone=""/>
+        <resource id="5" name="MktMgr" function="4" contacts="" phone=""/>
+        <resource id="6" name="Dev" function="5" contacts="" phone=""/>
+        <resource id="7" name="Arch" function="6" contacts="" phone=""/>
+        <resource id="8" name="Art" function="7" contacts="" phone=""/>
+        <resource id="9" name="QA" function="9" contacts="" phone=""/>
+        <resource id="10" name="Ed" function="8" contacts="" phone=""/>
+        <resource id="11" name="BA" function="10" contacts="" phone=""/>
+        <resource id="12" name="Con" function="11" contacts="" phone=""/>
+        <resource id="13" name="Audio" function="12" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="1" function="0" responsible="true" load="50.0"/>
+        <allocation task-id="0" resource-id="11" function="10" responsible="false" load="50.0"/>
+        <allocation task-id="1" resource-id="1" function="0" responsible="true" load="25.0"/>
+        <allocation task-id="1" resource-id="11" function="10" responsible="false" load="10.0"/>
+        <allocation task-id="2" resource-id="2" function="1" responsible="false" load="25.0"/>
+        <allocation task-id="2" resource-id="1" function="0" responsible="true" load="50.0"/>
+        <allocation task-id="2" resource-id="4" function="3" responsible="false" load="10.0"/>
+        <allocation task-id="2" resource-id="11" function="10" responsible="false" load="50.0"/>
+        <allocation task-id="2" resource-id="3" function="Default:0" responsible="false" load="20.0"/>
+        <allocation task-id="2" resource-id="5" function="4" responsible="false" load="10.0"/>
+        <allocation task-id="3" resource-id="2" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="3" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="11" function="10" responsible="false" load="100.0"/>
+        <allocation task-id="3" resource-id="5" function="4" responsible="false" load="100.0"/>
+        <allocation task-id="7" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="83" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="11" function="10" responsible="false" load="100.0"/>
+        <allocation task-id="5" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="6" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="24" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="24" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="8" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="8" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="11" function="10" responsible="false" load="100.0"/>
+        <allocation task-id="9" resource-id="10" function="8" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="11" function="10" responsible="false" load="100.0"/>
+        <allocation task-id="10" resource-id="10" function="8" responsible="true" load="100.0"/>
+        <allocation task-id="11" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="11" resource-id="10" function="8" responsible="false" load="100.0"/>
+        <allocation task-id="12" resource-id="6" function="5" responsible="false" load="10.0"/>
+        <allocation task-id="12" resource-id="11" function="10" responsible="true" load="30.0"/>
+        <allocation task-id="12" resource-id="10" function="8" responsible="false" load="30.0"/>
+        <allocation task-id="13" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="13" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="81" resource-id="2" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="81" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="81" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="82" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="22" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="22" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="22" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="23" resource-id="6" function="5" responsible="true" load="100.0"/>
+        <allocation task-id="23" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="84" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="19" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="19" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="85" resource-id="3" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="85" resource-id="8" function="7" responsible="false" load="100.0"/>
+        <allocation task-id="86" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="86" resource-id="3" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="86" resource-id="8" function="7" responsible="false" load="100.0"/>
+        <allocation task-id="87" resource-id="8" function="7" responsible="true" load="100.0"/>
+        <allocation task-id="88" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="20" resource-id="11" function="10" responsible="false" load="100.0"/>
+        <allocation task-id="20" resource-id="10" function="8" responsible="true" load="100.0"/>
+        <allocation task-id="16" resource-id="2" function="1" responsible="false" load="10.0"/>
+        <allocation task-id="16" resource-id="1" function="0" responsible="true" load="25.0"/>
+        <allocation task-id="16" resource-id="7" function="6" responsible="false" load="5.0"/>
+        <allocation task-id="16" resource-id="11" function="10" responsible="false" load="25.0"/>
+        <allocation task-id="16" resource-id="3" function="Default:0" responsible="false" load="20.0"/>
+        <allocation task-id="25" resource-id="6" function="5" responsible="true" load="100.0"/>
+        <allocation task-id="25" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="96" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="28" resource-id="10" function="8" responsible="true" load="100.0"/>
+        <allocation task-id="89" resource-id="4" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="89" resource-id="12" function="11" responsible="true" load="100.0"/>
+        <allocation task-id="90" resource-id="4" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="97" resource-id="4" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="27" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="27" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="27" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="31" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="32" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="34" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="34" resource-id="8" function="7" responsible="false" load="100.0"/>
+        <allocation task-id="33" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="33" resource-id="9" function="9" responsible="false" load="100.0"/>
+        <allocation task-id="41" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="41" resource-id="8" function="7" responsible="false" load="100.0"/>
+        <allocation task-id="47" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="47" resource-id="8" function="7" responsible="true" load="100.0"/>
+        <allocation task-id="45" resource-id="8" function="7" responsible="true" load="100.0"/>
+        <allocation task-id="40" resource-id="2" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="40" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="40" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="40" resource-id="3" function="Default:0" responsible="false" load="100.0"/>
+        <allocation task-id="35" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="35" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="35" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="36" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="36" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="37" resource-id="6" function="5" responsible="true" load="100.0"/>
+        <allocation task-id="38" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="39" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="46" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="46" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="46" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="102" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="17" resource-id="2" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="17" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="99" resource-id="10" function="8" responsible="true" load="100.0"/>
+        <allocation task-id="100" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="91" resource-id="3" function="2" responsible="true" load="100.0"/>
+        <allocation task-id="92" resource-id="8" function="7" responsible="true" load="100.0"/>
+        <allocation task-id="101" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="104" resource-id="3" function="2" responsible="true" load="10.0"/>
+        <allocation task-id="104" resource-id="13" function="12" responsible="false" load="100.0"/>
+        <allocation task-id="105" resource-id="13" function="12" responsible="true" load="100.0"/>
+        <allocation task-id="106" resource-id="13" function="12" responsible="true" load="100.0"/>
+        <allocation task-id="48" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="48" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="48" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="51" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="51" resource-id="8" function="7" responsible="true" load="100.0"/>
+        <allocation task-id="49" resource-id="6" function="5" responsible="true" load="100.0"/>
+        <allocation task-id="50" resource-id="6" function="5" responsible="true" load="100.0"/>
+        <allocation task-id="54" resource-id="9" function="9" responsible="false" load="100.0"/>
+        <allocation task-id="54" resource-id="4" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="55" resource-id="11" function="10" responsible="false" load="100.0"/>
+        <allocation task-id="55" resource-id="12" function="11" responsible="true" load="100.0"/>
+        <allocation task-id="56" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="56" resource-id="4" function="3" responsible="false" load="100.0"/>
+        <allocation task-id="57" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="57" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="57" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="107" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="58" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="58" resource-id="9" function="9" responsible="false" load="100.0"/>
+        <allocation task-id="58" resource-id="4" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="59" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="59" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="59" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="108" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="60" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="60" resource-id="9" function="9" responsible="false" load="100.0"/>
+        <allocation task-id="60" resource-id="4" function="3" responsible="true" load="100.0"/>
+        <allocation task-id="61" resource-id="2" function="1" responsible="false" load="100.0"/>
+        <allocation task-id="61" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="61" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="61" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="61" resource-id="9" function="9" responsible="false" load="100.0"/>
+        <allocation task-id="61" resource-id="4" function="3" responsible="false" load="100.0"/>
+        <allocation task-id="18" resource-id="1" function="0" responsible="true" load="100.0"/>
+        <allocation task-id="18" resource-id="5" function="4" responsible="false" load="100.0"/>
+        <allocation task-id="62" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="62" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="62" resource-id="8" function="7" responsible="false" load="100.0"/>
+        <allocation task-id="62" resource-id="5" function="4" responsible="false" load="100.0"/>
+        <allocation task-id="62" resource-id="10" function="8" responsible="false" load="100.0"/>
+        <allocation task-id="63" resource-id="11" function="10" responsible="false" load="100.0"/>
+        <allocation task-id="63" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="63" resource-id="8" function="7" responsible="false" load="100.0"/>
+        <allocation task-id="63" resource-id="10" function="8" responsible="false" load="100.0"/>
+        <allocation task-id="66" resource-id="5" function="4" responsible="true" load="100.0"/>
+        <allocation task-id="66" resource-id="10" function="8" responsible="false" load="100.0"/>
+        <allocation task-id="64" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="64" resource-id="6" function="5" responsible="false" load="100.0"/>
+        <allocation task-id="64" resource-id="8" function="7" responsible="false" load="100.0"/>
+        <allocation task-id="65" resource-id="6" function="5" responsible="true" load="100.0"/>
+        <allocation task-id="65" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="67" resource-id="2" function="1" responsible="true" load="100.0"/>
+        <allocation task-id="67" resource-id="7" function="6" responsible="false" load="100.0"/>
+        <allocation task-id="71" resource-id="7" function="6" responsible="true" load="100.0"/>
+        <allocation task-id="70" resource-id="6" function="5" responsible="true" load="100.0"/>
+        <allocation task-id="72" resource-id="11" function="10" responsible="true" load="100.0"/>
+        <allocation task-id="72" resource-id="10" function="8" responsible="false" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <taskdisplaycolumns>
+        <displaycolumn property-id="tpd3" order="0" width="128"/>
+        <displaycolumn property-id="tpd4" order="1" width="49"/>
+        <displaycolumn property-id="tpd5" order="2" width="48"/>
+    </taskdisplaycolumns>
+    <previous>
+        <previous-tasks name="InitialDraft">
+            <previous-task id="0" start="2010-01-21" duration="89" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="1" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-28" duration="27" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-28" duration="5" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-13" duration="25" meeting="false" super="true"/>
+            <previous-task id="22" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="2" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="28" start="2010-03-06" duration="18" meeting="false" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="18" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-19" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="29" start="2010-04-19" duration="3" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="31" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="30" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-06" duration="14" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="30" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-06-06" duration="99" meeting="false" super="true"/>
+            <previous-task id="48" start="2010-06-06" duration="91" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-06-15" duration="82" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-06-06" duration="75" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-06-27" duration="60" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-07-07" duration="32" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-07-15" duration="15" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-07-15" duration="15" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-07-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-08-01" duration="16" meeting="false" super="true"/>
+            <previous-task id="58" start="2010-08-01" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-08-17" duration="14" meeting="false" super="true"/>
+            <previous-task id="60" start="2010-08-17" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2010-08-31" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-08-26" duration="429" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-08-26" duration="31" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-08-26" duration="31" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-08-26" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-09-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-09-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2010-09-13" duration="25" meeting="false" super="true"/>
+            <previous-task id="71" start="2010-09-13" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2010-09-20" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2011-09-30" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2010-10-01" duration="1" meeting="false" super="false"/>
+        </previous-tasks>
+        <previous-tasks name="1InceptionStart">
+            <previous-task id="0" start="2010-01-21" duration="89" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="83" start="2010-02-12" duration="5" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="1" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-22" duration="21" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-28" duration="15" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-07" duration="31" meeting="false" super="true"/>
+            <previous-task id="81" start="2010-03-07" duration="3" meeting="false" super="false"/>
+            <previous-task id="82" start="2010-03-07" duration="7" meeting="false" super="false"/>
+            <previous-task id="22" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="2" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-04-19" duration="59" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="18" meeting="false" super="true"/>
+            <previous-task id="28" start="2010-03-03" duration="18" meeting="false" super="false"/>
+            <previous-task id="29" start="2010-04-19" duration="5" meeting="false" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="21" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-22" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-23" duration="17" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="31" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="18" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-06" duration="14" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="30" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-06-06" duration="99" meeting="false" super="true"/>
+            <previous-task id="48" start="2010-06-06" duration="82" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-06-06" duration="82" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-06-06" duration="75" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-06-06" duration="60" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-06-25" duration="32" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-07-15" duration="15" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-07-15" duration="15" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-07-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-08-01" duration="16" meeting="false" super="true"/>
+            <previous-task id="58" start="2010-08-01" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-08-17" duration="14" meeting="false" super="true"/>
+            <previous-task id="60" start="2010-08-17" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2010-08-31" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-08-26" duration="64" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-08-26" duration="31" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-08-26" duration="31" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-08-26" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-09-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-09-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2010-09-13" duration="25" meeting="false" super="true"/>
+            <previous-task id="71" start="2010-09-13" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2010-09-20" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2010-09-30" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2010-10-01" duration="11" meeting="false" super="false"/>
+        </previous-tasks>
+        <previous-tasks name="2InceptionProgress">
+            <previous-task id="0" start="2010-01-21" duration="90" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="83" start="2010-02-12" duration="5" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="12" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-22" duration="33" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-22" duration="15" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-07" duration="45" meeting="false" super="true"/>
+            <previous-task id="81" start="2010-03-07" duration="3" meeting="false" super="false"/>
+            <previous-task id="82" start="2010-03-07" duration="7" meeting="false" super="false"/>
+            <previous-task id="22" start="2010-03-13" duration="39" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="12" meeting="false" super="false"/>
+            <previous-task id="84" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="85" start="2010-03-12" duration="37" meeting="false" super="true"/>
+            <previous-task id="86" start="2010-03-12" duration="18" meeting="false" super="false"/>
+            <previous-task id="87" start="2010-03-20" duration="29" meeting="false" super="false"/>
+            <previous-task id="88" start="2010-03-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="49" meeting="false" super="false"/>
+            <previous-task id="28" start="2010-03-06" duration="49" meeting="false" super="false"/>
+            <previous-task id="29" start="2010-03-09" duration="36" meeting="false" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="21" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-22" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-23" duration="17" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="31" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="18" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-06" duration="14" meeting="false" super="false"/>
+            <previous-task id="89" start="2010-04-01" duration="37" meeting="false" super="true"/>
+            <previous-task id="90" start="2010-04-01" duration="37" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="30" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-05-27" duration="109" meeting="false" super="true"/>
+            <previous-task id="91" start="2010-05-27" duration="93" meeting="false" super="true"/>
+            <previous-task id="92" start="2010-05-27" duration="93" meeting="false" super="false"/>
+            <previous-task id="93" start="2010-06-05" duration="62" meeting="false" super="false"/>
+            <previous-task id="48" start="2010-06-06" duration="82" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-06-06" duration="82" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-06-06" duration="75" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-06-06" duration="60" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-06-25" duration="32" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-07-15" duration="15" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-07-15" duration="15" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-07-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-08-01" duration="16" meeting="false" super="true"/>
+            <previous-task id="58" start="2010-08-01" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-08-17" duration="14" meeting="false" super="true"/>
+            <previous-task id="60" start="2010-08-17" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2010-08-31" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-08-26" duration="64" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-08-26" duration="31" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-08-26" duration="31" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-08-26" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-09-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-09-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2010-09-13" duration="25" meeting="false" super="true"/>
+            <previous-task id="71" start="2010-09-13" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2010-09-20" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2010-09-30" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2010-10-01" duration="11" meeting="false" super="false"/>
+        </previous-tasks>
+        <previous-tasks name="3InceptionEnd">
+            <previous-task id="0" start="2010-01-21" duration="90" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="83" start="2010-02-12" duration="5" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="12" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-22" duration="33" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-22" duration="15" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-07" duration="45" meeting="false" super="true"/>
+            <previous-task id="81" start="2010-03-07" duration="3" meeting="false" super="false"/>
+            <previous-task id="82" start="2010-03-07" duration="7" meeting="false" super="false"/>
+            <previous-task id="22" start="2010-03-13" duration="39" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="12" meeting="false" super="false"/>
+            <previous-task id="84" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="85" start="2010-03-12" duration="37" meeting="false" super="true"/>
+            <previous-task id="86" start="2010-03-12" duration="18" meeting="false" super="false"/>
+            <previous-task id="87" start="2010-03-20" duration="29" meeting="false" super="false"/>
+            <previous-task id="88" start="2010-03-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="49" meeting="false" super="false"/>
+            <previous-task id="94" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="95" start="2010-03-03" duration="106" meeting="false" super="false"/>
+            <previous-task id="96" start="2010-05-05" duration="32" meeting="false" super="false"/>
+            <previous-task id="28" start="2010-03-06" duration="49" meeting="false" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="21" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-22" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-23" duration="17" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="31" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="18" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-06" duration="14" meeting="false" super="false"/>
+            <previous-task id="89" start="2010-04-01" duration="37" meeting="false" super="true"/>
+            <previous-task id="90" start="2010-04-01" duration="37" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="30" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-05-27" duration="109" meeting="false" super="true"/>
+            <previous-task id="91" start="2010-05-27" duration="93" meeting="false" super="true"/>
+            <previous-task id="92" start="2010-05-27" duration="93" meeting="false" super="false"/>
+            <previous-task id="93" start="2010-06-05" duration="62" meeting="false" super="false"/>
+            <previous-task id="48" start="2010-06-06" duration="82" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-06-06" duration="82" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-06-06" duration="75" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-06-06" duration="60" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-06-25" duration="32" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-07-15" duration="15" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-07-15" duration="15" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-07-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-08-01" duration="16" meeting="false" super="true"/>
+            <previous-task id="58" start="2010-08-01" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-08-17" duration="14" meeting="false" super="true"/>
+            <previous-task id="60" start="2010-08-17" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2010-08-31" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-08-26" duration="64" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-08-26" duration="31" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-08-26" duration="31" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-08-26" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-09-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-09-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2010-09-13" duration="25" meeting="false" super="true"/>
+            <previous-task id="71" start="2010-09-13" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2010-09-20" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2010-09-30" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2010-10-01" duration="11" meeting="false" super="false"/>
+        </previous-tasks>
+        <previous-tasks name="4ElaborationProgress">
+            <previous-task id="0" start="2010-01-21" duration="90" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="83" start="2010-02-12" duration="5" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="12" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-22" duration="33" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-22" duration="15" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-07" duration="45" meeting="false" super="true"/>
+            <previous-task id="81" start="2010-03-07" duration="3" meeting="false" super="false"/>
+            <previous-task id="82" start="2010-03-07" duration="7" meeting="false" super="false"/>
+            <previous-task id="22" start="2010-03-13" duration="39" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="12" meeting="false" super="false"/>
+            <previous-task id="84" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="85" start="2010-03-12" duration="37" meeting="false" super="true"/>
+            <previous-task id="86" start="2010-03-12" duration="18" meeting="false" super="false"/>
+            <previous-task id="87" start="2010-03-20" duration="29" meeting="false" super="false"/>
+            <previous-task id="88" start="2010-03-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="49" meeting="false" super="false"/>
+            <previous-task id="94" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="95" start="2010-03-03" duration="106" meeting="false" super="false"/>
+            <previous-task id="96" start="2010-05-05" duration="32" meeting="false" super="false"/>
+            <previous-task id="28" start="2010-03-06" duration="49" meeting="false" super="false"/>
+            <previous-task id="89" start="2010-04-01" duration="37" meeting="false" super="true"/>
+            <previous-task id="90" start="2010-04-01" duration="37" meeting="false" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="21" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-22" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-23" duration="17" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="31" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="18" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-06" duration="14" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="30" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-05-27" duration="109" meeting="false" super="true"/>
+            <previous-task id="91" start="2010-05-27" duration="93" meeting="false" super="true"/>
+            <previous-task id="92" start="2010-05-27" duration="93" meeting="false" super="false"/>
+            <previous-task id="93" start="2010-06-05" duration="62" meeting="false" super="false"/>
+            <previous-task id="48" start="2010-06-06" duration="82" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-06-06" duration="82" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-06-06" duration="75" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-06-06" duration="60" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-06-25" duration="32" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-07-15" duration="15" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-07-15" duration="15" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-07-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-08-01" duration="16" meeting="false" super="true"/>
+            <previous-task id="58" start="2010-08-01" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-08-17" duration="14" meeting="false" super="true"/>
+            <previous-task id="60" start="2010-08-17" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2010-08-31" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-08-26" duration="64" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-08-26" duration="31" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-08-26" duration="31" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-08-26" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-09-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-09-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2010-09-13" duration="25" meeting="false" super="true"/>
+            <previous-task id="71" start="2010-09-13" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2010-09-20" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2010-09-30" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2010-10-01" duration="11" meeting="false" super="false"/>
+        </previous-tasks>
+        <previous-tasks name="5ElaborationReEvaluation">
+            <previous-task id="0" start="2010-01-21" duration="90" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="83" start="2010-02-12" duration="5" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="12" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-22" duration="33" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-22" duration="15" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-07" duration="45" meeting="false" super="true"/>
+            <previous-task id="81" start="2010-03-07" duration="3" meeting="false" super="false"/>
+            <previous-task id="82" start="2010-03-07" duration="7" meeting="false" super="false"/>
+            <previous-task id="22" start="2010-03-13" duration="39" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="12" meeting="false" super="false"/>
+            <previous-task id="84" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="85" start="2010-03-12" duration="37" meeting="false" super="true"/>
+            <previous-task id="86" start="2010-03-12" duration="18" meeting="false" super="false"/>
+            <previous-task id="87" start="2010-03-20" duration="29" meeting="false" super="false"/>
+            <previous-task id="88" start="2010-03-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-03-03" duration="136" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="49" meeting="false" super="false"/>
+            <previous-task id="94" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="95" start="2010-03-03" duration="106" meeting="false" super="false"/>
+            <previous-task id="96" start="2010-05-05" duration="32" meeting="false" super="false"/>
+            <previous-task id="28" start="2010-03-06" duration="49" meeting="false" super="false"/>
+            <previous-task id="89" start="2010-04-01" duration="59" meeting="false" super="true"/>
+            <previous-task id="90" start="2010-04-01" duration="37" meeting="false" super="false"/>
+            <previous-task id="97" start="2010-04-30" duration="30" meeting="true" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="21" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-22" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-23" duration="17" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="42" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="42" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-20" duration="14" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="60" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-05-21" duration="115" meeting="false" super="true"/>
+            <previous-task id="98" start="2010-05-21" duration="71" meeting="false" super="true"/>
+            <previous-task id="99" start="2010-05-21" duration="9" meeting="false" super="false"/>
+            <previous-task id="100" start="2010-07-05" duration="26" meeting="false" super="false"/>
+            <previous-task id="91" start="2010-05-27" duration="93" meeting="false" super="true"/>
+            <previous-task id="92" start="2010-05-27" duration="93" meeting="false" super="false"/>
+            <previous-task id="93" start="2010-06-05" duration="62" meeting="false" super="false"/>
+            <previous-task id="101" start="2010-05-30" duration="19" meeting="false" super="false"/>
+            <previous-task id="48" start="2010-06-17" duration="82" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-06-17" duration="82" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-06-17" duration="75" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-06-25" duration="60" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-07-06" duration="32" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-07-15" duration="15" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-07-15" duration="15" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-07-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-08-01" duration="16" meeting="false" super="true"/>
+            <previous-task id="58" start="2010-08-01" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-08-17" duration="14" meeting="false" super="true"/>
+            <previous-task id="60" start="2010-08-17" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2010-08-31" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-08-26" duration="64" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-08-26" duration="31" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-08-26" duration="31" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-08-26" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-09-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-09-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2010-09-13" duration="25" meeting="false" super="true"/>
+            <previous-task id="71" start="2010-09-13" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2010-09-20" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2010-09-30" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2010-10-01" duration="11" meeting="false" super="false"/>
+        </previous-tasks>
+        <previous-tasks name="6ElaborationProgress">
+            <previous-task id="0" start="2010-01-21" duration="90" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="83" start="2010-02-12" duration="5" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="12" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-22" duration="33" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-22" duration="15" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-07" duration="45" meeting="false" super="true"/>
+            <previous-task id="81" start="2010-03-07" duration="3" meeting="false" super="false"/>
+            <previous-task id="82" start="2010-03-07" duration="7" meeting="false" super="false"/>
+            <previous-task id="22" start="2010-03-13" duration="39" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="12" meeting="false" super="false"/>
+            <previous-task id="84" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="85" start="2010-03-12" duration="37" meeting="false" super="true"/>
+            <previous-task id="86" start="2010-03-12" duration="18" meeting="false" super="false"/>
+            <previous-task id="87" start="2010-03-20" duration="29" meeting="false" super="false"/>
+            <previous-task id="88" start="2010-03-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-03-03" duration="148" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="49" meeting="false" super="false"/>
+            <previous-task id="94" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="95" start="2010-03-03" duration="106" meeting="false" super="false"/>
+            <previous-task id="96" start="2010-05-05" duration="32" meeting="false" super="false"/>
+            <previous-task id="28" start="2010-03-06" duration="49" meeting="false" super="false"/>
+            <previous-task id="89" start="2010-04-01" duration="59" meeting="false" super="true"/>
+            <previous-task id="90" start="2010-04-01" duration="37" meeting="false" super="false"/>
+            <previous-task id="97" start="2010-04-30" duration="30" meeting="true" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="21" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-22" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-23" duration="17" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="64" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="62" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="64" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-20" duration="14" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="57" meeting="false" super="false"/>
+            <previous-task id="102" start="2010-07-21" duration="8" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-05-21" duration="211" meeting="false" super="true"/>
+            <previous-task id="98" start="2010-05-21" duration="71" meeting="false" super="true"/>
+            <previous-task id="99" start="2010-05-21" duration="9" meeting="false" super="false"/>
+            <previous-task id="100" start="2010-07-05" duration="26" meeting="false" super="false"/>
+            <previous-task id="91" start="2010-05-27" duration="93" meeting="false" super="true"/>
+            <previous-task id="92" start="2010-05-27" duration="93" meeting="false" super="false"/>
+            <previous-task id="93" start="2010-06-05" duration="62" meeting="false" super="false"/>
+            <previous-task id="101" start="2010-05-30" duration="47" meeting="false" super="false"/>
+            <previous-task id="48" start="2010-07-09" duration="119" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-07-09" duration="119" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-07-09" duration="105" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-07-09" duration="91" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-07-09" duration="73" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-07-15" duration="32" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-07-15" duration="32" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-08-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-11-05" duration="16" meeting="false" super="true"/>
+            <previous-task id="58" start="2010-11-05" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-11-21" duration="14" meeting="false" super="true"/>
+            <previous-task id="60" start="2010-11-21" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2010-12-05" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-09-20" duration="118" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-09-20" duration="28" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-09-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-09-27" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-10-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-10-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2010-12-18" duration="18" meeting="false" super="true"/>
+            <previous-task id="71" start="2010-12-18" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2010-12-18" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2010-10-29" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2011-01-05" duration="11" meeting="false" super="false"/>
+        </previous-tasks>
+        <previous-tasks name="7ElaborationComplete">
+            <previous-task id="0" start="2010-01-21" duration="90" meeting="false" super="true"/>
+            <previous-task id="1" start="2010-01-21" duration="13" meeting="false" super="true"/>
+            <previous-task id="2" start="2010-01-21" duration="1" meeting="false" super="false"/>
+            <previous-task id="3" start="2010-02-01" duration="2" meeting="false" super="false"/>
+            <previous-task id="7" start="2010-02-10" duration="12" meeting="false" super="false"/>
+            <previous-task id="83" start="2010-02-12" duration="5" meeting="false" super="false"/>
+            <previous-task id="4" start="2010-02-12" duration="19" meeting="false" super="true"/>
+            <previous-task id="5" start="2010-02-12" duration="12" meeting="false" super="false"/>
+            <previous-task id="6" start="2010-02-22" duration="3" meeting="false" super="false"/>
+            <previous-task id="24" start="2010-02-25" duration="6" meeting="false" super="false"/>
+            <previous-task id="8" start="2010-02-23" duration="6" meeting="false" super="false"/>
+            <previous-task id="9" start="2010-02-22" duration="33" meeting="false" super="true"/>
+            <previous-task id="10" start="2010-02-22" duration="15" meeting="false" super="false"/>
+            <previous-task id="11" start="2010-03-02" duration="4" meeting="false" super="false"/>
+            <previous-task id="12" start="2010-03-06" duration="21" meeting="false" super="false"/>
+            <previous-task id="13" start="2010-03-07" duration="45" meeting="false" super="true"/>
+            <previous-task id="81" start="2010-03-07" duration="3" meeting="false" super="false"/>
+            <previous-task id="82" start="2010-03-07" duration="7" meeting="false" super="false"/>
+            <previous-task id="22" start="2010-03-13" duration="39" meeting="false" super="false"/>
+            <previous-task id="23" start="2010-03-13" duration="12" meeting="false" super="false"/>
+            <previous-task id="84" start="2010-03-13" duration="25" meeting="false" super="false"/>
+            <previous-task id="19" start="2010-03-10" duration="41" meeting="false" super="false"/>
+            <previous-task id="85" start="2010-03-12" duration="37" meeting="false" super="true"/>
+            <previous-task id="86" start="2010-03-12" duration="18" meeting="false" super="false"/>
+            <previous-task id="87" start="2010-03-20" duration="29" meeting="false" super="false"/>
+            <previous-task id="88" start="2010-03-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="20" start="2010-03-20" duration="30" meeting="true" super="false"/>
+            <previous-task id="16" start="2010-03-03" duration="148" meeting="false" super="true"/>
+            <previous-task id="25" start="2010-03-03" duration="49" meeting="false" super="false"/>
+            <previous-task id="94" start="2010-03-03" duration="106" meeting="false" super="true"/>
+            <previous-task id="95" start="2010-03-03" duration="106" meeting="false" super="false"/>
+            <previous-task id="96" start="2010-05-05" duration="32" meeting="false" super="false"/>
+            <previous-task id="28" start="2010-03-06" duration="49" meeting="false" super="false"/>
+            <previous-task id="89" start="2010-04-01" duration="59" meeting="false" super="true"/>
+            <previous-task id="90" start="2010-04-01" duration="37" meeting="false" super="false"/>
+            <previous-task id="97" start="2010-04-30" duration="30" meeting="true" super="false"/>
+            <previous-task id="27" start="2010-04-19" duration="17" meeting="false" super="false"/>
+            <previous-task id="31" start="2010-04-19" duration="21" meeting="false" super="true"/>
+            <previous-task id="32" start="2010-04-19" duration="7" meeting="false" super="false"/>
+            <previous-task id="34" start="2010-04-22" duration="18" meeting="false" super="false"/>
+            <previous-task id="33" start="2010-04-23" duration="17" meeting="false" super="false"/>
+            <previous-task id="41" start="2010-04-29" duration="22" meeting="false" super="true"/>
+            <previous-task id="47" start="2010-04-29" duration="22" meeting="false" super="false"/>
+            <previous-task id="45" start="2010-04-29" duration="9" meeting="false" super="false"/>
+            <previous-task id="40" start="2010-05-03" duration="15" meeting="false" super="false"/>
+            <previous-task id="35" start="2010-05-06" duration="64" meeting="false" super="true"/>
+            <previous-task id="36" start="2010-05-06" duration="62" meeting="false" super="false"/>
+            <previous-task id="37" start="2010-05-06" duration="31" meeting="false" super="false"/>
+            <previous-task id="38" start="2010-05-06" duration="64" meeting="false" super="false"/>
+            <previous-task id="39" start="2010-05-20" duration="14" meeting="false" super="false"/>
+            <previous-task id="46" start="2010-05-18" duration="57" meeting="false" super="false"/>
+            <previous-task id="102" start="2010-07-21" duration="8" meeting="true" super="false"/>
+            <previous-task id="17" start="2010-05-21" duration="238" meeting="false" super="true"/>
+            <previous-task id="98" start="2010-05-21" duration="71" meeting="false" super="true"/>
+            <previous-task id="99" start="2010-05-21" duration="9" meeting="false" super="false"/>
+            <previous-task id="100" start="2010-07-05" duration="26" meeting="false" super="false"/>
+            <previous-task id="91" start="2010-05-27" duration="93" meeting="false" super="true"/>
+            <previous-task id="92" start="2010-05-27" duration="93" meeting="false" super="false"/>
+            <previous-task id="93" start="2010-06-05" duration="62" meeting="false" super="false"/>
+            <previous-task id="101" start="2010-05-30" duration="47" meeting="false" super="false"/>
+            <previous-task id="104" start="2010-09-20" duration="88" meeting="false" super="true"/>
+            <previous-task id="105" start="2010-09-20" duration="82" meeting="false" super="false"/>
+            <previous-task id="106" start="2010-10-17" duration="61" meeting="false" super="false"/>
+            <previous-task id="48" start="2010-07-09" duration="119" meeting="false" super="true"/>
+            <previous-task id="51" start="2010-07-09" duration="119" meeting="false" super="false"/>
+            <previous-task id="49" start="2010-07-09" duration="105" meeting="false" super="false"/>
+            <previous-task id="50" start="2010-07-09" duration="91" meeting="false" super="false"/>
+            <previous-task id="52" start="2010-07-09" duration="73" meeting="false" super="false"/>
+            <previous-task id="103" start="2010-06-17" duration="137" meeting="false" super="false"/>
+            <previous-task id="54" start="2010-08-17" duration="32" meeting="false" super="true"/>
+            <previous-task id="55" start="2010-08-17" duration="32" meeting="false" super="false"/>
+            <previous-task id="56" start="2010-08-30" duration="17" meeting="false" super="false"/>
+            <previous-task id="57" start="2010-10-17" duration="62" meeting="false" super="true"/>
+            <previous-task id="107" start="2010-10-17" duration="62" meeting="false" super="false"/>
+            <previous-task id="58" start="2010-11-15" duration="16" meeting="false" super="false"/>
+            <previous-task id="59" start="2010-12-18" duration="14" meeting="false" super="true"/>
+            <previous-task id="108" start="2010-12-18" duration="6" meeting="false" super="false"/>
+            <previous-task id="60" start="2010-12-18" duration="14" meeting="false" super="false"/>
+            <previous-task id="61" start="2011-01-01" duration="13" meeting="true" super="false"/>
+            <previous-task id="18" start="2010-09-20" duration="145" meeting="false" super="true"/>
+            <previous-task id="62" start="2010-09-20" duration="28" meeting="false" super="true"/>
+            <previous-task id="63" start="2010-09-20" duration="6" meeting="false" super="false"/>
+            <previous-task id="66" start="2010-09-27" duration="6" meeting="false" super="false"/>
+            <previous-task id="64" start="2010-10-01" duration="12" meeting="false" super="false"/>
+            <previous-task id="65" start="2010-10-13" duration="5" meeting="false" super="false"/>
+            <previous-task id="67" start="2011-01-14" duration="18" meeting="false" super="true"/>
+            <previous-task id="71" start="2011-01-14" duration="18" meeting="false" super="false"/>
+            <previous-task id="70" start="2011-01-14" duration="18" meeting="false" super="false"/>
+            <previous-task id="72" start="2010-10-29" duration="29" meeting="false" super="false"/>
+            <previous-task id="73" start="2011-02-01" duration="11" meeting="false" super="false"/>
+        </previous-tasks>
+    </previous>
+    <roles roleset-name="Default"/>
+    <roles>
+        <role id="0" name="Project Manager"/>
+        <role id="1" name="Development Manager"/>
+        <role id="2" name="Graphic Design Manager"/>
+        <role id="3" name="Quality Assurance Manager"/>
+        <role id="4" name="Marketing Manager"/>
+        <role id="5" name="Developer"/>
+        <role id="6" name="Architect"/>
+        <role id="7" name="Graphic Designer"/>
+        <role id="8" name="Editor"/>
+        <role id="9" name="Quality Assurance Tester"/>
+        <role id="10" name="Business Analyst"/>
+        <role id="11" name="External Consultant"/>
+        <role id="12" name="Audio Engineer"/>
+        <role id="13" name=""/>
+    </roles>
+</project>

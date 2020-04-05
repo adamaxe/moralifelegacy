@@ -1,0 +1,27 @@
+var category_conscience_view_07_08 =
+[
+    [ "changeBrowExpressions:forEye:", "category_conscience_view_07_08.html#ab42060444fcd1a4516852f708ce0ac2b", null ],
+    [ "changeEyeDirection:forEye:", "category_conscience_view_07_08.html#aecf3d2736ae7562dd986fef6911af57c", null ],
+    [ "changeEyeState:forEye:", "category_conscience_view_07_08.html#a51c46615fa61efe23ce275249f613725", null ],
+    [ "changeLidExpressions:forEye:", "category_conscience_view_07_08.html#a1b6718d8f9d7ceed118692cc6b843ef6", null ],
+    [ "accessoryBottomView", "category_conscience_view_07_08.html#a73713a09a1344882b69a33534779cd74", null ],
+    [ "accessoryPrimaryView", "category_conscience_view_07_08.html#a8876af28016b017f81889acf3a2b06ad", null ],
+    [ "accessorySecondaryView", "category_conscience_view_07_08.html#a2ccd8de6eb9c8fa72da83c30e78e1d48", null ],
+    [ "accessoryTopView", "category_conscience_view_07_08.html#a0b8f091260f6ae937b0e6d565f5f88e5", null ],
+    [ "animatedBubbleView", "category_conscience_view_07_08.html#abe539dcb11d4b199925969b60f625311", null ],
+    [ "blinkTimer", "category_conscience_view_07_08.html#a590278bede8c772e65491c39bffe9ccb", null ],
+    [ "browExpressions", "category_conscience_view_07_08.html#a67a7bb5bd25e7186f0bd65f94611ff2a", null ],
+    [ "conscienceEyeLeftView", "category_conscience_view_07_08.html#ace29a9c745ff2fc52f391a2ca864f4cb", null ],
+    [ "conscienceEyeRightView", "category_conscience_view_07_08.html#ab8e4530a6f02d5b5263c67cb39c6d152", null ],
+    [ "conscienceMouthView", "category_conscience_view_07_08.html#a837f6a7ee87849dff2a94e6a35708c25", null ],
+    [ "conscienceSymbolView", "category_conscience_view_07_08.html#aa7a15128718ae9f44df945bf5fa3640f", null ],
+    [ "dimplesExpressions", "category_conscience_view_07_08.html#a8cb1017bca8576695bb3273a49e3cf86", null ],
+    [ "eyeLeftPositions", "category_conscience_view_07_08.html#ac70dc46a979e85231133ee4f4e1dbc63", null ],
+    [ "eyeRightPositions", "category_conscience_view_07_08.html#a088806a0a63736a95e5781c0c88d4dd0", null ],
+    [ "eyeTimer", "category_conscience_view_07_08.html#a8b28aa4a2355b3805926082f176917fb", null ],
+    [ "lidExpressions", "category_conscience_view_07_08.html#a5d1fd6dfac2e5b31276838ec362f782d", null ],
+    [ "lipsExpressions", "category_conscience_view_07_08.html#a0b9dc4eb3b804ff509f644fac027742e", null ],
+    [ "mouthTimer", "category_conscience_view_07_08.html#a847fab8dec66626c5d9014989d3d1d44", null ],
+    [ "teethExpressions", "category_conscience_view_07_08.html#aadc24f7a0cd64388e151574b6258dd23", null ],
+    [ "tongueExpressions", "category_conscience_view_07_08.html#a4a8ffeeb4c4f9a31f7f938da4d153e4e", null ]
+];
