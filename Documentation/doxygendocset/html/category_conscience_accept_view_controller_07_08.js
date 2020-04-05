@@ -1,0 +1,26 @@
+var category_conscience_accept_view_controller_07_08 =
+[
+    [ "dismissAcceptModal", "category_conscience_accept_view_controller_07_08.html#a941cdbc1cf3aa24e2fe4c8a1ef311718", null ],
+    [ "processCollection", "category_conscience_accept_view_controller_07_08.html#acae9a7a9cd5fd1adceb4c7c6467fb4e5", null ],
+    [ "retrieveCurrentFunds", "category_conscience_accept_view_controller_07_08.html#a992f9e0ffc051a139db53f3033b2b170", null ],
+    [ "returnToHome", "category_conscience_accept_view_controller_07_08.html#a09ae838ac0360681855a8bd0e0189a5b", null ],
+    [ "saveConscience", "category_conscience_accept_view_controller_07_08.html#aca48530411f49d692b0a533dc7607aa7", null ],
+    [ "accessoryCostLabel", "category_conscience_accept_view_controller_07_08.html#adf15157ece990c19f8d8f996ad840eed", null ],
+    [ "accessoryDescriptionLabel", "category_conscience_accept_view_controller_07_08.html#a87eb2d3c5380aff05dd28ce063317317", null ],
+    [ "accessoryNameLabel", "category_conscience_accept_view_controller_07_08.html#aeca7bf91b6da17ef45d3206703ca9e77", null ],
+    [ "assetCost", "category_conscience_accept_view_controller_07_08.html#a42c6d3ff75b7eac55607f45f3ef516eb", null ],
+    [ "backButton", "category_conscience_accept_view_controller_07_08.html#aaca543b9d4444665d1b47ff1a3d0d66b", null ],
+    [ "buyButton", "category_conscience_accept_view_controller_07_08.html#a1d5e6bac55ea367f0fc3f73f5319a574", null ],
+    [ "consciencePlayground", "category_conscience_accept_view_controller_07_08.html#aee0c96a31220bde15049c078e75675ed", null ],
+    [ "currentFeature", "category_conscience_accept_view_controller_07_08.html#ae57a57831136113f5efc7c8d7cc87381", null ],
+    [ "currentFunds", "category_conscience_accept_view_controller_07_08.html#afe8556eccbf33fa061e6461ee484ef28", null ],
+    [ "currentFundsLabel", "category_conscience_accept_view_controller_07_08.html#abfd32657dff5e5c57a4fc3c105bf0307", null ],
+    [ "insufficientEthicalsLabel", "category_conscience_accept_view_controller_07_08.html#acaac7c7b476ff72aa30d5ec2d4f9e4b3", null ],
+    [ "isOwned", "category_conscience_accept_view_controller_07_08.html#ae48d6e17142813291d0cca20579bf288", null ],
+    [ "moralImageView", "category_conscience_accept_view_controller_07_08.html#a78cc960c37d3382984538023c5affb14", null ],
+    [ "prefs", "category_conscience_accept_view_controller_07_08.html#aa9e2afe260418e23ab689c4be875aece", null ],
+    [ "previousButton", "category_conscience_accept_view_controller_07_08.html#ad5e100d0f85f153df2d10afd2db23c16", null ],
+    [ "resetFeature", "category_conscience_accept_view_controller_07_08.html#a1bc624f45405e0b4e0b96a196e34ebac", null ],
+    [ "thoughtModalArea", "category_conscience_accept_view_controller_07_08.html#af97592e784ef90b98546dee817f8932e", null ],
+    [ "previousScreen", "category_conscience_accept_view_controller_07_08.html#a110741361b03dad8ffb5f60bdb71b8a6", null ]
+];

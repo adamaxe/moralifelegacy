@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['readwritemanagedobjectcontext_2395',['readWriteManagedObjectContext',['../interface_model_manager.html#aeb59221b70cabd37262e6d5bd6378f29',1,'ModelManager::readWriteManagedObjectContext()'],['../category_model_manager_07_08.html#a208faecafbea7182862664d14e7121f2',1,'ModelManager()::readWriteManagedObjectContext()']]],
+  ['readwritemanagedobjectmodel_2396',['readWriteManagedObjectModel',['../category_model_manager_07_08.html#aa3f3a2bbcdabb29d4f1c9100defc8587',1,'ModelManager()']]],
+  ['readwritepersistentstorecoordinator_2397',['readWritePersistentStoreCoordinator',['../category_model_manager_07_08.html#aaa05ee3d04ee3ac3f7dadd3ff46fe5e5',1,'ModelManager()']]],
+  ['referenceimage_2398',['referenceImage',['../interface_reference_table_view_cell.html#ab5ea2e84bdbb867abecb7fe62b5d7138',1,'ReferenceTableViewCell']]],
+  ['referencekey_2399',['referenceKey',['../interface_reference_model.html#a5f69bac1b8045568deddcc37ec6eaa24',1,'ReferenceModel']]],
+  ['referencekeys_2400',['referenceKeys',['../interface_reference_model.html#a47cd000314511d3c3d10fa94d03a06b4',1,'ReferenceModel::referenceKeys()'],['../category_reference_model_07_08.html#a45ac02d94fa827e8e22452f6c5727107',1,'ReferenceModel()::referenceKeys()']]],
+  ['referencemodel_2401',['referenceModel',['../category_reference_detail_view_controller_07_08.html#ac04d540d2563f51f5bea75bd0a201c70',1,'ReferenceDetailViewController()::referenceModel()'],['../category_reference_list_view_controller_07_08.html#a0699d7e7fa265acda0ccc84d08555f0c',1,'ReferenceListViewController()::referenceModel()']]],
+  ['references_2402',['references',['../interface_reference_model.html#a1981037e6838606c6a6489d074be8a90',1,'ReferenceModel::references()'],['../category_reference_model_07_08.html#ad8550eb8ae3d0c7a0c0eff88cbc51d8d',1,'ReferenceModel()::references()']]],
+  ['referencetype_2403',['referenceType',['../interface_reference_model.html#a35311344d1a42fe20f32a37b0e0564fb',1,'ReferenceModel::referenceType()'],['../class_reference_list_view_controller.html#af1218260fbcd7e19ffba47a5d0314644',1,'ReferenceListViewController::referenceType()'],['../interface_reference_table_view_cell.html#a68f00380aae870f6c2efa6ba03227d99',1,'ReferenceTableViewCell::referenceType()']]],
+  ['relatedmoral_2404',['relatedMoral',['../interface_reference_asset.html#a83ad645cbb8a84afe22f517fd1b9daa9',1,'ReferenceAsset']]],
+  ['relatedmorals_2405',['relatedMorals',['../interface_reference_model.html#a66d9a54611f56a827327f08202e89713',1,'ReferenceModel::relatedMorals()'],['../category_reference_model_07_08.html#a490d0bea13af1dff0b9ce74eb6fec17b',1,'ReferenceModel()::relatedMorals()']]],
+  ['relatedreference_2406',['relatedReference',['../interface_moral.html#aaea818844efd20bed3f2a8cf304f9f05',1,'Moral']]],
+  ['reportnames_2407',['reportNames',['../interface_report_pie_model.html#a1bbbef1e560b319b985605f1c36d5e95',1,'ReportPieModel::reportNames()'],['../category_report_pie_model_07_08.html#ae13f2646df5c05a4e5c67302fbcd3494',1,'ReportPieModel()::reportNames()']]],
+  ['reportpiemodel_2408',['reportPieModel',['../category_report_pie_view_controller_07_08.html#a44c02c7b0ca02a7c6f874363b97c3393',1,'ReportPieViewController()']]],
+  ['rewardadilemma_2409',['rewardADilemma',['../interface_dilemma.html#a81efe5f5dfcbc52a29209f6334064474',1,'Dilemma']]],
+  ['rewardbdilemma_2410',['rewardBDilemma',['../interface_dilemma.html#a9c847667a17c24ca7484becfcef19bcc',1,'Dilemma']]]
+];
