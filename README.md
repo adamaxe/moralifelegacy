@@ -1,7 +1,7 @@
 # moralife
 Digital Conscience App for iOS
 
-This is the sunset MoraLife iOS project. I release all assets to the public domain.
+This is the sunset MoraLife iOS project.
 
 Please review the [Design Doc](./Documentation/ml-designdocument.pdf) for history.
 
